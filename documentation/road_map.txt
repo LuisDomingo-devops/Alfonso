@@ -1,0 +1,138 @@
+Roadmap REALISTA
+FASE 0 — Infraestructura base
+
+Duración: 2 semanas
+
+Objetivo
+
+Tener un runtime funcional.
+
+Entregables
+estructura proyecto
+FastAPI
+conexión Ollama API
+sistema plugins
+logs
+configuración
+websocket realtime
+Tecnologías
+Python
+FastAPI
+Pydantic
+asyncio
+
+FASE 1 — Jarvis básico
+
+Duración: 4 semanas
+
+Objetivo
+
+Asistente operativo simple.
+
+Capacidades
+chat
+voz
+memoria corta
+ejecutar comandos simples
+crear archivos
+abrir apps
+Entregables
+wake word
+STT
+TTS
+filesystem tools
+command executor
+
+FASE 2 — Sistema de agentes
+
+Duración: 6 semanas
+
+Objetivo
+
+Separar responsabilidades.
+
+Agentes
+planner
+filesystem agent
+browser agent
+mail agent
+automation agent
+Entregables
+event bus
+tools registry
+task planner
+async orchestration
+
+FASE 3 — Computer Use
+
+Duración: 8 semanas
+
+Objetivo
+
+Control real del ordenador.
+
+Capacidades
+mover ratón
+usar navegador
+rellenar formularios
+controlar ventanas
+OCR
+screenshots
+Stack
+Playwright
+PyAutoGUI
+OpenCV
+FASE 4 — Memoria persistente
+
+Duración: 4 semanas
+
+Objetivo
+
+Personalización real.
+
+Funciones
+recordar hábitos
+contexto
+preferencias
+aprendizaje
+Stack
+ChromaDB
+embeddings
+semantic retrieval
+FASE 5 — Integración externa
+
+Duración: 6 semanas
+
+Integraciones
+Gmail
+Outlook
+Telegram
+WhatsApp
+cámaras IP
+impresoras
+calendario
+FASE 6 — Vision + Multimodal
+
+Duración: 8 semanas
+
+Capacidades
+webcam
+OCR
+análisis pantalla
+detección objetos
+vigilancia
+FASE 7 — Agentic OS
+
+Duración: indefinida
+
+Objetivo
+
+Convertirlo en capa operativa completa.
+
+Esto implica:
+
+daemon permanente,
+procesos autónomos,
+scheduler,
+contexto global,
+autonomía parcial.

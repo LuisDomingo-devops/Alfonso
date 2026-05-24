@@ -1,0 +1,51 @@
+                ┌─────────────────┐
+                │     FRONTEND    │
+                │  Voz/UI/Overlay │
+                └────────┬────────┘
+                         │
+                         ▼
+                ┌─────────────────┐
+                │ ORCHESTRATOR AI │
+                │  Planner Agent  │
+                └────────┬────────┘
+                         │
+ ┌───────────────────────┼───────────────────────┐
+ ▼                       ▼                       ▼
+
+MEMORY              TOOL SYSTEM             EVENT BUS
+VECTOR DB           Plugins/Skills          Async Queue
+SQLite              Filesystem              Redis/NATS
+ChromaDB            Browser
+                    Mail
+                    Cameras
+                    Printers
+
+
+
+ALFONSO/
+│
+├── app/
+│   ├── main.py
+│   ├── config.py
+│   │
+│   ├── api/
+│   │   └── routes.py
+│   │
+│   ├── core/
+│   │   ├── orchestrator.py
+│   │   ├── llm_client.py
+│   │   └── tool_registry.py
+│   │
+│   ├── tools/
+│   │   ├── filesystem_tools.py
+│   │   └── system_tools.py
+│   │
+│   ├── schemas/
+│   │   └── chat.py
+│   │
+│   └── utils/
+│       └── logger.py
+│
+├── requirements.txt
+├── .env
+└── README.md
