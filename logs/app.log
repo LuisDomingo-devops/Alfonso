@@ -1,0 +1,796 @@
+2026-05-23 11:47:35,526 | INFO | app | Modelo precalentado
+2026-05-23 11:47:39,999 | INFO | app | Modelo precalentado
+2026-05-23 11:47:44,512 | INFO | app | Modelo precalentado
+2026-05-23 11:47:49,249 | INFO | app | Modelo precalentado
+2026-05-23 11:47:53,948 | INFO | app | Modelo precalentado
+2026-05-23 11:47:58,717 | INFO | app | Modelo precalentado
+2026-05-23 11:48:03,681 | INFO | app | Modelo precalentado
+2026-05-23 11:48:07,032 | INFO | app | Modelo precalentado
+2026-05-23 11:48:40,819 | INFO | app | Modelo precalentado
+2026-05-23 11:49:07,998 | INFO | app | Modelo precalentado
+2026-05-23 11:59:46,796 | INFO | app | Modelo precalentado
+2026-05-23 11:59:52,268 | INFO | app | Modelo precalentado
+2026-05-23 12:02:06,399 | INFO | app | [----------] Modelo precalentado
+2026-05-23 12:02:10,709 | INFO | app | [----------] Modelo precalentado
+2026-05-23 12:02:11,905 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-23 12:02:14,827 | INFO | app | [----------] Modelo precalentado
+2026-05-23 12:02:21,494 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-23 12:02:24,612 | INFO | app | [----------] Modelo precalentado
+2026-05-23 12:02:33,265 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-23 12:02:36,957 | INFO | app | [----------] Modelo precalentado
+2026-05-23 12:02:36,660 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-23 12:02:39,588 | INFO | app | [----------] Modelo precalentado
+2026-05-23 12:03:01,505 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-23 12:03:05,131 | INFO | app | [----------] Modelo precalentado
+2026-05-23 12:03:06,366 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-23 12:03:08,252 | INFO | app | [----------] Modelo precalentado
+2026-05-23 12:03:09,511 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-23 12:03:12,587 | INFO | app | [----------] Modelo precalentado
+2026-05-23 12:03:13,787 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-23 12:03:17,262 | INFO | app | [----------] Modelo precalentado
+2026-05-23 12:03:18,359 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-23 12:03:21,518 | INFO | app | [----------] Modelo precalentado
+2026-05-23 12:03:22,603 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-23 12:03:26,064 | INFO | app | [----------] Modelo precalentado
+2026-05-23 12:03:27,561 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-23 12:03:30,793 | INFO | app | [----------] Modelo precalentado
+2026-05-23 12:03:31,984 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-23 12:03:36,177 | INFO | app | [----------] Modelo precalentado
+2026-05-23 12:03:37,752 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-23 12:03:40,031 | INFO | app | [----------] Modelo precalentado
+2026-05-23 12:03:50,193 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-23 12:03:53,296 | INFO | app | [----------] Modelo precalentado
+2026-05-23 12:03:58,366 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-23 12:04:01,428 | INFO | app | [----------] Modelo precalentado
+2026-05-23 12:04:02,581 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-23 12:04:06,038 | INFO | app | [----------] Modelo precalentado
+2026-05-23 12:04:07,321 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-23 12:04:09,555 | INFO | app | [----------] Modelo precalentado
+2026-05-23 12:04:10,867 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-23 12:04:14,182 | INFO | app | [----------] Modelo precalentado
+2026-05-23 12:04:25,242 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-23 12:04:29,215 | INFO | app | [----------] Modelo precalentado
+2026-05-23 12:04:31,321 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-23 12:04:34,703 | INFO | app | [----------] Modelo precalentado
+2026-05-23 12:04:36,145 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-23 12:04:40,183 | INFO | app | [----------] Modelo precalentado
+2026-05-23 12:04:49,338 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-23 12:04:52,548 | INFO | app | [----------] Modelo precalentado
+2026-05-23 12:05:02,221 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-23 12:05:05,670 | INFO | app | [----------] Modelo precalentado
+2026-05-23 12:18:52,622 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-23 12:20:01,846 | INFO | app | [----------] Modelo precalentado
+2026-05-23 12:20:05,359 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-23 12:20:10,597 | INFO | app | [----------] Modelo precalentado
+2026-05-23 12:20:10,602 | INFO | app | [908fb707-cd27-4a4b-912e-aef1b6e39b56] Solicitud /chat recibida
+2026-05-23 12:20:10,603 | INFO | app | [908fb707-cd27-4a4b-912e-aef1b6e39b56] USER MESSAGE: lee el archivo mi_primer_archivo.txt
+2026-05-23 12:20:38,651 | INFO | app | [908fb707-cd27-4a4b-912e-aef1b6e39b56] Solicitud /chat procesada con estado: tool
+2026-05-23 12:20:38,652 | INFO | app | [908fb707-cd27-4a4b-912e-aef1b6e39b56] LATENCY: 29.76s
+2026-05-23 12:36:26,799 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-23 12:37:54,726 | INFO | app | [----------] Modelo precalentado
+2026-05-23 12:37:57,247 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-23 12:38:00,773 | INFO | app | [----------] Modelo precalentado
+2026-05-23 12:43:26,321 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-23 12:44:52,480 | INFO | app | [----------] Modelo precalentado
+2026-05-23 12:49:04,448 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 12:49:11,209 | INFO | app | [----------] Modelo precalentado
+2026-05-23 12:49:11,213 | INFO | app | [3aba49bb-1900-4874-b754-b90d060cb229] HTTP request started: GET /health
+2026-05-23 12:49:11,236 | INFO | app | [3aba49bb-1900-4874-b754-b90d060cb229] Health check
+2026-05-23 12:49:11,236 | INFO | app | [3aba49bb-1900-4874-b754-b90d060cb229] HTTP request finished: GET /health 200
+2026-05-23 12:49:11,256 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 12:49:11,553 | INFO | app | [----------] Modelo precalentado
+2026-05-23 12:49:11,553 | INFO | app | [5a13e577-4175-4617-8824-289ffec153c0] HTTP request started: GET /metrics
+2026-05-23 12:49:11,567 | INFO | app | [5a13e577-4175-4617-8824-289ffec153c0] Metrics requested
+2026-05-23 12:49:11,569 | INFO | app | [5a13e577-4175-4617-8824-289ffec153c0] HTTP request finished: GET /metrics 200
+2026-05-23 12:49:11,580 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 12:49:14,694 | INFO | app | [----------] Modelo precalentado
+2026-05-23 12:49:14,699 | INFO | app | [11ccee4c-f33c-41c2-896a-71c8aadb31e7] HTTP request started: POST /chat
+2026-05-23 12:49:14,706 | INFO | app | [11ccee4c-f33c-41c2-896a-71c8aadb31e7] Solicitud /chat recibida
+2026-05-23 12:49:14,706 | INFO | app | [11ccee4c-f33c-41c2-896a-71c8aadb31e7] USER MESSAGE: hola
+2026-05-23 12:49:14,706 | INFO | app | [11ccee4c-f33c-41c2-896a-71c8aadb31e7] Solicitud /chat procesada con estado: chat
+2026-05-23 12:49:14,706 | INFO | app | [11ccee4c-f33c-41c2-896a-71c8aadb31e7] LATENCY: 0.00s
+2026-05-23 12:49:14,706 | INFO | app | [11ccee4c-f33c-41c2-896a-71c8aadb31e7] HTTP request finished: POST /chat 200
+2026-05-23 12:49:14,727 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 12:49:14,742 | INFO | app | [----------] Modelo precalentado
+2026-05-23 12:49:14,755 | INFO | app | [7603b7dd-70d1-4aac-bc9a-d3868d9306cd] HTTP request started: POST /chat
+2026-05-23 12:49:14,759 | WARNING | app | [7603b7dd-70d1-4aac-bc9a-d3868d9306cd] Validation error: [{'type': 'missing', 'loc': ('body', 'message'), 'msg': 'Field required', 'input': {}}]
+2026-05-23 12:49:14,759 | INFO | app | [7603b7dd-70d1-4aac-bc9a-d3868d9306cd] HTTP request finished: POST /chat 422
+2026-05-23 12:49:14,774 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 12:49:17,730 | INFO | app | [----------] Modelo precalentado
+2026-05-23 12:49:17,740 | INFO | app | [fa40f397-ccb0-4dad-8688-df652981cda0] WS message received: hola
+2026-05-23 12:49:17,742 | INFO | app | [fa40f397-ccb0-4dad-8688-df652981cda0] WS disconnected
+2026-05-23 18:15:48,334 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 18:15:50,682 | INFO | app | [----------] Modelo precalentado
+2026-05-23 18:15:50,687 | INFO | app | [a3e4d946-7087-4f96-bb44-c94378833a22] HTTP request started: GET /health
+2026-05-23 18:15:50,689 | INFO | app | [a3e4d946-7087-4f96-bb44-c94378833a22] Health check
+2026-05-23 18:15:50,701 | INFO | app | [a3e4d946-7087-4f96-bb44-c94378833a22] HTTP request finished: GET /health 200
+2026-05-23 18:15:50,703 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 18:15:52,989 | INFO | app | [----------] Modelo precalentado
+2026-05-23 18:15:52,989 | INFO | app | [b6dcd972-3493-4301-be23-25b6155d14e9] HTTP request started: GET /metrics
+2026-05-23 18:15:52,989 | INFO | app | [b6dcd972-3493-4301-be23-25b6155d14e9] Metrics requested
+2026-05-23 18:15:52,989 | INFO | app | [b6dcd972-3493-4301-be23-25b6155d14e9] HTTP request finished: GET /metrics 200
+2026-05-23 18:15:53,008 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 18:15:55,292 | INFO | app | [----------] Modelo precalentado
+2026-05-23 18:15:55,292 | INFO | app | [73c87c51-d5c8-48e2-8fc8-2f667083e247] HTTP request started: POST /chat
+2026-05-23 18:15:55,308 | INFO | app | [73c87c51-d5c8-48e2-8fc8-2f667083e247] Solicitud /chat recibida
+2026-05-23 18:15:55,308 | INFO | app | [73c87c51-d5c8-48e2-8fc8-2f667083e247] USER MESSAGE: hola
+2026-05-23 18:15:55,308 | INFO | app | [73c87c51-d5c8-48e2-8fc8-2f667083e247] Solicitud /chat procesada con estado: chat
+2026-05-23 18:15:55,308 | INFO | app | [73c87c51-d5c8-48e2-8fc8-2f667083e247] LATENCY: 0.00s
+2026-05-23 18:15:55,308 | INFO | app | [73c87c51-d5c8-48e2-8fc8-2f667083e247] HTTP request finished: POST /chat 200
+2026-05-23 18:15:55,323 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 18:15:57,611 | INFO | app | [----------] Modelo precalentado
+2026-05-23 18:15:57,611 | INFO | app | [bfac0239-f84e-4ef9-ae51-0b74e5d6d6a6] HTTP request started: POST /chat
+2026-05-23 18:15:57,629 | WARNING | app | [bfac0239-f84e-4ef9-ae51-0b74e5d6d6a6] Validation error: [{'type': 'missing', 'loc': ('body', 'message'), 'msg': 'Field required', 'input': {}}]
+2026-05-23 18:15:57,629 | INFO | app | [bfac0239-f84e-4ef9-ae51-0b74e5d6d6a6] HTTP request finished: POST /chat 422
+2026-05-23 18:15:57,643 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 18:15:59,946 | INFO | app | [----------] Modelo precalentado
+2026-05-23 18:15:59,946 | INFO | app | [35ea4621-71fa-4554-bc8a-3143a05cc0ee] WS message received: hola
+2026-05-23 18:15:59,946 | INFO | app | [35ea4621-71fa-4554-bc8a-3143a05cc0ee] WS disconnected
+2026-05-23 18:16:39,950 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 18:16:42,268 | INFO | app | [----------] Modelo precalentado
+2026-05-23 18:16:42,271 | INFO | app | [b9d52751-f0f8-43bb-9713-42254cbb88ab] HTTP request started: GET /health
+2026-05-23 18:16:42,288 | INFO | app | [b9d52751-f0f8-43bb-9713-42254cbb88ab] Health check
+2026-05-23 18:16:42,288 | INFO | app | [b9d52751-f0f8-43bb-9713-42254cbb88ab] HTTP request finished: GET /health 200
+2026-05-23 18:16:42,303 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 18:16:44,593 | INFO | app | [----------] Modelo precalentado
+2026-05-23 18:16:44,593 | INFO | app | [e5b6011f-91a7-4016-970c-75aa64ae288b] HTTP request started: GET /metrics
+2026-05-23 18:16:44,606 | INFO | app | [e5b6011f-91a7-4016-970c-75aa64ae288b] Metrics requested
+2026-05-23 18:16:44,608 | INFO | app | [e5b6011f-91a7-4016-970c-75aa64ae288b] HTTP request finished: GET /metrics 200
+2026-05-23 18:16:44,610 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 18:16:46,917 | INFO | app | [----------] Modelo precalentado
+2026-05-23 18:16:46,920 | INFO | app | [cad458c4-7de7-4e5a-9270-cd701878cb3e] HTTP request started: POST /chat
+2026-05-23 18:16:46,925 | INFO | app | [cad458c4-7de7-4e5a-9270-cd701878cb3e] Solicitud /chat recibida
+2026-05-23 18:16:46,926 | INFO | app | [cad458c4-7de7-4e5a-9270-cd701878cb3e] USER MESSAGE: hola
+2026-05-23 18:16:46,927 | INFO | app | [cad458c4-7de7-4e5a-9270-cd701878cb3e] Solicitud /chat procesada con estado: chat
+2026-05-23 18:16:46,928 | INFO | app | [cad458c4-7de7-4e5a-9270-cd701878cb3e] LATENCY: 0.00s
+2026-05-23 18:16:46,929 | INFO | app | [cad458c4-7de7-4e5a-9270-cd701878cb3e] HTTP request finished: POST /chat 200
+2026-05-23 18:16:46,931 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 18:16:49,246 | INFO | app | [----------] Modelo precalentado
+2026-05-23 18:16:49,246 | INFO | app | [af750d6a-8083-49a0-8cf8-e1ce716d20c7] HTTP request started: POST /chat
+2026-05-23 18:16:49,246 | WARNING | app | [af750d6a-8083-49a0-8cf8-e1ce716d20c7] Validation error: [{'type': 'missing', 'loc': ('body', 'message'), 'msg': 'Field required', 'input': {}}]
+2026-05-23 18:16:49,246 | INFO | app | [af750d6a-8083-49a0-8cf8-e1ce716d20c7] HTTP request finished: POST /chat 422
+2026-05-23 18:16:49,268 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 18:16:51,581 | INFO | app | [----------] Modelo precalentado
+2026-05-23 18:16:51,581 | INFO | app | [e324f223-b2dd-490c-8abf-723d670686d9] WS message received: hola
+2026-05-23 18:16:51,581 | INFO | app | [e324f223-b2dd-490c-8abf-723d670686d9] WS disconnected
+2026-05-23 18:24:30,688 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 18:24:33,007 | INFO | app | [----------] Modelo precalentado
+2026-05-23 18:24:33,007 | INFO | app | [189772ed-7a88-4cb4-929f-b8b223f17a3b] HTTP request started: GET /health
+2026-05-23 18:24:33,039 | INFO | app | [189772ed-7a88-4cb4-929f-b8b223f17a3b] Health check
+2026-05-23 18:24:33,040 | INFO | app | [189772ed-7a88-4cb4-929f-b8b223f17a3b] HTTP request finished: GET /health 200
+2026-05-23 18:24:33,040 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 18:24:35,327 | INFO | app | [----------] Modelo precalentado
+2026-05-23 18:24:35,327 | INFO | app | [861f7475-3463-4851-867b-04fd269dbafc] HTTP request started: GET /metrics
+2026-05-23 18:24:35,342 | INFO | app | [861f7475-3463-4851-867b-04fd269dbafc] Metrics requested
+2026-05-23 18:24:35,343 | INFO | app | [861f7475-3463-4851-867b-04fd269dbafc] HTTP request finished: GET /metrics 200
+2026-05-23 18:24:35,343 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 18:24:37,632 | INFO | app | [----------] Modelo precalentado
+2026-05-23 18:24:37,632 | INFO | app | [5a7b946e-6dd0-4a13-b51f-87af86c7ecbd] HTTP request started: POST /chat
+2026-05-23 18:24:37,632 | INFO | app | [5a7b946e-6dd0-4a13-b51f-87af86c7ecbd] Solicitud /chat recibida
+2026-05-23 18:24:37,644 | INFO | app | [5a7b946e-6dd0-4a13-b51f-87af86c7ecbd] USER MESSAGE: hola
+2026-05-23 18:24:37,645 | INFO | app | [5a7b946e-6dd0-4a13-b51f-87af86c7ecbd] Solicitud /chat procesada con estado: chat
+2026-05-23 18:24:37,645 | INFO | app | [5a7b946e-6dd0-4a13-b51f-87af86c7ecbd] LATENCY: 0.00s
+2026-05-23 18:24:37,645 | INFO | app | [5a7b946e-6dd0-4a13-b51f-87af86c7ecbd] HTTP request finished: POST /chat 200
+2026-05-23 18:24:37,645 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 18:24:39,914 | INFO | app | [----------] Modelo precalentado
+2026-05-23 18:24:39,914 | INFO | app | [19ac4a93-75bc-4515-97af-853b261ac758] HTTP request started: POST /chat
+2026-05-23 18:24:39,914 | WARNING | app | [19ac4a93-75bc-4515-97af-853b261ac758] Validation error: [{'type': 'missing', 'loc': ('body', 'message'), 'msg': 'Field required', 'input': {}}]
+2026-05-23 18:24:39,914 | INFO | app | [19ac4a93-75bc-4515-97af-853b261ac758] HTTP request finished: POST /chat 422
+2026-05-23 18:24:39,930 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 18:24:42,201 | INFO | app | [----------] Modelo precalentado
+2026-05-23 18:24:42,201 | INFO | app | [7e0a251e-45f5-4edb-9c9f-8f55336c4ba4] WS message received: hola
+2026-05-23 18:24:42,215 | INFO | app | [7e0a251e-45f5-4edb-9c9f-8f55336c4ba4] WS disconnected
+2026-05-23 18:24:42,216 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 18:24:44,486 | INFO | app | [----------] Modelo precalentado
+2026-05-23 18:24:44,486 | INFO | app | [c71dde86-c2b8-4985-af37-2e19feb3d002] HTTP request started: GET /tools
+2026-05-23 18:24:44,486 | INFO | app | [c71dde86-c2b8-4985-af37-2e19feb3d002] Tools requested
+2026-05-23 18:24:44,585 | INFO | app | [c71dde86-c2b8-4985-af37-2e19feb3d002] HTTP request finished: GET /tools 200
+2026-05-23 18:51:31,569 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 18:51:33,859 | INFO | app | [----------] Modelo precalentado
+2026-05-23 18:51:33,869 | INFO | app | [0887ea5c-dfe6-4456-be53-1ec7823de191] HTTP request started: GET /health
+2026-05-23 18:51:33,887 | INFO | app | [0887ea5c-dfe6-4456-be53-1ec7823de191] Health check
+2026-05-23 18:51:33,889 | INFO | app | [0887ea5c-dfe6-4456-be53-1ec7823de191] HTTP request finished: GET /health 200
+2026-05-23 18:51:33,902 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 18:51:36,191 | INFO | app | [----------] Modelo precalentado
+2026-05-23 18:51:36,191 | INFO | app | [f51b9720-1990-463a-b9be-cb28e8750431] HTTP request started: GET /metrics
+2026-05-23 18:51:36,191 | INFO | app | [f51b9720-1990-463a-b9be-cb28e8750431] Metrics requested
+2026-05-23 18:51:36,191 | INFO | app | [f51b9720-1990-463a-b9be-cb28e8750431] HTTP request finished: GET /metrics 200
+2026-05-23 18:51:36,207 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 18:51:38,493 | INFO | app | [----------] Modelo precalentado
+2026-05-23 18:51:38,493 | INFO | app | [a9d8e829-a042-4379-a3da-7cd3da43b825] HTTP request started: POST /chat
+2026-05-23 18:51:38,493 | INFO | app | [a9d8e829-a042-4379-a3da-7cd3da43b825] Solicitud /chat recibida
+2026-05-23 18:51:38,493 | INFO | app | [a9d8e829-a042-4379-a3da-7cd3da43b825] SESSION_ID: a9d8e829-a042-4379-a3da-7cd3da43b825
+2026-05-23 18:51:38,509 | INFO | app | [a9d8e829-a042-4379-a3da-7cd3da43b825] USER MESSAGE: hola
+2026-05-23 18:51:38,510 | ERROR | app | [a9d8e829-a042-4379-a3da-7cd3da43b825] Unhandled exception
+Traceback (most recent call last):
+  File "C:\Users\luisd\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\luisd\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\middleware\base.py", line 191, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+                                   ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\luisd\AppData\Local\Programs\Python\Python312\Lib\contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "C:\Users\luisd\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\_utils.py", line 87, in collapse_excgroups
+    raise exc
+  File "C:\Users\luisd\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\middleware\base.py", line 193, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "\\wsl.localhost\Ubuntu\home\luisd\Alfonso\app\main.py", line 48, in request_id_middleware
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\luisd\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\middleware\base.py", line 168, in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+  File "C:\Users\luisd\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Users\luisd\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\luisd\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\luisd\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\luisd\AppData\Local\Programs\Python\Python312\Lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\luisd\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\luisd\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\luisd\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\luisd\AppData\Local\Programs\Python\Python312\Lib\site-packages\fastapi\routing.py", line 130, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\luisd\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\luisd\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\luisd\AppData\Local\Programs\Python\Python312\Lib\site-packages\fastapi\routing.py", line 116, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\luisd\AppData\Local\Programs\Python\Python312\Lib\site-packages\fastapi\routing.py", line 670, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\luisd\AppData\Local\Programs\Python\Python312\Lib\site-packages\fastapi\routing.py", line 324, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "\\wsl.localhost\Ubuntu\home\luisd\Alfonso\app\api\routes.py", line 30, in chat
+    result = await orchestrator.run(req.message, llm, request_id=request_id, session_id=session_id)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: test_chat_endpoint_with_mocked_orchestrator.<locals>.fake_run() got an unexpected keyword argument 'session_id'
+2026-05-23 18:51:38,942 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 18:51:41,248 | INFO | app | [----------] Modelo precalentado
+2026-05-23 18:51:41,248 | INFO | app | [b49f8dc5-0f7b-4e2a-9e24-ef711c6c7242] HTTP request started: POST /chat
+2026-05-23 18:51:41,248 | WARNING | app | [b49f8dc5-0f7b-4e2a-9e24-ef711c6c7242] Validation error: [{'type': 'missing', 'loc': ('body', 'message'), 'msg': 'Field required', 'input': {}}]
+2026-05-23 18:51:41,248 | INFO | app | [b49f8dc5-0f7b-4e2a-9e24-ef711c6c7242] HTTP request finished: POST /chat 422
+2026-05-23 18:51:41,262 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 18:51:43,553 | INFO | app | [----------] Modelo precalentado
+2026-05-23 18:51:43,553 | INFO | app | [dbeb345e-4128-4479-ac02-9e421feccdf8] WS message received: hola
+2026-05-23 18:51:43,564 | INFO | app | [dbeb345e-4128-4479-ac02-9e421feccdf8] WS disconnected
+2026-05-23 18:51:43,573 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 18:51:45,866 | INFO | app | [----------] Modelo precalentado
+2026-05-23 18:51:45,866 | INFO | app | [7d1112e3-694c-4530-84a0-e84453fc4539] HTTP request started: GET /tools
+2026-05-23 18:51:45,866 | INFO | app | [7d1112e3-694c-4530-84a0-e84453fc4539] Tools requested
+2026-05-23 18:51:45,866 | INFO | app | [7d1112e3-694c-4530-84a0-e84453fc4539] HTTP request finished: GET /tools 200
+2026-05-23 18:52:32,946 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 18:52:35,248 | INFO | app | [----------] Modelo precalentado
+2026-05-23 18:52:35,248 | INFO | app | [c230fe2d-42f4-4cff-b243-1ef3f35ee2bd] HTTP request started: GET /health
+2026-05-23 18:52:35,264 | INFO | app | [c230fe2d-42f4-4cff-b243-1ef3f35ee2bd] Health check
+2026-05-23 18:52:35,264 | INFO | app | [c230fe2d-42f4-4cff-b243-1ef3f35ee2bd] HTTP request finished: GET /health 200
+2026-05-23 18:52:35,284 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 18:52:37,579 | INFO | app | [----------] Modelo precalentado
+2026-05-23 18:52:37,579 | INFO | app | [72cfb8ca-2b50-4848-ae33-8d8589f52697] HTTP request started: GET /metrics
+2026-05-23 18:52:37,579 | INFO | app | [72cfb8ca-2b50-4848-ae33-8d8589f52697] Metrics requested
+2026-05-23 18:52:37,579 | INFO | app | [72cfb8ca-2b50-4848-ae33-8d8589f52697] HTTP request finished: GET /metrics 200
+2026-05-23 18:52:37,595 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 18:52:39,895 | INFO | app | [----------] Modelo precalentado
+2026-05-23 18:52:39,895 | INFO | app | [c6749464-8672-4222-bf19-f628db8e97cc] HTTP request started: POST /chat
+2026-05-23 18:52:39,895 | INFO | app | [c6749464-8672-4222-bf19-f628db8e97cc] Solicitud /chat recibida
+2026-05-23 18:52:39,895 | INFO | app | [c6749464-8672-4222-bf19-f628db8e97cc] SESSION_ID: c6749464-8672-4222-bf19-f628db8e97cc
+2026-05-23 18:52:39,911 | INFO | app | [c6749464-8672-4222-bf19-f628db8e97cc] USER MESSAGE: hola
+2026-05-23 18:52:39,911 | INFO | app | [c6749464-8672-4222-bf19-f628db8e97cc] Solicitud /chat procesada con estado: chat
+2026-05-23 18:52:39,911 | INFO | app | [c6749464-8672-4222-bf19-f628db8e97cc] LATENCY: 0.00s
+2026-05-23 18:52:39,911 | INFO | app | [c6749464-8672-4222-bf19-f628db8e97cc] HTTP request finished: POST /chat 200
+2026-05-23 18:52:39,911 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 18:52:42,222 | INFO | app | [----------] Modelo precalentado
+2026-05-23 18:52:42,222 | INFO | app | [ac315c21-7d29-4073-b2a9-8da4045a158a] HTTP request started: POST /chat
+2026-05-23 18:52:42,222 | WARNING | app | [ac315c21-7d29-4073-b2a9-8da4045a158a] Validation error: [{'type': 'missing', 'loc': ('body', 'message'), 'msg': 'Field required', 'input': {}}]
+2026-05-23 18:52:42,222 | INFO | app | [ac315c21-7d29-4073-b2a9-8da4045a158a] HTTP request finished: POST /chat 422
+2026-05-23 18:52:42,239 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 18:52:44,555 | INFO | app | [----------] Modelo precalentado
+2026-05-23 18:52:44,555 | INFO | app | [2937348f-8da2-476a-83c8-6f6708d5aa3c] WS message received: hola
+2026-05-23 18:52:44,571 | INFO | app | [2937348f-8da2-476a-83c8-6f6708d5aa3c] WS disconnected
+2026-05-23 18:52:44,571 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 18:52:46,877 | INFO | app | [----------] Modelo precalentado
+2026-05-23 18:52:46,877 | INFO | app | [2eb0eb89-9255-4336-9408-600d98b7cd85] HTTP request started: GET /tools
+2026-05-23 18:52:46,877 | INFO | app | [2eb0eb89-9255-4336-9408-600d98b7cd85] Tools requested
+2026-05-23 18:52:46,893 | INFO | app | [2eb0eb89-9255-4336-9408-600d98b7cd85] HTTP request finished: GET /tools 200
+2026-05-23 18:52:58,239 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 18:53:00,541 | INFO | app | [----------] Modelo precalentado
+2026-05-23 18:53:00,541 | INFO | app | [7efc01e7-f752-4ef4-a6f8-5fa4a13a0490] HTTP request started: GET /health
+2026-05-23 18:53:00,557 | INFO | app | [7efc01e7-f752-4ef4-a6f8-5fa4a13a0490] Health check
+2026-05-23 18:53:00,557 | INFO | app | [7efc01e7-f752-4ef4-a6f8-5fa4a13a0490] HTTP request finished: GET /health 200
+2026-05-23 18:53:00,560 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 18:53:02,844 | INFO | app | [----------] Modelo precalentado
+2026-05-23 18:53:02,844 | INFO | app | [1f2d1c73-d422-42f2-8c54-bc4f41567b11] HTTP request started: GET /metrics
+2026-05-23 18:53:02,860 | INFO | app | [1f2d1c73-d422-42f2-8c54-bc4f41567b11] Metrics requested
+2026-05-23 18:53:02,860 | INFO | app | [1f2d1c73-d422-42f2-8c54-bc4f41567b11] HTTP request finished: GET /metrics 200
+2026-05-23 18:53:02,860 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 18:53:05,162 | INFO | app | [----------] Modelo precalentado
+2026-05-23 18:53:05,162 | INFO | app | [e9ffd133-dbca-4c38-852e-4b576ade1915] HTTP request started: POST /chat
+2026-05-23 18:53:05,162 | INFO | app | [e9ffd133-dbca-4c38-852e-4b576ade1915] Solicitud /chat recibida
+2026-05-23 18:53:05,162 | INFO | app | [e9ffd133-dbca-4c38-852e-4b576ade1915] SESSION_ID: e9ffd133-dbca-4c38-852e-4b576ade1915
+2026-05-23 18:53:05,162 | INFO | app | [e9ffd133-dbca-4c38-852e-4b576ade1915] USER MESSAGE: hola
+2026-05-23 18:53:05,178 | INFO | app | [e9ffd133-dbca-4c38-852e-4b576ade1915] Solicitud /chat procesada con estado: chat
+2026-05-23 18:53:05,179 | INFO | app | [e9ffd133-dbca-4c38-852e-4b576ade1915] LATENCY: 0.00s
+2026-05-23 18:53:05,179 | INFO | app | [e9ffd133-dbca-4c38-852e-4b576ade1915] HTTP request finished: POST /chat 200
+2026-05-23 18:53:05,179 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 18:53:07,466 | INFO | app | [----------] Modelo precalentado
+2026-05-23 18:53:07,466 | INFO | app | [5fe428ca-b764-4672-8393-3921bea4f5fa] HTTP request started: POST /chat
+2026-05-23 18:53:07,466 | WARNING | app | [5fe428ca-b764-4672-8393-3921bea4f5fa] Validation error: [{'type': 'missing', 'loc': ('body', 'message'), 'msg': 'Field required', 'input': {}}]
+2026-05-23 18:53:07,466 | INFO | app | [5fe428ca-b764-4672-8393-3921bea4f5fa] HTTP request finished: POST /chat 422
+2026-05-23 18:53:07,481 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 18:53:09,770 | INFO | app | [----------] Modelo precalentado
+2026-05-23 18:53:09,770 | INFO | app | [b80128da-5d73-4414-a8d2-87f239395211] WS message received: hola
+2026-05-23 18:53:09,770 | INFO | app | [b80128da-5d73-4414-a8d2-87f239395211] WS disconnected
+2026-05-23 18:53:09,787 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 18:53:12,087 | INFO | app | [----------] Modelo precalentado
+2026-05-23 18:53:12,087 | INFO | app | [35fe2671-9bc2-490f-8b46-323c12be53f8] HTTP request started: GET /tools
+2026-05-23 18:53:12,103 | INFO | app | [35fe2671-9bc2-490f-8b46-323c12be53f8] Tools requested
+2026-05-23 18:53:12,103 | INFO | app | [35fe2671-9bc2-490f-8b46-323c12be53f8] HTTP request finished: GET /tools 200
+2026-05-23 18:53:42,238 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 18:53:44,568 | INFO | app | [----------] Modelo precalentado
+2026-05-23 18:53:44,568 | INFO | app | [5315ab4c-5537-4a3e-b7a7-f65324176fef] HTTP request started: GET /health
+2026-05-23 18:53:44,587 | INFO | app | [5315ab4c-5537-4a3e-b7a7-f65324176fef] Health check
+2026-05-23 18:53:44,588 | INFO | app | [5315ab4c-5537-4a3e-b7a7-f65324176fef] HTTP request finished: GET /health 200
+2026-05-23 18:53:44,597 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 18:53:46,908 | INFO | app | [----------] Modelo precalentado
+2026-05-23 18:53:46,908 | INFO | app | [12d369fd-2acd-48f3-a01c-320a80519eab] HTTP request started: GET /metrics
+2026-05-23 18:53:46,908 | INFO | app | [12d369fd-2acd-48f3-a01c-320a80519eab] Metrics requested
+2026-05-23 18:53:46,908 | INFO | app | [12d369fd-2acd-48f3-a01c-320a80519eab] HTTP request finished: GET /metrics 200
+2026-05-23 18:53:46,921 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 18:53:49,227 | INFO | app | [----------] Modelo precalentado
+2026-05-23 18:53:49,227 | INFO | app | [258f7806-7993-439f-9714-8bb14ac5d3f0] HTTP request started: POST /chat
+2026-05-23 18:53:49,243 | INFO | app | [258f7806-7993-439f-9714-8bb14ac5d3f0] Solicitud /chat recibida
+2026-05-23 18:53:49,244 | INFO | app | [258f7806-7993-439f-9714-8bb14ac5d3f0] SESSION_ID: 258f7806-7993-439f-9714-8bb14ac5d3f0
+2026-05-23 18:53:49,245 | INFO | app | [258f7806-7993-439f-9714-8bb14ac5d3f0] USER MESSAGE: hola
+2026-05-23 18:53:49,247 | INFO | app | [258f7806-7993-439f-9714-8bb14ac5d3f0] Solicitud /chat procesada con estado: chat
+2026-05-23 18:53:49,248 | INFO | app | [258f7806-7993-439f-9714-8bb14ac5d3f0] LATENCY: 0.00s
+2026-05-23 18:53:49,250 | INFO | app | [258f7806-7993-439f-9714-8bb14ac5d3f0] HTTP request finished: POST /chat 200
+2026-05-23 18:53:49,260 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 18:53:51,560 | INFO | app | [----------] Modelo precalentado
+2026-05-23 18:53:51,575 | INFO | app | [f16c2fc2-8b3b-429c-bad0-5ebeb06040aa] HTTP request started: POST /chat
+2026-05-23 18:53:51,578 | WARNING | app | [f16c2fc2-8b3b-429c-bad0-5ebeb06040aa] Validation error: [{'type': 'missing', 'loc': ('body', 'message'), 'msg': 'Field required', 'input': {}}]
+2026-05-23 18:53:51,578 | INFO | app | [f16c2fc2-8b3b-429c-bad0-5ebeb06040aa] HTTP request finished: POST /chat 422
+2026-05-23 18:53:51,593 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 18:53:53,899 | INFO | app | [----------] Modelo precalentado
+2026-05-23 18:53:53,899 | INFO | app | [8b438999-d049-4a80-9ca1-a9ffefb863dd] WS message received: hola
+2026-05-23 18:53:53,899 | INFO | app | [8b438999-d049-4a80-9ca1-a9ffefb863dd] WS disconnected
+2026-05-23 18:53:53,911 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 18:53:56,197 | INFO | app | [----------] Modelo precalentado
+2026-05-23 18:53:56,197 | INFO | app | [51234c72-4abc-4c34-b94e-43f41be7b69b] HTTP request started: GET /tools
+2026-05-23 18:53:56,213 | INFO | app | [51234c72-4abc-4c34-b94e-43f41be7b69b] Tools requested
+2026-05-23 18:53:56,213 | INFO | app | [51234c72-4abc-4c34-b94e-43f41be7b69b] HTTP request finished: GET /tools 200
+2026-05-23 19:29:24,483 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 19:29:58,152 | INFO | app | [----------] Modelo precalentado
+2026-05-23 19:29:58,170 | INFO | app | [a6f8786e-38fc-4bbd-ae44-7183fbcac8be] HTTP request started: GET /health
+2026-05-23 19:29:58,216 | INFO | app | [a6f8786e-38fc-4bbd-ae44-7183fbcac8be] Health check
+2026-05-23 19:29:58,221 | INFO | app | [a6f8786e-38fc-4bbd-ae44-7183fbcac8be] HTTP request finished: GET /health 200
+2026-05-23 19:29:58,258 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 19:29:58,341 | INFO | app | [----------] Modelo precalentado
+2026-05-23 19:29:58,344 | INFO | app | [80f5d8ee-a68e-4f7c-b4bd-1e8109b8cf0a] HTTP request started: GET /metrics
+2026-05-23 19:29:58,344 | INFO | app | [80f5d8ee-a68e-4f7c-b4bd-1e8109b8cf0a] Metrics requested
+2026-05-23 19:29:58,344 | INFO | app | [80f5d8ee-a68e-4f7c-b4bd-1e8109b8cf0a] HTTP request finished: GET /metrics 200
+2026-05-23 19:29:58,375 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 19:30:01,239 | INFO | app | [----------] Modelo precalentado
+2026-05-23 19:30:01,239 | INFO | app | [caf03abe-f965-49f6-bfa9-8fd61eeef062] HTTP request started: POST /chat
+2026-05-23 19:30:01,253 | INFO | app | [caf03abe-f965-49f6-bfa9-8fd61eeef062] Solicitud /chat recibida
+2026-05-23 19:30:01,253 | INFO | app | [caf03abe-f965-49f6-bfa9-8fd61eeef062] SESSION_ID: caf03abe-f965-49f6-bfa9-8fd61eeef062
+2026-05-23 19:30:01,269 | INFO | app | [caf03abe-f965-49f6-bfa9-8fd61eeef062] USER MESSAGE: hola
+2026-05-23 19:30:01,269 | INFO | app | [caf03abe-f965-49f6-bfa9-8fd61eeef062] Solicitud /chat procesada con estado: chat
+2026-05-23 19:30:01,269 | INFO | app | [caf03abe-f965-49f6-bfa9-8fd61eeef062] LATENCY: 0.00s
+2026-05-23 19:30:01,269 | INFO | app | [caf03abe-f965-49f6-bfa9-8fd61eeef062] HTTP request finished: POST /chat 200
+2026-05-23 19:30:01,289 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 19:30:01,305 | INFO | app | [----------] Modelo precalentado
+2026-05-23 19:30:01,305 | INFO | app | [13a3b7cf-27c6-4543-b82e-5feb087474ed] HTTP request started: POST /chat
+2026-05-23 19:30:01,325 | WARNING | app | [13a3b7cf-27c6-4543-b82e-5feb087474ed] Validation error: [{'type': 'missing', 'loc': ('body', 'message'), 'msg': 'Field required', 'input': {}}]
+2026-05-23 19:30:01,328 | INFO | app | [13a3b7cf-27c6-4543-b82e-5feb087474ed] HTTP request finished: POST /chat 422
+2026-05-23 19:30:01,341 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 19:30:03,753 | INFO | app | [----------] Modelo precalentado
+2026-05-23 19:30:03,769 | INFO | app | [f248a70f-a2bb-4895-831a-8b69da5cc8da] WS message received: hola
+2026-05-23 19:30:03,771 | INFO | app | [f248a70f-a2bb-4895-831a-8b69da5cc8da] WS disconnected
+2026-05-23 19:30:03,832 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 19:30:03,846 | INFO | app | [----------] Modelo precalentado
+2026-05-23 19:30:03,846 | INFO | app | [939409e3-edb5-49c3-bad5-460a8a663020] HTTP request started: GET /tools
+2026-05-23 19:30:03,862 | INFO | app | [939409e3-edb5-49c3-bad5-460a8a663020] Tools requested
+2026-05-23 19:30:03,862 | INFO | app | [939409e3-edb5-49c3-bad5-460a8a663020] HTTP request finished: GET /tools 200
+2026-05-23 20:00:03,210 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 20:00:31,106 | INFO | app | [----------] Modelo precalentado
+2026-05-23 20:00:31,106 | INFO | app | [9ccf0823-4559-46e7-81df-07e69553c8a3] HTTP request started: GET /health
+2026-05-23 20:00:31,154 | INFO | app | [9ccf0823-4559-46e7-81df-07e69553c8a3] Health check
+2026-05-23 20:00:31,154 | INFO | app | [9ccf0823-4559-46e7-81df-07e69553c8a3] HTTP request finished: GET /health 200
+2026-05-23 20:00:31,207 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 20:00:31,260 | INFO | app | [----------] Modelo precalentado
+2026-05-23 20:00:31,260 | INFO | app | [2620caca-62d1-4566-b568-81b80fae59e7] HTTP request started: GET /metrics
+2026-05-23 20:00:31,273 | INFO | app | [2620caca-62d1-4566-b568-81b80fae59e7] Metrics requested
+2026-05-23 20:00:31,273 | INFO | app | [2620caca-62d1-4566-b568-81b80fae59e7] HTTP request finished: GET /metrics 200
+2026-05-23 20:00:31,292 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 20:00:35,749 | INFO | app | [----------] Modelo precalentado
+2026-05-23 20:00:35,753 | INFO | app | [5db7584b-7070-45a2-80a9-8836ce0dd4ba] HTTP request started: POST /chat
+2026-05-23 20:00:35,767 | INFO | app | [5db7584b-7070-45a2-80a9-8836ce0dd4ba] Solicitud /chat recibida
+2026-05-23 20:00:35,769 | INFO | app | [5db7584b-7070-45a2-80a9-8836ce0dd4ba] SESSION_ID: 5db7584b-7070-45a2-80a9-8836ce0dd4ba
+2026-05-23 20:00:35,771 | INFO | app | [5db7584b-7070-45a2-80a9-8836ce0dd4ba] USER MESSAGE: hola
+2026-05-23 20:00:35,773 | INFO | app | [5db7584b-7070-45a2-80a9-8836ce0dd4ba] Solicitud /chat procesada con estado: chat
+2026-05-23 20:00:35,775 | INFO | app | [5db7584b-7070-45a2-80a9-8836ce0dd4ba] LATENCY: 0.00s
+2026-05-23 20:00:35,779 | INFO | app | [5db7584b-7070-45a2-80a9-8836ce0dd4ba] HTTP request finished: POST /chat 200
+2026-05-23 20:00:35,795 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 20:00:35,831 | INFO | app | [----------] Modelo precalentado
+2026-05-23 20:00:35,835 | INFO | app | [40adb4f1-5704-4171-a591-c8cf8c68b54b] HTTP request started: POST /chat
+2026-05-23 20:00:35,842 | WARNING | app | [40adb4f1-5704-4171-a591-c8cf8c68b54b] Validation error: [{'type': 'missing', 'loc': ('body', 'message'), 'msg': 'Field required', 'input': {}}]
+2026-05-23 20:00:35,842 | INFO | app | [40adb4f1-5704-4171-a591-c8cf8c68b54b] HTTP request finished: POST /chat 422
+2026-05-23 20:00:35,859 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 20:00:40,310 | INFO | app | [----------] Modelo precalentado
+2026-05-23 20:00:40,321 | INFO | app | [ebb70376-ef72-473b-9922-48c0edccc1db] WS message received: hola
+2026-05-23 20:00:40,321 | INFO | app | [ebb70376-ef72-473b-9922-48c0edccc1db] WS disconnected
+2026-05-23 20:00:40,336 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 20:00:40,367 | INFO | app | [----------] Modelo precalentado
+2026-05-23 20:00:40,367 | INFO | app | [da95ba06-3aa5-494a-88a2-eff0854ce8d5] HTTP request started: GET /tools
+2026-05-23 20:00:40,367 | INFO | app | [da95ba06-3aa5-494a-88a2-eff0854ce8d5] Tools requested
+2026-05-23 20:00:40,379 | INFO | app | [da95ba06-3aa5-494a-88a2-eff0854ce8d5] HTTP request finished: GET /tools 200
+2026-05-23 20:00:40,379 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 20:00:42,971 | INFO | app | [----------] Modelo precalentado
+2026-05-23 20:00:42,979 | INFO | app | [aa3c3b92-29e2-4df2-ba2d-26ded40f2a6c] HTTP request started: POST /audio/tts
+2026-05-23 20:00:42,986 | INFO | app | [aa3c3b92-29e2-4df2-ba2d-26ded40f2a6c] Solicitud /audio/tts recibida
+2026-05-23 20:00:42,988 | INFO | app | [aa3c3b92-29e2-4df2-ba2d-26ded40f2a6c] Solicitud /audio/tts procesada
+2026-05-23 20:00:42,988 | INFO | app | [aa3c3b92-29e2-4df2-ba2d-26ded40f2a6c] HTTP request finished: POST /audio/tts 200
+2026-05-23 20:00:42,988 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 20:00:43,028 | INFO | app | [----------] Modelo precalentado
+2026-05-23 20:00:43,030 | INFO | app | [d181fda3-bff5-483c-83df-d6233da36adb] HTTP request started: POST /audio/stt
+2026-05-23 20:00:43,038 | INFO | app | [d181fda3-bff5-483c-83df-d6233da36adb] Solicitud /audio/stt recibida
+2026-05-23 20:00:43,038 | INFO | app | [d181fda3-bff5-483c-83df-d6233da36adb] Solicitud /audio/stt procesada
+2026-05-23 20:00:43,038 | INFO | app | [d181fda3-bff5-483c-83df-d6233da36adb] HTTP request finished: POST /audio/stt 200
+2026-05-23 20:01:09,242 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 20:01:11,527 | INFO | app | [----------] Modelo precalentado
+2026-05-23 20:01:11,527 | INFO | app | [1242d6f6-1b95-4d4f-a570-5f04ddfe75c5] HTTP request started: GET /health
+2026-05-23 20:01:11,536 | INFO | app | [1242d6f6-1b95-4d4f-a570-5f04ddfe75c5] Health check
+2026-05-23 20:01:11,550 | INFO | app | [1242d6f6-1b95-4d4f-a570-5f04ddfe75c5] HTTP request finished: GET /health 200
+2026-05-23 20:01:11,554 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 20:01:11,600 | INFO | app | [----------] Modelo precalentado
+2026-05-23 20:01:11,600 | INFO | app | [4372821c-4a32-455f-ab59-80eb9e319260] HTTP request started: GET /metrics
+2026-05-23 20:01:11,600 | INFO | app | [4372821c-4a32-455f-ab59-80eb9e319260] Metrics requested
+2026-05-23 20:01:11,600 | INFO | app | [4372821c-4a32-455f-ab59-80eb9e319260] HTTP request finished: GET /metrics 200
+2026-05-23 20:01:11,622 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 20:01:13,926 | INFO | app | [----------] Modelo precalentado
+2026-05-23 20:01:13,926 | INFO | app | [9e1d7668-89fb-48ab-a72c-8f24986d9cbf] HTTP request started: POST /chat
+2026-05-23 20:01:13,926 | INFO | app | [9e1d7668-89fb-48ab-a72c-8f24986d9cbf] Solicitud /chat recibida
+2026-05-23 20:01:13,926 | INFO | app | [9e1d7668-89fb-48ab-a72c-8f24986d9cbf] SESSION_ID: 9e1d7668-89fb-48ab-a72c-8f24986d9cbf
+2026-05-23 20:01:13,926 | INFO | app | [9e1d7668-89fb-48ab-a72c-8f24986d9cbf] USER MESSAGE: hola
+2026-05-23 20:01:13,926 | INFO | app | [9e1d7668-89fb-48ab-a72c-8f24986d9cbf] Solicitud /chat procesada con estado: chat
+2026-05-23 20:01:13,941 | INFO | app | [9e1d7668-89fb-48ab-a72c-8f24986d9cbf] LATENCY: 0.00s
+2026-05-23 20:01:13,941 | INFO | app | [9e1d7668-89fb-48ab-a72c-8f24986d9cbf] HTTP request finished: POST /chat 200
+2026-05-23 20:01:13,956 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 20:01:13,975 | INFO | app | [----------] Modelo precalentado
+2026-05-23 20:01:13,984 | INFO | app | [73583f3b-025b-4e52-a6f3-f62b637b2124] HTTP request started: POST /chat
+2026-05-23 20:01:13,984 | WARNING | app | [73583f3b-025b-4e52-a6f3-f62b637b2124] Validation error: [{'type': 'missing', 'loc': ('body', 'message'), 'msg': 'Field required', 'input': {}}]
+2026-05-23 20:01:13,984 | INFO | app | [73583f3b-025b-4e52-a6f3-f62b637b2124] HTTP request finished: POST /chat 422
+2026-05-23 20:01:14,009 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 20:01:16,072 | INFO | app | [----------] Modelo precalentado
+2026-05-23 20:01:16,072 | INFO | app | [248dc654-d6e0-44fd-8241-e89654c6ec7c] WS message received: hola
+2026-05-23 20:01:16,072 | INFO | app | [248dc654-d6e0-44fd-8241-e89654c6ec7c] WS disconnected
+2026-05-23 20:01:16,088 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 20:01:16,120 | INFO | app | [----------] Modelo precalentado
+2026-05-23 20:01:16,122 | INFO | app | [b36cd220-aa14-4afb-92bb-f35230af33bc] HTTP request started: GET /tools
+2026-05-23 20:01:16,122 | INFO | app | [b36cd220-aa14-4afb-92bb-f35230af33bc] Tools requested
+2026-05-23 20:01:16,122 | INFO | app | [b36cd220-aa14-4afb-92bb-f35230af33bc] HTTP request finished: GET /tools 200
+2026-05-23 20:01:16,143 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 20:01:18,392 | INFO | app | [----------] Modelo precalentado
+2026-05-23 20:01:18,396 | INFO | app | [9746d66f-13da-4715-b8ec-6786f274043f] HTTP request started: POST /audio/tts
+2026-05-23 20:01:18,397 | INFO | app | [9746d66f-13da-4715-b8ec-6786f274043f] Solicitud /audio/tts recibida
+2026-05-23 20:01:18,397 | INFO | app | [9746d66f-13da-4715-b8ec-6786f274043f] Solicitud /audio/tts procesada
+2026-05-23 20:01:18,397 | INFO | app | [9746d66f-13da-4715-b8ec-6786f274043f] HTTP request finished: POST /audio/tts 200
+2026-05-23 20:01:18,409 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 20:01:18,439 | INFO | app | [----------] Modelo precalentado
+2026-05-23 20:01:18,442 | INFO | app | [008d3f91-1323-4f26-a5c2-7afc61170d1f] HTTP request started: POST /audio/stt
+2026-05-23 20:01:18,442 | INFO | app | [008d3f91-1323-4f26-a5c2-7afc61170d1f] Solicitud /audio/stt recibida
+2026-05-23 20:01:18,442 | INFO | app | [008d3f91-1323-4f26-a5c2-7afc61170d1f] Solicitud /audio/stt procesada
+2026-05-23 20:01:18,442 | INFO | app | [008d3f91-1323-4f26-a5c2-7afc61170d1f] HTTP request finished: POST /audio/stt 200
+2026-05-23 20:02:03,818 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 20:02:05,936 | INFO | app | [----------] Modelo precalentado
+2026-05-23 20:02:05,937 | INFO | app | [52f15a88-2dfc-40f4-8437-c29a12a4b41f] HTTP request started: GET /health
+2026-05-23 20:02:05,956 | INFO | app | [52f15a88-2dfc-40f4-8437-c29a12a4b41f] Health check
+2026-05-23 20:02:05,956 | INFO | app | [52f15a88-2dfc-40f4-8437-c29a12a4b41f] HTTP request finished: GET /health 200
+2026-05-23 20:02:05,956 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 20:02:05,987 | INFO | app | [----------] Modelo precalentado
+2026-05-23 20:02:05,987 | INFO | app | [b5618006-3d7f-4a99-9a63-3cb79c7507e2] HTTP request started: GET /metrics
+2026-05-23 20:02:06,002 | INFO | app | [b5618006-3d7f-4a99-9a63-3cb79c7507e2] Metrics requested
+2026-05-23 20:02:06,003 | INFO | app | [b5618006-3d7f-4a99-9a63-3cb79c7507e2] HTTP request finished: GET /metrics 200
+2026-05-23 20:02:06,003 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 20:02:07,964 | INFO | app | [----------] Modelo precalentado
+2026-05-23 20:02:07,964 | INFO | app | [4a625b5d-b4a6-42c8-a3b8-07b1744f7592] HTTP request started: POST /chat
+2026-05-23 20:02:07,972 | INFO | app | [4a625b5d-b4a6-42c8-a3b8-07b1744f7592] Solicitud /chat recibida
+2026-05-23 20:02:07,972 | INFO | app | [4a625b5d-b4a6-42c8-a3b8-07b1744f7592] SESSION_ID: 4a625b5d-b4a6-42c8-a3b8-07b1744f7592
+2026-05-23 20:02:07,972 | INFO | app | [4a625b5d-b4a6-42c8-a3b8-07b1744f7592] USER MESSAGE: hola
+2026-05-23 20:02:07,972 | INFO | app | [4a625b5d-b4a6-42c8-a3b8-07b1744f7592] Solicitud /chat procesada con estado: chat
+2026-05-23 20:02:07,972 | INFO | app | [4a625b5d-b4a6-42c8-a3b8-07b1744f7592] LATENCY: 0.00s
+2026-05-23 20:02:07,972 | INFO | app | [4a625b5d-b4a6-42c8-a3b8-07b1744f7592] HTTP request finished: POST /chat 200
+2026-05-23 20:02:07,988 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 20:02:08,006 | INFO | app | [----------] Modelo precalentado
+2026-05-23 20:02:08,006 | INFO | app | [1ed18032-f97b-4d49-ab1b-3234cfa640c8] HTTP request started: POST /chat
+2026-05-23 20:02:08,006 | WARNING | app | [1ed18032-f97b-4d49-ab1b-3234cfa640c8] Validation error: [{'type': 'missing', 'loc': ('body', 'message'), 'msg': 'Field required', 'input': {}}]
+2026-05-23 20:02:08,006 | INFO | app | [1ed18032-f97b-4d49-ab1b-3234cfa640c8] HTTP request finished: POST /chat 422
+2026-05-23 20:02:08,026 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 20:02:10,158 | INFO | app | [----------] Modelo precalentado
+2026-05-23 20:02:10,158 | INFO | app | [f85765ba-f516-4b95-b584-f79914179ae7] WS message received: hola
+2026-05-23 20:02:10,158 | INFO | app | [f85765ba-f516-4b95-b584-f79914179ae7] WS disconnected
+2026-05-23 20:02:10,174 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 20:02:10,191 | INFO | app | [----------] Modelo precalentado
+2026-05-23 20:02:10,191 | INFO | app | [3193cb62-e375-4839-a5b3-95c96b9a800e] HTTP request started: GET /tools
+2026-05-23 20:02:10,199 | INFO | app | [3193cb62-e375-4839-a5b3-95c96b9a800e] Tools requested
+2026-05-23 20:02:10,199 | INFO | app | [3193cb62-e375-4839-a5b3-95c96b9a800e] HTTP request finished: GET /tools 200
+2026-05-23 20:02:10,208 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 20:02:12,165 | INFO | app | [----------] Modelo precalentado
+2026-05-23 20:02:12,165 | INFO | app | [e151b39d-2e4b-46e2-b1fb-b11c6db9d993] HTTP request started: POST /audio/tts
+2026-05-23 20:02:12,175 | INFO | app | [e151b39d-2e4b-46e2-b1fb-b11c6db9d993] Solicitud /audio/tts recibida
+2026-05-23 20:02:12,176 | INFO | app | [e151b39d-2e4b-46e2-b1fb-b11c6db9d993] Solicitud /audio/tts procesada
+2026-05-23 20:02:12,176 | INFO | app | [e151b39d-2e4b-46e2-b1fb-b11c6db9d993] HTTP request finished: POST /audio/tts 200
+2026-05-23 20:02:12,176 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 20:02:12,210 | INFO | app | [----------] Modelo precalentado
+2026-05-23 20:02:12,212 | INFO | app | [c5abf06b-0c64-4a04-a42f-5f9b8fe5b717] HTTP request started: POST /audio/stt
+2026-05-23 20:02:12,212 | INFO | app | [c5abf06b-0c64-4a04-a42f-5f9b8fe5b717] Solicitud /audio/stt recibida
+2026-05-23 20:02:12,212 | INFO | app | [c5abf06b-0c64-4a04-a42f-5f9b8fe5b717] Solicitud /audio/stt procesada
+2026-05-23 20:02:12,212 | INFO | app | [c5abf06b-0c64-4a04-a42f-5f9b8fe5b717] HTTP request finished: POST /audio/stt 200
+2026-05-23 20:08:42,623 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 20:09:03,086 | INFO | app | [----------] Modelo precalentado
+2026-05-23 20:09:03,103 | INFO | app | [a479b963-d084-449f-a3fe-4c4506af71b3] HTTP request started: GET /health
+2026-05-23 20:09:03,135 | INFO | app | [a479b963-d084-449f-a3fe-4c4506af71b3] Health check
+2026-05-23 20:09:03,136 | INFO | app | [a479b963-d084-449f-a3fe-4c4506af71b3] HTTP request finished: GET /health 200
+2026-05-23 20:09:03,169 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 20:09:03,221 | INFO | app | [----------] Modelo precalentado
+2026-05-23 20:09:03,221 | INFO | app | [6c157a9a-82ac-49d6-8c34-8a4aeae3317e] HTTP request started: GET /metrics
+2026-05-23 20:09:03,233 | INFO | app | [6c157a9a-82ac-49d6-8c34-8a4aeae3317e] Metrics requested
+2026-05-23 20:09:03,236 | INFO | app | [6c157a9a-82ac-49d6-8c34-8a4aeae3317e] HTTP request finished: GET /metrics 200
+2026-05-23 20:09:03,253 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 20:09:05,788 | INFO | app | [----------] Modelo precalentado
+2026-05-23 20:09:05,788 | INFO | app | [cb8ff56f-2a00-4c00-b7f9-0d151f96bfcd] HTTP request started: POST /chat
+2026-05-23 20:09:05,788 | INFO | app | [cb8ff56f-2a00-4c00-b7f9-0d151f96bfcd] Solicitud /chat recibida
+2026-05-23 20:09:05,788 | INFO | app | [cb8ff56f-2a00-4c00-b7f9-0d151f96bfcd] SESSION_ID: cb8ff56f-2a00-4c00-b7f9-0d151f96bfcd
+2026-05-23 20:09:05,803 | INFO | app | [cb8ff56f-2a00-4c00-b7f9-0d151f96bfcd] USER MESSAGE: hola
+2026-05-23 20:09:05,805 | INFO | app | [cb8ff56f-2a00-4c00-b7f9-0d151f96bfcd] Solicitud /chat procesada con estado: chat
+2026-05-23 20:09:05,807 | INFO | app | [cb8ff56f-2a00-4c00-b7f9-0d151f96bfcd] LATENCY: 0.00s
+2026-05-23 20:09:05,810 | INFO | app | [cb8ff56f-2a00-4c00-b7f9-0d151f96bfcd] HTTP request finished: POST /chat 200
+2026-05-23 20:09:05,822 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 20:09:05,839 | INFO | app | [----------] Modelo precalentado
+2026-05-23 20:09:05,839 | INFO | app | [e039af33-35f3-48ee-a166-fdc999c6df26] HTTP request started: POST /chat
+2026-05-23 20:09:05,855 | WARNING | app | [e039af33-35f3-48ee-a166-fdc999c6df26] Validation error: [{'type': 'missing', 'loc': ('body', 'message'), 'msg': 'Field required', 'input': {}}]
+2026-05-23 20:09:05,859 | INFO | app | [e039af33-35f3-48ee-a166-fdc999c6df26] HTTP request finished: POST /chat 422
+2026-05-23 20:09:05,872 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 20:09:08,643 | INFO | app | [----------] Modelo precalentado
+2026-05-23 20:09:08,643 | INFO | app | [5a3a591c-3b57-4b91-8c43-26d1ca59613f] WS message received: hola
+2026-05-23 20:09:08,643 | INFO | app | [5a3a591c-3b57-4b91-8c43-26d1ca59613f] WS disconnected
+2026-05-23 20:09:08,658 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 20:09:08,692 | INFO | app | [----------] Modelo precalentado
+2026-05-23 20:09:08,692 | INFO | app | [b3df8e33-0d17-431f-8cee-e77ff7b9115b] HTTP request started: GET /tools
+2026-05-23 20:09:08,692 | INFO | app | [b3df8e33-0d17-431f-8cee-e77ff7b9115b] Tools requested
+2026-05-23 20:09:08,692 | INFO | app | [b3df8e33-0d17-431f-8cee-e77ff7b9115b] HTTP request finished: GET /tools 200
+2026-05-23 20:09:08,708 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 20:09:11,184 | INFO | app | [----------] Modelo precalentado
+2026-05-23 20:09:11,192 | INFO | app | [ee276448-d1fb-497c-a80b-f52c60a764b8] HTTP request started: POST /audio/tts
+2026-05-23 20:09:11,194 | INFO | app | [ee276448-d1fb-497c-a80b-f52c60a764b8] Solicitud /audio/tts recibida
+2026-05-23 20:09:11,194 | INFO | app | [ee276448-d1fb-497c-a80b-f52c60a764b8] Solicitud /audio/tts procesada
+2026-05-23 20:09:11,194 | INFO | app | [ee276448-d1fb-497c-a80b-f52c60a764b8] HTTP request finished: POST /audio/tts 200
+2026-05-23 20:09:11,211 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 20:09:11,244 | INFO | app | [----------] Modelo precalentado
+2026-05-23 20:09:11,244 | INFO | app | [774e986e-0fff-4d2d-a6ac-4b946c28c1d6] HTTP request started: POST /audio/stt
+2026-05-23 20:09:11,244 | INFO | app | [774e986e-0fff-4d2d-a6ac-4b946c28c1d6] Solicitud /audio/stt recibida
+2026-05-23 20:09:11,244 | INFO | app | [774e986e-0fff-4d2d-a6ac-4b946c28c1d6] Solicitud /audio/stt procesada
+2026-05-23 20:09:11,259 | INFO | app | [774e986e-0fff-4d2d-a6ac-4b946c28c1d6] HTTP request finished: POST /audio/stt 200
+2026-05-23 20:09:11,260 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 20:09:13,653 | INFO | app | [----------] Modelo precalentado
+2026-05-23 20:09:13,654 | INFO | app | [18efe324-d642-4dca-ba80-04b114bf96d3] HTTP request started: POST /audio/wakeword
+2026-05-23 20:09:13,663 | INFO | app | [18efe324-d642-4dca-ba80-04b114bf96d3] Solicitud /audio/wakeword recibida
+2026-05-23 20:09:13,663 | INFO | app | [18efe324-d642-4dca-ba80-04b114bf96d3] Solicitud /audio/wakeword procesada
+2026-05-23 20:09:13,663 | INFO | app | [18efe324-d642-4dca-ba80-04b114bf96d3] HTTP request finished: POST /audio/wakeword 200
+2026-05-23 20:10:06,908 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 20:10:09,502 | INFO | app | [----------] Modelo precalentado
+2026-05-23 20:10:09,510 | INFO | app | [f428e284-be7c-4f59-8349-92f86e5025f0] HTTP request started: POST /audio/wakeword
+2026-05-23 20:10:09,525 | INFO | app | [f428e284-be7c-4f59-8349-92f86e5025f0] Solicitud /audio/wakeword recibida
+2026-05-23 20:10:09,525 | INFO | app | [f428e284-be7c-4f59-8349-92f86e5025f0] Solicitud /audio/wakeword procesada
+2026-05-23 20:10:09,525 | INFO | app | [f428e284-be7c-4f59-8349-92f86e5025f0] HTTP request finished: POST /audio/wakeword 200
+2026-05-23 20:12:58,235 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-23 20:13:00,226 | INFO | app | [----------] Modelo precalentado
+2026-05-23 20:13:11,928 | INFO | app | [2b35bb66-ed77-4502-ac51-6e6bcc34fe89] HTTP request started: POST /audio/wakeword
+2026-05-23 20:13:11,930 | INFO | app | [2b35bb66-ed77-4502-ac51-6e6bcc34fe89] Solicitud /audio/wakeword recibida
+2026-05-23 20:13:11,960 | INFO | app | [2b35bb66-ed77-4502-ac51-6e6bcc34fe89] Solicitud /audio/wakeword procesada
+2026-05-23 20:13:11,961 | INFO | app | [2b35bb66-ed77-4502-ac51-6e6bcc34fe89] HTTP request finished: POST /audio/wakeword 200
+2026-05-23 20:15:04,251 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 20:15:06,917 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 20:15:07,801 | INFO | app | [----------] Modelo precalentado
+2026-05-23 20:15:07,805 | INFO | app | [c33cc4da-b854-4fa2-bee6-2f2d49fd4f55] HTTP request started: GET /health
+2026-05-23 20:15:07,825 | INFO | app | [c33cc4da-b854-4fa2-bee6-2f2d49fd4f55] Health check
+2026-05-23 20:15:07,828 | INFO | app | [c33cc4da-b854-4fa2-bee6-2f2d49fd4f55] HTTP request finished: GET /health 200
+2026-05-23 20:15:07,850 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 20:15:07,909 | INFO | app | [----------] Modelo precalentado
+2026-05-23 20:15:07,911 | INFO | app | [793ce511-ec42-43c5-a1bf-ab23bbe310f8] HTTP request started: GET /metrics
+2026-05-23 20:15:07,917 | INFO | app | [793ce511-ec42-43c5-a1bf-ab23bbe310f8] Metrics requested
+2026-05-23 20:15:07,920 | INFO | app | [793ce511-ec42-43c5-a1bf-ab23bbe310f8] HTTP request finished: GET /metrics 200
+2026-05-23 20:15:07,937 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 20:15:10,449 | INFO | app | [----------] Modelo precalentado
+2026-05-23 20:15:10,454 | INFO | app | [6d0a49da-02f0-49b6-a1f9-e8370be55d8f] HTTP request started: POST /audio/stt/upload
+2026-05-23 20:15:10,480 | INFO | app | [6d0a49da-02f0-49b6-a1f9-e8370be55d8f] Solicitud /audio/stt/upload recibida: test.wav
+2026-05-23 20:15:10,480 | INFO | app | [6d0a49da-02f0-49b6-a1f9-e8370be55d8f] Solicitud /audio/stt/upload procesada
+2026-05-23 20:15:10,483 | INFO | app | [6d0a49da-02f0-49b6-a1f9-e8370be55d8f] HTTP request finished: POST /audio/stt/upload 200
+2026-05-23 20:15:12,761 | INFO | app | [----------] Modelo precalentado
+2026-05-23 20:15:12,765 | INFO | app | [1a8ebedc-c602-4c2e-b8fd-3bc7bd3734dd] HTTP request started: POST /chat
+2026-05-23 20:15:12,771 | INFO | app | [1a8ebedc-c602-4c2e-b8fd-3bc7bd3734dd] Solicitud /chat recibida
+2026-05-23 20:15:12,771 | INFO | app | [1a8ebedc-c602-4c2e-b8fd-3bc7bd3734dd] SESSION_ID: 1a8ebedc-c602-4c2e-b8fd-3bc7bd3734dd
+2026-05-23 20:15:12,774 | INFO | app | [1a8ebedc-c602-4c2e-b8fd-3bc7bd3734dd] USER MESSAGE: hola
+2026-05-23 20:15:12,774 | INFO | app | [1a8ebedc-c602-4c2e-b8fd-3bc7bd3734dd] Solicitud /chat procesada con estado: chat
+2026-05-23 20:15:12,774 | INFO | app | [1a8ebedc-c602-4c2e-b8fd-3bc7bd3734dd] LATENCY: 0.00s
+2026-05-23 20:15:12,774 | INFO | app | [1a8ebedc-c602-4c2e-b8fd-3bc7bd3734dd] HTTP request finished: POST /chat 200
+2026-05-23 20:15:12,787 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 20:15:12,812 | INFO | app | [----------] Modelo precalentado
+2026-05-23 20:15:12,816 | INFO | app | [7870fe2e-723f-4252-820f-30cc9dc32724] HTTP request started: POST /chat
+2026-05-23 20:15:12,821 | WARNING | app | [7870fe2e-723f-4252-820f-30cc9dc32724] Validation error: [{'type': 'missing', 'loc': ('body', 'message'), 'msg': 'Field required', 'input': {}}]
+2026-05-23 20:15:12,821 | INFO | app | [7870fe2e-723f-4252-820f-30cc9dc32724] HTTP request finished: POST /chat 422
+2026-05-23 20:15:12,836 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 20:15:15,295 | INFO | app | [----------] Modelo precalentado
+2026-05-23 20:15:15,301 | INFO | app | [1ee0836b-76ce-4d49-8a9b-9fbd7ad82747] WS message received: hola
+2026-05-23 20:15:15,307 | INFO | app | [1ee0836b-76ce-4d49-8a9b-9fbd7ad82747] WS disconnected
+2026-05-23 20:15:15,307 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 20:15:15,341 | INFO | app | [----------] Modelo precalentado
+2026-05-23 20:15:15,348 | INFO | app | [9640fb0a-4f1d-4d23-b8ed-6679c2132bca] HTTP request started: GET /tools
+2026-05-23 20:15:15,348 | INFO | app | [9640fb0a-4f1d-4d23-b8ed-6679c2132bca] Tools requested
+2026-05-23 20:15:15,606 | INFO | app | [9640fb0a-4f1d-4d23-b8ed-6679c2132bca] HTTP request finished: GET /tools 200
+2026-05-23 20:15:15,612 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 20:15:18,378 | INFO | app | [----------] Modelo precalentado
+2026-05-23 20:15:18,381 | INFO | app | [fee06711-dbd8-43f0-be46-f58284babfda] HTTP request started: POST /audio/tts
+2026-05-23 20:15:18,388 | INFO | app | [fee06711-dbd8-43f0-be46-f58284babfda] Solicitud /audio/tts recibida
+2026-05-23 20:15:18,388 | INFO | app | [fee06711-dbd8-43f0-be46-f58284babfda] Solicitud /audio/tts procesada
+2026-05-23 20:15:18,388 | INFO | app | [fee06711-dbd8-43f0-be46-f58284babfda] HTTP request finished: POST /audio/tts 200
+2026-05-23 20:15:18,400 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 20:15:18,421 | INFO | app | [----------] Modelo precalentado
+2026-05-23 20:15:18,428 | INFO | app | [bb8b9e5f-a350-45c7-9af4-549b0d5b395c] HTTP request started: POST /audio/stt
+2026-05-23 20:15:18,431 | INFO | app | [bb8b9e5f-a350-45c7-9af4-549b0d5b395c] Solicitud /audio/stt recibida
+2026-05-23 20:15:18,431 | INFO | app | [bb8b9e5f-a350-45c7-9af4-549b0d5b395c] Solicitud /audio/stt procesada
+2026-05-23 20:15:18,431 | INFO | app | [bb8b9e5f-a350-45c7-9af4-549b0d5b395c] HTTP request finished: POST /audio/stt 200
+2026-05-23 20:15:18,441 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 20:15:20,889 | INFO | app | [----------] Modelo precalentado
+2026-05-23 20:15:20,893 | INFO | app | [c682d7d1-0654-4823-9ac2-445f38df358a] HTTP request started: POST /audio/wakeword
+2026-05-23 20:15:20,895 | INFO | app | [c682d7d1-0654-4823-9ac2-445f38df358a] Solicitud /audio/wakeword recibida
+2026-05-23 20:15:20,895 | INFO | app | [c682d7d1-0654-4823-9ac2-445f38df358a] Solicitud /audio/wakeword procesada
+2026-05-23 20:15:20,895 | INFO | app | [c682d7d1-0654-4823-9ac2-445f38df358a] HTTP request finished: POST /audio/wakeword 200
+2026-05-23 20:15:20,911 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-23 20:15:20,942 | INFO | app | [----------] Modelo precalentado
+2026-05-23 20:15:20,942 | INFO | app | [022753fe-88b3-4e8b-9cd5-8676d74382e0] HTTP request started: POST /audio/stt/upload
+2026-05-23 20:15:20,949 | INFO | app | [022753fe-88b3-4e8b-9cd5-8676d74382e0] Solicitud /audio/stt/upload recibida: test.wav
+2026-05-23 20:15:20,949 | INFO | app | [022753fe-88b3-4e8b-9cd5-8676d74382e0] Solicitud /audio/stt/upload procesada
+2026-05-23 20:15:20,949 | INFO | app | [022753fe-88b3-4e8b-9cd5-8676d74382e0] HTTP request finished: POST /audio/stt/upload 200
+2026-05-24 09:31:49,201 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-24 09:31:51,631 | INFO | app | [----------] Modelo precalentado
+2026-05-24 09:31:51,631 | INFO | app | [e1602e97-3844-40ef-8674-5bf768211c5b] HTTP request started: GET /health
+2026-05-24 09:31:51,664 | INFO | app | [e1602e97-3844-40ef-8674-5bf768211c5b] Health check
+2026-05-24 09:31:51,665 | INFO | app | [e1602e97-3844-40ef-8674-5bf768211c5b] HTTP request finished: GET /health 200
+2026-05-24 09:31:51,665 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-24 09:31:53,972 | INFO | app | [----------] Modelo precalentado
+2026-05-24 09:31:53,972 | INFO | app | [73ac6774-a1a2-4a2b-bcac-d3c6cafec851] HTTP request started: GET /metrics
+2026-05-24 09:31:53,972 | INFO | app | [73ac6774-a1a2-4a2b-bcac-d3c6cafec851] Metrics requested
+2026-05-24 09:31:53,988 | INFO | app | [73ac6774-a1a2-4a2b-bcac-d3c6cafec851] HTTP request finished: GET /metrics 200
+2026-05-24 09:31:53,988 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-24 09:31:56,307 | INFO | app | [----------] Modelo precalentado
+2026-05-24 09:31:56,307 | INFO | app | [42f8683f-8604-4795-b0c7-69d0beb6a5f5] HTTP request started: POST /chat
+2026-05-24 09:31:56,316 | INFO | app | [42f8683f-8604-4795-b0c7-69d0beb6a5f5] Solicitud /chat recibida
+2026-05-24 09:31:56,316 | INFO | app | [42f8683f-8604-4795-b0c7-69d0beb6a5f5] SESSION_ID: 42f8683f-8604-4795-b0c7-69d0beb6a5f5
+2026-05-24 09:31:56,316 | INFO | app | [42f8683f-8604-4795-b0c7-69d0beb6a5f5] USER MESSAGE: hola
+2026-05-24 09:31:56,316 | INFO | app | [42f8683f-8604-4795-b0c7-69d0beb6a5f5] Solicitud /chat procesada con estado: chat
+2026-05-24 09:31:56,316 | INFO | app | [42f8683f-8604-4795-b0c7-69d0beb6a5f5] LATENCY: 0.00s
+2026-05-24 09:31:56,320 | INFO | app | [42f8683f-8604-4795-b0c7-69d0beb6a5f5] HTTP request finished: POST /chat 200
+2026-05-24 09:31:56,332 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-24 09:31:58,341 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-24 09:31:58,654 | INFO | app | [----------] Modelo precalentado
+2026-05-24 09:31:58,654 | INFO | app | [bbeb476d-cc62-406e-8ed0-6fe8b6d27105] HTTP request started: POST /chat
+2026-05-24 09:31:58,670 | WARNING | app | [bbeb476d-cc62-406e-8ed0-6fe8b6d27105] Validation error: [{'type': 'missing', 'loc': ('body', 'message'), 'msg': 'Field required', 'input': {}}]
+2026-05-24 09:31:58,670 | INFO | app | [bbeb476d-cc62-406e-8ed0-6fe8b6d27105] HTTP request finished: POST /chat 422
+2026-05-24 09:31:58,686 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-24 09:32:00,660 | INFO | app | [----------] Modelo precalentado
+2026-05-24 09:32:00,660 | INFO | app | [2563f355-2c53-4443-8c80-caaeb08c75d0] HTTP request started: POST /audio/converse
+2026-05-24 09:32:00,685 | INFO | app | [2563f355-2c53-4443-8c80-caaeb08c75d0] Solicitud /audio/converse recibida
+2026-05-24 09:32:00,685 | INFO | app | [2563f355-2c53-4443-8c80-caaeb08c75d0] Wake word detectada: alfonso
+2026-05-24 09:32:00,685 | INFO | app | [2563f355-2c53-4443-8c80-caaeb08c75d0] HTTP request finished: POST /audio/converse 200
+2026-05-24 09:32:00,981 | INFO | app | [----------] Modelo precalentado
+2026-05-24 09:32:00,994 | INFO | app | [0696336d-4e33-4e9f-9d19-b3c534410584] WS message received: hola
+2026-05-24 09:32:00,994 | INFO | app | [0696336d-4e33-4e9f-9d19-b3c534410584] WS disconnected
+2026-05-24 09:32:01,011 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-24 09:32:03,328 | INFO | app | [----------] Modelo precalentado
+2026-05-24 09:32:03,328 | INFO | app | [4c1d7686-8cc0-46f9-b4af-6f6bc054f22d] HTTP request started: GET /tools
+2026-05-24 09:32:03,328 | INFO | app | [4c1d7686-8cc0-46f9-b4af-6f6bc054f22d] Tools requested
+2026-05-24 09:32:03,526 | INFO | app | [4c1d7686-8cc0-46f9-b4af-6f6bc054f22d] HTTP request finished: GET /tools 200
+2026-05-24 09:32:03,544 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-24 09:32:05,848 | INFO | app | [----------] Modelo precalentado
+2026-05-24 09:32:05,848 | INFO | app | [9f37931d-9fcb-4ae8-afce-0df2f75cd064] HTTP request started: POST /audio/tts
+2026-05-24 09:32:05,848 | INFO | app | [9f37931d-9fcb-4ae8-afce-0df2f75cd064] Solicitud /audio/tts recibida
+2026-05-24 09:32:05,848 | INFO | app | [9f37931d-9fcb-4ae8-afce-0df2f75cd064] Solicitud /audio/tts procesada
+2026-05-24 09:32:05,861 | INFO | app | [9f37931d-9fcb-4ae8-afce-0df2f75cd064] HTTP request finished: POST /audio/tts 200
+2026-05-24 09:32:05,861 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-24 09:32:08,166 | INFO | app | [----------] Modelo precalentado
+2026-05-24 09:32:08,166 | INFO | app | [0cccc16f-33c5-4965-aed7-3e6735aea5b7] HTTP request started: POST /audio/stt
+2026-05-24 09:32:08,179 | INFO | app | [0cccc16f-33c5-4965-aed7-3e6735aea5b7] Solicitud /audio/stt recibida
+2026-05-24 09:32:08,182 | INFO | app | [0cccc16f-33c5-4965-aed7-3e6735aea5b7] Solicitud /audio/stt procesada
+2026-05-24 09:32:08,182 | INFO | app | [0cccc16f-33c5-4965-aed7-3e6735aea5b7] HTTP request finished: POST /audio/stt 200
+2026-05-24 09:32:08,182 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-24 09:32:10,468 | INFO | app | [----------] Modelo precalentado
+2026-05-24 09:32:10,468 | INFO | app | [4f454b30-8747-40d7-9c5c-d929fc1630fc] HTTP request started: POST /audio/wakeword
+2026-05-24 09:32:10,477 | INFO | app | [4f454b30-8747-40d7-9c5c-d929fc1630fc] Solicitud /audio/wakeword recibida
+2026-05-24 09:32:10,477 | INFO | app | [4f454b30-8747-40d7-9c5c-d929fc1630fc] Solicitud /audio/wakeword procesada
+2026-05-24 09:32:10,477 | INFO | app | [4f454b30-8747-40d7-9c5c-d929fc1630fc] HTTP request finished: POST /audio/wakeword 200
+2026-05-24 09:32:10,477 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-24 09:32:12,802 | INFO | app | [----------] Modelo precalentado
+2026-05-24 09:32:12,802 | INFO | app | [eacd022b-8476-4b87-a4bd-7e798b7c5ccb] HTTP request started: POST /audio/converse
+2026-05-24 09:32:12,817 | INFO | app | [eacd022b-8476-4b87-a4bd-7e798b7c5ccb] Solicitud /audio/converse recibida
+2026-05-24 09:32:12,817 | INFO | app | [eacd022b-8476-4b87-a4bd-7e798b7c5ccb] Wake word detectada: alfonso
+2026-05-24 09:32:12,817 | INFO | app | [eacd022b-8476-4b87-a4bd-7e798b7c5ccb] HTTP request finished: POST /audio/converse 200
+2026-05-24 09:32:12,817 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-05-24 09:32:15,130 | INFO | app | [----------] Modelo precalentado
+2026-05-24 09:32:15,130 | INFO | app | [0f50906e-bf94-4d20-ac74-c4376abfab80] HTTP request started: POST /audio/stt/upload
+2026-05-24 09:32:15,146 | INFO | app | [0f50906e-bf94-4d20-ac74-c4376abfab80] Solicitud /audio/stt/upload recibida: test.wav
+2026-05-24 09:32:15,146 | INFO | app | [0f50906e-bf94-4d20-ac74-c4376abfab80] Solicitud /audio/stt/upload procesada
+2026-05-24 09:32:15,146 | INFO | app | [0f50906e-bf94-4d20-ac74-c4376abfab80] HTTP request finished: POST /audio/stt/upload 200
+2026-05-24 09:34:20,881 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-24 09:34:51,900 | INFO | app | [----------] Modelo precalentado
+2026-05-24 09:34:51,925 | INFO | app | [3eb7c11d-4c4d-4cda-881c-7be7cca6a03b] HTTP request started: GET /health
+2026-05-24 09:34:51,937 | INFO | app | [3eb7c11d-4c4d-4cda-881c-7be7cca6a03b] Health check
+2026-05-24 09:34:51,940 | INFO | app | [3eb7c11d-4c4d-4cda-881c-7be7cca6a03b] HTTP request finished: GET /health 200
+2026-05-24 09:34:51,984 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-24 09:34:52,034 | INFO | app | [----------] Modelo precalentado
+2026-05-24 09:34:52,036 | INFO | app | [465ab0a3-b8b2-4bf8-9c03-1edcf00583ae] HTTP request started: GET /metrics
+2026-05-24 09:34:52,037 | INFO | app | [465ab0a3-b8b2-4bf8-9c03-1edcf00583ae] Metrics requested
+2026-05-24 09:34:52,040 | INFO | app | [465ab0a3-b8b2-4bf8-9c03-1edcf00583ae] HTTP request finished: GET /metrics 200
+2026-05-24 09:34:52,050 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-24 09:34:54,335 | INFO | app | [----------] Modelo precalentado
+2026-05-24 09:34:54,336 | INFO | app | [42c07240-2b03-43e5-a122-60d1a892b169] HTTP request started: POST /chat
+2026-05-24 09:34:54,342 | INFO | app | [42c07240-2b03-43e5-a122-60d1a892b169] Solicitud /chat recibida
+2026-05-24 09:34:54,342 | INFO | app | [42c07240-2b03-43e5-a122-60d1a892b169] SESSION_ID: 42c07240-2b03-43e5-a122-60d1a892b169
+2026-05-24 09:34:54,342 | INFO | app | [42c07240-2b03-43e5-a122-60d1a892b169] USER MESSAGE: hola
+2026-05-24 09:34:54,342 | INFO | app | [42c07240-2b03-43e5-a122-60d1a892b169] Solicitud /chat procesada con estado: chat
+2026-05-24 09:34:54,343 | INFO | app | [42c07240-2b03-43e5-a122-60d1a892b169] LATENCY: 0.00s
+2026-05-24 09:34:54,347 | INFO | app | [42c07240-2b03-43e5-a122-60d1a892b169] HTTP request finished: POST /chat 200
+2026-05-24 09:34:54,354 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-24 09:34:54,360 | INFO | app | [----------] Modelo precalentado
+2026-05-24 09:34:54,362 | INFO | app | [8adf790e-ed25-4f95-b678-3fc8403111de] HTTP request started: POST /chat
+2026-05-24 09:34:54,365 | WARNING | app | [8adf790e-ed25-4f95-b678-3fc8403111de] Validation error: [{'type': 'missing', 'loc': ('body', 'message'), 'msg': 'Field required', 'input': {}}]
+2026-05-24 09:34:54,366 | INFO | app | [8adf790e-ed25-4f95-b678-3fc8403111de] HTTP request finished: POST /chat 422
+2026-05-24 09:34:54,373 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-24 09:34:56,539 | INFO | app | [----------] Modelo precalentado
+2026-05-24 09:34:56,544 | INFO | app | [ef9e6592-920a-460c-9da8-3f1d2c74e5c1] WS message received: hola
+2026-05-24 09:34:56,545 | INFO | app | [ef9e6592-920a-460c-9da8-3f1d2c74e5c1] WS disconnected
+2026-05-24 09:34:56,553 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-24 09:34:56,557 | INFO | app | [----------] Modelo precalentado
+2026-05-24 09:34:56,559 | INFO | app | [5c1448d4-00a4-4464-928a-f8de4f9b2e84] HTTP request started: GET /tools
+2026-05-24 09:34:56,560 | INFO | app | [5c1448d4-00a4-4464-928a-f8de4f9b2e84] Tools requested
+2026-05-24 09:34:56,642 | INFO | app | [5c1448d4-00a4-4464-928a-f8de4f9b2e84] HTTP request finished: GET /tools 200
+2026-05-24 09:34:56,648 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-24 09:34:58,646 | INFO | app | [----------] Modelo precalentado
+2026-05-24 09:34:58,647 | INFO | app | [45bfdb06-3f89-40d9-ad6d-1a6005319d1c] HTTP request started: POST /audio/tts
+2026-05-24 09:34:58,649 | INFO | app | [45bfdb06-3f89-40d9-ad6d-1a6005319d1c] Solicitud /audio/tts recibida
+2026-05-24 09:34:58,649 | INFO | app | [45bfdb06-3f89-40d9-ad6d-1a6005319d1c] Solicitud /audio/tts procesada
+2026-05-24 09:34:58,649 | INFO | app | [45bfdb06-3f89-40d9-ad6d-1a6005319d1c] HTTP request finished: POST /audio/tts 200
+2026-05-24 09:34:58,657 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-24 09:34:58,662 | INFO | app | [----------] Modelo precalentado
+2026-05-24 09:34:58,663 | INFO | app | [33634b87-11e7-4be1-ac6f-12fad90db924] HTTP request started: POST /audio/stt
+2026-05-24 09:34:58,665 | INFO | app | [33634b87-11e7-4be1-ac6f-12fad90db924] Solicitud /audio/stt recibida
+2026-05-24 09:34:58,665 | INFO | app | [33634b87-11e7-4be1-ac6f-12fad90db924] Solicitud /audio/stt procesada
+2026-05-24 09:34:58,665 | INFO | app | [33634b87-11e7-4be1-ac6f-12fad90db924] HTTP request finished: POST /audio/stt 200
+2026-05-24 09:34:58,671 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-24 09:35:00,951 | INFO | app | [----------] Modelo precalentado
+2026-05-24 09:35:00,953 | INFO | app | [3ea69588-c180-4115-b061-a6f75bc7ce50] HTTP request started: POST /audio/wakeword
+2026-05-24 09:35:00,955 | INFO | app | [3ea69588-c180-4115-b061-a6f75bc7ce50] Solicitud /audio/wakeword recibida
+2026-05-24 09:35:00,956 | INFO | app | [3ea69588-c180-4115-b061-a6f75bc7ce50] Solicitud /audio/wakeword procesada
+2026-05-24 09:35:00,956 | INFO | app | [3ea69588-c180-4115-b061-a6f75bc7ce50] HTTP request finished: POST /audio/wakeword 200
+2026-05-24 09:35:00,963 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-24 09:35:00,968 | INFO | app | [----------] Modelo precalentado
+2026-05-24 09:35:00,969 | INFO | app | [cbed7236-5b89-49e6-85c7-b454efcdce75] HTTP request started: POST /audio/converse
+2026-05-24 09:35:00,973 | INFO | app | [cbed7236-5b89-49e6-85c7-b454efcdce75] Solicitud /audio/converse recibida
+2026-05-24 09:35:00,973 | INFO | app | [cbed7236-5b89-49e6-85c7-b454efcdce75] Wake word detectada: alfonso
+2026-05-24 09:35:00,974 | INFO | app | [cbed7236-5b89-49e6-85c7-b454efcdce75] HTTP request finished: POST /audio/converse 200
+2026-05-24 09:35:00,980 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-24 09:35:03,036 | INFO | app | [----------] Modelo precalentado
+2026-05-24 09:35:03,038 | INFO | app | [a9241aa9-e19b-42d1-9102-14c3c447c328] HTTP request started: POST /audio/stt/upload
+2026-05-24 09:35:03,048 | INFO | app | [a9241aa9-e19b-42d1-9102-14c3c447c328] Solicitud /audio/stt/upload recibida: test.wav
+2026-05-24 09:35:03,048 | INFO | app | [a9241aa9-e19b-42d1-9102-14c3c447c328] Solicitud /audio/stt/upload procesada
+2026-05-24 09:35:03,048 | INFO | app | [a9241aa9-e19b-42d1-9102-14c3c447c328] HTTP request finished: POST /audio/stt/upload 200

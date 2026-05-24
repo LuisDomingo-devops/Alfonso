@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+httpx
+psutil
+python-dotenv
+pydantic
+pydantic-settings
+pytest
+pyttsx3
+SpeechRecognition
+edge-tts
+openai-whisper
+sounddevice

@@ -1,0 +1,83 @@
+2026-05-23 11:39:20,463 | INFO | tools | Intentando leer archivo: mi_primer_archivo.txt
+2026-05-23 11:39:20,464 | INFO | tools | Archivo leído exitosamente: mi_primer_archivo.txt
+2026-05-23 12:20:38,649 | INFO | tools | [----------] Intentando leer archivo: mi_primer_archivo.txt
+2026-05-23 12:20:38,650 | INFO | tools | [----------] Archivo leído exitosamente: mi_primer_archivo.txt
+2026-05-23 18:51:31,436 | INFO | tools | [----------] Intentando ejecutar comando: ['echo', 'hello']
+2026-05-23 18:52:32,813 | INFO | tools | [----------] Intentando ejecutar comando: ['C:\\Users\\luisd\\AppData\\Local\\Programs\\Python\\Python312\\python.exe', '-c', "print('hello')"]
+2026-05-23 18:52:32,861 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-05-23 18:52:32,861 | INFO | tools | [----------] Listando directorio: app
+2026-05-23 18:52:32,924 | INFO | tools | [----------] Directorio listado correctamente: app
+2026-05-23 18:52:58,139 | INFO | tools | [----------] Intentando ejecutar comando: ['C:\\Users\\luisd\\AppData\\Local\\Programs\\Python\\Python312\\python.exe', '-c', "print('hello')"]
+2026-05-23 18:52:58,172 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-05-23 18:52:58,172 | INFO | tools | [----------] Listando directorio: app
+2026-05-23 18:52:58,239 | INFO | tools | [----------] Directorio listado correctamente: app
+2026-05-23 18:53:42,136 | INFO | tools | [----------] Intentando ejecutar comando: ['C:\\Users\\luisd\\AppData\\Local\\Programs\\Python\\Python312\\python.exe', '-c', "print('hello')"]
+2026-05-23 18:53:42,170 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-05-23 18:53:42,170 | INFO | tools | [----------] Listando directorio: app
+2026-05-23 18:53:42,220 | INFO | tools | [----------] Directorio listado correctamente: app
+2026-05-23 19:28:31,180 | INFO | tools | [----------] Intentando ejecutar comando: ['C:\\Users\\luisd\\AppData\\Local\\Programs\\Python\\Python312\\python.exe', '-c', "print('hello')"]
+2026-05-23 19:28:31,213 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-05-23 19:28:31,228 | INFO | tools | [----------] Listando directorio: app
+2026-05-23 19:28:31,280 | INFO | tools | [----------] Directorio listado correctamente: app
+2026-05-23 19:28:54,471 | INFO | tools | [----------] Intentando ejecutar comando: ['C:\\Users\\luisd\\AppData\\Local\\Programs\\Python\\Python312\\python.exe', '-c', "print('hello')"]
+2026-05-23 19:28:54,550 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-05-23 19:28:54,555 | INFO | tools | [----------] Listando directorio: app
+2026-05-23 19:28:54,603 | INFO | tools | [----------] Directorio listado correctamente: app
+2026-05-23 19:28:54,620 | INFO | tools | [----------] Intentando abrir aplicación: ['C:UsersluisdAppDataLocalProgramsPythonPython312python.exe', '-c', "print('app-open-test')"]
+2026-05-23 19:29:12,036 | INFO | tools | [----------] Intentando ejecutar comando: ['C:\\Users\\luisd\\AppData\\Local\\Programs\\Python\\Python312\\python.exe', '-c', "print('hello')"]
+2026-05-23 19:29:12,071 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-05-23 19:29:12,087 | INFO | tools | [----------] Listando directorio: app
+2026-05-23 19:29:12,157 | INFO | tools | [----------] Directorio listado correctamente: app
+2026-05-23 19:29:12,157 | INFO | tools | [----------] Intentando abrir aplicación: ['C:\\Users\\luisd\\AppData\\Local\\Programs\\Python\\Python312\\python.exe', '-c', "print('app-open-test')"]
+2026-05-23 19:29:12,171 | INFO | tools | [----------] Aplicación abierta con PID 3320
+2026-05-23 19:29:24,300 | INFO | tools | [----------] Intentando ejecutar comando: ['C:\\Users\\luisd\\AppData\\Local\\Programs\\Python\\Python312\\python.exe', '-c', "print('hello')"]
+2026-05-23 19:29:24,368 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-05-23 19:29:24,379 | INFO | tools | [----------] Listando directorio: app
+2026-05-23 19:29:24,446 | INFO | tools | [----------] Directorio listado correctamente: app
+2026-05-23 19:29:24,466 | INFO | tools | [----------] Intentando abrir aplicación: ['C:\\Users\\luisd\\AppData\\Local\\Programs\\Python\\Python312\\python.exe', '-c', "print('app-open-test')"]
+2026-05-23 19:29:24,476 | INFO | tools | [----------] Aplicación abierta con PID 10488
+2026-05-23 19:56:53,570 | INFO | tools | [----------] Intentando ejecutar comando: ['C:\\Users\\luisd\\AppData\\Local\\Programs\\Python\\Python312\\python.exe', '-c', "print('hello')"]
+2026-05-23 19:56:53,615 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-05-23 19:56:53,626 | INFO | tools | [----------] Listando directorio: app
+2026-05-23 19:56:53,693 | INFO | tools | [----------] Directorio listado correctamente: app
+2026-05-23 19:56:53,693 | INFO | tools | [----------] Intentando abrir aplicación: ['C:\\Users\\luisd\\AppData\\Local\\Programs\\Python\\Python312\\python.exe', '-c', "print('app-open-test')"]
+2026-05-23 19:56:53,693 | INFO | tools | [----------] Aplicación abierta con PID 7092
+2026-05-23 20:00:43,054 | INFO | tools | [----------] Intentando ejecutar comando: ['C:\\Users\\luisd\\AppData\\Local\\Programs\\Python\\Python312\\python.exe', '-c', "print('hello')"]
+2026-05-23 20:00:43,235 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-05-23 20:00:43,238 | INFO | tools | [----------] Listando directorio: app
+2026-05-23 20:00:43,338 | INFO | tools | [----------] Directorio listado correctamente: app
+2026-05-23 20:00:43,362 | INFO | tools | [----------] Intentando abrir aplicación: ['C:\\Users\\luisd\\AppData\\Local\\Programs\\Python\\Python312\\python.exe', '-c', "print('app-open-test')"]
+2026-05-23 20:00:43,405 | INFO | tools | [----------] Aplicación abierta con PID 23664
+2026-05-23 20:01:09,085 | INFO | tools | [----------] Intentando ejecutar comando: ['C:\\Users\\luisd\\AppData\\Local\\Programs\\Python\\Python312\\python.exe', '-c', "print('hello')"]
+2026-05-23 20:01:09,134 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-05-23 20:01:09,136 | INFO | tools | [----------] Listando directorio: app
+2026-05-23 20:01:09,202 | INFO | tools | [----------] Directorio listado correctamente: app
+2026-05-23 20:01:09,218 | INFO | tools | [----------] Intentando abrir aplicación: ['C:\\Users\\luisd\\AppData\\Local\\Programs\\Python\\Python312\\python.exe', '-c', "print('app-open-test')"]
+2026-05-23 20:01:09,219 | INFO | tools | [----------] Aplicación abierta con PID 424
+2026-05-23 20:02:03,671 | INFO | tools | [----------] Intentando ejecutar comando: ['C:\\Users\\luisd\\AppData\\Local\\Programs\\Python\\Python312\\python.exe', '-c', "print('hello')"]
+2026-05-23 20:02:03,718 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-05-23 20:02:03,735 | INFO | tools | [----------] Listando directorio: app
+2026-05-23 20:02:03,785 | INFO | tools | [----------] Directorio listado correctamente: app
+2026-05-23 20:02:03,785 | INFO | tools | [----------] Intentando abrir aplicación: ['C:\\Users\\luisd\\AppData\\Local\\Programs\\Python\\Python312\\python.exe', '-c', "print('app-open-test')"]
+2026-05-23 20:02:03,802 | INFO | tools | [----------] Aplicación abierta con PID 14200
+2026-05-23 20:08:42,485 | INFO | tools | [----------] Intentando ejecutar comando: ['C:\\Users\\luisd\\AppData\\Local\\Programs\\Python\\Python312\\python.exe', '-c', "print('hello')"]
+2026-05-23 20:08:42,515 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-05-23 20:08:42,530 | INFO | tools | [----------] Listando directorio: app
+2026-05-23 20:08:42,582 | INFO | tools | [----------] Directorio listado correctamente: app
+2026-05-23 20:08:42,597 | INFO | tools | [----------] Intentando abrir aplicación: ['C:\\Users\\luisd\\AppData\\Local\\Programs\\Python\\Python312\\python.exe', '-c', "print('app-open-test')"]
+2026-05-23 20:08:42,598 | INFO | tools | [----------] Aplicación abierta con PID 5532
+2026-05-23 20:13:11,958 | INFO | tools | [----------] Wake word listener started for keyword=alfonso
+2026-05-23 20:13:11,959 | INFO | tools | [----------] STT requested duration=5 model=small
+2026-05-23 20:13:11,959 | WARNING | tools | [----------] Falling back to SpeechRecognition due to audio capture error: sounddevice not available
+2026-05-24 10:02:16,692 | INFO | tools | [----------] STT requested duration=5 model=small
+2026-05-24 10:02:16,704 | INFO | tools | [----------] Recording audio for 5 seconds to /tmp/stt_7854427989c941638319b355b63bbaac.wav
+2026-05-24 10:02:16,705 | WARNING | tools | [----------] Falling back to SpeechRecognition due to audio capture error: Error querying device -1
+2026-05-24 10:02:16,713 | INFO | tools | [----------] TTS requested: prueba de audio
+2026-05-24 10:02:17,389 | INFO | tools | [----------] TTS generado en /tmp/tts_662998e7ba494dcdb54036c02d146156.mp3
+2026-05-24 10:06:41,986 | INFO | tools | [----------] STT requested duration=5 model=small
+2026-05-24 10:06:41,987 | INFO | tools | [----------] Recording audio for 5 seconds to /tmp/stt_3727f30b305247778207769b5e0d9d0f.wav
+2026-05-24 10:06:41,987 | WARNING | tools | [----------] Falling back to SpeechRecognition due to audio capture error: Error querying device -1
+2026-05-24 10:06:42,024 | INFO | tools | [----------] TTS requested: prueba de audio
+2026-05-24 10:06:42,349 | INFO | tools | [----------] TTS generado en /tmp/tts_ad30b5b6d6e54c9ca124e18df8e960f6.mp3
+2026-05-24 10:29:32,716 | INFO | tools | [----------] TTS requested: prueba de sonido
+2026-05-24 10:29:33,663 | INFO | tools | [----------] TTS generado en /tmp/tts_d550bbe15e354fdca2085cc094db0957.mp3

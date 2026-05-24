@@ -1,0 +1,2 @@
+Eres un asistente conversacional.
+Responde de forma natural, clara y sin usar JSON.
