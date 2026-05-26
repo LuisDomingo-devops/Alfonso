@@ -249,3 +249,39 @@
 2026-05-26 10:22:04,227 | INFO | tools | [----------] Transcribiendo audio subido: chunk.wav (96044 bytes)
 2026-05-26 10:22:05,594 | INFO | tools | [----------] Transcripción Whisper: Adiós
 2026-05-26 10:22:05,595 | INFO | tools | [----------] Wake word 'alfonso' no detectada en: 'adiós'
+2026-05-26 13:58:14,899 | INFO | tools | [----------] Detectando wake word 'alfonso' en audio subido: chunk.wav (96044 bytes)
+2026-05-26 13:58:14,900 | INFO | tools | [----------] Transcribiendo audio subido: chunk.wav (96044 bytes)
+2026-05-26 13:58:31,292 | INFO | tools | [----------] Transcripción Whisper: Alfonso.
+2026-05-26 13:58:31,294 | INFO | tools | [----------] Wake word 'alfonso' DETECTADA en: 'alfonso.'
+2026-05-26 13:59:09,749 | INFO | tools | [----------] Detectando wake word 'alfonso' en audio subido: chunk.wav (96044 bytes)
+2026-05-26 13:59:09,750 | INFO | tools | [----------] Transcribiendo audio subido: chunk.wav (96044 bytes)
+2026-05-26 13:59:11,529 | INFO | tools | [----------] Transcripción Whisper: una bolista de desprondo por anda en guardo lo pés por favor
+2026-05-26 13:59:11,529 | INFO | tools | [----------] Wake word 'alfonso' no detectada en: 'una bolista de desprondo por anda en guardo lo pés por favor'
+2026-05-26 14:00:10,740 | INFO | tools | [----------] Detectando wake word 'alfonso' en audio subido: chunk.wav (96044 bytes)
+2026-05-26 14:00:10,740 | INFO | tools | [----------] Transcribiendo audio subido: chunk.wav (96044 bytes)
+2026-05-26 14:00:12,114 | INFO | tools | [----------] Transcripción Whisper: Alfonso, buenos días.
+2026-05-26 14:00:12,114 | INFO | tools | [----------] Wake word 'alfonso' DETECTADA en: 'alfonso, buenos días.'
+2026-05-26 14:00:29,390 | INFO | tools | [----------] TTS solicitado: Buenos días! ¿En qué puedo ayudarte hoy?
+2026-05-26 14:00:30,405 | INFO | tools | [----------] TTS generado en /tmp/tts_0075e76c262141739aeac071e3090d8c.mp3
+2026-05-26 14:48:30,900 | INFO | tools | [----------] Detectando wake word 'alfonso' en audio subido: chunk.wav (96044 bytes)
+2026-05-26 14:48:30,903 | INFO | tools | [----------] Transcribiendo audio subido: chunk.wav (96044 bytes)
+2026-05-26 14:48:46,965 | INFO | tools | [----------] Transcripción Whisper: Almas que el�ョ Una setna 숏 Si Caliba La
+2026-05-26 14:48:46,971 | INFO | tools | [----------] Wake word 'alfonso' no detectada en: 'almas que el�ョ una setna 숏 si caliba la'
+2026-05-26 14:51:55,481 | INFO | tools | [----------] Detectando wake word 'alfonso' en audio subido: chunk.wav (96044 bytes)
+2026-05-26 14:51:55,481 | INFO | tools | [----------] Transcribiendo audio subido: chunk.wav (96044 bytes)
+2026-05-26 15:31:54,797 | INFO | tools | [----------] Detectando wake word 'alfonso' en audio subido: chunk.wav (96044 bytes)
+2026-05-26 15:31:54,799 | INFO | tools | [----------] Transcribiendo audio subido: chunk.wav (96044 bytes)
+2026-05-26 15:32:03,367 | INFO | tools | [----------] Transcripción Whisper: Buenos días.
+2026-05-26 15:32:03,368 | INFO | tools | [----------] Wake word 'alfonso' no detectada en: 'buenos días.'
+2026-05-26 15:34:07,361 | INFO | tools | [----------] Detectando wake word 'alfonso' en audio subido: chunk.wav (96044 bytes)
+2026-05-26 15:34:07,361 | INFO | tools | [----------] Transcribiendo audio subido: chunk.wav (96044 bytes)
+2026-05-26 15:34:08,921 | INFO | tools | [----------] Transcripción Whisper: 
+2026-05-26 15:34:08,921 | INFO | tools | [----------] Wake word 'alfonso' no detectada en: ''
+2026-05-26 15:38:37,930 | INFO | tools | [----------] Detectando wake word 'alfonso' en audio subido: chunk.wav (96044 bytes)
+2026-05-26 15:38:37,931 | INFO | tools | [----------] Transcribiendo audio subido: chunk.wav (96044 bytes)
+2026-05-26 15:38:39,679 | INFO | tools | [----------] Transcripción Whisper: Alfonso, buenos días.
+2026-05-26 15:38:39,679 | INFO | tools | [----------] Wake word 'alfonso' DETECTADA en: 'alfonso, buenos días.'
+2026-05-26 15:38:47,533 | INFO | tools | [----------] Transcribiendo audio subido: orden.wav (160044 bytes)
+2026-05-26 15:39:39,482 | INFO | tools | [----------] Transcripción Whisper: a a a a a a de a a asociaciones a 3 a fotografías eh
+2026-05-26 15:40:21,054 | INFO | tools | [----------] TTS solicitado: Lo siento, parece que tu mensaje está un poco borroso. ¿Intentas decir algo sobre asociar tres fotos en algún tipo de conjunto o relación? Puedo ayudarte a organizar o describir fotografías si puedes clarificar tu consulta.
+2026-05-26 15:40:24,468 | INFO | tools | [----------] TTS generado en /tmp/tts_5814b2b84f6d4243a14ecb3ae0611bc1.mp3
