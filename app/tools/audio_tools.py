@@ -65,16 +65,9 @@ def _whisper_transcribe(path: Path, model_name: str = "small") -> str:
 
 
 def _speech_recognition_transcribe_file_sync(path: Path) -> str:
-    """Fallback síncrono usando SpeechRecognition sobre un fichero."""
-    try:
-        import speech_recognition as sr
-    except ImportError:
-        raise RuntimeError("speech_recognition no está instalado")
-
-    recognizer = sr.Recognizer()
-    with sr.AudioFile(str(path)) as source:
-        audio = recognizer.record(source)
-    return recognizer.recognize_google(audio, language="es-ES")
+    """Fallback: transcribe con Whisper tiny (offline) en vez de Google."""
+    # Usar tiny como fallback es más rápido y no necesita internet
+    return _whisper_transcribe(path, model_name="tiny")
 
 
 # ---------------------------------------------------------------------------
