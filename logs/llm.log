@@ -506,3 +506,81 @@
 2026-05-24 09:35:03,035 | DEBUG | llm | [----------] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:3b', 'created_at': '2026-05-24T07:35:03.034410826Z', 'message': {'role': 'assistant', 'content': 'Pong! ¿En qué puedo ayudarte?'}, 'done': True, 'done_reason': 'stop', 'total_duration': 2049626928, 'load_duration': 237795532, 'prompt_eval_count': 36, 'prompt_eval_duration': 163419729, 'eval_count': 11, 'eval_duration': 1591950619}
 2026-05-24 09:35:03,036 | DEBUG | llm | [----------] OLLAMA CONTENT: Pong! ¿En qué puedo ayudarte?
 2026-05-24 09:35:03,036 | INFO | llm | [----------] Respuesta LLM recibida correctamente
+2026-05-24 19:48:16,549 | INFO | llm | [----------] LLM INPUT: ping
+2026-05-24 19:48:16,551 | INFO | llm | [----------] LLM MODE: chat
+2026-05-24 19:48:53,620 | DEBUG | llm | [----------] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:3b', 'created_at': '2026-05-24T17:48:53.242872892Z', 'message': {'role': 'assistant', 'content': 'Pong! ¿En qué puedo ayudarte?'}, 'done': True, 'done_reason': 'stop', 'total_duration': 37752133499, 'load_duration': 17525770984, 'prompt_eval_count': 36, 'prompt_eval_duration': 16763557882, 'eval_count': 11, 'eval_duration': 3212312508}
+2026-05-24 19:48:53,645 | DEBUG | llm | [----------] OLLAMA CONTENT: Pong! ¿En qué puedo ayudarte?
+2026-05-24 19:48:53,645 | INFO | llm | [----------] Respuesta LLM recibida correctamente
+2026-05-24 19:49:37,136 | INFO | llm | [----------] LLM INPUT: ping
+2026-05-24 19:49:37,136 | INFO | llm | [----------] LLM MODE: chat
+2026-05-24 19:49:40,863 | DEBUG | llm | [----------] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:3b', 'created_at': '2026-05-24T17:49:40.849082911Z', 'message': {'role': 'assistant', 'content': 'Pong! ¿En qué puedo ayudarte?'}, 'done': True, 'done_reason': 'stop', 'total_duration': 3668374883, 'load_duration': 670289229, 'prompt_eval_count': 36, 'prompt_eval_duration': 324296866, 'eval_count': 11, 'eval_duration': 2560666773}
+2026-05-24 19:49:40,864 | DEBUG | llm | [----------] OLLAMA CONTENT: Pong! ¿En qué puedo ayudarte?
+2026-05-24 19:49:40,864 | INFO | llm | [----------] Respuesta LLM recibida correctamente
+2026-05-25 08:48:08,634 | INFO | llm | [----------] LLM INPUT: ping
+2026-05-25 08:48:08,639 | INFO | llm | [----------] LLM MODE: chat
+2026-05-25 08:56:33,099 | INFO | llm | [----------] LLM INPUT: ping
+2026-05-25 08:56:33,100 | INFO | llm | [----------] LLM MODE: chat
+2026-05-25 08:57:07,512 | DEBUG | llm | [----------] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:3b', 'created_at': '2026-05-25T06:57:07.175149829Z', 'message': {'role': 'assistant', 'content': 'Pong! ¿En qué puedo ayudarte?'}, 'done': True, 'done_reason': 'stop', 'total_duration': 36054805117, 'load_duration': 24088327650, 'prompt_eval_count': 36, 'prompt_eval_duration': 8879935777, 'eval_count': 11, 'eval_duration': 2853158770}
+2026-05-25 08:57:07,525 | DEBUG | llm | [----------] OLLAMA CONTENT: Pong! ¿En qué puedo ayudarte?
+2026-05-25 08:57:07,525 | INFO | llm | [----------] Respuesta LLM recibida correctamente
+2026-05-25 09:10:44,803 | INFO | llm | [----------] LLM INPUT: ping
+2026-05-25 09:10:44,804 | INFO | llm | [----------] LLM MODE: chat
+2026-05-25 09:11:18,606 | DEBUG | llm | [----------] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:3b', 'created_at': '2026-05-25T07:11:18.465243064Z', 'message': {'role': 'assistant', 'content': 'Pong! ¿En qué puedo ayudarte hoy?'}, 'done': True, 'done_reason': 'stop', 'total_duration': 35854642773, 'load_duration': 26640545656, 'prompt_eval_count': 36, 'prompt_eval_duration': 6645332053, 'eval_count': 12, 'eval_duration': 2398011104}
+2026-05-25 09:11:18,617 | DEBUG | llm | [----------] OLLAMA CONTENT: Pong! ¿En qué puedo ayudarte hoy?
+2026-05-25 09:11:18,618 | INFO | llm | [----------] Respuesta LLM recibida correctamente
+2026-05-25 09:24:31,590 | INFO | llm | [ffe0a2c5-7426-489d-b2b6-c77228627e92] LLM INPUT: Buenos días.
+2026-05-25 09:24:31,593 | INFO | llm | [ffe0a2c5-7426-489d-b2b6-c77228627e92] LLM MODE: chat
+2026-05-25 09:25:28,639 | DEBUG | llm | [ffe0a2c5-7426-489d-b2b6-c77228627e92] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:3b', 'created_at': '2026-05-25T07:25:28.31816142Z', 'message': {'role': 'assistant', 'content': 'Buenos días! ¿En qué puedo ayudarte hoy?'}, 'done': True, 'done_reason': 'stop', 'total_duration': 60918959751, 'load_duration': 46809031948, 'prompt_eval_count': 40, 'prompt_eval_duration': 11191495268, 'eval_count': 14, 'eval_duration': 2627466919}
+2026-05-25 09:25:28,670 | DEBUG | llm | [ffe0a2c5-7426-489d-b2b6-c77228627e92] OLLAMA CONTENT: Buenos días! ¿En qué puedo ayudarte hoy?
+2026-05-25 09:25:28,670 | INFO | llm | [ffe0a2c5-7426-489d-b2b6-c77228627e92] Respuesta LLM recibida correctamente
+2026-05-25 09:26:29,158 | INFO | llm | [b1b4127a-ba8a-4a59-b3ad-dc67ebc60786] LLM INPUT: Escribe un archivo llamado.
+2026-05-25 09:26:29,159 | INFO | llm | [b1b4127a-ba8a-4a59-b3ad-dc67ebc60786] LLM MODE: tool
+2026-05-25 09:26:29,159 | DEBUG | llm | [b1b4127a-ba8a-4a59-b3ad-dc67ebc60786] LLM MEMORY CONTEXT: user: Buenos días.
+assistant: Buenos días! ¿En qué puedo ayudarte hoy?
+2026-05-25 09:26:56,796 | DEBUG | llm | [b1b4127a-ba8a-4a59-b3ad-dc67ebc60786] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:3b', 'created_at': '2026-05-25T07:26:56.781778043Z', 'message': {'role': 'assistant', 'content': '{\n  "tool": "create_file",\n  "args": {\n    "path": "ruta/archivo.txt",\n    "content": ""\n  }\n}'}, 'done': True, 'done_reason': 'stop', 'total_duration': 29437868647, 'load_duration': 647192706, 'prompt_eval_count': 192, 'prompt_eval_duration': 22296826892, 'eval_count': 33, 'eval_duration': 6201119809}
+2026-05-25 09:26:56,796 | DEBUG | llm | [b1b4127a-ba8a-4a59-b3ad-dc67ebc60786] OLLAMA CONTENT: {
+  "tool": "create_file",
+  "args": {
+    "path": "ruta/archivo.txt",
+    "content": ""
+  }
+}
+2026-05-25 09:26:56,796 | INFO | llm | [b1b4127a-ba8a-4a59-b3ad-dc67ebc60786] Respuesta LLM recibida correctamente
+2026-05-26 10:15:13,027 | INFO | llm | [----------] LLM INPUT: ping
+2026-05-26 10:15:13,028 | INFO | llm | [----------] LLM MODE: chat
+2026-05-26 10:15:48,611 | DEBUG | llm | [----------] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:3b', 'created_at': '2026-05-26T08:15:48.465489605Z', 'message': {'role': 'assistant', 'content': 'Pong! ¿En qué puedo ayudarte hoy?'}, 'done': True, 'done_reason': 'stop', 'total_duration': 36343875373, 'load_duration': 24080195324, 'prompt_eval_count': 36, 'prompt_eval_duration': 9388416854, 'eval_count': 12, 'eval_duration': 2690354553}
+2026-05-26 10:15:48,620 | DEBUG | llm | [----------] OLLAMA CONTENT: Pong! ¿En qué puedo ayudarte hoy?
+2026-05-26 10:15:48,620 | INFO | llm | [----------] Respuesta LLM recibida correctamente
+2026-05-26 10:16:39,660 | INFO | llm | [e378f9f8-8a25-44d0-88df-fd8758a9183e] LLM INPUT: saludame.
+2026-05-26 10:16:39,661 | INFO | llm | [e378f9f8-8a25-44d0-88df-fd8758a9183e] LLM MODE: chat
+2026-05-26 10:16:42,946 | DEBUG | llm | [e378f9f8-8a25-44d0-88df-fd8758a9183e] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:3b', 'created_at': '2026-05-26T08:16:42.944265855Z', 'message': {'role': 'assistant', 'content': '¡Hola! ¿Cómo estás?'}, 'done': True, 'done_reason': 'stop', 'total_duration': 3270709610, 'load_duration': 460761353, 'prompt_eval_count': 39, 'prompt_eval_duration': 1242428980, 'eval_count': 9, 'eval_duration': 1488694259}
+2026-05-26 10:16:42,946 | DEBUG | llm | [e378f9f8-8a25-44d0-88df-fd8758a9183e] OLLAMA CONTENT: ¡Hola! ¿Cómo estás?
+2026-05-26 10:16:42,946 | INFO | llm | [e378f9f8-8a25-44d0-88df-fd8758a9183e] Respuesta LLM recibida correctamente
+2026-05-26 10:17:17,837 | INFO | llm | [abd91374-9425-4b29-a811-d37754265eef] LLM INPUT: puedes hacer un archivo .txt
+2026-05-26 10:17:17,839 | INFO | llm | [abd91374-9425-4b29-a811-d37754265eef] LLM MODE: tool
+2026-05-26 10:17:17,839 | DEBUG | llm | [abd91374-9425-4b29-a811-d37754265eef] LLM MEMORY CONTEXT: user: saludame.
+assistant: ¡Hola! ¿Cómo estás?
+2026-05-26 10:17:46,159 | DEBUG | llm | [abd91374-9425-4b29-a811-d37754265eef] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:3b', 'created_at': '2026-05-26T08:17:46.144357376Z', 'message': {'role': 'assistant', 'content': '{\n  "tool": "create_file",\n  "args": {\n    "path": "ruta/archivo.txt",\n    "content": ""\n  }\n}'}, 'done': True, 'done_reason': 'stop', 'total_duration': 29188259749, 'load_duration': 557440100, 'prompt_eval_count': 190, 'prompt_eval_duration': 22076462227, 'eval_count': 33, 'eval_duration': 5561529082}
+2026-05-26 10:17:46,159 | DEBUG | llm | [abd91374-9425-4b29-a811-d37754265eef] OLLAMA CONTENT: {
+  "tool": "create_file",
+  "args": {
+    "path": "ruta/archivo.txt",
+    "content": ""
+  }
+}
+2026-05-26 10:17:46,159 | INFO | llm | [abd91374-9425-4b29-a811-d37754265eef] Respuesta LLM recibida correctamente
+2026-05-26 10:18:49,186 | INFO | llm | [4a2ea7a6-e8fa-4bb6-8d09-c2bb4f1737a3] LLM INPUT: Abre el archivo y añádela Hola, ¿Qué tal? ¿Cómo estás?
+2026-05-26 10:18:49,190 | INFO | llm | [4a2ea7a6-e8fa-4bb6-8d09-c2bb4f1737a3] LLM MODE: tool
+2026-05-26 10:18:49,190 | DEBUG | llm | [4a2ea7a6-e8fa-4bb6-8d09-c2bb4f1737a3] LLM MEMORY CONTEXT: user: saludame.
+assistant: ¡Hola! ¿Cómo estás?
+user: puedes hacer un archivo .txt
+assistant: Tool create_file result: {'status': 'ok', 'message': 'Archivo creado: /home/luisd/Alfonso/ruta/archivo.txt'}
+2026-05-26 10:19:22,771 | DEBUG | llm | [4a2ea7a6-e8fa-4bb6-8d09-c2bb4f1737a3] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:3b', 'created_at': '2026-05-26T08:19:22.733018002Z', 'message': {'role': 'assistant', 'content': '{\n  "tool": "create_file",\n  "args": {\n    "path": "/home/luisd/Alfonso/ruta/archivo.txt",\n    "content": "Hola, ¿Qué tal? ¿Cómo estás?\\n"\n  }\n}'}, 'done': True, 'done_reason': 'stop', 'total_duration': 34323985360, 'load_duration': 682362637, 'prompt_eval_count': 247, 'prompt_eval_duration': 22286756838, 'eval_count': 55, 'eval_duration': 10515093382}
+2026-05-26 10:19:22,772 | DEBUG | llm | [4a2ea7a6-e8fa-4bb6-8d09-c2bb4f1737a3] OLLAMA CONTENT: {
+  "tool": "create_file",
+  "args": {
+    "path": "/home/luisd/Alfonso/ruta/archivo.txt",
+    "content": "Hola, ¿Qué tal? ¿Cómo estás?\n"
+  }
+}
+2026-05-26 10:19:22,772 | INFO | llm | [4a2ea7a6-e8fa-4bb6-8d09-c2bb4f1737a3] Respuesta LLM recibida correctamente

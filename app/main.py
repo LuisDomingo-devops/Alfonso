@@ -5,10 +5,10 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
-from fastapi import HTTPException
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from app.api.routes import router
+from app.api.files import router_files
 from app.core.llm_client import OllamaClient
 from app.core.metrics import increment_http_requests, increment_http_errors, record_http_latency
 from app.utils.logger import app_logger, attach_request_id, LOG_DIR
@@ -19,22 +19,16 @@ llm = OllamaClient()
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-
     app_logger.info("Los logs se escribirán en %s", LOG_DIR)
-
     try:
         await llm.generate("ping")
         app_logger.info("Modelo precalentado")
     except Exception:
         app_logger.exception("Error precalentando el modelo")
-
     yield
 
 
-app = FastAPI(
-    title="Alfonso Core",
-    lifespan=lifespan
-)
+app = FastAPI(title="Alfonso Core", lifespan=lifespan)
 
 
 @app.middleware("http")
@@ -64,11 +58,7 @@ async def http_exception_handler(request: Request, exc: StarletteHTTPException):
     increment_http_errors()
     return JSONResponse(
         status_code=exc.status_code,
-        content={
-            "status": "error",
-            "request_id": request_id,
-            "detail": exc.detail,
-        },
+        content={"status": "error", "request_id": request_id, "detail": exc.detail},
     )
 
 
@@ -80,11 +70,7 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
     increment_http_errors()
     return JSONResponse(
         status_code=422,
-        content={
-            "status": "error",
-            "request_id": request_id,
-            "detail": exc.errors(),
-        },
+        content={"status": "error", "request_id": request_id, "detail": exc.errors()},
     )
 
 
@@ -96,12 +82,9 @@ async def generic_exception_handler(request: Request, exc: Exception):
     increment_http_errors()
     return JSONResponse(
         status_code=500,
-        content={
-            "status": "error",
-            "request_id": request_id,
-            "detail": "Internal server error",
-        },
+        content={"status": "error", "request_id": request_id, "detail": "Internal server error"},
     )
 
 
 app.include_router(router)
+app.include_router(router_files)
