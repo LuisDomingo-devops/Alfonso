@@ -285,3 +285,8 @@
 2026-05-26 15:39:39,482 | INFO | tools | [----------] Transcripción Whisper: a a a a a a de a a asociaciones a 3 a fotografías eh
 2026-05-26 15:40:21,054 | INFO | tools | [----------] TTS solicitado: Lo siento, parece que tu mensaje está un poco borroso. ¿Intentas decir algo sobre asociar tres fotos en algún tipo de conjunto o relación? Puedo ayudarte a organizar o describir fotografías si puedes clarificar tu consulta.
 2026-05-26 15:40:24,468 | INFO | tools | [----------] TTS generado en /tmp/tts_5814b2b84f6d4243a14ecb3ae0611bc1.mp3
+2026-05-26 21:21:21,643 | INFO | tools | [----------] Detectando wake word 'alfonso' en audio subido: chunk.wav (96044 bytes)
+2026-05-26 21:21:21,646 | INFO | tools | [----------] Transcribiendo audio subido: chunk.wav (96044 bytes)
+2026-05-26 21:21:47,952 | INFO | tools | [----------] Transcripción Whisper: Alfonso, buenos días.
+2026-05-26 21:21:47,953 | INFO | tools | [----------] Wake word 'alfonso' DETECTADA en: 'alfonso, buenos días.'
+2026-05-26 21:21:55,251 | INFO | tools | [----------] Transcribiendo audio subido: orden.wav (160044 bytes)
