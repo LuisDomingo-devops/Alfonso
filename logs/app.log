@@ -1157,3 +1157,14 @@ TypeError: test_chat_endpoint_with_mocked_orchestrator.<locals>.fake_run() got a
 2026-05-26 15:40:24,497 | INFO | app | [a970982d-1f19-42ba-8172-8e080238e187] HTTP request finished: POST /audio/tts 200
 2026-05-26 15:40:26,670 | INFO | app | [7b6c0a10-d848-4f0e-a8f1-acc5bfda519b] HTTP request started: GET /audio/file
 2026-05-26 15:40:26,699 | INFO | app | [7b6c0a10-d848-4f0e-a8f1-acc5bfda519b] HTTP request finished: GET /audio/file 200
+2026-05-26 21:19:02,515 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-26 21:19:48,762 | INFO | app | [----------] Modelo precalentado
+2026-05-26 21:21:15,001 | INFO | app | [49098b8e-b826-4224-8089-d00435ee524d] HTTP request started: GET /health
+2026-05-26 21:21:15,447 | INFO | app | [49098b8e-b826-4224-8089-d00435ee524d] Health check
+2026-05-26 21:21:15,492 | INFO | app | [49098b8e-b826-4224-8089-d00435ee524d] HTTP request finished: GET /health 200
+2026-05-26 21:21:21,275 | INFO | app | [9d02cc5c-ba9f-484d-98bb-0fc1b21eb63e] HTTP request started: POST /audio/wakeword/upload
+2026-05-26 21:21:21,384 | INFO | app | [9d02cc5c-ba9f-484d-98bb-0fc1b21eb63e] Solicitud /audio/wakeword/upload recibida: chunk.wav (keyword=alfonso)
+2026-05-26 21:21:47,954 | INFO | app | [9d02cc5c-ba9f-484d-98bb-0fc1b21eb63e] Solicitud /audio/wakeword/upload procesada — detectada: True
+2026-05-26 21:21:47,956 | INFO | app | [9d02cc5c-ba9f-484d-98bb-0fc1b21eb63e] HTTP request finished: POST /audio/wakeword/upload 200
+2026-05-26 21:21:55,238 | INFO | app | [2736be72-09fe-4041-9463-dab3a67ff2f7] HTTP request started: POST /audio/stt/upload
+2026-05-26 21:21:55,251 | INFO | app | [2736be72-09fe-4041-9463-dab3a67ff2f7] Solicitud /audio/stt/upload recibida: orden.wav
