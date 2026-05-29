@@ -290,3 +290,61 @@
 2026-05-26 21:21:47,952 | INFO | tools | [----------] Transcripción Whisper: Alfonso, buenos días.
 2026-05-26 21:21:47,953 | INFO | tools | [----------] Wake word 'alfonso' DETECTADA en: 'alfonso, buenos días.'
 2026-05-26 21:21:55,251 | INFO | tools | [----------] Transcribiendo audio subido: orden.wav (160044 bytes)
+2026-05-27 09:00:45,983 | INFO | tools | [----------] Detectando wake word 'alfonso' en audio subido: chunk.wav (96044 bytes)
+2026-05-27 09:00:46,008 | INFO | tools | [----------] Transcribiendo audio subido: chunk.wav (96044 bytes)
+2026-05-27 09:01:19,488 | INFO | tools | [----------] Transcripción Whisper: Alfonso, buenos días.
+2026-05-27 09:01:19,491 | INFO | tools | [----------] Wake word 'alfonso' DETECTADA en: 'alfonso, buenos días.'
+2026-05-27 09:36:57,920 | INFO | tools | [----------] Detectando wake word 'alfonso' en audio subido: chunk.wav (64044 bytes)
+2026-05-27 09:36:57,921 | INFO | tools | [----------] Transcribiendo audio subido: chunk.wav (64044 bytes)
+2026-05-27 09:37:01,805 | INFO | tools | [----------] Transcripción Whisper: 
+2026-05-27 09:37:01,806 | INFO | tools | [----------] Wake word 'alfonso' no detectada en: ''
+2026-05-27 09:37:12,891 | INFO | tools | [----------] Detectando wake word 'alfonso' en audio subido: chunk.wav (64044 bytes)
+2026-05-27 09:37:12,891 | INFO | tools | [----------] Transcribiendo audio subido: chunk.wav (64044 bytes)
+2026-05-27 09:37:14,308 | INFO | tools | [----------] Transcripción Whisper: Alfonso.
+2026-05-27 09:37:14,308 | INFO | tools | [----------] Wake word 'alfonso' DETECTADA en: 'alfonso.'
+2026-05-27 09:37:32,271 | INFO | tools | [----------] Detectando wake word 'alfonso' en audio subido: chunk.wav (64044 bytes)
+2026-05-27 09:37:32,272 | INFO | tools | [----------] Transcribiendo audio subido: chunk.wav (64044 bytes)
+2026-05-27 09:37:33,702 | INFO | tools | [----------] Transcripción Whisper: al fin, abre un archivo
+2026-05-27 09:37:33,702 | INFO | tools | [----------] Wake word 'alfonso' no detectada en: 'al fin, abre un archivo'
+2026-05-27 09:37:56,501 | INFO | tools | [----------] Detectando wake word 'alfonso' en audio subido: chunk.wav (64044 bytes)
+2026-05-27 09:37:56,501 | INFO | tools | [----------] Transcribiendo audio subido: chunk.wav (64044 bytes)
+2026-05-27 09:37:57,895 | INFO | tools | [----------] Transcripción Whisper: al
+2026-05-27 09:37:57,895 | INFO | tools | [----------] Wake word 'alfonso' no detectada en: 'al'
+2026-05-27 09:38:11,163 | INFO | tools | [----------] Detectando wake word 'alfonso' en audio subido: chunk.wav (64044 bytes)
+2026-05-27 09:38:11,164 | INFO | tools | [----------] Transcribiendo audio subido: chunk.wav (64044 bytes)
+2026-05-27 09:38:12,275 | INFO | tools | [----------] Transcripción Whisper: Alfonso
+2026-05-27 09:38:12,275 | INFO | tools | [----------] Wake word 'alfonso' DETECTADA en: 'alfonso'
+2026-05-27 09:38:18,374 | INFO | tools | [----------] Transcribiendo audio subido: orden.wav (160044 bytes)
+2026-05-27 09:38:45,041 | INFO | tools | [----------] Transcripción Whisper: Buenos días.
+2026-05-27 09:39:19,814 | INFO | tools | [----------] TTS solicitado: ¡Hola! Buenas tardes a ti también. ¿Cómo estás teniendo que haber sido?
+2026-05-27 09:39:23,226 | INFO | tools | [----------] TTS generado en /tmp/tts_c56a2734b5dc46ac9910a613777a5585.mp3
+2026-05-27 09:39:47,670 | INFO | tools | [----------] Detectando wake word 'alfonso' en audio subido: chunk.wav (64044 bytes)
+2026-05-27 09:39:47,670 | INFO | tools | [----------] Transcribiendo audio subido: chunk.wav (64044 bytes)
+2026-05-27 09:39:48,938 | INFO | tools | [----------] Transcripción Whisper: Alfonso
+2026-05-27 09:39:48,938 | INFO | tools | [----------] Wake word 'alfonso' DETECTADA en: 'alfonso'
+2026-05-27 09:39:56,506 | INFO | tools | [----------] Transcribiendo audio subido: orden.wav (160044 bytes)
+2026-05-27 09:40:13,680 | INFO | tools | [----------] Transcripción Whisper: ¿Qué hora es?
+2026-05-27 09:40:24,471 | INFO | tools | [----------] TTS solicitado: Lo siento, como asistente conversacional no tengo la capacidad de proporcionar información actual y así mismo me estoy reiniciando en esta sesión por lo que no puedo darte tu horario.
+2026-05-27 09:40:25,741 | INFO | tools | [----------] TTS generado en /tmp/tts_22c0d727c29b4113879d28c0a6e3be52.mp3
+2026-05-27 09:41:01,844 | INFO | tools | [----------] Detectando wake word 'alfonso' en audio subido: chunk.wav (64044 bytes)
+2026-05-27 09:41:01,844 | INFO | tools | [----------] Transcribiendo audio subido: chunk.wav (64044 bytes)
+2026-05-27 09:41:03,300 | INFO | tools | [----------] Transcripción Whisper: no te lo decir que te estás rey
+2026-05-27 09:41:03,300 | INFO | tools | [----------] Wake word 'alfonso' no detectada en: 'no te lo decir que te estás rey'
+2026-05-29 09:36:46,460 | INFO | tools | [----------] Detectando wake word 'alfonso' en audio subido: chunk.wav (96044 bytes)
+2026-05-29 09:36:46,462 | INFO | tools | [----------] Transcribiendo audio subido: chunk.wav (96044 bytes)
+2026-05-29 09:36:54,378 | INFO | tools | [----------] Transcripción Whisper: Alfonso, buenos días.
+2026-05-29 09:36:54,378 | INFO | tools | [----------] Wake word 'alfonso' DETECTADA en: 'alfonso, buenos días.'
+2026-05-29 09:37:01,616 | INFO | tools | [----------] Transcribiendo audio subido: orden.wav (160044 bytes)
+2026-05-29 09:37:28,724 | INFO | tools | [----------] Transcripción Whisper: 
+2026-05-29 09:37:43,531 | INFO | tools | [----------] Detectando wake word 'alfonso' en audio subido: chunk.wav (96044 bytes)
+2026-05-29 09:37:43,532 | INFO | tools | [----------] Transcribiendo audio subido: chunk.wav (96044 bytes)
+2026-05-29 09:37:45,308 | INFO | tools | [----------] Transcripción Whisper: crea una carpeta en el escrita
+2026-05-29 09:37:45,309 | INFO | tools | [----------] Wake word 'alfonso' no detectada en: 'crea una carpeta en el escrita'
+2026-05-29 09:37:56,788 | INFO | tools | [----------] Detectando wake word 'alfonso' en audio subido: chunk.wav (96044 bytes)
+2026-05-29 09:37:56,789 | INFO | tools | [----------] Transcribiendo audio subido: chunk.wav (96044 bytes)
+2026-05-29 09:37:58,231 | INFO | tools | [----------] Transcripción Whisper: Alfonso, creo alguna.
+2026-05-29 09:37:58,231 | INFO | tools | [----------] Wake word 'alfonso' DETECTADA en: 'alfonso, creo alguna.'
+2026-05-29 09:38:05,461 | INFO | tools | [----------] Transcribiendo audio subido: orden.wav (160044 bytes)
+2026-05-29 09:38:18,686 | INFO | tools | [----------] Transcripción Whisper: crea una car...
+2026-05-29 09:38:55,078 | INFO | tools | [----------] TTS solicitado: ¡Claro! ¿Qué tipo de "car" quieres crear? Una foto, un diseño, o incluso un pequeño proyecto en algún software específico? Por favor, déjame saber más detalles para poder ayudarte mejor.
+2026-05-29 09:38:57,370 | INFO | tools | [----------] TTS generado en /tmp/tts_28e230811798463590906e09000c3994.mp3

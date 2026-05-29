@@ -609,3 +609,30 @@ assistant: Tool create_file result: {'status': 'ok', 'message': 'Archivo creado:
 2026-05-26 21:19:48,751 | DEBUG | llm | [----------] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:3b', 'created_at': '2026-05-26T19:19:48.492287201Z', 'message': {'role': 'assistant', 'content': 'Pong! ¿En qué puedo ayudarte hoy?'}, 'done': True, 'done_reason': 'stop', 'total_duration': 45959844346, 'load_duration': 30041909499, 'prompt_eval_count': 36, 'prompt_eval_duration': 13649302917, 'eval_count': 12, 'eval_duration': 2016264229}
 2026-05-26 21:19:48,761 | DEBUG | llm | [----------] OLLAMA CONTENT: Pong! ¿En qué puedo ayudarte hoy?
 2026-05-26 21:19:48,761 | INFO | llm | [----------] Respuesta LLM recibida correctamente
+2026-05-27 08:58:04,712 | INFO | llm | [----------] LLM INPUT: ping
+2026-05-27 08:58:04,713 | INFO | llm | [----------] LLM MODE: chat
+2026-05-27 08:58:22,244 | DEBUG | llm | [----------] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-05-27T06:58:22.087666506Z', 'message': {'role': 'assistant', 'content': 'pongásmi! ¿En qué puedo ayudarte hoy?'}, 'done': True, 'done_reason': 'stop', 'total_duration': 18866000957, 'load_duration': 11863823379, 'prompt_eval_count': 36, 'prompt_eval_duration': 4617706420, 'eval_count': 14, 'eval_duration': 2041689033}
+2026-05-27 08:58:22,256 | DEBUG | llm | [----------] OLLAMA CONTENT: pongásmi! ¿En qué puedo ayudarte hoy?
+2026-05-27 08:58:22,256 | INFO | llm | [----------] Respuesta LLM recibida correctamente
+2026-05-27 09:38:47,354 | INFO | llm | [56c6872a-d820-46a3-ab7d-e495e2a95838] LLM INPUT: Buenos días.
+2026-05-27 09:38:47,359 | INFO | llm | [56c6872a-d820-46a3-ab7d-e495e2a95838] LLM MODE: chat
+2026-05-27 09:39:19,008 | DEBUG | llm | [56c6872a-d820-46a3-ab7d-e495e2a95838] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-05-27T07:39:18.976734763Z', 'message': {'role': 'assistant', 'content': '¡Hola! Buenas tardes a ti también. ¿Cómo estás teniendo que haber sido?'}, 'done': True, 'done_reason': 'stop', 'total_duration': 32672069365, 'load_duration': 27386654353, 'prompt_eval_count': 40, 'prompt_eval_duration': 2874755597, 'eval_count': 22, 'eval_duration': 2047604875}
+2026-05-27 09:39:19,011 | DEBUG | llm | [56c6872a-d820-46a3-ab7d-e495e2a95838] OLLAMA CONTENT: ¡Hola! Buenas tardes a ti también. ¿Cómo estás teniendo que haber sido?
+2026-05-27 09:39:19,011 | INFO | llm | [56c6872a-d820-46a3-ab7d-e495e2a95838] Respuesta LLM recibida correctamente
+2026-05-27 09:40:15,924 | INFO | llm | [62584af5-f5b9-4ab2-8d66-2825f9e6d221] LLM INPUT: ¿Qué hora es?
+2026-05-27 09:40:15,925 | INFO | llm | [62584af5-f5b9-4ab2-8d66-2825f9e6d221] LLM MODE: chat
+2026-05-27 09:40:15,925 | DEBUG | llm | [62584af5-f5b9-4ab2-8d66-2825f9e6d221] LLM MEMORY CONTEXT: user: Buenos días.
+assistant: ¡Hola! Buenas tardes a ti también. ¿Cómo estás teniendo que haber sido?
+2026-05-27 09:40:22,252 | DEBUG | llm | [62584af5-f5b9-4ab2-8d66-2825f9e6d221] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-05-27T07:40:22.248826189Z', 'message': {'role': 'assistant', 'content': 'Lo siento, como asistente conversacional no tengo la capacidad de proporcionar información actual y así mismo me estoy reiniciando en esta sesión por lo que no puedo darte tu horario.'}, 'done': True, 'done_reason': 'stop', 'total_duration': 7665195695, 'load_duration': 798278975, 'prompt_eval_count': 68, 'prompt_eval_duration': 2411738274, 'eval_count': 42, 'eval_duration': 4011523429}
+2026-05-27 09:40:22,252 | DEBUG | llm | [62584af5-f5b9-4ab2-8d66-2825f9e6d221] OLLAMA CONTENT: Lo siento, como asistente conversacional no tengo la capacidad de proporcionar información actual y así mismo me estoy reiniciando en esta sesión por lo que no puedo darte tu horario.
+2026-05-27 09:40:22,252 | INFO | llm | [62584af5-f5b9-4ab2-8d66-2825f9e6d221] Respuesta LLM recibida correctamente
+2026-05-29 09:28:13,907 | INFO | llm | [----------] LLM INPUT: ping
+2026-05-29 09:28:13,907 | INFO | llm | [----------] LLM MODE: chat
+2026-05-29 09:28:35,746 | DEBUG | llm | [----------] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-05-29T07:28:35.629402112Z', 'message': {'role': 'assistant', 'content': 'Pongas! Estoy listo para cualquier consulta que tengas hoy.'}, 'done': True, 'done_reason': 'stop', 'total_duration': 21708279903, 'load_duration': 6534561185, 'prompt_eval_count': 154, 'prompt_eval_duration': 12969184412, 'eval_count': 17, 'eval_duration': 1555490865}
+2026-05-29 09:28:35,761 | DEBUG | llm | [----------] OLLAMA CONTENT: Pongas! Estoy listo para cualquier consulta que tengas hoy.
+2026-05-29 09:28:35,761 | INFO | llm | [----------] Respuesta LLM recibida correctamente
+2026-05-29 09:38:20,848 | INFO | llm | [e70836ee-d079-4d5a-a1cf-4b51bd1d0ab8] LLM INPUT: crea una car...
+2026-05-29 09:38:20,849 | INFO | llm | [e70836ee-d079-4d5a-a1cf-4b51bd1d0ab8] LLM MODE: chat
+2026-05-29 09:38:52,949 | DEBUG | llm | [e70836ee-d079-4d5a-a1cf-4b51bd1d0ab8] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-05-29T07:38:52.905258379Z', 'message': {'role': 'assistant', 'content': '¡Claro! ¿Qué tipo de "car" quieres crear? Una foto, un diseño, o incluso un pequeño proyecto en algún software específico? Por favor, déjame saber más detalles para poder ayudarte mejor.'}, 'done': True, 'done_reason': 'stop', 'total_duration': 31938974656, 'load_duration': 18183211981, 'prompt_eval_count': 158, 'prompt_eval_duration': 9062311778, 'eval_count': 46, 'eval_duration': 4427256272}
+2026-05-29 09:38:52,952 | DEBUG | llm | [e70836ee-d079-4d5a-a1cf-4b51bd1d0ab8] OLLAMA CONTENT: ¡Claro! ¿Qué tipo de "car" quieres crear? Una foto, un diseño, o incluso un pequeño proyecto en algún software específico? Por favor, déjame saber más detalles para poder ayudarte mejor.
+2026-05-29 09:38:52,952 | INFO | llm | [e70836ee-d079-4d5a-a1cf-4b51bd1d0ab8] Respuesta LLM recibida correctamente

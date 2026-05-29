@@ -1,0 +1,15 @@
+Alfonso/
+├── app/
+│   ├── __init__.py
+│   ├── main.py          # FastAPI Runtime
+│   ├── core/
+│   │   ├── config.py    # Configuración y Pydantic Settings
+│   │   └── llm.py       # Conexión Ollama API
+│   ├── api/             # Endpoints (WebSocket realtime)
+│   ├── plugins/         # Sistema de plugins
+│   └── utils/           # Logs y helpers
+├── documentation/
+│   └── road_map.txt
+├── logs/
+├── .env
+└── requirements.txt
