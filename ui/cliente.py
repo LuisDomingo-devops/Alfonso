@@ -217,19 +217,44 @@ def _extract_order(wakeword_text: str, keyword: str) -> Optional[str]:
 
 
 def _format_response(result_data: dict) -> str:
+    """
+    Convierte la respuesta del orchestrator en texto legible para TTS y consola.
+    """
     t = result_data.get("type", "")
+ 
     if t == "chat":
         return result_data.get("response") or "Sin respuesta."
+ 
     if t == "tool":
+        tool_name = result_data.get("tool", "herramienta")
         tool_result = result_data.get("result", {})
         status = tool_result.get("status", "")
         message = tool_result.get("message", "")
+ 
+        # no_op: el modelo pidió más información
+        if tool_name == "no_op":
+            return tool_result.get("message", "Necesito más información.")
+ 
         if status == "ok":
+            # Mensaje limpio: quitar la ruta absoluta larga si está presente
+            if message:
+                # "Archivo creado: /home/luisd/Alfonso/ruta/archivo.txt" → "Archivo creado: archivo.txt"
+                import re
+                message = re.sub(r":\s*/[^\s]+/([^/\s]+)", r": \1", message)
             return message or f"Hecho."
-        return f"Error: {tool_result.get('message', 'error desconocido')}"
+ 
+        # status == error
+        error_msg = tool_result.get("message", "error desconocido")
+        return f"Ha ocurrido un error: {error_msg}"
+ 
     if t == "error":
         return f"Error: {result_data.get('message', 'error desconocido')}"
-    return str(result_data)
+ 
+    # Fallback: si el resultado tiene message directo
+    if "message" in result_data:
+        return result_data["message"]
+ 
+    return "Completado."
 
 
 def _is_exit(text: str) -> bool:
