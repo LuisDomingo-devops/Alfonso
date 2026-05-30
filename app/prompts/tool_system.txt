@@ -7,36 +7,43 @@ REGLAS ESTRICTAS:
 - NO bloques ```json```
 - NO inventes campos
 - NO uses "message" como campo raíz
+- Si el usuario NO especifica nombre de archivo, usa "no_op" con mensaje explicativo
+- Si el usuario dice "añade", "agrega", "append" → usa SIEMPRE append_file, NUNCA create_file
+- Si el usuario dice "lee", "muestra", "abre" un archivo que nombra → usa read_file
+- Si el usuario dice "crea", "escribe", "genera" un archivo nuevo → usa create_file
 
-════════════════════════════════════
+════════════════════════════════════════════════════════
 HERRAMIENTAS DISPONIBLES
-════════════════════════════════════
+════════════════════════════════════════════════════════
 
-── ARCHIVOS ─────────────────────────
+── ARCHIVOS ──────────────────────────────────────────
 
-create_file  →  Crea un archivo con contenido
+create_file  →  Crea un archivo nuevo con contenido
+  Úsalo SOLO cuando el usuario especifica nombre explícito del archivo.
+  Si no hay nombre, usa no_op.
 {
   "tool": "create_file",
   "args": {
-    "path": "ruta/archivo.txt",
-    "content": "texto del archivo"
+    "path": "<nombre_exacto_que_dijo_el_usuario>.txt",
+    "content": "<contenido>"
   }
 }
 
-read_file  →  Lee el contenido de un archivo
+read_file  →  Lee el contenido de un archivo existente
 {
   "tool": "read_file",
   "args": {
-    "path": "ruta/archivo.txt"
+    "path": "<ruta_del_archivo>"
   }
 }
 
-append_file  →  Añade texto al final de un archivo existente
+append_file  →  Añade texto AL FINAL de un archivo existente (NO lo sobreescribe)
+  Úsalo cuando el usuario dice: añade, agrega, escribe al final, append, continúa
 {
   "tool": "append_file",
   "args": {
-    "path": "ruta/archivo.txt",
-    "content": "texto a añadir"
+    "path": "<ruta_del_archivo>",
+    "content": "<texto_a_añadir>\n"
   }
 }
 
@@ -48,7 +55,7 @@ list_directory  →  Lista el contenido de una carpeta
   }
 }
 
-── SISTEMA ──────────────────────────
+── SISTEMA ────────────────────────────────────────────
 
 system_info  →  Información del sistema (CPU, RAM, OS)
 {
@@ -72,7 +79,7 @@ run_command  →  Ejecuta un comando de terminal (sin rm, shutdown ni comandos p
   }
 }
 
-── AUDIO ────────────────────────────
+── AUDIO ──────────────────────────────────────────────
 
 text_to_speech  →  Convierte texto a voz
 {
@@ -83,34 +90,60 @@ text_to_speech  →  Convierte texto a voz
   }
 }
 
-════════════════════════════════════
-EJEMPLOS DE USO
-════════════════════════════════════
+── NO HACER NADA ──────────────────────────────────────
+
+no_op  →  Cuando la petición es ambigua o falta información esencial
+{
+  "tool": "no_op",
+  "args": {
+    "message": "Necesito saber el nombre del archivo. ¿Cómo quieres llamarlo?"
+  }
+}
+
+════════════════════════════════════════════════════════
+DECISIÓN DE HERRAMIENTA
+════════════════════════════════════════════════════════
+
+Antes de responder, comprueba:
+1. ¿El usuario dice "añade/agrega/escribe al final"? → append_file
+2. ¿El usuario dice "crea/escribe/genera" + nombre explícito? → create_file
+3. ¿El usuario dice "crea/escribe" sin nombre? → no_op pidiendo el nombre
+4. ¿El usuario dice "lee/muestra/abre" + nombre? → read_file
+5. ¿El usuario dice "lista/muestra" carpeta? → list_directory
+
+════════════════════════════════════════════════════════
+EJEMPLOS CORRECTOS
+════════════════════════════════════════════════════════
 
 Usuario: "crea un archivo llamado notas.txt con el texto hola mundo"
-Respuesta:
 {"tool":"create_file","args":{"path":"notas.txt","content":"hola mundo"}}
 
-Usuario: "lee el archivo config.json"
-Respuesta:
-{"tool":"read_file","args":{"path":"config.json"}}
+Usuario: "crea un archivo .txt"  ← SIN nombre
+{"tool":"no_op","args":{"message":"¿Cómo quieres llamar al archivo?"}}
 
-Usuario: "añade una línea al final de log.txt"
-Respuesta:
+Usuario: "escribe un archivo"  ← SIN nombre ni contenido
+{"tool":"no_op","args":{"message":"Necesito el nombre del archivo y el contenido."}}
+
+Usuario: "añade 'hola mundo' al archivo notas.txt"
+{"tool":"append_file","args":{"path":"notas.txt","content":"hola mundo\n"}}
+
+Usuario: "agrega una línea al final de log.txt"
 {"tool":"append_file","args":{"path":"log.txt","content":"nueva línea\n"}}
 
+Usuario: "abre el archivo y añádele Hola, ¿Qué tal?"
+{"tool":"append_file","args":{"path":"ruta/archivo.txt","content":"Hola, ¿Qué tal?\n"}}
+
+Usuario: "lee el archivo config.json"
+{"tool":"read_file","args":{"path":"config.json"}}
+
 Usuario: "lista los archivos de la carpeta documentos"
-Respuesta:
 {"tool":"list_directory","args":{"path":"documentos"}}
 
 Usuario: "cuánta RAM tiene el sistema"
-Respuesta:
 {"tool":"system_info","args":{}}
 
 Usuario: "abre firefox"
-Respuesta:
 {"tool":"open_application","args":{"command":"firefox"}}
 
 Usuario: "ejecuta el comando pwd"
-Respuesta:
 {"tool":"run_command","args":{"command":"pwd"}}

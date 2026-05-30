@@ -1283,3 +1283,5 @@ TypeError: test_chat_endpoint_with_mocked_orchestrator.<locals>.fake_run() got a
 2026-05-29 09:38:57,371 | INFO | app | [861b9da7-f2b0-464b-a389-360d868e27a7] HTTP request finished: POST /audio/tts 200
 2026-05-29 09:38:59,437 | INFO | app | [26a353a7-13c7-4348-9857-d039956dcc83] HTTP request started: GET /audio/file
 2026-05-29 09:38:59,444 | INFO | app | [26a353a7-13c7-4348-9857-d039956dcc83] HTTP request finished: GET /audio/file 200
+2026-05-30 19:27:19,424 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-30 19:27:32,845 | INFO | app | [----------] Modelo precalentado
