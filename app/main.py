@@ -9,27 +9,57 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from app.api.routes import router
 from app.api.files import router_files
+from app.core.event_bus import EventBus
 from app.core.llm_client import OllamaClient
 from app.core.metrics import increment_http_requests, increment_http_errors, record_http_latency
 from app.utils.logger import app_logger, attach_request_id, LOG_DIR
 
+# ---------------------------------------------------------------------------
+# Instancias globales
+# ---------------------------------------------------------------------------
 
 llm = OllamaClient()
 
+event_bus = EventBus()
+
+
+# ---------------------------------------------------------------------------
+# Lifespan — único, combina todo el arranque y parada
+# ---------------------------------------------------------------------------
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    # ── Arranque ──────────────────────────────────────────────────────────
     app_logger.info("Los logs se escribirán en %s", LOG_DIR)
+
+    # 1. Event bus
+    await event_bus.start()
+    app_logger.info("EventBus iniciado")
+
+    # 2. Precalentar el modelo
     try:
         await llm.generate("ping")
         app_logger.info("Modelo precalentado")
     except Exception:
         app_logger.exception("Error precalentando el modelo")
-    yield
 
+    yield  # ── La aplicación corre aquí ───────────────────────────────────
+
+    # ── Parada limpia ─────────────────────────────────────────────────────
+    await event_bus.stop()
+    app_logger.info("EventBus detenido")
+
+
+# ---------------------------------------------------------------------------
+# Aplicación
+# ---------------------------------------------------------------------------
 
 app = FastAPI(title="Alfonso Core", lifespan=lifespan)
 
+
+# ---------------------------------------------------------------------------
+# Middleware
+# ---------------------------------------------------------------------------
 
 @app.middleware("http")
 async def request_id_middleware(request: Request, call_next):
@@ -43,12 +73,18 @@ async def request_id_middleware(request: Request, call_next):
     duration = time.perf_counter() - start_time
 
     response.headers["X-Request-ID"] = request_id
-    logger.info("HTTP request finished: %s %s %s", request.method, request.url.path, response.status_code)
+    logger.info(
+        "HTTP request finished: %s %s %s",
+        request.method, request.url.path, response.status_code,
+    )
     increment_http_requests()
     record_http_latency(duration)
-
     return response
 
+
+# ---------------------------------------------------------------------------
+# Exception handlers
+# ---------------------------------------------------------------------------
 
 @app.exception_handler(StarletteHTTPException)
 async def http_exception_handler(request: Request, exc: StarletteHTTPException):
@@ -85,6 +121,10 @@ async def generic_exception_handler(request: Request, exc: Exception):
         content={"status": "error", "request_id": request_id, "detail": "Internal server error"},
     )
 
+
+# ---------------------------------------------------------------------------
+# Routers
+# ---------------------------------------------------------------------------
 
 app.include_router(router)
 app.include_router(router_files)

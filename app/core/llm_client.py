@@ -32,8 +32,9 @@ class OllamaClient:
             "model": settings.MODEL_NAME,
             "messages": messages,
             "stream": False,
+            "keep_alive": -1,
             "options": {
-                "num_ctx": 1024,
+                "num_ctx": 2048,
                 "temperature": 0.0 if mode == "tool" else 0.7
             }
         }
