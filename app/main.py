@@ -16,16 +16,26 @@ from app.utils.logger import app_logger, attach_request_id, LOG_DIR
 
 llm = OllamaClient()
 
+from app.core.event_bus import EventBus
+
+event_bus = EventBus()
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    # 1. Iniciar EventBus
+    await event_bus.start()
     app_logger.info("Los logs se escribirán en %s", LOG_DIR)
     try:
+        # 2. Precalentar LLM
         await llm.generate("ping")
         app_logger.info("Modelo precalentado")
     except Exception:
         app_logger.exception("Error precalentando el modelo")
+
     yield
+
+    # 3. Apagar EventBus
+    await event_bus.stop()
 
 
 app = FastAPI(title="Alfonso Core", lifespan=lifespan)
