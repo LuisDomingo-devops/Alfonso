@@ -16,7 +16,7 @@ class Settings(BaseSettings):
      including the database URI and other settings.
     '''
     OLLAMA_BASE_URL: str = 'http://localhost:11434'
-    MODEL_NAME: str = 'qwen2.5:1.5b'
+    MODEL_NAME: str = 'qwen2.5:3b'
 
     CHAT_PROMPT_PATH: str
     TOOL_PROMPT_PATH: str
@@ -30,4 +30,3 @@ settings = Settings()
 
 def load_prompt(path: str) -> str:
     return Path(path).read_text(encoding="utf-8")
-

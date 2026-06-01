@@ -1,4 +1,5 @@
 import importlib
+import inspect
 from pathlib import Path
 from typing import Any, Callable
 
@@ -98,3 +99,18 @@ def safe_get_tool(name: str):
 
     return tool
 
+
+def get_tools_info() -> list[dict[str, Any]]:
+    """
+    Retorna metadatos de las herramientas para el Task Planner.
+    """
+    _ensure_plugins_loaded()
+    info = []
+    for name, func in TOOLS.items():
+        if name == "no_op":
+            continue
+        info.append({
+            "name": name,
+            "description": inspect.getdoc(func) or "Sin descripción disponible."
+        })
+    return info

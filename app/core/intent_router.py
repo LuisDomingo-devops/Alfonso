@@ -81,7 +81,7 @@ _CHAT_RULES: list[_Rule] = [
     _r(r"\b(qué es|qué son|cómo funciona|explica|explícame|dime qué)\b", -1.2, "theory"),
 
     # Saludos y conversación normal
-    _r(r"^(hola|buenos? días|buenas? tardes|buenas? noches|hey|hi|qué tal|cómo estás|gracias|ok|vale|genial|perfecto|de acuerdo)\b", -2.5, "greeting"),
+    _r(r"\b(hola|buenos? días|buenas? tardes|buenas? noches|hey|hi|qué tal|cómo estás|gracias|ok|vale|genial|perfecto|de acuerdo)\b", -2.5, "greeting"),
 
     # Preguntas generales que no implican acción
     _r(r"\b(cuándo|dónde|por qué|para qué|quién)\b.{0,40}\?", -0.8, "question"),

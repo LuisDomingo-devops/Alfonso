@@ -1285,3 +1285,145 @@ TypeError: test_chat_endpoint_with_mocked_orchestrator.<locals>.fake_run() got a
 2026-05-29 09:38:59,444 | INFO | app | [26a353a7-13c7-4348-9857-d039956dcc83] HTTP request finished: GET /audio/file 200
 2026-05-30 19:27:19,424 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
 2026-05-30 19:27:32,845 | INFO | app | [----------] Modelo precalentado
+2026-05-31 11:30:36,490 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-31 11:30:52,532 | INFO | app | [----------] Modelo precalentado
+2026-05-31 11:31:03,135 | INFO | app | [5227aa6b-8603-484a-9f91-92174e2ab8d8] HTTP request started: GET /health
+2026-05-31 11:31:03,150 | INFO | app | [5227aa6b-8603-484a-9f91-92174e2ab8d8] Health check
+2026-05-31 11:31:03,155 | INFO | app | [5227aa6b-8603-484a-9f91-92174e2ab8d8] HTTP request finished: GET /health 200
+2026-05-31 11:31:15,397 | INFO | app | [a5faefd4-2bd2-49e1-aaf0-035a2a715814] HTTP request started: POST /audio/wakeword/upload
+2026-05-31 11:31:15,423 | INFO | app | [a5faefd4-2bd2-49e1-aaf0-035a2a715814] Solicitud /audio/wakeword/upload recibida: chunk.wav (keyword=alfonso)
+2026-05-31 11:31:32,830 | INFO | app | [a5faefd4-2bd2-49e1-aaf0-035a2a715814] Solicitud /audio/wakeword/upload procesada — detectada: False
+2026-05-31 11:31:32,831 | INFO | app | [a5faefd4-2bd2-49e1-aaf0-035a2a715814] HTTP request finished: POST /audio/wakeword/upload 200
+2026-05-31 11:31:56,471 | INFO | app | [b2c8d900-94aa-444b-91b6-d2834ed9018d] HTTP request started: POST /audio/wakeword/upload
+2026-05-31 11:31:56,477 | INFO | app | [b2c8d900-94aa-444b-91b6-d2834ed9018d] Solicitud /audio/wakeword/upload recibida: chunk.wav (keyword=alfonso)
+2026-05-31 11:31:57,992 | INFO | app | [b2c8d900-94aa-444b-91b6-d2834ed9018d] Solicitud /audio/wakeword/upload procesada — detectada: False
+2026-05-31 11:31:57,993 | INFO | app | [b2c8d900-94aa-444b-91b6-d2834ed9018d] HTTP request finished: POST /audio/wakeword/upload 200
+2026-05-31 11:32:16,119 | INFO | app | [81127b7e-60ab-4239-84f3-2d71a505c5f9] HTTP request started: POST /audio/wakeword/upload
+2026-05-31 11:32:16,134 | INFO | app | [81127b7e-60ab-4239-84f3-2d71a505c5f9] Solicitud /audio/wakeword/upload recibida: chunk.wav (keyword=alfonso)
+2026-05-31 11:32:17,438 | INFO | app | [81127b7e-60ab-4239-84f3-2d71a505c5f9] Solicitud /audio/wakeword/upload procesada — detectada: False
+2026-05-31 11:32:17,439 | INFO | app | [81127b7e-60ab-4239-84f3-2d71a505c5f9] HTTP request finished: POST /audio/wakeword/upload 200
+2026-05-31 11:32:31,823 | INFO | app | [d9c8bb31-6c4a-4288-bfbb-0c1c5623c1fd] HTTP request started: POST /audio/wakeword/upload
+2026-05-31 11:32:31,824 | INFO | app | [d9c8bb31-6c4a-4288-bfbb-0c1c5623c1fd] Solicitud /audio/wakeword/upload recibida: chunk.wav (keyword=alfonso)
+2026-05-31 11:32:36,339 | INFO | app | [d9c8bb31-6c4a-4288-bfbb-0c1c5623c1fd] Solicitud /audio/wakeword/upload procesada — detectada: False
+2026-05-31 11:32:36,340 | INFO | app | [d9c8bb31-6c4a-4288-bfbb-0c1c5623c1fd] HTTP request finished: POST /audio/wakeword/upload 200
+2026-05-31 11:32:47,435 | INFO | app | [6b320f5a-ab18-4f6b-8860-a9cd42ce5bce] HTTP request started: POST /audio/wakeword/upload
+2026-05-31 11:32:47,437 | INFO | app | [6b320f5a-ab18-4f6b-8860-a9cd42ce5bce] Solicitud /audio/wakeword/upload recibida: chunk.wav (keyword=alfonso)
+2026-05-31 11:32:51,381 | INFO | app | [6b320f5a-ab18-4f6b-8860-a9cd42ce5bce] Solicitud /audio/wakeword/upload procesada — detectada: False
+2026-05-31 11:32:51,381 | INFO | app | [6b320f5a-ab18-4f6b-8860-a9cd42ce5bce] HTTP request finished: POST /audio/wakeword/upload 200
+2026-05-31 11:37:58,310 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-31 11:38:28,857 | INFO | app | [----------] Modelo precalentado
+2026-05-31 11:44:09,326 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-31 11:44:36,864 | INFO | app | [----------] Modelo precalentado
+2026-05-31 11:49:37,185 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-31 11:49:38,682 | INFO | app | [----------] Modelo precalentado
+2026-05-31 11:49:52,214 | INFO | app | [90c6aeab-2676-4f1c-9604-56ee936138d8] HTTP request started: POST /audio/wakeword/upload
+2026-05-31 11:49:52,218 | INFO | app | [90c6aeab-2676-4f1c-9604-56ee936138d8] Solicitud /audio/wakeword/upload recibida: chunk.wav (keyword=alfonso)
+2026-05-31 11:50:16,767 | INFO | app | [90c6aeab-2676-4f1c-9604-56ee936138d8] Solicitud /audio/wakeword/upload procesada — detectada: False
+2026-05-31 11:50:16,768 | INFO | app | [90c6aeab-2676-4f1c-9604-56ee936138d8] HTTP request finished: POST /audio/wakeword/upload 200
+2026-05-31 11:51:11,733 | INFO | app | [7757765c-38f8-491a-b9a8-0b88b54374f3] HTTP request started: POST /audio/wakeword/upload
+2026-05-31 11:51:11,738 | INFO | app | [7757765c-38f8-491a-b9a8-0b88b54374f3] Solicitud /audio/wakeword/upload recibida: chunk.wav (keyword=alfonso)
+2026-05-31 11:51:17,206 | INFO | app | [7757765c-38f8-491a-b9a8-0b88b54374f3] Solicitud /audio/wakeword/upload procesada — detectada: False
+2026-05-31 11:51:17,207 | INFO | app | [7757765c-38f8-491a-b9a8-0b88b54374f3] HTTP request finished: POST /audio/wakeword/upload 200
+2026-05-31 11:51:28,692 | INFO | app | [5773f0f2-e6ab-4c10-a075-84e148494834] HTTP request started: POST /audio/wakeword/upload
+2026-05-31 11:51:28,694 | INFO | app | [5773f0f2-e6ab-4c10-a075-84e148494834] Solicitud /audio/wakeword/upload recibida: chunk.wav (keyword=alfonso)
+2026-05-31 11:51:29,974 | INFO | app | [5773f0f2-e6ab-4c10-a075-84e148494834] Solicitud /audio/wakeword/upload procesada — detectada: False
+2026-05-31 11:51:29,974 | INFO | app | [5773f0f2-e6ab-4c10-a075-84e148494834] HTTP request finished: POST /audio/wakeword/upload 200
+2026-05-31 11:51:35,144 | INFO | app | [89e93c32-aa41-42bc-b163-c5bcaa47048b] HTTP request started: POST /audio/wakeword/upload
+2026-05-31 11:51:35,146 | INFO | app | [89e93c32-aa41-42bc-b163-c5bcaa47048b] Solicitud /audio/wakeword/upload recibida: chunk.wav (keyword=alfonso)
+2026-05-31 11:51:39,251 | INFO | app | [89e93c32-aa41-42bc-b163-c5bcaa47048b] Solicitud /audio/wakeword/upload procesada — detectada: False
+2026-05-31 11:51:39,252 | INFO | app | [89e93c32-aa41-42bc-b163-c5bcaa47048b] HTTP request finished: POST /audio/wakeword/upload 200
+2026-05-31 11:51:59,985 | INFO | app | [9d7234de-2e07-4f61-a9c9-95249f77e903] HTTP request started: POST /audio/wakeword/upload
+2026-05-31 11:51:59,986 | INFO | app | [9d7234de-2e07-4f61-a9c9-95249f77e903] Solicitud /audio/wakeword/upload recibida: chunk.wav (keyword=alfonso)
+2026-05-31 11:52:01,306 | INFO | app | [9d7234de-2e07-4f61-a9c9-95249f77e903] Solicitud /audio/wakeword/upload procesada — detectada: True
+2026-05-31 11:52:01,306 | INFO | app | [9d7234de-2e07-4f61-a9c9-95249f77e903] HTTP request finished: POST /audio/wakeword/upload 200
+2026-05-31 11:52:03,187 | INFO | app | [3bf6bdc2-1681-45cf-b3de-7f6cf85c8ee4] HTTP request started: POST /chat
+2026-05-31 11:52:03,188 | INFO | app | [3bf6bdc2-1681-45cf-b3de-7f6cf85c8ee4] Solicitud /chat recibida
+2026-05-31 11:52:03,188 | INFO | app | [3bf6bdc2-1681-45cf-b3de-7f6cf85c8ee4] SESSION_ID: 344b62a7-fd01-4ccc-ac84-a18d22e28299
+2026-05-31 11:52:03,189 | INFO | app | [3bf6bdc2-1681-45cf-b3de-7f6cf85c8ee4] USER MESSAGE: que día...
+2026-05-31 11:52:19,892 | INFO | app | [3bf6bdc2-1681-45cf-b3de-7f6cf85c8ee4] Solicitud /chat procesada con estado: chat
+2026-05-31 11:52:19,892 | INFO | app | [3bf6bdc2-1681-45cf-b3de-7f6cf85c8ee4] LATENCY: 16.70s
+2026-05-31 11:52:19,896 | INFO | app | [3bf6bdc2-1681-45cf-b3de-7f6cf85c8ee4] HTTP request finished: POST /chat 200
+2026-05-31 11:52:22,693 | INFO | app | [c9e96f84-b805-4f1f-9254-d17c941ae276] HTTP request started: POST /audio/tts
+2026-05-31 11:52:22,695 | INFO | app | [c9e96f84-b805-4f1f-9254-d17c941ae276] Solicitud /audio/tts recibida
+2026-05-31 11:52:26,873 | INFO | app | [c9e96f84-b805-4f1f-9254-d17c941ae276] Solicitud /audio/tts procesada
+2026-05-31 11:52:26,874 | INFO | app | [c9e96f84-b805-4f1f-9254-d17c941ae276] HTTP request finished: POST /audio/tts 200
+2026-05-31 11:52:28,912 | INFO | app | [1f09b778-bf3e-4dc6-a158-b9e540e3e3c3] HTTP request started: GET /audio/file
+2026-05-31 11:52:28,916 | INFO | app | [1f09b778-bf3e-4dc6-a158-b9e540e3e3c3] HTTP request finished: GET /audio/file 200
+2026-05-31 11:53:19,045 | INFO | app | [0a9561c6-0e7e-4664-ad61-58ea5e90adc7] HTTP request started: POST /audio/stt/upload
+2026-05-31 11:53:19,047 | INFO | app | [0a9561c6-0e7e-4664-ad61-58ea5e90adc7] Solicitud /audio/stt/upload recibida: orden.wav
+2026-05-31 11:53:44,026 | INFO | app | [0a9561c6-0e7e-4664-ad61-58ea5e90adc7] Solicitud /audio/stt/upload procesada
+2026-05-31 11:53:44,033 | INFO | app | [0a9561c6-0e7e-4664-ad61-58ea5e90adc7] HTTP request finished: POST /audio/stt/upload 200
+2026-05-31 11:53:46,031 | INFO | app | [80f9b966-d6fb-4f10-94f7-12678d905932] HTTP request started: POST /chat
+2026-05-31 11:53:46,045 | INFO | app | [80f9b966-d6fb-4f10-94f7-12678d905932] Solicitud /chat recibida
+2026-05-31 11:53:46,045 | INFO | app | [80f9b966-d6fb-4f10-94f7-12678d905932] SESSION_ID: 344b62a7-fd01-4ccc-ac84-a18d22e28299
+2026-05-31 11:53:46,046 | INFO | app | [80f9b966-d6fb-4f10-94f7-12678d905932] USER MESSAGE: ¿Qué modelo usas?
+2026-05-31 11:54:12,084 | INFO | app | [80f9b966-d6fb-4f10-94f7-12678d905932] Solicitud /chat procesada con estado: chat
+2026-05-31 11:54:12,084 | INFO | app | [80f9b966-d6fb-4f10-94f7-12678d905932] LATENCY: 25.38s
+2026-05-31 11:54:12,087 | INFO | app | [80f9b966-d6fb-4f10-94f7-12678d905932] HTTP request finished: POST /chat 200
+2026-05-31 11:54:14,043 | INFO | app | [57aa36e9-3ade-48b6-89bf-1be7b89481a3] HTTP request started: POST /audio/tts
+2026-05-31 11:54:14,050 | INFO | app | [57aa36e9-3ade-48b6-89bf-1be7b89481a3] Solicitud /audio/tts recibida
+2026-05-31 11:54:16,253 | INFO | app | [57aa36e9-3ade-48b6-89bf-1be7b89481a3] Solicitud /audio/tts procesada
+2026-05-31 11:54:16,254 | INFO | app | [57aa36e9-3ade-48b6-89bf-1be7b89481a3] HTTP request finished: POST /audio/tts 200
+2026-05-31 11:54:18,255 | INFO | app | [a30ed1f4-b177-480a-b182-d68859106eba] HTTP request started: GET /audio/file
+2026-05-31 11:54:18,265 | INFO | app | [a30ed1f4-b177-480a-b182-d68859106eba] HTTP request finished: GET /audio/file 200
+2026-05-31 11:59:52,026 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-31 11:59:55,417 | INFO | app | [----------] Modelo precalentado
+2026-05-31 12:06:53,010 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-31 12:06:55,051 | INFO | app | [----------] Modelo precalentado
+2026-05-31 12:16:03,032 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-31 12:16:51,562 | INFO | app | [----------] Modelo precalentado
+2026-05-31 12:16:53,012 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-31 12:16:54,113 | INFO | app | [----------] Modelo precalentado
+2026-05-31 12:19:17,464 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-05-31 12:20:26,230 | INFO | app | [----------] Modelo precalentado
+2026-05-31 12:21:55,685 | INFO | app | [95df8c59-810f-41ee-af00-be27b583c06b] HTTP request started: POST /audio/wakeword/upload
+2026-05-31 12:21:55,746 | INFO | app | [95df8c59-810f-41ee-af00-be27b583c06b] Solicitud /audio/wakeword/upload recibida: chunk.wav (keyword=alfonso)
+2026-05-31 12:22:08,917 | INFO | app | [95df8c59-810f-41ee-af00-be27b583c06b] Solicitud /audio/wakeword/upload procesada — detectada: True
+2026-05-31 12:22:08,919 | INFO | app | [95df8c59-810f-41ee-af00-be27b583c06b] HTTP request finished: POST /audio/wakeword/upload 200
+2026-05-31 12:22:10,984 | INFO | app | [447b6bf9-a207-4a72-9208-11b7d2bfc4e2] HTTP request started: POST /chat
+2026-05-31 12:22:10,989 | INFO | app | [447b6bf9-a207-4a72-9208-11b7d2bfc4e2] Solicitud /chat recibida
+2026-05-31 12:22:10,990 | INFO | app | [447b6bf9-a207-4a72-9208-11b7d2bfc4e2] SESSION_ID: 344b62a7-fd01-4ccc-ac84-a18d22e28299
+2026-05-31 12:22:10,990 | INFO | app | [447b6bf9-a207-4a72-9208-11b7d2bfc4e2] USER MESSAGE: buenos días.
+2026-05-31 12:22:43,460 | INFO | app | [447b6bf9-a207-4a72-9208-11b7d2bfc4e2] Solicitud /chat procesada con estado: chat
+2026-05-31 12:22:43,460 | INFO | app | [447b6bf9-a207-4a72-9208-11b7d2bfc4e2] LATENCY: 31.75s
+2026-05-31 12:22:43,462 | INFO | app | [447b6bf9-a207-4a72-9208-11b7d2bfc4e2] HTTP request finished: POST /chat 200
+2026-05-31 12:22:45,470 | INFO | app | [35a01289-cb1d-438d-b42c-7ac413b7331a] HTTP request started: POST /audio/tts
+2026-05-31 12:22:45,471 | INFO | app | [35a01289-cb1d-438d-b42c-7ac413b7331a] Solicitud /audio/tts recibida
+2026-05-31 12:22:46,277 | INFO | app | [35a01289-cb1d-438d-b42c-7ac413b7331a] Solicitud /audio/tts procesada
+2026-05-31 12:22:46,278 | INFO | app | [35a01289-cb1d-438d-b42c-7ac413b7331a] HTTP request finished: POST /audio/tts 200
+2026-05-31 12:22:48,311 | INFO | app | [57de6512-3af8-4681-898c-e14146c62ce7] HTTP request started: GET /audio/file
+2026-05-31 12:22:48,314 | INFO | app | [57de6512-3af8-4681-898c-e14146c62ce7] HTTP request finished: GET /audio/file 200
+2026-05-31 12:23:05,571 | INFO | app | [c8576b39-0873-45de-98f3-06f3bc2e1086] HTTP request started: POST /audio/stt/upload
+2026-05-31 12:23:05,573 | INFO | app | [c8576b39-0873-45de-98f3-06f3bc2e1086] Solicitud /audio/stt/upload recibida: orden.wav
+2026-05-31 12:23:20,835 | INFO | app | [c8576b39-0873-45de-98f3-06f3bc2e1086] Solicitud /audio/stt/upload procesada
+2026-05-31 12:23:20,839 | INFO | app | [c8576b39-0873-45de-98f3-06f3bc2e1086] HTTP request finished: POST /audio/stt/upload 200
+2026-05-31 12:23:22,822 | INFO | app | [468926df-9768-4d8c-85af-f213288f12ac] HTTP request started: POST /chat
+2026-05-31 12:23:22,829 | INFO | app | [468926df-9768-4d8c-85af-f213288f12ac] Solicitud /chat recibida
+2026-05-31 12:23:22,829 | INFO | app | [468926df-9768-4d8c-85af-f213288f12ac] SESSION_ID: 344b62a7-fd01-4ccc-ac84-a18d22e28299
+2026-05-31 12:23:22,829 | INFO | app | [468926df-9768-4d8c-85af-f213288f12ac] USER MESSAGE: Dime que hora es.
+2026-05-31 12:23:50,575 | INFO | app | [468926df-9768-4d8c-85af-f213288f12ac] Solicitud /chat procesada con estado: chat
+2026-05-31 12:23:50,575 | INFO | app | [468926df-9768-4d8c-85af-f213288f12ac] LATENCY: 26.94s
+2026-05-31 12:23:50,579 | INFO | app | [468926df-9768-4d8c-85af-f213288f12ac] HTTP request finished: POST /chat 200
+2026-05-31 12:23:52,635 | INFO | app | [40ae924b-4308-4dbc-b5f0-b9f80309a2ad] HTTP request started: POST /audio/tts
+2026-05-31 12:23:52,639 | INFO | app | [40ae924b-4308-4dbc-b5f0-b9f80309a2ad] Solicitud /audio/tts recibida
+2026-05-31 12:23:54,001 | INFO | app | [40ae924b-4308-4dbc-b5f0-b9f80309a2ad] Solicitud /audio/tts procesada
+2026-05-31 12:23:54,002 | INFO | app | [40ae924b-4308-4dbc-b5f0-b9f80309a2ad] HTTP request finished: POST /audio/tts 200
+2026-05-31 12:23:55,975 | INFO | app | [56255635-0bc9-421f-b652-ec46efbfffdf] HTTP request started: GET /audio/file
+2026-05-31 12:23:55,982 | INFO | app | [56255635-0bc9-421f-b652-ec46efbfffdf] HTTP request finished: GET /audio/file 200
+2026-05-31 12:24:27,288 | INFO | app | [1e31774b-226e-4905-ad0d-45d6528d3ec8] HTTP request started: POST /audio/stt/upload
+2026-05-31 12:24:27,297 | INFO | app | [1e31774b-226e-4905-ad0d-45d6528d3ec8] Solicitud /audio/stt/upload recibida: orden.wav
+2026-05-31 12:24:55,029 | INFO | app | [1e31774b-226e-4905-ad0d-45d6528d3ec8] Solicitud /audio/stt/upload procesada
+2026-05-31 12:24:55,087 | INFO | app | [1e31774b-226e-4905-ad0d-45d6528d3ec8] HTTP request finished: POST /audio/stt/upload 200
+2026-05-31 12:24:57,246 | INFO | app | [698959ee-1f1b-4592-9da7-ca35dcecba8d] HTTP request started: POST /chat
+2026-05-31 12:24:57,296 | INFO | app | [698959ee-1f1b-4592-9da7-ca35dcecba8d] Solicitud /chat recibida
+2026-05-31 12:24:57,296 | INFO | app | [698959ee-1f1b-4592-9da7-ca35dcecba8d] SESSION_ID: 344b62a7-fd01-4ccc-ac84-a18d22e28299
+2026-05-31 12:24:57,296 | INFO | app | [698959ee-1f1b-4592-9da7-ca35dcecba8d] USER MESSAGE: Apagate.
+2026-05-31 12:25:19,232 | INFO | app | [698959ee-1f1b-4592-9da7-ca35dcecba8d] Solicitud /chat procesada con estado: chat
+2026-05-31 12:25:19,232 | INFO | app | [698959ee-1f1b-4592-9da7-ca35dcecba8d] LATENCY: 21.14s
+2026-05-31 12:25:19,233 | INFO | app | [698959ee-1f1b-4592-9da7-ca35dcecba8d] HTTP request finished: POST /chat 200
+2026-05-31 12:25:21,241 | INFO | app | [8aa0e733-8e99-46ec-b687-aa2f661cdf2c] HTTP request started: POST /audio/tts
+2026-05-31 12:25:21,257 | INFO | app | [8aa0e733-8e99-46ec-b687-aa2f661cdf2c] Solicitud /audio/tts recibida
+2026-05-31 12:25:22,368 | INFO | app | [8aa0e733-8e99-46ec-b687-aa2f661cdf2c] Solicitud /audio/tts procesada
+2026-05-31 12:25:22,370 | INFO | app | [8aa0e733-8e99-46ec-b687-aa2f661cdf2c] HTTP request finished: POST /audio/tts 200
+2026-05-31 12:25:24,424 | INFO | app | [ddbc83ae-8d47-4390-90c2-6d699c4277e5] HTTP request started: GET /audio/file
+2026-05-31 12:25:24,444 | INFO | app | [ddbc83ae-8d47-4390-90c2-6d699c4277e5] HTTP request finished: GET /audio/file 200

@@ -110,3 +110,28 @@ NoneType: None
 2026-05-29 09:38:20,779 | INFO | orchestrator | [e70836ee-d079-4d5a-a1cf-4b51bd1d0ab8] SESSION_ID: d44e8355-4765-4637-8996-a3258e1ef12a
 2026-05-29 09:38:20,841 | INFO | orchestrator | [e70836ee-d079-4d5a-a1cf-4b51bd1d0ab8] Intent: chat (score=0.00, reglas=[])
 2026-05-29 09:38:52,952 | INFO | orchestrator | [e70836ee-d079-4d5a-a1cf-4b51bd1d0ab8] Respuesta de chat completada
+2026-05-31 11:52:03,189 | INFO | orchestrator | [3bf6bdc2-1681-45cf-b3de-7f6cf85c8ee4] REQUEST_ID iniciado
+2026-05-31 11:52:03,189 | INFO | orchestrator | [3bf6bdc2-1681-45cf-b3de-7f6cf85c8ee4] USER MESSAGE: que día...
+2026-05-31 11:52:03,190 | INFO | orchestrator | [3bf6bdc2-1681-45cf-b3de-7f6cf85c8ee4] SESSION_ID: 344b62a7-fd01-4ccc-ac84-a18d22e28299
+2026-05-31 11:52:03,206 | INFO | orchestrator | [3bf6bdc2-1681-45cf-b3de-7f6cf85c8ee4] Intent: chat (score=0.00, reglas=[])
+2026-05-31 11:52:19,883 | INFO | orchestrator | [3bf6bdc2-1681-45cf-b3de-7f6cf85c8ee4] Respuesta de chat completada
+2026-05-31 11:53:46,049 | INFO | orchestrator | [80f9b966-d6fb-4f10-94f7-12678d905932] REQUEST_ID iniciado
+2026-05-31 11:53:46,052 | INFO | orchestrator | [80f9b966-d6fb-4f10-94f7-12678d905932] USER MESSAGE: ¿Qué modelo usas?
+2026-05-31 11:53:46,053 | INFO | orchestrator | [80f9b966-d6fb-4f10-94f7-12678d905932] SESSION_ID: 344b62a7-fd01-4ccc-ac84-a18d22e28299
+2026-05-31 11:53:46,081 | INFO | orchestrator | [80f9b966-d6fb-4f10-94f7-12678d905932] Intent: chat (score=0.00, reglas=[])
+2026-05-31 11:54:12,073 | INFO | orchestrator | [80f9b966-d6fb-4f10-94f7-12678d905932] Respuesta de chat completada
+2026-05-31 12:22:10,990 | INFO | orchestrator | [447b6bf9-a207-4a72-9208-11b7d2bfc4e2] REQUEST_ID iniciado
+2026-05-31 12:22:10,991 | INFO | orchestrator | [447b6bf9-a207-4a72-9208-11b7d2bfc4e2] USER MESSAGE: buenos días.
+2026-05-31 12:22:10,991 | INFO | orchestrator | [447b6bf9-a207-4a72-9208-11b7d2bfc4e2] SESSION_ID: 344b62a7-fd01-4ccc-ac84-a18d22e28299
+2026-05-31 12:22:11,009 | INFO | orchestrator | [447b6bf9-a207-4a72-9208-11b7d2bfc4e2] Intent: chat (score=-2.50, reglas=['-2.5 [greeting]'])
+2026-05-31 12:22:43,453 | INFO | orchestrator | [447b6bf9-a207-4a72-9208-11b7d2bfc4e2] Respuesta de chat completada
+2026-05-31 12:23:22,830 | INFO | orchestrator | [468926df-9768-4d8c-85af-f213288f12ac] REQUEST_ID iniciado
+2026-05-31 12:23:22,830 | INFO | orchestrator | [468926df-9768-4d8c-85af-f213288f12ac] USER MESSAGE: Dime que hora es.
+2026-05-31 12:23:22,830 | INFO | orchestrator | [468926df-9768-4d8c-85af-f213288f12ac] SESSION_ID: 344b62a7-fd01-4ccc-ac84-a18d22e28299
+2026-05-31 12:23:22,843 | INFO | orchestrator | [468926df-9768-4d8c-85af-f213288f12ac] Intent: chat (score=0.00, reglas=[])
+2026-05-31 12:23:50,565 | INFO | orchestrator | [468926df-9768-4d8c-85af-f213288f12ac] Respuesta de chat completada
+2026-05-31 12:24:57,300 | INFO | orchestrator | [698959ee-1f1b-4592-9da7-ca35dcecba8d] REQUEST_ID iniciado
+2026-05-31 12:24:57,303 | INFO | orchestrator | [698959ee-1f1b-4592-9da7-ca35dcecba8d] USER MESSAGE: Apagate.
+2026-05-31 12:24:57,303 | INFO | orchestrator | [698959ee-1f1b-4592-9da7-ca35dcecba8d] SESSION_ID: 344b62a7-fd01-4ccc-ac84-a18d22e28299
+2026-05-31 12:24:57,336 | INFO | orchestrator | [698959ee-1f1b-4592-9da7-ca35dcecba8d] Intent: chat (score=0.00, reglas=[])
+2026-05-31 12:25:19,220 | INFO | orchestrator | [698959ee-1f1b-4592-9da7-ca35dcecba8d] Respuesta de chat completada
