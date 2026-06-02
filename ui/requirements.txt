@@ -1,7 +1,0 @@
-requests
-numpy
-sounddevice
-PyQt6
-pygame
-pytest
-pytest-mock

@@ -135,3 +135,18 @@ NoneType: None
 2026-05-31 12:24:57,303 | INFO | orchestrator | [698959ee-1f1b-4592-9da7-ca35dcecba8d] SESSION_ID: 344b62a7-fd01-4ccc-ac84-a18d22e28299
 2026-05-31 12:24:57,336 | INFO | orchestrator | [698959ee-1f1b-4592-9da7-ca35dcecba8d] Intent: chat (score=0.00, reglas=[])
 2026-05-31 12:25:19,220 | INFO | orchestrator | [698959ee-1f1b-4592-9da7-ca35dcecba8d] Respuesta de chat completada
+2026-06-01 16:14:19,061 | INFO | orchestrator | [a0a7abaf-e0d3-4d60-b42a-c6ac13392934] REQUEST_ID iniciado
+2026-06-01 16:14:19,062 | INFO | orchestrator | [a0a7abaf-e0d3-4d60-b42a-c6ac13392934] USER MESSAGE: buenas tardes.
+2026-06-01 16:14:19,062 | INFO | orchestrator | [a0a7abaf-e0d3-4d60-b42a-c6ac13392934] SESSION_ID: 9b0d45ee-6811-4409-9f7c-aa5ef3ff9429
+2026-06-01 16:14:19,096 | INFO | orchestrator | [a0a7abaf-e0d3-4d60-b42a-c6ac13392934] Intent: chat (score=-2.50, reglas=['-2.5 [greeting]'])
+2026-06-01 16:15:09,522 | INFO | orchestrator | [a0a7abaf-e0d3-4d60-b42a-c6ac13392934] Respuesta de chat completada
+2026-06-01 18:31:45,208 | INFO | orchestrator | [da047790-7e56-45e1-a156-dc06aa731e04] REQUEST_ID iniciado
+2026-06-01 18:31:45,209 | INFO | orchestrator | [da047790-7e56-45e1-a156-dc06aa731e04] USER MESSAGE: ¿qué?
+2026-06-01 18:31:45,210 | INFO | orchestrator | [da047790-7e56-45e1-a156-dc06aa731e04] SESSION_ID: 0b8fef2f-5b2c-47df-86ce-13787460d0c2
+2026-06-01 18:31:45,291 | INFO | orchestrator | [da047790-7e56-45e1-a156-dc06aa731e04] Intent: chat (score=0.00, reglas=[])
+2026-06-01 18:33:38,364 | INFO | orchestrator | [da047790-7e56-45e1-a156-dc06aa731e04] Respuesta de chat completada
+2026-06-01 18:34:26,159 | INFO | orchestrator | [9c64a779-be3a-465c-8d26-a0142b8fb8e8] REQUEST_ID iniciado
+2026-06-01 18:34:26,160 | INFO | orchestrator | [9c64a779-be3a-465c-8d26-a0142b8fb8e8] USER MESSAGE: ¡Suscríbete!
+2026-06-01 18:34:26,160 | INFO | orchestrator | [9c64a779-be3a-465c-8d26-a0142b8fb8e8] SESSION_ID: 0b8fef2f-5b2c-47df-86ce-13787460d0c2
+2026-06-01 18:34:26,193 | INFO | orchestrator | [9c64a779-be3a-465c-8d26-a0142b8fb8e8] Intent: chat (score=0.00, reglas=[])
+2026-06-01 18:34:42,675 | INFO | orchestrator | [9c64a779-be3a-465c-8d26-a0142b8fb8e8] Respuesta de chat completada
