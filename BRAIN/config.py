@@ -18,18 +18,17 @@ class Settings(BaseSettings):
     OLLAMA_BASE_URL: str = 'http://localhost:11434'
     MODEL_NAME: str = 'qwen2.5:1.5b'
 
-    CHAT_PROMPT_PATH: str
-    TOOL_PROMPT_PATH: str
-    AUTOEVOLUTION_PROMPT_PATH: str
-
+    CHAT_PROMPT_PATH: str = "app/prompts/chat_system.txt"
+    TOOL_PROMPT_PATH: str = "app/prompts/tool_system.txt"
 
     class Config:
-        env_file = '.env'
+        # Buscamos el .env en la raíz del proyecto (un nivel arriba de /app)
+        env_file = Path(__file__).resolve().parent.parent / ".env"
         env_file_encoding = 'utf-8'
+        extra = 'ignore'
 
 settings = Settings()   
 
 
 def load_prompt(path: str) -> str:
     return Path(path).read_text(encoding="utf-8")
-

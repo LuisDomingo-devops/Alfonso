@@ -11,3 +11,4 @@ SpeechRecognition
 edge-tts
 openai-whisper
 sounddevice
+tqdm
