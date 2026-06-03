@@ -539,3 +539,68 @@ Ahora tienes un archivo `.txt` llamado `Hola.txt` en tu escritorio con el texto 
 2026-05-31 09:03:02,891 | INFO | tools | [----------] Transcripción Whisper: ¡Adiós!
 2026-05-31 09:03:04,917 | INFO | tools | [----------] TTS solicitado: Hasta luego.
 2026-05-31 09:03:05,272 | INFO | tools | [----------] TTS generado en /tmp/tts_3ac0ccb200cf4be18c5058066cb76301.mp3
+2026-06-03 09:06:58,962 | INFO | tools | [----------] Detectando wake word 'alfonso' en audio subido: chunk.wav (96044 bytes)
+2026-06-03 09:06:58,963 | INFO | tools | [----------] Transcribiendo audio subido: chunk.wav (96044 bytes)
+2026-06-03 09:07:20,006 | INFO | tools | [----------] Transcripción Whisper: Alfonso, buenos días.
+2026-06-03 09:07:20,007 | INFO | tools | [----------] Wake word 'alfonso' DETECTADA en: 'alfonso, buenos días.'
+2026-06-03 09:07:27,833 | INFO | tools | [----------] Transcribiendo audio subido: orden.wav (160044 bytes)
+2026-06-03 09:07:53,753 | INFO | tools | [----------] Transcripción Whisper: 
+2026-06-03 09:09:05,925 | INFO | tools | [----------] Detectando wake word 'alfonso' en audio subido: chunk.wav (96044 bytes)
+2026-06-03 09:09:05,925 | INFO | tools | [----------] Transcribiendo audio subido: chunk.wav (96044 bytes)
+2026-06-03 09:09:07,613 | INFO | tools | [----------] Transcripción Whisper: Adfonso, ¿qué haráis?
+2026-06-03 09:09:07,613 | INFO | tools | [----------] Wake word 'alfonso' no detectada en: 'adfonso, ¿qué haráis?'
+2026-06-03 09:09:41,023 | INFO | tools | [----------] Detectando wake word 'alfonso' en audio subido: chunk.wav (96044 bytes)
+2026-06-03 09:09:41,023 | INFO | tools | [----------] Transcribiendo audio subido: chunk.wav (96044 bytes)
+2026-06-03 09:09:42,844 | INFO | tools | [----------] Transcripción Whisper: Alfonso.
+2026-06-03 09:09:42,845 | INFO | tools | [----------] Wake word 'alfonso' DETECTADA en: 'alfonso.'
+2026-06-03 09:09:48,465 | INFO | tools | [----------] Transcribiendo audio subido: orden.wav (160044 bytes)
+2026-06-03 09:10:01,972 | INFO | tools | [----------] Transcripción Whisper: ¿Qué hora es Alfonso?
+2026-06-03 09:10:21,462 | INFO | tools | [----------] TTS solicitado: Ahora mismo no puedo darte la hora, pero puedes verla en tu reloj o consulta la pila de tiempo que te muestro más abajo.
+2026-06-03 09:10:23,349 | INFO | tools | [----------] TTS generado en /tmp/tts_407cd251c7774c378f17dd4c06bc1a09.mp3
+2026-06-03 09:10:49,439 | INFO | tools | [----------] Detectando wake word 'alfonso' en audio subido: chunk.wav (96044 bytes)
+2026-06-03 09:10:49,439 | INFO | tools | [----------] Transcribiendo audio subido: chunk.wav (96044 bytes)
+2026-06-03 09:10:54,038 | INFO | tools | [----------] Transcripción Whisper: actualmente al fondo境o
+2026-06-03 09:10:54,039 | INFO | tools | [----------] Wake word 'alfonso' no detectada en: 'actualmente al fondo境o'
+2026-06-03 09:11:13,165 | INFO | tools | [----------] Detectando wake word 'alfonso' en audio subido: chunk.wav (96044 bytes)
+2026-06-03 09:11:13,165 | INFO | tools | [----------] Transcribiendo audio subido: chunk.wav (96044 bytes)
+2026-06-03 09:11:17,201 | INFO | tools | [----------] Transcripción Whisper: Y eso simple,
+2026-06-03 09:11:17,201 | INFO | tools | [----------] Wake word 'alfonso' no detectada en: 'y eso simple,'
+2026-06-03 09:12:23,334 | INFO | tools | [----------] Detectando wake word 'alfonso' en audio subido: chunk.wav (96044 bytes)
+2026-06-03 09:12:23,334 | INFO | tools | [----------] Transcribiendo audio subido: chunk.wav (96044 bytes)
+2026-06-03 09:12:24,524 | INFO | tools | [----------] Transcripción Whisper: Alfonso.
+2026-06-03 09:12:24,524 | INFO | tools | [----------] Wake word 'alfonso' DETECTADA en: 'alfonso.'
+2026-06-03 09:12:32,238 | INFO | tools | [----------] Transcribiendo audio subido: orden.wav (160044 bytes)
+2026-06-03 09:12:54,961 | INFO | tools | [----------] Transcripción Whisper: ¿Qué hora es?
+2026-06-03 09:13:13,502 | INFO | tools | [----------] TTS solicitado: Lo siento, no puedo proporcionar una hora actualmente. Te recomendaría que consultes el reloj en tu dispositivo o veas la pila de tiempo que te muestro más abajo.
+2026-06-03 09:13:14,963 | INFO | tools | [----------] TTS generado en /tmp/tts_4554acc7338e48deb3c52a0cc8e6b927.mp3
+2026-06-03 09:13:38,475 | INFO | tools | [----------] Detectando wake word 'alfonso' en audio subido: chunk.wav (96044 bytes)
+2026-06-03 09:13:38,475 | INFO | tools | [----------] Transcribiendo audio subido: chunk.wav (96044 bytes)
+2026-06-03 09:13:40,736 | INFO | tools | [----------] Transcripción Whisper: que puedes hacer.
+2026-06-03 09:13:40,736 | INFO | tools | [----------] Wake word 'alfonso' no detectada en: 'que puedes hacer.'
+2026-06-03 09:13:50,636 | INFO | tools | [----------] Detectando wake word 'alfonso' en audio subido: chunk.wav (96044 bytes)
+2026-06-03 09:13:50,636 | INFO | tools | [----------] Transcribiendo audio subido: chunk.wav (96044 bytes)
+2026-06-03 09:13:52,113 | INFO | tools | [----------] Transcripción Whisper: Alfonso, ¿qué puedes hacer?
+2026-06-03 09:13:52,113 | INFO | tools | [----------] Wake word 'alfonso' DETECTADA en: 'alfonso, ¿qué puedes hacer?'
+2026-06-03 09:13:59,857 | INFO | tools | [----------] Transcribiendo audio subido: orden.wav (160044 bytes)
+2026-06-03 09:14:12,546 | INFO | tools | [----------] Transcripción Whisper: 
+2026-06-03 10:06:50,375 | INFO | tools | [----------] Intentando ejecutar comando: ['C:\\Users\\luisd\\AppData\\Local\\Programs\\Python\\Python312\\python.exe', '-c', "print('hello')"]
+2026-06-03 10:06:50,422 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-06-03 10:06:50,435 | INFO | tools | [----------] Listando directorio: app
+2026-06-03 10:06:50,504 | INFO | tools | [----------] Directorio listado correctamente: app
+2026-06-03 10:06:50,504 | INFO | tools | [----------] Intentando abrir aplicación: ['C:\\Users\\luisd\\AppData\\Local\\Programs\\Python\\Python312\\python.exe', '-c', "print('app-open-test')"]
+2026-06-03 10:06:50,528 | INFO | tools | [----------] Aplicación abierta con PID 33184
+2026-06-03 13:01:15,026 | INFO | tools | [----------] Intentando crear archivo: mensaje_alfonso.txt
+2026-06-03 13:01:15,028 | INFO | tools | [----------] Ruta absoluta final: /home/luisd/Alfonso/mensaje_alfonso.txt
+2026-06-03 13:01:15,029 | INFO | tools | [----------] Archivo creado exitosamente: /home/luisd/Alfonso/mensaje_alfonso.txt
+2026-06-03 13:35:11,351 | INFO | tools | [----------] Intentando leer archivo: \wsl.localhost\Ubuntu\home\luisd\Alfonso\mensaje_alfonso.txt
+2026-06-03 13:38:44,622 | INFO | tools | [----------] Intentando leer archivo: /home/luisd/Alfonso/mensaje_alfonso.txt
+2026-06-03 13:38:44,622 | INFO | tools | [----------] Archivo leído exitosamente: /home/luisd/Alfonso/mensaje_alfonso.txt
+2026-06-03 13:50:07,702 | INFO | tools | [----------] Intentando leer archivo: /home/luisd/Alfonso/mensaje_alfonso.txt
+2026-06-03 13:50:07,702 | INFO | tools | [----------] Archivo leído exitosamente: /home/luisd/Alfonso/mensaje_alfonso.txt
+2026-06-03 13:59:17,009 | INFO | tools | [----------] Obteniendo información del sistema
+2026-06-03 14:13:09,853 | INFO | tools | [----------] Obteniendo información del sistema
+2026-06-03 14:23:27,438 | INFO | tools | [----------] Obteniendo información del sistema
+2026-06-03 14:35:46,063 | INFO | tools | [----------] Obteniendo información del sistema
+2026-06-03 15:25:54,261 | INFO | tools | [----------] Intentando crear archivo: mensaje_alfonso2.txt
+2026-06-03 15:25:54,262 | INFO | tools | [----------] Ruta absoluta final: /home/luisd/Alfonso/mensaje_alfonso2.txt
+2026-06-03 15:25:54,263 | INFO | tools | [----------] Archivo creado exitosamente: /home/luisd/Alfonso/mensaje_alfonso2.txt

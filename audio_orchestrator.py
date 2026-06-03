@@ -11,7 +11,7 @@ from typing import Any, Dict, Optional
 import httpx
 
 from app.core.llm_client import OllamaClient
-from app.core.orchestrator import Orchestrator
+from app.core.planner_orchestrator import Orchestrator
 from app.tools.audio_tools import speech_to_text, text_to_speech, wake_word_listener
 
 logger = logging.getLogger("audio_orchestrator")

@@ -1,5 +1,6 @@
 from pathlib import Path
 from app.utils.logger import tool_logger, error_logger
+import os
 
 async def create_file(path: str, content: str):
 
@@ -77,10 +78,36 @@ async def append_file(path: str, content: str):
         "message": f"Contenido agregado a: {p}"
     }
 
+async def delete_file(path: str):
+    tool_logger.info(f"Intentando eliminar archivo: {path}")
+    p = Path(path)
+
+    if not p.exists():
+        error_logger.warning(f"Archivo no encontrado para eliminar: {p}")
+        return {"status": "error", "message": "Archivo no encontrado"}
+    
+    if p.is_dir():
+        error_logger.warning(f"Intento de eliminar un directorio como archivo: {p}")
+        return {"status": "error", "message": "No es un archivo"}
+
+    p.unlink()
+    '''
+    esta instruccion elemina el archivo, si es un directorio se debe usar
+    rmdir o shutil.rmtree para eliminarlo recursivamente
+    '''
+    # p.rmdir()
+    # shutil.rmtree(p)
+    os.remove(p)
+    tool_logger.info(f"Archivo eliminado exitosamente: {p}")
+    return {
+        "status": "ok",
+        "message": f"Archivo eliminado: {p}"
+    }
 
 TOOLS = {
     "create_file": create_file,
     "read_file": read_file,
     "list_directory": list_directory,
     "append_file": append_file,
+    "delete_file":delete_file,  # Por implementar
 }

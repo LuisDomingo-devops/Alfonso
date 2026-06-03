@@ -7,54 +7,72 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
-from app.api.routes import router
+from app.agents.registry import AgentRegistry
 from app.api.files import router_files
+from app.api.routes import router
 from app.core.event_bus import EventBus
 from app.core.llm_client import OllamaClient
-from app.core.metrics import increment_http_requests, increment_http_errors, record_http_latency
-from app.utils.logger import app_logger, attach_request_id, LOG_DIR
+from app.core.metrics import increment_http_errors, increment_http_requests, record_http_latency
+from app.core.planner_orchestrator import PlannerOrchestrator
+from app.utils.logger import LOG_DIR, app_logger, attach_request_id
 
 # ---------------------------------------------------------------------------
 # Instancias globales
 # ---------------------------------------------------------------------------
 
 llm = OllamaClient()
-
 event_bus = EventBus()
+agent_registry = AgentRegistry(event_bus, llm)
 
+# PlannerOrchestrator con EventBus — Fase 2
+planner_orchestrator = PlannerOrchestrator(event_bus)
 
 # ---------------------------------------------------------------------------
-# Lifespan — único, combina todo el arranque y parada
+# Lifespan
 # ---------------------------------------------------------------------------
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # ── Arranque ──────────────────────────────────────────────────────────
     app_logger.info("Los logs se escribirán en %s", LOG_DIR)
+    app_logger.info("Arrancando sistema de agentes — Fase 2")
 
     # 1. Event bus
     await event_bus.start()
     app_logger.info("EventBus iniciado")
 
-    # 2. Precalentar el modelo
+    # 2. Agentes
+    agent_registry.set_llm(llm)
+    await agent_registry.start()
+    agents = agent_registry.list_agents()
+    app_logger.info("Agentes registrados: %s", [a["name"] for a in agents])
+
+    # 3. Inyectar orquestador en las rutas
+    from app.api import routes as _routes
+    _routes.orchestrator = planner_orchestrator
+
+    # 4. Precalentar el modelo
     try:
         await llm.generate("ping")
         app_logger.info("Modelo precalentado")
     except Exception:
         app_logger.exception("Error precalentando el modelo")
 
+    app_logger.info("Alfonso Fase 2 listo")
+
     yield  # ── La aplicación corre aquí ───────────────────────────────────
 
     # ── Parada limpia ─────────────────────────────────────────────────────
+    await agent_registry.stop()
     await event_bus.stop()
-    app_logger.info("EventBus detenido")
+    app_logger.info("Agentes y EventBus detenidos")
 
 
 # ---------------------------------------------------------------------------
 # Aplicación
 # ---------------------------------------------------------------------------
 
-app = FastAPI(title="Alfonso Core", lifespan=lifespan)
+app = FastAPI(title="Alfonso Core — Fase 2", lifespan=lifespan)
 
 
 # ---------------------------------------------------------------------------

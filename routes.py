@@ -46,10 +46,8 @@ async def chat(req: ChatRequest, request: Request):
     logger.info("Solicitud /chat procesada con estado: %s", result.get("type"))
     logger.info("LATENCY: %.2fs", t.elapsed)
 
-    status = "error" if result.get("type") == "error" else "success"
-
     return {
-        "status": status,
+        "status": "success",
         "request_id": request_id,
         "session_id": session_id,
         "result": result,
@@ -124,6 +122,7 @@ async def agents_info(request: Request):
         "phase": "2",
         "agents": agent_list,
     }
+
 
 # ---------------------------------------------------------------------------
 # Audio — TTS
@@ -327,10 +326,8 @@ async def audio_converse(req: VoiceConversationRequest, request: Request):
 
         tts_result = await tts_tool(response_text, voice=req.voice)
 
-    status = "error" if conversation_result.get("type") == "error" else "success"
-
     return {
-        "status": status,
+        "status": "success",
         "request_id": request_id,
         "session_id": session_id,
         "wake_result": wake_result,

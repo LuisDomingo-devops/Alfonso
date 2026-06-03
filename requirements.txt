@@ -6,9 +6,11 @@ python-dotenv
 pydantic
 pydantic-settings
 pytest
+pytest-asyncio
 pyttsx3
 SpeechRecognition
 edge-tts
 openai-whisper
 sounddevice
 tqdm
+python-multipart

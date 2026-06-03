@@ -1853,3 +1853,458 @@ TypeError: test_chat_endpoint_with_mocked_orchestrator.<locals>.fake_run() got a
 2026-05-31 09:03:05,273 | INFO | app | [48342e87-e238-4424-a95c-ba8456434250] HTTP request finished: POST /audio/tts 200
 2026-05-31 09:03:07,336 | INFO | app | [58a38eeb-73b1-4f4c-a881-d54b2a8cd714] HTTP request started: GET /audio/file
 2026-05-31 09:03:07,337 | INFO | app | [58a38eeb-73b1-4f4c-a881-d54b2a8cd714] HTTP request finished: GET /audio/file 200
+2026-06-03 09:02:31,733 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-03 09:02:31,734 | INFO | app | [----------] Arrancando sistema de agentes — Fase 2
+2026-06-03 09:02:31,734 | INFO | app | [----------] EventBus iniciado
+2026-06-03 09:02:31,736 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'chat']
+2026-06-03 09:04:00,492 | INFO | app | [----------] Modelo precalentado
+2026-06-03 09:04:00,493 | INFO | app | [----------] Alfonso Fase 2 listo
+2026-06-03 09:06:10,156 | INFO | app | [a8497a83-f31a-41de-a56e-aa39417b9346] HTTP request started: GET /health
+2026-06-03 09:06:10,177 | INFO | app | [a8497a83-f31a-41de-a56e-aa39417b9346] Health check
+2026-06-03 09:06:10,183 | INFO | app | [a8497a83-f31a-41de-a56e-aa39417b9346] HTTP request finished: GET /health 200
+2026-06-03 09:06:58,834 | INFO | app | [4c8275a5-e45e-4b6c-9b30-83562db024f7] HTTP request started: POST /audio/wakeword/upload
+2026-06-03 09:06:58,858 | INFO | app | [4c8275a5-e45e-4b6c-9b30-83562db024f7] Solicitud /audio/wakeword/upload recibida: chunk.wav (keyword=alfonso)
+2026-06-03 09:07:20,007 | INFO | app | [4c8275a5-e45e-4b6c-9b30-83562db024f7] Solicitud /audio/wakeword/upload procesada — detectada: True
+2026-06-03 09:07:20,008 | INFO | app | [4c8275a5-e45e-4b6c-9b30-83562db024f7] HTTP request finished: POST /audio/wakeword/upload 200
+2026-06-03 09:07:27,830 | INFO | app | [59d9e1f9-5e6a-49a9-a1b0-0e7982387b1e] HTTP request started: POST /audio/stt/upload
+2026-06-03 09:07:27,833 | INFO | app | [59d9e1f9-5e6a-49a9-a1b0-0e7982387b1e] Solicitud /audio/stt/upload recibida: orden.wav
+2026-06-03 09:07:53,756 | INFO | app | [59d9e1f9-5e6a-49a9-a1b0-0e7982387b1e] Solicitud /audio/stt/upload procesada
+2026-06-03 09:07:53,759 | INFO | app | [59d9e1f9-5e6a-49a9-a1b0-0e7982387b1e] HTTP request finished: POST /audio/stt/upload 200
+2026-06-03 09:09:05,900 | INFO | app | [83c7fba5-aa48-4276-901c-b2e9de45bf41] HTTP request started: POST /audio/wakeword/upload
+2026-06-03 09:09:05,924 | INFO | app | [83c7fba5-aa48-4276-901c-b2e9de45bf41] Solicitud /audio/wakeword/upload recibida: chunk.wav (keyword=alfonso)
+2026-06-03 09:09:07,613 | INFO | app | [83c7fba5-aa48-4276-901c-b2e9de45bf41] Solicitud /audio/wakeword/upload procesada — detectada: False
+2026-06-03 09:09:07,614 | INFO | app | [83c7fba5-aa48-4276-901c-b2e9de45bf41] HTTP request finished: POST /audio/wakeword/upload 200
+2026-06-03 09:09:41,021 | INFO | app | [1e6d10f0-58ce-4eac-9618-89e6f0340e64] HTTP request started: POST /audio/wakeword/upload
+2026-06-03 09:09:41,023 | INFO | app | [1e6d10f0-58ce-4eac-9618-89e6f0340e64] Solicitud /audio/wakeword/upload recibida: chunk.wav (keyword=alfonso)
+2026-06-03 09:09:42,845 | INFO | app | [1e6d10f0-58ce-4eac-9618-89e6f0340e64] Solicitud /audio/wakeword/upload procesada — detectada: True
+2026-06-03 09:09:42,845 | INFO | app | [1e6d10f0-58ce-4eac-9618-89e6f0340e64] HTTP request finished: POST /audio/wakeword/upload 200
+2026-06-03 09:09:48,461 | INFO | app | [a2b0df87-c6c5-42e7-88ea-e955891d7467] HTTP request started: POST /audio/stt/upload
+2026-06-03 09:09:48,465 | INFO | app | [a2b0df87-c6c5-42e7-88ea-e955891d7467] Solicitud /audio/stt/upload recibida: orden.wav
+2026-06-03 09:10:01,974 | INFO | app | [a2b0df87-c6c5-42e7-88ea-e955891d7467] Solicitud /audio/stt/upload procesada
+2026-06-03 09:10:01,976 | INFO | app | [a2b0df87-c6c5-42e7-88ea-e955891d7467] HTTP request finished: POST /audio/stt/upload 200
+2026-06-03 09:10:04,249 | INFO | app | [0acad2b8-67c1-4360-8f71-4f12e5ec6950] HTTP request started: POST /chat
+2026-06-03 09:10:04,285 | INFO | app | [0acad2b8-67c1-4360-8f71-4f12e5ec6950] Solicitud /chat recibida
+2026-06-03 09:10:04,286 | INFO | app | [0acad2b8-67c1-4360-8f71-4f12e5ec6950] SESSION_ID: 7e18f741-7322-4bc0-b685-4ecac18c6205
+2026-06-03 09:10:04,286 | INFO | app | [0acad2b8-67c1-4360-8f71-4f12e5ec6950] USER MESSAGE: ¿Qué hora es Alfonso?
+2026-06-03 09:10:19,228 | INFO | app | [0acad2b8-67c1-4360-8f71-4f12e5ec6950] Solicitud /chat procesada con estado: chat
+2026-06-03 09:10:19,228 | INFO | app | [0acad2b8-67c1-4360-8f71-4f12e5ec6950] LATENCY: 17.21s
+2026-06-03 09:10:19,230 | INFO | app | [0acad2b8-67c1-4360-8f71-4f12e5ec6950] HTTP request finished: POST /chat 200
+2026-06-03 09:10:21,453 | INFO | app | [470eebdb-d84e-4ba3-abc2-c4b1d7ca807d] HTTP request started: POST /audio/tts
+2026-06-03 09:10:21,460 | INFO | app | [470eebdb-d84e-4ba3-abc2-c4b1d7ca807d] Solicitud /audio/tts recibida
+2026-06-03 09:10:23,350 | INFO | app | [470eebdb-d84e-4ba3-abc2-c4b1d7ca807d] Solicitud /audio/tts procesada
+2026-06-03 09:10:23,350 | INFO | app | [470eebdb-d84e-4ba3-abc2-c4b1d7ca807d] HTTP request finished: POST /audio/tts 200
+2026-06-03 09:10:25,596 | INFO | app | [38ae365c-97d0-4966-82d2-f7a5bd884d5c] HTTP request started: GET /audio/file
+2026-06-03 09:10:25,618 | INFO | app | [38ae365c-97d0-4966-82d2-f7a5bd884d5c] HTTP request finished: GET /audio/file 200
+2026-06-03 09:10:49,427 | INFO | app | [124a1f15-aa9b-4033-a29d-937955ed0d40] HTTP request started: POST /audio/wakeword/upload
+2026-06-03 09:10:49,439 | INFO | app | [124a1f15-aa9b-4033-a29d-937955ed0d40] Solicitud /audio/wakeword/upload recibida: chunk.wav (keyword=alfonso)
+2026-06-03 09:10:54,040 | INFO | app | [124a1f15-aa9b-4033-a29d-937955ed0d40] Solicitud /audio/wakeword/upload procesada — detectada: False
+2026-06-03 09:10:54,041 | INFO | app | [124a1f15-aa9b-4033-a29d-937955ed0d40] HTTP request finished: POST /audio/wakeword/upload 200
+2026-06-03 09:11:13,164 | INFO | app | [db454c65-52a6-4fb8-8991-306ac7bebaad] HTTP request started: POST /audio/wakeword/upload
+2026-06-03 09:11:13,165 | INFO | app | [db454c65-52a6-4fb8-8991-306ac7bebaad] Solicitud /audio/wakeword/upload recibida: chunk.wav (keyword=alfonso)
+2026-06-03 09:11:17,201 | INFO | app | [db454c65-52a6-4fb8-8991-306ac7bebaad] Solicitud /audio/wakeword/upload procesada — detectada: False
+2026-06-03 09:11:17,201 | INFO | app | [db454c65-52a6-4fb8-8991-306ac7bebaad] HTTP request finished: POST /audio/wakeword/upload 200
+2026-06-03 09:12:23,332 | INFO | app | [e6b0bcca-c407-4724-9298-150b9f842b76] HTTP request started: POST /audio/wakeword/upload
+2026-06-03 09:12:23,334 | INFO | app | [e6b0bcca-c407-4724-9298-150b9f842b76] Solicitud /audio/wakeword/upload recibida: chunk.wav (keyword=alfonso)
+2026-06-03 09:12:24,524 | INFO | app | [e6b0bcca-c407-4724-9298-150b9f842b76] Solicitud /audio/wakeword/upload procesada — detectada: True
+2026-06-03 09:12:24,525 | INFO | app | [e6b0bcca-c407-4724-9298-150b9f842b76] HTTP request finished: POST /audio/wakeword/upload 200
+2026-06-03 09:12:32,236 | INFO | app | [a7349480-f0f5-4bc6-8e42-7285069604be] HTTP request started: POST /audio/stt/upload
+2026-06-03 09:12:32,238 | INFO | app | [a7349480-f0f5-4bc6-8e42-7285069604be] Solicitud /audio/stt/upload recibida: orden.wav
+2026-06-03 09:12:54,962 | INFO | app | [a7349480-f0f5-4bc6-8e42-7285069604be] Solicitud /audio/stt/upload procesada
+2026-06-03 09:12:54,963 | INFO | app | [a7349480-f0f5-4bc6-8e42-7285069604be] HTTP request finished: POST /audio/stt/upload 200
+2026-06-03 09:12:57,163 | INFO | app | [1f99fed2-7ba5-4c76-83ee-7cf753ad819b] HTTP request started: POST /chat
+2026-06-03 09:12:57,165 | INFO | app | [1f99fed2-7ba5-4c76-83ee-7cf753ad819b] Solicitud /chat recibida
+2026-06-03 09:12:57,165 | INFO | app | [1f99fed2-7ba5-4c76-83ee-7cf753ad819b] SESSION_ID: 7e18f741-7322-4bc0-b685-4ecac18c6205
+2026-06-03 09:12:57,166 | INFO | app | [1f99fed2-7ba5-4c76-83ee-7cf753ad819b] USER MESSAGE: ¿Qué hora es?
+2026-06-03 09:13:11,298 | INFO | app | [1f99fed2-7ba5-4c76-83ee-7cf753ad819b] Solicitud /chat procesada con estado: chat
+2026-06-03 09:13:11,298 | INFO | app | [1f99fed2-7ba5-4c76-83ee-7cf753ad819b] LATENCY: 14.13s
+2026-06-03 09:13:11,299 | INFO | app | [1f99fed2-7ba5-4c76-83ee-7cf753ad819b] HTTP request finished: POST /chat 200
+2026-06-03 09:13:13,501 | INFO | app | [a05ff128-8837-4653-bd95-96c15d4bce3d] HTTP request started: POST /audio/tts
+2026-06-03 09:13:13,502 | INFO | app | [a05ff128-8837-4653-bd95-96c15d4bce3d] Solicitud /audio/tts recibida
+2026-06-03 09:13:14,963 | INFO | app | [a05ff128-8837-4653-bd95-96c15d4bce3d] Solicitud /audio/tts procesada
+2026-06-03 09:13:14,964 | INFO | app | [a05ff128-8837-4653-bd95-96c15d4bce3d] HTTP request finished: POST /audio/tts 200
+2026-06-03 09:13:17,181 | INFO | app | [3f54055c-e158-4700-b20f-a3cd9a6cf904] HTTP request started: GET /audio/file
+2026-06-03 09:13:17,189 | INFO | app | [3f54055c-e158-4700-b20f-a3cd9a6cf904] HTTP request finished: GET /audio/file 200
+2026-06-03 09:13:38,468 | INFO | app | [2fe5dd19-6c86-436e-81de-9a77bc027dbc] HTTP request started: POST /audio/wakeword/upload
+2026-06-03 09:13:38,475 | INFO | app | [2fe5dd19-6c86-436e-81de-9a77bc027dbc] Solicitud /audio/wakeword/upload recibida: chunk.wav (keyword=alfonso)
+2026-06-03 09:13:40,736 | INFO | app | [2fe5dd19-6c86-436e-81de-9a77bc027dbc] Solicitud /audio/wakeword/upload procesada — detectada: False
+2026-06-03 09:13:40,737 | INFO | app | [2fe5dd19-6c86-436e-81de-9a77bc027dbc] HTTP request finished: POST /audio/wakeword/upload 200
+2026-06-03 09:13:50,634 | INFO | app | [16288815-e3ac-4b01-89cf-5ca5e673ec64] HTTP request started: POST /audio/wakeword/upload
+2026-06-03 09:13:50,636 | INFO | app | [16288815-e3ac-4b01-89cf-5ca5e673ec64] Solicitud /audio/wakeword/upload recibida: chunk.wav (keyword=alfonso)
+2026-06-03 09:13:52,113 | INFO | app | [16288815-e3ac-4b01-89cf-5ca5e673ec64] Solicitud /audio/wakeword/upload procesada — detectada: True
+2026-06-03 09:13:52,114 | INFO | app | [16288815-e3ac-4b01-89cf-5ca5e673ec64] HTTP request finished: POST /audio/wakeword/upload 200
+2026-06-03 09:13:59,853 | INFO | app | [3f21f18c-27d5-48cd-91a6-bb7e180cb958] HTTP request started: POST /audio/stt/upload
+2026-06-03 09:13:59,856 | INFO | app | [3f21f18c-27d5-48cd-91a6-bb7e180cb958] Solicitud /audio/stt/upload recibida: orden.wav
+2026-06-03 09:14:12,547 | INFO | app | [3f21f18c-27d5-48cd-91a6-bb7e180cb958] Solicitud /audio/stt/upload procesada
+2026-06-03 09:14:12,548 | INFO | app | [3f21f18c-27d5-48cd-91a6-bb7e180cb958] HTTP request finished: POST /audio/stt/upload 200
+2026-06-03 10:06:50,590 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-06-03 10:06:50,590 | INFO | app | [----------] Arrancando sistema de agentes — Fase 2
+2026-06-03 10:06:50,590 | INFO | app | [----------] EventBus iniciado
+2026-06-03 10:06:50,612 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'chat']
+2026-06-03 10:07:02,203 | INFO | app | [----------] Modelo precalentado
+2026-06-03 10:07:02,203 | INFO | app | [----------] Alfonso Fase 2 listo
+2026-06-03 10:07:02,203 | INFO | app | [eb1a16f9-a6b9-4b4e-8c0f-3c502110ad71] HTTP request started: GET /health
+2026-06-03 10:07:02,298 | INFO | app | [eb1a16f9-a6b9-4b4e-8c0f-3c502110ad71] Health check
+2026-06-03 10:07:02,298 | INFO | app | [eb1a16f9-a6b9-4b4e-8c0f-3c502110ad71] HTTP request finished: GET /health 200
+2026-06-03 10:07:02,298 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-03 10:07:02,319 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-06-03 10:07:02,319 | INFO | app | [----------] Arrancando sistema de agentes — Fase 2
+2026-06-03 10:07:02,319 | INFO | app | [----------] EventBus iniciado
+2026-06-03 10:07:02,342 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'chat']
+2026-06-03 10:07:02,603 | INFO | app | [----------] Modelo precalentado
+2026-06-03 10:07:02,603 | INFO | app | [----------] Alfonso Fase 2 listo
+2026-06-03 10:07:02,603 | INFO | app | [3ee78674-aa78-4533-8334-b98186da06ab] HTTP request started: GET /metrics
+2026-06-03 10:07:02,603 | INFO | app | [3ee78674-aa78-4533-8334-b98186da06ab] Metrics requested
+2026-06-03 10:07:02,603 | INFO | app | [3ee78674-aa78-4533-8334-b98186da06ab] HTTP request finished: GET /metrics 200
+2026-06-03 10:07:02,616 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-03 10:07:02,691 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-06-03 10:07:02,691 | INFO | app | [----------] Arrancando sistema de agentes — Fase 2
+2026-06-03 10:07:02,691 | INFO | app | [----------] EventBus iniciado
+2026-06-03 10:07:02,715 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'chat']
+2026-06-03 10:07:06,389 | INFO | app | [----------] Modelo precalentado
+2026-06-03 10:07:06,394 | INFO | app | [----------] Alfonso Fase 2 listo
+2026-06-03 10:07:06,394 | INFO | app | [0afec7a9-465e-4b38-8e8e-2ad2fddc7084] HTTP request started: POST /chat
+2026-06-03 10:07:06,406 | INFO | app | [0afec7a9-465e-4b38-8e8e-2ad2fddc7084] Solicitud /chat recibida
+2026-06-03 10:07:06,406 | INFO | app | [0afec7a9-465e-4b38-8e8e-2ad2fddc7084] SESSION_ID: 0afec7a9-465e-4b38-8e8e-2ad2fddc7084
+2026-06-03 10:07:06,406 | INFO | app | [0afec7a9-465e-4b38-8e8e-2ad2fddc7084] USER MESSAGE: hola
+2026-06-03 10:07:06,406 | INFO | app | [0afec7a9-465e-4b38-8e8e-2ad2fddc7084] Solicitud /chat procesada con estado: chat
+2026-06-03 10:07:06,406 | INFO | app | [0afec7a9-465e-4b38-8e8e-2ad2fddc7084] LATENCY: 0.00s
+2026-06-03 10:07:06,418 | INFO | app | [0afec7a9-465e-4b38-8e8e-2ad2fddc7084] HTTP request finished: POST /chat 200
+2026-06-03 10:07:06,422 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-03 10:07:06,436 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-06-03 10:07:06,438 | INFO | app | [----------] Arrancando sistema de agentes — Fase 2
+2026-06-03 10:07:06,438 | INFO | app | [----------] EventBus iniciado
+2026-06-03 10:07:06,457 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'chat']
+2026-06-03 10:07:06,473 | INFO | app | [----------] Modelo precalentado
+2026-06-03 10:07:06,473 | INFO | app | [----------] Alfonso Fase 2 listo
+2026-06-03 10:07:06,485 | INFO | app | [0ba22a93-e21b-4851-b061-9a439d394f31] HTTP request started: POST /chat
+2026-06-03 10:07:06,492 | WARNING | app | [0ba22a93-e21b-4851-b061-9a439d394f31] Validation error: [{'type': 'missing', 'loc': ('body', 'message'), 'msg': 'Field required', 'input': {}}]
+2026-06-03 10:07:06,492 | INFO | app | [0ba22a93-e21b-4851-b061-9a439d394f31] HTTP request finished: POST /chat 422
+2026-06-03 10:07:06,501 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-03 10:07:06,507 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-06-03 10:07:06,507 | INFO | app | [----------] Arrancando sistema de agentes — Fase 2
+2026-06-03 10:07:06,507 | INFO | app | [----------] EventBus iniciado
+2026-06-03 10:07:06,523 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'chat']
+2026-06-03 10:07:08,157 | INFO | app | [----------] Modelo precalentado
+2026-06-03 10:07:08,160 | INFO | app | [----------] Alfonso Fase 2 listo
+2026-06-03 10:07:08,160 | INFO | app | [874c13fe-dc83-4323-8446-eb0149184098] WS message received: hola
+2026-06-03 10:07:08,170 | INFO | app | [874c13fe-dc83-4323-8446-eb0149184098] WS disconnected
+2026-06-03 10:07:08,174 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-03 10:07:08,186 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-06-03 10:07:08,188 | INFO | app | [----------] Arrancando sistema de agentes — Fase 2
+2026-06-03 10:07:08,189 | INFO | app | [----------] EventBus iniciado
+2026-06-03 10:07:08,207 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'chat']
+2026-06-03 10:07:08,229 | INFO | app | [----------] Modelo precalentado
+2026-06-03 10:07:08,230 | INFO | app | [----------] Alfonso Fase 2 listo
+2026-06-03 10:07:08,232 | INFO | app | [6e187cf5-f84a-40b6-8457-5b90b698bdf4] HTTP request started: GET /tools
+2026-06-03 10:07:08,237 | INFO | app | [6e187cf5-f84a-40b6-8457-5b90b698bdf4] Tools requested
+2026-06-03 10:07:08,240 | INFO | app | [6e187cf5-f84a-40b6-8457-5b90b698bdf4] HTTP request finished: GET /tools 200
+2026-06-03 10:07:08,240 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-03 10:07:08,255 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-06-03 10:07:08,256 | INFO | app | [----------] Arrancando sistema de agentes — Fase 2
+2026-06-03 10:07:08,257 | INFO | app | [----------] EventBus iniciado
+2026-06-03 10:07:08,273 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'chat']
+2026-06-03 10:07:11,490 | INFO | app | [----------] Modelo precalentado
+2026-06-03 10:07:11,490 | INFO | app | [----------] Alfonso Fase 2 listo
+2026-06-03 10:07:11,496 | INFO | app | [404e54a2-22cc-4afd-b988-8d07180c9fa7] HTTP request started: POST /audio/tts
+2026-06-03 10:07:11,496 | INFO | app | [404e54a2-22cc-4afd-b988-8d07180c9fa7] Solicitud /audio/tts recibida
+2026-06-03 10:07:11,505 | INFO | app | [404e54a2-22cc-4afd-b988-8d07180c9fa7] Solicitud /audio/tts procesada
+2026-06-03 10:07:11,507 | INFO | app | [404e54a2-22cc-4afd-b988-8d07180c9fa7] HTTP request finished: POST /audio/tts 200
+2026-06-03 10:07:11,510 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-03 10:07:11,525 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-06-03 10:07:11,526 | INFO | app | [----------] Arrancando sistema de agentes — Fase 2
+2026-06-03 10:07:11,527 | INFO | app | [----------] EventBus iniciado
+2026-06-03 10:07:11,540 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'chat']
+2026-06-03 10:07:11,558 | INFO | app | [----------] Modelo precalentado
+2026-06-03 10:07:11,573 | INFO | app | [----------] Alfonso Fase 2 listo
+2026-06-03 10:07:11,576 | INFO | app | [0a705826-efdc-4409-939c-2d71b568e243] HTTP request started: POST /audio/stt
+2026-06-03 10:07:11,582 | INFO | app | [0a705826-efdc-4409-939c-2d71b568e243] Solicitud /audio/stt recibida
+2026-06-03 10:07:11,583 | INFO | app | [0a705826-efdc-4409-939c-2d71b568e243] Solicitud /audio/stt procesada
+2026-06-03 10:07:11,585 | INFO | app | [0a705826-efdc-4409-939c-2d71b568e243] HTTP request finished: POST /audio/stt 200
+2026-06-03 10:07:11,588 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-03 10:07:11,596 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-06-03 10:07:11,600 | INFO | app | [----------] Arrancando sistema de agentes — Fase 2
+2026-06-03 10:07:11,600 | INFO | app | [----------] EventBus iniciado
+2026-06-03 10:07:11,618 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'chat']
+2026-06-03 10:07:13,957 | INFO | app | [----------] Modelo precalentado
+2026-06-03 10:07:13,957 | INFO | app | [----------] Alfonso Fase 2 listo
+2026-06-03 10:07:13,969 | INFO | app | [87fc6a63-75a1-46b1-bbdb-140fedbe19e4] HTTP request started: POST /audio/wakeword
+2026-06-03 10:07:13,973 | INFO | app | [87fc6a63-75a1-46b1-bbdb-140fedbe19e4] Solicitud /audio/wakeword recibida
+2026-06-03 10:07:13,973 | INFO | app | [87fc6a63-75a1-46b1-bbdb-140fedbe19e4] Solicitud /audio/wakeword procesada
+2026-06-03 10:07:13,973 | INFO | app | [87fc6a63-75a1-46b1-bbdb-140fedbe19e4] HTTP request finished: POST /audio/wakeword 200
+2026-06-03 10:07:13,973 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-03 10:07:13,994 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-06-03 10:07:13,995 | INFO | app | [----------] Arrancando sistema de agentes — Fase 2
+2026-06-03 10:07:13,996 | INFO | app | [----------] EventBus iniciado
+2026-06-03 10:07:14,010 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'chat']
+2026-06-03 10:07:14,025 | INFO | app | [----------] Modelo precalentado
+2026-06-03 10:07:14,025 | INFO | app | [----------] Alfonso Fase 2 listo
+2026-06-03 10:07:14,045 | INFO | app | [97b3d46c-8e19-45f2-9f53-8602fbe71ded] HTTP request started: POST /audio/wakeword/upload
+2026-06-03 10:07:14,048 | INFO | app | [97b3d46c-8e19-45f2-9f53-8602fbe71ded] Solicitud /audio/wakeword/upload recibida: chunk.wav (keyword=alfonso)
+2026-06-03 10:07:14,048 | INFO | app | [97b3d46c-8e19-45f2-9f53-8602fbe71ded] Solicitud /audio/wakeword/upload procesada — detectada: True
+2026-06-03 10:07:14,056 | INFO | app | [97b3d46c-8e19-45f2-9f53-8602fbe71ded] HTTP request finished: POST /audio/wakeword/upload 200
+2026-06-03 10:07:14,058 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-03 10:07:14,072 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-06-03 10:07:14,075 | INFO | app | [----------] Arrancando sistema de agentes — Fase 2
+2026-06-03 10:07:14,078 | INFO | app | [----------] EventBus iniciado
+2026-06-03 10:07:14,098 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'chat']
+2026-06-03 10:07:15,832 | INFO | app | [----------] Modelo precalentado
+2026-06-03 10:07:15,842 | INFO | app | [----------] Alfonso Fase 2 listo
+2026-06-03 10:07:15,845 | INFO | app | [ef4ee493-d2a1-461d-9d60-b761bbe1f265] HTTP request started: POST /audio/wakeword/upload
+2026-06-03 10:07:15,845 | INFO | app | [ef4ee493-d2a1-461d-9d60-b761bbe1f265] Solicitud /audio/wakeword/upload recibida: chunk.wav (keyword=alfonso)
+2026-06-03 10:07:15,845 | INFO | app | [ef4ee493-d2a1-461d-9d60-b761bbe1f265] Solicitud /audio/wakeword/upload procesada — detectada: False
+2026-06-03 10:07:15,845 | INFO | app | [ef4ee493-d2a1-461d-9d60-b761bbe1f265] HTTP request finished: POST /audio/wakeword/upload 200
+2026-06-03 10:07:15,845 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-03 10:07:15,868 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-06-03 10:07:15,869 | INFO | app | [----------] Arrancando sistema de agentes — Fase 2
+2026-06-03 10:07:15,870 | INFO | app | [----------] EventBus iniciado
+2026-06-03 10:07:15,885 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'chat']
+2026-06-03 10:07:15,902 | INFO | app | [----------] Modelo precalentado
+2026-06-03 10:07:15,902 | INFO | app | [----------] Alfonso Fase 2 listo
+2026-06-03 10:07:15,902 | INFO | app | [7fccd9f2-5e27-4921-afd5-2216bb13ad69] HTTP request started: POST /audio/stt/upload
+2026-06-03 10:07:15,919 | INFO | app | [7fccd9f2-5e27-4921-afd5-2216bb13ad69] Solicitud /audio/stt/upload recibida: test.wav
+2026-06-03 10:07:15,921 | INFO | app | [7fccd9f2-5e27-4921-afd5-2216bb13ad69] Solicitud /audio/stt/upload procesada
+2026-06-03 10:07:15,921 | INFO | app | [7fccd9f2-5e27-4921-afd5-2216bb13ad69] HTTP request finished: POST /audio/stt/upload 200
+2026-06-03 10:07:15,925 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-03 10:07:15,938 | INFO | app | [----------] Los logs se escribirán en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-06-03 10:07:15,940 | INFO | app | [----------] Arrancando sistema de agentes — Fase 2
+2026-06-03 10:07:15,940 | INFO | app | [----------] EventBus iniciado
+2026-06-03 10:07:15,954 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'chat']
+2026-06-03 10:07:22,841 | INFO | app | [----------] Modelo precalentado
+2026-06-03 10:07:22,841 | INFO | app | [----------] Alfonso Fase 2 listo
+2026-06-03 10:07:22,847 | INFO | app | [5c8ae31c-acdc-4a8f-a31a-f08afbec2406] HTTP request started: POST /audio/converse
+2026-06-03 10:07:22,859 | INFO | app | [5c8ae31c-acdc-4a8f-a31a-f08afbec2406] Solicitud /audio/converse recibida
+2026-06-03 10:07:22,859 | INFO | app | [5c8ae31c-acdc-4a8f-a31a-f08afbec2406] Wake word detectada: alfonso
+2026-06-03 10:07:22,867 | INFO | app | [5c8ae31c-acdc-4a8f-a31a-f08afbec2406] HTTP request finished: POST /audio/converse 200
+2026-06-03 10:07:22,870 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-03 12:12:19,048 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-03 12:12:19,049 | INFO | app | [----------] Arrancando sistema de agentes — Fase 2
+2026-06-03 12:12:19,049 | INFO | app | [----------] EventBus iniciado
+2026-06-03 12:12:19,053 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'chat']
+2026-06-03 12:13:38,333 | INFO | app | [----------] Modelo precalentado
+2026-06-03 12:13:38,333 | INFO | app | [----------] Alfonso Fase 2 listo
+2026-06-03 12:13:47,920 | INFO | app | [29c1f2e2-ce7c-4682-a11d-86668c424df4] HTTP request started: GET /health
+2026-06-03 12:13:47,924 | INFO | app | [29c1f2e2-ce7c-4682-a11d-86668c424df4] Health check
+2026-06-03 12:13:47,926 | INFO | app | [29c1f2e2-ce7c-4682-a11d-86668c424df4] HTTP request finished: GET /health 200
+2026-06-03 12:40:49,870 | INFO | app | [3c05a422-896a-4b39-858a-1b78873526f0] HTTP request started: POST /chat
+2026-06-03 12:40:49,912 | WARNING | app | [3c05a422-896a-4b39-858a-1b78873526f0] Validation error: [{'type': 'json_invalid', 'loc': ('body', 1), 'msg': 'JSON decode error', 'input': {}, 'ctx': {'error': 'Expecting property name enclosed in double quotes'}}]
+2026-06-03 12:40:49,916 | INFO | app | [3c05a422-896a-4b39-858a-1b78873526f0] HTTP request finished: POST /chat 422
+2026-06-03 12:42:38,907 | INFO | app | [fa8f46c9-d8df-4c3b-a184-c1f983100827] HTTP request started: POST /chat
+2026-06-03 12:42:38,933 | WARNING | app | [fa8f46c9-d8df-4c3b-a184-c1f983100827] Validation error: [{'type': 'json_invalid', 'loc': ('body', 1), 'msg': 'JSON decode error', 'input': {}, 'ctx': {'error': 'Unterminated string starting at'}}]
+2026-06-03 12:42:38,933 | INFO | app | [fa8f46c9-d8df-4c3b-a184-c1f983100827] HTTP request finished: POST /chat 422
+2026-06-03 12:45:04,444 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-03 12:45:05,757 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-03 12:45:05,757 | INFO | app | [----------] Arrancando sistema de agentes — Fase 2
+2026-06-03 12:45:05,757 | INFO | app | [----------] EventBus iniciado
+2026-06-03 12:45:05,760 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'chat']
+2026-06-03 12:45:15,736 | INFO | app | [----------] Modelo precalentado
+2026-06-03 12:45:15,736 | INFO | app | [----------] Alfonso Fase 2 listo
+2026-06-03 12:45:35,806 | INFO | app | [cbff57e1-b1b6-4ce2-bb60-1d5a0a2ba69f] HTTP request started: POST /chat
+2026-06-03 12:45:35,815 | INFO | app | [cbff57e1-b1b6-4ce2-bb60-1d5a0a2ba69f] Solicitud /chat recibida
+2026-06-03 12:45:35,815 | INFO | app | [cbff57e1-b1b6-4ce2-bb60-1d5a0a2ba69f] SESSION_ID: cbff57e1-b1b6-4ce2-bb60-1d5a0a2ba69f
+2026-06-03 12:45:35,816 | INFO | app | [cbff57e1-b1b6-4ce2-bb60-1d5a0a2ba69f] USER MESSAGE: Hola Alfonso, prueba de texto
+2026-06-03 12:45:40,511 | INFO | app | [cbff57e1-b1b6-4ce2-bb60-1d5a0a2ba69f] Solicitud /chat procesada con estado: chat
+2026-06-03 12:45:40,511 | INFO | app | [cbff57e1-b1b6-4ce2-bb60-1d5a0a2ba69f] LATENCY: 4.70s
+2026-06-03 12:45:40,512 | INFO | app | [cbff57e1-b1b6-4ce2-bb60-1d5a0a2ba69f] HTTP request finished: POST /chat 200
+2026-06-03 12:50:18,629 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-03 12:50:19,480 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-03 12:50:19,480 | INFO | app | [----------] Arrancando sistema de agentes — Fase 2
+2026-06-03 12:50:19,480 | INFO | app | [----------] EventBus iniciado
+2026-06-03 12:50:19,483 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'chat']
+2026-06-03 12:50:23,134 | INFO | app | [----------] Modelo precalentado
+2026-06-03 12:50:23,135 | INFO | app | [----------] Alfonso Fase 2 listo
+2026-06-03 12:51:27,762 | INFO | app | [31b4b169-b7b6-4bd3-b525-39f334c6511e] HTTP request started: POST /chat
+2026-06-03 12:51:27,764 | INFO | app | [31b4b169-b7b6-4bd3-b525-39f334c6511e] Solicitud /chat recibida
+2026-06-03 12:51:27,764 | INFO | app | [31b4b169-b7b6-4bd3-b525-39f334c6511e] SESSION_ID: 31b4b169-b7b6-4bd3-b525-39f334c6511e
+2026-06-03 12:51:27,765 | INFO | app | [31b4b169-b7b6-4bd3-b525-39f334c6511e] USER MESSAGE: Hola Alfonso, prueba de texto
+2026-06-03 12:51:30,680 | INFO | app | [31b4b169-b7b6-4bd3-b525-39f334c6511e] Solicitud /chat procesada con estado: chat
+2026-06-03 12:51:30,680 | INFO | app | [31b4b169-b7b6-4bd3-b525-39f334c6511e] LATENCY: 2.92s
+2026-06-03 12:51:30,681 | INFO | app | [31b4b169-b7b6-4bd3-b525-39f334c6511e] HTTP request finished: POST /chat 200
+2026-06-03 12:56:49,169 | INFO | app | [1622fa97-a9cd-4402-9f31-fd2c437e1b7e] HTTP request started: POST /chat
+2026-06-03 12:56:49,171 | INFO | app | [1622fa97-a9cd-4402-9f31-fd2c437e1b7e] Solicitud /chat recibida
+2026-06-03 12:56:49,171 | INFO | app | [1622fa97-a9cd-4402-9f31-fd2c437e1b7e] SESSION_ID: 1622fa97-a9cd-4402-9f31-fd2c437e1b7e
+2026-06-03 12:56:49,171 | INFO | app | [1622fa97-a9cd-4402-9f31-fd2c437e1b7e] USER MESSAGE: Hola Alfonso, prueba de texto
+2026-06-03 12:56:53,081 | INFO | app | [1622fa97-a9cd-4402-9f31-fd2c437e1b7e] Solicitud /chat procesada con estado: chat
+2026-06-03 12:56:53,081 | INFO | app | [1622fa97-a9cd-4402-9f31-fd2c437e1b7e] LATENCY: 3.91s
+2026-06-03 12:56:53,082 | INFO | app | [1622fa97-a9cd-4402-9f31-fd2c437e1b7e] HTTP request finished: POST /chat 200
+2026-06-03 12:58:08,956 | INFO | app | [5b15ebd0-39a3-4b6b-98c4-b261e5398885] HTTP request started: POST /chat
+2026-06-03 12:58:08,957 | INFO | app | [5b15ebd0-39a3-4b6b-98c4-b261e5398885] Solicitud /chat recibida
+2026-06-03 12:58:08,957 | INFO | app | [5b15ebd0-39a3-4b6b-98c4-b261e5398885] SESSION_ID: 5b15ebd0-39a3-4b6b-98c4-b261e5398885
+2026-06-03 12:58:08,957 | INFO | app | [5b15ebd0-39a3-4b6b-98c4-b261e5398885] USER MESSAGE: Hola Alfonso, prueba de texto
+2026-06-03 12:58:10,169 | INFO | app | [5b15ebd0-39a3-4b6b-98c4-b261e5398885] Solicitud /chat procesada con estado: chat
+2026-06-03 12:58:10,169 | INFO | app | [5b15ebd0-39a3-4b6b-98c4-b261e5398885] LATENCY: 1.21s
+2026-06-03 12:58:10,170 | INFO | app | [5b15ebd0-39a3-4b6b-98c4-b261e5398885] HTTP request finished: POST /chat 200
+2026-06-03 12:59:47,284 | INFO | app | [a5a209cc-3855-4658-8e06-006b8e5b2ebf] HTTP request started: POST /chat
+2026-06-03 12:59:47,286 | INFO | app | [a5a209cc-3855-4658-8e06-006b8e5b2ebf] Solicitud /chat recibida
+2026-06-03 12:59:47,286 | INFO | app | [a5a209cc-3855-4658-8e06-006b8e5b2ebf] SESSION_ID: a5a209cc-3855-4658-8e06-006b8e5b2ebf
+2026-06-03 12:59:47,286 | INFO | app | [a5a209cc-3855-4658-8e06-006b8e5b2ebf] USER MESSAGE: Crea un archivo llamado mensaje_alfonso.txt que contenga la frase: hola soy Alfonso y puedo crear archivos
+2026-06-03 13:01:15,034 | INFO | app | [a5a209cc-3855-4658-8e06-006b8e5b2ebf] Solicitud /chat procesada con estado: tool
+2026-06-03 13:01:15,035 | INFO | app | [a5a209cc-3855-4658-8e06-006b8e5b2ebf] LATENCY: 94.23s
+2026-06-03 13:01:15,035 | INFO | app | [a5a209cc-3855-4658-8e06-006b8e5b2ebf] HTTP request finished: POST /chat 200
+2026-06-03 13:13:59,571 | INFO | app | [eda071f7-c1ff-49e8-a5ff-3722e08e4236] HTTP request started: POST /chat
+2026-06-03 13:13:59,573 | INFO | app | [eda071f7-c1ff-49e8-a5ff-3722e08e4236] Solicitud /chat recibida
+2026-06-03 13:13:59,573 | INFO | app | [eda071f7-c1ff-49e8-a5ff-3722e08e4236] SESSION_ID: eda071f7-c1ff-49e8-a5ff-3722e08e4236
+2026-06-03 13:13:59,574 | INFO | app | [eda071f7-c1ff-49e8-a5ff-3722e08e4236] USER MESSAGE: que hay en el archivo mensaje_alfonso.txt
+2026-06-03 13:14:26,864 | INFO | app | [eda071f7-c1ff-49e8-a5ff-3722e08e4236] Solicitud /chat procesada con estado: error
+2026-06-03 13:14:26,864 | INFO | app | [eda071f7-c1ff-49e8-a5ff-3722e08e4236] LATENCY: 30.01s
+2026-06-03 13:14:26,865 | INFO | app | [eda071f7-c1ff-49e8-a5ff-3722e08e4236] HTTP request finished: POST /chat 200
+2026-06-03 13:16:54,204 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-03 13:16:56,335 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-03 13:16:56,337 | INFO | app | [----------] Arrancando sistema de agentes — Fase 2
+2026-06-03 13:16:56,338 | INFO | app | [----------] EventBus iniciado
+2026-06-03 13:16:56,356 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'chat']
+2026-06-03 13:16:59,105 | INFO | app | [----------] Modelo precalentado
+2026-06-03 13:16:59,105 | INFO | app | [----------] Alfonso Fase 2 listo
+2026-06-03 13:19:29,334 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-03 13:19:30,014 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-03 13:19:30,015 | INFO | app | [----------] Arrancando sistema de agentes — Fase 2
+2026-06-03 13:19:30,015 | INFO | app | [----------] EventBus iniciado
+2026-06-03 13:19:30,017 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'chat']
+2026-06-03 13:19:31,539 | INFO | app | [----------] Modelo precalentado
+2026-06-03 13:19:31,539 | INFO | app | [----------] Alfonso Fase 2 listo
+2026-06-03 13:23:12,718 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-03 13:23:13,434 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-03 13:23:13,435 | INFO | app | [----------] Arrancando sistema de agentes — Fase 2
+2026-06-03 13:23:13,435 | INFO | app | [----------] EventBus iniciado
+2026-06-03 13:23:13,439 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'chat']
+2026-06-03 13:23:14,903 | INFO | app | [----------] Modelo precalentado
+2026-06-03 13:23:14,903 | INFO | app | [----------] Alfonso Fase 2 listo
+2026-06-03 13:23:28,874 | INFO | app | [5f7f8671-35b6-4d8d-ab5a-0845686feeb0] HTTP request started: POST /chat
+2026-06-03 13:23:28,876 | INFO | app | [5f7f8671-35b6-4d8d-ab5a-0845686feeb0] Solicitud /chat recibida
+2026-06-03 13:23:28,876 | INFO | app | [5f7f8671-35b6-4d8d-ab5a-0845686feeb0] SESSION_ID: 5f7f8671-35b6-4d8d-ab5a-0845686feeb0
+2026-06-03 13:23:28,876 | INFO | app | [5f7f8671-35b6-4d8d-ab5a-0845686feeb0] USER MESSAGE: que hay en el archivo mensaje_alfonso.txt
+2026-06-03 13:23:45,096 | INFO | app | [5f7f8671-35b6-4d8d-ab5a-0845686feeb0] Solicitud /chat procesada con estado: chat
+2026-06-03 13:23:45,096 | INFO | app | [5f7f8671-35b6-4d8d-ab5a-0845686feeb0] LATENCY: 18.30s
+2026-06-03 13:23:45,097 | INFO | app | [5f7f8671-35b6-4d8d-ab5a-0845686feeb0] HTTP request finished: POST /chat 200
+2026-06-03 13:33:44,479 | INFO | app | [256fe4b7-9de2-40d2-a904-433c15d713aa] HTTP request started: POST /chat
+2026-06-03 13:33:44,481 | INFO | app | [256fe4b7-9de2-40d2-a904-433c15d713aa] Solicitud /chat recibida
+2026-06-03 13:33:44,481 | INFO | app | [256fe4b7-9de2-40d2-a904-433c15d713aa] SESSION_ID: 256fe4b7-9de2-40d2-a904-433c15d713aa
+2026-06-03 13:33:44,481 | INFO | app | [256fe4b7-9de2-40d2-a904-433c15d713aa] USER MESSAGE: que hay en el archivo \\wsl.localhost\Ubuntu\home\luisd\Alfonso\mensaje_alfonso.txt
+2026-06-03 13:35:11,353 | INFO | app | [256fe4b7-9de2-40d2-a904-433c15d713aa] Solicitud /chat procesada con estado: error
+2026-06-03 13:35:11,353 | INFO | app | [256fe4b7-9de2-40d2-a904-433c15d713aa] LATENCY: 91.04s
+2026-06-03 13:35:11,353 | INFO | app | [256fe4b7-9de2-40d2-a904-433c15d713aa] HTTP request finished: POST /chat 200
+2026-06-03 13:38:41,512 | INFO | app | [bdff4e79-72e4-4833-a581-f90d3cbcaedb] HTTP request started: POST /chat
+2026-06-03 13:38:41,513 | INFO | app | [bdff4e79-72e4-4833-a581-f90d3cbcaedb] Solicitud /chat recibida
+2026-06-03 13:38:41,514 | INFO | app | [bdff4e79-72e4-4833-a581-f90d3cbcaedb] SESSION_ID: bdff4e79-72e4-4833-a581-f90d3cbcaedb
+2026-06-03 13:38:41,514 | INFO | app | [bdff4e79-72e4-4833-a581-f90d3cbcaedb] USER MESSAGE: que hay en el archivo /home/luisd/Alfonso/mensaje_alfonso.txt
+2026-06-03 13:38:44,636 | INFO | app | [bdff4e79-72e4-4833-a581-f90d3cbcaedb] Solicitud /chat procesada con estado: tool
+2026-06-03 13:38:44,636 | INFO | app | [bdff4e79-72e4-4833-a581-f90d3cbcaedb] LATENCY: 5.31s
+2026-06-03 13:38:44,637 | INFO | app | [bdff4e79-72e4-4833-a581-f90d3cbcaedb] HTTP request finished: POST /chat 200
+2026-06-03 13:40:13,312 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-03 13:40:14,106 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-03 13:40:14,106 | INFO | app | [----------] Arrancando sistema de agentes — Fase 2
+2026-06-03 13:40:14,107 | INFO | app | [----------] EventBus iniciado
+2026-06-03 13:40:14,110 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'chat']
+2026-06-03 13:41:29,707 | INFO | app | [----------] Modelo precalentado
+2026-06-03 13:41:29,707 | INFO | app | [----------] Alfonso Fase 2 listo
+2026-06-03 13:48:41,343 | INFO | app | [b9ff987a-af40-4310-9151-4eb83d047b58] HTTP request started: POST /chat
+2026-06-03 13:48:41,347 | INFO | app | [b9ff987a-af40-4310-9151-4eb83d047b58] Solicitud /chat recibida
+2026-06-03 13:48:41,347 | INFO | app | [b9ff987a-af40-4310-9151-4eb83d047b58] SESSION_ID: b9ff987a-af40-4310-9151-4eb83d047b58
+2026-06-03 13:48:41,347 | INFO | app | [b9ff987a-af40-4310-9151-4eb83d047b58] USER MESSAGE: que hay en el archivo /home/luisd/Alfonso/mensaje_alfonso.txt
+2026-06-03 13:50:07,718 | INFO | app | [b9ff987a-af40-4310-9151-4eb83d047b58] Solicitud /chat procesada con estado: tool
+2026-06-03 13:50:07,718 | INFO | app | [b9ff987a-af40-4310-9151-4eb83d047b58] LATENCY: 93.74s
+2026-06-03 13:50:07,719 | INFO | app | [b9ff987a-af40-4310-9151-4eb83d047b58] HTTP request finished: POST /chat 200
+2026-06-03 13:59:12,562 | INFO | app | [7dc878b1-b0a1-47a0-86a3-eaa4a88cf928] HTTP request started: POST /chat
+2026-06-03 13:59:12,564 | INFO | app | [7dc878b1-b0a1-47a0-86a3-eaa4a88cf928] Solicitud /chat recibida
+2026-06-03 13:59:12,564 | INFO | app | [7dc878b1-b0a1-47a0-86a3-eaa4a88cf928] SESSION_ID: 7dc878b1-b0a1-47a0-86a3-eaa4a88cf928
+2026-06-03 13:59:12,564 | INFO | app | [7dc878b1-b0a1-47a0-86a3-eaa4a88cf928] USER MESSAGE: elimina el archivo /home/luisd/Alfonso/mensaje_alfonso.txt
+2026-06-03 13:59:17,023 | INFO | app | [7dc878b1-b0a1-47a0-86a3-eaa4a88cf928] Solicitud /chat procesada con estado: error
+2026-06-03 13:59:17,023 | INFO | app | [7dc878b1-b0a1-47a0-86a3-eaa4a88cf928] LATENCY: 4.46s
+2026-06-03 13:59:17,024 | INFO | app | [7dc878b1-b0a1-47a0-86a3-eaa4a88cf928] HTTP request finished: POST /chat 200
+2026-06-03 14:04:25,645 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-03 14:04:26,669 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-03 14:04:26,670 | INFO | app | [----------] Arrancando sistema de agentes — Fase 2
+2026-06-03 14:04:26,670 | INFO | app | [----------] EventBus iniciado
+2026-06-03 14:04:26,673 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'chat']
+2026-06-03 14:05:43,608 | INFO | app | [----------] Modelo precalentado
+2026-06-03 14:05:43,608 | INFO | app | [----------] Alfonso Fase 2 listo
+2026-06-03 14:07:32,532 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-03 14:07:33,247 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-03 14:07:33,247 | INFO | app | [----------] Arrancando sistema de agentes — Fase 2
+2026-06-03 14:07:33,247 | INFO | app | [----------] EventBus iniciado
+2026-06-03 14:07:33,249 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'chat']
+2026-06-03 14:07:35,147 | INFO | app | [----------] Modelo precalentado
+2026-06-03 14:07:35,147 | INFO | app | [----------] Alfonso Fase 2 listo
+2026-06-03 14:11:47,980 | INFO | app | [c2462c2a-765e-498f-8212-7b3d637167d4] HTTP request started: POST /chat
+2026-06-03 14:11:47,983 | INFO | app | [c2462c2a-765e-498f-8212-7b3d637167d4] Solicitud /chat recibida
+2026-06-03 14:11:47,983 | INFO | app | [c2462c2a-765e-498f-8212-7b3d637167d4] SESSION_ID: c2462c2a-765e-498f-8212-7b3d637167d4
+2026-06-03 14:11:47,983 | INFO | app | [c2462c2a-765e-498f-8212-7b3d637167d4] USER MESSAGE: elimina el archivo /home/luisd/Alfonso/mensaje_alfonso.txt
+2026-06-03 14:13:09,855 | INFO | app | [c2462c2a-765e-498f-8212-7b3d637167d4] Solicitud /chat procesada con estado: error
+2026-06-03 14:13:09,855 | INFO | app | [c2462c2a-765e-498f-8212-7b3d637167d4] LATENCY: 89.64s
+2026-06-03 14:13:09,856 | INFO | app | [c2462c2a-765e-498f-8212-7b3d637167d4] HTTP request finished: POST /chat 200
+2026-06-03 14:16:07,899 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-03 14:16:08,604 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-03 14:16:08,604 | INFO | app | [----------] Arrancando sistema de agentes — Fase 2
+2026-06-03 14:16:08,604 | INFO | app | [----------] EventBus iniciado
+2026-06-03 14:16:08,607 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'chat']
+2026-06-03 14:17:24,254 | INFO | app | [----------] Modelo precalentado
+2026-06-03 14:17:24,254 | INFO | app | [----------] Alfonso Fase 2 listo
+2026-06-03 14:21:21,354 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-03 14:21:22,098 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-03 14:21:22,099 | INFO | app | [----------] Arrancando sistema de agentes — Fase 2
+2026-06-03 14:21:22,099 | INFO | app | [----------] EventBus iniciado
+2026-06-03 14:21:22,102 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'chat']
+2026-06-03 14:21:23,634 | INFO | app | [----------] Modelo precalentado
+2026-06-03 14:21:23,634 | INFO | app | [----------] Alfonso Fase 2 listo
+2026-06-03 14:22:04,695 | INFO | app | [9322ad87-c52d-412e-8be6-2348cf6b461d] HTTP request started: POST /chat
+2026-06-03 14:22:04,698 | INFO | app | [9322ad87-c52d-412e-8be6-2348cf6b461d] Solicitud /chat recibida
+2026-06-03 14:22:04,698 | INFO | app | [9322ad87-c52d-412e-8be6-2348cf6b461d] SESSION_ID: 9322ad87-c52d-412e-8be6-2348cf6b461d
+2026-06-03 14:22:04,698 | INFO | app | [9322ad87-c52d-412e-8be6-2348cf6b461d] USER MESSAGE: elimina el archivo /home/luisd/Alfonso/mensaje_alfonso.txt
+2026-06-03 14:23:27,440 | INFO | app | [9322ad87-c52d-412e-8be6-2348cf6b461d] Solicitud /chat procesada con estado: error
+2026-06-03 14:23:27,440 | INFO | app | [9322ad87-c52d-412e-8be6-2348cf6b461d] LATENCY: 87.90s
+2026-06-03 14:23:27,441 | INFO | app | [9322ad87-c52d-412e-8be6-2348cf6b461d] HTTP request finished: POST /chat 200
+2026-06-03 14:32:43,178 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-03 14:32:43,883 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-03 14:32:43,884 | INFO | app | [----------] Arrancando sistema de agentes — Fase 2
+2026-06-03 14:32:43,884 | INFO | app | [----------] EventBus iniciado
+2026-06-03 14:32:43,886 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'chat']
+2026-06-03 14:34:00,281 | INFO | app | [----------] Modelo precalentado
+2026-06-03 14:34:00,281 | INFO | app | [----------] Alfonso Fase 2 listo
+2026-06-03 14:34:23,976 | INFO | app | [fa6cdac2-33c3-4a81-9cf5-bbb6ded41aaf] HTTP request started: POST /chat
+2026-06-03 14:34:23,978 | INFO | app | [fa6cdac2-33c3-4a81-9cf5-bbb6ded41aaf] Solicitud /chat recibida
+2026-06-03 14:34:23,978 | INFO | app | [fa6cdac2-33c3-4a81-9cf5-bbb6ded41aaf] SESSION_ID: fa6cdac2-33c3-4a81-9cf5-bbb6ded41aaf
+2026-06-03 14:34:23,979 | INFO | app | [fa6cdac2-33c3-4a81-9cf5-bbb6ded41aaf] USER MESSAGE: elimina el archivo /home/luisd/Alfonso/mensaje_alfonso.txt
+2026-06-03 14:35:46,065 | INFO | app | [fa6cdac2-33c3-4a81-9cf5-bbb6ded41aaf] Solicitud /chat procesada con estado: error
+2026-06-03 14:35:46,065 | INFO | app | [fa6cdac2-33c3-4a81-9cf5-bbb6ded41aaf] LATENCY: 89.76s
+2026-06-03 14:35:46,066 | INFO | app | [fa6cdac2-33c3-4a81-9cf5-bbb6ded41aaf] HTTP request finished: POST /chat 200
+2026-06-03 15:17:26,975 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-03 15:17:28,261 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-03 15:17:28,261 | INFO | app | [----------] Arrancando sistema de agentes — Fase 2
+2026-06-03 15:17:28,261 | INFO | app | [----------] EventBus iniciado
+2026-06-03 15:17:28,264 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'chat']
+2026-06-03 15:18:39,133 | INFO | app | [----------] Modelo precalentado
+2026-06-03 15:18:39,133 | INFO | app | [----------] Alfonso Fase 2 listo
+2026-06-03 15:18:39,245 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-03 15:18:40,509 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-03 15:18:40,509 | INFO | app | [----------] Arrancando sistema de agentes — Fase 2
+2026-06-03 15:18:40,510 | INFO | app | [----------] EventBus iniciado
+2026-06-03 15:18:40,512 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'chat']
+2026-06-03 15:18:42,887 | INFO | app | [----------] Modelo precalentado
+2026-06-03 15:18:42,888 | INFO | app | [----------] Alfonso Fase 2 listo
+2026-06-03 15:19:21,532 | INFO | app | [4a936f0b-0396-4acd-bf3c-c0d1c92bcf02] HTTP request started: POST /chat
+2026-06-03 15:19:21,534 | INFO | app | [4a936f0b-0396-4acd-bf3c-c0d1c92bcf02] Solicitud /chat recibida
+2026-06-03 15:19:21,535 | INFO | app | [4a936f0b-0396-4acd-bf3c-c0d1c92bcf02] SESSION_ID: 4a936f0b-0396-4acd-bf3c-c0d1c92bcf02
+2026-06-03 15:19:21,535 | INFO | app | [4a936f0b-0396-4acd-bf3c-c0d1c92bcf02] USER MESSAGE: elimina el archivo /home/luisd/Alfonso/mensaje_alfonso.txt
+2026-06-03 15:21:12,683 | INFO | app | [4a936f0b-0396-4acd-bf3c-c0d1c92bcf02] Solicitud /chat procesada con estado: error
+2026-06-03 15:21:12,683 | INFO | app | [4a936f0b-0396-4acd-bf3c-c0d1c92bcf02] LATENCY: 118.81s
+2026-06-03 15:21:12,684 | INFO | app | [4a936f0b-0396-4acd-bf3c-c0d1c92bcf02] HTTP request finished: POST /chat 200
+2026-06-03 15:24:24,753 | INFO | app | [009cbdf6-3446-4233-9993-81c9d7f4d691] HTTP request started: POST /chat
+2026-06-03 15:24:24,754 | INFO | app | [009cbdf6-3446-4233-9993-81c9d7f4d691] Solicitud /chat recibida
+2026-06-03 15:24:24,755 | INFO | app | [009cbdf6-3446-4233-9993-81c9d7f4d691] SESSION_ID: 009cbdf6-3446-4233-9993-81c9d7f4d691
+2026-06-03 15:24:24,755 | INFO | app | [009cbdf6-3446-4233-9993-81c9d7f4d691] USER MESSAGE: Crea un archivo llamado mensaje_alfonso2.txt que contenga la frase: hola soy Alfonso y puedo crear archivos
+2026-06-03 15:25:54,277 | INFO | app | [009cbdf6-3446-4233-9993-81c9d7f4d691] Solicitud /chat procesada con estado: tool
+2026-06-03 15:25:54,278 | INFO | app | [009cbdf6-3446-4233-9993-81c9d7f4d691] LATENCY: 94.52s
+2026-06-03 15:25:54,278 | INFO | app | [009cbdf6-3446-4233-9993-81c9d7f4d691] HTTP request finished: POST /chat 200
+2026-06-03 15:35:29,812 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-03 15:35:30,735 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-03 15:35:30,735 | INFO | app | [----------] Arrancando sistema de agentes — Fase 2
+2026-06-03 15:35:30,736 | INFO | app | [----------] EventBus iniciado
+2026-06-03 15:35:30,738 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'chat']
+2026-06-03 15:36:44,852 | INFO | app | [----------] Modelo precalentado
+2026-06-03 15:36:44,853 | INFO | app | [----------] Alfonso Fase 2 listo
+2026-06-03 15:36:44,854 | INFO | app | [d0f7af7d-2d43-40cd-aac0-02c8f36917e5] HTTP request started: POST /chat
+2026-06-03 15:36:44,857 | INFO | app | [d0f7af7d-2d43-40cd-aac0-02c8f36917e5] Solicitud /chat recibida
+2026-06-03 15:36:44,858 | INFO | app | [d0f7af7d-2d43-40cd-aac0-02c8f36917e5] SESSION_ID: d0f7af7d-2d43-40cd-aac0-02c8f36917e5
+2026-06-03 15:36:44,858 | INFO | app | [d0f7af7d-2d43-40cd-aac0-02c8f36917e5] USER MESSAGE: elimina el archivo /home/luisd/Alfonso/mensaje_alfonso.txt
+2026-06-03 15:38:37,185 | INFO | app | [d0f7af7d-2d43-40cd-aac0-02c8f36917e5] Solicitud /chat procesada con estado: error
+2026-06-03 15:38:37,186 | INFO | app | [d0f7af7d-2d43-40cd-aac0-02c8f36917e5] LATENCY: 120.69s
+2026-06-03 15:38:37,186 | INFO | app | [d0f7af7d-2d43-40cd-aac0-02c8f36917e5] HTTP request finished: POST /chat 200
