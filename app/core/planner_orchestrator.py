@@ -26,7 +26,7 @@ import re
 
 from app.core.intent_router import IntentRouter
 from app.core.memory import memory
-from app.core.task_planner import TaskPlan, TaskPlanner
+from app.agents.task_planner import TaskPlan, TaskPlanner
 from app.utils.logger import attach_request_id, error_logger, orchestrator_logger
 
 _router = IntentRouter()

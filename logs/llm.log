@@ -82,3 +82,56 @@ Por favor, selecciona el archivo "Alfonso" desde esta carpeta y abrela.
 2026-06-04 11:43:55,500 | DEBUG | llm | [----------] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-04T09:43:55.494332799Z', 'message': {'role': 'assistant', 'content': 'Pong! How can I assist you today?'}, 'done': True, 'done_reason': 'stop', 'total_duration': 3945981383, 'load_duration': 225869318, 'prompt_eval_count': 1284, 'prompt_eval_duration': 1521105606, 'eval_count': 11, 'eval_duration': 2108008666}
 2026-06-04 11:43:55,501 | DEBUG | llm | [----------] OLLAMA CONTENT: Pong! How can I assist you today?
 2026-06-04 11:43:55,501 | INFO | llm | [----------] Respuesta LLM recibida correctamente
+2026-06-04 12:39:52,026 | INFO | llm | [----------] LLM INPUT: ping
+2026-06-04 12:39:52,029 | INFO | llm | [----------] LLM MODE: chat
+2026-06-04 12:39:56,982 | DEBUG | llm | [----------] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-04T10:39:56.974364646Z', 'message': {'role': 'assistant', 'content': 'Hello! How can I assist you today?'}, 'done': True, 'done_reason': 'stop', 'total_duration': 4926531054, 'load_duration': 183101657, 'prompt_eval_count': 1284, 'prompt_eval_duration': 3483638411, 'eval_count': 10, 'eval_duration': 1039133776}
+2026-06-04 12:39:56,983 | DEBUG | llm | [----------] OLLAMA CONTENT: Hello! How can I assist you today?
+2026-06-04 12:39:56,983 | INFO | llm | [----------] Respuesta LLM recibida correctamente
+2026-06-04 12:43:07,011 | INFO | llm | [6ea7c2be-c079-401b-a3ce-8093b5a9f816] LLM INPUT: buenos dias Alfonso que hora es
+2026-06-04 12:43:07,012 | INFO | llm | [6ea7c2be-c079-401b-a3ce-8093b5a9f816] LLM MODE: chat
+2026-06-04 12:43:07,012 | DEBUG | llm | [6ea7c2be-c079-401b-a3ce-8093b5a9f816] LLM MEMORY CONTEXT: user: buenos dias Alfonso que hora es
+2026-06-04 12:43:14,657 | DEBUG | llm | [6ea7c2be-c079-401b-a3ce-8093b5a9f816] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-04T10:43:14.655170924Z', 'message': {'role': 'assistant', 'content': 'La hora actual en el horario del este (este de España) sería 12:00 pm. Si estás localizado en otra zona horaria, por favor, consulta una aplicación o servicio de tiempo para obtener la hora correcta.'}, 'done': True, 'done_reason': 'stop', 'total_duration': 7638345435, 'load_duration': 139813369, 'prompt_eval_count': 1304, 'prompt_eval_duration': 2402468064, 'eval_count': 52, 'eval_duration': 4873194100}
+2026-06-04 12:43:14,657 | DEBUG | llm | [6ea7c2be-c079-401b-a3ce-8093b5a9f816] OLLAMA CONTENT: La hora actual en el horario del este (este de España) sería 12:00 pm. Si estás localizado en otra zona horaria, por favor, consulta una aplicación o servicio de tiempo para obtener la hora correcta.
+2026-06-04 12:43:14,658 | INFO | llm | [6ea7c2be-c079-401b-a3ce-8093b5a9f816] Respuesta LLM recibida correctamente
+2026-06-04 12:45:17,238 | INFO | llm | [992b5850-8662-4ddc-8617-e8d002850d71] LLM INPUT: que dia es hoy
+2026-06-04 12:45:17,238 | INFO | llm | [992b5850-8662-4ddc-8617-e8d002850d71] LLM MODE: chat
+2026-06-04 12:45:17,239 | DEBUG | llm | [992b5850-8662-4ddc-8617-e8d002850d71] LLM MEMORY CONTEXT: user: que dia es hoy
+2026-06-04 12:45:19,793 | DEBUG | llm | [992b5850-8662-4ddc-8617-e8d002850d71] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-04T10:45:19.792267044Z', 'message': {'role': 'assistant', 'content': 'Hoy es el 4 de junio de 2025.'}, 'done': True, 'done_reason': 'stop', 'total_duration': 2550370845, 'load_duration': 119571606, 'prompt_eval_count': 1293, 'prompt_eval_duration': 1061396642, 'eval_count': 17, 'eval_duration': 1295237056}
+2026-06-04 12:45:19,793 | DEBUG | llm | [992b5850-8662-4ddc-8617-e8d002850d71] OLLAMA CONTENT: Hoy es el 4 de junio de 2025.
+2026-06-04 12:45:19,793 | INFO | llm | [992b5850-8662-4ddc-8617-e8d002850d71] Respuesta LLM recibida correctamente
+2026-06-04 12:45:48,158 | INFO | llm | [b1c6777e-82b3-431d-8d00-c79a7787124b] LLM INPUT: que dia de la semana es hoy
+2026-06-04 12:45:48,158 | INFO | llm | [b1c6777e-82b3-431d-8d00-c79a7787124b] LLM MODE: chat
+2026-06-04 12:45:48,158 | DEBUG | llm | [b1c6777e-82b3-431d-8d00-c79a7787124b] LLM MEMORY CONTEXT: user: que dia de la semana es hoy
+2026-06-04 12:45:50,001 | DEBUG | llm | [b1c6777e-82b3-431d-8d00-c79a7787124b] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-04T10:45:50.000237981Z', 'message': {'role': 'assistant', 'content': 'Hoy es domingo.'}, 'done': True, 'done_reason': 'stop', 'total_duration': 1838641918, 'load_duration': 127727858, 'prompt_eval_count': 1299, 'prompt_eval_duration': 1265091690, 'eval_count': 6, 'eval_duration': 404118812}
+2026-06-04 12:45:50,001 | DEBUG | llm | [b1c6777e-82b3-431d-8d00-c79a7787124b] OLLAMA CONTENT: Hoy es domingo.
+2026-06-04 12:45:50,001 | INFO | llm | [b1c6777e-82b3-431d-8d00-c79a7787124b] Respuesta LLM recibida correctamente
+2026-06-04 12:47:54,649 | INFO | llm | [b76b8535-9f30-41c8-a9d1-178f5ed9b932] LLM INPUT: que dia de la semana es martes
+2026-06-04 12:47:54,649 | INFO | llm | [b76b8535-9f30-41c8-a9d1-178f5ed9b932] LLM MODE: chat
+2026-06-04 12:47:54,649 | DEBUG | llm | [b76b8535-9f30-41c8-a9d1-178f5ed9b932] LLM MEMORY CONTEXT: user: que dia de la semana es martes
+2026-06-04 12:47:56,670 | DEBUG | llm | [b76b8535-9f30-41c8-a9d1-178f5ed9b932] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-04T10:47:56.669468199Z', 'message': {'role': 'assistant', 'content': 'martes es un día del lunes.'}, 'done': True, 'done_reason': 'stop', 'total_duration': 2016767402, 'load_duration': 127798880, 'prompt_eval_count': 1301, 'prompt_eval_duration': 1094505144, 'eval_count': 10, 'eval_duration': 717396960}
+2026-06-04 12:47:56,670 | DEBUG | llm | [b76b8535-9f30-41c8-a9d1-178f5ed9b932] OLLAMA CONTENT: martes es un día del lunes.
+2026-06-04 12:47:56,671 | INFO | llm | [b76b8535-9f30-41c8-a9d1-178f5ed9b932] Respuesta LLM recibida correctamente
+2026-06-04 12:57:44,072 | INFO | llm | [a051055d-0052-4937-b551-3f19b6622263] LLM INPUT: hoy es martes
+2026-06-04 12:57:44,073 | INFO | llm | [a051055d-0052-4937-b551-3f19b6622263] LLM MODE: chat
+2026-06-04 12:57:44,073 | DEBUG | llm | [a051055d-0052-4937-b551-3f19b6622263] LLM MEMORY CONTEXT: user: hoy es martes
+2026-06-04 12:57:46,092 | DEBUG | llm | [a051055d-0052-4937-b551-3f19b6622263] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-04T10:57:46.091698667Z', 'message': {'role': 'assistant', 'content': '¡Hola! ¿Cómo puedo ayudarte hoy?'}, 'done': True, 'done_reason': 'stop', 'total_duration': 2015034501, 'load_duration': 131674143, 'prompt_eval_count': 1294, 'prompt_eval_duration': 1007421761, 'eval_count': 11, 'eval_duration': 830553467}
+2026-06-04 12:57:46,093 | DEBUG | llm | [a051055d-0052-4937-b551-3f19b6622263] OLLAMA CONTENT: ¡Hola! ¿Cómo puedo ayudarte hoy?
+2026-06-04 12:57:46,093 | INFO | llm | [a051055d-0052-4937-b551-3f19b6622263] Respuesta LLM recibida correctamente
+2026-06-04 12:58:06,639 | INFO | llm | [d7670f5d-0d29-4494-a1ea-54e61d04cd40] LLM INPUT: que dia de la semana es hoy
+2026-06-04 12:58:06,639 | INFO | llm | [d7670f5d-0d29-4494-a1ea-54e61d04cd40] LLM MODE: chat
+2026-06-04 12:58:06,639 | DEBUG | llm | [d7670f5d-0d29-4494-a1ea-54e61d04cd40] LLM MEMORY CONTEXT: user: que dia de la semana es hoy
+2026-06-04 12:58:09,161 | DEBUG | llm | [d7670f5d-0d29-4494-a1ea-54e61d04cd40] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-04T10:58:09.159065854Z', 'message': {'role': 'assistant', 'content': 'Hoy es viernes.'}, 'done': True, 'done_reason': 'stop', 'total_duration': 2516787782, 'load_duration': 171617504, 'prompt_eval_count': 1299, 'prompt_eval_duration': 1651920658, 'eval_count': 7, 'eval_duration': 645333649}
+2026-06-04 12:58:09,161 | DEBUG | llm | [d7670f5d-0d29-4494-a1ea-54e61d04cd40] OLLAMA CONTENT: Hoy es viernes.
+2026-06-04 12:58:09,161 | INFO | llm | [d7670f5d-0d29-4494-a1ea-54e61d04cd40] Respuesta LLM recibida correctamente
+2026-06-04 12:58:25,383 | INFO | llm | [11f5d806-a6c9-44b9-8fc6-64f89ab1a197] LLM INPUT: hoy es martes
+2026-06-04 12:58:25,383 | INFO | llm | [11f5d806-a6c9-44b9-8fc6-64f89ab1a197] LLM MODE: chat
+2026-06-04 12:58:25,383 | DEBUG | llm | [11f5d806-a6c9-44b9-8fc6-64f89ab1a197] LLM MEMORY CONTEXT: user: hoy es martes
+2026-06-04 12:58:28,133 | DEBUG | llm | [11f5d806-a6c9-44b9-8fc6-64f89ab1a197] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-04T10:58:28.131780875Z', 'message': {'role': 'assistant', 'content': '¡Hola! ¿Cómo puedo ayudarte hoy?'}, 'done': True, 'done_reason': 'stop', 'total_duration': 2737472978, 'load_duration': 147349022, 'prompt_eval_count': 1294, 'prompt_eval_duration': 1349486972, 'eval_count': 11, 'eval_duration': 1164448137}
+2026-06-04 12:58:28,133 | DEBUG | llm | [11f5d806-a6c9-44b9-8fc6-64f89ab1a197] OLLAMA CONTENT: ¡Hola! ¿Cómo puedo ayudarte hoy?
+2026-06-04 12:58:28,133 | INFO | llm | [11f5d806-a6c9-44b9-8fc6-64f89ab1a197] Respuesta LLM recibida correctamente
+2026-06-04 12:58:34,952 | INFO | llm | [cf28c48a-fd32-4ca8-a4b3-b8bfd6d5d413] LLM INPUT: que dia de la semana es hoy
+2026-06-04 12:58:34,952 | INFO | llm | [cf28c48a-fd32-4ca8-a4b3-b8bfd6d5d413] LLM MODE: chat
+2026-06-04 12:58:34,952 | DEBUG | llm | [cf28c48a-fd32-4ca8-a4b3-b8bfd6d5d413] LLM MEMORY CONTEXT: user: que dia de la semana es hoy
+2026-06-04 12:58:37,306 | DEBUG | llm | [cf28c48a-fd32-4ca8-a4b3-b8bfd6d5d413] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-04T10:58:37.305324542Z', 'message': {'role': 'assistant', 'content': 'Hoy es lunes.'}, 'done': True, 'done_reason': 'stop', 'total_duration': 2349887478, 'load_duration': 123328166, 'prompt_eval_count': 1299, 'prompt_eval_duration': 1514099910, 'eval_count': 7, 'eval_duration': 673241320}
+2026-06-04 12:58:37,307 | DEBUG | llm | [cf28c48a-fd32-4ca8-a4b3-b8bfd6d5d413] OLLAMA CONTENT: Hoy es lunes.
+2026-06-04 12:58:37,307 | INFO | llm | [cf28c48a-fd32-4ca8-a4b3-b8bfd6d5d413] Respuesta LLM recibida correctamente

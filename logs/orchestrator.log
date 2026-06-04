@@ -68,3 +68,51 @@
 2026-06-04 11:41:30,398 | INFO | orchestrator | [e820dc8d-23c4-47ed-9e56-b7f478d4c114] Intent: chat (score=0.00, reglas=[])
 2026-06-04 11:41:30,399 | DEBUG | orchestrator | [e820dc8d-23c4-47ed-9e56-b7f478d4c114] Evento publicado: chat.respond
 2026-06-04 11:41:34,141 | INFO | orchestrator | [e820dc8d-23c4-47ed-9e56-b7f478d4c114] Respuesta chat completada
+2026-06-04 12:43:06,990 | INFO | orchestrator | [6ea7c2be-c079-401b-a3ce-8093b5a9f816] PlannerOrchestrator.run iniciado
+2026-06-04 12:43:06,991 | INFO | orchestrator | [6ea7c2be-c079-401b-a3ce-8093b5a9f816] USER MESSAGE: buenos dias Alfonso que hora es
+2026-06-04 12:43:06,991 | INFO | orchestrator | [6ea7c2be-c079-401b-a3ce-8093b5a9f816] SESSION_ID: 6ea7c2be-c079-401b-a3ce-8093b5a9f816
+2026-06-04 12:43:06,999 | INFO | orchestrator | [6ea7c2be-c079-401b-a3ce-8093b5a9f816] Intent: chat (score=0.00, reglas=[])
+2026-06-04 12:43:06,999 | DEBUG | orchestrator | [6ea7c2be-c079-401b-a3ce-8093b5a9f816] Evento publicado: chat.respond
+2026-06-04 12:43:14,677 | INFO | orchestrator | [6ea7c2be-c079-401b-a3ce-8093b5a9f816] Respuesta chat completada
+2026-06-04 12:45:17,196 | INFO | orchestrator | [992b5850-8662-4ddc-8617-e8d002850d71] PlannerOrchestrator.run iniciado
+2026-06-04 12:45:17,196 | INFO | orchestrator | [992b5850-8662-4ddc-8617-e8d002850d71] USER MESSAGE: que dia es hoy
+2026-06-04 12:45:17,196 | INFO | orchestrator | [992b5850-8662-4ddc-8617-e8d002850d71] SESSION_ID: 992b5850-8662-4ddc-8617-e8d002850d71
+2026-06-04 12:45:17,209 | INFO | orchestrator | [992b5850-8662-4ddc-8617-e8d002850d71] Intent: chat (score=0.00, reglas=[])
+2026-06-04 12:45:17,209 | DEBUG | orchestrator | [992b5850-8662-4ddc-8617-e8d002850d71] Evento publicado: chat.respond
+2026-06-04 12:45:19,809 | INFO | orchestrator | [992b5850-8662-4ddc-8617-e8d002850d71] Respuesta chat completada
+2026-06-04 12:45:48,142 | INFO | orchestrator | [b1c6777e-82b3-431d-8d00-c79a7787124b] PlannerOrchestrator.run iniciado
+2026-06-04 12:45:48,142 | INFO | orchestrator | [b1c6777e-82b3-431d-8d00-c79a7787124b] USER MESSAGE: que dia de la semana es hoy
+2026-06-04 12:45:48,143 | INFO | orchestrator | [b1c6777e-82b3-431d-8d00-c79a7787124b] SESSION_ID: b1c6777e-82b3-431d-8d00-c79a7787124b
+2026-06-04 12:45:48,147 | INFO | orchestrator | [b1c6777e-82b3-431d-8d00-c79a7787124b] Intent: chat (score=0.00, reglas=[])
+2026-06-04 12:45:48,148 | DEBUG | orchestrator | [b1c6777e-82b3-431d-8d00-c79a7787124b] Evento publicado: chat.respond
+2026-06-04 12:45:50,018 | INFO | orchestrator | [b1c6777e-82b3-431d-8d00-c79a7787124b] Respuesta chat completada
+2026-06-04 12:47:54,629 | INFO | orchestrator | [b76b8535-9f30-41c8-a9d1-178f5ed9b932] PlannerOrchestrator.run iniciado
+2026-06-04 12:47:54,629 | INFO | orchestrator | [b76b8535-9f30-41c8-a9d1-178f5ed9b932] USER MESSAGE: que dia de la semana es martes
+2026-06-04 12:47:54,629 | INFO | orchestrator | [b76b8535-9f30-41c8-a9d1-178f5ed9b932] SESSION_ID: b76b8535-9f30-41c8-a9d1-178f5ed9b932
+2026-06-04 12:47:54,642 | INFO | orchestrator | [b76b8535-9f30-41c8-a9d1-178f5ed9b932] Intent: chat (score=0.00, reglas=[])
+2026-06-04 12:47:54,642 | DEBUG | orchestrator | [b76b8535-9f30-41c8-a9d1-178f5ed9b932] Evento publicado: chat.respond
+2026-06-04 12:47:56,686 | INFO | orchestrator | [b76b8535-9f30-41c8-a9d1-178f5ed9b932] Respuesta chat completada
+2026-06-04 12:57:44,032 | INFO | orchestrator | [a051055d-0052-4937-b551-3f19b6622263] PlannerOrchestrator.run iniciado
+2026-06-04 12:57:44,032 | INFO | orchestrator | [a051055d-0052-4937-b551-3f19b6622263] USER MESSAGE: hoy es martes
+2026-06-04 12:57:44,032 | INFO | orchestrator | [a051055d-0052-4937-b551-3f19b6622263] SESSION_ID: a051055d-0052-4937-b551-3f19b6622263
+2026-06-04 12:57:44,046 | INFO | orchestrator | [a051055d-0052-4937-b551-3f19b6622263] Intent: chat (score=0.00, reglas=[])
+2026-06-04 12:57:44,046 | DEBUG | orchestrator | [a051055d-0052-4937-b551-3f19b6622263] Evento publicado: chat.respond
+2026-06-04 12:57:46,109 | INFO | orchestrator | [a051055d-0052-4937-b551-3f19b6622263] Respuesta chat completada
+2026-06-04 12:58:06,633 | INFO | orchestrator | [d7670f5d-0d29-4494-a1ea-54e61d04cd40] PlannerOrchestrator.run iniciado
+2026-06-04 12:58:06,633 | INFO | orchestrator | [d7670f5d-0d29-4494-a1ea-54e61d04cd40] USER MESSAGE: que dia de la semana es hoy
+2026-06-04 12:58:06,633 | INFO | orchestrator | [d7670f5d-0d29-4494-a1ea-54e61d04cd40] SESSION_ID: d7670f5d-0d29-4494-a1ea-54e61d04cd40
+2026-06-04 12:58:06,638 | INFO | orchestrator | [d7670f5d-0d29-4494-a1ea-54e61d04cd40] Intent: chat (score=0.00, reglas=[])
+2026-06-04 12:58:06,639 | DEBUG | orchestrator | [d7670f5d-0d29-4494-a1ea-54e61d04cd40] Evento publicado: chat.respond
+2026-06-04 12:58:09,179 | INFO | orchestrator | [d7670f5d-0d29-4494-a1ea-54e61d04cd40] Respuesta chat completada
+2026-06-04 12:58:25,349 | INFO | orchestrator | [11f5d806-a6c9-44b9-8fc6-64f89ab1a197] PlannerOrchestrator.run iniciado
+2026-06-04 12:58:25,349 | INFO | orchestrator | [11f5d806-a6c9-44b9-8fc6-64f89ab1a197] USER MESSAGE: hoy es martes
+2026-06-04 12:58:25,349 | INFO | orchestrator | [11f5d806-a6c9-44b9-8fc6-64f89ab1a197] SESSION_ID: 11f5d806-a6c9-44b9-8fc6-64f89ab1a197
+2026-06-04 12:58:25,362 | INFO | orchestrator | [11f5d806-a6c9-44b9-8fc6-64f89ab1a197] Intent: chat (score=0.00, reglas=[])
+2026-06-04 12:58:25,362 | DEBUG | orchestrator | [11f5d806-a6c9-44b9-8fc6-64f89ab1a197] Evento publicado: chat.respond
+2026-06-04 12:58:28,156 | INFO | orchestrator | [11f5d806-a6c9-44b9-8fc6-64f89ab1a197] Respuesta chat completada
+2026-06-04 12:58:34,929 | INFO | orchestrator | [cf28c48a-fd32-4ca8-a4b3-b8bfd6d5d413] PlannerOrchestrator.run iniciado
+2026-06-04 12:58:34,929 | INFO | orchestrator | [cf28c48a-fd32-4ca8-a4b3-b8bfd6d5d413] USER MESSAGE: que dia de la semana es hoy
+2026-06-04 12:58:34,929 | INFO | orchestrator | [cf28c48a-fd32-4ca8-a4b3-b8bfd6d5d413] SESSION_ID: cf28c48a-fd32-4ca8-a4b3-b8bfd6d5d413
+2026-06-04 12:58:34,945 | INFO | orchestrator | [cf28c48a-fd32-4ca8-a4b3-b8bfd6d5d413] Intent: chat (score=0.00, reglas=[])
+2026-06-04 12:58:34,945 | DEBUG | orchestrator | [cf28c48a-fd32-4ca8-a4b3-b8bfd6d5d413] Evento publicado: chat.respond
+2026-06-04 12:58:37,328 | INFO | orchestrator | [cf28c48a-fd32-4ca8-a4b3-b8bfd6d5d413] Respuesta chat completada
