@@ -604,3 +604,6 @@ Ahora tienes un archivo `.txt` llamado `Hola.txt` en tu escritorio con el texto 
 2026-06-03 15:25:54,261 | INFO | tools | [----------] Intentando crear archivo: mensaje_alfonso2.txt
 2026-06-03 15:25:54,262 | INFO | tools | [----------] Ruta absoluta final: /home/luisd/Alfonso/mensaje_alfonso2.txt
 2026-06-03 15:25:54,263 | INFO | tools | [----------] Archivo creado exitosamente: /home/luisd/Alfonso/mensaje_alfonso2.txt
+2026-06-04 11:20:18,874 | INFO | tools | [----------] Intentando eliminar archivo: /home/luisd/Alfonso/mensaje_alfonso.txt
+2026-06-04 11:20:18,875 | INFO | tools | [----------] Archivo eliminado exitosamente: /home/luisd/Alfonso/mensaje_alfonso.txt
+2026-06-04 11:25:57,768 | INFO | tools | [----------] Intentando abrir aplicación: ['firefox']

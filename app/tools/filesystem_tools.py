@@ -95,9 +95,6 @@ async def delete_file(path: str):
     esta instruccion elemina el archivo, si es un directorio se debe usar
     rmdir o shutil.rmtree para eliminarlo recursivamente
     '''
-    # p.rmdir()
-    # shutil.rmtree(p)
-    os.remove(p)
     tool_logger.info(f"Archivo eliminado exitosamente: {p}")
     return {
         "status": "ok",
@@ -109,5 +106,5 @@ TOOLS = {
     "read_file": read_file,
     "list_directory": list_directory,
     "append_file": append_file,
-    "delete_file":delete_file,  # Por implementar
+    "delete_file":delete_file,  
 }

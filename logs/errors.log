@@ -5744,3 +5744,4 @@ RuntimeError: Event loop is closed
 2026-06-03 13:01:15,027 | INFO | errors | [----------] Ruta relativa detectada, convirtiendo a absoluta: mensaje_alfonso.txt
 2026-06-03 13:35:11,351 | WARNING | errors | [----------] Archivo no encontrado: \wsl.localhost\Ubuntu\home\luisd\Alfonso\mensaje_alfonso.txt
 2026-06-03 15:25:54,262 | INFO | errors | [----------] Ruta relativa detectada, convirtiendo a absoluta: mensaje_alfonso2.txt
+2026-06-04 11:25:57,851 | WARNING | errors | [----------] Aplicación no encontrada: firefox

@@ -6,6 +6,7 @@ Event types:
     filesystem.read     → lee un archivo
     filesystem.append   → añade contenido a un archivo
     filesystem.list     → lista un directorio
+    filesystem.delete   → elimina un archivo
 """
 
 from __future__ import annotations
@@ -21,6 +22,7 @@ class FilesystemAgent(BaseAgent):
         "filesystem.read",
         "filesystem.append",
         "filesystem.list",
+        "filesystem.delete",
     ]
 
     async def handle(self, event_type: str, data: dict) -> AgentResult:
@@ -50,6 +52,12 @@ class FilesystemAgent(BaseAgent):
             result = await self.run_tool(
                 "list_directory",
                 path=args.get("path", "."),
+            )
+
+        elif event_type == "filesystem.delete":
+            result = await self.run_tool(
+                "delete_file",
+                path=args.get("path", ""),
             )
 
         else:

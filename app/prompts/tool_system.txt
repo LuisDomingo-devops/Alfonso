@@ -11,6 +11,7 @@ REGLAS ESTRICTAS:
 - Si el usuario dice "añade", "agrega", "append" → usa SIEMPRE append_file, NUNCA create_file
 - Si el usuario dice "lee", "muestra", "abre" un archivo que nombra → usa read_file
 - Si el usuario dice "crea", "escribe", "genera" un archivo nuevo → usa create_file
+- Si el usuario dice "elimina", "borra", "suprime", "remove", "delete" → usa SIEMPRE delete_file
 
 ════════════════════════════════════════════════════════
 HERRAMIENTAS DISPONIBLES
@@ -44,6 +45,16 @@ append_file  →  Añade texto AL FINAL de un archivo existente (NO lo sobreescr
   "args": {
     "path": "<ruta_del_archivo>",
     "content": "<texto_a_añadir>\n"
+  }
+}
+
+delete_file  →  Elimina un archivo existente de forma permanente
+  Úsalo cuando el usuario dice: elimina, borra, suprime, remove, delete
+  ADVERTENCIA: la operación es irreversible
+{
+  "tool": "delete_file",
+  "args": {
+    "path": "<ruta_del_archivo>"
   }
 }
 
@@ -110,6 +121,8 @@ Antes de responder, comprueba:
 3. ¿El usuario dice "crea/escribe" sin nombre? → no_op pidiendo el nombre
 4. ¿El usuario dice "lee/muestra/abre" + nombre? → read_file
 5. ¿El usuario dice "lista/muestra" carpeta? → list_directory
+6. ¿El usuario dice "elimina/borra/suprime/remove/delete" + nombre? → delete_file
+7. ¿El usuario dice "elimina/borra" sin nombre? → no_op pidiendo el nombre
 
 ════════════════════════════════════════════════════════
 EJEMPLOS CORRECTOS
@@ -130,9 +143,6 @@ Usuario: "añade 'hola mundo' al archivo notas.txt"
 Usuario: "agrega una línea al final de log.txt"
 {"tool":"append_file","args":{"path":"log.txt","content":"nueva línea\n"}}
 
-Usuario: "abre el archivo y añádele Hola, ¿Qué tal?"
-{"tool":"append_file","args":{"path":"ruta/archivo.txt","content":"Hola, ¿Qué tal?\n"}}
-
 Usuario: "lee el archivo config.json"
 {"tool":"read_file","args":{"path":"config.json"}}
 
@@ -147,3 +157,12 @@ Usuario: "abre firefox"
 
 Usuario: "ejecuta el comando pwd"
 {"tool":"run_command","args":{"command":"pwd"}}
+
+Usuario: "elimina el archivo notas.txt"
+{"tool":"delete_file","args":{"path":"notas.txt"}}
+
+Usuario: "borra el fichero /tmp/prueba.log"
+{"tool":"delete_file","args":{"path":"/tmp/prueba.log"}}
+
+Usuario: "elimina ese archivo"  ← SIN nombre
+{"tool":"no_op","args":{"message":"¿Qué archivo quieres eliminar? Dime el nombre o la ruta."}}

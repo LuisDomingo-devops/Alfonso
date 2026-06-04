@@ -1,21 +1,49 @@
 """
-TaskPlanner — Fase 2.
+TaskPlanner — Fase 3 completa.
 
-Recibe la intención detectada y el JSON de tool que produjo el LLM
-y los convierte en un (event_type, args) que se publica en el EventBus.
+Mapeo tools → event_types (acumulado Fases 1-3):
 
-Esto desacopla el orquestador de los agentes: el orquestador no sabe
-qué agente va a manejar el evento, solo publica el tipo correcto.
+    Filesystem:
+        create_file         → filesystem.create
+        read_file           → filesystem.read
+        append_file         → filesystem.append
+        list_directory      → filesystem.list
+        delete_file         → filesystem.delete
 
-Mapeo de tools → event_types:
-    create_file     → filesystem.create
-    read_file       → filesystem.read
-    append_file     → filesystem.append
-    list_directory  → filesystem.list
-    system_info     → system.info
-    run_command     → system.command
-    open_application→ system.open_app
-    no_op           → chat.respond  (fallback a chat)
+    Sistema:
+        system_info         → system.info
+        run_command         → system.command
+        open_application    → system.open_app
+
+    Navegador (Fase 3):
+        browser_navigate    → browser.navigate
+        browser_click       → browser.click
+        browser_fill        → browser.fill
+        browser_submit      → browser.submit
+        browser_screenshot  → browser.screenshot
+        browser_get_text    → browser.get_text
+        browser_search      → browser.search
+        browser_close       → browser.close
+
+    Computer Use (Fase 3):
+        screenshot          → computer.screenshot
+        mouse_move          → computer.mouse_move
+        mouse_click         → computer.mouse_click
+        mouse_drag          → computer.mouse_drag
+        keyboard_type       → computer.keyboard_type
+        keyboard_hotkey     → computer.keyboard_hotkey
+        ocr_screenshot      → computer.ocr_screenshot
+        ocr_image           → computer.ocr_image
+        find_on_screen      → computer.find_on_screen
+        window_list         → computer.window_list
+        window_focus        → computer.window_focus
+        window_close        → computer.window_close
+
+    Automatización:
+        run_pipeline        → automation.run_pipeline
+
+    Fallback:
+        no_op               → chat.respond
 """
 
 from __future__ import annotations
@@ -24,14 +52,47 @@ from dataclasses import dataclass
 from typing import Optional
 
 _TOOL_TO_EVENT: dict[str, str] = {
-    "create_file":      "filesystem.create",
-    "read_file":        "filesystem.read",
-    "append_file":      "filesystem.append",
-    "list_directory":   "filesystem.list",
-    "system_info":      "system.info",
-    "run_command":      "system.command",
-    "open_application": "system.open_app",
-    "no_op":            "chat.respond",
+    # Filesystem
+    "create_file":          "filesystem.create",
+    "read_file":            "filesystem.read",
+    "append_file":          "filesystem.append",
+    "list_directory":       "filesystem.list",
+    "delete_file":          "filesystem.delete",
+    # Sistema
+    "system_info":          "system.info",
+    "run_command":          "system.command",
+    "open_application":     "system.open_app",
+    # Navegador
+    "browser_navigate":     "browser.navigate",
+    "browser_click":        "browser.click",
+    "browser_fill":         "browser.fill",
+    "browser_submit":       "browser.submit",
+    "browser_screenshot":   "browser.screenshot",
+    "browser_get_text":     "browser.get_text",
+    "browser_get_html":     "browser.get_html",
+    "browser_wait_for":     "browser.wait_for",
+    "browser_scroll":       "browser.scroll",
+    "browser_evaluate":     "browser.evaluate",
+    "browser_search":       "browser.search",
+    "browser_open":         "browser.open",
+    "browser_close":        "browser.close",
+    # Computer Use
+    "screenshot":           "computer.screenshot",
+    "mouse_move":           "computer.mouse_move",
+    "mouse_click":          "computer.mouse_click",
+    "mouse_drag":           "computer.mouse_drag",
+    "keyboard_type":        "computer.keyboard_type",
+    "keyboard_hotkey":      "computer.keyboard_hotkey",
+    "ocr_screenshot":       "computer.ocr_screenshot",
+    "ocr_image":            "computer.ocr_image",
+    "find_on_screen":       "computer.find_on_screen",
+    "window_list":          "computer.window_list",
+    "window_focus":         "computer.window_focus",
+    "window_close":         "computer.window_close",
+    # Automatización
+    "run_pipeline":         "automation.run_pipeline",
+    # Fallback
+    "no_op":                "chat.respond",
 }
 
 
@@ -39,18 +100,11 @@ _TOOL_TO_EVENT: dict[str, str] = {
 class TaskPlan:
     event_type: str
     args: dict
-    tool_name: str          # para logging / trazabilidad
-    is_chat: bool = False   # True si el plan es solo responder con texto
+    tool_name: str
+    is_chat: bool = False
 
 
 class TaskPlanner:
-    """
-    Convierte un resultado del LLM en un TaskPlan publicable.
-
-    Uso:
-        planner = TaskPlanner()
-        plan = planner.plan(intent="tool", tool_name="create_file", args={...})
-    """
 
     def plan(
         self,
@@ -59,20 +113,7 @@ class TaskPlanner:
         args: dict,
         fallback_message: str = "",
     ) -> TaskPlan:
-        """
-        Genera un TaskPlan a partir del intent y tool.
 
-        Args:
-            intent:           "chat" o "tool"
-            tool_name:        nombre de la herramienta extraído del JSON del LLM
-            args:             argumentos para la herramienta
-            fallback_message: mensaje del LLM si no hay JSON válido
-
-        Returns:
-            TaskPlan con event_type y args listos para publicar.
-        """
-
-        # 1. Intent chat directo
         if intent == "chat":
             return TaskPlan(
                 event_type="chat.respond",
@@ -81,7 +122,6 @@ class TaskPlanner:
                 is_chat=True,
             )
 
-        # 2. Intent tool pero sin nombre válido → chat fallback
         if not tool_name:
             return TaskPlan(
                 event_type="chat.respond",
@@ -90,18 +130,15 @@ class TaskPlanner:
                 is_chat=True,
             )
 
-        # 3. Tool conocida → evento del agente correspondiente
         event_type = _TOOL_TO_EVENT.get(tool_name)
         if event_type:
-            is_chat = (event_type == "chat.respond")
             return TaskPlan(
                 event_type=event_type,
                 args=args,
                 tool_name=tool_name,
-                is_chat=is_chat,
+                is_chat=(event_type == "chat.respond"),
             )
 
-        # 4. Tool desconocida → log y chat fallback
         return TaskPlan(
             event_type="chat.respond",
             args={"user_message": fallback_message or f"Herramienta desconocida: {tool_name}"},

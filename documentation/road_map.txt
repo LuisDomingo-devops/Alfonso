@@ -82,6 +82,8 @@ Stack
 Playwright
 PyAutoGUI
 OpenCV
+
+
 FASE 4 — Memoria persistente
 
 Duración: 4 semanas
@@ -99,6 +101,8 @@ Stack
 ChromaDB
 embeddings
 semantic retrieval
+
+
 FASE 5 — Integración externa
 
 Duración: 6 semanas
@@ -111,6 +115,8 @@ WhatsApp
 cámaras IP
 impresoras
 calendario
+
+
 FASE 6 — Vision + Multimodal
 
 Duración: 8 semanas
@@ -121,6 +127,8 @@ OCR
 análisis pantalla
 detección objetos
 vigilancia
+
+
 FASE 7 — Agentic OS
 
 Duración: indefinida
