@@ -3,12 +3,12 @@ AgentRegistry — Fase 3 completa.
 
 Agentes registrados:
     - FilesystemAgent       (filesystem.*)
-    - SystemAgent           (system.*)
+    - SystemAgent           (system.*)          ← incluye system.datetime
     - ChatAgent             (chat.respond)
-    - BrowserAgent          (browser.*)        Fase 3 — Playwright real
-    - ComputerAgent         (computer.*)       Fase 3 — PyAutoGUI / OCR / ventanas
-    - MailAgent             (mail.*)           stub → Fase 5
-    - AutomationAgent       (automation.*)     pipeline multi-step
+    - BrowserAgent          (browser.*)         Fase 3 — Playwright real
+    - ComputerAgent         (computer.*)        Fase 3 — PyAutoGUI / OCR / ventanas
+    - MailAgent             (mail.*)            stub → Fase 5
+    - AutomationAgent       (automation.*)      pipeline multi-step
 """
 
 from __future__ import annotations
@@ -52,6 +52,7 @@ class AgentRegistry:
         self._chat_agent.set_llm(llm)
 
     async def start(self) -> None:
+        # Inyectar LLM ANTES de registrar en el bus
         if self._llm:
             self._chat_agent.set_llm(self._llm)
 
@@ -68,7 +69,6 @@ class AgentRegistry:
         logger.info("AgentRegistry: %d agentes registrados", len(self._agents))
 
     async def stop(self) -> None:
-        # Cerrar Playwright limpiamente si está activo
         try:
             from app.tools.browser_tools import _close_playwright
             await _close_playwright()
@@ -82,5 +82,3 @@ class AgentRegistry:
             {"name": a.name, "event_types": a.event_types}
             for a in self._agents
         ]
-
-

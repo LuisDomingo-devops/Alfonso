@@ -3,6 +3,7 @@ SystemAgent — gestiona operaciones del sistema operativo.
 
 Event types:
     system.info         → información de CPU, RAM, OS
+    system.datetime     → fecha y hora actuales del sistema  ← NUEVO Fase 3
     system.command      → ejecuta un comando de terminal
     system.open_app     → abre una aplicación
 """
@@ -17,6 +18,7 @@ class SystemAgent(BaseAgent):
     name = "system"
     event_types = [
         "system.info",
+        "system.datetime",
         "system.command",
         "system.open_app",
     ]
@@ -26,6 +28,9 @@ class SystemAgent(BaseAgent):
 
         if event_type == "system.info":
             result = await self.run_tool("system_info")
+
+        elif event_type == "system.datetime":
+            result = await self.run_tool("get_current_datetime")
 
         elif event_type == "system.command":
             result = await self.run_tool(

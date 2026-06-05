@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+"""
+audio_orchestrator.py — Fase 3
+
+FIX: corregida importación de PlannerOrchestrator (anteriormente importaba
+una clase 'Orchestrator' inexistente desde planner_orchestrator).
+"""
+
 import argparse
 import asyncio
 import importlib
@@ -11,7 +18,7 @@ from typing import Any, Dict, Optional
 import httpx
 
 from app.core.llm_client import OllamaClient
-from app.core.planner_orchestrator import PlannerOrchestrator
+from app.core.planner_orchestrator import PlannerOrchestrator   # FIX
 from app.tools.audio_tools import speech_to_text, text_to_speech, wake_word_listener
 
 logger = logging.getLogger("audio_orchestrator")
@@ -80,10 +87,9 @@ class AudioEnvironmentChecker:
                 default_output = None
 
             available = bool(devices)
-            error_message = None if available else "No sound devices found"
             return {
                 "available": available,
-                "error": error_message,
+                "error": None if available else "No sound devices found",
                 "devices": devices,
                 "default_input_device": default_input,
                 "default_output_device": default_output,
@@ -112,12 +118,11 @@ class AudioEnvironmentChecker:
 
     @classmethod
     def run_all(cls) -> Dict[str, Any]:
-        report = {
+        return {
             "modules": cls.check_modules(),
             "sounddevice": cls.check_sounddevice(),
             "tts_backends": cls.check_tts_backends(),
         }
-        return report
 
     @classmethod
     async def run_audio_validation(cls, duration: int = 2, tts_text: str = "prueba de audio") -> Dict[str, Any]:
@@ -146,7 +151,7 @@ class AudioOrchestrator:
     def __init__(self, api_url: Optional[str] = None):
         self.api_url = api_url
         self.llm = OllamaClient()
-        self.orchestrator = PlannerOrchestrator()
+        self.orchestrator = PlannerOrchestrator()   # FIX: clase correcta
 
     async def local_converse(
         self,
@@ -214,25 +219,26 @@ class AudioOrchestrator:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Audio client y orquestador para el asistente")
-    parser.add_argument("--mode", choices=["local", "api"], default="local", help="Ejecutar el flujo en local o enviar al backend API")
-    parser.add_argument("--api-url", default="http://localhost:8000", help="URL base del servidor FastAPI cuando se usa el modo API")
-    parser.add_argument("--keyword", default="alfonso", help="Wake word a escuchar")
-    parser.add_argument("--wakeword-enabled", action="store_true", help="Habilitar detección de wake word")
-    parser.add_argument("--no-wakeword", dest="wakeword_enabled", action="store_false", help="Deshabilitar wake word y escuchar directamente")
-    parser.add_argument("--max-duration", type=int, default=30, help="Duración máxima para buscar la palabra de activación")
-    parser.add_argument("--chunk-duration", type=int, default=5, help="Longitud en segundos de cada segmento de detección de wake word")
-    parser.add_argument("--stt-duration", type=int, default=5, help="Duración de grabación para STT después de detectar la wake word")
-    parser.add_argument("--stt-model", default="small", help="Modelo STT a usar")
-    parser.add_argument("--voice", default=None, help="Voz TTS a usar")
-    parser.add_argument("--session-id", default=None, help="ID de sesión para el orquestador")
-    parser.add_argument("--check", action="store_true", help="Revisar el entorno de audio y los paquetes instalados")
-    parser.add_argument("--audio-validation", action="store_true", help="Ejecutar una prueba de grabación y reproducción de audio")
+    parser.add_argument("--mode", choices=["local", "api"], default="local")
+    parser.add_argument("--api-url", default="http://localhost:8000")
+    parser.add_argument("--keyword", default="alfonso")
+    parser.add_argument("--wakeword-enabled", action="store_true")
+    parser.add_argument("--no-wakeword", dest="wakeword_enabled", action="store_false")
+    parser.add_argument("--max-duration", type=int, default=30)
+    parser.add_argument("--chunk-duration", type=int, default=5)
+    parser.add_argument("--stt-duration", type=int, default=5)
+    parser.add_argument("--stt-model", default="small")
+    parser.add_argument("--voice", default=None)
+    parser.add_argument("--session-id", default=None)
+    parser.add_argument("--check", action="store_true")
+    parser.add_argument("--audio-validation", action="store_true")
     return parser.parse_args()
 
 
 async def main() -> int:
     args = parse_args()
     checker = AudioEnvironmentChecker()
+
     if args.check:
         report = checker.run_all()
         print(json.dumps(report, indent=2, ensure_ascii=False))

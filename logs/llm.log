@@ -135,3 +135,31 @@ Por favor, selecciona el archivo "Alfonso" desde esta carpeta y abrela.
 2026-06-04 12:58:37,306 | DEBUG | llm | [cf28c48a-fd32-4ca8-a4b3-b8bfd6d5d413] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-04T10:58:37.305324542Z', 'message': {'role': 'assistant', 'content': 'Hoy es lunes.'}, 'done': True, 'done_reason': 'stop', 'total_duration': 2349887478, 'load_duration': 123328166, 'prompt_eval_count': 1299, 'prompt_eval_duration': 1514099910, 'eval_count': 7, 'eval_duration': 673241320}
 2026-06-04 12:58:37,307 | DEBUG | llm | [cf28c48a-fd32-4ca8-a4b3-b8bfd6d5d413] OLLAMA CONTENT: Hoy es lunes.
 2026-06-04 12:58:37,307 | INFO | llm | [cf28c48a-fd32-4ca8-a4b3-b8bfd6d5d413] Respuesta LLM recibida correctamente
+2026-06-05 09:59:39,297 | INFO | llm | [----------] LLM INPUT: ping
+2026-06-05 09:59:39,297 | INFO | llm | [----------] LLM MODE: chat
+2026-06-05 10:01:07,523 | DEBUG | llm | [----------] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-05T08:01:07.414777094Z', 'message': {'role': 'assistant', 'content': 'Pong! How can I help you today?'}, 'done': True, 'done_reason': 'stop', 'total_duration': 89462859668, 'load_duration': 5200202619, 'prompt_eval_count': 1284, 'prompt_eval_duration': 82544370305, 'eval_count': 11, 'eval_duration': 1333401670}
+2026-06-05 10:01:07,532 | DEBUG | llm | [----------] OLLAMA CONTENT: Pong! How can I help you today?
+2026-06-05 10:01:07,532 | INFO | llm | [----------] Respuesta LLM recibida correctamente
+2026-06-05 10:02:40,940 | INFO | llm | [6dda1c25-c23a-49e6-8a38-43dbd0588b9e] LLM INPUT: crea un archivo de texto que diga estoy funcionando corr3ectamernte
+2026-06-05 10:02:40,941 | INFO | llm | [6dda1c25-c23a-49e6-8a38-43dbd0588b9e] LLM MODE: tool
+2026-06-05 10:04:34,261 | INFO | llm | [6dda1c25-c23a-49e6-8a38-43dbd0588b9e] LLM INPUT: crea un archivo de texto que diga estoy funcionando corr3ectamernte
+2026-06-05 10:04:34,262 | INFO | llm | [6dda1c25-c23a-49e6-8a38-43dbd0588b9e] LLM MODE: chat
+2026-06-05 10:04:34,262 | DEBUG | llm | [6dda1c25-c23a-49e6-8a38-43dbd0588b9e] LLM MEMORY CONTEXT: user: crea un archivo de texto que diga estoy funcionando corr3ectamernte
+2026-06-05 10:05:43,691 | INFO | llm | [8a501734-ef5e-442a-a0b8-e27eb03d6064] LLM INPUT: elimina el archivo mensaje_alfonso2.txt
+2026-06-05 10:05:43,691 | INFO | llm | [8a501734-ef5e-442a-a0b8-e27eb03d6064] LLM MODE: tool
+2026-06-05 10:06:26,135 | DEBUG | llm | [6dda1c25-c23a-49e6-8a38-43dbd0588b9e] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-05T08:06:26.131780966Z', 'message': {'role': 'assistant', 'content': 'Sure, here\'s a simple text file that says "I\'m working correctly":\n\n```plaintext\nI\'m working correctly.\n```'}, 'done': True, 'done_reason': 'stop', 'total_duration': 116944078395, 'load_duration': 181918333, 'prompt_eval_count': 1318, 'prompt_eval_duration': 84417367625, 'eval_count': 26, 'eval_duration': 2752373337}
+2026-06-05 10:06:26,135 | DEBUG | llm | [6dda1c25-c23a-49e6-8a38-43dbd0588b9e] OLLAMA CONTENT: Sure, here's a simple text file that says "I'm working correctly":
+
+```plaintext
+I'm working correctly.
+```
+2026-06-05 10:06:26,135 | INFO | llm | [6dda1c25-c23a-49e6-8a38-43dbd0588b9e] Respuesta LLM recibida correctamente
+2026-06-05 10:07:36,974 | INFO | llm | [8a501734-ef5e-442a-a0b8-e27eb03d6064] LLM INPUT: elimina el archivo mensaje_alfonso2.txt
+2026-06-05 10:07:36,974 | INFO | llm | [8a501734-ef5e-442a-a0b8-e27eb03d6064] LLM MODE: chat
+2026-06-05 10:07:36,975 | DEBUG | llm | [8a501734-ef5e-442a-a0b8-e27eb03d6064] LLM MEMORY CONTEXT: user: elimina el archivo mensaje_alfonso2.txt
+2026-06-05 10:13:37,420 | INFO | llm | [c08b374e-9994-4fbd-91cf-315a0c1ae61b] LLM INPUT: buenos dias, que tiempo hace hoy en bilbao
+2026-06-05 10:13:37,420 | INFO | llm | [c08b374e-9994-4fbd-91cf-315a0c1ae61b] LLM MODE: chat
+2026-06-05 10:13:37,421 | DEBUG | llm | [c08b374e-9994-4fbd-91cf-315a0c1ae61b] LLM MEMORY CONTEXT: user: buenos dias, que tiempo hace hoy en bilbao
+2026-06-05 10:13:46,770 | DEBUG | llm | [c08b374e-9994-4fbd-91cf-315a0c1ae61b] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-05T08:13:46.76859808Z', 'message': {'role': 'assistant', 'content': 'Buenas tardes. Actualmente no tengo la capacidad de buscar información meteorológica para Bilbao en tiempo real. Te recomendaría que busques el clima actual directamente en tu navegador o aplicaciones especializadas si dispones de ese tipo de acceso.'}, 'done': True, 'done_reason': 'stop', 'total_duration': 9342962969, 'load_duration': 163682504, 'prompt_eval_count': 1308, 'prompt_eval_duration': 2495396574, 'eval_count': 56, 'eval_duration': 6311997049}
+2026-06-05 10:13:46,771 | DEBUG | llm | [c08b374e-9994-4fbd-91cf-315a0c1ae61b] OLLAMA CONTENT: Buenas tardes. Actualmente no tengo la capacidad de buscar información meteorológica para Bilbao en tiempo real. Te recomendaría que busques el clima actual directamente en tu navegador o aplicaciones especializadas si dispones de ese tipo de acceso.
+2026-06-05 10:13:46,771 | INFO | llm | [c08b374e-9994-4fbd-91cf-315a0c1ae61b] Respuesta LLM recibida correctamente

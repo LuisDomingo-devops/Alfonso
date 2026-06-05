@@ -12,6 +12,7 @@ Mapeo tools → event_types (acumulado Fases 1-3):
 
     Sistema:
         system_info         → system.info
+        get_current_datetime → system.datetime   ← NUEVO Fase 3
         run_command         → system.command
         open_application    → system.open_app
 
@@ -22,8 +23,13 @@ Mapeo tools → event_types (acumulado Fases 1-3):
         browser_submit      → browser.submit
         browser_screenshot  → browser.screenshot
         browser_get_text    → browser.get_text
+        browser_get_html    → browser.get_html
+        browser_wait_for    → browser.wait_for
+        browser_scroll      → browser.scroll
+        browser_evaluate    → browser.evaluate
         browser_search      → browser.search
         browser_close       → browser.close
+        browser_open        → browser.open
 
     Computer Use (Fase 3):
         screenshot          → computer.screenshot
@@ -53,46 +59,47 @@ from typing import Optional
 
 _TOOL_TO_EVENT: dict[str, str] = {
     # Filesystem
-    "create_file":          "filesystem.create",
-    "read_file":            "filesystem.read",
-    "append_file":          "filesystem.append",
-    "list_directory":       "filesystem.list",
-    "delete_file":          "filesystem.delete",
+    "create_file":           "filesystem.create",
+    "read_file":             "filesystem.read",
+    "append_file":           "filesystem.append",
+    "list_directory":        "filesystem.list",
+    "delete_file":           "filesystem.delete",
     # Sistema
-    "system_info":          "system.info",
-    "run_command":          "system.command",
-    "open_application":     "system.open_app",
+    "system_info":           "system.info",
+    "get_current_datetime":  "system.datetime",
+    "run_command":           "system.command",
+    "open_application":      "system.open_app",
     # Navegador
-    "browser_navigate":     "browser.navigate",
-    "browser_click":        "browser.click",
-    "browser_fill":         "browser.fill",
-    "browser_submit":       "browser.submit",
-    "browser_screenshot":   "browser.screenshot",
-    "browser_get_text":     "browser.get_text",
-    "browser_get_html":     "browser.get_html",
-    "browser_wait_for":     "browser.wait_for",
-    "browser_scroll":       "browser.scroll",
-    "browser_evaluate":     "browser.evaluate",
-    "browser_search":       "browser.search",
-    "browser_open":         "browser.open",
-    "browser_close":        "browser.close",
+    "browser_navigate":      "browser.navigate",
+    "browser_click":         "browser.click",
+    "browser_fill":          "browser.fill",
+    "browser_submit":        "browser.submit",
+    "browser_screenshot":    "browser.screenshot",
+    "browser_get_text":      "browser.get_text",
+    "browser_get_html":      "browser.get_html",
+    "browser_wait_for":      "browser.wait_for",
+    "browser_scroll":        "browser.scroll",
+    "browser_evaluate":      "browser.evaluate",
+    "browser_search":        "browser.search",
+    "browser_open":          "browser.open",
+    "browser_close":         "browser.close",
     # Computer Use
-    "screenshot":           "computer.screenshot",
-    "mouse_move":           "computer.mouse_move",
-    "mouse_click":          "computer.mouse_click",
-    "mouse_drag":           "computer.mouse_drag",
-    "keyboard_type":        "computer.keyboard_type",
-    "keyboard_hotkey":      "computer.keyboard_hotkey",
-    "ocr_screenshot":       "computer.ocr_screenshot",
-    "ocr_image":            "computer.ocr_image",
-    "find_on_screen":       "computer.find_on_screen",
-    "window_list":          "computer.window_list",
-    "window_focus":         "computer.window_focus",
-    "window_close":         "computer.window_close",
+    "screenshot":            "computer.screenshot",
+    "mouse_move":            "computer.mouse_move",
+    "mouse_click":           "computer.mouse_click",
+    "mouse_drag":            "computer.mouse_drag",
+    "keyboard_type":         "computer.keyboard_type",
+    "keyboard_hotkey":       "computer.keyboard_hotkey",
+    "ocr_screenshot":        "computer.ocr_screenshot",
+    "ocr_image":             "computer.ocr_image",
+    "find_on_screen":        "computer.find_on_screen",
+    "window_list":           "computer.window_list",
+    "window_focus":          "computer.window_focus",
+    "window_close":          "computer.window_close",
     # Automatización
-    "run_pipeline":         "automation.run_pipeline",
+    "run_pipeline":          "automation.run_pipeline",
     # Fallback
-    "no_op":                "chat.respond",
+    "no_op":                 "chat.respond",
 }
 
 

@@ -116,3 +116,34 @@
 2026-06-04 12:58:34,945 | INFO | orchestrator | [cf28c48a-fd32-4ca8-a4b3-b8bfd6d5d413] Intent: chat (score=0.00, reglas=[])
 2026-06-04 12:58:34,945 | DEBUG | orchestrator | [cf28c48a-fd32-4ca8-a4b3-b8bfd6d5d413] Evento publicado: chat.respond
 2026-06-04 12:58:37,328 | INFO | orchestrator | [cf28c48a-fd32-4ca8-a4b3-b8bfd6d5d413] Respuesta chat completada
+2026-06-05 10:01:56,593 | INFO | orchestrator | [d575597e-fb3f-4e83-9511-19319494e4ed] PlannerOrchestrator.run iniciado
+2026-06-05 10:01:56,594 | INFO | orchestrator | [d575597e-fb3f-4e83-9511-19319494e4ed] USER MESSAGE: buenos dias Alfonso que hora es
+2026-06-05 10:01:56,594 | INFO | orchestrator | [d575597e-fb3f-4e83-9511-19319494e4ed] SESSION_ID: d575597e-fb3f-4e83-9511-19319494e4ed
+2026-06-05 10:01:56,618 | INFO | orchestrator | [d575597e-fb3f-4e83-9511-19319494e4ed] Intent: tool (score=2.00, reglas=['+2.0 [datetime_tool]'])
+2026-06-05 10:01:56,618 | INFO | orchestrator | [d575597e-fb3f-4e83-9511-19319494e4ed] Atajo datetime_tool activado — sin llamada al LLM
+2026-06-05 10:01:56,619 | DEBUG | orchestrator | [d575597e-fb3f-4e83-9511-19319494e4ed] Evento publicado: system.datetime
+2026-06-05 10:01:56,727 | INFO | orchestrator | [d575597e-fb3f-4e83-9511-19319494e4ed] Datetime tool completada
+2026-06-05 10:02:40,930 | INFO | orchestrator | [6dda1c25-c23a-49e6-8a38-43dbd0588b9e] PlannerOrchestrator.run iniciado
+2026-06-05 10:02:40,931 | INFO | orchestrator | [6dda1c25-c23a-49e6-8a38-43dbd0588b9e] USER MESSAGE: crea un archivo de texto que diga estoy funcionando corr3ectamernte
+2026-06-05 10:02:40,931 | INFO | orchestrator | [6dda1c25-c23a-49e6-8a38-43dbd0588b9e] SESSION_ID: 6dda1c25-c23a-49e6-8a38-43dbd0588b9e
+2026-06-05 10:02:40,938 | INFO | orchestrator | [6dda1c25-c23a-49e6-8a38-43dbd0588b9e] Intent: tool (score=1.50, reglas=['+1.5 [fs_create]'])
+2026-06-05 10:04:34,259 | DEBUG | orchestrator | [6dda1c25-c23a-49e6-8a38-43dbd0588b9e] LLM OUTPUT (tool): {"tool": "no_op", "args": {"message": "LLM_ERROR: ReadTimeout('')"}}
+2026-06-05 10:04:34,260 | INFO | orchestrator | [6dda1c25-c23a-49e6-8a38-43dbd0588b9e] TaskPlan: event=chat.respond args={'message': "LLM_ERROR: ReadTimeout('')"}
+2026-06-05 10:04:34,260 | DEBUG | orchestrator | [6dda1c25-c23a-49e6-8a38-43dbd0588b9e] Evento publicado: chat.respond
+2026-06-05 10:05:02,619 | ERROR | orchestrator | [6dda1c25-c23a-49e6-8a38-43dbd0588b9e] Timeout esperando agente para evento chat.respond
+2026-06-05 10:05:02,620 | INFO | orchestrator | [6dda1c25-c23a-49e6-8a38-43dbd0588b9e] Agente respondió: error
+2026-06-05 10:05:43,676 | INFO | orchestrator | [8a501734-ef5e-442a-a0b8-e27eb03d6064] PlannerOrchestrator.run iniciado
+2026-06-05 10:05:43,676 | INFO | orchestrator | [8a501734-ef5e-442a-a0b8-e27eb03d6064] USER MESSAGE: elimina el archivo mensaje_alfonso2.txt
+2026-06-05 10:05:43,677 | INFO | orchestrator | [8a501734-ef5e-442a-a0b8-e27eb03d6064] SESSION_ID: 8a501734-ef5e-442a-a0b8-e27eb03d6064
+2026-06-05 10:05:43,690 | INFO | orchestrator | [8a501734-ef5e-442a-a0b8-e27eb03d6064] Intent: tool (score=10.20, reglas=['+3.5 [fs_delete]', '+3.0 [fs_delete_ext]', '+2.5 [fs_delete_generic]', '+1.2 [extension]'])
+2026-06-05 10:07:36,972 | DEBUG | orchestrator | [8a501734-ef5e-442a-a0b8-e27eb03d6064] LLM OUTPUT (tool): {"tool": "no_op", "args": {"message": "LLM_ERROR: ReadTimeout('')"}}
+2026-06-05 10:07:36,973 | INFO | orchestrator | [8a501734-ef5e-442a-a0b8-e27eb03d6064] TaskPlan: event=chat.respond args={'message': "LLM_ERROR: ReadTimeout('')"}
+2026-06-05 10:07:36,973 | DEBUG | orchestrator | [8a501734-ef5e-442a-a0b8-e27eb03d6064] Evento publicado: chat.respond
+2026-06-05 10:08:05,166 | ERROR | orchestrator | [8a501734-ef5e-442a-a0b8-e27eb03d6064] Timeout esperando agente para evento chat.respond
+2026-06-05 10:08:05,167 | INFO | orchestrator | [8a501734-ef5e-442a-a0b8-e27eb03d6064] Agente respondió: error
+2026-06-05 10:13:37,399 | INFO | orchestrator | [c08b374e-9994-4fbd-91cf-315a0c1ae61b] PlannerOrchestrator.run iniciado
+2026-06-05 10:13:37,399 | INFO | orchestrator | [c08b374e-9994-4fbd-91cf-315a0c1ae61b] USER MESSAGE: buenos dias, que tiempo hace hoy en bilbao
+2026-06-05 10:13:37,400 | INFO | orchestrator | [c08b374e-9994-4fbd-91cf-315a0c1ae61b] SESSION_ID: c08b374e-9994-4fbd-91cf-315a0c1ae61b
+2026-06-05 10:13:37,406 | INFO | orchestrator | [c08b374e-9994-4fbd-91cf-315a0c1ae61b] Intent: chat (score=0.00, reglas=[])
+2026-06-05 10:13:37,407 | DEBUG | orchestrator | [c08b374e-9994-4fbd-91cf-315a0c1ae61b] Evento publicado: chat.respond
+2026-06-05 10:13:46,786 | INFO | orchestrator | [c08b374e-9994-4fbd-91cf-315a0c1ae61b] Respuesta chat completada
