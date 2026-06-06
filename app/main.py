@@ -9,7 +9,8 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from app.agents.registry import AgentRegistry
 from app.api.files import router_files
-from app.api.routes import router, router_browser, router_computer
+from app.api.routes import router
+from app.api.routes import router_browser, router_computer  # Fase 3
 from app.core.event_bus import EventBus
 from app.core.llm_client import OllamaClient
 from app.core.metrics import increment_http_errors, increment_http_requests, record_http_latency

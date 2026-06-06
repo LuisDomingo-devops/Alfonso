@@ -173,3 +173,37 @@ I'm working correctly.
 2026-06-06 11:35:26,731 | DEBUG | llm | [----------] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-06T09:35:26.633342282Z', 'message': {'role': 'assistant', 'content': 'Hello! How can I assist you today?'}, 'done': True, 'done_reason': 'stop', 'total_duration': 79673398541, 'load_duration': 4653790017, 'prompt_eval_count': 1284, 'prompt_eval_duration': 73604351152, 'eval_count': 10, 'eval_duration': 1035306148}
 2026-06-06 11:35:26,738 | DEBUG | llm | [----------] OLLAMA CONTENT: Hello! How can I assist you today?
 2026-06-06 11:35:26,738 | INFO | llm | [----------] Respuesta LLM recibida correctamente
+2026-06-06 16:45:22,497 | INFO | llm | [----------] LLM INPUT: ping
+2026-06-06 16:45:22,497 | INFO | llm | [----------] LLM MODE: chat
+2026-06-06 16:45:31,651 | DEBUG | llm | [----------] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-06T14:45:31.631751255Z', 'message': {'role': 'assistant', 'content': 'Pong! How can I assist you today?'}, 'done': True, 'done_reason': 'stop', 'total_duration': 9075861502, 'load_duration': 306479029, 'prompt_eval_count': 1284, 'prompt_eval_duration': 7040424380, 'eval_count': 11, 'eval_duration': 1098250829}
+2026-06-06 16:45:31,653 | DEBUG | llm | [----------] OLLAMA CONTENT: Pong! How can I assist you today?
+2026-06-06 16:45:31,654 | INFO | llm | [----------] Respuesta LLM recibida correctamente
+2026-06-06 16:47:07,627 | INFO | llm | [16a4de18-38fa-4d4d-90bd-3e289522a3cd] LLM INPUT: como me llamo
+2026-06-06 16:47:07,627 | INFO | llm | [16a4de18-38fa-4d4d-90bd-3e289522a3cd] LLM MODE: chat
+2026-06-06 16:47:07,627 | DEBUG | llm | [16a4de18-38fa-4d4d-90bd-3e289522a3cd] LLM MEMORY CONTEXT: user: como me llamo
+2026-06-06 16:47:10,428 | DEBUG | llm | [16a4de18-38fa-4d4d-90bd-3e289522a3cd] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-06T14:47:10.426536325Z', 'message': {'role': 'assistant', 'content': 'Hola! ¿Cómo puedo ayudarte hoy?'}, 'done': True, 'done_reason': 'stop', 'total_duration': 2793704418, 'load_duration': 149305081, 'prompt_eval_count': 1293, 'prompt_eval_duration': 1682599488, 'eval_count': 10, 'eval_duration': 830546723}
+2026-06-06 16:47:10,428 | DEBUG | llm | [16a4de18-38fa-4d4d-90bd-3e289522a3cd] OLLAMA CONTENT: Hola! ¿Cómo puedo ayudarte hoy?
+2026-06-06 16:47:10,428 | INFO | llm | [16a4de18-38fa-4d4d-90bd-3e289522a3cd] Respuesta LLM recibida correctamente
+2026-06-06 16:47:29,092 | INFO | llm | [b891b208-4af0-47c5-a255-14b924c16eaa] LLM INPUT: cual es mi nombre
+2026-06-06 16:47:29,092 | INFO | llm | [b891b208-4af0-47c5-a255-14b924c16eaa] LLM MODE: chat
+2026-06-06 16:47:29,092 | DEBUG | llm | [b891b208-4af0-47c5-a255-14b924c16eaa] LLM MEMORY CONTEXT: user: cual es mi nombre
+2026-06-06 16:47:31,207 | DEBUG | llm | [b891b208-4af0-47c5-a255-14b924c16eaa] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-06T14:47:31.20666808Z', 'message': {'role': 'assistant', 'content': 'Tu nombre es Alfonso.'}, 'done': True, 'done_reason': 'stop', 'total_duration': 2110927920, 'load_duration': 126057785, 'prompt_eval_count': 1294, 'prompt_eval_duration': 1200028407, 'eval_count': 8, 'eval_duration': 663734347}
+2026-06-06 16:47:31,207 | DEBUG | llm | [b891b208-4af0-47c5-a255-14b924c16eaa] OLLAMA CONTENT: Tu nombre es Alfonso.
+2026-06-06 16:47:31,208 | INFO | llm | [b891b208-4af0-47c5-a255-14b924c16eaa] Respuesta LLM recibida correctamente
+2026-06-06 16:47:52,036 | INFO | llm | [d0881bc2-59a1-4ebc-8fc8-b712cc43b292] LLM INPUT: no, mi nombre luis
+2026-06-06 16:47:52,036 | INFO | llm | [d0881bc2-59a1-4ebc-8fc8-b712cc43b292] LLM MODE: chat
+2026-06-06 16:47:52,036 | DEBUG | llm | [d0881bc2-59a1-4ebc-8fc8-b712cc43b292] LLM MEMORY CONTEXT: user: no, mi nombre luis
+2026-06-06 16:47:54,473 | DEBUG | llm | [d0881bc2-59a1-4ebc-8fc8-b712cc43b292] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-06T14:47:54.47265409Z', 'message': {'role': 'assistant', 'content': 'Hola Luis! ¿Cómo puedo ayudarte hoy?'}, 'done': True, 'done_reason': 'stop', 'total_duration': 2431527720, 'load_duration': 153658794, 'prompt_eval_count': 1297, 'prompt_eval_duration': 1264169494, 'eval_count': 11, 'eval_duration': 948618028}
+2026-06-06 16:47:54,474 | DEBUG | llm | [d0881bc2-59a1-4ebc-8fc8-b712cc43b292] OLLAMA CONTENT: Hola Luis! ¿Cómo puedo ayudarte hoy?
+2026-06-06 16:47:54,474 | INFO | llm | [d0881bc2-59a1-4ebc-8fc8-b712cc43b292] Respuesta LLM recibida correctamente
+2026-06-06 16:47:59,250 | INFO | llm | [e53727d9-2bff-44be-ba61-fa1c6121ef2d] LLM INPUT: cual es mi nombre
+2026-06-06 16:47:59,251 | INFO | llm | [e53727d9-2bff-44be-ba61-fa1c6121ef2d] LLM MODE: chat
+2026-06-06 16:47:59,251 | DEBUG | llm | [e53727d9-2bff-44be-ba61-fa1c6121ef2d] LLM MEMORY CONTEXT: user: cual es mi nombre
+2026-06-06 16:48:01,154 | DEBUG | llm | [e53727d9-2bff-44be-ba61-fa1c6121ef2d] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-06T14:48:01.152726845Z', 'message': {'role': 'assistant', 'content': 'Tu nombre es Alfonso.'}, 'done': True, 'done_reason': 'stop', 'total_duration': 1899830729, 'load_duration': 113999677, 'prompt_eval_count': 1294, 'prompt_eval_duration': 1138066192, 'eval_count': 8, 'eval_duration': 606032109}
+2026-06-06 16:48:01,154 | DEBUG | llm | [e53727d9-2bff-44be-ba61-fa1c6121ef2d] OLLAMA CONTENT: Tu nombre es Alfonso.
+2026-06-06 16:48:01,154 | INFO | llm | [e53727d9-2bff-44be-ba61-fa1c6121ef2d] Respuesta LLM recibida correctamente
+2026-06-06 16:48:46,341 | INFO | llm | [363889cc-3439-4998-9063-86cedf0f69cd] LLM INPUT: crea un archivo txt que diga hola soy Alfonso y estoy en fase3
+2026-06-06 16:48:46,341 | INFO | llm | [363889cc-3439-4998-9063-86cedf0f69cd] LLM MODE: tool
+2026-06-06 16:50:48,253 | INFO | llm | [363889cc-3439-4998-9063-86cedf0f69cd] LLM INPUT: crea un archivo txt que diga hola soy Alfonso y estoy en fase3
+2026-06-06 16:50:48,254 | INFO | llm | [363889cc-3439-4998-9063-86cedf0f69cd] LLM MODE: chat
+2026-06-06 16:50:48,254 | DEBUG | llm | [363889cc-3439-4998-9063-86cedf0f69cd] LLM MEMORY CONTEXT: user: crea un archivo txt que diga hola soy Alfonso y estoy en fase3
