@@ -1,365 +1,371 @@
-import uuid
+"""
+routes_fase3.py — Endpoints de Fase 3: Browser y Computer Use
 
-from fastapi import APIRouter, File, Form, Request, UploadFile, WebSocket, WebSocketDisconnect
+Añadir estos routers a app/main.py:
+    from app.api.routes_fase3 import router_browser, router_computer
+    app.include_router(router_browser)
+    app.include_router(router_computer)
+"""
+
+from __future__ import annotations
+
+import uuid
 from typing import Optional
 
-from app.schemas.chat import ChatRequest
-from app.schemas.audio import (
-    TTSRequest,
-    STTRequest,
-    WakeWordRequest,
-    VoiceConversationRequest,
-)
-from app.core.llm_client import OllamaClient
-from app.core.planner_orchestrator import PlannerOrchestrator
-from app.core.metrics import increment_websocket_connections, increment_websocket_messages, snapshot as snapshot_metrics
-from app.core.tool_registry import get_tool, list_tools
-from app.utils.logger import app_logger, attach_request_id, LOG_DIR
+from fastapi import APIRouter, Request
+from pydantic import BaseModel, Field
+
+from app.core.tool_registry import get_tool
+from app.core.metrics import increment_http_errors
+from app.utils.logger import app_logger, attach_request_id
 from app.utils.timer import Timer
 
-router = APIRouter()
 
-llm = OllamaClient()
+# ---------------------------------------------------------------------------
+# Schemas
+# ---------------------------------------------------------------------------
 
-# Orquestador — puede ser reemplazado por main.py durante el lifespan
-# con el PlannerOrchestrator que tiene el EventBus inyectado.
-orchestrator = PlannerOrchestrator()
+class BrowserNavigateRequest(BaseModel):
+    url: str
+    wait_until: str = "domcontentloaded"
+
+
+class BrowserSearchRequest(BaseModel):
+    query: str
+    max_text_chars: int = Field(default=3000, ge=100, le=10000)
+
+
+class BrowserClickRequest(BaseModel):
+    selector: str
+    button: str = "left"
+    click_count: int = Field(default=1, ge=1, le=3)
+
+
+class BrowserFillRequest(BaseModel):
+    selector: str
+    value: str
+
+
+class BrowserScrollRequest(BaseModel):
+    x: int = 0
+    y: int = Field(default=500)
+    selector: Optional[str] = None
+
+
+class BrowserEvaluateRequest(BaseModel):
+    script: str
+
+
+class BrowserScreenshotRequest(BaseModel):
+    full_page: bool = False
+    save_path: Optional[str] = None
+
+
+class ComputerMouseMoveRequest(BaseModel):
+    x: int
+    y: int
+    duration: float = Field(default=0.25, ge=0.0, le=5.0)
+
+
+class ComputerMouseClickRequest(BaseModel):
+    x: int
+    y: int
+    button: str = "left"
+    clicks: int = Field(default=1, ge=1, le=3)
+
+
+class ComputerMouseDragRequest(BaseModel):
+    x1: int
+    y1: int
+    x2: int
+    y2: int
+    duration: float = Field(default=0.5, ge=0.0, le=5.0)
+    button: str = "left"
+
+
+class ComputerKeyboardTypeRequest(BaseModel):
+    text: str
+    interval: float = Field(default=0.03, ge=0.0, le=1.0)
+
+
+class ComputerKeyboardHotkeyRequest(BaseModel):
+    keys: list[str] = Field(description="Lista de teclas, e.g. ['ctrl', 'c']")
+
+
+class ComputerOCRScreenshotRequest(BaseModel):
+    region: Optional[list[int]] = Field(
+        default=None,
+        description="[x, y, width, height] o null para pantalla completa"
+    )
+    lang: str = "spa+eng"
+
+
+class ComputerOCRImageRequest(BaseModel):
+    path: str
+    lang: str = "spa+eng"
+
+
+class ComputerFindOnScreenRequest(BaseModel):
+    template_path: str
+    threshold: float = Field(default=0.8, ge=0.0, le=1.0)
+    region: Optional[list[int]] = None
+
+
+class ComputerWindowFocusRequest(BaseModel):
+    title: str
+
+
+class ComputerWindowCloseRequest(BaseModel):
+    title: str
+
+
+class ComputerScreenshotRequest(BaseModel):
+    region: Optional[list[int]] = None
+    save_path: Optional[str] = None
 
 
 # ---------------------------------------------------------------------------
-# Chat
+# Helpers
 # ---------------------------------------------------------------------------
 
-@router.post("/chat")
-async def chat(req: ChatRequest, request: Request):
-    request_id = getattr(request.state, "request_id", None) or str(uuid.uuid4())
-    session_id = request.headers.get("X-Session-ID") or request_id
-    logger = attach_request_id(app_logger, request_id)
+def _request_id(request: Request) -> str:
+    return getattr(request.state, "request_id", None) or str(uuid.uuid4())
 
-    logger.info("Solicitud /chat recibida")
-    logger.info("SESSION_ID: %s", session_id)
-    logger.info("USER MESSAGE: %s", req.message)
 
-    with Timer() as t:
-        result = await orchestrator.run(req.message, llm, request_id=request_id, session_id=session_id)
-
-    logger.info("Solicitud /chat procesada con estado: %s", result.get("type"))
-    logger.info("LATENCY: %.2fs", t.elapsed)
-
-    status = "error" if result.get("type") == "error" else "success"
-
+def _tool_response(request_id: str, result: dict, t: Timer) -> dict:
+    status = "success" if result.get("status") == "ok" else "error"
     return {
         "status": status,
         "request_id": request_id,
-        "session_id": session_id,
         "result": result,
         "latency_seconds": t.elapsed,
     }
 
 
-@router.get("/chat")
-async def chat_get():
-    return {"status": "ok"}
-
-
-# ---------------------------------------------------------------------------
-# Health / Metrics / Tools / Agents
-# ---------------------------------------------------------------------------
-
-@router.get("/health")
-async def health(request: Request):
-    request_id = getattr(request.state, "request_id", None) or str(uuid.uuid4())
-    logger = attach_request_id(app_logger, request_id)
-    logger.info("Health check")
-    return {
-        "status": "ok",
-        "request_id": request_id,
-        "logs_path": str(LOG_DIR),
-        "phase": "2",
-    }
-
-
-@router.get("/metrics")
-async def metrics(request: Request):
-    request_id = getattr(request.state, "request_id", None) or str(uuid.uuid4())
-    logger = attach_request_id(app_logger, request_id)
-    logger.info("Metrics requested")
-    return {
-        "status": "ok",
-        "request_id": request_id,
-        "metrics": snapshot_metrics(),
-    }
-
-
-@router.get("/tools")
-async def tools(request: Request):
-    request_id = getattr(request.state, "request_id", None) or str(uuid.uuid4())
-    logger = attach_request_id(app_logger, request_id)
-    logger.info("Tools requested")
-    return {
-        "status": "ok",
-        "request_id": request_id,
-        "tools": list_tools(),
-    }
-
-
-@router.get("/agents")
-async def agents_info(request: Request):
-    """Lista los agentes activos y sus event_types. Nuevo en Fase 2."""
-    request_id = getattr(request.state, "request_id", None) or str(uuid.uuid4())
-    logger = attach_request_id(app_logger, request_id)
-    logger.info("Agents info requested")
-
-    # El registry se expone a través del PlannerOrchestrator o main
-    # Importamos aquí para evitar imports circulares
-    try:
-        from app.main import agent_registry
-        agent_list = agent_registry.list_agents()
-    except ImportError:
-        agent_list = []
-
-    return {
-        "status": "ok",
-        "request_id": request_id,
-        "phase": "2",
-        "agents": agent_list,
-    }
-
-# ---------------------------------------------------------------------------
-# Audio — TTS
-# ---------------------------------------------------------------------------
-
-@router.post("/audio/tts")
-async def audio_tts(req: TTSRequest, request: Request):
-    request_id = getattr(request.state, "request_id", None) or str(uuid.uuid4())
-    logger = attach_request_id(app_logger, request_id)
-    logger.info("Solicitud /audio/tts recibida")
-
-    tool = get_tool("text_to_speech")
+async def _call_tool(tool_name: str, request_id: str, **kwargs) -> dict:
+    tool = get_tool(tool_name, request_id=request_id)
     if not tool:
-        return {"status": "error", "request_id": request_id, "message": "Tool TTS no disponible"}
+        return {"status": "error", "message": f"Tool no disponible: {tool_name}"}
+    return await tool(**kwargs)
 
+
+# ---------------------------------------------------------------------------
+# Router: Browser
+# ---------------------------------------------------------------------------
+
+router_browser = APIRouter(prefix="/browser", tags=["browser"])
+
+
+@router_browser.post("/navigate")
+async def browser_navigate_endpoint(req: BrowserNavigateRequest, request: Request):
+    rid = _request_id(request)
     with Timer() as t:
-        result = await tool(req.text, voice=req.voice)
-
-    logger.info("Solicitud /audio/tts procesada")
-    return {"status": "success", "request_id": request_id, "result": result, "latency_seconds": t.elapsed}
+        result = await _call_tool("browser_navigate", rid, url=req.url, wait_until=req.wait_until)
+    return _tool_response(rid, result, t)
 
 
-# ---------------------------------------------------------------------------
-# Audio — STT local (desarrollo)
-# ---------------------------------------------------------------------------
-
-@router.post("/audio/stt")
-async def audio_stt(req: STTRequest, request: Request):
-    request_id = getattr(request.state, "request_id", None) or str(uuid.uuid4())
-    logger = attach_request_id(app_logger, request_id)
-    logger.info("Solicitud /audio/stt recibida")
-
-    tool = get_tool("speech_to_text")
-    if not tool:
-        return {"status": "error", "request_id": request_id, "message": "Tool STT no disponible"}
-
+@router_browser.post("/search")
+async def browser_search_endpoint(req: BrowserSearchRequest, request: Request):
+    rid = _request_id(request)
     with Timer() as t:
-        result = await tool(duration=req.duration)
-
-    logger.info("Solicitud /audio/stt procesada")
-    return {"status": "success", "request_id": request_id, "result": result, "latency_seconds": t.elapsed}
+        result = await _call_tool("browser_search", rid, query=req.query, max_text_chars=req.max_text_chars)
+    return _tool_response(rid, result, t)
 
 
-# ---------------------------------------------------------------------------
-# Audio — STT upload (producción)
-# ---------------------------------------------------------------------------
-
-@router.post("/audio/stt/upload")
-async def audio_stt_upload(
-    request: Request,
-    file: UploadFile = File(...),
-    model: str = "small",
-):
-    request_id = getattr(request.state, "request_id", None) or str(uuid.uuid4())
-    logger = attach_request_id(app_logger, request_id)
-    logger.info("Solicitud /audio/stt/upload recibida: %s", file.filename)
-
-    tool = get_tool("transcribe_audio_bytes")
-    if not tool:
-        return {"status": "error", "request_id": request_id, "message": "Tool de transcripción no disponible"}
-
-    content = await file.read()
+@router_browser.post("/click")
+async def browser_click_endpoint(req: BrowserClickRequest, request: Request):
+    rid = _request_id(request)
     with Timer() as t:
-        result = await tool(content=content, filename=file.filename, model=model)
-
-    logger.info("Solicitud /audio/stt/upload procesada")
-    return {"status": "success", "request_id": request_id, "result": result, "latency_seconds": t.elapsed}
-
-
-# ---------------------------------------------------------------------------
-# Audio — Wake word local
-# ---------------------------------------------------------------------------
-
-@router.post("/audio/wakeword")
-async def audio_wakeword(req: WakeWordRequest, request: Request):
-    request_id = getattr(request.state, "request_id", None) or str(uuid.uuid4())
-    logger = attach_request_id(app_logger, request_id)
-    logger.info("Solicitud /audio/wakeword recibida")
-
-    tool = get_tool("wake_word_listener")
-    if not tool:
-        return {"status": "error", "request_id": request_id, "message": "Tool wake word no disponible"}
-
-    with Timer() as t:
-        result = await tool(
-            keyword=req.keyword,
-            max_duration=req.max_duration,
-            chunk_duration=req.chunk_duration,
-            model=req.model or "small",
+        result = await _call_tool(
+            "browser_click", rid,
+            selector=req.selector,
+            button=req.button,
+            click_count=req.click_count,
         )
-
-    logger.info("Solicitud /audio/wakeword procesada")
-    return {"status": "success", "request_id": request_id, "result": result, "latency_seconds": t.elapsed}
+    return _tool_response(rid, result, t)
 
 
-# ---------------------------------------------------------------------------
-# Audio — Wake word upload (producción)
-# ---------------------------------------------------------------------------
-
-@router.post("/audio/wakeword/upload")
-async def audio_wakeword_upload(
-    request: Request,
-    file: UploadFile = File(...),
-    keyword: str = Form(default="alfonso"),
-    model: str = Form(default="small"),
-):
-    request_id = getattr(request.state, "request_id", None) or str(uuid.uuid4())
-    logger = attach_request_id(app_logger, request_id)
-    logger.info(
-        "Solicitud /audio/wakeword/upload recibida: %s (keyword=%s)",
-        file.filename, keyword,
-    )
-
-    tool = get_tool("detect_wake_word_in_audio")
-    if not tool:
-        return {"status": "error", "request_id": request_id, "message": "Tool de wake word no disponible"}
-
-    content = await file.read()
+@router_browser.post("/fill")
+async def browser_fill_endpoint(req: BrowserFillRequest, request: Request):
+    rid = _request_id(request)
     with Timer() as t:
-        result = await tool(content=content, filename=file.filename, keyword=keyword, model=model)
-
-    logger.info(
-        "Solicitud /audio/wakeword/upload procesada — detectada: %s",
-        result.get("wake_word_detected"),
-    )
-    return {"status": "success", "request_id": request_id, "result": result, "latency_seconds": t.elapsed}
+        result = await _call_tool("browser_fill", rid, selector=req.selector, value=req.value)
+    return _tool_response(rid, result, t)
 
 
-# ---------------------------------------------------------------------------
-# Audio — Conversación completa
-# ---------------------------------------------------------------------------
+@router_browser.post("/submit")
+async def browser_submit_endpoint(request: Request, selector: str):
+    rid = _request_id(request)
+    with Timer() as t:
+        result = await _call_tool("browser_submit", rid, selector=selector)
+    return _tool_response(rid, result, t)
 
-@router.post("/audio/converse")
-async def audio_converse(req: VoiceConversationRequest, request: Request):
-    request_id = getattr(request.state, "request_id", None) or str(uuid.uuid4())
-    session_id = req.session_id or request_id
-    logger = attach_request_id(app_logger, request_id)
-    logger.info("Solicitud /audio/converse recibida")
 
-    wake_result = None
+@router_browser.post("/scroll")
+async def browser_scroll_endpoint(req: BrowserScrollRequest, request: Request):
+    rid = _request_id(request)
+    with Timer() as t:
+        result = await _call_tool("browser_scroll", rid, x=req.x, y=req.y, selector=req.selector)
+    return _tool_response(rid, result, t)
 
-    with Timer() as total_timer:
-        if req.wakeword_enabled:
-            wake_tool = get_tool("wake_word_listener")
-            if not wake_tool:
-                return {"status": "error", "request_id": request_id, "message": "Tool wake word no disponible"}
 
-            wake_result = await wake_tool(
-                keyword=req.keyword or "alfonso",
-                max_duration=req.max_duration,
-                chunk_duration=req.chunk_duration,
-                model=req.stt_model or "small",
-            )
+@router_browser.post("/evaluate")
+async def browser_evaluate_endpoint(req: BrowserEvaluateRequest, request: Request):
+    rid = _request_id(request)
+    with Timer() as t:
+        result = await _call_tool("browser_evaluate", rid, script=req.script)
+    return _tool_response(rid, result, t)
 
-            if wake_result.get("status") != "ok":
-                return {
-                    "status": "error",
-                    "request_id": request_id,
-                    "message": wake_result.get("message", "Error en wake word"),
-                    "wake_result": wake_result,
-                }
 
-            if not wake_result.get("wake_word_detected"):
-                return {
-                    "status": "success",
-                    "request_id": request_id,
-                    "message": "Wake word no detectada",
-                    "wake_result": wake_result,
-                }
-
-            logger.info("Wake word detectada: %s", wake_result.get("text", ""))
-
-        stt_tool = get_tool("speech_to_text")
-        if not stt_tool:
-            return {"status": "error", "request_id": request_id, "message": "Tool STT no disponible"}
-
-        stt_result = await stt_tool(duration=req.stt_duration, model=req.stt_model or "small")
-
-        if stt_result.get("status") != "ok":
-            return {"status": "error", "request_id": request_id, "message": "STT error", "stt_result": stt_result}
-
-        user_text = stt_result.get("text", "").strip()
-        if not user_text:
-            return {"status": "error", "request_id": request_id, "message": "No se detectó texto", "stt_result": stt_result}
-
-        conversation_result = await orchestrator.run(user_text, llm, request_id=request_id, session_id=session_id)
-        response_text = (
-            conversation_result.get("response", "")
-            if conversation_result.get("type") == "chat"
-            else str(conversation_result)
+@router_browser.post("/screenshot")
+async def browser_screenshot_endpoint(req: BrowserScreenshotRequest, request: Request):
+    rid = _request_id(request)
+    with Timer() as t:
+        result = await _call_tool(
+            "browser_screenshot", rid,
+            full_page=req.full_page,
+            save_path=req.save_path,
         )
+    return _tool_response(rid, result, t)
 
-        tts_tool = get_tool("text_to_speech")
-        if not tts_tool:
-            return {
-                "status": "error",
-                "request_id": request_id,
-                "message": "Tool TTS no disponible",
-                "conversation_result": conversation_result,
-            }
 
-        tts_result = await tts_tool(response_text, voice=req.voice)
+@router_browser.get("/text")
+async def browser_get_text_endpoint(request: Request, selector: str = "body"):
+    rid = _request_id(request)
+    with Timer() as t:
+        result = await _call_tool("browser_get_text", rid, selector=selector)
+    return _tool_response(rid, result, t)
 
-    status = "error" if conversation_result.get("type") == "error" else "success"
 
-    return {
-        "status": status,
-        "request_id": request_id,
-        "session_id": session_id,
-        "wake_result": wake_result,
-        "stt_result": stt_result,
-        "conversation_result": conversation_result,
-        "tts_result": tts_result,
-        "latency_seconds": total_timer.elapsed,
-    }
+@router_browser.delete("/close")
+async def browser_close_endpoint(request: Request):
+    rid = _request_id(request)
+    with Timer() as t:
+        result = await _call_tool("browser_close", rid)
+    return _tool_response(rid, result, t)
 
 
 # ---------------------------------------------------------------------------
-# WebSocket
+# Router: Computer Use
 # ---------------------------------------------------------------------------
 
-@router.websocket("/ws")
-async def websocket_endpoint(websocket: WebSocket):
-    await websocket.accept()
-    request_id = str(uuid.uuid4())
-    logger = attach_request_id(app_logger, request_id)
-    increment_websocket_connections()
+router_computer = APIRouter(prefix="/computer", tags=["computer"])
 
-    try:
-        while True:
-            message = await websocket.receive_text()
-            logger.info("WS message received: %s", message)
-            increment_websocket_messages()
-            await websocket.send_text(f"Echo: {message}")
-    except WebSocketDisconnect:
-        logger.info("WS disconnected")
-    except Exception:
-        logger.exception("WS error")
-        await websocket.close(code=1011)
+
+@router_computer.post("/screenshot")
+async def computer_screenshot_endpoint(req: ComputerScreenshotRequest, request: Request):
+    rid = _request_id(request)
+    region = tuple(req.region) if req.region and len(req.region) == 4 else None
+    with Timer() as t:
+        result = await _call_tool("screenshot", rid, region=region, save_path=req.save_path)
+    return _tool_response(rid, result, t)
+
+
+@router_computer.post("/mouse/move")
+async def mouse_move_endpoint(req: ComputerMouseMoveRequest, request: Request):
+    rid = _request_id(request)
+    with Timer() as t:
+        result = await _call_tool("mouse_move", rid, x=req.x, y=req.y, duration=req.duration)
+    return _tool_response(rid, result, t)
+
+
+@router_computer.post("/mouse/click")
+async def mouse_click_endpoint(req: ComputerMouseClickRequest, request: Request):
+    rid = _request_id(request)
+    with Timer() as t:
+        result = await _call_tool(
+            "mouse_click", rid,
+            x=req.x, y=req.y,
+            button=req.button,
+            clicks=req.clicks,
+        )
+    return _tool_response(rid, result, t)
+
+
+@router_computer.post("/mouse/drag")
+async def mouse_drag_endpoint(req: ComputerMouseDragRequest, request: Request):
+    rid = _request_id(request)
+    with Timer() as t:
+        result = await _call_tool(
+            "mouse_drag", rid,
+            x1=req.x1, y1=req.y1,
+            x2=req.x2, y2=req.y2,
+            duration=req.duration,
+            button=req.button,
+        )
+    return _tool_response(rid, result, t)
+
+
+@router_computer.post("/keyboard/type")
+async def keyboard_type_endpoint(req: ComputerKeyboardTypeRequest, request: Request):
+    rid = _request_id(request)
+    with Timer() as t:
+        result = await _call_tool("keyboard_type", rid, text=req.text, interval=req.interval)
+    return _tool_response(rid, result, t)
+
+
+@router_computer.post("/keyboard/hotkey")
+async def keyboard_hotkey_endpoint(req: ComputerKeyboardHotkeyRequest, request: Request):
+    rid = _request_id(request)
+    with Timer() as t:
+        tool = get_tool("keyboard_hotkey", request_id=rid)
+        if not tool:
+            result = {"status": "error", "message": "Tool no disponible: keyboard_hotkey"}
+        else:
+            result = await tool(*req.keys)
+    return _tool_response(rid, result, t)
+
+
+@router_computer.post("/ocr/screenshot")
+async def ocr_screenshot_endpoint(req: ComputerOCRScreenshotRequest, request: Request):
+    rid = _request_id(request)
+    region = tuple(req.region) if req.region and len(req.region) == 4 else None
+    with Timer() as t:
+        result = await _call_tool("ocr_screenshot", rid, region=region, lang=req.lang)
+    return _tool_response(rid, result, t)
+
+
+@router_computer.post("/ocr/image")
+async def ocr_image_endpoint(req: ComputerOCRImageRequest, request: Request):
+    rid = _request_id(request)
+    with Timer() as t:
+        result = await _call_tool("ocr_image", rid, path=req.path, lang=req.lang)
+    return _tool_response(rid, result, t)
+
+
+@router_computer.post("/find")
+async def find_on_screen_endpoint(req: ComputerFindOnScreenRequest, request: Request):
+    rid = _request_id(request)
+    region = tuple(req.region) if req.region and len(req.region) == 4 else None
+    with Timer() as t:
+        result = await _call_tool(
+            "find_on_screen", rid,
+            template_path=req.template_path,
+            threshold=req.threshold,
+            region=region,
+        )
+    return _tool_response(rid, result, t)
+
+
+@router_computer.get("/windows")
+async def window_list_endpoint(request: Request):
+    rid = _request_id(request)
+    with Timer() as t:
+        result = await _call_tool("window_list", rid)
+    return _tool_response(rid, result, t)
+
+
+@router_computer.post("/windows/focus")
+async def window_focus_endpoint(req: ComputerWindowFocusRequest, request: Request):
+    rid = _request_id(request)
+    with Timer() as t:
+        result = await _call_tool("window_focus", rid, title=req.title)
+    return _tool_response(rid, result, t)
+
+
+@router_computer.post("/windows/close")
+async def window_close_endpoint(req: ComputerWindowCloseRequest, request: Request):
+    rid = _request_id(request)
+    with Timer() as t:
+        result = await _call_tool("window_close", rid, title=req.title)
+    return _tool_response(rid, result, t)

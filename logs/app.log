@@ -184,3 +184,22 @@
 2026-06-05 10:13:46,786 | INFO | app | [c08b374e-9994-4fbd-91cf-315a0c1ae61b] Solicitud /chat procesada con estado: chat
 2026-06-05 10:13:46,786 | INFO | app | [c08b374e-9994-4fbd-91cf-315a0c1ae61b] LATENCY: 9.39s
 2026-06-05 10:13:46,787 | INFO | app | [c08b374e-9994-4fbd-91cf-315a0c1ae61b] HTTP request finished: POST /chat 200
+2026-06-06 11:05:21,991 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-06 11:05:21,992 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
+2026-06-06 11:05:21,992 | INFO | app | [----------] EventBus iniciado
+2026-06-06 11:05:21,999 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-06 11:06:45,873 | INFO | app | [----------] Modelo precalentado
+2026-06-06 11:06:45,874 | INFO | app | [----------] Alfonso Fase 3 listo
+2026-06-06 11:09:37,551 | INFO | app | [e7f27950-06b2-4445-8b98-993ed290be62] HTTP request started: POST /chat
+2026-06-06 11:09:37,559 | WARNING | app | [e7f27950-06b2-4445-8b98-993ed290be62] HTTP exception: Not Found
+2026-06-06 11:09:37,563 | INFO | app | [e7f27950-06b2-4445-8b98-993ed290be62] HTTP request finished: POST /chat 404
+2026-06-06 11:34:06,938 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-06 11:34:06,939 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
+2026-06-06 11:34:06,939 | INFO | app | [----------] EventBus iniciado
+2026-06-06 11:34:06,946 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-06 11:35:26,739 | INFO | app | [----------] Modelo precalentado
+2026-06-06 11:35:26,740 | INFO | app | [----------] Alfonso Fase 3 listo
+2026-06-06 11:57:17,528 | INFO | app | [0887b8bd-36fa-4707-a3ef-d4dc1f3ae0f5] HTTP request started: POST /chat
+2026-06-06 11:57:17,537 | WARNING | app | [0887b8bd-36fa-4707-a3ef-d4dc1f3ae0f5] HTTP exception: Not Found
+2026-06-06 11:57:17,542 | INFO | app | [0887b8bd-36fa-4707-a3ef-d4dc1f3ae0f5] HTTP request finished: POST /chat 404
+2026-06-06 12:02:49,744 | INFO | app | [----------] Agentes y EventBus detenidos

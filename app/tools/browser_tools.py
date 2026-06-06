@@ -12,6 +12,7 @@ Herramientas:
     browser_wait_for        → espera a que aparezca un selector
     browser_scroll          → hace scroll en la página
     browser_evaluate        → ejecuta JavaScript en la página
+    browser_search          → busca en Google y devuelve texto + screenshot  ← NUEVO
     browser_close           → cierra el navegador
 
 Diseño:
@@ -26,6 +27,7 @@ from __future__ import annotations
 import asyncio
 import base64
 import os
+import urllib.parse
 from typing import Optional
 
 from app.utils.logger import error_logger, tool_logger
@@ -154,7 +156,6 @@ async def browser_fill(
 ) -> dict:
     """
     Rellena un campo de texto (input, textarea) con `value`.
-
     Limpia el campo antes de escribir.
     """
     tool_logger.info("browser_fill: selector=%s value_len=%d", selector, len(value))
@@ -175,11 +176,9 @@ async def browser_submit(selector: str, timeout: int = 10_000) -> dict:
     tool_logger.info("browser_submit: selector=%s", selector)
     try:
         page = await _get_page()
-        # Intentar submit nativo primero
         try:
             await page.locator(selector).evaluate("el => el.form && el.form.submit()")
         except Exception:
-            # Fallback: pulsar Enter
             await page.press(selector, "Enter", timeout=timeout)
         return {"status": "ok", "selector": selector}
     except Exception as exc:
@@ -199,7 +198,7 @@ async def browser_screenshot(
         save_path: ruta donde guardar (opcional)
 
     Returns:
-        {status, image_base64, width, height, path?}
+        {status, image_base64, url, path?}
     """
     tool_logger.info("browser_screenshot: full_page=%s", full_page)
     try:
@@ -321,6 +320,53 @@ async def browser_evaluate(script: str) -> dict:
         return {"status": "error", "message": str(exc)}
 
 
+async def browser_search(query: str, max_text_chars: int = 3000) -> dict:
+    """
+    Busca en Google la query dada y devuelve el texto extraído más un screenshot.
+
+    Flujo:
+        1. Navega a google.com/search?q=<query>
+        2. Espera los resultados (selector h3)
+        3. Extrae texto del body (truncado a max_text_chars)
+        4. Captura screenshot
+
+    Args:
+        query: términos de búsqueda
+        max_text_chars: máximo de caracteres de texto a devolver
+
+    Returns:
+        {status, query, url, text_preview, image_base64}
+    """
+    tool_logger.info("browser_search: query=%s", query)
+
+    if not query.strip():
+        return {"status": "error", "message": "Query vacía"}
+
+    search_url = "https://www.google.com/search?q=" + urllib.parse.quote_plus(query)
+
+    nav = await browser_navigate(search_url, wait_until="domcontentloaded")
+    if nav.get("status") != "ok":
+        return nav
+
+    # Esperar resultados
+    wait = await browser_wait_for("h3", state="visible", timeout=10_000)
+    if wait.get("status") != "ok":
+        tool_logger.warning("browser_search: h3 no apareció, continuando de todas formas")
+
+    text_result = await browser_get_text("body")
+    text = text_result.get("text", "")[:max_text_chars]
+
+    screenshot = await browser_screenshot(full_page=False)
+
+    return {
+        "status": "ok",
+        "query": query,
+        "url": search_url,
+        "text_preview": text,
+        "image_base64": screenshot.get("image_base64"),
+    }
+
+
 async def browser_close() -> dict:
     """Cierra el navegador y libera recursos de Playwright."""
     tool_logger.info("browser_close")
@@ -347,5 +393,6 @@ TOOLS = {
     "browser_wait_for":   browser_wait_for,
     "browser_scroll":     browser_scroll,
     "browser_evaluate":   browser_evaluate,
+    "browser_search":     browser_search,
     "browser_close":      browser_close,
 }

@@ -163,3 +163,13 @@ I'm working correctly.
 2026-06-05 10:13:46,770 | DEBUG | llm | [c08b374e-9994-4fbd-91cf-315a0c1ae61b] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-05T08:13:46.76859808Z', 'message': {'role': 'assistant', 'content': 'Buenas tardes. Actualmente no tengo la capacidad de buscar información meteorológica para Bilbao en tiempo real. Te recomendaría que busques el clima actual directamente en tu navegador o aplicaciones especializadas si dispones de ese tipo de acceso.'}, 'done': True, 'done_reason': 'stop', 'total_duration': 9342962969, 'load_duration': 163682504, 'prompt_eval_count': 1308, 'prompt_eval_duration': 2495396574, 'eval_count': 56, 'eval_duration': 6311997049}
 2026-06-05 10:13:46,771 | DEBUG | llm | [c08b374e-9994-4fbd-91cf-315a0c1ae61b] OLLAMA CONTENT: Buenas tardes. Actualmente no tengo la capacidad de buscar información meteorológica para Bilbao en tiempo real. Te recomendaría que busques el clima actual directamente en tu navegador o aplicaciones especializadas si dispones de ese tipo de acceso.
 2026-06-05 10:13:46,771 | INFO | llm | [c08b374e-9994-4fbd-91cf-315a0c1ae61b] Respuesta LLM recibida correctamente
+2026-06-06 11:05:22,001 | INFO | llm | [----------] LLM INPUT: ping
+2026-06-06 11:05:22,001 | INFO | llm | [----------] LLM MODE: chat
+2026-06-06 11:06:45,859 | DEBUG | llm | [----------] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-06T09:06:45.7018139Z', 'message': {'role': 'assistant', 'content': 'Pong!'}, 'done': True, 'done_reason': 'stop', 'total_duration': 83586326103, 'load_duration': 6442953021, 'prompt_eval_count': 1284, 'prompt_eval_duration': 75969712667, 'eval_count': 4, 'eval_duration': 304708172}
+2026-06-06 11:06:45,870 | DEBUG | llm | [----------] OLLAMA CONTENT: Pong!
+2026-06-06 11:06:45,871 | INFO | llm | [----------] Respuesta LLM recibida correctamente
+2026-06-06 11:34:06,947 | INFO | llm | [----------] LLM INPUT: ping
+2026-06-06 11:34:06,948 | INFO | llm | [----------] LLM MODE: chat
+2026-06-06 11:35:26,731 | DEBUG | llm | [----------] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-06T09:35:26.633342282Z', 'message': {'role': 'assistant', 'content': 'Hello! How can I assist you today?'}, 'done': True, 'done_reason': 'stop', 'total_duration': 79673398541, 'load_duration': 4653790017, 'prompt_eval_count': 1284, 'prompt_eval_duration': 73604351152, 'eval_count': 10, 'eval_duration': 1035306148}
+2026-06-06 11:35:26,738 | DEBUG | llm | [----------] OLLAMA CONTENT: Hello! How can I assist you today?
+2026-06-06 11:35:26,738 | INFO | llm | [----------] Respuesta LLM recibida correctamente

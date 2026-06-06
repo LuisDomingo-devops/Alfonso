@@ -9,7 +9,7 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from app.agents.registry import AgentRegistry
 from app.api.files import router_files
-from app.api.routes import router
+from app.api.routes import router, router_browser, router_computer
 from app.core.event_bus import EventBus
 from app.core.llm_client import OllamaClient
 from app.core.metrics import increment_http_errors, increment_http_requests, record_http_latency
@@ -24,7 +24,7 @@ llm = OllamaClient()
 event_bus = EventBus()
 agent_registry = AgentRegistry(event_bus, llm)
 
-# PlannerOrchestrator con EventBus — Fase 2
+# PlannerOrchestrator con EventBus — Fase 2+
 planner_orchestrator = PlannerOrchestrator(event_bus)
 
 # ---------------------------------------------------------------------------
@@ -35,7 +35,7 @@ planner_orchestrator = PlannerOrchestrator(event_bus)
 async def lifespan(app: FastAPI):
     # ── Arranque ──────────────────────────────────────────────────────────
     app_logger.info("Los logs se escribirán en %s", LOG_DIR)
-    app_logger.info("Arrancando sistema de agentes — Fase 2")
+    app_logger.info("Arrancando sistema de agentes — Fase 3")
 
     # 1. Event bus
     await event_bus.start()
@@ -58,7 +58,7 @@ async def lifespan(app: FastAPI):
     except Exception:
         app_logger.exception("Error precalentando el modelo")
 
-    app_logger.info("Alfonso Fase 2 listo")
+    app_logger.info("Alfonso Fase 3 listo")
 
     yield  # ── La aplicación corre aquí ───────────────────────────────────
 
@@ -72,7 +72,7 @@ async def lifespan(app: FastAPI):
 # Aplicación
 # ---------------------------------------------------------------------------
 
-app = FastAPI(title="Alfonso Core — Fase 2", lifespan=lifespan)
+app = FastAPI(title="Alfonso Core — Fase 3", lifespan=lifespan)
 
 
 # ---------------------------------------------------------------------------
@@ -146,3 +146,5 @@ async def generic_exception_handler(request: Request, exc: Exception):
 
 app.include_router(router)
 app.include_router(router_files)
+app.include_router(router_browser)   # Fase 3
+app.include_router(router_computer)  # Fase 3
