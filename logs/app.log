@@ -468,3 +468,26 @@
 2026-06-07 09:40:07,792 | INFO | app | [61cc8cd2-3236-4da6-9916-d37a8b3dabfd] LATENCY: 1.36s
 2026-06-07 09:40:07,793 | INFO | app | [61cc8cd2-3236-4da6-9916-d37a8b3dabfd] HTTP request finished: POST /chat 200
 2026-06-07 09:40:19,376 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-07 20:20:20,900 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-07 20:20:20,901 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
+2026-06-07 20:20:20,901 | INFO | app | [----------] EventBus iniciado
+2026-06-07 20:20:20,909 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-07 20:21:05,963 | INFO | app | [----------] Modelo precalentado
+2026-06-07 20:21:05,963 | INFO | app | [----------] Alfonso Fase 3 listo
+2026-06-07 20:21:52,267 | INFO | app | [8043c1a3-7196-4216-a545-0824ba7c057b] HTTP request started: POST /chat
+2026-06-07 20:21:52,276 | WARNING | app | [8043c1a3-7196-4216-a545-0824ba7c057b] HTTP exception: There was an error parsing the body
+2026-06-07 20:21:52,278 | INFO | app | [8043c1a3-7196-4216-a545-0824ba7c057b] HTTP request finished: POST /chat 400
+2026-06-07 20:22:27,638 | INFO | app | [944ade96-8338-4650-ba31-ff009317ef47] HTTP request started: POST /chat
+2026-06-07 20:22:27,643 | INFO | app | [944ade96-8338-4650-ba31-ff009317ef47] Solicitud /chat recibida
+2026-06-07 20:22:27,644 | INFO | app | [944ade96-8338-4650-ba31-ff009317ef47] SESSION_ID: 944ade96-8338-4650-ba31-ff009317ef47
+2026-06-07 20:22:27,644 | INFO | app | [944ade96-8338-4650-ba31-ff009317ef47] USER MESSAGE: crea un archivo llamado test_fase3.txt con el texto Alfonso funcionando en Fase 3
+2026-06-07 20:23:01,895 | INFO | app | [944ade96-8338-4650-ba31-ff009317ef47] Solicitud /chat procesada con estado: tool
+2026-06-07 20:23:01,895 | INFO | app | [944ade96-8338-4650-ba31-ff009317ef47] LATENCY: 34.25s
+2026-06-07 20:23:01,897 | INFO | app | [944ade96-8338-4650-ba31-ff009317ef47] HTTP request finished: POST /chat 200
+2026-06-07 20:25:21,563 | INFO | app | [907ce6f0-a774-4126-811a-886d268cadf3] HTTP request started: POST /chat
+2026-06-07 20:25:21,604 | WARNING | app | [907ce6f0-a774-4126-811a-886d268cadf3] HTTP exception: There was an error parsing the body
+2026-06-07 20:25:21,608 | INFO | app | [907ce6f0-a774-4126-811a-886d268cadf3] HTTP request finished: POST /chat 400
+2026-06-07 20:27:26,959 | INFO | app | [dcbb1692-5c49-4b35-b475-a0167885c63f] HTTP request started: POST /chat
+2026-06-07 20:27:26,962 | WARNING | app | [dcbb1692-5c49-4b35-b475-a0167885c63f] HTTP exception: There was an error parsing the body
+2026-06-07 20:27:26,963 | INFO | app | [dcbb1692-5c49-4b35-b475-a0167885c63f] HTTP request finished: POST /chat 400
+2026-06-07 20:27:59,988 | INFO | app | [----------] Agentes y EventBus detenidos
