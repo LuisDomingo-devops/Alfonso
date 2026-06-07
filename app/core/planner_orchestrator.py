@@ -16,6 +16,7 @@ import json
 import re
 
 from app.core.intent_router import IntentRouter
+from app.core.llm_client import extract_json_robust
 from app.core.memory import memory
 from app.agents.task_planner import TaskPlan, TaskPlanner
 from app.utils.logger import attach_request_id, error_logger, orchestrator_logger
@@ -23,29 +24,8 @@ from app.utils.logger import attach_request_id, error_logger, orchestrator_logge
 _router = IntentRouter()
 _planner = TaskPlanner()
 
-_JSON_BLOCK = re.compile(r"```(?:json)?\s*(\{.*?\})\s*```", re.DOTALL)
-_BARE_JSON = re.compile(r"\{.*\}", re.DOTALL)
 
-_AGENT_TIMEOUT = 30.0
-
-
-def _extract_json(raw: str) -> dict | None:
-    m = _JSON_BLOCK.search(raw)
-    if m:
-        try:
-            return json.loads(m.group(1))
-        except json.JSONDecodeError:
-            pass
-    m = _BARE_JSON.search(raw)
-    if m:
-        try:
-            return json.loads(m.group(0))
-        except json.JSONDecodeError:
-            pass
-    try:
-        return json.loads(raw.strip())
-    except json.JSONDecodeError:
-        return None
+_AGENT_TIMEOUT = 90.0  # aumentado: ChatAgent también llama al LLM
 
 
 def _extract_tool_and_args(data: dict) -> tuple[str | None, dict]:
@@ -134,7 +114,7 @@ class PlannerOrchestrator:
         )
         logger.debug("LLM OUTPUT (tool): %s", raw)
 
-        data = _extract_json(raw)
+        data = extract_json_robust(raw)
 
         if data is None:
             logger.warning("LLM no devolvió JSON válido — fallback a chat. Raw: %s", raw[:200])
@@ -143,6 +123,20 @@ class PlannerOrchestrator:
             return {"type": "chat", "response": raw}
 
         tool_name, args = _extract_tool_and_args(data)
+
+        # ── Cortar cascada LLM_ERROR ────────────────────────────────
+        # Si el LLM devolvió no_op con "LLM_ERROR:" en el mensaje significa que
+        # Ollama ya falló (timeout/error). NO redirigir a chat.respond porque eso
+        # haría una segunda llamada al LLM que también fallará.
+        if tool_name == "no_op":
+            msg_arg = args.get("message", "")
+            if "LLM_ERROR" in msg_arg:
+                error_detail = msg_arg.replace("LLM_ERROR: ", "")
+                logger.error("LLM_ERROR interceptado — devolviendo error sin reintentar LLM: %s", error_detail)
+                return {
+                    "type": "error",
+                    "message": f"El modelo no respondió a tiempo. Inténtalo de nuevo. ({error_detail})",
+                }
 
         # ── Corrección de alucinaciones ─────────────────────────────
         msg_lower = user_message.lower()

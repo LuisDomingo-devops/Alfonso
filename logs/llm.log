@@ -207,3 +207,141 @@ I'm working correctly.
 2026-06-06 16:50:48,253 | INFO | llm | [363889cc-3439-4998-9063-86cedf0f69cd] LLM INPUT: crea un archivo txt que diga hola soy Alfonso y estoy en fase3
 2026-06-06 16:50:48,254 | INFO | llm | [363889cc-3439-4998-9063-86cedf0f69cd] LLM MODE: chat
 2026-06-06 16:50:48,254 | DEBUG | llm | [363889cc-3439-4998-9063-86cedf0f69cd] LLM MEMORY CONTEXT: user: crea un archivo txt que diga hola soy Alfonso y estoy en fase3
+2026-06-06 17:41:31,846 | INFO | llm | [----------] LLM INPUT: ping
+2026-06-06 17:41:31,861 | INFO | llm | [----------] LLM MODE: chat
+2026-06-06 17:41:33,828 | DEBUG | llm | [----------] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-06T15:41:33.827067918Z', 'message': {'role': 'assistant', 'content': 'Pong! How can I assist you today?'}, 'done': True, 'done_reason': 'stop', 'total_duration': 1904776686, 'load_duration': 322462003, 'prompt_eval_count': 1284, 'prompt_eval_duration': 701166978, 'eval_count': 11, 'eval_duration': 835265615}
+2026-06-06 17:41:33,828 | DEBUG | llm | [----------] OLLAMA CONTENT: Pong! How can I assist you today?
+2026-06-06 17:41:33,828 | INFO | llm | [----------] Respuesta LLM recibida correctamente
+2026-06-06 17:42:31,824 | INFO | llm | [5c791fe9-3c3f-4f5b-a39e-8adf7980942d] LLM INPUT: crea un archivo txt que diga hola soy alfonso y estoy en fase 3
+2026-06-06 17:42:31,825 | INFO | llm | [5c791fe9-3c3f-4f5b-a39e-8adf7980942d] LLM MODE: tool
+2026-06-06 17:44:34,875 | INFO | llm | [5c791fe9-3c3f-4f5b-a39e-8adf7980942d] LLM INPUT: crea un archivo txt que diga hola soy alfonso y estoy en fase 3
+2026-06-06 17:44:34,875 | INFO | llm | [5c791fe9-3c3f-4f5b-a39e-8adf7980942d] LLM MODE: chat
+2026-06-06 17:44:34,875 | DEBUG | llm | [5c791fe9-3c3f-4f5b-a39e-8adf7980942d] LLM MEMORY CONTEXT: user: crea un archivo txt que diga hola soy alfonso y estoy en fase 3
+2026-06-06 17:45:58,469 | DEBUG | llm | [5c791fe9-3c3f-4f5b-a39e-8adf7980942d] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-06T15:45:58.467422827Z', 'message': {'role': 'assistant', 'content': 'Hola, soy Alfonso. Estoy en fase 3.'}, 'done': True, 'done_reason': 'stop', 'total_duration': 82086428692, 'load_duration': 287803609, 'prompt_eval_count': 1324, 'prompt_eval_duration': 74688205946, 'eval_count': 15, 'eval_duration': 1407168943}
+2026-06-06 17:45:58,469 | DEBUG | llm | [5c791fe9-3c3f-4f5b-a39e-8adf7980942d] OLLAMA CONTENT: Hola, soy Alfonso. Estoy en fase 3.
+2026-06-06 17:45:58,469 | INFO | llm | [5c791fe9-3c3f-4f5b-a39e-8adf7980942d] Respuesta LLM recibida correctamente
+2026-06-07 08:46:42,735 | INFO | llm | [----------] LLM INPUT: ping
+2026-06-07 08:46:42,735 | INFO | llm | [----------] LLM MODEL: qwen2.5:1.5b  MODE: chat  num_ctx=2048  reasoning=False
+2026-06-07 08:48:19,333 | DEBUG | llm | [----------] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-07T06:48:19.178529284Z', 'message': {'role': 'assistant', 'content': 'Hello! How can I assist you today?'}, 'done': True, 'done_reason': 'stop', 'total_duration': 96430152851, 'load_duration': 6715407305, 'prompt_eval_count': 1284, 'prompt_eval_duration': 88017721417, 'eval_count': 10, 'eval_duration': 1238412055}
+2026-06-07 08:48:19,347 | DEBUG | llm | [----------] OLLAMA CONTENT: Hello! How can I assist you today?
+2026-06-07 08:48:19,348 | INFO | llm | [----------] Respuesta LLM recibida correctamente
+2026-06-07 08:49:05,972 | INFO | llm | [39429f9a-0eeb-4230-9406-4ad6234cd48a] LLM INPUT: cual es mi nombre
+2026-06-07 08:49:05,972 | INFO | llm | [39429f9a-0eeb-4230-9406-4ad6234cd48a] LLM MODEL: qwen2.5:1.5b  MODE: chat  num_ctx=2048  reasoning=False
+2026-06-07 08:49:05,972 | DEBUG | llm | [39429f9a-0eeb-4230-9406-4ad6234cd48a] LLM MEMORY CONTEXT: user: cual es mi nombre
+2026-06-07 08:49:08,656 | DEBUG | llm | [39429f9a-0eeb-4230-9406-4ad6234cd48a] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-07T06:49:08.653787879Z', 'message': {'role': 'assistant', 'content': 'Tu nombre es Alfonso.'}, 'done': True, 'done_reason': 'stop', 'total_duration': 2635557984, 'load_duration': 343850275, 'prompt_eval_count': 1294, 'prompt_eval_duration': 1534058901, 'eval_count': 8, 'eval_duration': 680480374}
+2026-06-07 08:49:08,656 | DEBUG | llm | [39429f9a-0eeb-4230-9406-4ad6234cd48a] OLLAMA CONTENT: Tu nombre es Alfonso.
+2026-06-07 08:49:08,656 | INFO | llm | [39429f9a-0eeb-4230-9406-4ad6234cd48a] Respuesta LLM recibida correctamente
+2026-06-07 08:49:38,952 | INFO | llm | [e80a1ff1-8004-4442-ba08-c2cdc73a2227] LLM INPUT: No, mi nombre es Luis. Como me llamo
+2026-06-07 08:49:38,952 | INFO | llm | [e80a1ff1-8004-4442-ba08-c2cdc73a2227] LLM MODEL: qwen2.5:1.5b  MODE: chat  num_ctx=2048  reasoning=False
+2026-06-07 08:49:38,952 | DEBUG | llm | [e80a1ff1-8004-4442-ba08-c2cdc73a2227] LLM MEMORY CONTEXT: user: No, mi nombre es Luis. Como me llamo
+2026-06-07 08:49:43,015 | DEBUG | llm | [e80a1ff1-8004-4442-ba08-c2cdc73a2227] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-07T06:49:43.01466011Z', 'message': {'role': 'assistant', 'content': 'Hola Luis! Me parece que te has confundido un poco con tu nombre de usuario. ¿Cómo te llamas realmente?'}, 'done': True, 'done_reason': 'stop', 'total_duration': 4059151181, 'load_duration': 134823081, 'prompt_eval_count': 1307, 'prompt_eval_duration': 1733893625, 'eval_count': 27, 'eval_duration': 2104955486}
+2026-06-07 08:49:43,016 | DEBUG | llm | [e80a1ff1-8004-4442-ba08-c2cdc73a2227] OLLAMA CONTENT: Hola Luis! Me parece que te has confundido un poco con tu nombre de usuario. ¿Cómo te llamas realmente?
+2026-06-07 08:49:43,016 | INFO | llm | [e80a1ff1-8004-4442-ba08-c2cdc73a2227] Respuesta LLM recibida correctamente
+2026-06-07 08:50:05,116 | INFO | llm | [345e1059-261f-4061-b3b0-66b892efa91e] LLM INPUT: mi nombre es Luis
+2026-06-07 08:50:05,116 | INFO | llm | [345e1059-261f-4061-b3b0-66b892efa91e] LLM MODEL: qwen2.5:1.5b  MODE: chat  num_ctx=2048  reasoning=False
+2026-06-07 08:50:05,116 | DEBUG | llm | [345e1059-261f-4061-b3b0-66b892efa91e] LLM MEMORY CONTEXT: user: mi nombre es Luis
+2026-06-07 08:50:06,922 | DEBUG | llm | [345e1059-261f-4061-b3b0-66b892efa91e] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-07T06:50:06.921442232Z', 'message': {'role': 'assistant', 'content': 'Hola Luis! ¿Cómo estás hoy?'}, 'done': True, 'done_reason': 'stop', 'total_duration': 1801987974, 'load_duration': 114885907, 'prompt_eval_count': 1293, 'prompt_eval_duration': 917024006, 'eval_count': 10, 'eval_duration': 733179396}
+2026-06-07 08:50:06,923 | DEBUG | llm | [345e1059-261f-4061-b3b0-66b892efa91e] OLLAMA CONTENT: Hola Luis! ¿Cómo estás hoy?
+2026-06-07 08:50:06,923 | INFO | llm | [345e1059-261f-4061-b3b0-66b892efa91e] Respuesta LLM recibida correctamente
+2026-06-07 08:50:13,977 | INFO | llm | [035ab5f0-2eae-43e7-bb98-9847fb3adb44] LLM INPUT: cual es mi nombre
+2026-06-07 08:50:13,977 | INFO | llm | [035ab5f0-2eae-43e7-bb98-9847fb3adb44] LLM MODEL: qwen2.5:1.5b  MODE: chat  num_ctx=2048  reasoning=False
+2026-06-07 08:50:13,977 | DEBUG | llm | [035ab5f0-2eae-43e7-bb98-9847fb3adb44] LLM MEMORY CONTEXT: user: cual es mi nombre
+2026-06-07 08:50:15,710 | DEBUG | llm | [035ab5f0-2eae-43e7-bb98-9847fb3adb44] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-07T06:50:15.709792219Z', 'message': {'role': 'assistant', 'content': 'Tu nombre es Alfonso.'}, 'done': True, 'done_reason': 'stop', 'total_duration': 1729085546, 'load_duration': 150603671, 'prompt_eval_count': 1294, 'prompt_eval_duration': 941914103, 'eval_count': 8, 'eval_duration': 596826910}
+2026-06-07 08:50:15,711 | DEBUG | llm | [035ab5f0-2eae-43e7-bb98-9847fb3adb44] OLLAMA CONTENT: Tu nombre es Alfonso.
+2026-06-07 08:50:15,711 | INFO | llm | [035ab5f0-2eae-43e7-bb98-9847fb3adb44] Respuesta LLM recibida correctamente
+2026-06-07 08:50:33,578 | INFO | llm | [53b0d158-0f41-42f3-a95d-0004d4026a09] LLM INPUT: crea un archivo txt que diga hola soy alfonso y estoy en fase 3
+2026-06-07 08:50:33,578 | INFO | llm | [53b0d158-0f41-42f3-a95d-0004d4026a09] LLM MODEL: qwen2.5:1.5b  MODE: tool  num_ctx=1024  reasoning=False
+2026-06-07 08:51:07,485 | DEBUG | llm | [53b0d158-0f41-42f3-a95d-0004d4026a09] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-07T06:51:07.479567664Z', 'message': {'role': 'assistant', 'content': 'append_file {"path":"hola_soy_alfonso_y_estoy_en_fase_3.txt","content":"Hola, soy Alfonso y estoy en fase 3."}'}, 'done': True, 'done_reason': 'stop', 'total_duration': 33896568579, 'load_duration': 10401868672, 'prompt_eval_count': 360, 'prompt_eval_duration': 19749644760, 'eval_count': 39, 'eval_duration': 3585337773}
+2026-06-07 08:51:07,486 | DEBUG | llm | [53b0d158-0f41-42f3-a95d-0004d4026a09] OLLAMA CONTENT: append_file {"path":"hola_soy_alfonso_y_estoy_en_fase_3.txt","content":"Hola, soy Alfonso y estoy en fase 3."}
+2026-06-07 08:51:07,487 | INFO | llm | [53b0d158-0f41-42f3-a95d-0004d4026a09] Respuesta LLM recibida correctamente
+2026-06-07 08:59:32,866 | INFO | llm | [----------] LLM INPUT: ping
+2026-06-07 08:59:32,867 | INFO | llm | [----------] LLM MODEL: qwen2.5:1.5b  MODE: chat  num_ctx=2048  reasoning=False
+2026-06-07 09:01:17,249 | DEBUG | llm | [----------] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-07T07:01:17.175173388Z', 'message': {'role': 'assistant', 'content': 'pong! How can I assist you today?'}, 'done': True, 'done_reason': 'stop', 'total_duration': 102676769318, 'load_duration': 27724132213, 'prompt_eval_count': 1284, 'prompt_eval_duration': 74022474566, 'eval_count': 10, 'eval_duration': 828953855}
+2026-06-07 09:01:17,255 | DEBUG | llm | [----------] OLLAMA CONTENT: pong! How can I assist you today?
+2026-06-07 09:01:17,255 | INFO | llm | [----------] Respuesta LLM recibida correctamente
+2026-06-07 09:01:46,852 | INFO | llm | [3ace947d-6509-45a6-93a4-3f891af79748] LLM INPUT: crea un archivo txt que diga hola soy alfonso y estoy en fase 3
+2026-06-07 09:01:46,852 | INFO | llm | [3ace947d-6509-45a6-93a4-3f891af79748] LLM MODEL: qwen2.5:1.5b  MODE: tool  num_ctx=1024  reasoning=False
+2026-06-07 09:02:18,937 | DEBUG | llm | [3ace947d-6509-45a6-93a4-3f891af79748] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-07T07:02:18.931737072Z', 'message': {'role': 'assistant', 'content': '{"tool":"create_file","args":{"path":"alfonso.txt","content":"hola soy alfonso y estoy en fase 3"}}'}, 'done': True, 'done_reason': 'stop', 'total_duration': 31556198285, 'load_duration': 2381702845, 'prompt_eval_count': 540, 'prompt_eval_duration': 26551769499, 'eval_count': 30, 'eval_duration': 2496869401}
+2026-06-07 09:02:18,938 | DEBUG | llm | [3ace947d-6509-45a6-93a4-3f891af79748] OLLAMA CONTENT: {"tool":"create_file","args":{"path":"alfonso.txt","content":"hola soy alfonso y estoy en fase 3"}}
+2026-06-07 09:02:18,938 | INFO | llm | [3ace947d-6509-45a6-93a4-3f891af79748] Respuesta LLM recibida correctamente
+2026-06-07 09:04:04,372 | INFO | llm | [65f64c0a-9d8f-4520-8526-5886d8ea419d] LLM INPUT: elimina el ultimo archivo que has creado
+2026-06-07 09:04:04,372 | INFO | llm | [65f64c0a-9d8f-4520-8526-5886d8ea419d] LLM MODEL: qwen2.5:1.5b  MODE: tool  num_ctx=1024  reasoning=False
+2026-06-07 09:04:06,289 | DEBUG | llm | [65f64c0a-9d8f-4520-8526-5886d8ea419d] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-07T07:04:06.288531032Z', 'message': {'role': 'assistant', 'content': '{"tool":"delete_file","args":{"path":"NAME.txt"}}'}, 'done': True, 'done_reason': 'stop', 'total_duration': 1903889507, 'load_duration': 236204859, 'prompt_eval_count': 528, 'prompt_eval_duration': 642651956, 'eval_count': 14, 'eval_duration': 965554257}
+2026-06-07 09:04:06,290 | DEBUG | llm | [65f64c0a-9d8f-4520-8526-5886d8ea419d] OLLAMA CONTENT: {"tool":"delete_file","args":{"path":"NAME.txt"}}
+2026-06-07 09:04:06,290 | INFO | llm | [65f64c0a-9d8f-4520-8526-5886d8ea419d] Respuesta LLM recibida correctamente
+2026-06-07 09:04:35,694 | INFO | llm | [d264d8c7-8ef6-4c1d-94c6-7f9b3c6abeac] LLM INPUT: elimina el ultimo archivo alfonso.txt
+2026-06-07 09:04:35,694 | INFO | llm | [d264d8c7-8ef6-4c1d-94c6-7f9b3c6abeac] LLM MODEL: qwen2.5:1.5b  MODE: tool  num_ctx=1024  reasoning=False
+2026-06-07 09:04:37,345 | DEBUG | llm | [d264d8c7-8ef6-4c1d-94c6-7f9b3c6abeac] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-07T07:04:37.343810962Z', 'message': {'role': 'assistant', 'content': '{"tool":"delete_file","args":{"path":"alfonso.txt"}}'}, 'done': True, 'done_reason': 'stop', 'total_duration': 1645052872, 'load_duration': 117117511, 'prompt_eval_count': 529, 'prompt_eval_duration': 450041446, 'eval_count': 15, 'eval_duration': 1023860224}
+2026-06-07 09:04:37,345 | DEBUG | llm | [d264d8c7-8ef6-4c1d-94c6-7f9b3c6abeac] OLLAMA CONTENT: {"tool":"delete_file","args":{"path":"alfonso.txt"}}
+2026-06-07 09:04:37,345 | INFO | llm | [d264d8c7-8ef6-4c1d-94c6-7f9b3c6abeac] Respuesta LLM recibida correctamente
+2026-06-07 09:05:10,741 | INFO | llm | [ec08c61a-b8d4-403c-a9a8-69239539d1e1] LLM INPUT: elimina el ultimo archivo mensaje_alfonso.txt
+2026-06-07 09:05:10,742 | INFO | llm | [ec08c61a-b8d4-403c-a9a8-69239539d1e1] LLM MODEL: qwen2.5:1.5b  MODE: tool  num_ctx=1024  reasoning=False
+2026-06-07 09:05:12,554 | DEBUG | llm | [ec08c61a-b8d4-403c-a9a8-69239539d1e1] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-07T07:05:12.553252123Z', 'message': {'role': 'assistant', 'content': '{"tool":"delete_file","args":{"path":"mensaje_alfonso.txt"}}'}, 'done': True, 'done_reason': 'stop', 'total_duration': 1805481904, 'load_duration': 131718198, 'prompt_eval_count': 530, 'prompt_eval_duration': 460687068, 'eval_count': 17, 'eval_duration': 1158031629}
+2026-06-07 09:05:12,562 | DEBUG | llm | [ec08c61a-b8d4-403c-a9a8-69239539d1e1] OLLAMA CONTENT: {"tool":"delete_file","args":{"path":"mensaje_alfonso.txt"}}
+2026-06-07 09:05:12,563 | INFO | llm | [ec08c61a-b8d4-403c-a9a8-69239539d1e1] Respuesta LLM recibida correctamente
+2026-06-07 09:05:29,880 | INFO | llm | [2f95ed45-2788-4111-b858-fe13134a75ea] LLM INPUT: elimina el archivo mensaje_alfonso2.txt
+2026-06-07 09:05:29,880 | INFO | llm | [2f95ed45-2788-4111-b858-fe13134a75ea] LLM MODEL: qwen2.5:1.5b  MODE: tool  num_ctx=1024  reasoning=False
+2026-06-07 09:05:31,910 | DEBUG | llm | [2f95ed45-2788-4111-b858-fe13134a75ea] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-07T07:05:31.908994971Z', 'message': {'role': 'assistant', 'content': '{"tool":"delete_file","args":{"path":"mensaje_alfonso2.txt"}}'}, 'done': True, 'done_reason': 'stop', 'total_duration': 2025157696, 'load_duration': 130115696, 'prompt_eval_count': 530, 'prompt_eval_duration': 596426645, 'eval_count': 18, 'eval_duration': 1242665157}
+2026-06-07 09:05:31,910 | DEBUG | llm | [2f95ed45-2788-4111-b858-fe13134a75ea] OLLAMA CONTENT: {"tool":"delete_file","args":{"path":"mensaje_alfonso2.txt"}}
+2026-06-07 09:05:31,910 | INFO | llm | [2f95ed45-2788-4111-b858-fe13134a75ea] Respuesta LLM recibida correctamente
+2026-06-07 09:05:57,097 | INFO | llm | [faf9d538-4111-4a68-91fd-ddd602bf1c59] LLM INPUT: cual es mi nombre
+2026-06-07 09:05:57,097 | INFO | llm | [faf9d538-4111-4a68-91fd-ddd602bf1c59] LLM MODEL: qwen2.5:1.5b  MODE: chat  num_ctx=2048  reasoning=False
+2026-06-07 09:05:57,097 | DEBUG | llm | [faf9d538-4111-4a68-91fd-ddd602bf1c59] LLM MEMORY CONTEXT: user: cual es mi nombre
+2026-06-07 09:07:13,407 | DEBUG | llm | [faf9d538-4111-4a68-91fd-ddd602bf1c59] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-07T07:07:13.403792072Z', 'message': {'role': 'assistant', 'content': 'Tu nombre es Alfonso.'}, 'done': True, 'done_reason': 'stop', 'total_duration': 75349563778, 'load_duration': 2637585469, 'prompt_eval_count': 1294, 'prompt_eval_duration': 71883182019, 'eval_count': 8, 'eval_duration': 781588492}
+2026-06-07 09:07:13,408 | DEBUG | llm | [faf9d538-4111-4a68-91fd-ddd602bf1c59] OLLAMA CONTENT: Tu nombre es Alfonso.
+2026-06-07 09:07:13,408 | INFO | llm | [faf9d538-4111-4a68-91fd-ddd602bf1c59] Respuesta LLM recibida correctamente
+2026-06-07 09:20:59,171 | INFO | llm | [----------] LLM INPUT: ping
+2026-06-07 09:20:59,172 | INFO | llm | [----------] LLM MODEL: qwen2.5:1.5b  MODE: chat  num_ctx=8192  reasoning=True
+2026-06-07 09:22:09,507 | DEBUG | llm | [----------] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-07T07:22:09.443337093Z', 'message': {'role': 'assistant', 'content': 'Pongas!'}, 'done': True, 'done_reason': 'stop', 'total_duration': 69026729485, 'load_duration': 30179286982, 'prompt_eval_count': 672, 'prompt_eval_duration': 38285520273, 'eval_count': 5, 'eval_duration': 389696503}
+2026-06-07 09:22:09,513 | DEBUG | llm | [----------] OLLAMA CONTENT: Pongas!
+2026-06-07 09:22:09,513 | INFO | llm | [----------] Respuesta LLM recibida correctamente
+2026-06-07 09:22:52,835 | INFO | llm | [95d1371e-31dd-4a23-b36f-5f1d1636bc6d] LLM INPUT: crea un archivo txt que diga hola soy alfonso y estoy en fase 3
+2026-06-07 09:22:52,835 | INFO | llm | [95d1371e-31dd-4a23-b36f-5f1d1636bc6d] LLM MODEL: qwen2.5:1.5b  MODE: tool  num_ctx=4096  reasoning=True
+2026-06-07 09:23:34,587 | DEBUG | llm | [95d1371e-31dd-4a23-b36f-5f1d1636bc6d] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-07T07:23:34.582456523Z', 'message': {'role': 'assistant', 'content': '{"tool":"create_file","args":{"path":"alfonso.txt","content":"hola soy alfonso y estoy en fase 3"}}'}, 'done': True, 'done_reason': 'stop', 'total_duration': 41164758510, 'load_duration': 8991657644, 'prompt_eval_count': 540, 'prompt_eval_duration': 29376190834, 'eval_count': 30, 'eval_duration': 2664808622}
+2026-06-07 09:23:34,588 | DEBUG | llm | [95d1371e-31dd-4a23-b36f-5f1d1636bc6d] OLLAMA CONTENT: {"tool":"create_file","args":{"path":"alfonso.txt","content":"hola soy alfonso y estoy en fase 3"}}
+2026-06-07 09:23:34,588 | INFO | llm | [95d1371e-31dd-4a23-b36f-5f1d1636bc6d] Respuesta LLM recibida correctamente
+2026-06-07 09:24:04,926 | INFO | llm | [9abdde23-88ff-4602-b459-abf8ec3202d8] LLM INPUT: elimina el ultimo archivo alfonso.txt
+2026-06-07 09:24:04,926 | INFO | llm | [9abdde23-88ff-4602-b459-abf8ec3202d8] LLM MODEL: qwen2.5:1.5b  MODE: tool  num_ctx=4096  reasoning=True
+2026-06-07 09:24:06,976 | DEBUG | llm | [9abdde23-88ff-4602-b459-abf8ec3202d8] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-07T07:24:06.974981219Z', 'message': {'role': 'assistant', 'content': '{"tool":"delete_file","args":{"path":"alfonso.txt"}}'}, 'done': True, 'done_reason': 'stop', 'total_duration': 2044052388, 'load_duration': 123950610, 'prompt_eval_count': 529, 'prompt_eval_duration': 739050593, 'eval_count': 15, 'eval_duration': 1113246609}
+2026-06-07 09:24:06,976 | DEBUG | llm | [9abdde23-88ff-4602-b459-abf8ec3202d8] OLLAMA CONTENT: {"tool":"delete_file","args":{"path":"alfonso.txt"}}
+2026-06-07 09:24:06,976 | INFO | llm | [9abdde23-88ff-4602-b459-abf8ec3202d8] Respuesta LLM recibida correctamente
+2026-06-07 09:31:02,119 | INFO | llm | [----------] LLM INPUT: ping
+2026-06-07 09:31:02,120 | INFO | llm | [----------] LLM MODEL: qwen2.5:1.5b  MODE: chat  num_ctx=8192  reasoning=True
+2026-06-07 09:32:04,140 | DEBUG | llm | [----------] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-07T07:32:04.072376264Z', 'message': {'role': 'assistant', 'content': 'pongiente'}, 'done': True, 'done_reason': 'stop', 'total_duration': 61337226171, 'load_duration': 21758663639, 'prompt_eval_count': 672, 'prompt_eval_duration': 39216586128, 'eval_count': 3, 'eval_duration': 197166022}
+2026-06-07 09:32:04,148 | DEBUG | llm | [----------] OLLAMA CONTENT: pongiente
+2026-06-07 09:32:04,148 | INFO | llm | [----------] Respuesta LLM recibida correctamente
+2026-06-07 09:35:39,932 | INFO | llm | [----------] LLM INPUT: ping
+2026-06-07 09:35:39,933 | INFO | llm | [----------] LLM MODEL: qwen2.5:1.5b  MODE: chat  num_ctx=8192  reasoning=True
+2026-06-07 09:36:12,991 | DEBUG | llm | [----------] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-07T07:36:12.981910875Z', 'message': {'role': 'assistant', 'content': 'pongà'}, 'done': True, 'done_reason': 'stop', 'total_duration': 32426786441, 'load_duration': 606767396, 'prompt_eval_count': 672, 'prompt_eval_duration': 31531935448, 'eval_count': 3, 'eval_duration': 189299292}
+2026-06-07 09:36:12,993 | DEBUG | llm | [----------] OLLAMA CONTENT: pongà
+2026-06-07 09:36:12,993 | INFO | llm | [----------] Respuesta LLM recibida correctamente
+2026-06-07 09:36:38,523 | INFO | llm | [fd2ce39c-b8df-4a12-8159-62c3499a3ed2] LLM INPUT: crea un archivo txt que diga hola soy alfonso y estoy en fase 3
+2026-06-07 09:36:38,523 | INFO | llm | [fd2ce39c-b8df-4a12-8159-62c3499a3ed2] LLM MODEL: qwen2.5:1.5b  MODE: tool  num_ctx=4096  reasoning=True
+2026-06-07 09:37:31,231 | DEBUG | llm | [fd2ce39c-b8df-4a12-8159-62c3499a3ed2] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-07T07:37:31.198862132Z', 'message': {'role': 'assistant', 'content': '{"tool":"create_file","args":{"path":"alfonso.txt","content":"hola soy alfonso y estoy en fase 3"}}'}, 'done': True, 'done_reason': 'stop', 'total_duration': 52134524169, 'load_duration': 18724591444, 'prompt_eval_count': 540, 'prompt_eval_duration': 30341620531, 'eval_count': 30, 'eval_duration': 2842954830}
+2026-06-07 09:37:31,235 | DEBUG | llm | [fd2ce39c-b8df-4a12-8159-62c3499a3ed2] OLLAMA CONTENT: {"tool":"create_file","args":{"path":"alfonso.txt","content":"hola soy alfonso y estoy en fase 3"}}
+2026-06-07 09:37:31,236 | INFO | llm | [fd2ce39c-b8df-4a12-8159-62c3499a3ed2] Respuesta LLM recibida correctamente
+2026-06-07 09:37:49,527 | INFO | llm | [6e6aeb92-1726-4a64-a3e7-1cbf642e2b3a] LLM INPUT: elimina el ultimo archivo alfonso.txt
+2026-06-07 09:37:49,527 | INFO | llm | [6e6aeb92-1726-4a64-a3e7-1cbf642e2b3a] LLM MODEL: qwen2.5:1.5b  MODE: tool  num_ctx=4096  reasoning=True
+2026-06-07 09:37:52,021 | DEBUG | llm | [6e6aeb92-1726-4a64-a3e7-1cbf642e2b3a] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-07T07:37:52.019802572Z', 'message': {'role': 'assistant', 'content': '{"tool":"delete_file","args":{"path":"alfonso.txt"}}'}, 'done': True, 'done_reason': 'stop', 'total_duration': 2462859764, 'load_duration': 303952399, 'prompt_eval_count': 529, 'prompt_eval_duration': 789208821, 'eval_count': 15, 'eval_duration': 1293459239}
+2026-06-07 09:37:52,022 | DEBUG | llm | [6e6aeb92-1726-4a64-a3e7-1cbf642e2b3a] OLLAMA CONTENT: {"tool":"delete_file","args":{"path":"alfonso.txt"}}
+2026-06-07 09:37:52,022 | INFO | llm | [6e6aeb92-1726-4a64-a3e7-1cbf642e2b3a] Respuesta LLM recibida correctamente
+2026-06-07 09:38:27,692 | INFO | llm | [403bb5d8-aa84-4247-8f7f-49031041bfbd] LLM INPUT: busca en internet que tiempo hace en bilbao hoy
+2026-06-07 09:38:27,692 | INFO | llm | [403bb5d8-aa84-4247-8f7f-49031041bfbd] LLM MODEL: qwen2.5:1.5b  MODE: tool  num_ctx=4096  reasoning=True
+2026-06-07 09:38:29,935 | DEBUG | llm | [403bb5d8-aa84-4247-8f7f-49031041bfbd] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-07T07:38:29.933615969Z', 'message': {'role': 'assistant', 'content': '{"tool":"browser_search","args":{"query":"tiempo bilbao hoy"}}'}, 'done': True, 'done_reason': 'stop', 'total_duration': 2234286515, 'load_duration': 141968100, 'prompt_eval_count': 531, 'prompt_eval_duration': 774608683, 'eval_count': 17, 'eval_duration': 1242773735}
+2026-06-07 09:38:29,935 | DEBUG | llm | [403bb5d8-aa84-4247-8f7f-49031041bfbd] OLLAMA CONTENT: {"tool":"browser_search","args":{"query":"tiempo bilbao hoy"}}
+2026-06-07 09:38:29,935 | INFO | llm | [403bb5d8-aa84-4247-8f7f-49031041bfbd] Respuesta LLM recibida correctamente
+2026-06-07 09:38:54,882 | INFO | llm | [ec16c286-d2b2-4f3e-845c-4e666ca31eec] LLM INPUT: abre el navegador web
+2026-06-07 09:38:54,882 | INFO | llm | [ec16c286-d2b2-4f3e-845c-4e666ca31eec] LLM MODEL: qwen2.5:1.5b  MODE: tool  num_ctx=4096  reasoning=True
+2026-06-07 09:38:56,488 | DEBUG | llm | [ec16c286-d2b2-4f3e-845c-4e666ca31eec] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-07T07:38:56.487488082Z', 'message': {'role': 'assistant', 'content': '{"tool":"open_application","args":{"command":"chrome"}}'}, 'done': True, 'done_reason': 'stop', 'total_duration': 1600493110, 'load_duration': 137403748, 'prompt_eval_count': 525, 'prompt_eval_duration': 502421814, 'eval_count': 13, 'eval_duration': 905148583}
+2026-06-07 09:38:56,489 | DEBUG | llm | [ec16c286-d2b2-4f3e-845c-4e666ca31eec] OLLAMA CONTENT: {"tool":"open_application","args":{"command":"chrome"}}
+2026-06-07 09:38:56,489 | INFO | llm | [ec16c286-d2b2-4f3e-845c-4e666ca31eec] Respuesta LLM recibida correctamente
+2026-06-07 09:39:41,493 | INFO | llm | [0d26dc5d-36a1-4842-a225-804dba268708] LLM INPUT: abre el navegador web firefox
+2026-06-07 09:39:41,493 | INFO | llm | [0d26dc5d-36a1-4842-a225-804dba268708] LLM MODEL: qwen2.5:1.5b  MODE: tool  num_ctx=4096  reasoning=True
+2026-06-07 09:39:43,097 | DEBUG | llm | [0d26dc5d-36a1-4842-a225-804dba268708] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-07T07:39:43.095880744Z', 'message': {'role': 'assistant', 'content': '{"tool":"open_application","args":{"command":"firefox"}}'}, 'done': True, 'done_reason': 'stop', 'total_duration': 1595398518, 'load_duration': 143739456, 'prompt_eval_count': 526, 'prompt_eval_duration': 424560067, 'eval_count': 13, 'eval_duration': 969713293}
+2026-06-07 09:39:43,097 | DEBUG | llm | [0d26dc5d-36a1-4842-a225-804dba268708] OLLAMA CONTENT: {"tool":"open_application","args":{"command":"firefox"}}
+2026-06-07 09:39:43,097 | INFO | llm | [0d26dc5d-36a1-4842-a225-804dba268708] Respuesta LLM recibida correctamente
+2026-06-07 09:40:06,434 | INFO | llm | [61cc8cd2-3236-4da6-9916-d37a8b3dabfd] LLM INPUT: abre el navegador web firefox
+2026-06-07 09:40:06,434 | INFO | llm | [61cc8cd2-3236-4da6-9916-d37a8b3dabfd] LLM MODEL: qwen2.5:1.5b  MODE: tool  num_ctx=4096  reasoning=True
+2026-06-07 09:40:07,686 | DEBUG | llm | [61cc8cd2-3236-4da6-9916-d37a8b3dabfd] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-07T07:40:07.68498888Z', 'message': {'role': 'assistant', 'content': '{"tool":"open_application","args":{"command":"firefox"}}'}, 'done': True, 'done_reason': 'stop', 'total_duration': 1245791879, 'load_duration': 138331091, 'prompt_eval_count': 526, 'prompt_eval_duration': 160397280, 'eval_count': 13, 'eval_duration': 891168749}
+2026-06-07 09:40:07,686 | DEBUG | llm | [61cc8cd2-3236-4da6-9916-d37a8b3dabfd] OLLAMA CONTENT: {"tool":"open_application","args":{"command":"firefox"}}
+2026-06-07 09:40:07,686 | INFO | llm | [61cc8cd2-3236-4da6-9916-d37a8b3dabfd] Respuesta LLM recibida correctamente
