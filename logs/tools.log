@@ -41,3 +41,20 @@
 2026-06-07 20:23:01,884 | INFO | tools | [----------] Intentando crear archivo: test_fase3.txt
 2026-06-07 20:23:01,886 | INFO | tools | [----------] Ruta absoluta final: /home/luisd/Alfonso/test_fase3.txt
 2026-06-07 20:23:01,887 | INFO | tools | [----------] Archivo creado exitosamente: /home/luisd/Alfonso/test_fase3.txt
+2026-06-08 08:43:29,579 | INFO | tools | [----------] Intentando crear archivo: test.txt
+2026-06-08 08:43:29,581 | INFO | tools | [----------] Ruta absoluta final: /home/luisd/Alfonso/test.txt
+2026-06-08 08:43:29,583 | INFO | tools | [----------] Archivo creado exitosamente: /home/luisd/Alfonso/test.txt
+2026-06-08 08:45:09,705 | INFO | tools | [----------] Intentando leer archivo: test_fase3.txt
+2026-06-08 08:45:09,707 | INFO | tools | [----------] Archivo leído exitosamente: test_fase3.txt
+2026-06-08 08:45:47,884 | INFO | tools | [----------] Agregando contenido al archivo: test_fase3.txt
+2026-06-08 08:45:47,887 | INFO | tools | [----------] Contenido agregado exitosamente: /home/luisd/Alfonso/test_fase3.txt
+2026-06-08 08:46:37,184 | INFO | tools | [----------] Intentando leer archivo: test_fase3.txt
+2026-06-08 08:46:37,184 | INFO | tools | [----------] Archivo leído exitosamente: test_fase3.txt
+2026-06-08 08:47:09,838 | INFO | tools | [----------] Listando directorio: .
+2026-06-08 08:47:09,840 | INFO | tools | [----------] Directorio listado correctamente: .
+2026-06-08 08:47:58,726 | INFO | tools | [----------] Intentando eliminar archivo: test_fase3.txt
+2026-06-08 08:47:58,729 | INFO | tools | [----------] Archivo eliminado exitosamente: test_fase3.txt
+2026-06-08 08:53:05,046 | INFO | tools | [----------] Intentando crear archivo: archivo.txt
+2026-06-08 08:53:05,048 | INFO | tools | [----------] Ruta absoluta final: /home/luisd/Alfonso/archivo.txt
+2026-06-08 08:53:05,048 | INFO | tools | [----------] Archivo creado exitosamente: /home/luisd/Alfonso/archivo.txt
+2026-06-08 08:56:49,646 | INFO | tools | [----------] Obteniendo información del sistema
