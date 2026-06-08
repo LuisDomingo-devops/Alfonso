@@ -310,3 +310,203 @@
 2026-06-08 08:56:49,651 | INFO | app | [e8854630-81b7-441b-938c-e9c439641548] LATENCY: 38.01s
 2026-06-08 08:56:49,652 | INFO | app | [e8854630-81b7-441b-938c-e9c439641548] HTTP request finished: POST /chat 200
 2026-06-08 08:58:09,272 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-08 12:25:05,928 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-08 12:25:05,936 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
+2026-06-08 12:25:05,936 | INFO | app | [----------] EventBus iniciado
+2026-06-08 12:25:05,945 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-08 12:25:47,204 | INFO | app | [----------] Modelo precalentado
+2026-06-08 12:25:47,205 | INFO | app | [----------] Alfonso Fase 3 listo
+2026-06-08 12:26:17,637 | INFO | app | [a66c1d05-6d93-4f3c-a2b1-f78df3c66952] HTTP request started: POST /chat
+2026-06-08 12:26:17,658 | INFO | app | [a66c1d05-6d93-4f3c-a2b1-f78df3c66952] Solicitud /chat recibida
+2026-06-08 12:26:17,658 | INFO | app | [a66c1d05-6d93-4f3c-a2b1-f78df3c66952] SESSION_ID: a66c1d05-6d93-4f3c-a2b1-f78df3c66952
+2026-06-08 12:26:17,658 | INFO | app | [a66c1d05-6d93-4f3c-a2b1-f78df3c66952] USER MESSAGE: cuánta RAM tiene el sistema
+2026-06-08 12:26:56,385 | INFO | app | [a66c1d05-6d93-4f3c-a2b1-f78df3c66952] Solicitud /chat procesada con estado: error
+2026-06-08 12:26:56,385 | INFO | app | [a66c1d05-6d93-4f3c-a2b1-f78df3c66952] LATENCY: 39.30s
+2026-06-08 12:26:56,390 | INFO | app | [a66c1d05-6d93-4f3c-a2b1-f78df3c66952] HTTP request finished: POST /chat 200
+2026-06-08 12:28:40,368 | INFO | app | [f8d85013-7c8a-42ee-868d-daeebe4840da] HTTP request started: POST /chat
+2026-06-08 12:28:40,372 | INFO | app | [f8d85013-7c8a-42ee-868d-daeebe4840da] Solicitud /chat recibida
+2026-06-08 12:28:40,372 | INFO | app | [f8d85013-7c8a-42ee-868d-daeebe4840da] SESSION_ID: f8d85013-7c8a-42ee-868d-daeebe4840da
+2026-06-08 12:28:40,372 | INFO | app | [f8d85013-7c8a-42ee-868d-daeebe4840da] USER MESSAGE: lista los archivos de la carpeta actual
+2026-06-08 12:28:42,312 | INFO | app | [f8d85013-7c8a-42ee-868d-daeebe4840da] Solicitud /chat procesada con estado: tool
+2026-06-08 12:28:42,312 | INFO | app | [f8d85013-7c8a-42ee-868d-daeebe4840da] LATENCY: 1.94s
+2026-06-08 12:28:42,313 | INFO | app | [f8d85013-7c8a-42ee-868d-daeebe4840da] HTTP request finished: POST /chat 200
+2026-06-08 12:44:41,287 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-08 12:44:42,920 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-08 12:44:42,920 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
+2026-06-08 12:44:42,921 | INFO | app | [----------] EventBus iniciado
+2026-06-08 12:44:42,940 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-08 12:45:38,838 | INFO | app | [----------] Modelo precalentado
+2026-06-08 12:45:38,838 | INFO | app | [----------] Alfonso Fase 3 listo
+2026-06-08 12:45:38,844 | INFO | app | [5d84c5ec-3d95-49de-91f9-2d96769017a7] HTTP request started: POST /chat
+2026-06-08 12:45:38,849 | INFO | app | [5d84c5ec-3d95-49de-91f9-2d96769017a7] Solicitud /chat recibida
+2026-06-08 12:45:38,849 | INFO | app | [5d84c5ec-3d95-49de-91f9-2d96769017a7] SESSION_ID: 5d84c5ec-3d95-49de-91f9-2d96769017a7
+2026-06-08 12:45:38,849 | INFO | app | [5d84c5ec-3d95-49de-91f9-2d96769017a7] USER MESSAGE: lista los archivos de la carpeta actual
+2026-06-08 12:47:16,519 | INFO | app | [5d84c5ec-3d95-49de-91f9-2d96769017a7] Solicitud /chat procesada con estado: chat
+2026-06-08 12:47:16,519 | INFO | app | [5d84c5ec-3d95-49de-91f9-2d96769017a7] LATENCY: 99.64s
+2026-06-08 12:47:16,520 | INFO | app | [5d84c5ec-3d95-49de-91f9-2d96769017a7] HTTP request finished: POST /chat 200
+2026-06-08 12:51:19,025 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-08 12:51:20,677 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-08 12:51:20,678 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
+2026-06-08 12:51:20,678 | INFO | app | [----------] EventBus iniciado
+2026-06-08 12:51:20,691 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-08 12:51:55,047 | INFO | app | [----------] Modelo precalentado
+2026-06-08 12:51:55,047 | INFO | app | [----------] Alfonso Fase 3 listo
+2026-06-08 12:54:47,283 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-08 12:54:48,223 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-08 12:54:48,224 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
+2026-06-08 12:54:48,224 | INFO | app | [----------] EventBus iniciado
+2026-06-08 12:54:48,236 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-08 12:55:22,260 | INFO | app | [----------] Modelo precalentado
+2026-06-08 12:55:22,261 | INFO | app | [----------] Alfonso Fase 3 listo
+2026-06-08 13:02:29,987 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-08 13:03:07,281 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-08 13:03:07,281 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
+2026-06-08 13:03:07,281 | INFO | app | [----------] EventBus iniciado
+2026-06-08 13:03:07,290 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-08 13:03:41,023 | INFO | app | [----------] Modelo precalentado
+2026-06-08 13:03:41,023 | INFO | app | [----------] Alfonso Fase 3 listo
+2026-06-08 13:03:55,595 | INFO | app | [d1fe67ae-f160-4506-b710-f58d182376dd] HTTP request started: POST /chat
+2026-06-08 13:03:55,599 | INFO | app | [d1fe67ae-f160-4506-b710-f58d182376dd] Solicitud /chat recibida
+2026-06-08 13:03:55,599 | INFO | app | [d1fe67ae-f160-4506-b710-f58d182376dd] SESSION_ID: d1fe67ae-f160-4506-b710-f58d182376dd
+2026-06-08 13:03:55,599 | INFO | app | [d1fe67ae-f160-4506-b710-f58d182376dd] USER MESSAGE: lista los archivos de la carpeta actual
+2026-06-08 13:05:59,193 | INFO | app | [d1fe67ae-f160-4506-b710-f58d182376dd] Solicitud /chat procesada con estado: chat
+2026-06-08 13:05:59,194 | INFO | app | [d1fe67ae-f160-4506-b710-f58d182376dd] LATENCY: 125.75s
+2026-06-08 13:05:59,195 | INFO | app | [d1fe67ae-f160-4506-b710-f58d182376dd] HTTP request finished: POST /chat 200
+2026-06-08 13:14:24,791 | INFO | app | [eaeebc83-39e5-4efe-a920-498761643d22] HTTP request started: POST /chat
+2026-06-08 13:14:24,806 | INFO | app | [eaeebc83-39e5-4efe-a920-498761643d22] Solicitud /chat recibida
+2026-06-08 13:14:24,807 | INFO | app | [eaeebc83-39e5-4efe-a920-498761643d22] SESSION_ID: eaeebc83-39e5-4efe-a920-498761643d22
+2026-06-08 13:14:24,807 | INFO | app | [eaeebc83-39e5-4efe-a920-498761643d22] USER MESSAGE: cuánta RAM tiene el sistema
+2026-06-08 13:15:10,083 | INFO | app | [eaeebc83-39e5-4efe-a920-498761643d22] Solicitud /chat procesada con estado: error
+2026-06-08 13:15:10,083 | INFO | app | [eaeebc83-39e5-4efe-a920-498761643d22] LATENCY: 46.66s
+2026-06-08 13:15:10,087 | INFO | app | [eaeebc83-39e5-4efe-a920-498761643d22] HTTP request finished: POST /chat 200
+2026-06-08 13:15:10,135 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-08 13:17:24,610 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-08 13:17:24,611 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
+2026-06-08 13:17:24,611 | INFO | app | [----------] EventBus iniciado
+2026-06-08 13:17:24,627 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-08 13:18:07,683 | INFO | app | [----------] Modelo precalentado
+2026-06-08 13:18:07,684 | INFO | app | [----------] Alfonso Fase 3 listo
+2026-06-08 13:18:14,264 | INFO | app | [b0d6da93-c4c7-49f6-85d2-bab0cbbc5737] HTTP request started: POST /chat
+2026-06-08 13:18:14,267 | INFO | app | [b0d6da93-c4c7-49f6-85d2-bab0cbbc5737] Solicitud /chat recibida
+2026-06-08 13:18:14,267 | INFO | app | [b0d6da93-c4c7-49f6-85d2-bab0cbbc5737] SESSION_ID: b0d6da93-c4c7-49f6-85d2-bab0cbbc5737
+2026-06-08 13:18:14,267 | INFO | app | [b0d6da93-c4c7-49f6-85d2-bab0cbbc5737] USER MESSAGE: cuánta RAM tiene el sistema
+2026-06-08 13:18:44,972 | INFO | app | [b0d6da93-c4c7-49f6-85d2-bab0cbbc5737] Solicitud /chat procesada con estado: error
+2026-06-08 13:18:44,972 | INFO | app | [b0d6da93-c4c7-49f6-85d2-bab0cbbc5737] LATENCY: 31.41s
+2026-06-08 13:18:44,973 | INFO | app | [b0d6da93-c4c7-49f6-85d2-bab0cbbc5737] HTTP request finished: POST /chat 200
+2026-06-08 13:19:02,801 | INFO | app | [29c1b21d-1b46-4393-a647-b487cf73fef9] HTTP request started: POST /chat
+2026-06-08 13:19:02,802 | INFO | app | [29c1b21d-1b46-4393-a647-b487cf73fef9] Solicitud /chat recibida
+2026-06-08 13:19:02,802 | INFO | app | [29c1b21d-1b46-4393-a647-b487cf73fef9] SESSION_ID: 29c1b21d-1b46-4393-a647-b487cf73fef9
+2026-06-08 13:19:02,802 | INFO | app | [29c1b21d-1b46-4393-a647-b487cf73fef9] USER MESSAGE: lista los archivos de la carpeta actual
+2026-06-08 13:19:04,675 | ERROR | app | [29c1b21d-1b46-4393-a647-b487cf73fef9] Unhandled exception
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/middleware/base.py", line 191, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+  File "/usr/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/_utils.py", line 87, in collapse_excgroups
+    raise exc
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/middleware/base.py", line 193, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/app/main.py", line 91, in request_id_middleware
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/middleware/base.py", line 168, in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/middleware/base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/routing.py", line 660, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/routing.py", line 680, in app
+    await route.handle(scope, receive, send)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/routing.py", line 276, in handle
+    await self.app(scope, receive, send)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/fastapi/routing.py", line 134, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/fastapi/routing.py", line 120, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/fastapi/routing.py", line 674, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/fastapi/routing.py", line 328, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/app/api/routes.py", line 79, in chat_endpoint
+    result = await orchestrator.run(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/app/core/planner_orchestrator.py", line 204, in run
+    final_response = await llm.generate(
+                           ^^^^^^^^^^^^^
+TypeError: OllamaClient.generate() got an unexpected keyword argument 'reasoning'
+2026-06-08 13:21:46,459 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-08 13:21:49,528 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-08 13:21:49,529 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
+2026-06-08 13:21:49,529 | INFO | app | [----------] EventBus iniciado
+2026-06-08 13:21:49,539 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-08 13:22:33,275 | INFO | app | [----------] Modelo precalentado
+2026-06-08 13:22:33,275 | INFO | app | [----------] Alfonso Fase 3 listo
+2026-06-08 13:23:34,471 | INFO | app | [4060b93c-f4de-4b55-a33a-e260de8a44f4] HTTP request started: POST /chat
+2026-06-08 13:23:34,473 | INFO | app | [4060b93c-f4de-4b55-a33a-e260de8a44f4] Solicitud /chat recibida
+2026-06-08 13:23:34,473 | INFO | app | [4060b93c-f4de-4b55-a33a-e260de8a44f4] SESSION_ID: 4060b93c-f4de-4b55-a33a-e260de8a44f4
+2026-06-08 13:23:34,473 | INFO | app | [4060b93c-f4de-4b55-a33a-e260de8a44f4] USER MESSAGE: lista los archivos de la carpeta actual
+2026-06-08 13:25:32,350 | INFO | app | [4060b93c-f4de-4b55-a33a-e260de8a44f4] Solicitud /chat procesada con estado: chat
+2026-06-08 13:25:32,350 | INFO | app | [4060b93c-f4de-4b55-a33a-e260de8a44f4] LATENCY: 120.78s
+2026-06-08 13:25:32,351 | INFO | app | [4060b93c-f4de-4b55-a33a-e260de8a44f4] HTTP request finished: POST /chat 200
+2026-06-08 13:28:36,416 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-08 13:28:38,243 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-08 13:28:38,244 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
+2026-06-08 13:28:38,244 | INFO | app | [----------] EventBus iniciado
+2026-06-08 13:28:38,259 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-08 13:29:13,629 | INFO | app | [----------] Modelo precalentado
+2026-06-08 13:29:13,629 | INFO | app | [----------] Alfonso Fase 3 listo
+2026-06-08 13:29:13,635 | INFO | app | [b53de375-dddb-4f1b-a056-8e08457f2fc5] HTTP request started: POST /chat
+2026-06-08 13:29:13,640 | INFO | app | [b53de375-dddb-4f1b-a056-8e08457f2fc5] Solicitud /chat recibida
+2026-06-08 13:29:13,640 | INFO | app | [b53de375-dddb-4f1b-a056-8e08457f2fc5] SESSION_ID: b53de375-dddb-4f1b-a056-8e08457f2fc5
+2026-06-08 13:29:13,640 | INFO | app | [b53de375-dddb-4f1b-a056-8e08457f2fc5] USER MESSAGE: lista los archivos de la carpeta actual
+2026-06-08 13:29:52,682 | INFO | app | [d7262e78-6095-402c-83fa-a5132774bc1d] HTTP request started: POST /chat
+2026-06-08 13:29:52,696 | INFO | app | [d7262e78-6095-402c-83fa-a5132774bc1d] Solicitud /chat recibida
+2026-06-08 13:29:52,696 | INFO | app | [d7262e78-6095-402c-83fa-a5132774bc1d] SESSION_ID: d7262e78-6095-402c-83fa-a5132774bc1d
+2026-06-08 13:29:52,697 | INFO | app | [d7262e78-6095-402c-83fa-a5132774bc1d] USER MESSAGE: lista los archivos de la carpeta actual
+2026-06-08 13:31:03,288 | INFO | app | [b53de375-dddb-4f1b-a056-8e08457f2fc5] Solicitud /chat procesada con estado: chat
+2026-06-08 13:31:03,288 | INFO | app | [b53de375-dddb-4f1b-a056-8e08457f2fc5] LATENCY: 111.74s
+2026-06-08 13:31:03,290 | INFO | app | [b53de375-dddb-4f1b-a056-8e08457f2fc5] HTTP request finished: POST /chat 200
+2026-06-08 13:33:36,873 | INFO | app | [d7262e78-6095-402c-83fa-a5132774bc1d] Solicitud /chat procesada con estado: chat
+2026-06-08 13:33:36,873 | INFO | app | [d7262e78-6095-402c-83fa-a5132774bc1d] LATENCY: 229.00s
+2026-06-08 13:33:36,875 | INFO | app | [d7262e78-6095-402c-83fa-a5132774bc1d] HTTP request finished: POST /chat 200
+2026-06-08 13:35:30,239 | INFO | app | [49511a30-bead-417b-9883-18ded907c6d3] HTTP request started: POST /chat
+2026-06-08 13:35:30,252 | INFO | app | [49511a30-bead-417b-9883-18ded907c6d3] Solicitud /chat recibida
+2026-06-08 13:35:30,252 | INFO | app | [49511a30-bead-417b-9883-18ded907c6d3] SESSION_ID: 49511a30-bead-417b-9883-18ded907c6d3
+2026-06-08 13:35:30,253 | INFO | app | [49511a30-bead-417b-9883-18ded907c6d3] USER MESSAGE: cuánta RAM tiene el sistema
+2026-06-08 13:35:59,992 | INFO | app | [49511a30-bead-417b-9883-18ded907c6d3] Solicitud /chat procesada con estado: error
+2026-06-08 13:35:59,993 | INFO | app | [49511a30-bead-417b-9883-18ded907c6d3] LATENCY: 30.40s
+2026-06-08 13:35:59,994 | INFO | app | [49511a30-bead-417b-9883-18ded907c6d3] HTTP request finished: POST /chat 200
+2026-06-08 13:46:44,502 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-08 13:46:45,960 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-08 13:46:45,961 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
+2026-06-08 13:46:45,961 | INFO | app | [----------] EventBus iniciado
+2026-06-08 13:46:45,971 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-08 13:47:28,084 | INFO | app | [----------] Modelo precalentado
+2026-06-08 13:47:28,084 | INFO | app | [----------] Alfonso Fase 3 listo
+2026-06-08 13:48:37,918 | INFO | app | [954fe8a9-6438-4400-aa93-40b1019909da] HTTP request started: POST /chat
+2026-06-08 13:48:37,920 | INFO | app | [954fe8a9-6438-4400-aa93-40b1019909da] Solicitud /chat recibida
+2026-06-08 13:48:37,921 | INFO | app | [954fe8a9-6438-4400-aa93-40b1019909da] SESSION_ID: 954fe8a9-6438-4400-aa93-40b1019909da
+2026-06-08 13:48:37,921 | INFO | app | [954fe8a9-6438-4400-aa93-40b1019909da] USER MESSAGE: cuánta RAM tiene el sistema
+2026-06-08 13:50:06,230 | INFO | app | [954fe8a9-6438-4400-aa93-40b1019909da] Solicitud /chat procesada con estado: chat
+2026-06-08 13:50:06,230 | INFO | app | [954fe8a9-6438-4400-aa93-40b1019909da] LATENCY: 89.59s
+2026-06-08 13:50:06,231 | INFO | app | [954fe8a9-6438-4400-aa93-40b1019909da] HTTP request finished: POST /chat 200
+2026-06-08 13:51:53,552 | INFO | app | [----------] Agentes y EventBus detenidos

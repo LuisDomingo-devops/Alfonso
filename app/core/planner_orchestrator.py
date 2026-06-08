@@ -14,6 +14,7 @@ from __future__ import annotations
 import asyncio
 import json
 import re
+from pathlib import Path
 
 from app.core.intent_router import IntentRouter
 from app.core.llm_client import extract_json_robust
@@ -44,11 +45,22 @@ _DELETE_KEYWORDS = {"elimina", "borra", "delete", "remove", "quitar"}
 _DATETIME_KEYWORDS = {"hora", "día", "date", "fecha", "semana", "today", "time"}
 
 
+def _get_prompt_path(filename: str) -> Path:
+    """Calcula la ruta absoluta al archivo de prompt."""
+    return Path(__file__).parent.parent / "prompts" / filename
+
+def _load_prompt(filename: str, fallback: str = "") -> str:
+    """Carga el contenido de un prompt desde la carpeta de prompts."""
+    path = _get_prompt_path(filename)
+    if path.exists():
+        return path.read_text(encoding="utf-8").strip()
+    return fallback
+
+
 class PlannerOrchestrator:
 
     def __init__(self, event_bus=None):
         self._bus = event_bus
-
     def set_event_bus(self, event_bus) -> None:
         self._bus = event_bus
 
@@ -173,9 +185,40 @@ class PlannerOrchestrator:
         )
 
         logger.info("TaskPlan: event=%s args=%s", plan.event_type, args)
-        result = await self._dispatch(plan, llm, session_id, request_id, memory_text, user_message)
-        logger.info("Agente respondió: %s", result.get("type"))
-        return result
+        execution_result = await self._dispatch(plan, llm, session_id, request_id, memory_text, user_message)
+
+        # ── Fase de Síntesis ────────────────────────────────────────
+        # Si la ejecución fue una herramienta exitosa, volvemos al LLM para 
+        # generar una respuesta en lenguaje natural basada en el resultado.
+        if execution_result.get("type") == "tool":
+            logger.info("Iniciando fase de síntesis para el resultado de la herramienta")
+            
+            # Cargamos una instrucción de síntesis para que el LLM sepa que debe
+            # explicar los datos de la herramienta presentes en la memoria.
+            synthesis_instruction = _load_prompt("synthesis_system.txt", 
+                "Analiza el resultado de la herramienta y responde al usuario de forma natural.")
+            
+            # Obtenemos la memoria actualizada que ya incluye el resultado de la tool
+            updated_memory = memory.get_summary(session_id) if session_id else None
+            
+            final_response = await llm.generate(
+                synthesis_instruction, # La pregunta ya está en el historial (memory)
+                mode="chat",
+                request_id=request_id,
+                memory=updated_memory
+            )
+            
+            if session_id:
+                memory.add_message(session_id, "assistant", final_response)
+
+            return {
+                "type": "chat",
+                "response": final_response,
+                "intermediate_tool": execution_result
+            }
+
+        logger.info("Agente respondió: %s", execution_result.get("type"))
+        return execution_result
 
     async def _dispatch(
         self,
@@ -229,7 +272,7 @@ class PlannerOrchestrator:
         if agent_result.status == "error":
             return {
                 "type": "error",
-                "message": agent_result.error or "Error desconocido en agente",
+                "message": agent_result.error or f"Error desconocido en el agente ({agent_result.event_type})",
             }
 
         payload = agent_result.payload or {}

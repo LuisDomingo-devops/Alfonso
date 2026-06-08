@@ -54,11 +54,20 @@ class SystemAgent(BaseAgent):
                 error=f"Evento no soportado: {event_type}",
             )
 
-        ok = result.get("status") == "ok"
+        # Verificamos si el resultado es un diccionario y si tiene éxito.
+        # Si la tool devuelve datos pero olvidó el 'status': 'ok', lo aceptamos
+        # para evitar fallos silenciosos.
+        if not isinstance(result, dict):
+            ok = False
+            error_msg = f"La herramienta devolvió un formato inesperado: {type(result)}"
+        else:
+            ok = result.get("status") == "ok" or ("status" not in result and len(result) > 0)
+            error_msg = result.get("message")
+
         return AgentResult(
             agent=self.name,
             event_type=event_type,
             status="success" if ok else "error",
             payload=result,
-            error=result.get("message") if not ok else None,
+            error=error_msg if not ok else None,
         )
