@@ -533,3 +533,28 @@ Responde al usuario en una o dos frases en español, usando solo los datos del r
 2026-06-08 16:29:18,012 | INFO | llm | [b3da8015-4a14-4886-b2ee-489b6c7f4c88] Respuesta LLM recibida correctamente
 2026-06-08 16:33:19,330 | INFO | llm | [----------] LLM INPUT: ping
 2026-06-08 16:33:19,330 | INFO | llm | [----------] LLM MODEL: qwen2.5:1.5b  MODE: chat  num_ctx=8192  reasoning=True
+2026-06-08 17:03:36,546 | INFO | llm | [----------] LLM INPUT: ping
+2026-06-08 17:03:36,546 | INFO | llm | [----------] LLM MODEL: qwen2.5:1.5b  MODE: chat  num_ctx=8192  reasoning=True
+2026-06-08 17:04:13,956 | DEBUG | llm | [----------] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-08T15:04:13.897884932Z', 'message': {'role': 'assistant', 'content': 'Pongase tranquilo, estoy aquí para ayudarlo. ¿Cómo puedo asistirle hoy?'}, 'done': True, 'done_reason': 'stop', 'total_duration': 37340357564, 'load_duration': 4092956996, 'prompt_eval_count': 674, 'prompt_eval_duration': 31111757983, 'eval_count': 22, 'eval_duration': 1848903994}
+2026-06-08 17:04:13,960 | DEBUG | llm | [----------] OLLAMA CONTENT: Pongase tranquilo, estoy aquí para ayudarlo. ¿Cómo puedo asistirle hoy?
+2026-06-08 17:04:13,960 | INFO | llm | [----------] Respuesta LLM recibida correctamente
+2026-06-08 17:04:28,204 | INFO | llm | [27c151dd-eb25-476e-8d61-7cba1705c2cf] LLM INPUT: abre firefox
+2026-06-08 17:04:28,204 | INFO | llm | [27c151dd-eb25-476e-8d61-7cba1705c2cf] LLM MODEL: qwen2.5:1.5b  MODE: tool  num_ctx=4096  reasoning=True
+2026-06-08 17:05:02,357 | DEBUG | llm | [27c151dd-eb25-476e-8d61-7cba1705c2cf] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-08T15:05:02.354953913Z', 'message': {'role': 'assistant', 'content': '{"tool":"open_application","args":{"command":"firefox"}}'}, 'done': True, 'done_reason': 'stop', 'total_duration': 34141441074, 'load_duration': 3550492632, 'prompt_eval_count': 571, 'prompt_eval_duration': 29493416677, 'eval_count': 13, 'eval_duration': 1030350420}
+2026-06-08 17:05:02,358 | DEBUG | llm | [27c151dd-eb25-476e-8d61-7cba1705c2cf] OLLAMA CONTENT: {"tool":"open_application","args":{"command":"firefox"}}
+2026-06-08 17:05:02,358 | INFO | llm | [27c151dd-eb25-476e-8d61-7cba1705c2cf] Respuesta LLM recibida correctamente
+2026-06-08 17:05:28,769 | INFO | llm | [478e590a-2e3c-45b8-b3cc-02531fc28007] LLM INPUT: cierra firefox
+2026-06-08 17:05:28,769 | INFO | llm | [478e590a-2e3c-45b8-b3cc-02531fc28007] LLM MODEL: qwen2.5:1.5b  MODE: tool  num_ctx=4096  reasoning=True
+2026-06-08 17:05:30,707 | DEBUG | llm | [478e590a-2e3c-45b8-b3cc-02531fc28007] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-08T15:05:30.701309488Z', 'message': {'role': 'assistant', 'content': '{"tool":"close_application","args":{"command":"firefox"}}'}, 'done': True, 'done_reason': 'stop', 'total_duration': 1736266525, 'load_duration': 236553501, 'prompt_eval_count': 571, 'prompt_eval_duration': 509372086, 'eval_count': 13, 'eval_duration': 900779431}
+2026-06-08 17:05:30,707 | DEBUG | llm | [478e590a-2e3c-45b8-b3cc-02531fc28007] OLLAMA CONTENT: {"tool":"close_application","args":{"command":"firefox"}}
+2026-06-08 17:05:30,707 | INFO | llm | [478e590a-2e3c-45b8-b3cc-02531fc28007] Respuesta LLM recibida correctamente
+2026-06-08 17:05:37,667 | INFO | llm | [20642c21-d6ff-414d-99dd-f7b356baa69c] LLM INPUT: abre el explorador de archivos
+2026-06-08 17:05:37,667 | INFO | llm | [20642c21-d6ff-414d-99dd-f7b356baa69c] LLM MODEL: qwen2.5:1.5b  MODE: tool  num_ctx=4096  reasoning=True
+2026-06-08 17:05:39,453 | DEBUG | llm | [20642c21-d6ff-414d-99dd-f7b356baa69c] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-08T15:05:39.451979041Z', 'message': {'role': 'assistant', 'content': '{"tool":"open_application","args":{"command":"nautilus"}}'}, 'done': True, 'done_reason': 'stop', 'total_duration': 1781850566, 'load_duration': 110962600, 'prompt_eval_count': 575, 'prompt_eval_duration': 652810780, 'eval_count': 14, 'eval_duration': 971907384}
+2026-06-08 17:05:39,453 | DEBUG | llm | [20642c21-d6ff-414d-99dd-f7b356baa69c] OLLAMA CONTENT: {"tool":"open_application","args":{"command":"nautilus"}}
+2026-06-08 17:05:39,454 | INFO | llm | [20642c21-d6ff-414d-99dd-f7b356baa69c] Respuesta LLM recibida correctamente
+2026-06-08 17:11:11,817 | INFO | llm | [0ec1f7ea-3528-4a05-93ac-9b5ec9954754] LLM INPUT: abre www.google.es
+2026-06-08 17:11:11,817 | INFO | llm | [0ec1f7ea-3528-4a05-93ac-9b5ec9954754] LLM MODEL: qwen2.5:1.5b  MODE: tool  num_ctx=4096  reasoning=True
+2026-06-08 17:11:14,014 | DEBUG | llm | [0ec1f7ea-3528-4a05-93ac-9b5ec9954754] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-08T15:11:14.012372327Z', 'message': {'role': 'assistant', 'content': '{"tool":"browser_navigate","args":{"url":"https://www.google.es"}}'}, 'done': True, 'done_reason': 'stop', 'total_duration': 2187822366, 'load_duration': 270284251, 'prompt_eval_count': 573, 'prompt_eval_duration': 478385582, 'eval_count': 18, 'eval_duration': 1365834715}
+2026-06-08 17:11:14,014 | DEBUG | llm | [0ec1f7ea-3528-4a05-93ac-9b5ec9954754] OLLAMA CONTENT: {"tool":"browser_navigate","args":{"url":"https://www.google.es"}}
+2026-06-08 17:11:14,014 | INFO | llm | [0ec1f7ea-3528-4a05-93ac-9b5ec9954754] Respuesta LLM recibida correctamente

@@ -455,3 +455,33 @@
 2026-06-08 16:29:18,012 | DEBUG | orchestrator | [b3da8015-4a14-4886-b2ee-489b6c7f4c88] LLM OUTPUT (tool): {"tool":"open_application","args":{"command":"nautilus"}}
 2026-06-08 16:29:18,014 | INFO | orchestrator | [b3da8015-4a14-4886-b2ee-489b6c7f4c88] TaskPlan: event=system.open_app args={'command': 'nautilus'}
 2026-06-08 16:29:18,017 | DEBUG | orchestrator | [b3da8015-4a14-4886-b2ee-489b6c7f4c88] Evento publicado: system.open_app
+2026-06-08 17:04:28,185 | INFO | orchestrator | [27c151dd-eb25-476e-8d61-7cba1705c2cf] PlannerOrchestrator.run iniciado
+2026-06-08 17:04:28,185 | INFO | orchestrator | [27c151dd-eb25-476e-8d61-7cba1705c2cf] USER MESSAGE: abre firefox
+2026-06-08 17:04:28,185 | INFO | orchestrator | [27c151dd-eb25-476e-8d61-7cba1705c2cf] SESSION_ID: 27c151dd-eb25-476e-8d61-7cba1705c2cf
+2026-06-08 17:04:28,202 | INFO | orchestrator | [27c151dd-eb25-476e-8d61-7cba1705c2cf] Intent: tool (score=2.00, reglas=['+2.0 [open_app]'])
+2026-06-08 17:05:02,358 | DEBUG | orchestrator | [27c151dd-eb25-476e-8d61-7cba1705c2cf] LLM OUTPUT (tool): {"tool":"open_application","args":{"command":"firefox"}}
+2026-06-08 17:05:02,359 | INFO | orchestrator | [27c151dd-eb25-476e-8d61-7cba1705c2cf] TaskPlan: event=system.open_app args={'command': 'firefox'}
+2026-06-08 17:05:02,360 | DEBUG | orchestrator | [27c151dd-eb25-476e-8d61-7cba1705c2cf] Evento publicado: system.open_app
+2026-06-08 17:05:28,763 | INFO | orchestrator | [478e590a-2e3c-45b8-b3cc-02531fc28007] PlannerOrchestrator.run iniciado
+2026-06-08 17:05:28,763 | INFO | orchestrator | [478e590a-2e3c-45b8-b3cc-02531fc28007] USER MESSAGE: cierra firefox
+2026-06-08 17:05:28,763 | INFO | orchestrator | [478e590a-2e3c-45b8-b3cc-02531fc28007] SESSION_ID: 478e590a-2e3c-45b8-b3cc-02531fc28007
+2026-06-08 17:05:28,768 | INFO | orchestrator | [478e590a-2e3c-45b8-b3cc-02531fc28007] Intent: tool (score=4.50, reglas=['+2.5 [close_application]', '+2.0 [close_app_simple]'])
+2026-06-08 17:05:30,708 | DEBUG | orchestrator | [478e590a-2e3c-45b8-b3cc-02531fc28007] LLM OUTPUT (tool): {"tool":"close_application","args":{"command":"firefox"}}
+2026-06-08 17:05:30,708 | INFO | orchestrator | [478e590a-2e3c-45b8-b3cc-02531fc28007] TaskPlan: event=system.close_app args={'command': 'firefox'}
+2026-06-08 17:05:30,708 | DEBUG | orchestrator | [478e590a-2e3c-45b8-b3cc-02531fc28007] Evento publicado: system.close_app
+2026-06-08 17:05:30,737 | INFO | orchestrator | [478e590a-2e3c-45b8-b3cc-02531fc28007] Agente respondió: tool
+2026-06-08 17:05:37,661 | INFO | orchestrator | [20642c21-d6ff-414d-99dd-f7b356baa69c] PlannerOrchestrator.run iniciado
+2026-06-08 17:05:37,661 | INFO | orchestrator | [20642c21-d6ff-414d-99dd-f7b356baa69c] USER MESSAGE: abre el explorador de archivos
+2026-06-08 17:05:37,662 | INFO | orchestrator | [20642c21-d6ff-414d-99dd-f7b356baa69c] SESSION_ID: 20642c21-d6ff-414d-99dd-f7b356baa69c
+2026-06-08 17:05:37,666 | INFO | orchestrator | [20642c21-d6ff-414d-99dd-f7b356baa69c] Intent: tool (score=5.50, reglas=['+3.0 [open_filemanager]', '+2.5 [open_filemanager_short]'])
+2026-06-08 17:05:39,454 | DEBUG | orchestrator | [20642c21-d6ff-414d-99dd-f7b356baa69c] LLM OUTPUT (tool): {"tool":"open_application","args":{"command":"nautilus"}}
+2026-06-08 17:05:39,454 | INFO | orchestrator | [20642c21-d6ff-414d-99dd-f7b356baa69c] TaskPlan: event=system.open_app args={'command': 'nautilus'}
+2026-06-08 17:05:39,454 | DEBUG | orchestrator | [20642c21-d6ff-414d-99dd-f7b356baa69c] Evento publicado: system.open_app
+2026-06-08 17:11:11,808 | INFO | orchestrator | [0ec1f7ea-3528-4a05-93ac-9b5ec9954754] PlannerOrchestrator.run iniciado
+2026-06-08 17:11:11,808 | INFO | orchestrator | [0ec1f7ea-3528-4a05-93ac-9b5ec9954754] USER MESSAGE: abre www.google.es
+2026-06-08 17:11:11,808 | INFO | orchestrator | [0ec1f7ea-3528-4a05-93ac-9b5ec9954754] SESSION_ID: 0ec1f7ea-3528-4a05-93ac-9b5ec9954754
+2026-06-08 17:11:11,817 | INFO | orchestrator | [0ec1f7ea-3528-4a05-93ac-9b5ec9954754] Intent: tool (score=2.00, reglas=['+2.0 [browser_open]'])
+2026-06-08 17:11:14,015 | DEBUG | orchestrator | [0ec1f7ea-3528-4a05-93ac-9b5ec9954754] LLM OUTPUT (tool): {"tool":"browser_navigate","args":{"url":"https://www.google.es"}}
+2026-06-08 17:11:14,015 | INFO | orchestrator | [0ec1f7ea-3528-4a05-93ac-9b5ec9954754] TaskPlan: event=browser.navigate args={'url': 'https://www.google.es'}
+2026-06-08 17:11:14,015 | DEBUG | orchestrator | [0ec1f7ea-3528-4a05-93ac-9b5ec9954754] Evento publicado: browser.navigate
+2026-06-08 17:11:14,034 | INFO | orchestrator | [0ec1f7ea-3528-4a05-93ac-9b5ec9954754] Agente respondió: error

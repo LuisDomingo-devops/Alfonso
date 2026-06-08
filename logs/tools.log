@@ -95,3 +95,11 @@
 2026-06-08 16:29:18,027 | INFO | tools | [----------] Intentando abrir aplicación: ['nautilus']
 2026-06-08 16:29:18,155 | INFO | tools | [----------] Binario 'nautilus' no encontrado; intentando xdg-open
 2026-06-08 16:29:18,170 | INFO | tools | [----------] Aplicación abierta con PID 22726
+2026-06-08 17:05:02,457 | INFO | tools | [----------] Intentando abrir aplicación: ['firefox']
+2026-06-08 17:05:02,462 | INFO | tools | [----------] Aplicación abierta con PID 1521
+2026-06-08 17:05:30,713 | INFO | tools | [----------] Intentando cerrar aplicación: firefox
+2026-06-08 17:05:30,733 | INFO | tools | [----------] Se cerraron 1 procesos de firefox
+2026-06-08 17:05:39,484 | INFO | tools | [----------] Intentando abrir aplicación: ['nautilus']
+2026-06-08 17:05:39,540 | INFO | tools | [----------] Binario 'nautilus' no encontrado; intentando xdg-open
+2026-06-08 17:05:39,542 | INFO | tools | [----------] Aplicación abierta con PID 2740
+2026-06-08 17:11:14,026 | INFO | tools | [----------] browser_navigate: https://www.google.es
