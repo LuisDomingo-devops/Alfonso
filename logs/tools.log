@@ -1,10 +1,3 @@
-2026-06-03 15:25:54,263 | INFO | tools | [----------] Archivo creado exitosamente: /home/luisd/Alfonso/mensaje_alfonso2.txt
-2026-06-04 11:20:18,874 | INFO | tools | [----------] Intentando eliminar archivo: /home/luisd/Alfonso/mensaje_alfonso.txt
-2026-06-04 11:20:18,875 | INFO | tools | [----------] Archivo eliminado exitosamente: /home/luisd/Alfonso/mensaje_alfonso.txt
-2026-06-04 11:25:57,768 | INFO | tools | [----------] Intentando abrir aplicación: ['firefox']
-2026-06-05 10:01:56,719 | INFO | tools | [----------] Obteniendo fecha y hora del sistema
-2026-06-06 16:46:46,076 | INFO | tools | [----------] Obteniendo fecha y hora del sistema
-2026-06-06 17:41:48,923 | INFO | tools | [----------] Obteniendo fecha y hora del sistema
 2026-06-07 09:02:19,078 | INFO | tools | [----------] Intentando crear archivo: alfonso.txt
 2026-06-07 09:02:19,080 | INFO | tools | [----------] Ruta absoluta final: /home/luisd/Alfonso/alfonso.txt
 2026-06-07 09:02:19,081 | INFO | tools | [----------] Archivo creado exitosamente: /home/luisd/Alfonso/alfonso.txt
