@@ -20,6 +20,7 @@ def test_tool_registry_loads_plugins():
     assert get_tool("run_command") is not None
     assert get_tool("list_directory") is not None
     assert get_tool("open_application") is not None
+    assert get_tool("close_application") is not None
     assert get_tool("text_to_speech") is not None
     assert get_tool("speech_to_text") is not None
     assert get_tool("wake_word_listener") is not None

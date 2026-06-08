@@ -15,6 +15,7 @@ Mapeo tools → event_types (acumulado Fases 1-3):
         get_current_datetime → system.datetime   ← NUEVO Fase 3
         run_command         → system.command
         open_application    → system.open_app
+        close_application   → system.close_app     ← NUEVO Fase 3
 
     Navegador (Fase 3):
         browser_navigate    → browser.navigate
@@ -69,6 +70,7 @@ _TOOL_TO_EVENT: dict[str, str] = {
     "get_current_datetime":  "system.datetime",
     "run_command":           "system.command",
     "open_application":      "system.open_app",
+    "close_application":     "system.close_app",
     # Navegador
     "browser_navigate":      "browser.navigate",
     "browser_click":         "browser.click",

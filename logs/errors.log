@@ -22,3 +22,4 @@ RuntimeError: Playwright no instalado. Ejecuta: pip install playwright --break-s
 2026-06-07 20:23:01,885 | INFO | errors | [----------] Ruta relativa detectada, convirtiendo a absoluta: test_fase3.txt
 2026-06-08 08:43:29,580 | INFO | errors | [----------] Ruta relativa detectada, convirtiendo a absoluta: test.txt
 2026-06-08 08:53:05,047 | INFO | errors | [----------] Ruta relativa detectada, convirtiendo a absoluta: archivo.txt
+2026-06-08 16:00:31,705 | WARNING | errors | [----------] No se encontró ninguna aplicación abierta con el nombre: nautilus

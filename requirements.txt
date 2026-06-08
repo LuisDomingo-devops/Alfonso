@@ -1,6 +1,7 @@
 fastapi
 uvicorn
 httpx
+playwright
 psutil
 python-dotenv
 pydantic

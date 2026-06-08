@@ -30,7 +30,7 @@ _TOOL_INLINE = re.compile(r"^([a-z_]+)\s+(\{.*\})$", re.DOTALL | re.IGNORECASE)
 # Nombres de tools válidos (para validar el formato inline)
 _VALID_TOOLS = {
     "create_file", "read_file", "append_file", "delete_file", "list_directory",
-    "system_info", "get_current_datetime", "open_application", "run_command",
+    "system_info", "get_current_datetime", "open_application", "close_application", "run_command",
     "browser_navigate", "browser_search", "browser_screenshot", "browser_get_text",
     "browser_click", "browser_fill", "browser_evaluate", "browser_close",
     "text_to_speech", "speech_to_text", "no_op",

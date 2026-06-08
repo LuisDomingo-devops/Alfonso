@@ -68,6 +68,10 @@ _TOOL_RULES: list[_Rule] = [
     # ── Abrir aplicaciones — genéricas ───────────────────────────────
     _r(r"\b(abre|abrir|lanza|lanzar|inicia|iniciar)\b.{0,20}\b(aplicación|programa|app|navegador|firefox|chrome|chromium|vscode|notepad|terminal|konsole|gedit|kate)\b", 2.0, "open_app"),
 
+    # ── Cerrar aplicaciones ────────────────────────────────────────────
+    _r(r"\b(cierra|cerrar|termina|terminar|mata|matar|quit|exit)\b.{0,30}\b(aplicación|programa|app|navegador|firefox|chrome|vscode|notepad|terminal|explorador de archivos|nautilus)\b", 2.5, "close_application"),
+    _r(r"^(cierra|cerrar|mata|matar)\s+\w+$", 2.0, "close_app_simple"),
+
     # ── Abrir explorador de archivos (FIX) ───────────────────────────
     # Se añaden: explorador (con typos), gestor de archivos, nautilus, nemo, thunar, dolphin
     _r(r"\b(abre|abrir|lanza|inicia)\b.{0,25}\b(explorad?or de archivos|gestor de archivos|file manager|nautilus|nemo|thunar|dolphin|caja)\b", 3.0, "open_filemanager"),

@@ -6,6 +6,7 @@ Event types:
     system.datetime     → fecha y hora actuales del sistema  ← NUEVO Fase 3
     system.command      → ejecuta un comando de terminal
     system.open_app     → abre una aplicación
+    system.close_app    → cierra una aplicación por nombre
 """
 
 from __future__ import annotations
@@ -21,6 +22,7 @@ class SystemAgent(BaseAgent):
         "system.datetime",
         "system.command",
         "system.open_app",
+        "system.close_app",
     ]
 
     async def handle(self, event_type: str, data: dict) -> AgentResult:
@@ -44,6 +46,12 @@ class SystemAgent(BaseAgent):
                 "open_application",
                 command=args.get("command", ""),
                 args=args.get("args"),
+            )
+
+        elif event_type == "system.close_app":
+            result = await self.run_tool(
+                "close_application",
+                command=args.get("command", ""),
             )
 
         else:

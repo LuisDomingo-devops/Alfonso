@@ -1,12 +1,11 @@
 """
-system_tools.py — Fase 3
+system_tools.py — Fase 3 (fixed)
 
-Mejoras respecto a Fase 2:
-- open_application ahora usa xdg-open como fallback en WSL/Linux.
-- Añadido soporte explícito para gestores de archivos (nautilus, nemo, thunar, dolphin).
-- Manejo de alias comunes: 'internet' → xdg-open https, 'explorador' → nautilus/nemo.
-- get_current_datetime: nueva tool para responder preguntas de hora/fecha con precisión.
-- _find_file_manager: detecta automáticamente el gestor instalado.
+Fixes aplicados:
+- get_system_info(): añadido "status": "ok" al dict de retorno para que
+  SystemAgent lo reconozca como éxito (antes fallaba silenciosamente).
+- open_application(): sin cambios funcionales.
+- get_current_datetime(): sin cambios (ya tenía status:ok).
 """
 
 import os
@@ -23,15 +22,15 @@ from app.utils.logger import tool_logger, error_logger
 
 # Alias de comandos amigables → binarios reales
 _APP_ALIASES: dict[str, list[str]] = {
-    "internet":            ["xdg-open", "https://www.google.com"],
-    "explorador":          [],  # se resuelve dinámicamente
+    "internet":               ["xdg-open", "https://www.google.com"],
+    "explorador":             [],  # se resuelve dinámicamente
     "explorador de archivos": [],
-    "gestor de archivos":  [],
-    "file manager":        [],
+    "gestor de archivos":     [],
+    "file manager":           [],
 }
 
-# Gestores de archivos por orden de preferencia en Linux/WSL
-_FILE_MANAGERS = ["nautilus", "nemo", "thunar", "dolphin", "caja", "pcmanfm", "xdg-open"]
+# Gestores de archivos por orden de preferencia (priorizando explorer.exe para integración con Windows/WSL)
+_FILE_MANAGERS = ["explorer.exe", "nautilus", "nemo", "thunar", "dolphin", "caja", "pcmanfm", "xdg-open"]
 
 
 def _find_file_manager() -> list[str] | None:
@@ -41,20 +40,21 @@ def _find_file_manager() -> list[str] | None:
             tool_logger.info("Gestor de archivos detectado: %s", fm)
             if fm == "xdg-open":
                 return [fm, str(Path.home())]
+            if fm == "explorer.exe":
+                # En WSL, explorer.exe . abre la carpeta actual de Linux en Windows
+                return [fm, "."]
             return [fm]
     return None
 
 
 def _normalize_command(command: str | Sequence[str]) -> list[str]:
     if isinstance(command, str):
-        # Expandir alias primero
         lower = command.strip().lower()
         if lower in _APP_ALIASES:
             if not _APP_ALIASES[lower]:
                 fm = _find_file_manager()
                 return fm if fm else []
             return _APP_ALIASES[lower]
-        # Detectar explorador con typos (explorad*, etc.)
         if "explorad" in lower or "file manager" in lower or "gestor de archivo" in lower:
             fm = _find_file_manager()
             return fm if fm else []
@@ -75,22 +75,34 @@ def _is_safe(command_parts: list[str]) -> bool:
     return True
 
 
-async def get_system_info():
+async def get_system_info() -> dict:
+    """
+    Retorna información básica del sistema.
+    FIX: ahora incluye 'status': 'ok' para que SystemAgent lo reconozca
+    como éxito en lugar de error silencioso.
+    """
     tool_logger.info("Obteniendo información del sistema")
-    return {
-        "system": platform.system(),
-        "version": platform.version(),
-        "cpu": os.cpu_count(),
-        "ram_total_gb": round(psutil.virtual_memory().total / 1024**3, 2),
-        "ram_available_gb": round(psutil.virtual_memory().available / 1024**3, 2),
-    }
+    try:
+        return {
+            "status": "ok",
+            "system": platform.system(),
+            "version": platform.version(),
+            "cpu": os.cpu_count(),
+            "ram_total_gb": round(psutil.virtual_memory().total / 1024**3, 2),
+            "ram_available_gb": round(psutil.virtual_memory().available / 1024**3, 2),
+            "ram_used_percent": psutil.virtual_memory().percent,
+            "disk_total_gb": round(psutil.disk_usage("/").total / 1024**3, 2),
+            "disk_free_gb": round(psutil.disk_usage("/").free / 1024**3, 2),
+        }
+    except Exception as exc:
+        error_logger.exception("Error obteniendo info del sistema")
+        return {"status": "error", "message": str(exc)}
 
 
 async def get_current_datetime() -> dict:
     """
     Devuelve la fecha y hora actuales del sistema operativo.
     Úsalo para responder preguntas del tipo '¿qué hora es?' o '¿qué día es hoy?'
-    en lugar de que el LLM adivine con su fecha de corte de conocimiento.
     """
     tool_logger.info("Obteniendo fecha y hora del sistema")
     now = datetime.now()
@@ -108,11 +120,14 @@ async def get_current_datetime() -> dict:
         "day": now.day,
         "month": months_es[now.month - 1],
         "year": now.year,
-        "human": f"{days_es[now.weekday()]}, {now.day} de {months_es[now.month - 1]} de {now.year}, {now.strftime('%H:%M')}",
+        "human": (
+            f"{days_es[now.weekday()]}, {now.day} de {months_es[now.month - 1]}"
+            f" de {now.year}, {now.strftime('%H:%M')}"
+        ),
     }
 
 
-async def open_application(command: str | Sequence[str], args: Sequence[str] | None = None):
+async def open_application(command: str | Sequence[str], args: Sequence[str] | None = None) -> dict:
     command_parts = _normalize_command(command)
     if args:
         command_parts.extend(list(args))
@@ -127,10 +142,8 @@ async def open_application(command: str | Sequence[str], args: Sequence[str] | N
         error_logger.warning("Aplicación bloqueada: %s", command_parts)
         return {"status": "error", "message": "Aplicación no permitida por política de seguridad"}
 
-    # Buscar el binario principal
     binary = command_parts[0]
     if shutil.which(binary) is None and not Path(binary).exists():
-        # Fallback WSL: intentar con xdg-open si disponible
         if shutil.which("xdg-open") and len(command_parts) == 1:
             tool_logger.info("Binario '%s' no encontrado; intentando xdg-open", binary)
             command_parts = ["xdg-open", binary]
@@ -138,7 +151,10 @@ async def open_application(command: str | Sequence[str], args: Sequence[str] | N
             error_logger.warning("Aplicación no encontrada: %s", binary)
             return {
                 "status": "error",
-                "message": f"Aplicación no encontrada: {binary}. En WSL asegúrate de tener el paquete instalado.",
+                "message": (
+                    f"Aplicación no encontrada: {binary}. "
+                    "En WSL asegúrate de tener el paquete instalado."
+                ),
             }
 
     try:
@@ -160,9 +176,35 @@ async def open_application(command: str | Sequence[str], args: Sequence[str] | N
         error_logger.exception("Error abriendo aplicación")
         return {"status": "error", "message": str(exc)}
 
-
+async def close_application(command: str) -> dict:
+    """Cierra aplicaciones buscando por nombre de proceso."""
+    tool_logger.info("Intentando cerrar aplicación: %s", command)
+    target = command.lower()
+    closed_count = 0
+    try:
+        for proc in psutil.process_iter(['pid', 'name']):
+            try:
+                # Verificamos si el nombre del proceso contiene lo que el usuario pidió
+                if target in proc.info['name'].lower():
+                    proc.terminate()
+                    closed_count += 1
+            except (psutil.NoSuchProcess, psutil.AccessDenied):
+                continue
+        
+        if closed_count > 0:
+            tool_logger.info("Se cerraron %d procesos de %s", closed_count, command)
+            return {"status": "ok", "message": f"Se han cerrado las instancias de {command}"}
+        
+        error_logger.warning("No se encontró ninguna aplicación abierta con el nombre: %s", command)
+        return {"status": "error", "message": f"No se encontró ninguna aplicación abierta llamada {command}"}
+    except Exception as exc:
+        error_logger.exception("Error cerrando aplicación")
+        return {"status": "error", "message": str(exc)}
+    
+    
 TOOLS = {
     "system_info": get_system_info,
     "open_application": open_application,
     "get_current_datetime": get_current_datetime,
+    "close_application": close_application,
 }

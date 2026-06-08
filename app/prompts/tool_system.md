@@ -168,6 +168,13 @@ open_application  →  Abre una aplicación del sistema
     "command": "firefox"
   }
 }
+close_application  →  Cierra una aplicación del sistema
+{
+  "tool": "close_application",
+  "args": {
+    "command": "firefox"
+  }
+}
 
 run_command  →  Ejecuta un comando de terminal (sin rm, shutdown ni comandos peligrosos)
 {
@@ -242,6 +249,9 @@ Usuario: "cuánta RAM tiene el sistema"
 
 Usuario: "abre firefox"
 {"tool":"open_application","args":{"command":"firefox"}}
+
+Usuario: "cierra firefox"
+{"tool":"close_application","args":{"command":"firefox"}}
 
 Usuario: "ejecuta el comando pwd"
 {"tool":"run_command","args":{"command":"pwd"}}

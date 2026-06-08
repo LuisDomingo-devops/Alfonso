@@ -70,3 +70,28 @@
 2026-06-08 13:31:34,304 | INFO | tools | [----------] Directorio listado correctamente: .
 2026-06-08 13:35:59,987 | INFO | tools | [----------] Obteniendo información del sistema
 2026-06-08 13:49:09,246 | INFO | tools | [----------] Obteniendo información del sistema
+2026-06-08 14:12:15,191 | INFO | tools | [----------] Obteniendo información del sistema
+2026-06-08 14:14:59,942 | INFO | tools | [----------] Listando directorio: .
+2026-06-08 14:14:59,944 | INFO | tools | [----------] Directorio listado correctamente: .
+2026-06-08 14:31:17,716 | INFO | tools | [----------] Intentando abrir aplicación: ['firefox']
+2026-06-08 14:31:17,721 | INFO | tools | [----------] Aplicación abierta con PID 10625
+2026-06-08 15:27:10,779 | INFO | tools | [----------] Intentando abrir aplicación: ['firefox']
+2026-06-08 15:27:10,786 | INFO | tools | [----------] Aplicación abierta con PID 14184
+2026-06-08 15:49:54,449 | INFO | tools | [----------] Intentando abrir aplicación: ['firefox']
+2026-06-08 15:49:54,460 | INFO | tools | [----------] Aplicación abierta con PID 17526
+2026-06-08 15:57:25,564 | INFO | tools | [----------] Intentando cerrar aplicación: firefox
+2026-06-08 15:57:25,628 | INFO | tools | [----------] Se cerraron 1 procesos de firefox
+2026-06-08 15:59:08,114 | INFO | tools | [----------] Intentando abrir aplicación: ['firefox']
+2026-06-08 15:59:08,117 | INFO | tools | [----------] Aplicación abierta con PID 19454
+2026-06-08 15:59:20,934 | INFO | tools | [----------] Intentando cerrar aplicación: firefox
+2026-06-08 15:59:20,949 | INFO | tools | [----------] Se cerraron 1 procesos de firefox
+2026-06-08 16:00:31,698 | INFO | tools | [----------] Intentando cerrar aplicación: nautilus
+2026-06-08 16:01:45,738 | INFO | tools | [----------] Intentando abrir aplicación: ['nautilus']
+2026-06-08 16:01:45,804 | INFO | tools | [----------] Binario 'nautilus' no encontrado; intentando xdg-open
+2026-06-08 16:01:45,806 | INFO | tools | [----------] Aplicación abierta con PID 20667
+2026-06-08 16:13:24,805 | INFO | tools | [----------] Intentando abrir aplicación: ['nautilus']
+2026-06-08 16:13:24,990 | INFO | tools | [----------] Binario 'nautilus' no encontrado; intentando xdg-open
+2026-06-08 16:13:25,003 | INFO | tools | [----------] Aplicación abierta con PID 22416
+2026-06-08 16:29:18,027 | INFO | tools | [----------] Intentando abrir aplicación: ['nautilus']
+2026-06-08 16:29:18,155 | INFO | tools | [----------] Binario 'nautilus' no encontrado; intentando xdg-open
+2026-06-08 16:29:18,170 | INFO | tools | [----------] Aplicación abierta con PID 22726
