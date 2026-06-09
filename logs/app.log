@@ -349,3 +349,24 @@
 2026-06-09 17:08:31,987 | INFO | app | [e304fdc6-3f2e-44c4-872c-4b059e14a878] LATENCY: 1.82s
 2026-06-09 17:08:31,988 | INFO | app | [e304fdc6-3f2e-44c4-872c-4b059e14a878] HTTP request finished: POST /chat 200
 2026-06-09 17:08:41,351 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-09 17:10:07,825 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-09 17:10:07,825 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
+2026-06-09 17:10:07,826 | INFO | app | [----------] EventBus iniciado
+2026-06-09 17:10:07,832 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-09 17:10:52,272 | INFO | app | [----------] Modelo precalentado
+2026-06-09 17:10:52,273 | INFO | app | [----------] Alfonso Fase 3 listo
+2026-06-09 17:11:12,626 | INFO | app | [4bca2049-ad5b-4f85-ba95-4dae7e55d4f1] HTTP request started: POST /chat
+2026-06-09 17:11:12,630 | INFO | app | [4bca2049-ad5b-4f85-ba95-4dae7e55d4f1] Solicitud /chat recibida
+2026-06-09 17:11:12,631 | INFO | app | [4bca2049-ad5b-4f85-ba95-4dae7e55d4f1] SESSION_ID: 4bca2049-ad5b-4f85-ba95-4dae7e55d4f1
+2026-06-09 17:11:12,631 | INFO | app | [4bca2049-ad5b-4f85-ba95-4dae7e55d4f1] USER MESSAGE: busca en internet que tiempo hace en bilbao
+2026-06-09 17:13:42,944 | INFO | app | [4bca2049-ad5b-4f85-ba95-4dae7e55d4f1] Solicitud /chat procesada con estado: chat
+2026-06-09 17:13:42,945 | INFO | app | [4bca2049-ad5b-4f85-ba95-4dae7e55d4f1] LATENCY: 158.27s
+2026-06-09 17:13:42,953 | INFO | app | [4bca2049-ad5b-4f85-ba95-4dae7e55d4f1] HTTP request finished: POST /chat 200
+2026-06-09 17:17:07,376 | INFO | app | [0cc30b5e-4662-4514-b48f-fa9978645150] HTTP request started: POST /chat
+2026-06-09 17:17:07,383 | INFO | app | [0cc30b5e-4662-4514-b48f-fa9978645150] Solicitud /chat recibida
+2026-06-09 17:17:07,384 | INFO | app | [0cc30b5e-4662-4514-b48f-fa9978645150] SESSION_ID: 0cc30b5e-4662-4514-b48f-fa9978645150
+2026-06-09 17:17:07,384 | INFO | app | [0cc30b5e-4662-4514-b48f-fa9978645150] USER MESSAGE: que tiempo hace en bilbao
+2026-06-09 17:17:43,077 | INFO | app | [0cc30b5e-4662-4514-b48f-fa9978645150] Solicitud /chat procesada con estado: chat
+2026-06-09 17:17:43,077 | INFO | app | [0cc30b5e-4662-4514-b48f-fa9978645150] LATENCY: 37.33s
+2026-06-09 17:17:43,078 | INFO | app | [0cc30b5e-4662-4514-b48f-fa9978645150] HTTP request finished: POST /chat 200
+2026-06-09 17:18:10,215 | INFO | app | [----------] Agentes y EventBus detenidos

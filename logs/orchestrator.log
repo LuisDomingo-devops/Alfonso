@@ -201,3 +201,17 @@ crear un archivo llamado notas.txt con el texto hola
 2026-06-09 17:08:31,802 | INFO | orchestrator | [e304fdc6-3f2e-44c4-872c-4b059e14a878] TaskPlan: event=system.close_app args={'command': 'firefox'}
 2026-06-09 17:08:31,802 | DEBUG | orchestrator | [e304fdc6-3f2e-44c4-872c-4b059e14a878] Evento publicado: system.close_app
 2026-06-09 17:08:31,987 | INFO | orchestrator | [e304fdc6-3f2e-44c4-872c-4b059e14a878] Agente respondió: tool
+2026-06-09 17:11:12,631 | INFO | orchestrator | [4bca2049-ad5b-4f85-ba95-4dae7e55d4f1] PlannerOrchestrator.run iniciado
+2026-06-09 17:11:12,631 | INFO | orchestrator | [4bca2049-ad5b-4f85-ba95-4dae7e55d4f1] USER MESSAGE: busca en internet que tiempo hace en bilbao
+2026-06-09 17:11:12,632 | INFO | orchestrator | [4bca2049-ad5b-4f85-ba95-4dae7e55d4f1] SESSION_ID: 4bca2049-ad5b-4f85-ba95-4dae7e55d4f1
+2026-06-09 17:11:12,639 | INFO | orchestrator | [4bca2049-ad5b-4f85-ba95-4dae7e55d4f1] Intent: tool (score=2.50, reglas=['+2.5 [browser_search]'])
+2026-06-09 17:11:46,638 | DEBUG | orchestrator | [4bca2049-ad5b-4f85-ba95-4dae7e55d4f1] LLM OUTPUT (tool): {"tool":"browser_search","args":{"query":"tiempo bilbao"}}
+2026-06-09 17:11:46,638 | INFO | orchestrator | [4bca2049-ad5b-4f85-ba95-4dae7e55d4f1] TaskPlan: event=browser.search args={'query': 'tiempo bilbao'}
+2026-06-09 17:11:46,639 | DEBUG | orchestrator | [4bca2049-ad5b-4f85-ba95-4dae7e55d4f1] Evento publicado: browser.search
+2026-06-09 17:11:59,992 | INFO | orchestrator | [4bca2049-ad5b-4f85-ba95-4dae7e55d4f1] Síntesis activada para evento: browser.search
+2026-06-09 17:17:07,384 | INFO | orchestrator | [0cc30b5e-4662-4514-b48f-fa9978645150] PlannerOrchestrator.run iniciado
+2026-06-09 17:17:07,384 | INFO | orchestrator | [0cc30b5e-4662-4514-b48f-fa9978645150] USER MESSAGE: que tiempo hace en bilbao
+2026-06-09 17:17:07,385 | INFO | orchestrator | [0cc30b5e-4662-4514-b48f-fa9978645150] SESSION_ID: 0cc30b5e-4662-4514-b48f-fa9978645150
+2026-06-09 17:17:07,394 | INFO | orchestrator | [0cc30b5e-4662-4514-b48f-fa9978645150] Intent: chat (score=0.00, reglas=[])
+2026-06-09 17:17:07,395 | DEBUG | orchestrator | [0cc30b5e-4662-4514-b48f-fa9978645150] Evento publicado: chat.respond
+2026-06-09 17:17:43,077 | INFO | orchestrator | [0cc30b5e-4662-4514-b48f-fa9978645150] Respuesta chat completada

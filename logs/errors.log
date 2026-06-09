@@ -14,3 +14,25 @@ Traceback (most recent call last):
     raise RuntimeError(
 RuntimeError: Playwright no instalado. Ejecuta: pip install playwright --break-system-packages && playwright install chromium
 2026-06-09 14:31:10,331 | WARNING | errors | [----------] No se encontró proceso con nombre: explorer
+2026-06-09 17:11:59,902 | ERROR | errors | [----------] Error en browser_wait_for
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/tools/browser_tools.py", line 287, in browser_wait_for
+    await page.wait_for_selector(selector, state=state, timeout=timeout)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/playwright/async_api/_generated.py", line 8795, in wait_for_selector
+    await self._impl_obj.wait_for_selector(
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/playwright/_impl/_page.py", line 424, in wait_for_selector
+    return await self._main_frame.wait_for_selector(**locals_to_params(locals()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/playwright/_impl/_frame.py", line 372, in wait_for_selector
+    await self._channel.send(
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 69, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 559, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.TimeoutError: Page.wait_for_selector: Timeout 10000ms exceeded.
+Call log:
+  - waiting for locator("h3") to be visible
+    - waiting for" https://www.google.com/search?q=tiempo+bilbao&sei=NS0oasTmFO2thbIP_dWSqAs" navigation to finish...
+    - navigated to "https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dtiempo%2Bbilbao%26sei%3DNS0oasTmFO2thbIP_dWSqAs&q=EgRPdd48GLbaoNEGIjBLnbfCRvuZzHn-4gmnK7-7R_zP_B0Ol8FcElxipwnMR8orVppV5…"
+
