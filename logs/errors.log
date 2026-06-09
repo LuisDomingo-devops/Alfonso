@@ -13,3 +13,4 @@ Traceback (most recent call last):
   File "/home/luisd/Alfonso/app/tools/browser_tools.py", line 56, in _get_page
     raise RuntimeError(
 RuntimeError: Playwright no instalado. Ejecuta: pip install playwright --break-system-packages && playwright install chromium
+2026-06-09 14:31:10,331 | WARNING | errors | [----------] No se encontró proceso con nombre: explorer

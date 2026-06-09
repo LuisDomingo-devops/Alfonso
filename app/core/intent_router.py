@@ -1,19 +1,35 @@
 """
-IntentRouter — Fase 3.
+IntentRouter — Fase 3 (fixed v2)
 
-Mejoras respecto a Fase 2:
-- Añadidos patrones para 'explorador de archivos', 'nautilus', 'nemo', 'thunar'.
-- Añadidos patrones para acciones de navegador (navega a, abre la web, busca en).
-- Añadida regla para consultas de fecha/hora actuales via run_command.
-- Aumentado peso de 'explorador de archivos' para superar la penalización de saludos.
+Fixes respecto a versión anterior:
+- strip_punctuation(): normaliza el mensaje antes de matchear reglas.
+  "abre google." → "abre google" → score correcto.
+- Añadidas reglas para nombres de apps sin prefijo ("firefox", "google chrome").
+- Ampliado patrón datetime_tool para cubrir más variantes.
+- Mejorado patrón browser_open para cubrir dominios sin protocolo (google, youtube…).
 """
 
 from __future__ import annotations
+
 import re
 from dataclasses import dataclass
 from typing import Literal
 
 Intent = Literal["chat", "tool"]
+
+# Dominios populares sin protocolo que el usuario puede decir
+_KNOWN_DOMAINS_RE = re.compile(
+    r"\b(google|youtube|facebook|twitter|instagram|linkedin|amazon|wikipedia|"
+    r"github|openai|anthropic|reddit|twitch|netflix|spotify)(\.(com|es|org|net|io))?\b",
+    re.IGNORECASE,
+)
+
+_TRAILING_PUNCT_RE = re.compile(r"[.,;:!?¡¿\s]+$")
+
+
+def _normalize(msg: str) -> str:
+    """Elimina puntuación final que puede venir de transcripciones de voz."""
+    return _TRAILING_PUNCT_RE.sub("", msg.strip())
 
 
 @dataclass
@@ -67,26 +83,31 @@ _TOOL_RULES: list[_Rule] = [
 
     # ── Abrir aplicaciones — genéricas ───────────────────────────────
     _r(r"\b(abre|abrir|lanza|lanzar|inicia|iniciar)\b.{0,20}\b(aplicación|programa|app|navegador|firefox|chrome|chromium|vscode|notepad|terminal|konsole|gedit|kate)\b", 2.0, "open_app"),
+    # Nombres de app solos (sin verbo) para voz: "firefox", "abre firefox"
+    _r(r"^(abre|abrir|lanza|lanzar|inicia|iniciar)\s+(firefox|chrome|chromium|vscode|code|terminal|konsole|gedit|kate|brave|opera)$", 2.5, "open_app_direct"),
 
     # ── Cerrar aplicaciones ────────────────────────────────────────────
     _r(r"\b(cierra|cerrar|termina|terminar|mata|matar|quit|exit)\b.{0,30}\b(aplicación|programa|app|navegador|firefox|chrome|vscode|notepad|terminal|explorador de archivos|nautilus)\b", 2.5, "close_application"),
     _r(r"^(cierra|cerrar|mata|matar)\s+\w+$", 2.0, "close_app_simple"),
 
-    # ── Abrir explorador de archivos (FIX) ───────────────────────────
-    # Se añaden: explorador (con typos), gestor de archivos, nautilus, nemo, thunar, dolphin
+    # ── Abrir explorador de archivos (FIX WSL) ───────────────────────
     _r(r"\b(abre|abrir|lanza|inicia)\b.{0,25}\b(explorad?or de archivos|gestor de archivos|file manager|nautilus|nemo|thunar|dolphin|explorer|caja)\b", 3.0, "open_filemanager"),
-    _r(r"\b(abre|abrir)\b.{0,15}\b(explorad?or|explorador|explorad?or)\b", 2.5, "open_filemanager_short"),
+    _r(r"\b(abre|abrir)\b.{0,15}\b(explorad?or|explorador)\b", 2.5, "open_filemanager_short"),
 
     # ── Navegador web — acciones (Fase 3) ────────────────────────────
     _r(r"\b(navega|navegar|ve|ir)\b.{0,20}\b(a la web|a la página|a la url|al sitio|a https?://|a www\.)\b", 2.5, "browser_navigate"),
-    _r(r"\b(abre|abrir)\b.{0,15}\b(la web|la página|internet|el navegador|una url|el sitio|https?://|www\.)\b", 2.0, "browser_open"),
+    # FIX: "abre google", "abre youtube", "abre www.X", dominios conocidos
+    _r(r"\b(abre|abrir|entra|entrar|ve|ir)\b.{0,20}\b(la web|la página|internet|el navegador|una url|el sitio|https?://|www\.)\b", 2.0, "browser_open"),
+    _r(r"\b(abre|abrir|entra|ve)\b.{0,10}(google|youtube|facebook|twitter|instagram|linkedin|amazon|wikipedia|github|reddit|twitch|netflix|spotify)\b", 2.5, "browser_open_domain"),
+    _r(r"^(abre|abrir|entra en|ve a)\s+(www\.|https?://)?[\w\-]+(\.\w{2,})+", 2.5, "browser_open_url"),
     _r(r"\b(busca|buscar|googlea|googleas?)\b.{0,30}\b(en internet|en google|en la web|online|en línea)\b", 2.5, "browser_search"),
     _r(r"https?://[\w\-\.]+\.\w{2,}", 2.0, "url_explicit"),
+    _r(r"\bwww\.[\w\-]+\.\w{2,}", 2.0, "url_www"),
 
-    # ── Fecha y hora actuales via sistema (FIX) ───────────────────────
-    # El LLM no conoce la fecha real; estas preguntas deben ir al sistema
+    # ── Fecha y hora actuales via sistema ─────────────────────────────
     _r(r"\b(qué hora|que hora|la hora actual|qué son las|son las)\b", 2.0, "datetime_tool"),
-    _r(r"\b(qué día|que dia|hoy es|día de hoy|fecha actual|fecha de hoy)\b.{0,20}\?", 2.0, "datetime_tool"),
+    _r(r"\b(qué día|que dia|hoy es|día de hoy|fecha actual|fecha de hoy)\b", 2.0, "datetime_tool"),
+    _r(r"\b(qué (día|fecha|hora)|dime la (hora|fecha)|dime qué día)\b", 2.0, "datetime_tool"),
 
     # ── Mail (Fase 3 — patrones avanzados) ───────────────────────────
     _r(r"\b(responde|contesta|redacta respuesta)\b.{0,30}\b(mail|correo|reclamación|abogado)\b", 3.0, "mail_reply"),
@@ -126,18 +147,27 @@ class IntentRouter:
         return self.detect_with_detail(message)["intent"]
 
     def detect_with_detail(self, message: str) -> dict:
+        # Normalizar antes de matchear (elimina puntuación final de STT)
+        normalized = _normalize(message)
+
         score = 0.0
         fired: list[str] = []
 
         for rule in _TOOL_RULES:
-            if rule.pattern.search(message):
+            if rule.pattern.search(normalized):
                 score += rule.weight
                 fired.append(f"+{rule.weight} [{rule.category}]")
 
         for rule in _CHAT_RULES:
-            if rule.pattern.search(message):
+            if rule.pattern.search(normalized):
                 score += rule.weight
                 fired.append(f"{rule.weight} [{rule.category}]")
+
+        # Boost adicional: dominio conocido mencionado explícitamente
+        if _KNOWN_DOMAINS_RE.search(normalized):
+            if any(k in normalized.lower() for k in ("abre", "ve", "entra", "navega", "busca", "abre")):
+                score += 1.5
+                fired.append("+1.5 [known_domain_boost]")
 
         return {
             "intent": "tool" if score >= _THRESHOLD else "chat",

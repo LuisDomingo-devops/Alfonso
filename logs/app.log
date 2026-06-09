@@ -244,3 +244,108 @@
 2026-06-09 09:45:00,115 | INFO | app | [14388a5c-96a7-4a24-858f-379adcbcd79e] HTTP request started: POST /audio/wakeword/upload
 2026-06-09 09:45:00,139 | INFO | app | [----------] Solicitud POST /audio/wakeword/upload recibida para archivo: chunk.wav
 2026-06-09 09:45:20,440 | INFO | app | [14388a5c-96a7-4a24-858f-379adcbcd79e] HTTP request finished: POST /audio/wakeword/upload 200
+2026-06-09 14:26:44,046 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-09 14:26:44,047 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
+2026-06-09 14:26:44,047 | INFO | app | [----------] EventBus iniciado
+2026-06-09 14:26:44,055 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-09 14:27:24,241 | INFO | app | [----------] Modelo precalentado
+2026-06-09 14:27:24,242 | INFO | app | [----------] Alfonso Fase 3 listo
+2026-06-09 14:28:27,274 | INFO | app | [6ec52414-c96c-44bc-a8ff-d3e886570f92] HTTP request started: POST /chat
+2026-06-09 14:28:27,300 | INFO | app | [6ec52414-c96c-44bc-a8ff-d3e886570f92] Solicitud /chat recibida
+2026-06-09 14:28:27,300 | INFO | app | [6ec52414-c96c-44bc-a8ff-d3e886570f92] SESSION_ID: 6ec52414-c96c-44bc-a8ff-d3e886570f92
+2026-06-09 14:28:27,300 | INFO | app | [6ec52414-c96c-44bc-a8ff-d3e886570f92] USER MESSAGE: abre www.google.es
+2026-06-09 14:29:14,881 | INFO | app | [6ec52414-c96c-44bc-a8ff-d3e886570f92] Solicitud /chat procesada con estado: chat
+2026-06-09 14:29:14,883 | INFO | app | [6ec52414-c96c-44bc-a8ff-d3e886570f92] LATENCY: 50.95s
+2026-06-09 14:29:14,896 | INFO | app | [6ec52414-c96c-44bc-a8ff-d3e886570f92] HTTP request finished: POST /chat 200
+2026-06-09 14:31:06,970 | INFO | app | [32be8fc9-879d-4c1b-b267-60b5ec1f6f4d] HTTP request started: POST /chat
+2026-06-09 14:31:06,985 | INFO | app | [32be8fc9-879d-4c1b-b267-60b5ec1f6f4d] Solicitud /chat recibida
+2026-06-09 14:31:06,989 | INFO | app | [32be8fc9-879d-4c1b-b267-60b5ec1f6f4d] SESSION_ID: 32be8fc9-879d-4c1b-b267-60b5ec1f6f4d
+2026-06-09 14:31:06,990 | INFO | app | [32be8fc9-879d-4c1b-b267-60b5ec1f6f4d] USER MESSAGE: cierra el navegador web
+2026-06-09 14:31:10,333 | INFO | app | [32be8fc9-879d-4c1b-b267-60b5ec1f6f4d] Solicitud /chat procesada con estado: error
+2026-06-09 14:31:10,333 | INFO | app | [32be8fc9-879d-4c1b-b267-60b5ec1f6f4d] LATENCY: 3.34s
+2026-06-09 14:31:10,334 | INFO | app | [32be8fc9-879d-4c1b-b267-60b5ec1f6f4d] HTTP request finished: POST /chat 200
+2026-06-09 14:31:57,514 | INFO | app | [fa3eb9de-336a-4792-8421-a4aa61c1c3d3] HTTP request started: POST /chat
+2026-06-09 14:31:57,515 | INFO | app | [fa3eb9de-336a-4792-8421-a4aa61c1c3d3] Solicitud /chat recibida
+2026-06-09 14:31:57,515 | INFO | app | [fa3eb9de-336a-4792-8421-a4aa61c1c3d3] SESSION_ID: fa3eb9de-336a-4792-8421-a4aa61c1c3d3
+2026-06-09 14:31:57,516 | INFO | app | [fa3eb9de-336a-4792-8421-a4aa61c1c3d3] USER MESSAGE: cierra firefox
+2026-06-09 14:31:59,147 | INFO | app | [fa3eb9de-336a-4792-8421-a4aa61c1c3d3] Solicitud /chat procesada con estado: tool
+2026-06-09 14:31:59,148 | INFO | app | [fa3eb9de-336a-4792-8421-a4aa61c1c3d3] LATENCY: 1.63s
+2026-06-09 14:31:59,148 | INFO | app | [fa3eb9de-336a-4792-8421-a4aa61c1c3d3] HTTP request finished: POST /chat 200
+2026-06-09 14:37:59,270 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-09 14:38:00,293 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-09 14:38:00,294 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
+2026-06-09 14:38:00,294 | INFO | app | [----------] EventBus iniciado
+2026-06-09 14:38:00,302 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-09 14:39:00,703 | INFO | app | [----------] Modelo precalentado
+2026-06-09 14:39:00,704 | INFO | app | [----------] Alfonso Fase 3 listo
+2026-06-09 15:16:55,450 | INFO | app | [acf063ab-d214-477c-b759-b544eaa4fc2f] HTTP request started: POST /chat
+2026-06-09 15:16:55,627 | INFO | app | [acf063ab-d214-477c-b759-b544eaa4fc2f] Solicitud /chat recibida
+2026-06-09 15:16:55,628 | INFO | app | [acf063ab-d214-477c-b759-b544eaa4fc2f] SESSION_ID: acf063ab-d214-477c-b759-b544eaa4fc2f
+2026-06-09 15:16:55,628 | INFO | app | [acf063ab-d214-477c-b759-b544eaa4fc2f] USER MESSAGE: abre www.google.es
+2026-06-09 15:18:07,827 | INFO | app | [acf063ab-d214-477c-b759-b544eaa4fc2f] Solicitud /chat procesada con estado: chat
+2026-06-09 15:18:07,832 | INFO | app | [acf063ab-d214-477c-b759-b544eaa4fc2f] LATENCY: 75.68s
+2026-06-09 15:18:07,845 | INFO | app | [acf063ab-d214-477c-b759-b544eaa4fc2f] HTTP request finished: POST /chat 200
+2026-06-09 15:18:54,528 | INFO | app | [faa4534f-d536-4e08-bf4b-737b05f3acb3] HTTP request started: POST /chat
+2026-06-09 15:18:54,546 | INFO | app | [faa4534f-d536-4e08-bf4b-737b05f3acb3] Solicitud /chat recibida
+2026-06-09 15:18:54,546 | INFO | app | [faa4534f-d536-4e08-bf4b-737b05f3acb3] SESSION_ID: faa4534f-d536-4e08-bf4b-737b05f3acb3
+2026-06-09 15:18:54,547 | INFO | app | [faa4534f-d536-4e08-bf4b-737b05f3acb3] USER MESSAGE: cierra firefox
+2026-06-09 15:18:56,739 | INFO | app | [faa4534f-d536-4e08-bf4b-737b05f3acb3] Solicitud /chat procesada con estado: tool
+2026-06-09 15:18:56,739 | INFO | app | [faa4534f-d536-4e08-bf4b-737b05f3acb3] LATENCY: 2.19s
+2026-06-09 15:18:56,740 | INFO | app | [faa4534f-d536-4e08-bf4b-737b05f3acb3] HTTP request finished: POST /chat 200
+2026-06-09 15:20:10,273 | INFO | app | [dbff7fb5-d8ed-4f34-b35e-2c30b87696df] HTTP request started: POST /chat
+2026-06-09 15:20:10,275 | INFO | app | [dbff7fb5-d8ed-4f34-b35e-2c30b87696df] Solicitud /chat recibida
+2026-06-09 15:20:10,275 | INFO | app | [dbff7fb5-d8ed-4f34-b35e-2c30b87696df] SESSION_ID: dbff7fb5-d8ed-4f34-b35e-2c30b87696df
+2026-06-09 15:20:10,275 | INFO | app | [dbff7fb5-d8ed-4f34-b35e-2c30b87696df] USER MESSAGE: abre el explorador de archivos
+2026-06-09 15:20:12,461 | INFO | app | [dbff7fb5-d8ed-4f34-b35e-2c30b87696df] Solicitud /chat procesada con estado: chat
+2026-06-09 15:20:12,462 | INFO | app | [dbff7fb5-d8ed-4f34-b35e-2c30b87696df] LATENCY: 2.19s
+2026-06-09 15:20:12,462 | INFO | app | [dbff7fb5-d8ed-4f34-b35e-2c30b87696df] HTTP request finished: POST /chat 200
+2026-06-09 15:44:52,123 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-09 15:44:54,046 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-09 15:44:54,047 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
+2026-06-09 15:44:54,047 | INFO | app | [----------] EventBus iniciado
+2026-06-09 15:44:54,054 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-09 15:46:01,499 | INFO | app | [----------] Modelo precalentado
+2026-06-09 15:46:01,500 | INFO | app | [----------] Alfonso Fase 3 listo
+2026-06-09 16:27:06,177 | INFO | app | [43be1991-0f54-4e1a-907c-c2a8a0e206f0] HTTP request started: POST /chat
+2026-06-09 16:27:06,295 | INFO | app | [43be1991-0f54-4e1a-907c-c2a8a0e206f0] Solicitud /chat recibida
+2026-06-09 16:27:06,296 | INFO | app | [43be1991-0f54-4e1a-907c-c2a8a0e206f0] SESSION_ID: 43be1991-0f54-4e1a-907c-c2a8a0e206f0
+2026-06-09 16:27:06,296 | INFO | app | [43be1991-0f54-4e1a-907c-c2a8a0e206f0] USER MESSAGE: abre www.google.es
+2026-06-09 16:28:07,560 | INFO | app | [43be1991-0f54-4e1a-907c-c2a8a0e206f0] Solicitud /chat procesada con estado: chat
+2026-06-09 16:28:07,561 | INFO | app | [43be1991-0f54-4e1a-907c-c2a8a0e206f0] LATENCY: 64.67s
+2026-06-09 16:28:07,566 | INFO | app | [43be1991-0f54-4e1a-907c-c2a8a0e206f0] HTTP request finished: POST /chat 200
+2026-06-09 16:28:14,045 | INFO | app | [d20a92f9-bc01-4dec-b4fd-d6ec0022a379] HTTP request started: POST /chat
+2026-06-09 16:28:14,048 | INFO | app | [d20a92f9-bc01-4dec-b4fd-d6ec0022a379] Solicitud /chat recibida
+2026-06-09 16:28:14,048 | INFO | app | [d20a92f9-bc01-4dec-b4fd-d6ec0022a379] SESSION_ID: d20a92f9-bc01-4dec-b4fd-d6ec0022a379
+2026-06-09 16:28:14,048 | INFO | app | [d20a92f9-bc01-4dec-b4fd-d6ec0022a379] USER MESSAGE: cierra firefox
+2026-06-09 16:28:16,223 | INFO | app | [d20a92f9-bc01-4dec-b4fd-d6ec0022a379] Solicitud /chat procesada con estado: tool
+2026-06-09 16:28:16,223 | INFO | app | [d20a92f9-bc01-4dec-b4fd-d6ec0022a379] LATENCY: 2.17s
+2026-06-09 16:28:16,223 | INFO | app | [d20a92f9-bc01-4dec-b4fd-d6ec0022a379] HTTP request finished: POST /chat 200
+2026-06-09 16:28:26,301 | INFO | app | [62ac41f4-6f5d-496d-81aa-3ecb8a47ceaf] HTTP request started: POST /chat
+2026-06-09 16:28:26,303 | INFO | app | [62ac41f4-6f5d-496d-81aa-3ecb8a47ceaf] Solicitud /chat recibida
+2026-06-09 16:28:26,303 | INFO | app | [62ac41f4-6f5d-496d-81aa-3ecb8a47ceaf] SESSION_ID: 62ac41f4-6f5d-496d-81aa-3ecb8a47ceaf
+2026-06-09 16:28:26,303 | INFO | app | [62ac41f4-6f5d-496d-81aa-3ecb8a47ceaf] USER MESSAGE: que hora es
+2026-06-09 16:28:26,363 | INFO | app | [62ac41f4-6f5d-496d-81aa-3ecb8a47ceaf] Solicitud /chat procesada con estado: chat
+2026-06-09 16:28:26,364 | INFO | app | [62ac41f4-6f5d-496d-81aa-3ecb8a47ceaf] LATENCY: 0.06s
+2026-06-09 16:28:26,364 | INFO | app | [62ac41f4-6f5d-496d-81aa-3ecb8a47ceaf] HTTP request finished: POST /chat 200
+2026-06-09 16:59:13,075 | INFO | app | [09bd85bb-ce51-412b-be8b-2c5262d0a885] HTTP request started: POST /chat
+2026-06-09 16:59:13,077 | INFO | app | [09bd85bb-ce51-412b-be8b-2c5262d0a885] Solicitud /chat recibida
+2026-06-09 16:59:13,077 | INFO | app | [09bd85bb-ce51-412b-be8b-2c5262d0a885] SESSION_ID: 09bd85bb-ce51-412b-be8b-2c5262d0a885
+2026-06-09 16:59:13,077 | INFO | app | [09bd85bb-ce51-412b-be8b-2c5262d0a885] USER MESSAGE: abre www.elpais.com
+2026-06-09 16:59:18,707 | INFO | app | [09bd85bb-ce51-412b-be8b-2c5262d0a885] Solicitud /chat procesada con estado: error
+2026-06-09 16:59:18,707 | INFO | app | [09bd85bb-ce51-412b-be8b-2c5262d0a885] LATENCY: 5.63s
+2026-06-09 16:59:18,708 | INFO | app | [09bd85bb-ce51-412b-be8b-2c5262d0a885] HTTP request finished: POST /chat 200
+2026-06-09 17:07:24,084 | INFO | app | [54447981-2e0b-4112-822f-1e8c05ee5bc2] HTTP request started: POST /chat
+2026-06-09 17:07:24,086 | INFO | app | [54447981-2e0b-4112-822f-1e8c05ee5bc2] Solicitud /chat recibida
+2026-06-09 17:07:24,086 | INFO | app | [54447981-2e0b-4112-822f-1e8c05ee5bc2] SESSION_ID: 54447981-2e0b-4112-822f-1e8c05ee5bc2
+2026-06-09 17:07:24,086 | INFO | app | [54447981-2e0b-4112-822f-1e8c05ee5bc2] USER MESSAGE: abre la pagina www.elpais.com
+2026-06-09 17:07:34,110 | INFO | app | [54447981-2e0b-4112-822f-1e8c05ee5bc2] Solicitud /chat procesada con estado: chat
+2026-06-09 17:07:34,110 | INFO | app | [54447981-2e0b-4112-822f-1e8c05ee5bc2] LATENCY: 10.02s
+2026-06-09 17:07:34,111 | INFO | app | [54447981-2e0b-4112-822f-1e8c05ee5bc2] HTTP request finished: POST /chat 200
+2026-06-09 17:08:30,162 | INFO | app | [e304fdc6-3f2e-44c4-872c-4b059e14a878] HTTP request started: POST /chat
+2026-06-09 17:08:30,164 | INFO | app | [e304fdc6-3f2e-44c4-872c-4b059e14a878] Solicitud /chat recibida
+2026-06-09 17:08:30,164 | INFO | app | [e304fdc6-3f2e-44c4-872c-4b059e14a878] SESSION_ID: e304fdc6-3f2e-44c4-872c-4b059e14a878
+2026-06-09 17:08:30,164 | INFO | app | [e304fdc6-3f2e-44c4-872c-4b059e14a878] USER MESSAGE: cierra firefox
+2026-06-09 17:08:31,987 | INFO | app | [e304fdc6-3f2e-44c4-872c-4b059e14a878] Solicitud /chat procesada con estado: tool
+2026-06-09 17:08:31,987 | INFO | app | [e304fdc6-3f2e-44c4-872c-4b059e14a878] LATENCY: 1.82s
+2026-06-09 17:08:31,988 | INFO | app | [e304fdc6-3f2e-44c4-872c-4b059e14a878] HTTP request finished: POST /chat 200
+2026-06-09 17:08:41,351 | INFO | app | [----------] Agentes y EventBus detenidos
