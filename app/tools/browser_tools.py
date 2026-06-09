@@ -29,6 +29,10 @@ import base64
 import os
 import urllib.parse
 from typing import Optional
+from dotenv import load_dotenv
+
+# Cargamos las variables de entorno desde el archivo .env al inicio
+load_dotenv()
 
 from app.utils.logger import error_logger, tool_logger
 
@@ -60,14 +64,30 @@ async def _get_page():
 
         browser_type = os.getenv("ALFONSO_BROWSER", "chromium").lower()
         headless = os.getenv("ALFONSO_HEADLESS", "true").lower() != "false"
+        executable_path = os.getenv("ALFONSO_BROWSER_PATH") # Opcional: ruta al ejecutable
 
-        tool_logger.info("Arrancando Playwright: browser=%s headless=%s", browser_type, headless)
+        tool_logger.info(
+            "Arrancando Playwright: browser=%s, headless=%s, path=%s",
+            browser_type, headless, executable_path
+        )
 
-        _playwright_instance = await async_playwright().start()
-
-        launcher = getattr(_playwright_instance, browser_type)
-        _browser_instance = await launcher.launch(headless=headless)
-        _page_instance = await _browser_instance.new_page()
+        try:
+            _playwright_instance = await async_playwright().start()
+            launcher = getattr(_playwright_instance, browser_type)
+            _browser_instance = await launcher.launch(
+                headless=headless,
+                executable_path=executable_path
+            )
+            _page_instance = await _browser_instance.new_page()
+        except Exception as exc:
+            # Limpieza inmediata en caso de fallo durante el arranque
+            await _close_playwright()
+            if "executable" in str(exc).lower():
+                raise RuntimeError(
+                    f"Binarios de {browser_type} no encontrados. "
+                    f"Ejecuta: playwright install {browser_type}"
+                ) from exc
+            raise
 
         tool_logger.info("Playwright listo")
         return _page_instance

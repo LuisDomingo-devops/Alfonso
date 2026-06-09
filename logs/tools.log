@@ -1,105 +1,85 @@
-2026-06-07 09:02:19,078 | INFO | tools | [----------] Intentando crear archivo: alfonso.txt
-2026-06-07 09:02:19,080 | INFO | tools | [----------] Ruta absoluta final: /home/luisd/Alfonso/alfonso.txt
-2026-06-07 09:02:19,081 | INFO | tools | [----------] Archivo creado exitosamente: /home/luisd/Alfonso/alfonso.txt
-2026-06-07 09:04:06,299 | INFO | tools | [----------] Intentando eliminar archivo: NAME.txt
-2026-06-07 09:04:37,382 | INFO | tools | [----------] Intentando eliminar archivo: alfonso.txt
-2026-06-07 09:04:37,382 | INFO | tools | [----------] Archivo eliminado exitosamente: alfonso.txt
-2026-06-07 09:05:12,567 | INFO | tools | [----------] Intentando eliminar archivo: mensaje_alfonso.txt
-2026-06-07 09:05:31,911 | INFO | tools | [----------] Intentando eliminar archivo: mensaje_alfonso2.txt
-2026-06-07 09:05:31,920 | INFO | tools | [----------] Archivo eliminado exitosamente: mensaje_alfonso2.txt
-2026-06-07 09:07:36,323 | INFO | tools | [----------] Obteniendo fecha y hora del sistema
-2026-06-07 09:22:43,812 | INFO | tools | [----------] Obteniendo fecha y hora del sistema
-2026-06-07 09:23:34,595 | INFO | tools | [----------] Intentando crear archivo: alfonso.txt
-2026-06-07 09:23:34,596 | INFO | tools | [----------] Ruta absoluta final: /home/luisd/Alfonso/alfonso.txt
-2026-06-07 09:23:34,597 | INFO | tools | [----------] Archivo creado exitosamente: /home/luisd/Alfonso/alfonso.txt
-2026-06-07 09:24:07,008 | INFO | tools | [----------] Intentando eliminar archivo: alfonso.txt
-2026-06-07 09:24:07,008 | INFO | tools | [----------] Archivo eliminado exitosamente: alfonso.txt
-2026-06-07 09:33:03,101 | INFO | tools | [----------] Obteniendo fecha y hora del sistema
-2026-06-07 09:36:31,411 | INFO | tools | [----------] Obteniendo fecha y hora del sistema
-2026-06-07 09:37:31,241 | INFO | tools | [----------] Intentando crear archivo: alfonso.txt
-2026-06-07 09:37:31,244 | INFO | tools | [----------] Ruta absoluta final: /home/luisd/Alfonso/alfonso.txt
-2026-06-07 09:37:31,246 | INFO | tools | [----------] Archivo creado exitosamente: /home/luisd/Alfonso/alfonso.txt
-2026-06-07 09:37:52,066 | INFO | tools | [----------] Intentando eliminar archivo: alfonso.txt
-2026-06-07 09:37:52,067 | INFO | tools | [----------] Archivo eliminado exitosamente: alfonso.txt
-2026-06-07 09:38:29,948 | INFO | tools | [----------] browser_navigate: https://www.google.com/search?q=tiempo+bilbao+hoy
-2026-06-07 09:38:56,512 | INFO | tools | [----------] Intentando abrir aplicación: ['chrome']
-2026-06-07 09:38:56,622 | INFO | tools | [----------] Binario 'chrome' no encontrado; intentando xdg-open
-2026-06-07 09:38:56,629 | INFO | tools | [----------] Aplicación abierta con PID 8499
-2026-06-07 09:39:43,109 | INFO | tools | [----------] Intentando abrir aplicación: ['firefox']
-2026-06-07 09:39:43,166 | INFO | tools | [----------] Binario 'firefox' no encontrado; intentando xdg-open
-2026-06-07 09:39:43,168 | INFO | tools | [----------] Aplicación abierta con PID 10323
-2026-06-07 09:40:07,727 | INFO | tools | [----------] Intentando abrir aplicación: ['firefox']
-2026-06-07 09:40:07,783 | INFO | tools | [----------] Binario 'firefox' no encontrado; intentando xdg-open
-2026-06-07 09:40:07,785 | INFO | tools | [----------] Aplicación abierta con PID 10358
-2026-06-07 20:23:01,884 | INFO | tools | [----------] Intentando crear archivo: test_fase3.txt
-2026-06-07 20:23:01,886 | INFO | tools | [----------] Ruta absoluta final: /home/luisd/Alfonso/test_fase3.txt
-2026-06-07 20:23:01,887 | INFO | tools | [----------] Archivo creado exitosamente: /home/luisd/Alfonso/test_fase3.txt
-2026-06-08 08:43:29,579 | INFO | tools | [----------] Intentando crear archivo: test.txt
-2026-06-08 08:43:29,581 | INFO | tools | [----------] Ruta absoluta final: /home/luisd/Alfonso/test.txt
-2026-06-08 08:43:29,583 | INFO | tools | [----------] Archivo creado exitosamente: /home/luisd/Alfonso/test.txt
-2026-06-08 08:45:09,705 | INFO | tools | [----------] Intentando leer archivo: test_fase3.txt
-2026-06-08 08:45:09,707 | INFO | tools | [----------] Archivo leído exitosamente: test_fase3.txt
-2026-06-08 08:45:47,884 | INFO | tools | [----------] Agregando contenido al archivo: test_fase3.txt
-2026-06-08 08:45:47,887 | INFO | tools | [----------] Contenido agregado exitosamente: /home/luisd/Alfonso/test_fase3.txt
-2026-06-08 08:46:37,184 | INFO | tools | [----------] Intentando leer archivo: test_fase3.txt
-2026-06-08 08:46:37,184 | INFO | tools | [----------] Archivo leído exitosamente: test_fase3.txt
-2026-06-08 08:47:09,838 | INFO | tools | [----------] Listando directorio: .
-2026-06-08 08:47:09,840 | INFO | tools | [----------] Directorio listado correctamente: .
-2026-06-08 08:47:58,726 | INFO | tools | [----------] Intentando eliminar archivo: test_fase3.txt
-2026-06-08 08:47:58,729 | INFO | tools | [----------] Archivo eliminado exitosamente: test_fase3.txt
-2026-06-08 08:53:05,046 | INFO | tools | [----------] Intentando crear archivo: archivo.txt
-2026-06-08 08:53:05,048 | INFO | tools | [----------] Ruta absoluta final: /home/luisd/Alfonso/archivo.txt
-2026-06-08 08:53:05,048 | INFO | tools | [----------] Archivo creado exitosamente: /home/luisd/Alfonso/archivo.txt
-2026-06-08 08:56:49,646 | INFO | tools | [----------] Obteniendo información del sistema
-2026-06-08 12:26:56,377 | INFO | tools | [----------] Obteniendo información del sistema
-2026-06-08 12:28:42,298 | INFO | tools | [----------] Listando directorio: .
-2026-06-08 12:28:42,299 | INFO | tools | [----------] Directorio listado correctamente: .
-2026-06-08 12:46:11,433 | INFO | tools | [----------] Listando directorio: .
-2026-06-08 12:46:11,434 | INFO | tools | [----------] Directorio listado correctamente: .
-2026-06-08 13:04:39,558 | INFO | tools | [----------] Listando directorio: .
-2026-06-08 13:04:39,560 | INFO | tools | [----------] Directorio listado correctamente: .
-2026-06-08 13:15:10,073 | INFO | tools | [----------] Obteniendo información del sistema
-2026-06-08 13:18:44,970 | INFO | tools | [----------] Obteniendo información del sistema
-2026-06-08 13:19:04,662 | INFO | tools | [----------] Listando directorio: .
-2026-06-08 13:19:04,663 | INFO | tools | [----------] Directorio listado correctamente: .
-2026-06-08 13:24:05,235 | INFO | tools | [----------] Listando directorio: .
-2026-06-08 13:24:05,236 | INFO | tools | [----------] Directorio listado correctamente: .
-2026-06-08 13:29:46,509 | INFO | tools | [----------] Listando directorio: .
-2026-06-08 13:29:46,510 | INFO | tools | [----------] Directorio listado correctamente: .
-2026-06-08 13:31:34,303 | INFO | tools | [----------] Listando directorio: .
-2026-06-08 13:31:34,304 | INFO | tools | [----------] Directorio listado correctamente: .
-2026-06-08 13:35:59,987 | INFO | tools | [----------] Obteniendo información del sistema
-2026-06-08 13:49:09,246 | INFO | tools | [----------] Obteniendo información del sistema
-2026-06-08 14:12:15,191 | INFO | tools | [----------] Obteniendo información del sistema
-2026-06-08 14:14:59,942 | INFO | tools | [----------] Listando directorio: .
-2026-06-08 14:14:59,944 | INFO | tools | [----------] Directorio listado correctamente: .
-2026-06-08 14:31:17,716 | INFO | tools | [----------] Intentando abrir aplicación: ['firefox']
-2026-06-08 14:31:17,721 | INFO | tools | [----------] Aplicación abierta con PID 10625
-2026-06-08 15:27:10,779 | INFO | tools | [----------] Intentando abrir aplicación: ['firefox']
-2026-06-08 15:27:10,786 | INFO | tools | [----------] Aplicación abierta con PID 14184
-2026-06-08 15:49:54,449 | INFO | tools | [----------] Intentando abrir aplicación: ['firefox']
-2026-06-08 15:49:54,460 | INFO | tools | [----------] Aplicación abierta con PID 17526
-2026-06-08 15:57:25,564 | INFO | tools | [----------] Intentando cerrar aplicación: firefox
-2026-06-08 15:57:25,628 | INFO | tools | [----------] Se cerraron 1 procesos de firefox
-2026-06-08 15:59:08,114 | INFO | tools | [----------] Intentando abrir aplicación: ['firefox']
-2026-06-08 15:59:08,117 | INFO | tools | [----------] Aplicación abierta con PID 19454
-2026-06-08 15:59:20,934 | INFO | tools | [----------] Intentando cerrar aplicación: firefox
-2026-06-08 15:59:20,949 | INFO | tools | [----------] Se cerraron 1 procesos de firefox
-2026-06-08 16:00:31,698 | INFO | tools | [----------] Intentando cerrar aplicación: nautilus
-2026-06-08 16:01:45,738 | INFO | tools | [----------] Intentando abrir aplicación: ['nautilus']
-2026-06-08 16:01:45,804 | INFO | tools | [----------] Binario 'nautilus' no encontrado; intentando xdg-open
-2026-06-08 16:01:45,806 | INFO | tools | [----------] Aplicación abierta con PID 20667
-2026-06-08 16:13:24,805 | INFO | tools | [----------] Intentando abrir aplicación: ['nautilus']
-2026-06-08 16:13:24,990 | INFO | tools | [----------] Binario 'nautilus' no encontrado; intentando xdg-open
-2026-06-08 16:13:25,003 | INFO | tools | [----------] Aplicación abierta con PID 22416
-2026-06-08 16:29:18,027 | INFO | tools | [----------] Intentando abrir aplicación: ['nautilus']
-2026-06-08 16:29:18,155 | INFO | tools | [----------] Binario 'nautilus' no encontrado; intentando xdg-open
-2026-06-08 16:29:18,170 | INFO | tools | [----------] Aplicación abierta con PID 22726
-2026-06-08 17:05:02,457 | INFO | tools | [----------] Intentando abrir aplicación: ['firefox']
-2026-06-08 17:05:02,462 | INFO | tools | [----------] Aplicación abierta con PID 1521
-2026-06-08 17:05:30,713 | INFO | tools | [----------] Intentando cerrar aplicación: firefox
-2026-06-08 17:05:30,733 | INFO | tools | [----------] Se cerraron 1 procesos de firefox
-2026-06-08 17:05:39,484 | INFO | tools | [----------] Intentando abrir aplicación: ['nautilus']
-2026-06-08 17:05:39,540 | INFO | tools | [----------] Binario 'nautilus' no encontrado; intentando xdg-open
-2026-06-08 17:05:39,542 | INFO | tools | [----------] Aplicación abierta con PID 2740
-2026-06-08 17:11:14,026 | INFO | tools | [----------] browser_navigate: https://www.google.es
+2026-06-09 08:20:03,873 | INFO | tools | [----------] browser_navigate: https://www.google.es
+2026-06-09 08:27:21,089 | INFO | tools | [----------] browser_navigate: https://www.google.es
+2026-06-09 08:27:21,222 | INFO | tools | [----------] Arrancando Playwright: browser=chromium headless=True
+2026-06-09 08:27:26,019 | INFO | tools | [----------] Playwright listo
+2026-06-09 08:27:28,186 | INFO | tools | [----------] Navegado a https://www.google.es → status=200 title=Google
+2026-06-09 08:28:04,462 | INFO | tools | [----------] Intentando abrir aplicación: ['firefox']
+2026-06-09 08:28:04,466 | INFO | tools | [----------] Aplicación abierta con PID 2997
+2026-06-09 08:28:28,000 | INFO | tools | [----------] browser_navigate: https://www.google.es
+2026-06-09 08:28:28,831 | INFO | tools | [----------] Navegado a https://www.google.es → status=200 title=Google
+2026-06-09 08:29:03,488 | INFO | tools | [----------] browser_navigate: https://www.google.es
+2026-06-09 08:29:04,315 | INFO | tools | [----------] Navegado a https://www.google.es → status=200 title=Google
+2026-06-09 08:36:12,004 | INFO | tools | [----------] browser_navigate: https://www.google.es
+2026-06-09 08:36:12,168 | INFO | tools | [----------] Arrancando Playwright: browser=chromium, headless=True, path=None
+2026-06-09 08:36:14,178 | INFO | tools | [----------] Playwright listo
+2026-06-09 08:36:16,193 | INFO | tools | [----------] Navegado a https://www.google.es → status=200 title=Google
+2026-06-09 08:36:55,020 | INFO | tools | [----------] Intentando cerrar aplicación: firefox
+2026-06-09 08:36:55,287 | INFO | tools | [----------] Cerrados 1 procesos de 'firefox': pids=[2997]
+2026-06-09 08:37:06,907 | INFO | tools | [----------] browser_navigate: https://www.google.es
+2026-06-09 08:37:08,168 | INFO | tools | [----------] Navegado a https://www.google.es → status=200 title=Google
+2026-06-09 08:50:09,781 | INFO | tools | [----------] browser_navigate: https://www.google.es
+2026-06-09 08:50:09,894 | INFO | tools | [----------] Arrancando Playwright: browser=firefox, headless=False, path=None
+2026-06-09 08:50:15,244 | INFO | tools | [----------] Playwright listo
+2026-06-09 08:50:17,861 | INFO | tools | [----------] Navegado a https://www.google.es → status=200 title=Google
+2026-06-09 08:50:34,550 | INFO | tools | [----------] Intentando cerrar aplicación: firefox
+2026-06-09 08:50:34,667 | INFO | tools | [----------] Cerrados 1 procesos de 'firefox': pids=[5989]
+2026-06-09 09:04:10,095 | INFO | tools | [----------] Detectando wake word 'alfonso' en audio subido: audio.wav (96044 bytes)
+2026-06-09 09:04:10,096 | INFO | tools | [----------] Transcribiendo audio subido: audio.wav (96044 bytes)
+2026-06-09 09:04:46,405 | INFO | tools | [----------] Transcripción Whisper: Buenos días.
+2026-06-09 09:04:46,408 | INFO | tools | [----------] Wake word 'alfonso' no detectada en: 'buenos días.'
+2026-06-09 09:06:29,023 | INFO | tools | [----------] Detectando wake word 'alfonso' en audio subido: audio.wav (96044 bytes)
+2026-06-09 09:06:29,023 | INFO | tools | [----------] Transcribiendo audio subido: audio.wav (96044 bytes)
+2026-06-09 09:06:43,395 | INFO | tools | [----------] Transcripción Whisper: no hago ni a seres tío
+2026-06-09 09:06:43,399 | INFO | tools | [----------] Wake word 'alfonso' no detectada en: 'no hago ni a seres tío'
+2026-06-09 09:07:22,008 | INFO | tools | [----------] Detectando wake word 'alfonso' en audio subido: audio.wav (96044 bytes)
+2026-06-09 09:07:22,008 | INFO | tools | [----------] Transcribiendo audio subido: audio.wav (96044 bytes)
+2026-06-09 09:07:32,714 | INFO | tools | [----------] Transcripción Whisper: Alfonso, buenos días.
+2026-06-09 09:07:32,714 | INFO | tools | [----------] Wake word 'alfonso' DETECTADA en: 'alfonso, buenos días.'
+2026-06-09 09:08:20,783 | INFO | tools | [----------] Detectando wake word 'alfonso' en audio subido: audio.wav (96044 bytes)
+2026-06-09 09:08:20,783 | INFO | tools | [----------] Transcribiendo audio subido: audio.wav (96044 bytes)
+2026-06-09 09:08:29,847 | INFO | tools | [----------] Transcripción Whisper: Alfonso
+2026-06-09 09:08:29,848 | INFO | tools | [----------] Wake word 'alfonso' DETECTADA en: 'alfonso'
+2026-06-09 09:17:04,495 | INFO | tools | [----------] Detectando wake word 'alfonso' en audio subido: audio.wav (96044 bytes)
+2026-06-09 09:17:04,499 | INFO | tools | [----------] Transcribiendo audio subido: audio.wav (96044 bytes)
+2026-06-09 09:18:03,329 | INFO | tools | [----------] Transcripción Whisper: ¡Suscríbete!
+2026-06-09 09:18:03,330 | INFO | tools | [----------] Wake word 'alfonso' no detectada en: '¡suscríbete!'
+2026-06-09 09:21:54,218 | INFO | tools | [----------] Detectando wake word 'alfonso' en audio subido: audio.wav (96044 bytes)
+2026-06-09 09:21:54,219 | INFO | tools | [----------] Transcribiendo audio subido: audio.wav (96044 bytes)
+2026-06-09 09:22:38,876 | INFO | tools | [----------] Transcripción Whisper: Alfonso, buenos días.
+2026-06-09 09:22:38,877 | INFO | tools | [----------] Wake word 'alfonso' DETECTADA en: 'alfonso, buenos días.'
+2026-06-09 09:22:54,598 | INFO | tools | [----------] Detectando wake word 'alfonso' en audio subido: audio.wav (96044 bytes)
+2026-06-09 09:22:54,598 | INFO | tools | [----------] Transcribiendo audio subido: audio.wav (96044 bytes)
+2026-06-09 09:23:07,673 | INFO | tools | [----------] Transcripción Whisper: Abre Google punto es
+2026-06-09 09:23:07,674 | INFO | tools | [----------] Wake word 'alfonso' no detectada en: 'abre google punto es'
+2026-06-09 09:27:28,994 | INFO | tools | [----------] Detectando wake word 'alfonso' en audio subido: audio.wav (96044 bytes)
+2026-06-09 09:27:28,994 | INFO | tools | [----------] Transcribiendo audio subido: audio.wav (96044 bytes)
+2026-06-09 09:28:11,870 | INFO | tools | [----------] Transcripción Whisper: Alfonso, buenos días.
+2026-06-09 09:28:11,871 | INFO | tools | [----------] Wake word 'alfonso' DETECTADA en: 'alfonso, buenos días.'
+2026-06-09 09:29:07,360 | INFO | tools | [----------] Detectando wake word 'alfonso' en audio subido: audio.wav (96044 bytes)
+2026-06-09 09:29:07,360 | INFO | tools | [----------] Transcribiendo audio subido: audio.wav (96044 bytes)
+2026-06-09 09:29:19,702 | INFO | tools | [----------] Transcripción Whisper: Alfonso, abre Google.
+2026-06-09 09:29:19,704 | INFO | tools | [----------] Wake word 'alfonso' DETECTADA en: 'alfonso, abre google.'
+2026-06-09 09:30:27,488 | INFO | tools | [----------] Detectando wake word 'alfonso' en audio subido: audio.wav (96044 bytes)
+2026-06-09 09:30:27,489 | INFO | tools | [----------] Transcribiendo audio subido: audio.wav (96044 bytes)
+2026-06-09 09:31:10,382 | INFO | tools | [----------] Transcripción Whisper: Bueno, ahoraisten 5 foxes.
+2026-06-09 09:31:10,386 | INFO | tools | [----------] Wake word 'alfonso' no detectada en: 'bueno, ahoraisten 5 foxes.'
+2026-06-09 09:37:23,294 | INFO | tools | [----------] Detectando wake word 'alfonso' en audio subido: audio.wav (96044 bytes)
+2026-06-09 09:37:23,295 | INFO | tools | [----------] Transcribiendo audio subido: audio.wav (96044 bytes)
+2026-06-09 09:38:27,551 | INFO | tools | [----------] Transcripción Whisper: Alfonso, buenos días.
+2026-06-09 09:38:27,553 | INFO | tools | [----------] Wake word 'alfonso' DETECTADA en: 'alfonso, buenos días.'
+2026-06-09 09:38:46,124 | INFO | tools | [----------] Detectando wake word 'alfonso' en audio subido: audio.wav (96044 bytes)
+2026-06-09 09:38:46,124 | INFO | tools | [----------] Transcribiendo audio subido: audio.wav (96044 bytes)
+2026-06-09 09:39:16,834 | INFO | tools | [----------] Transcripción Whisper: Alfonso, buenos días.
+2026-06-09 09:39:16,835 | INFO | tools | [----------] Wake word 'alfonso' DETECTADA en: 'alfonso, buenos días.'
+2026-06-09 09:41:33,914 | INFO | tools | [----------] Detectando wake word 'alfonso' en audio subido: audio.wav (96044 bytes)
+2026-06-09 09:41:33,914 | INFO | tools | [----------] Transcribiendo audio subido: audio.wav (96044 bytes)
+2026-06-09 09:42:47,601 | INFO | tools | [----------] Transcripción Whisper: Alfonso, buenos días.
+2026-06-09 09:42:47,605 | INFO | tools | [----------] Wake word 'alfonso' DETECTADA en: 'alfonso, buenos días.'
+2026-06-09 09:43:08,139 | INFO | tools | [----------] Detectando wake word 'alfonso' en audio subido: audio.wav (96044 bytes)
+2026-06-09 09:43:08,139 | INFO | tools | [----------] Transcribiendo audio subido: audio.wav (96044 bytes)
+2026-06-09 09:43:51,544 | INFO | tools | [----------] Transcripción Whisper: Alfonso, buenos días.
+2026-06-09 09:43:51,560 | INFO | tools | [----------] Wake word 'alfonso' DETECTADA en: 'alfonso, buenos días.'
+2026-06-09 09:45:00,139 | INFO | tools | [----------] Detectando wake word 'alfonso' en audio subido: audio.wav (96044 bytes)
+2026-06-09 09:45:00,139 | INFO | tools | [----------] Transcribiendo audio subido: audio.wav (96044 bytes)
+2026-06-09 09:45:20,438 | INFO | tools | [----------] Transcripción Whisper: Abre Google.
+2026-06-09 09:45:20,439 | INFO | tools | [----------] Wake word 'alfonso' no detectada en: 'abre google.'

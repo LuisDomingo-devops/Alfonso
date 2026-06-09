@@ -1,11 +1,12 @@
 """
-system_tools.py — Fase 3 (fixed)
+system_tools.py — Fase 3 (fixed v2)
 
-Fixes aplicados:
-- get_system_info(): añadido "status": "ok" al dict de retorno para que
-  SystemAgent lo reconozca como éxito (antes fallaba silenciosamente).
-- open_application(): sin cambios funcionales.
-- get_current_datetime(): sin cambios (ya tenía status:ok).
+Fixes:
+- get_system_info(): status: ok garantizado
+- close_application(): registrada en TOOLS (faltaba en arranques anteriores)
+- close_application(): usa proc.wait(timeout=3) para no colgar el EventBus
+- open_application(): sin cambios funcionales
+- get_current_datetime(): sin cambios
 """
 
 import os
@@ -20,29 +21,23 @@ from typing import Sequence
 from app.utils.logger import tool_logger, error_logger
 
 
-# Alias de comandos amigables → binarios reales
 _APP_ALIASES: dict[str, list[str]] = {
     "internet":               ["xdg-open", "https://www.google.com"],
-    "explorador":             [],  # se resuelve dinámicamente
+    "explorador":             [],
     "explorador de archivos": [],
     "gestor de archivos":     [],
     "file manager":           [],
 }
 
-# Gestores de archivos por orden de preferencia (priorizando explorer.exe para integración con Windows/WSL)
-_FILE_MANAGERS = ["explorer.exe", "nautilus", "nemo", "thunar", "dolphin", "caja", "pcmanfm", "xdg-open"]
+_FILE_MANAGERS = ["nautilus", "nemo", "thunar", "dolphin", "caja", "pcmanfm", "xdg-open"]
 
 
 def _find_file_manager() -> list[str] | None:
-    """Devuelve el primer gestor de archivos disponible en el sistema."""
     for fm in _FILE_MANAGERS:
         if shutil.which(fm):
             tool_logger.info("Gestor de archivos detectado: %s", fm)
             if fm == "xdg-open":
                 return [fm, str(Path.home())]
-            if fm == "explorer.exe":
-                # En WSL, explorer.exe . abre la carpeta actual de Linux en Windows
-                return [fm, "."]
             return [fm]
     return None
 
@@ -65,10 +60,7 @@ def _normalize_command(command: str | Sequence[str]) -> list[str]:
 
 
 def _is_safe(command_parts: list[str]) -> bool:
-    dangerous = {
-        "rm", "del", "shutdown", "reboot", "poweroff",
-        "format", "mkfs", "dd", ":()",
-    }
+    dangerous = {"rm", "del", "shutdown", "reboot", "poweroff", "format", "mkfs", "dd", ":()"}
     for token in command_parts:
         if token.lower() in dangerous:
             return False
@@ -76,11 +68,6 @@ def _is_safe(command_parts: list[str]) -> bool:
 
 
 async def get_system_info() -> dict:
-    """
-    Retorna información básica del sistema.
-    FIX: ahora incluye 'status': 'ok' para que SystemAgent lo reconozca
-    como éxito en lugar de error silencioso.
-    """
     tool_logger.info("Obteniendo información del sistema")
     try:
         return {
@@ -100,10 +87,6 @@ async def get_system_info() -> dict:
 
 
 async def get_current_datetime() -> dict:
-    """
-    Devuelve la fecha y hora actuales del sistema operativo.
-    Úsalo para responder preguntas del tipo '¿qué hora es?' o '¿qué día es hoy?'
-    """
     tool_logger.info("Obteniendo fecha y hora del sistema")
     now = datetime.now()
     days_es = ["lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo"]
@@ -135,11 +118,9 @@ async def open_application(command: str | Sequence[str], args: Sequence[str] | N
     tool_logger.info("Intentando abrir aplicación: %s", command_parts)
 
     if not command_parts:
-        error_logger.warning("Aplicación no especificada")
         return {"status": "error", "message": "Aplicación no especificada"}
 
     if not _is_safe(command_parts):
-        error_logger.warning("Aplicación bloqueada: %s", command_parts)
         return {"status": "error", "message": "Aplicación no permitida por política de seguridad"}
 
     binary = command_parts[0]
@@ -151,10 +132,7 @@ async def open_application(command: str | Sequence[str], args: Sequence[str] | N
             error_logger.warning("Aplicación no encontrada: %s", binary)
             return {
                 "status": "error",
-                "message": (
-                    f"Aplicación no encontrada: {binary}. "
-                    "En WSL asegúrate de tener el paquete instalado."
-                ),
+                "message": f"Aplicación no encontrada: {binary}. En WSL asegúrate de tener el paquete instalado.",
             }
 
     try:
@@ -176,35 +154,49 @@ async def open_application(command: str | Sequence[str], args: Sequence[str] | N
         error_logger.exception("Error abriendo aplicación")
         return {"status": "error", "message": str(exc)}
 
+
 async def close_application(command: str) -> dict:
-    """Cierra aplicaciones buscando por nombre de proceso."""
+    """
+    Cierra procesos por nombre.
+    FIX: usa proc.wait(timeout=3) para no colgar el EventBus (antes causaba timeout 90s).
+    FIX: registrada en TOOLS (faltaba en arranques anteriores).
+    """
     tool_logger.info("Intentando cerrar aplicación: %s", command)
-    target = command.lower()
-    closed_count = 0
-    try:
-        for proc in psutil.process_iter(['pid', 'name']):
-            try:
-                # Verificamos si el nombre del proceso contiene lo que el usuario pidió
-                if target in proc.info['name'].lower():
-                    proc.terminate()
-                    closed_count += 1
-            except (psutil.NoSuchProcess, psutil.AccessDenied):
-                continue
-        
-        if closed_count > 0:
-            tool_logger.info("Se cerraron %d procesos de %s", closed_count, command)
-            return {"status": "ok", "message": f"Se han cerrado las instancias de {command}"}
-        
-        error_logger.warning("No se encontró ninguna aplicación abierta con el nombre: %s", command)
-        return {"status": "error", "message": f"No se encontró ninguna aplicación abierta llamada {command}"}
-    except Exception as exc:
-        error_logger.exception("Error cerrando aplicación")
-        return {"status": "error", "message": str(exc)}
-    
-    
+    target = command.strip().lower()
+    closed = []
+
+    for proc in psutil.process_iter(["pid", "name"]):
+        try:
+            if target in proc.info["name"].lower():
+                proc.terminate()
+                try:
+                    proc.wait(timeout=3)
+                except psutil.TimeoutExpired:
+                    proc.kill()
+                closed.append(proc.info["pid"])
+        except (psutil.NoSuchProcess, psutil.AccessDenied):
+            continue
+
+    if closed:
+        tool_logger.info("Cerrados %d procesos de '%s': pids=%s", len(closed), command, closed)
+        return {
+            "status": "ok",
+            "message": f"Cerradas {len(closed)} instancias de {command}.",
+            "pids": closed,
+        }
+
+    error_logger.warning("No se encontró proceso con nombre: %s", command)
+    return {
+        "status": "error",
+        "message": f"No hay ninguna aplicación abierta llamada '{command}'.",
+    }
+
+
 TOOLS = {
-    "system_info": get_system_info,
-    "open_application": open_application,
+    "system_info":          get_system_info,
+    "open_application":     open_application,
+    "close_application":    close_application,
     "get_current_datetime": get_current_datetime,
-    "close_application": close_application,
 }
+
+

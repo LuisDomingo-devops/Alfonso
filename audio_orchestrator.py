@@ -11,11 +11,13 @@ import asyncio
 import importlib
 import json
 import logging
+import os
 import sys
 from pathlib import Path
 from typing import Any, Dict, Optional
 
 import httpx
+from dotenv import load_dotenv
 
 from app.core.llm_client import OllamaClient
 from app.core.planner_orchestrator import PlannerOrchestrator   # FIX
@@ -26,6 +28,9 @@ logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s %(levelname)s %(message)s",
 )
+
+# Cargar configuración desde .env
+load_dotenv()
 
 
 class AudioEnvironmentChecker:
@@ -147,10 +152,20 @@ class AudioEnvironmentChecker:
         return report
 
 
+def _extract_response_text(result: dict) -> str:
+    """Extrae el texto que el asistente debe decir (Vocalización)."""
+    if result.get("type") == "chat":
+        return result.get("response", "")
+    elif result.get("type") == "tool":
+        # Devolvemos el resumen de la ejecución de la herramienta
+        return result.get("summary", "Operación completada.")
+    return str(result.get("message", "Hecho"))
+
+
 class AudioOrchestrator:
     def __init__(self, api_url: Optional[str] = None):
         self.api_url = api_url
-        self.llm = OllamaClient()
+        self.llm = OllamaClient(model=os.getenv("ALFONSO_MODEL", "qwen2.5:1.5b"))
         self.orchestrator = PlannerOrchestrator()   # FIX: clase correcta
 
     async def local_converse(
@@ -195,11 +210,7 @@ class AudioOrchestrator:
             session_id=session_id,
         )
 
-        if conversation_result.get("type") == "chat":
-            response_text = conversation_result.get("response", "")
-        else:
-            response_text = str(conversation_result)
-
+        response_text = _extract_response_text(conversation_result)
         tts_result = await text_to_speech(response_text, voice=voice)
         return {
             "status": "success",

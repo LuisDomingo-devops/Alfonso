@@ -74,7 +74,7 @@ _TOOL_RULES: list[_Rule] = [
 
     # ── Abrir explorador de archivos (FIX) ───────────────────────────
     # Se añaden: explorador (con typos), gestor de archivos, nautilus, nemo, thunar, dolphin
-    _r(r"\b(abre|abrir|lanza|inicia)\b.{0,25}\b(explorad?or de archivos|gestor de archivos|file manager|nautilus|nemo|thunar|dolphin|caja)\b", 3.0, "open_filemanager"),
+    _r(r"\b(abre|abrir|lanza|inicia)\b.{0,25}\b(explorad?or de archivos|gestor de archivos|file manager|nautilus|nemo|thunar|dolphin|explorer|caja)\b", 3.0, "open_filemanager"),
     _r(r"\b(abre|abrir)\b.{0,15}\b(explorad?or|explorador|explorad?or)\b", 2.5, "open_filemanager_short"),
 
     # ── Navegador web — acciones (Fase 3) ────────────────────────────

@@ -1,725 +1,246 @@
-2026-06-07 08:46:42,726 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
-2026-06-07 08:46:42,727 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
-2026-06-07 08:46:42,727 | INFO | app | [----------] EventBus iniciado
-2026-06-07 08:46:42,734 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
-2026-06-07 08:48:19,349 | INFO | app | [----------] Modelo precalentado
-2026-06-07 08:48:19,350 | INFO | app | [----------] Alfonso Fase 3 listo
-2026-06-07 08:49:05,896 | INFO | app | [39429f9a-0eeb-4230-9406-4ad6234cd48a] HTTP request started: POST /chat
-2026-06-07 08:49:05,929 | INFO | app | [39429f9a-0eeb-4230-9406-4ad6234cd48a] Solicitud /chat recibida
-2026-06-07 08:49:05,930 | INFO | app | [39429f9a-0eeb-4230-9406-4ad6234cd48a] SESSION_ID: 39429f9a-0eeb-4230-9406-4ad6234cd48a
-2026-06-07 08:49:05,930 | INFO | app | [39429f9a-0eeb-4230-9406-4ad6234cd48a] USER MESSAGE: cual es mi nombre
-2026-06-07 08:49:08,675 | INFO | app | [39429f9a-0eeb-4230-9406-4ad6234cd48a] Solicitud /chat procesada con estado: chat
-2026-06-07 08:49:08,676 | INFO | app | [39429f9a-0eeb-4230-9406-4ad6234cd48a] LATENCY: 2.75s
-2026-06-07 08:49:08,678 | INFO | app | [39429f9a-0eeb-4230-9406-4ad6234cd48a] HTTP request finished: POST /chat 200
-2026-06-07 08:49:38,899 | INFO | app | [e80a1ff1-8004-4442-ba08-c2cdc73a2227] HTTP request started: POST /chat
-2026-06-07 08:49:38,901 | INFO | app | [e80a1ff1-8004-4442-ba08-c2cdc73a2227] Solicitud /chat recibida
-2026-06-07 08:49:38,901 | INFO | app | [e80a1ff1-8004-4442-ba08-c2cdc73a2227] SESSION_ID: e80a1ff1-8004-4442-ba08-c2cdc73a2227
-2026-06-07 08:49:38,901 | INFO | app | [e80a1ff1-8004-4442-ba08-c2cdc73a2227] USER MESSAGE: No, mi nombre es Luis. Como me llamo
-2026-06-07 08:49:43,032 | INFO | app | [e80a1ff1-8004-4442-ba08-c2cdc73a2227] Solicitud /chat procesada con estado: chat
-2026-06-07 08:49:43,032 | INFO | app | [e80a1ff1-8004-4442-ba08-c2cdc73a2227] LATENCY: 4.13s
-2026-06-07 08:49:43,032 | INFO | app | [e80a1ff1-8004-4442-ba08-c2cdc73a2227] HTTP request finished: POST /chat 200
-2026-06-07 08:50:05,098 | INFO | app | [345e1059-261f-4061-b3b0-66b892efa91e] HTTP request started: POST /chat
-2026-06-07 08:50:05,099 | INFO | app | [345e1059-261f-4061-b3b0-66b892efa91e] Solicitud /chat recibida
-2026-06-07 08:50:05,099 | INFO | app | [345e1059-261f-4061-b3b0-66b892efa91e] SESSION_ID: 345e1059-261f-4061-b3b0-66b892efa91e
-2026-06-07 08:50:05,099 | INFO | app | [345e1059-261f-4061-b3b0-66b892efa91e] USER MESSAGE: mi nombre es Luis
-2026-06-07 08:50:06,931 | INFO | app | [345e1059-261f-4061-b3b0-66b892efa91e] Solicitud /chat procesada con estado: chat
-2026-06-07 08:50:06,931 | INFO | app | [345e1059-261f-4061-b3b0-66b892efa91e] LATENCY: 1.83s
-2026-06-07 08:50:06,931 | INFO | app | [345e1059-261f-4061-b3b0-66b892efa91e] HTTP request finished: POST /chat 200
-2026-06-07 08:50:13,961 | INFO | app | [035ab5f0-2eae-43e7-bb98-9847fb3adb44] HTTP request started: POST /chat
-2026-06-07 08:50:13,962 | INFO | app | [035ab5f0-2eae-43e7-bb98-9847fb3adb44] Solicitud /chat recibida
-2026-06-07 08:50:13,962 | INFO | app | [035ab5f0-2eae-43e7-bb98-9847fb3adb44] SESSION_ID: 035ab5f0-2eae-43e7-bb98-9847fb3adb44
-2026-06-07 08:50:13,962 | INFO | app | [035ab5f0-2eae-43e7-bb98-9847fb3adb44] USER MESSAGE: cual es mi nombre
-2026-06-07 08:50:15,726 | INFO | app | [035ab5f0-2eae-43e7-bb98-9847fb3adb44] Solicitud /chat procesada con estado: chat
-2026-06-07 08:50:15,726 | INFO | app | [035ab5f0-2eae-43e7-bb98-9847fb3adb44] LATENCY: 1.76s
-2026-06-07 08:50:15,726 | INFO | app | [035ab5f0-2eae-43e7-bb98-9847fb3adb44] HTTP request finished: POST /chat 200
-2026-06-07 08:50:33,561 | INFO | app | [53b0d158-0f41-42f3-a95d-0004d4026a09] HTTP request started: POST /chat
-2026-06-07 08:50:33,563 | INFO | app | [53b0d158-0f41-42f3-a95d-0004d4026a09] Solicitud /chat recibida
-2026-06-07 08:50:33,563 | INFO | app | [53b0d158-0f41-42f3-a95d-0004d4026a09] SESSION_ID: 53b0d158-0f41-42f3-a95d-0004d4026a09
-2026-06-07 08:50:33,564 | INFO | app | [53b0d158-0f41-42f3-a95d-0004d4026a09] USER MESSAGE: crea un archivo txt que diga hola soy alfonso y estoy en fase 3
-2026-06-07 08:51:07,497 | INFO | app | [53b0d158-0f41-42f3-a95d-0004d4026a09] Solicitud /chat procesada con estado: error
-2026-06-07 08:51:07,497 | INFO | app | [53b0d158-0f41-42f3-a95d-0004d4026a09] LATENCY: 33.93s
-2026-06-07 08:51:07,498 | INFO | app | [53b0d158-0f41-42f3-a95d-0004d4026a09] HTTP request finished: POST /chat 200
-2026-06-07 08:59:30,880 | INFO | app | [----------] Agentes y EventBus detenidos
-2026-06-07 08:59:32,853 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
-2026-06-07 08:59:32,854 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
-2026-06-07 08:59:32,855 | INFO | app | [----------] EventBus iniciado
-2026-06-07 08:59:32,864 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
-2026-06-07 09:01:17,256 | INFO | app | [----------] Modelo precalentado
-2026-06-07 09:01:17,257 | INFO | app | [----------] Alfonso Fase 3 listo
-2026-06-07 09:01:46,818 | INFO | app | [3ace947d-6509-45a6-93a4-3f891af79748] HTTP request started: POST /chat
-2026-06-07 09:01:46,832 | INFO | app | [3ace947d-6509-45a6-93a4-3f891af79748] Solicitud /chat recibida
-2026-06-07 09:01:46,832 | INFO | app | [3ace947d-6509-45a6-93a4-3f891af79748] SESSION_ID: 3ace947d-6509-45a6-93a4-3f891af79748
-2026-06-07 09:01:46,832 | INFO | app | [3ace947d-6509-45a6-93a4-3f891af79748] USER MESSAGE: crea un archivo txt que diga hola soy alfonso y estoy en fase 3
-2026-06-07 09:02:19,095 | INFO | app | [3ace947d-6509-45a6-93a4-3f891af79748] Solicitud /chat procesada con estado: tool
-2026-06-07 09:02:19,095 | INFO | app | [3ace947d-6509-45a6-93a4-3f891af79748] LATENCY: 31.76s
-2026-06-07 09:02:19,099 | INFO | app | [3ace947d-6509-45a6-93a4-3f891af79748] HTTP request finished: POST /chat 200
-2026-06-07 09:04:04,359 | INFO | app | [65f64c0a-9d8f-4520-8526-5886d8ea419d] HTTP request started: POST /chat
-2026-06-07 09:04:04,364 | INFO | app | [65f64c0a-9d8f-4520-8526-5886d8ea419d] Solicitud /chat recibida
-2026-06-07 09:04:04,364 | INFO | app | [65f64c0a-9d8f-4520-8526-5886d8ea419d] SESSION_ID: 65f64c0a-9d8f-4520-8526-5886d8ea419d
-2026-06-07 09:04:04,364 | INFO | app | [65f64c0a-9d8f-4520-8526-5886d8ea419d] USER MESSAGE: elimina el ultimo archivo que has creado
-2026-06-07 09:04:06,300 | INFO | app | [65f64c0a-9d8f-4520-8526-5886d8ea419d] Solicitud /chat procesada con estado: error
-2026-06-07 09:04:06,300 | INFO | app | [65f64c0a-9d8f-4520-8526-5886d8ea419d] LATENCY: 1.94s
-2026-06-07 09:04:06,300 | INFO | app | [65f64c0a-9d8f-4520-8526-5886d8ea419d] HTTP request finished: POST /chat 200
-2026-06-07 09:04:35,683 | INFO | app | [d264d8c7-8ef6-4c1d-94c6-7f9b3c6abeac] HTTP request started: POST /chat
-2026-06-07 09:04:35,683 | INFO | app | [d264d8c7-8ef6-4c1d-94c6-7f9b3c6abeac] Solicitud /chat recibida
-2026-06-07 09:04:35,683 | INFO | app | [d264d8c7-8ef6-4c1d-94c6-7f9b3c6abeac] SESSION_ID: d264d8c7-8ef6-4c1d-94c6-7f9b3c6abeac
-2026-06-07 09:04:35,684 | INFO | app | [d264d8c7-8ef6-4c1d-94c6-7f9b3c6abeac] USER MESSAGE: elimina el ultimo archivo alfonso.txt
-2026-06-07 09:04:37,389 | INFO | app | [d264d8c7-8ef6-4c1d-94c6-7f9b3c6abeac] Solicitud /chat procesada con estado: tool
-2026-06-07 09:04:37,389 | INFO | app | [d264d8c7-8ef6-4c1d-94c6-7f9b3c6abeac] LATENCY: 1.71s
-2026-06-07 09:04:37,390 | INFO | app | [d264d8c7-8ef6-4c1d-94c6-7f9b3c6abeac] HTTP request finished: POST /chat 200
-2026-06-07 09:05:10,731 | INFO | app | [ec08c61a-b8d4-403c-a9a8-69239539d1e1] HTTP request started: POST /chat
-2026-06-07 09:05:10,732 | INFO | app | [ec08c61a-b8d4-403c-a9a8-69239539d1e1] Solicitud /chat recibida
-2026-06-07 09:05:10,732 | INFO | app | [ec08c61a-b8d4-403c-a9a8-69239539d1e1] SESSION_ID: ec08c61a-b8d4-403c-a9a8-69239539d1e1
-2026-06-07 09:05:10,732 | INFO | app | [ec08c61a-b8d4-403c-a9a8-69239539d1e1] USER MESSAGE: elimina el ultimo archivo mensaje_alfonso.txt
-2026-06-07 09:05:12,570 | INFO | app | [ec08c61a-b8d4-403c-a9a8-69239539d1e1] Solicitud /chat procesada con estado: error
-2026-06-07 09:05:12,570 | INFO | app | [ec08c61a-b8d4-403c-a9a8-69239539d1e1] LATENCY: 1.84s
-2026-06-07 09:05:12,571 | INFO | app | [ec08c61a-b8d4-403c-a9a8-69239539d1e1] HTTP request finished: POST /chat 200
-2026-06-07 09:05:29,873 | INFO | app | [2f95ed45-2788-4111-b858-fe13134a75ea] HTTP request started: POST /chat
-2026-06-07 09:05:29,873 | INFO | app | [2f95ed45-2788-4111-b858-fe13134a75ea] Solicitud /chat recibida
-2026-06-07 09:05:29,874 | INFO | app | [2f95ed45-2788-4111-b858-fe13134a75ea] SESSION_ID: 2f95ed45-2788-4111-b858-fe13134a75ea
-2026-06-07 09:05:29,874 | INFO | app | [2f95ed45-2788-4111-b858-fe13134a75ea] USER MESSAGE: elimina el archivo mensaje_alfonso2.txt
-2026-06-07 09:05:31,926 | INFO | app | [2f95ed45-2788-4111-b858-fe13134a75ea] Solicitud /chat procesada con estado: tool
-2026-06-07 09:05:31,926 | INFO | app | [2f95ed45-2788-4111-b858-fe13134a75ea] LATENCY: 2.05s
-2026-06-07 09:05:31,927 | INFO | app | [2f95ed45-2788-4111-b858-fe13134a75ea] HTTP request finished: POST /chat 200
-2026-06-07 09:05:57,077 | INFO | app | [faf9d538-4111-4a68-91fd-ddd602bf1c59] HTTP request started: POST /chat
-2026-06-07 09:05:57,077 | INFO | app | [faf9d538-4111-4a68-91fd-ddd602bf1c59] Solicitud /chat recibida
-2026-06-07 09:05:57,078 | INFO | app | [faf9d538-4111-4a68-91fd-ddd602bf1c59] SESSION_ID: faf9d538-4111-4a68-91fd-ddd602bf1c59
-2026-06-07 09:05:57,078 | INFO | app | [faf9d538-4111-4a68-91fd-ddd602bf1c59] USER MESSAGE: cual es mi nombre
-2026-06-07 09:07:13,420 | INFO | app | [faf9d538-4111-4a68-91fd-ddd602bf1c59] Solicitud /chat procesada con estado: chat
-2026-06-07 09:07:13,420 | INFO | app | [faf9d538-4111-4a68-91fd-ddd602bf1c59] LATENCY: 75.39s
-2026-06-07 09:07:13,421 | INFO | app | [faf9d538-4111-4a68-91fd-ddd602bf1c59] HTTP request finished: POST /chat 200
-2026-06-07 09:07:36,291 | INFO | app | [141d8750-354b-440a-937d-2bec09f74b8e] HTTP request started: POST /chat
-2026-06-07 09:07:36,292 | INFO | app | [141d8750-354b-440a-937d-2bec09f74b8e] Solicitud /chat recibida
-2026-06-07 09:07:36,293 | INFO | app | [141d8750-354b-440a-937d-2bec09f74b8e] SESSION_ID: 141d8750-354b-440a-937d-2bec09f74b8e
-2026-06-07 09:07:36,293 | INFO | app | [141d8750-354b-440a-937d-2bec09f74b8e] USER MESSAGE: buenos dias, que hora es
-2026-06-07 09:07:36,328 | INFO | app | [141d8750-354b-440a-937d-2bec09f74b8e] Solicitud /chat procesada con estado: tool
-2026-06-07 09:07:36,328 | INFO | app | [141d8750-354b-440a-937d-2bec09f74b8e] LATENCY: 0.04s
-2026-06-07 09:07:36,329 | INFO | app | [141d8750-354b-440a-937d-2bec09f74b8e] HTTP request finished: POST /chat 200
-2026-06-07 09:20:56,997 | INFO | app | [----------] Agentes y EventBus detenidos
-2026-06-07 09:20:59,149 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
-2026-06-07 09:20:59,149 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
-2026-06-07 09:20:59,150 | INFO | app | [----------] EventBus iniciado
-2026-06-07 09:20:59,168 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
-2026-06-07 09:22:09,513 | INFO | app | [----------] Modelo precalentado
-2026-06-07 09:22:09,514 | INFO | app | [----------] Alfonso Fase 3 listo
-2026-06-07 09:22:43,667 | INFO | app | [15f952da-a381-46a9-9916-c8ec5c3caa73] HTTP request started: POST /chat
-2026-06-07 09:22:43,692 | INFO | app | [15f952da-a381-46a9-9916-c8ec5c3caa73] Solicitud /chat recibida
-2026-06-07 09:22:43,692 | INFO | app | [15f952da-a381-46a9-9916-c8ec5c3caa73] SESSION_ID: 15f952da-a381-46a9-9916-c8ec5c3caa73
-2026-06-07 09:22:43,692 | INFO | app | [15f952da-a381-46a9-9916-c8ec5c3caa73] USER MESSAGE: buenos dias, que hora es
-2026-06-07 09:22:43,824 | INFO | app | [15f952da-a381-46a9-9916-c8ec5c3caa73] Solicitud /chat procesada con estado: tool
-2026-06-07 09:22:43,825 | INFO | app | [15f952da-a381-46a9-9916-c8ec5c3caa73] LATENCY: 0.13s
-2026-06-07 09:22:43,827 | INFO | app | [15f952da-a381-46a9-9916-c8ec5c3caa73] HTTP request finished: POST /chat 200
-2026-06-07 09:22:52,826 | INFO | app | [95d1371e-31dd-4a23-b36f-5f1d1636bc6d] HTTP request started: POST /chat
-2026-06-07 09:22:52,827 | INFO | app | [95d1371e-31dd-4a23-b36f-5f1d1636bc6d] Solicitud /chat recibida
-2026-06-07 09:22:52,828 | INFO | app | [95d1371e-31dd-4a23-b36f-5f1d1636bc6d] SESSION_ID: 95d1371e-31dd-4a23-b36f-5f1d1636bc6d
-2026-06-07 09:22:52,828 | INFO | app | [95d1371e-31dd-4a23-b36f-5f1d1636bc6d] USER MESSAGE: crea un archivo txt que diga hola soy alfonso y estoy en fase 3
-2026-06-07 09:23:34,611 | INFO | app | [95d1371e-31dd-4a23-b36f-5f1d1636bc6d] Solicitud /chat procesada con estado: tool
-2026-06-07 09:23:34,611 | INFO | app | [95d1371e-31dd-4a23-b36f-5f1d1636bc6d] LATENCY: 41.22s
-2026-06-07 09:23:34,612 | INFO | app | [95d1371e-31dd-4a23-b36f-5f1d1636bc6d] HTTP request finished: POST /chat 200
-2026-06-07 09:24:04,918 | INFO | app | [9abdde23-88ff-4602-b459-abf8ec3202d8] HTTP request started: POST /chat
-2026-06-07 09:24:04,919 | INFO | app | [9abdde23-88ff-4602-b459-abf8ec3202d8] Solicitud /chat recibida
-2026-06-07 09:24:04,919 | INFO | app | [9abdde23-88ff-4602-b459-abf8ec3202d8] SESSION_ID: 9abdde23-88ff-4602-b459-abf8ec3202d8
-2026-06-07 09:24:04,920 | INFO | app | [9abdde23-88ff-4602-b459-abf8ec3202d8] USER MESSAGE: elimina el ultimo archivo alfonso.txt
-2026-06-07 09:24:07,020 | INFO | app | [9abdde23-88ff-4602-b459-abf8ec3202d8] Solicitud /chat procesada con estado: tool
-2026-06-07 09:24:07,020 | INFO | app | [9abdde23-88ff-4602-b459-abf8ec3202d8] LATENCY: 2.10s
-2026-06-07 09:24:07,021 | INFO | app | [9abdde23-88ff-4602-b459-abf8ec3202d8] HTTP request finished: POST /chat 200
-2026-06-07 09:30:58,723 | INFO | app | [----------] Agentes y EventBus detenidos
-2026-06-07 09:31:02,106 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
-2026-06-07 09:31:02,107 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
-2026-06-07 09:31:02,107 | INFO | app | [----------] EventBus iniciado
-2026-06-07 09:31:02,118 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
-2026-06-07 09:32:04,149 | INFO | app | [----------] Modelo precalentado
-2026-06-07 09:32:04,150 | INFO | app | [----------] Alfonso Fase 3 listo
-2026-06-07 09:33:02,987 | INFO | app | [86564034-af06-4f3d-a66a-c89f8e9e05c7] HTTP request started: POST /chat
-2026-06-07 09:33:03,009 | INFO | app | [86564034-af06-4f3d-a66a-c89f8e9e05c7] Solicitud /chat recibida
-2026-06-07 09:33:03,010 | INFO | app | [86564034-af06-4f3d-a66a-c89f8e9e05c7] SESSION_ID: 86564034-af06-4f3d-a66a-c89f8e9e05c7
-2026-06-07 09:33:03,010 | INFO | app | [86564034-af06-4f3d-a66a-c89f8e9e05c7] USER MESSAGE: buenos dias, que hora es
-2026-06-07 09:33:03,116 | INFO | app | [86564034-af06-4f3d-a66a-c89f8e9e05c7] Solicitud /chat procesada con estado: tool
-2026-06-07 09:33:03,117 | INFO | app | [86564034-af06-4f3d-a66a-c89f8e9e05c7] LATENCY: 0.11s
-2026-06-07 09:33:03,120 | INFO | app | [86564034-af06-4f3d-a66a-c89f8e9e05c7] HTTP request finished: POST /chat 200
-2026-06-07 09:35:38,302 | INFO | app | [----------] Agentes y EventBus detenidos
-2026-06-07 09:35:39,919 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
-2026-06-07 09:35:39,920 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
-2026-06-07 09:35:39,920 | INFO | app | [----------] EventBus iniciado
-2026-06-07 09:35:39,931 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
-2026-06-07 09:36:12,993 | INFO | app | [----------] Modelo precalentado
-2026-06-07 09:36:12,994 | INFO | app | [----------] Alfonso Fase 3 listo
-2026-06-07 09:36:31,291 | INFO | app | [3e498a9b-e069-4e47-a834-f0931fd9a735] HTTP request started: POST /chat
-2026-06-07 09:36:31,294 | INFO | app | [3e498a9b-e069-4e47-a834-f0931fd9a735] Solicitud /chat recibida
-2026-06-07 09:36:31,294 | INFO | app | [3e498a9b-e069-4e47-a834-f0931fd9a735] SESSION_ID: 3e498a9b-e069-4e47-a834-f0931fd9a735
-2026-06-07 09:36:31,294 | INFO | app | [3e498a9b-e069-4e47-a834-f0931fd9a735] USER MESSAGE: buenos dias, que hora es
-2026-06-07 09:36:31,419 | INFO | app | [3e498a9b-e069-4e47-a834-f0931fd9a735] Solicitud /chat procesada con estado: tool
-2026-06-07 09:36:31,419 | INFO | app | [3e498a9b-e069-4e47-a834-f0931fd9a735] LATENCY: 0.12s
-2026-06-07 09:36:31,420 | INFO | app | [3e498a9b-e069-4e47-a834-f0931fd9a735] HTTP request finished: POST /chat 200
-2026-06-07 09:36:38,515 | INFO | app | [fd2ce39c-b8df-4a12-8159-62c3499a3ed2] HTTP request started: POST /chat
-2026-06-07 09:36:38,517 | INFO | app | [fd2ce39c-b8df-4a12-8159-62c3499a3ed2] Solicitud /chat recibida
-2026-06-07 09:36:38,517 | INFO | app | [fd2ce39c-b8df-4a12-8159-62c3499a3ed2] SESSION_ID: fd2ce39c-b8df-4a12-8159-62c3499a3ed2
-2026-06-07 09:36:38,517 | INFO | app | [fd2ce39c-b8df-4a12-8159-62c3499a3ed2] USER MESSAGE: crea un archivo txt que diga hola soy alfonso y estoy en fase 3
-2026-06-07 09:37:31,263 | INFO | app | [fd2ce39c-b8df-4a12-8159-62c3499a3ed2] Solicitud /chat procesada con estado: tool
-2026-06-07 09:37:31,264 | INFO | app | [fd2ce39c-b8df-4a12-8159-62c3499a3ed2] LATENCY: 52.21s
-2026-06-07 09:37:31,270 | INFO | app | [fd2ce39c-b8df-4a12-8159-62c3499a3ed2] HTTP request finished: POST /chat 200
-2026-06-07 09:37:49,504 | INFO | app | [6e6aeb92-1726-4a64-a3e7-1cbf642e2b3a] HTTP request started: POST /chat
-2026-06-07 09:37:49,516 | INFO | app | [6e6aeb92-1726-4a64-a3e7-1cbf642e2b3a] Solicitud /chat recibida
-2026-06-07 09:37:49,516 | INFO | app | [6e6aeb92-1726-4a64-a3e7-1cbf642e2b3a] SESSION_ID: 6e6aeb92-1726-4a64-a3e7-1cbf642e2b3a
-2026-06-07 09:37:49,516 | INFO | app | [6e6aeb92-1726-4a64-a3e7-1cbf642e2b3a] USER MESSAGE: elimina el ultimo archivo alfonso.txt
-2026-06-07 09:37:52,075 | INFO | app | [6e6aeb92-1726-4a64-a3e7-1cbf642e2b3a] Solicitud /chat procesada con estado: tool
-2026-06-07 09:37:52,075 | INFO | app | [6e6aeb92-1726-4a64-a3e7-1cbf642e2b3a] LATENCY: 2.56s
-2026-06-07 09:37:52,076 | INFO | app | [6e6aeb92-1726-4a64-a3e7-1cbf642e2b3a] HTTP request finished: POST /chat 200
-2026-06-07 09:38:27,678 | INFO | app | [403bb5d8-aa84-4247-8f7f-49031041bfbd] HTTP request started: POST /chat
-2026-06-07 09:38:27,681 | INFO | app | [403bb5d8-aa84-4247-8f7f-49031041bfbd] Solicitud /chat recibida
-2026-06-07 09:38:27,681 | INFO | app | [403bb5d8-aa84-4247-8f7f-49031041bfbd] SESSION_ID: 403bb5d8-aa84-4247-8f7f-49031041bfbd
-2026-06-07 09:38:27,681 | INFO | app | [403bb5d8-aa84-4247-8f7f-49031041bfbd] USER MESSAGE: busca en internet que tiempo hace en bilbao hoy
-2026-06-07 09:38:29,964 | INFO | app | [403bb5d8-aa84-4247-8f7f-49031041bfbd] Solicitud /chat procesada con estado: error
-2026-06-07 09:38:29,964 | INFO | app | [403bb5d8-aa84-4247-8f7f-49031041bfbd] LATENCY: 2.28s
-2026-06-07 09:38:29,964 | INFO | app | [403bb5d8-aa84-4247-8f7f-49031041bfbd] HTTP request finished: POST /chat 200
-2026-06-07 09:38:54,873 | INFO | app | [ec16c286-d2b2-4f3e-845c-4e666ca31eec] HTTP request started: POST /chat
-2026-06-07 09:38:54,874 | INFO | app | [ec16c286-d2b2-4f3e-845c-4e666ca31eec] Solicitud /chat recibida
-2026-06-07 09:38:54,875 | INFO | app | [ec16c286-d2b2-4f3e-845c-4e666ca31eec] SESSION_ID: ec16c286-d2b2-4f3e-845c-4e666ca31eec
-2026-06-07 09:38:54,875 | INFO | app | [ec16c286-d2b2-4f3e-845c-4e666ca31eec] USER MESSAGE: abre el navegador web
-2026-06-07 09:38:56,636 | INFO | app | [ec16c286-d2b2-4f3e-845c-4e666ca31eec] Solicitud /chat procesada con estado: tool
-2026-06-07 09:38:56,637 | INFO | app | [ec16c286-d2b2-4f3e-845c-4e666ca31eec] LATENCY: 1.76s
-2026-06-07 09:38:56,637 | INFO | app | [ec16c286-d2b2-4f3e-845c-4e666ca31eec] HTTP request finished: POST /chat 200
-2026-06-07 09:39:41,485 | INFO | app | [0d26dc5d-36a1-4842-a225-804dba268708] HTTP request started: POST /chat
-2026-06-07 09:39:41,486 | INFO | app | [0d26dc5d-36a1-4842-a225-804dba268708] Solicitud /chat recibida
-2026-06-07 09:39:41,487 | INFO | app | [0d26dc5d-36a1-4842-a225-804dba268708] SESSION_ID: 0d26dc5d-36a1-4842-a225-804dba268708
-2026-06-07 09:39:41,487 | INFO | app | [0d26dc5d-36a1-4842-a225-804dba268708] USER MESSAGE: abre el navegador web firefox
-2026-06-07 09:39:43,176 | INFO | app | [0d26dc5d-36a1-4842-a225-804dba268708] Solicitud /chat procesada con estado: tool
-2026-06-07 09:39:43,176 | INFO | app | [0d26dc5d-36a1-4842-a225-804dba268708] LATENCY: 1.69s
-2026-06-07 09:39:43,177 | INFO | app | [0d26dc5d-36a1-4842-a225-804dba268708] HTTP request finished: POST /chat 200
-2026-06-07 09:40:06,426 | INFO | app | [61cc8cd2-3236-4da6-9916-d37a8b3dabfd] HTTP request started: POST /chat
-2026-06-07 09:40:06,427 | INFO | app | [61cc8cd2-3236-4da6-9916-d37a8b3dabfd] Solicitud /chat recibida
-2026-06-07 09:40:06,427 | INFO | app | [61cc8cd2-3236-4da6-9916-d37a8b3dabfd] SESSION_ID: 61cc8cd2-3236-4da6-9916-d37a8b3dabfd
-2026-06-07 09:40:06,427 | INFO | app | [61cc8cd2-3236-4da6-9916-d37a8b3dabfd] USER MESSAGE: abre el navegador web firefox
-2026-06-07 09:40:07,792 | INFO | app | [61cc8cd2-3236-4da6-9916-d37a8b3dabfd] Solicitud /chat procesada con estado: tool
-2026-06-07 09:40:07,792 | INFO | app | [61cc8cd2-3236-4da6-9916-d37a8b3dabfd] LATENCY: 1.36s
-2026-06-07 09:40:07,793 | INFO | app | [61cc8cd2-3236-4da6-9916-d37a8b3dabfd] HTTP request finished: POST /chat 200
-2026-06-07 09:40:19,376 | INFO | app | [----------] Agentes y EventBus detenidos
-2026-06-07 20:20:20,900 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
-2026-06-07 20:20:20,901 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
-2026-06-07 20:20:20,901 | INFO | app | [----------] EventBus iniciado
-2026-06-07 20:20:20,909 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
-2026-06-07 20:21:05,963 | INFO | app | [----------] Modelo precalentado
-2026-06-07 20:21:05,963 | INFO | app | [----------] Alfonso Fase 3 listo
-2026-06-07 20:21:52,267 | INFO | app | [8043c1a3-7196-4216-a545-0824ba7c057b] HTTP request started: POST /chat
-2026-06-07 20:21:52,276 | WARNING | app | [8043c1a3-7196-4216-a545-0824ba7c057b] HTTP exception: There was an error parsing the body
-2026-06-07 20:21:52,278 | INFO | app | [8043c1a3-7196-4216-a545-0824ba7c057b] HTTP request finished: POST /chat 400
-2026-06-07 20:22:27,638 | INFO | app | [944ade96-8338-4650-ba31-ff009317ef47] HTTP request started: POST /chat
-2026-06-07 20:22:27,643 | INFO | app | [944ade96-8338-4650-ba31-ff009317ef47] Solicitud /chat recibida
-2026-06-07 20:22:27,644 | INFO | app | [944ade96-8338-4650-ba31-ff009317ef47] SESSION_ID: 944ade96-8338-4650-ba31-ff009317ef47
-2026-06-07 20:22:27,644 | INFO | app | [944ade96-8338-4650-ba31-ff009317ef47] USER MESSAGE: crea un archivo llamado test_fase3.txt con el texto Alfonso funcionando en Fase 3
-2026-06-07 20:23:01,895 | INFO | app | [944ade96-8338-4650-ba31-ff009317ef47] Solicitud /chat procesada con estado: tool
-2026-06-07 20:23:01,895 | INFO | app | [944ade96-8338-4650-ba31-ff009317ef47] LATENCY: 34.25s
-2026-06-07 20:23:01,897 | INFO | app | [944ade96-8338-4650-ba31-ff009317ef47] HTTP request finished: POST /chat 200
-2026-06-07 20:25:21,563 | INFO | app | [907ce6f0-a774-4126-811a-886d268cadf3] HTTP request started: POST /chat
-2026-06-07 20:25:21,604 | WARNING | app | [907ce6f0-a774-4126-811a-886d268cadf3] HTTP exception: There was an error parsing the body
-2026-06-07 20:25:21,608 | INFO | app | [907ce6f0-a774-4126-811a-886d268cadf3] HTTP request finished: POST /chat 400
-2026-06-07 20:27:26,959 | INFO | app | [dcbb1692-5c49-4b35-b475-a0167885c63f] HTTP request started: POST /chat
-2026-06-07 20:27:26,962 | WARNING | app | [dcbb1692-5c49-4b35-b475-a0167885c63f] HTTP exception: There was an error parsing the body
-2026-06-07 20:27:26,963 | INFO | app | [dcbb1692-5c49-4b35-b475-a0167885c63f] HTTP request finished: POST /chat 400
-2026-06-07 20:27:59,988 | INFO | app | [----------] Agentes y EventBus detenidos
-2026-06-08 08:40:50,229 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
-2026-06-08 08:40:50,230 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
-2026-06-08 08:40:50,230 | INFO | app | [----------] EventBus iniciado
-2026-06-08 08:40:50,240 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
-2026-06-08 08:41:38,932 | INFO | app | [----------] Modelo precalentado
-2026-06-08 08:41:38,933 | INFO | app | [----------] Alfonso Fase 3 listo
-2026-06-08 08:42:44,731 | INFO | app | [c809a04a-4f1e-46ab-9ab2-543e6acf1f90] HTTP request started: POST /chat
-2026-06-08 08:42:44,789 | INFO | app | [c809a04a-4f1e-46ab-9ab2-543e6acf1f90] Solicitud /chat recibida
-2026-06-08 08:42:44,789 | INFO | app | [c809a04a-4f1e-46ab-9ab2-543e6acf1f90] SESSION_ID: c809a04a-4f1e-46ab-9ab2-543e6acf1f90
-2026-06-08 08:42:44,789 | INFO | app | [c809a04a-4f1e-46ab-9ab2-543e6acf1f90] USER MESSAGE: crea un archivo llamado test.txt con el texto hola
-2026-06-08 08:43:29,600 | INFO | app | [c809a04a-4f1e-46ab-9ab2-543e6acf1f90] Solicitud /chat procesada con estado: tool
-2026-06-08 08:43:29,600 | INFO | app | [c809a04a-4f1e-46ab-9ab2-543e6acf1f90] LATENCY: 47.75s
-2026-06-08 08:43:29,606 | INFO | app | [c809a04a-4f1e-46ab-9ab2-543e6acf1f90] HTTP request finished: POST /chat 200
-2026-06-08 08:45:00,846 | INFO | app | [867e2253-f022-4e81-bf3d-8387ea65edfb] HTTP request started: POST /chat
-2026-06-08 08:45:00,884 | INFO | app | [867e2253-f022-4e81-bf3d-8387ea65edfb] Solicitud /chat recibida
-2026-06-08 08:45:00,885 | INFO | app | [867e2253-f022-4e81-bf3d-8387ea65edfb] SESSION_ID: 867e2253-f022-4e81-bf3d-8387ea65edfb
-2026-06-08 08:45:00,885 | INFO | app | [867e2253-f022-4e81-bf3d-8387ea65edfb] USER MESSAGE: lee el archivo test_fase3.txt
-2026-06-08 08:45:09,723 | INFO | app | [867e2253-f022-4e81-bf3d-8387ea65edfb] Solicitud /chat procesada con estado: tool
-2026-06-08 08:45:09,723 | INFO | app | [867e2253-f022-4e81-bf3d-8387ea65edfb] LATENCY: 10.36s
-2026-06-08 08:45:09,731 | INFO | app | [867e2253-f022-4e81-bf3d-8387ea65edfb] HTTP request finished: POST /chat 200
-2026-06-08 08:45:41,545 | INFO | app | [125c7c81-4eae-42db-9ef1-50f06bb9c5b3] HTTP request started: POST /chat
-2026-06-08 08:45:41,567 | INFO | app | [125c7c81-4eae-42db-9ef1-50f06bb9c5b3] Solicitud /chat recibida
-2026-06-08 08:45:41,568 | INFO | app | [125c7c81-4eae-42db-9ef1-50f06bb9c5b3] SESSION_ID: 125c7c81-4eae-42db-9ef1-50f06bb9c5b3
-2026-06-08 08:45:41,568 | INFO | app | [125c7c81-4eae-42db-9ef1-50f06bb9c5b3] USER MESSAGE: añade al archivo test_fase3.txt la línea: segunda línea añadida correctamente
-2026-06-08 08:45:47,894 | INFO | app | [125c7c81-4eae-42db-9ef1-50f06bb9c5b3] Solicitud /chat procesada con estado: tool
-2026-06-08 08:45:47,894 | INFO | app | [125c7c81-4eae-42db-9ef1-50f06bb9c5b3] LATENCY: 6.33s
-2026-06-08 08:45:47,895 | INFO | app | [125c7c81-4eae-42db-9ef1-50f06bb9c5b3] HTTP request finished: POST /chat 200
-2026-06-08 08:46:34,537 | INFO | app | [1f11ec0e-1053-4c06-ae8d-4b5d2abbf119] HTTP request started: POST /chat
-2026-06-08 08:46:34,539 | INFO | app | [1f11ec0e-1053-4c06-ae8d-4b5d2abbf119] Solicitud /chat recibida
-2026-06-08 08:46:34,539 | INFO | app | [1f11ec0e-1053-4c06-ae8d-4b5d2abbf119] SESSION_ID: 1f11ec0e-1053-4c06-ae8d-4b5d2abbf119
-2026-06-08 08:46:34,539 | INFO | app | [1f11ec0e-1053-4c06-ae8d-4b5d2abbf119] USER MESSAGE: lee el archivo test_fase3.txt
-2026-06-08 08:46:37,197 | INFO | app | [1f11ec0e-1053-4c06-ae8d-4b5d2abbf119] Solicitud /chat procesada con estado: tool
-2026-06-08 08:46:37,197 | INFO | app | [1f11ec0e-1053-4c06-ae8d-4b5d2abbf119] LATENCY: 2.66s
-2026-06-08 08:46:37,198 | INFO | app | [1f11ec0e-1053-4c06-ae8d-4b5d2abbf119] HTTP request finished: POST /chat 200
-2026-06-08 08:47:07,778 | INFO | app | [9391714f-d2ac-4a50-8867-5721a2f8bc55] HTTP request started: POST /chat
-2026-06-08 08:47:07,779 | INFO | app | [9391714f-d2ac-4a50-8867-5721a2f8bc55] Solicitud /chat recibida
-2026-06-08 08:47:07,779 | INFO | app | [9391714f-d2ac-4a50-8867-5721a2f8bc55] SESSION_ID: 9391714f-d2ac-4a50-8867-5721a2f8bc55
-2026-06-08 08:47:07,779 | INFO | app | [9391714f-d2ac-4a50-8867-5721a2f8bc55] USER MESSAGE: lista los archivos de la carpeta actual
-2026-06-08 08:47:09,845 | INFO | app | [9391714f-d2ac-4a50-8867-5721a2f8bc55] Solicitud /chat procesada con estado: tool
-2026-06-08 08:47:09,846 | INFO | app | [9391714f-d2ac-4a50-8867-5721a2f8bc55] LATENCY: 2.07s
-2026-06-08 08:47:09,847 | INFO | app | [9391714f-d2ac-4a50-8867-5721a2f8bc55] HTTP request finished: POST /chat 200
-2026-06-08 08:47:56,164 | INFO | app | [d30b8f12-111d-45b9-ae70-9b3d647925c7] HTTP request started: POST /chat
-2026-06-08 08:47:56,165 | INFO | app | [d30b8f12-111d-45b9-ae70-9b3d647925c7] Solicitud /chat recibida
-2026-06-08 08:47:56,166 | INFO | app | [d30b8f12-111d-45b9-ae70-9b3d647925c7] SESSION_ID: d30b8f12-111d-45b9-ae70-9b3d647925c7
-2026-06-08 08:47:56,166 | INFO | app | [d30b8f12-111d-45b9-ae70-9b3d647925c7] USER MESSAGE: elimina el archivo test_fase3.txt
-2026-06-08 08:47:58,735 | INFO | app | [d30b8f12-111d-45b9-ae70-9b3d647925c7] Solicitud /chat procesada con estado: tool
-2026-06-08 08:47:58,736 | INFO | app | [d30b8f12-111d-45b9-ae70-9b3d647925c7] LATENCY: 2.57s
-2026-06-08 08:47:58,736 | INFO | app | [d30b8f12-111d-45b9-ae70-9b3d647925c7] HTTP request finished: POST /chat 200
-2026-06-08 08:48:26,932 | INFO | app | [d37b1e17-056e-4efe-a378-8ec8ee4577d8] HTTP request started: GET /health
-2026-06-08 08:48:26,938 | INFO | app | [d37b1e17-056e-4efe-a378-8ec8ee4577d8] HTTP request finished: GET /health 200
-2026-06-08 08:49:09,352 | INFO | app | [42a74872-a196-45c6-b5b8-308888ece20e] HTTP request started: GET /tools
-2026-06-08 08:49:09,353 | INFO | app | [42a74872-a196-45c6-b5b8-308888ece20e] HTTP request finished: GET /tools 200
-2026-06-08 08:49:45,260 | INFO | app | [6fe4cd26-25f0-4503-b72c-15874571044e] HTTP request started: GET /agents
-2026-06-08 08:49:45,263 | INFO | app | [6fe4cd26-25f0-4503-b72c-15874571044e] HTTP request finished: GET /agents 200
-2026-06-08 08:50:17,207 | INFO | app | [485e74c1-28e1-4d84-8dcb-a49bfd855790] HTTP request started: GET /metrics
-2026-06-08 08:50:17,220 | INFO | app | [485e74c1-28e1-4d84-8dcb-a49bfd855790] HTTP request finished: GET /metrics 200
-2026-06-08 08:51:28,917 | INFO | app | [a5c40d54-0af1-4f36-a8ca-e30f9b639aba] HTTP request started: GET /memory/485e74c1-28e1-4d84-8dcb-a49bfd855790
-2026-06-08 08:51:28,939 | INFO | app | [a5c40d54-0af1-4f36-a8ca-e30f9b639aba] HTTP request finished: GET /memory/485e74c1-28e1-4d84-8dcb-a49bfd855790 200
-2026-06-08 08:51:49,081 | INFO | app | [80066ef7-bf01-448d-a0f8-5147ac000937] HTTP request started: GET /memory
-2026-06-08 08:51:49,084 | INFO | app | [80066ef7-bf01-448d-a0f8-5147ac000937] HTTP request finished: GET /memory 200
-2026-06-08 08:52:16,942 | INFO | app | [72565025-d05b-440c-8b85-9902c714eb62] HTTP request started: GET /memory/035ab5f0-2eae-43e7-bb98-9847fb3adb44
-2026-06-08 08:52:16,944 | INFO | app | [72565025-d05b-440c-8b85-9902c714eb62] HTTP request finished: GET /memory/035ab5f0-2eae-43e7-bb98-9847fb3adb44 200
-2026-06-08 08:53:02,724 | INFO | app | [dfd82ce6-6469-4150-b512-ac7f9de74a89] HTTP request started: POST /chat
-2026-06-08 08:53:02,726 | INFO | app | [dfd82ce6-6469-4150-b512-ac7f9de74a89] Solicitud /chat recibida
-2026-06-08 08:53:02,726 | INFO | app | [dfd82ce6-6469-4150-b512-ac7f9de74a89] SESSION_ID: dfd82ce6-6469-4150-b512-ac7f9de74a89
-2026-06-08 08:53:02,726 | INFO | app | [dfd82ce6-6469-4150-b512-ac7f9de74a89] USER MESSAGE: crea un archivo
-2026-06-08 08:53:05,054 | INFO | app | [dfd82ce6-6469-4150-b512-ac7f9de74a89] Solicitud /chat procesada con estado: tool
-2026-06-08 08:53:05,054 | INFO | app | [dfd82ce6-6469-4150-b512-ac7f9de74a89] LATENCY: 2.33s
-2026-06-08 08:53:05,055 | INFO | app | [dfd82ce6-6469-4150-b512-ac7f9de74a89] HTTP request finished: POST /chat 200
-2026-06-08 08:53:41,596 | INFO | app | [b439480b-bc78-4ce5-ae43-e50019b0dc2a] HTTP request started: POST /chat
-2026-06-08 08:53:41,609 | INFO | app | [b439480b-bc78-4ce5-ae43-e50019b0dc2a] Solicitud /chat recibida
-2026-06-08 08:53:41,609 | INFO | app | [b439480b-bc78-4ce5-ae43-e50019b0dc2a] SESSION_ID: test-sesion-1
-2026-06-08 08:53:41,609 | INFO | app | [b439480b-bc78-4ce5-ae43-e50019b0dc2a] USER MESSAGE: mi nombre es Luis y trabajo en un proyecto de IA
-2026-06-08 08:54:41,898 | INFO | app | [b439480b-bc78-4ce5-ae43-e50019b0dc2a] Solicitud /chat procesada con estado: chat
-2026-06-08 08:54:41,899 | INFO | app | [b439480b-bc78-4ce5-ae43-e50019b0dc2a] LATENCY: 63.11s
-2026-06-08 08:54:41,900 | INFO | app | [b439480b-bc78-4ce5-ae43-e50019b0dc2a] HTTP request finished: POST /chat 200
-2026-06-08 08:55:08,416 | INFO | app | [1a417bdb-bbcb-4690-88dc-33486d27e92e] HTTP request started: POST /chat
-2026-06-08 08:55:08,427 | WARNING | app | [1a417bdb-bbcb-4690-88dc-33486d27e92e] HTTP exception: There was an error parsing the body
-2026-06-08 08:55:08,427 | INFO | app | [1a417bdb-bbcb-4690-88dc-33486d27e92e] HTTP request finished: POST /chat 400
-2026-06-08 08:55:14,056 | INFO | app | [822d6050-7c3a-40de-abf1-9557f5fa1a07] HTTP request started: POST /chat
-2026-06-08 08:55:14,058 | WARNING | app | [822d6050-7c3a-40de-abf1-9557f5fa1a07] HTTP exception: There was an error parsing the body
-2026-06-08 08:55:14,059 | INFO | app | [822d6050-7c3a-40de-abf1-9557f5fa1a07] HTTP request finished: POST /chat 400
-2026-06-08 08:55:21,356 | INFO | app | [9a729879-9d3f-470b-8f10-80a7c9d5c7cd] HTTP request started: POST /chat
-2026-06-08 08:55:21,388 | WARNING | app | [9a729879-9d3f-470b-8f10-80a7c9d5c7cd] HTTP exception: There was an error parsing the body
-2026-06-08 08:55:21,388 | INFO | app | [9a729879-9d3f-470b-8f10-80a7c9d5c7cd] HTTP request finished: POST /chat 400
-2026-06-08 08:56:13,075 | INFO | app | [e8854630-81b7-441b-938c-e9c439641548] HTTP request started: POST /chat
-2026-06-08 08:56:13,079 | INFO | app | [e8854630-81b7-441b-938c-e9c439641548] Solicitud /chat recibida
-2026-06-08 08:56:13,079 | INFO | app | [e8854630-81b7-441b-938c-e9c439641548] SESSION_ID: e8854630-81b7-441b-938c-e9c439641548
-2026-06-08 08:56:13,079 | INFO | app | [e8854630-81b7-441b-938c-e9c439641548] USER MESSAGE: cuánta RAM tiene el sistema
-2026-06-08 08:56:49,651 | INFO | app | [e8854630-81b7-441b-938c-e9c439641548] Solicitud /chat procesada con estado: error
-2026-06-08 08:56:49,651 | INFO | app | [e8854630-81b7-441b-938c-e9c439641548] LATENCY: 38.01s
-2026-06-08 08:56:49,652 | INFO | app | [e8854630-81b7-441b-938c-e9c439641548] HTTP request finished: POST /chat 200
-2026-06-08 08:58:09,272 | INFO | app | [----------] Agentes y EventBus detenidos
-2026-06-08 12:25:05,928 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
-2026-06-08 12:25:05,936 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
-2026-06-08 12:25:05,936 | INFO | app | [----------] EventBus iniciado
-2026-06-08 12:25:05,945 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
-2026-06-08 12:25:47,204 | INFO | app | [----------] Modelo precalentado
-2026-06-08 12:25:47,205 | INFO | app | [----------] Alfonso Fase 3 listo
-2026-06-08 12:26:17,637 | INFO | app | [a66c1d05-6d93-4f3c-a2b1-f78df3c66952] HTTP request started: POST /chat
-2026-06-08 12:26:17,658 | INFO | app | [a66c1d05-6d93-4f3c-a2b1-f78df3c66952] Solicitud /chat recibida
-2026-06-08 12:26:17,658 | INFO | app | [a66c1d05-6d93-4f3c-a2b1-f78df3c66952] SESSION_ID: a66c1d05-6d93-4f3c-a2b1-f78df3c66952
-2026-06-08 12:26:17,658 | INFO | app | [a66c1d05-6d93-4f3c-a2b1-f78df3c66952] USER MESSAGE: cuánta RAM tiene el sistema
-2026-06-08 12:26:56,385 | INFO | app | [a66c1d05-6d93-4f3c-a2b1-f78df3c66952] Solicitud /chat procesada con estado: error
-2026-06-08 12:26:56,385 | INFO | app | [a66c1d05-6d93-4f3c-a2b1-f78df3c66952] LATENCY: 39.30s
-2026-06-08 12:26:56,390 | INFO | app | [a66c1d05-6d93-4f3c-a2b1-f78df3c66952] HTTP request finished: POST /chat 200
-2026-06-08 12:28:40,368 | INFO | app | [f8d85013-7c8a-42ee-868d-daeebe4840da] HTTP request started: POST /chat
-2026-06-08 12:28:40,372 | INFO | app | [f8d85013-7c8a-42ee-868d-daeebe4840da] Solicitud /chat recibida
-2026-06-08 12:28:40,372 | INFO | app | [f8d85013-7c8a-42ee-868d-daeebe4840da] SESSION_ID: f8d85013-7c8a-42ee-868d-daeebe4840da
-2026-06-08 12:28:40,372 | INFO | app | [f8d85013-7c8a-42ee-868d-daeebe4840da] USER MESSAGE: lista los archivos de la carpeta actual
-2026-06-08 12:28:42,312 | INFO | app | [f8d85013-7c8a-42ee-868d-daeebe4840da] Solicitud /chat procesada con estado: tool
-2026-06-08 12:28:42,312 | INFO | app | [f8d85013-7c8a-42ee-868d-daeebe4840da] LATENCY: 1.94s
-2026-06-08 12:28:42,313 | INFO | app | [f8d85013-7c8a-42ee-868d-daeebe4840da] HTTP request finished: POST /chat 200
-2026-06-08 12:44:41,287 | INFO | app | [----------] Agentes y EventBus detenidos
-2026-06-08 12:44:42,920 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
-2026-06-08 12:44:42,920 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
-2026-06-08 12:44:42,921 | INFO | app | [----------] EventBus iniciado
-2026-06-08 12:44:42,940 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
-2026-06-08 12:45:38,838 | INFO | app | [----------] Modelo precalentado
-2026-06-08 12:45:38,838 | INFO | app | [----------] Alfonso Fase 3 listo
-2026-06-08 12:45:38,844 | INFO | app | [5d84c5ec-3d95-49de-91f9-2d96769017a7] HTTP request started: POST /chat
-2026-06-08 12:45:38,849 | INFO | app | [5d84c5ec-3d95-49de-91f9-2d96769017a7] Solicitud /chat recibida
-2026-06-08 12:45:38,849 | INFO | app | [5d84c5ec-3d95-49de-91f9-2d96769017a7] SESSION_ID: 5d84c5ec-3d95-49de-91f9-2d96769017a7
-2026-06-08 12:45:38,849 | INFO | app | [5d84c5ec-3d95-49de-91f9-2d96769017a7] USER MESSAGE: lista los archivos de la carpeta actual
-2026-06-08 12:47:16,519 | INFO | app | [5d84c5ec-3d95-49de-91f9-2d96769017a7] Solicitud /chat procesada con estado: chat
-2026-06-08 12:47:16,519 | INFO | app | [5d84c5ec-3d95-49de-91f9-2d96769017a7] LATENCY: 99.64s
-2026-06-08 12:47:16,520 | INFO | app | [5d84c5ec-3d95-49de-91f9-2d96769017a7] HTTP request finished: POST /chat 200
-2026-06-08 12:51:19,025 | INFO | app | [----------] Agentes y EventBus detenidos
-2026-06-08 12:51:20,677 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
-2026-06-08 12:51:20,678 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
-2026-06-08 12:51:20,678 | INFO | app | [----------] EventBus iniciado
-2026-06-08 12:51:20,691 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
-2026-06-08 12:51:55,047 | INFO | app | [----------] Modelo precalentado
-2026-06-08 12:51:55,047 | INFO | app | [----------] Alfonso Fase 3 listo
-2026-06-08 12:54:47,283 | INFO | app | [----------] Agentes y EventBus detenidos
-2026-06-08 12:54:48,223 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
-2026-06-08 12:54:48,224 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
-2026-06-08 12:54:48,224 | INFO | app | [----------] EventBus iniciado
-2026-06-08 12:54:48,236 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
-2026-06-08 12:55:22,260 | INFO | app | [----------] Modelo precalentado
-2026-06-08 12:55:22,261 | INFO | app | [----------] Alfonso Fase 3 listo
-2026-06-08 13:02:29,987 | INFO | app | [----------] Agentes y EventBus detenidos
-2026-06-08 13:03:07,281 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
-2026-06-08 13:03:07,281 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
-2026-06-08 13:03:07,281 | INFO | app | [----------] EventBus iniciado
-2026-06-08 13:03:07,290 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
-2026-06-08 13:03:41,023 | INFO | app | [----------] Modelo precalentado
-2026-06-08 13:03:41,023 | INFO | app | [----------] Alfonso Fase 3 listo
-2026-06-08 13:03:55,595 | INFO | app | [d1fe67ae-f160-4506-b710-f58d182376dd] HTTP request started: POST /chat
-2026-06-08 13:03:55,599 | INFO | app | [d1fe67ae-f160-4506-b710-f58d182376dd] Solicitud /chat recibida
-2026-06-08 13:03:55,599 | INFO | app | [d1fe67ae-f160-4506-b710-f58d182376dd] SESSION_ID: d1fe67ae-f160-4506-b710-f58d182376dd
-2026-06-08 13:03:55,599 | INFO | app | [d1fe67ae-f160-4506-b710-f58d182376dd] USER MESSAGE: lista los archivos de la carpeta actual
-2026-06-08 13:05:59,193 | INFO | app | [d1fe67ae-f160-4506-b710-f58d182376dd] Solicitud /chat procesada con estado: chat
-2026-06-08 13:05:59,194 | INFO | app | [d1fe67ae-f160-4506-b710-f58d182376dd] LATENCY: 125.75s
-2026-06-08 13:05:59,195 | INFO | app | [d1fe67ae-f160-4506-b710-f58d182376dd] HTTP request finished: POST /chat 200
-2026-06-08 13:14:24,791 | INFO | app | [eaeebc83-39e5-4efe-a920-498761643d22] HTTP request started: POST /chat
-2026-06-08 13:14:24,806 | INFO | app | [eaeebc83-39e5-4efe-a920-498761643d22] Solicitud /chat recibida
-2026-06-08 13:14:24,807 | INFO | app | [eaeebc83-39e5-4efe-a920-498761643d22] SESSION_ID: eaeebc83-39e5-4efe-a920-498761643d22
-2026-06-08 13:14:24,807 | INFO | app | [eaeebc83-39e5-4efe-a920-498761643d22] USER MESSAGE: cuánta RAM tiene el sistema
-2026-06-08 13:15:10,083 | INFO | app | [eaeebc83-39e5-4efe-a920-498761643d22] Solicitud /chat procesada con estado: error
-2026-06-08 13:15:10,083 | INFO | app | [eaeebc83-39e5-4efe-a920-498761643d22] LATENCY: 46.66s
-2026-06-08 13:15:10,087 | INFO | app | [eaeebc83-39e5-4efe-a920-498761643d22] HTTP request finished: POST /chat 200
-2026-06-08 13:15:10,135 | INFO | app | [----------] Agentes y EventBus detenidos
-2026-06-08 13:17:24,610 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
-2026-06-08 13:17:24,611 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
-2026-06-08 13:17:24,611 | INFO | app | [----------] EventBus iniciado
-2026-06-08 13:17:24,627 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
-2026-06-08 13:18:07,683 | INFO | app | [----------] Modelo precalentado
-2026-06-08 13:18:07,684 | INFO | app | [----------] Alfonso Fase 3 listo
-2026-06-08 13:18:14,264 | INFO | app | [b0d6da93-c4c7-49f6-85d2-bab0cbbc5737] HTTP request started: POST /chat
-2026-06-08 13:18:14,267 | INFO | app | [b0d6da93-c4c7-49f6-85d2-bab0cbbc5737] Solicitud /chat recibida
-2026-06-08 13:18:14,267 | INFO | app | [b0d6da93-c4c7-49f6-85d2-bab0cbbc5737] SESSION_ID: b0d6da93-c4c7-49f6-85d2-bab0cbbc5737
-2026-06-08 13:18:14,267 | INFO | app | [b0d6da93-c4c7-49f6-85d2-bab0cbbc5737] USER MESSAGE: cuánta RAM tiene el sistema
-2026-06-08 13:18:44,972 | INFO | app | [b0d6da93-c4c7-49f6-85d2-bab0cbbc5737] Solicitud /chat procesada con estado: error
-2026-06-08 13:18:44,972 | INFO | app | [b0d6da93-c4c7-49f6-85d2-bab0cbbc5737] LATENCY: 31.41s
-2026-06-08 13:18:44,973 | INFO | app | [b0d6da93-c4c7-49f6-85d2-bab0cbbc5737] HTTP request finished: POST /chat 200
-2026-06-08 13:19:02,801 | INFO | app | [29c1b21d-1b46-4393-a647-b487cf73fef9] HTTP request started: POST /chat
-2026-06-08 13:19:02,802 | INFO | app | [29c1b21d-1b46-4393-a647-b487cf73fef9] Solicitud /chat recibida
-2026-06-08 13:19:02,802 | INFO | app | [29c1b21d-1b46-4393-a647-b487cf73fef9] SESSION_ID: 29c1b21d-1b46-4393-a647-b487cf73fef9
-2026-06-08 13:19:02,802 | INFO | app | [29c1b21d-1b46-4393-a647-b487cf73fef9] USER MESSAGE: lista los archivos de la carpeta actual
-2026-06-08 13:19:04,675 | ERROR | app | [29c1b21d-1b46-4393-a647-b487cf73fef9] Unhandled exception
-Traceback (most recent call last):
-  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
-    await self.app(scope, receive, _send)
-  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/middleware/base.py", line 191, in __call__
-    with recv_stream, send_stream, collapse_excgroups():
-  File "/usr/lib/python3.12/contextlib.py", line 158, in __exit__
-    self.gen.throw(value)
-  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/_utils.py", line 87, in collapse_excgroups
-    raise exc
-  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/middleware/base.py", line 193, in __call__
-    response = await self.dispatch_func(request, call_next)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/luisd/Alfonso/app/main.py", line 91, in request_id_middleware
-    response = await call_next(request)
-               ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/middleware/base.py", line 168, in call_next
-    raise app_exc from app_exc.__cause__ or app_exc.__context__
-  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/middleware/base.py", line 144, in coro
-    await self.app(scope, receive_or_disconnect, send_no_error)
-  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
-    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
-  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
-    raise exc
-  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
-    await app(scope, receive, sender)
-  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
-    await self.app(scope, receive, send)
-  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/routing.py", line 660, in __call__
-    await self.middleware_stack(scope, receive, send)
-  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/routing.py", line 680, in app
-    await route.handle(scope, receive, send)
-  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/routing.py", line 276, in handle
-    await self.app(scope, receive, send)
-  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/fastapi/routing.py", line 134, in app
-    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
-  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
-    raise exc
-  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
-    await app(scope, receive, sender)
-  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/fastapi/routing.py", line 120, in app
-    response = await f(request)
-               ^^^^^^^^^^^^^^^^
-  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/fastapi/routing.py", line 674, in app
-    raw_response = await run_endpoint_function(
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/fastapi/routing.py", line 328, in run_endpoint_function
-    return await dependant.call(**values)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/luisd/Alfonso/app/api/routes.py", line 79, in chat_endpoint
-    result = await orchestrator.run(
-             ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/luisd/Alfonso/app/core/planner_orchestrator.py", line 204, in run
-    final_response = await llm.generate(
-                           ^^^^^^^^^^^^^
-TypeError: OllamaClient.generate() got an unexpected keyword argument 'reasoning'
-2026-06-08 13:21:46,459 | INFO | app | [----------] Agentes y EventBus detenidos
-2026-06-08 13:21:49,528 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
-2026-06-08 13:21:49,529 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
-2026-06-08 13:21:49,529 | INFO | app | [----------] EventBus iniciado
-2026-06-08 13:21:49,539 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
-2026-06-08 13:22:33,275 | INFO | app | [----------] Modelo precalentado
-2026-06-08 13:22:33,275 | INFO | app | [----------] Alfonso Fase 3 listo
-2026-06-08 13:23:34,471 | INFO | app | [4060b93c-f4de-4b55-a33a-e260de8a44f4] HTTP request started: POST /chat
-2026-06-08 13:23:34,473 | INFO | app | [4060b93c-f4de-4b55-a33a-e260de8a44f4] Solicitud /chat recibida
-2026-06-08 13:23:34,473 | INFO | app | [4060b93c-f4de-4b55-a33a-e260de8a44f4] SESSION_ID: 4060b93c-f4de-4b55-a33a-e260de8a44f4
-2026-06-08 13:23:34,473 | INFO | app | [4060b93c-f4de-4b55-a33a-e260de8a44f4] USER MESSAGE: lista los archivos de la carpeta actual
-2026-06-08 13:25:32,350 | INFO | app | [4060b93c-f4de-4b55-a33a-e260de8a44f4] Solicitud /chat procesada con estado: chat
-2026-06-08 13:25:32,350 | INFO | app | [4060b93c-f4de-4b55-a33a-e260de8a44f4] LATENCY: 120.78s
-2026-06-08 13:25:32,351 | INFO | app | [4060b93c-f4de-4b55-a33a-e260de8a44f4] HTTP request finished: POST /chat 200
-2026-06-08 13:28:36,416 | INFO | app | [----------] Agentes y EventBus detenidos
-2026-06-08 13:28:38,243 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
-2026-06-08 13:28:38,244 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
-2026-06-08 13:28:38,244 | INFO | app | [----------] EventBus iniciado
-2026-06-08 13:28:38,259 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
-2026-06-08 13:29:13,629 | INFO | app | [----------] Modelo precalentado
-2026-06-08 13:29:13,629 | INFO | app | [----------] Alfonso Fase 3 listo
-2026-06-08 13:29:13,635 | INFO | app | [b53de375-dddb-4f1b-a056-8e08457f2fc5] HTTP request started: POST /chat
-2026-06-08 13:29:13,640 | INFO | app | [b53de375-dddb-4f1b-a056-8e08457f2fc5] Solicitud /chat recibida
-2026-06-08 13:29:13,640 | INFO | app | [b53de375-dddb-4f1b-a056-8e08457f2fc5] SESSION_ID: b53de375-dddb-4f1b-a056-8e08457f2fc5
-2026-06-08 13:29:13,640 | INFO | app | [b53de375-dddb-4f1b-a056-8e08457f2fc5] USER MESSAGE: lista los archivos de la carpeta actual
-2026-06-08 13:29:52,682 | INFO | app | [d7262e78-6095-402c-83fa-a5132774bc1d] HTTP request started: POST /chat
-2026-06-08 13:29:52,696 | INFO | app | [d7262e78-6095-402c-83fa-a5132774bc1d] Solicitud /chat recibida
-2026-06-08 13:29:52,696 | INFO | app | [d7262e78-6095-402c-83fa-a5132774bc1d] SESSION_ID: d7262e78-6095-402c-83fa-a5132774bc1d
-2026-06-08 13:29:52,697 | INFO | app | [d7262e78-6095-402c-83fa-a5132774bc1d] USER MESSAGE: lista los archivos de la carpeta actual
-2026-06-08 13:31:03,288 | INFO | app | [b53de375-dddb-4f1b-a056-8e08457f2fc5] Solicitud /chat procesada con estado: chat
-2026-06-08 13:31:03,288 | INFO | app | [b53de375-dddb-4f1b-a056-8e08457f2fc5] LATENCY: 111.74s
-2026-06-08 13:31:03,290 | INFO | app | [b53de375-dddb-4f1b-a056-8e08457f2fc5] HTTP request finished: POST /chat 200
-2026-06-08 13:33:36,873 | INFO | app | [d7262e78-6095-402c-83fa-a5132774bc1d] Solicitud /chat procesada con estado: chat
-2026-06-08 13:33:36,873 | INFO | app | [d7262e78-6095-402c-83fa-a5132774bc1d] LATENCY: 229.00s
-2026-06-08 13:33:36,875 | INFO | app | [d7262e78-6095-402c-83fa-a5132774bc1d] HTTP request finished: POST /chat 200
-2026-06-08 13:35:30,239 | INFO | app | [49511a30-bead-417b-9883-18ded907c6d3] HTTP request started: POST /chat
-2026-06-08 13:35:30,252 | INFO | app | [49511a30-bead-417b-9883-18ded907c6d3] Solicitud /chat recibida
-2026-06-08 13:35:30,252 | INFO | app | [49511a30-bead-417b-9883-18ded907c6d3] SESSION_ID: 49511a30-bead-417b-9883-18ded907c6d3
-2026-06-08 13:35:30,253 | INFO | app | [49511a30-bead-417b-9883-18ded907c6d3] USER MESSAGE: cuánta RAM tiene el sistema
-2026-06-08 13:35:59,992 | INFO | app | [49511a30-bead-417b-9883-18ded907c6d3] Solicitud /chat procesada con estado: error
-2026-06-08 13:35:59,993 | INFO | app | [49511a30-bead-417b-9883-18ded907c6d3] LATENCY: 30.40s
-2026-06-08 13:35:59,994 | INFO | app | [49511a30-bead-417b-9883-18ded907c6d3] HTTP request finished: POST /chat 200
-2026-06-08 13:46:44,502 | INFO | app | [----------] Agentes y EventBus detenidos
-2026-06-08 13:46:45,960 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
-2026-06-08 13:46:45,961 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
-2026-06-08 13:46:45,961 | INFO | app | [----------] EventBus iniciado
-2026-06-08 13:46:45,971 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
-2026-06-08 13:47:28,084 | INFO | app | [----------] Modelo precalentado
-2026-06-08 13:47:28,084 | INFO | app | [----------] Alfonso Fase 3 listo
-2026-06-08 13:48:37,918 | INFO | app | [954fe8a9-6438-4400-aa93-40b1019909da] HTTP request started: POST /chat
-2026-06-08 13:48:37,920 | INFO | app | [954fe8a9-6438-4400-aa93-40b1019909da] Solicitud /chat recibida
-2026-06-08 13:48:37,921 | INFO | app | [954fe8a9-6438-4400-aa93-40b1019909da] SESSION_ID: 954fe8a9-6438-4400-aa93-40b1019909da
-2026-06-08 13:48:37,921 | INFO | app | [954fe8a9-6438-4400-aa93-40b1019909da] USER MESSAGE: cuánta RAM tiene el sistema
-2026-06-08 13:50:06,230 | INFO | app | [954fe8a9-6438-4400-aa93-40b1019909da] Solicitud /chat procesada con estado: chat
-2026-06-08 13:50:06,230 | INFO | app | [954fe8a9-6438-4400-aa93-40b1019909da] LATENCY: 89.59s
-2026-06-08 13:50:06,231 | INFO | app | [954fe8a9-6438-4400-aa93-40b1019909da] HTTP request finished: POST /chat 200
-2026-06-08 13:51:53,552 | INFO | app | [----------] Agentes y EventBus detenidos
-2026-06-08 14:10:03,950 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
-2026-06-08 14:10:03,951 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
-2026-06-08 14:10:03,951 | INFO | app | [----------] EventBus iniciado
-2026-06-08 14:10:03,960 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
-2026-06-08 14:10:38,650 | INFO | app | [----------] Modelo precalentado
-2026-06-08 14:10:38,651 | INFO | app | [----------] Alfonso Fase 3 listo
-2026-06-08 14:11:34,866 | INFO | app | [2e1e06ee-02ed-40f1-94fa-81c9f75489a4] HTTP request started: POST /chat
-2026-06-08 14:11:34,870 | INFO | app | [2e1e06ee-02ed-40f1-94fa-81c9f75489a4] Solicitud /chat recibida
-2026-06-08 14:11:34,870 | INFO | app | [2e1e06ee-02ed-40f1-94fa-81c9f75489a4] SESSION_ID: 2e1e06ee-02ed-40f1-94fa-81c9f75489a4
-2026-06-08 14:11:34,870 | INFO | app | [2e1e06ee-02ed-40f1-94fa-81c9f75489a4] USER MESSAGE: cuánta RAM tiene el sistema
-2026-06-08 14:13:12,567 | INFO | app | [2e1e06ee-02ed-40f1-94fa-81c9f75489a4] Solicitud /chat procesada con estado: chat
-2026-06-08 14:13:12,568 | INFO | app | [2e1e06ee-02ed-40f1-94fa-81c9f75489a4] LATENCY: 99.82s
-2026-06-08 14:13:12,579 | INFO | app | [2e1e06ee-02ed-40f1-94fa-81c9f75489a4] HTTP request finished: POST /chat 200
-2026-06-08 14:14:27,305 | INFO | app | [c1b34f0f-b9e6-4d0e-ae9f-697e05477359] HTTP request started: POST /chat
-2026-06-08 14:14:27,314 | INFO | app | [c1b34f0f-b9e6-4d0e-ae9f-697e05477359] Solicitud /chat recibida
-2026-06-08 14:14:27,314 | INFO | app | [c1b34f0f-b9e6-4d0e-ae9f-697e05477359] SESSION_ID: c1b34f0f-b9e6-4d0e-ae9f-697e05477359
-2026-06-08 14:14:27,314 | INFO | app | [c1b34f0f-b9e6-4d0e-ae9f-697e05477359] USER MESSAGE: lista los archivos de la carpeta actual
-2026-06-08 14:16:18,908 | INFO | app | [c1b34f0f-b9e6-4d0e-ae9f-697e05477359] Solicitud /chat procesada con estado: chat
-2026-06-08 14:16:18,909 | INFO | app | [c1b34f0f-b9e6-4d0e-ae9f-697e05477359] LATENCY: 114.54s
-2026-06-08 14:16:18,910 | INFO | app | [c1b34f0f-b9e6-4d0e-ae9f-697e05477359] HTTP request finished: POST /chat 200
-2026-06-08 14:27:46,426 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
-2026-06-08 14:27:46,442 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
-2026-06-08 14:27:46,442 | INFO | app | [----------] EventBus iniciado
-2026-06-08 14:27:46,454 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
-2026-06-08 14:28:20,427 | INFO | app | [----------] Modelo precalentado
-2026-06-08 14:28:20,427 | INFO | app | [----------] Alfonso Fase 3 listo
-2026-06-08 14:30:36,260 | INFO | app | [8ab859f4-b11e-40f7-9c69-7db25de37583] HTTP request started: POST /chat
-2026-06-08 14:30:36,264 | INFO | app | [8ab859f4-b11e-40f7-9c69-7db25de37583] Solicitud /chat recibida
-2026-06-08 14:30:36,264 | INFO | app | [8ab859f4-b11e-40f7-9c69-7db25de37583] SESSION_ID: 8ab859f4-b11e-40f7-9c69-7db25de37583
-2026-06-08 14:30:36,264 | INFO | app | [8ab859f4-b11e-40f7-9c69-7db25de37583] USER MESSAGE: abre firefox
-2026-06-08 14:31:17,736 | INFO | app | [8ab859f4-b11e-40f7-9c69-7db25de37583] Solicitud /chat procesada con estado: chat
-2026-06-08 14:31:17,737 | INFO | app | [8ab859f4-b11e-40f7-9c69-7db25de37583] LATENCY: 42.15s
-2026-06-08 14:31:17,738 | INFO | app | [8ab859f4-b11e-40f7-9c69-7db25de37583] HTTP request finished: POST /chat 200
-2026-06-08 14:32:38,114 | INFO | app | [b9550ace-ffc0-4a13-b12a-14125e5db021] HTTP request started: POST /chat
-2026-06-08 14:32:38,116 | INFO | app | [b9550ace-ffc0-4a13-b12a-14125e5db021] Solicitud /chat recibida
-2026-06-08 14:32:38,116 | INFO | app | [b9550ace-ffc0-4a13-b12a-14125e5db021] SESSION_ID: b9550ace-ffc0-4a13-b12a-14125e5db021
-2026-06-08 14:32:38,116 | INFO | app | [b9550ace-ffc0-4a13-b12a-14125e5db021] USER MESSAGE: cierra firefox
-2026-06-08 14:33:27,749 | INFO | app | [b9550ace-ffc0-4a13-b12a-14125e5db021] Solicitud /chat procesada con estado: chat
-2026-06-08 14:33:27,749 | INFO | app | [b9550ace-ffc0-4a13-b12a-14125e5db021] LATENCY: 50.24s
-2026-06-08 14:33:27,750 | INFO | app | [b9550ace-ffc0-4a13-b12a-14125e5db021] HTTP request finished: POST /chat 200
-2026-06-08 14:35:47,301 | INFO | app | [0badbe7d-ff88-43cc-ab6c-d22e1c685933] HTTP request started: POST /chat
-2026-06-08 14:35:47,302 | INFO | app | [0badbe7d-ff88-43cc-ab6c-d22e1c685933] Solicitud /chat recibida
-2026-06-08 14:35:47,303 | INFO | app | [0badbe7d-ff88-43cc-ab6c-d22e1c685933] SESSION_ID: 0badbe7d-ff88-43cc-ab6c-d22e1c685933
-2026-06-08 14:35:47,303 | INFO | app | [0badbe7d-ff88-43cc-ab6c-d22e1c685933] USER MESSAGE: que dia es hoy
-2026-06-08 14:36:21,753 | INFO | app | [0badbe7d-ff88-43cc-ab6c-d22e1c685933] Solicitud /chat procesada con estado: chat
-2026-06-08 14:36:21,753 | INFO | app | [0badbe7d-ff88-43cc-ab6c-d22e1c685933] LATENCY: 35.07s
-2026-06-08 14:36:21,754 | INFO | app | [0badbe7d-ff88-43cc-ab6c-d22e1c685933] HTTP request finished: POST /chat 200
-2026-06-08 15:24:40,557 | INFO | app | [----------] Agentes y EventBus detenidos
-2026-06-08 15:24:43,924 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
-2026-06-08 15:24:43,927 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
-2026-06-08 15:24:43,927 | INFO | app | [----------] EventBus iniciado
-2026-06-08 15:24:43,939 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
-2026-06-08 15:25:26,270 | INFO | app | [----------] Modelo precalentado
-2026-06-08 15:25:26,271 | INFO | app | [----------] Alfonso Fase 3 listo
-2026-06-08 15:26:05,028 | INFO | app | [59723200-b4c8-439e-958c-dafdc147d8e0] HTTP request started: POST /chat
-2026-06-08 15:26:05,032 | INFO | app | [59723200-b4c8-439e-958c-dafdc147d8e0] Solicitud /chat recibida
-2026-06-08 15:26:05,032 | INFO | app | [59723200-b4c8-439e-958c-dafdc147d8e0] SESSION_ID: 59723200-b4c8-439e-958c-dafdc147d8e0
-2026-06-08 15:26:05,032 | INFO | app | [59723200-b4c8-439e-958c-dafdc147d8e0] USER MESSAGE: abre firefox
-2026-06-08 15:27:10,816 | INFO | app | [59723200-b4c8-439e-958c-dafdc147d8e0] Solicitud /chat procesada con estado: chat
-2026-06-08 15:27:10,817 | INFO | app | [59723200-b4c8-439e-958c-dafdc147d8e0] LATENCY: 66.83s
-2026-06-08 15:27:10,822 | INFO | app | [59723200-b4c8-439e-958c-dafdc147d8e0] HTTP request finished: POST /chat 200
-2026-06-08 15:36:17,421 | INFO | app | [c99f8757-aeeb-42c0-8016-48642f7c397a] HTTP request started: POST /chat
-2026-06-08 15:36:17,484 | INFO | app | [c99f8757-aeeb-42c0-8016-48642f7c397a] Solicitud /chat recibida
-2026-06-08 15:36:17,484 | INFO | app | [c99f8757-aeeb-42c0-8016-48642f7c397a] SESSION_ID: c99f8757-aeeb-42c0-8016-48642f7c397a
-2026-06-08 15:36:17,484 | INFO | app | [c99f8757-aeeb-42c0-8016-48642f7c397a] USER MESSAGE: cierra firefox
-2026-06-08 15:37:27,070 | INFO | app | [c99f8757-aeeb-42c0-8016-48642f7c397a] Solicitud /chat procesada con estado: chat
-2026-06-08 15:37:27,071 | INFO | app | [c99f8757-aeeb-42c0-8016-48642f7c397a] LATENCY: 70.51s
-2026-06-08 15:37:27,076 | INFO | app | [c99f8757-aeeb-42c0-8016-48642f7c397a] HTTP request finished: POST /chat 200
-2026-06-08 15:39:23,975 | INFO | app | [----------] Agentes y EventBus detenidos
-2026-06-08 15:47:18,905 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
-2026-06-08 15:47:18,906 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
-2026-06-08 15:47:18,906 | INFO | app | [----------] EventBus iniciado
-2026-06-08 15:47:18,915 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
-2026-06-08 15:47:55,419 | INFO | app | [----------] Modelo precalentado
-2026-06-08 15:47:55,419 | INFO | app | [----------] Alfonso Fase 3 listo
-2026-06-08 15:49:00,175 | INFO | app | [b96a93c2-e5d0-43b2-8802-ba4219dc3aea] HTTP request started: POST /chat
-2026-06-08 15:49:00,178 | INFO | app | [b96a93c2-e5d0-43b2-8802-ba4219dc3aea] Solicitud /chat recibida
-2026-06-08 15:49:00,179 | INFO | app | [b96a93c2-e5d0-43b2-8802-ba4219dc3aea] SESSION_ID: b96a93c2-e5d0-43b2-8802-ba4219dc3aea
-2026-06-08 15:49:00,179 | INFO | app | [b96a93c2-e5d0-43b2-8802-ba4219dc3aea] USER MESSAGE: abre firefox
-2026-06-08 15:49:54,481 | INFO | app | [b96a93c2-e5d0-43b2-8802-ba4219dc3aea] Solicitud /chat procesada con estado: chat
-2026-06-08 15:49:54,482 | INFO | app | [b96a93c2-e5d0-43b2-8802-ba4219dc3aea] LATENCY: 54.30s
-2026-06-08 15:49:54,488 | INFO | app | [b96a93c2-e5d0-43b2-8802-ba4219dc3aea] HTTP request finished: POST /chat 200
-2026-06-08 15:50:08,840 | INFO | app | [90d8f58c-011e-4784-bcf2-4ceb717d1f19] HTTP request started: POST /chat
-2026-06-08 15:50:08,851 | INFO | app | [90d8f58c-011e-4784-bcf2-4ceb717d1f19] Solicitud /chat recibida
-2026-06-08 15:50:08,851 | INFO | app | [90d8f58c-011e-4784-bcf2-4ceb717d1f19] SESSION_ID: 90d8f58c-011e-4784-bcf2-4ceb717d1f19
-2026-06-08 15:50:08,851 | INFO | app | [90d8f58c-011e-4784-bcf2-4ceb717d1f19] USER MESSAGE: cierra firefox
-2026-06-08 15:51:41,143 | INFO | app | [90d8f58c-011e-4784-bcf2-4ceb717d1f19] Solicitud /chat procesada con estado: error
-2026-06-08 15:51:41,143 | INFO | app | [90d8f58c-011e-4784-bcf2-4ceb717d1f19] LATENCY: 92.29s
-2026-06-08 15:51:41,144 | INFO | app | [90d8f58c-011e-4784-bcf2-4ceb717d1f19] HTTP request finished: POST /chat 200
-2026-06-08 15:54:28,607 | INFO | app | [----------] Agentes y EventBus detenidos
-2026-06-08 15:54:30,243 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
-2026-06-08 15:54:30,243 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
-2026-06-08 15:54:30,243 | INFO | app | [----------] EventBus iniciado
-2026-06-08 15:54:30,251 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
-2026-06-08 15:55:49,495 | INFO | app | [----------] Modelo precalentado
-2026-06-08 15:55:49,497 | INFO | app | [----------] Alfonso Fase 3 listo
-2026-06-08 15:56:48,761 | INFO | app | [4d676cf3-162f-4d5c-a9ea-f6900444394c] HTTP request started: POST /chat
-2026-06-08 15:56:48,774 | INFO | app | [4d676cf3-162f-4d5c-a9ea-f6900444394c] Solicitud /chat recibida
-2026-06-08 15:56:48,774 | INFO | app | [4d676cf3-162f-4d5c-a9ea-f6900444394c] SESSION_ID: 4d676cf3-162f-4d5c-a9ea-f6900444394c
-2026-06-08 15:56:48,774 | INFO | app | [4d676cf3-162f-4d5c-a9ea-f6900444394c] USER MESSAGE: cierra firefox
-2026-06-08 15:57:25,640 | INFO | app | [4d676cf3-162f-4d5c-a9ea-f6900444394c] Solicitud /chat procesada con estado: tool
-2026-06-08 15:57:25,641 | INFO | app | [4d676cf3-162f-4d5c-a9ea-f6900444394c] LATENCY: 36.87s
-2026-06-08 15:57:25,644 | INFO | app | [4d676cf3-162f-4d5c-a9ea-f6900444394c] HTTP request finished: POST /chat 200
-2026-06-08 15:59:06,462 | INFO | app | [8fd9a6e5-4239-42ba-9e55-0890dce529b7] HTTP request started: POST /chat
-2026-06-08 15:59:06,464 | INFO | app | [8fd9a6e5-4239-42ba-9e55-0890dce529b7] Solicitud /chat recibida
-2026-06-08 15:59:06,464 | INFO | app | [8fd9a6e5-4239-42ba-9e55-0890dce529b7] SESSION_ID: 8fd9a6e5-4239-42ba-9e55-0890dce529b7
-2026-06-08 15:59:06,464 | INFO | app | [8fd9a6e5-4239-42ba-9e55-0890dce529b7] USER MESSAGE: abre firefox
-2026-06-08 15:59:08,131 | INFO | app | [8fd9a6e5-4239-42ba-9e55-0890dce529b7] Solicitud /chat procesada con estado: chat
-2026-06-08 15:59:08,131 | INFO | app | [8fd9a6e5-4239-42ba-9e55-0890dce529b7] LATENCY: 1.67s
-2026-06-08 15:59:08,132 | INFO | app | [8fd9a6e5-4239-42ba-9e55-0890dce529b7] HTTP request finished: POST /chat 200
-2026-06-08 15:59:18,834 | INFO | app | [155e9695-955c-4ab4-b605-a7bec37eab0c] HTTP request started: POST /chat
-2026-06-08 15:59:18,839 | INFO | app | [155e9695-955c-4ab4-b605-a7bec37eab0c] Solicitud /chat recibida
-2026-06-08 15:59:18,839 | INFO | app | [155e9695-955c-4ab4-b605-a7bec37eab0c] SESSION_ID: 155e9695-955c-4ab4-b605-a7bec37eab0c
-2026-06-08 15:59:18,839 | INFO | app | [155e9695-955c-4ab4-b605-a7bec37eab0c] USER MESSAGE: cierra firefox
-2026-06-08 15:59:20,956 | INFO | app | [155e9695-955c-4ab4-b605-a7bec37eab0c] Solicitud /chat procesada con estado: tool
-2026-06-08 15:59:20,956 | INFO | app | [155e9695-955c-4ab4-b605-a7bec37eab0c] LATENCY: 2.12s
-2026-06-08 15:59:20,957 | INFO | app | [155e9695-955c-4ab4-b605-a7bec37eab0c] HTTP request finished: POST /chat 200
-2026-06-08 16:00:29,749 | INFO | app | [86bdb766-e49c-4008-b123-38a6e7b98df6] HTTP request started: POST /chat
-2026-06-08 16:00:29,750 | INFO | app | [86bdb766-e49c-4008-b123-38a6e7b98df6] Solicitud /chat recibida
-2026-06-08 16:00:29,750 | INFO | app | [86bdb766-e49c-4008-b123-38a6e7b98df6] SESSION_ID: 86bdb766-e49c-4008-b123-38a6e7b98df6
-2026-06-08 16:00:29,750 | INFO | app | [86bdb766-e49c-4008-b123-38a6e7b98df6] USER MESSAGE: cierra el explorador de archivos
-2026-06-08 16:00:31,708 | INFO | app | [86bdb766-e49c-4008-b123-38a6e7b98df6] Solicitud /chat procesada con estado: error
-2026-06-08 16:00:31,708 | INFO | app | [86bdb766-e49c-4008-b123-38a6e7b98df6] LATENCY: 1.96s
-2026-06-08 16:00:31,709 | INFO | app | [86bdb766-e49c-4008-b123-38a6e7b98df6] HTTP request finished: POST /chat 200
-2026-06-08 16:01:43,844 | INFO | app | [4acd7f8f-5f18-4135-b154-b71018f2dcd3] HTTP request started: POST /chat
-2026-06-08 16:01:43,844 | INFO | app | [4acd7f8f-5f18-4135-b154-b71018f2dcd3] Solicitud /chat recibida
-2026-06-08 16:01:43,845 | INFO | app | [4acd7f8f-5f18-4135-b154-b71018f2dcd3] SESSION_ID: 4acd7f8f-5f18-4135-b154-b71018f2dcd3
-2026-06-08 16:01:43,845 | INFO | app | [4acd7f8f-5f18-4135-b154-b71018f2dcd3] USER MESSAGE: abre el explorador de archivos
-2026-06-08 16:01:45,813 | INFO | app | [4acd7f8f-5f18-4135-b154-b71018f2dcd3] Solicitud /chat procesada con estado: chat
-2026-06-08 16:01:45,813 | INFO | app | [4acd7f8f-5f18-4135-b154-b71018f2dcd3] LATENCY: 1.97s
-2026-06-08 16:01:45,813 | INFO | app | [4acd7f8f-5f18-4135-b154-b71018f2dcd3] HTTP request finished: POST /chat 200
-2026-06-08 16:03:45,830 | INFO | app | [----------] Agentes y EventBus detenidos
-2026-06-08 16:03:47,998 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
-2026-06-08 16:03:47,999 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
-2026-06-08 16:03:47,999 | INFO | app | [----------] EventBus iniciado
-2026-06-08 16:03:48,008 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
-2026-06-08 16:04:54,409 | INFO | app | [----------] Modelo precalentado
-2026-06-08 16:04:54,409 | INFO | app | [----------] Alfonso Fase 3 listo
-2026-06-08 16:05:44,114 | INFO | app | [----------] Agentes y EventBus detenidos
-2026-06-08 16:05:45,592 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
-2026-06-08 16:05:45,593 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
-2026-06-08 16:05:45,593 | INFO | app | [----------] EventBus iniciado
-2026-06-08 16:05:45,603 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
-2026-06-08 16:06:24,288 | INFO | app | [----------] Modelo precalentado
-2026-06-08 16:06:24,288 | INFO | app | [----------] Alfonso Fase 3 listo
-2026-06-08 16:08:03,715 | INFO | app | [----------] Agentes y EventBus detenidos
-2026-06-08 16:08:04,850 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
-2026-06-08 16:08:04,850 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
-2026-06-08 16:08:04,850 | INFO | app | [----------] EventBus iniciado
-2026-06-08 16:08:04,864 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
-2026-06-08 16:08:46,194 | INFO | app | [----------] Modelo precalentado
-2026-06-08 16:08:46,194 | INFO | app | [----------] Alfonso Fase 3 listo
-2026-06-08 16:09:28,220 | INFO | app | [----------] Agentes y EventBus detenidos
-2026-06-08 16:09:29,147 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
-2026-06-08 16:09:29,148 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
-2026-06-08 16:09:29,148 | INFO | app | [----------] EventBus iniciado
-2026-06-08 16:09:29,158 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
-2026-06-08 16:10:06,781 | INFO | app | [----------] Modelo precalentado
-2026-06-08 16:10:06,782 | INFO | app | [----------] Alfonso Fase 3 listo
-2026-06-08 16:11:56,859 | INFO | app | [f9311b12-3fbb-486e-93a5-6d93ed90f97f] HTTP request started: POST /chat
-2026-06-08 16:11:56,882 | INFO | app | [f9311b12-3fbb-486e-93a5-6d93ed90f97f] Solicitud /chat recibida
-2026-06-08 16:11:56,883 | INFO | app | [f9311b12-3fbb-486e-93a5-6d93ed90f97f] SESSION_ID: f9311b12-3fbb-486e-93a5-6d93ed90f97f
-2026-06-08 16:11:56,884 | INFO | app | [f9311b12-3fbb-486e-93a5-6d93ed90f97f] USER MESSAGE: abre el explorador de archivos
-2026-06-08 16:13:25,052 | INFO | app | [f9311b12-3fbb-486e-93a5-6d93ed90f97f] Solicitud /chat procesada con estado: chat
-2026-06-08 16:13:25,054 | INFO | app | [f9311b12-3fbb-486e-93a5-6d93ed90f97f] LATENCY: 88.17s
-2026-06-08 16:13:25,068 | INFO | app | [f9311b12-3fbb-486e-93a5-6d93ed90f97f] HTTP request finished: POST /chat 200
-2026-06-08 16:29:07,403 | INFO | app | [b3da8015-4a14-4886-b2ee-489b6c7f4c88] HTTP request started: POST /chat
-2026-06-08 16:29:07,479 | INFO | app | [b3da8015-4a14-4886-b2ee-489b6c7f4c88] Solicitud /chat recibida
-2026-06-08 16:29:07,480 | INFO | app | [b3da8015-4a14-4886-b2ee-489b6c7f4c88] SESSION_ID: b3da8015-4a14-4886-b2ee-489b6c7f4c88
-2026-06-08 16:29:07,481 | INFO | app | [b3da8015-4a14-4886-b2ee-489b6c7f4c88] USER MESSAGE: abre el explorador de archivos
-2026-06-08 16:29:18,197 | INFO | app | [b3da8015-4a14-4886-b2ee-489b6c7f4c88] Solicitud /chat procesada con estado: chat
-2026-06-08 16:29:18,198 | INFO | app | [b3da8015-4a14-4886-b2ee-489b6c7f4c88] LATENCY: 10.72s
-2026-06-08 16:29:18,205 | INFO | app | [b3da8015-4a14-4886-b2ee-489b6c7f4c88] HTTP request finished: POST /chat 200
-2026-06-08 16:33:16,083 | INFO | app | [----------] Agentes y EventBus detenidos
-2026-06-08 16:33:19,320 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
-2026-06-08 16:33:19,321 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
-2026-06-08 16:33:19,321 | INFO | app | [----------] EventBus iniciado
-2026-06-08 16:33:19,329 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
-2026-06-08 17:03:36,537 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
-2026-06-08 17:03:36,538 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
-2026-06-08 17:03:36,538 | INFO | app | [----------] EventBus iniciado
-2026-06-08 17:03:36,545 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
-2026-06-08 17:04:13,961 | INFO | app | [----------] Modelo precalentado
-2026-06-08 17:04:13,962 | INFO | app | [----------] Alfonso Fase 3 listo
-2026-06-08 17:04:28,169 | INFO | app | [27c151dd-eb25-476e-8d61-7cba1705c2cf] HTTP request started: POST /chat
-2026-06-08 17:04:28,184 | INFO | app | [27c151dd-eb25-476e-8d61-7cba1705c2cf] Solicitud /chat recibida
-2026-06-08 17:04:28,184 | INFO | app | [27c151dd-eb25-476e-8d61-7cba1705c2cf] SESSION_ID: 27c151dd-eb25-476e-8d61-7cba1705c2cf
-2026-06-08 17:04:28,184 | INFO | app | [27c151dd-eb25-476e-8d61-7cba1705c2cf] USER MESSAGE: abre firefox
-2026-06-08 17:05:02,483 | INFO | app | [27c151dd-eb25-476e-8d61-7cba1705c2cf] Solicitud /chat procesada con estado: chat
-2026-06-08 17:05:02,483 | INFO | app | [27c151dd-eb25-476e-8d61-7cba1705c2cf] LATENCY: 34.30s
-2026-06-08 17:05:02,486 | INFO | app | [27c151dd-eb25-476e-8d61-7cba1705c2cf] HTTP request finished: POST /chat 200
-2026-06-08 17:05:28,752 | INFO | app | [478e590a-2e3c-45b8-b3cc-02531fc28007] HTTP request started: POST /chat
-2026-06-08 17:05:28,762 | INFO | app | [478e590a-2e3c-45b8-b3cc-02531fc28007] Solicitud /chat recibida
-2026-06-08 17:05:28,762 | INFO | app | [478e590a-2e3c-45b8-b3cc-02531fc28007] SESSION_ID: 478e590a-2e3c-45b8-b3cc-02531fc28007
-2026-06-08 17:05:28,763 | INFO | app | [478e590a-2e3c-45b8-b3cc-02531fc28007] USER MESSAGE: cierra firefox
-2026-06-08 17:05:30,738 | INFO | app | [478e590a-2e3c-45b8-b3cc-02531fc28007] Solicitud /chat procesada con estado: tool
-2026-06-08 17:05:30,738 | INFO | app | [478e590a-2e3c-45b8-b3cc-02531fc28007] LATENCY: 1.98s
-2026-06-08 17:05:30,739 | INFO | app | [478e590a-2e3c-45b8-b3cc-02531fc28007] HTTP request finished: POST /chat 200
-2026-06-08 17:05:37,657 | INFO | app | [20642c21-d6ff-414d-99dd-f7b356baa69c] HTTP request started: POST /chat
-2026-06-08 17:05:37,660 | INFO | app | [20642c21-d6ff-414d-99dd-f7b356baa69c] Solicitud /chat recibida
-2026-06-08 17:05:37,660 | INFO | app | [20642c21-d6ff-414d-99dd-f7b356baa69c] SESSION_ID: 20642c21-d6ff-414d-99dd-f7b356baa69c
-2026-06-08 17:05:37,660 | INFO | app | [20642c21-d6ff-414d-99dd-f7b356baa69c] USER MESSAGE: abre el explorador de archivos
-2026-06-08 17:05:39,550 | INFO | app | [20642c21-d6ff-414d-99dd-f7b356baa69c] Solicitud /chat procesada con estado: chat
-2026-06-08 17:05:39,550 | INFO | app | [20642c21-d6ff-414d-99dd-f7b356baa69c] LATENCY: 1.89s
-2026-06-08 17:05:39,551 | INFO | app | [20642c21-d6ff-414d-99dd-f7b356baa69c] HTTP request finished: POST /chat 200
-2026-06-08 17:11:11,804 | INFO | app | [0ec1f7ea-3528-4a05-93ac-9b5ec9954754] HTTP request started: POST /chat
-2026-06-08 17:11:11,807 | INFO | app | [0ec1f7ea-3528-4a05-93ac-9b5ec9954754] Solicitud /chat recibida
-2026-06-08 17:11:11,808 | INFO | app | [0ec1f7ea-3528-4a05-93ac-9b5ec9954754] SESSION_ID: 0ec1f7ea-3528-4a05-93ac-9b5ec9954754
-2026-06-08 17:11:11,808 | INFO | app | [0ec1f7ea-3528-4a05-93ac-9b5ec9954754] USER MESSAGE: abre www.google.es
-2026-06-08 17:11:14,034 | INFO | app | [0ec1f7ea-3528-4a05-93ac-9b5ec9954754] Solicitud /chat procesada con estado: error
-2026-06-08 17:11:14,034 | INFO | app | [0ec1f7ea-3528-4a05-93ac-9b5ec9954754] LATENCY: 2.23s
-2026-06-08 17:11:14,035 | INFO | app | [0ec1f7ea-3528-4a05-93ac-9b5ec9954754] HTTP request finished: POST /chat 200
-2026-06-08 17:11:36,331 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-09 08:18:09,968 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-09 08:18:09,968 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
+2026-06-09 08:18:09,968 | INFO | app | [----------] EventBus iniciado
+2026-06-09 08:18:09,976 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-09 08:18:59,494 | INFO | app | [----------] Modelo precalentado
+2026-06-09 08:18:59,495 | INFO | app | [----------] Alfonso Fase 3 listo
+2026-06-09 08:19:17,550 | INFO | app | [fd02acdc-463e-497b-b1a5-15448c6a301b] HTTP request started: POST /chat
+2026-06-09 08:19:17,573 | INFO | app | [fd02acdc-463e-497b-b1a5-15448c6a301b] Solicitud /chat recibida
+2026-06-09 08:19:17,573 | INFO | app | [fd02acdc-463e-497b-b1a5-15448c6a301b] SESSION_ID: fd02acdc-463e-497b-b1a5-15448c6a301b
+2026-06-09 08:19:17,573 | INFO | app | [fd02acdc-463e-497b-b1a5-15448c6a301b] USER MESSAGE: abre www.google.es
+2026-06-09 08:20:03,894 | INFO | app | [fd02acdc-463e-497b-b1a5-15448c6a301b] Solicitud /chat procesada con estado: error
+2026-06-09 08:20:03,894 | INFO | app | [fd02acdc-463e-497b-b1a5-15448c6a301b] LATENCY: 49.51s
+2026-06-09 08:20:03,899 | INFO | app | [fd02acdc-463e-497b-b1a5-15448c6a301b] HTTP request finished: POST /chat 200
+2026-06-09 08:23:20,399 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-09 08:24:55,573 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-09 08:24:55,574 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
+2026-06-09 08:24:55,574 | INFO | app | [----------] EventBus iniciado
+2026-06-09 08:24:55,582 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-09 08:26:00,773 | INFO | app | [----------] Modelo precalentado
+2026-06-09 08:26:00,774 | INFO | app | [----------] Alfonso Fase 3 listo
+2026-06-09 08:26:31,343 | INFO | app | [4314c8fe-a4cf-4fb1-be6e-add6687a494f] HTTP request started: POST /chat
+2026-06-09 08:26:31,369 | INFO | app | [4314c8fe-a4cf-4fb1-be6e-add6687a494f] Solicitud /chat recibida
+2026-06-09 08:26:31,369 | INFO | app | [4314c8fe-a4cf-4fb1-be6e-add6687a494f] SESSION_ID: 4314c8fe-a4cf-4fb1-be6e-add6687a494f
+2026-06-09 08:26:31,369 | INFO | app | [4314c8fe-a4cf-4fb1-be6e-add6687a494f] USER MESSAGE: abre www.google.es
+2026-06-09 08:27:28,209 | INFO | app | [4314c8fe-a4cf-4fb1-be6e-add6687a494f] Solicitud /chat procesada con estado: chat
+2026-06-09 08:27:28,210 | INFO | app | [4314c8fe-a4cf-4fb1-be6e-add6687a494f] LATENCY: 60.16s
+2026-06-09 08:27:28,213 | INFO | app | [4314c8fe-a4cf-4fb1-be6e-add6687a494f] HTTP request finished: POST /chat 200
+2026-06-09 08:28:02,945 | INFO | app | [420f94cb-ba0f-4914-9526-9c78aec7558c] HTTP request started: POST /chat
+2026-06-09 08:28:02,946 | INFO | app | [420f94cb-ba0f-4914-9526-9c78aec7558c] Solicitud /chat recibida
+2026-06-09 08:28:02,946 | INFO | app | [420f94cb-ba0f-4914-9526-9c78aec7558c] SESSION_ID: 420f94cb-ba0f-4914-9526-9c78aec7558c
+2026-06-09 08:28:02,947 | INFO | app | [420f94cb-ba0f-4914-9526-9c78aec7558c] USER MESSAGE: abre firefox
+2026-06-09 08:28:04,478 | INFO | app | [420f94cb-ba0f-4914-9526-9c78aec7558c] Solicitud /chat procesada con estado: chat
+2026-06-09 08:28:04,478 | INFO | app | [420f94cb-ba0f-4914-9526-9c78aec7558c] LATENCY: 1.53s
+2026-06-09 08:28:04,479 | INFO | app | [420f94cb-ba0f-4914-9526-9c78aec7558c] HTTP request finished: POST /chat 200
+2026-06-09 08:28:24,912 | INFO | app | [16bfa0a6-54fa-4d5b-bbf0-b02650b85938] HTTP request started: POST /chat
+2026-06-09 08:28:24,916 | INFO | app | [16bfa0a6-54fa-4d5b-bbf0-b02650b85938] Solicitud /chat recibida
+2026-06-09 08:28:24,917 | INFO | app | [16bfa0a6-54fa-4d5b-bbf0-b02650b85938] SESSION_ID: 16bfa0a6-54fa-4d5b-bbf0-b02650b85938
+2026-06-09 08:28:24,917 | INFO | app | [16bfa0a6-54fa-4d5b-bbf0-b02650b85938] USER MESSAGE: abre www.google.es
+2026-06-09 08:28:28,856 | INFO | app | [16bfa0a6-54fa-4d5b-bbf0-b02650b85938] Solicitud /chat procesada con estado: chat
+2026-06-09 08:28:28,857 | INFO | app | [16bfa0a6-54fa-4d5b-bbf0-b02650b85938] LATENCY: 3.94s
+2026-06-09 08:28:28,858 | INFO | app | [16bfa0a6-54fa-4d5b-bbf0-b02650b85938] HTTP request finished: POST /chat 200
+2026-06-09 08:29:01,346 | INFO | app | [17a044f8-9f31-442a-a25b-cfc9d05f09d7] HTTP request started: POST /chat
+2026-06-09 08:29:01,347 | INFO | app | [17a044f8-9f31-442a-a25b-cfc9d05f09d7] Solicitud /chat recibida
+2026-06-09 08:29:01,347 | INFO | app | [17a044f8-9f31-442a-a25b-cfc9d05f09d7] SESSION_ID: 17a044f8-9f31-442a-a25b-cfc9d05f09d7
+2026-06-09 08:29:01,347 | INFO | app | [17a044f8-9f31-442a-a25b-cfc9d05f09d7] USER MESSAGE: abre www.google.es
+2026-06-09 08:29:04,335 | INFO | app | [17a044f8-9f31-442a-a25b-cfc9d05f09d7] Solicitud /chat procesada con estado: chat
+2026-06-09 08:29:04,336 | INFO | app | [17a044f8-9f31-442a-a25b-cfc9d05f09d7] LATENCY: 2.99s
+2026-06-09 08:29:04,337 | INFO | app | [17a044f8-9f31-442a-a25b-cfc9d05f09d7] HTTP request finished: POST /chat 200
+2026-06-09 08:31:38,821 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-09 08:31:41,020 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-09 08:31:41,022 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
+2026-06-09 08:31:41,023 | INFO | app | [----------] EventBus iniciado
+2026-06-09 08:31:41,040 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-09 08:34:17,524 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-09 08:34:17,533 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
+2026-06-09 08:34:17,533 | INFO | app | [----------] EventBus iniciado
+2026-06-09 08:34:17,542 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-09 08:34:47,543 | INFO | app | [----------] Modelo precalentado
+2026-06-09 08:34:47,543 | INFO | app | [----------] Alfonso Fase 3 listo
+2026-06-09 08:35:33,123 | INFO | app | [1760d640-1401-4259-b8d7-8af1788e8486] HTTP request started: POST /chat
+2026-06-09 08:35:33,127 | INFO | app | [1760d640-1401-4259-b8d7-8af1788e8486] Solicitud /chat recibida
+2026-06-09 08:35:33,127 | INFO | app | [1760d640-1401-4259-b8d7-8af1788e8486] SESSION_ID: 1760d640-1401-4259-b8d7-8af1788e8486
+2026-06-09 08:35:33,127 | INFO | app | [1760d640-1401-4259-b8d7-8af1788e8486] USER MESSAGE: abre www.google.es
+2026-06-09 08:36:16,208 | INFO | app | [1760d640-1401-4259-b8d7-8af1788e8486] Solicitud /chat procesada con estado: chat
+2026-06-09 08:36:16,209 | INFO | app | [1760d640-1401-4259-b8d7-8af1788e8486] LATENCY: 46.56s
+2026-06-09 08:36:16,210 | INFO | app | [1760d640-1401-4259-b8d7-8af1788e8486] HTTP request finished: POST /chat 200
+2026-06-09 08:36:52,765 | INFO | app | [f950f2d6-9c82-43ea-9876-6016f6861099] HTTP request started: POST /chat
+2026-06-09 08:36:52,768 | INFO | app | [f950f2d6-9c82-43ea-9876-6016f6861099] Solicitud /chat recibida
+2026-06-09 08:36:52,768 | INFO | app | [f950f2d6-9c82-43ea-9876-6016f6861099] SESSION_ID: f950f2d6-9c82-43ea-9876-6016f6861099
+2026-06-09 08:36:52,768 | INFO | app | [f950f2d6-9c82-43ea-9876-6016f6861099] USER MESSAGE: cierra firefox
+2026-06-09 08:36:55,328 | INFO | app | [f950f2d6-9c82-43ea-9876-6016f6861099] Solicitud /chat procesada con estado: tool
+2026-06-09 08:36:55,328 | INFO | app | [f950f2d6-9c82-43ea-9876-6016f6861099] LATENCY: 2.56s
+2026-06-09 08:36:55,330 | INFO | app | [f950f2d6-9c82-43ea-9876-6016f6861099] HTTP request finished: POST /chat 200
+2026-06-09 08:37:04,261 | INFO | app | [c5198ca0-eff4-475f-8d63-897bafc740a2] HTTP request started: POST /chat
+2026-06-09 08:37:04,261 | INFO | app | [c5198ca0-eff4-475f-8d63-897bafc740a2] Solicitud /chat recibida
+2026-06-09 08:37:04,262 | INFO | app | [c5198ca0-eff4-475f-8d63-897bafc740a2] SESSION_ID: c5198ca0-eff4-475f-8d63-897bafc740a2
+2026-06-09 08:37:04,262 | INFO | app | [c5198ca0-eff4-475f-8d63-897bafc740a2] USER MESSAGE: abre www.google.es
+2026-06-09 08:37:08,192 | INFO | app | [c5198ca0-eff4-475f-8d63-897bafc740a2] Solicitud /chat procesada con estado: chat
+2026-06-09 08:37:08,192 | INFO | app | [c5198ca0-eff4-475f-8d63-897bafc740a2] LATENCY: 3.93s
+2026-06-09 08:37:08,193 | INFO | app | [c5198ca0-eff4-475f-8d63-897bafc740a2] HTTP request finished: POST /chat 200
+2026-06-09 08:46:01,874 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-09 08:46:03,713 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-09 08:46:03,713 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
+2026-06-09 08:46:03,713 | INFO | app | [----------] EventBus iniciado
+2026-06-09 08:46:03,723 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-09 08:47:14,271 | INFO | app | [----------] Modelo precalentado
+2026-06-09 08:47:14,271 | INFO | app | [----------] Alfonso Fase 3 listo
+2026-06-09 08:49:32,773 | INFO | app | [6ca0b454-a9dc-44db-8be3-32a3dd6ac1b9] HTTP request started: POST /chat
+2026-06-09 08:49:32,783 | INFO | app | [6ca0b454-a9dc-44db-8be3-32a3dd6ac1b9] Solicitud /chat recibida
+2026-06-09 08:49:32,783 | INFO | app | [6ca0b454-a9dc-44db-8be3-32a3dd6ac1b9] SESSION_ID: 6ca0b454-a9dc-44db-8be3-32a3dd6ac1b9
+2026-06-09 08:49:32,784 | INFO | app | [6ca0b454-a9dc-44db-8be3-32a3dd6ac1b9] USER MESSAGE: abre www.google.es
+2026-06-09 08:50:17,898 | INFO | app | [6ca0b454-a9dc-44db-8be3-32a3dd6ac1b9] Solicitud /chat procesada con estado: chat
+2026-06-09 08:50:17,904 | INFO | app | [6ca0b454-a9dc-44db-8be3-32a3dd6ac1b9] LATENCY: 48.40s
+2026-06-09 08:50:17,907 | INFO | app | [6ca0b454-a9dc-44db-8be3-32a3dd6ac1b9] HTTP request finished: POST /chat 200
+2026-06-09 08:50:32,542 | INFO | app | [d93066b9-c7bc-4ce7-84d6-3a1936bc2f8f] HTTP request started: POST /chat
+2026-06-09 08:50:32,543 | INFO | app | [d93066b9-c7bc-4ce7-84d6-3a1936bc2f8f] Solicitud /chat recibida
+2026-06-09 08:50:32,543 | INFO | app | [d93066b9-c7bc-4ce7-84d6-3a1936bc2f8f] SESSION_ID: d93066b9-c7bc-4ce7-84d6-3a1936bc2f8f
+2026-06-09 08:50:32,543 | INFO | app | [d93066b9-c7bc-4ce7-84d6-3a1936bc2f8f] USER MESSAGE: cierra firefox
+2026-06-09 08:50:34,692 | INFO | app | [d93066b9-c7bc-4ce7-84d6-3a1936bc2f8f] Solicitud /chat procesada con estado: tool
+2026-06-09 08:50:34,692 | INFO | app | [d93066b9-c7bc-4ce7-84d6-3a1936bc2f8f] LATENCY: 2.15s
+2026-06-09 08:50:34,696 | INFO | app | [d93066b9-c7bc-4ce7-84d6-3a1936bc2f8f] HTTP request finished: POST /chat 200
+2026-06-09 08:52:52,272 | INFO | app | [732bc3f1-90a0-4686-be77-66aa58ac32cb] HTTP request started: GET /health
+2026-06-09 08:52:52,274 | INFO | app | [732bc3f1-90a0-4686-be77-66aa58ac32cb] HTTP request finished: GET /health 200
+2026-06-09 08:53:03,029 | INFO | app | [da20d682-ea90-44f3-b58b-1015e97194f8] HTTP request started: POST /audio/wakeword/upload
+2026-06-09 08:53:03,034 | WARNING | app | [da20d682-ea90-44f3-b58b-1015e97194f8] HTTP exception: Not Found
+2026-06-09 08:53:03,035 | INFO | app | [da20d682-ea90-44f3-b58b-1015e97194f8] HTTP request finished: POST /audio/wakeword/upload 404
+2026-06-09 08:53:21,697 | INFO | app | [d0bcac1a-979b-4c58-b94c-11eb85a4aa4d] HTTP request started: POST /audio/wakeword/upload
+2026-06-09 08:53:21,697 | WARNING | app | [d0bcac1a-979b-4c58-b94c-11eb85a4aa4d] HTTP exception: Not Found
+2026-06-09 08:53:21,698 | INFO | app | [d0bcac1a-979b-4c58-b94c-11eb85a4aa4d] HTTP request finished: POST /audio/wakeword/upload 404
+2026-06-09 08:53:30,429 | INFO | app | [9c5cb37a-854c-4be6-9f8c-3434cda49578] HTTP request started: POST /audio/wakeword/upload
+2026-06-09 08:53:30,430 | WARNING | app | [9c5cb37a-854c-4be6-9f8c-3434cda49578] HTTP exception: Not Found
+2026-06-09 08:53:30,431 | INFO | app | [9c5cb37a-854c-4be6-9f8c-3434cda49578] HTTP request finished: POST /audio/wakeword/upload 404
+2026-06-09 08:53:40,773 | INFO | app | [6af3aeb9-261c-403a-81f4-55b7cc5b3a0d] HTTP request started: POST /audio/wakeword/upload
+2026-06-09 08:53:40,773 | WARNING | app | [6af3aeb9-261c-403a-81f4-55b7cc5b3a0d] HTTP exception: Not Found
+2026-06-09 08:53:40,774 | INFO | app | [6af3aeb9-261c-403a-81f4-55b7cc5b3a0d] HTTP request finished: POST /audio/wakeword/upload 404
+2026-06-09 08:54:28,670 | INFO | app | [17284b45-4d30-489e-8dc4-779a3d78c8dc] HTTP request started: GET /health
+2026-06-09 08:54:28,671 | INFO | app | [17284b45-4d30-489e-8dc4-779a3d78c8dc] HTTP request finished: GET /health 200
+2026-06-09 08:54:35,771 | INFO | app | [a6fe01e1-b0fe-4633-85e9-ccd0133d3bc1] HTTP request started: POST /audio/wakeword/upload
+2026-06-09 08:54:35,772 | WARNING | app | [a6fe01e1-b0fe-4633-85e9-ccd0133d3bc1] HTTP exception: Not Found
+2026-06-09 08:54:35,773 | INFO | app | [a6fe01e1-b0fe-4633-85e9-ccd0133d3bc1] HTTP request finished: POST /audio/wakeword/upload 404
+2026-06-09 08:54:44,490 | INFO | app | [e0f9ec13-c5cc-4d5d-8108-f96e6c210372] HTTP request started: POST /audio/wakeword/upload
+2026-06-09 08:54:44,492 | WARNING | app | [e0f9ec13-c5cc-4d5d-8108-f96e6c210372] HTTP exception: Not Found
+2026-06-09 08:54:44,493 | INFO | app | [e0f9ec13-c5cc-4d5d-8108-f96e6c210372] HTTP request finished: POST /audio/wakeword/upload 404
+2026-06-09 09:01:05,096 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-09 09:01:07,798 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-09 09:01:07,799 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
+2026-06-09 09:01:07,800 | INFO | app | [----------] EventBus iniciado
+2026-06-09 09:01:07,811 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-09 09:02:28,613 | INFO | app | [----------] Modelo precalentado
+2026-06-09 09:02:28,614 | INFO | app | [----------] Alfonso Fase 3 listo
+2026-06-09 09:02:52,845 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-09 09:02:56,000 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-09 09:02:56,001 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
+2026-06-09 09:02:56,001 | INFO | app | [----------] EventBus iniciado
+2026-06-09 09:02:56,014 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-09 09:03:35,756 | INFO | app | [----------] Modelo precalentado
+2026-06-09 09:03:35,756 | INFO | app | [----------] Alfonso Fase 3 listo
+2026-06-09 09:04:04,357 | INFO | app | [5535900b-8006-4dbc-a7c8-356dae046b33] HTTP request started: GET /health
+2026-06-09 09:04:04,359 | INFO | app | [5535900b-8006-4dbc-a7c8-356dae046b33] HTTP request finished: GET /health 200
+2026-06-09 09:04:10,091 | INFO | app | [63c7999b-9e6a-4deb-8415-5e883e977756] HTTP request started: POST /audio/wakeword/upload
+2026-06-09 09:04:10,095 | INFO | app | [----------] Solicitud POST /audio/wakeword/upload recibida para archivo: chunk.wav
+2026-06-09 09:04:46,408 | INFO | app | [----------] Detección de wakeword para chunk.wav: {'status': 'ok', 'wake_word_detected': False, 'text': 'buenos días.', 'keyword': 'alfonso'}
+2026-06-09 09:04:46,413 | INFO | app | [63c7999b-9e6a-4deb-8415-5e883e977756] HTTP request finished: POST /audio/wakeword/upload 200
+2026-06-09 09:06:29,007 | INFO | app | [dfef737a-db73-4c37-be78-03aa9d1028fe] HTTP request started: POST /audio/wakeword/upload
+2026-06-09 09:06:29,023 | INFO | app | [----------] Solicitud POST /audio/wakeword/upload recibida para archivo: chunk.wav
+2026-06-09 09:06:43,399 | INFO | app | [----------] Detección de wakeword para chunk.wav: {'status': 'ok', 'wake_word_detected': False, 'text': 'no hago ni a seres tío', 'keyword': 'alfonso'}
+2026-06-09 09:06:43,400 | INFO | app | [dfef737a-db73-4c37-be78-03aa9d1028fe] HTTP request finished: POST /audio/wakeword/upload 200
+2026-06-09 09:07:22,004 | INFO | app | [49859d09-163c-430d-bf18-07a9b7685bd5] HTTP request started: POST /audio/wakeword/upload
+2026-06-09 09:07:22,007 | INFO | app | [----------] Solicitud POST /audio/wakeword/upload recibida para archivo: chunk.wav
+2026-06-09 09:07:32,722 | INFO | app | [----------] Detección de wakeword para chunk.wav: {'status': 'ok', 'wake_word_detected': True, 'text': 'alfonso, buenos días.', 'keyword': 'alfonso'}
+2026-06-09 09:07:32,723 | INFO | app | [49859d09-163c-430d-bf18-07a9b7685bd5] HTTP request finished: POST /audio/wakeword/upload 200
+2026-06-09 09:08:20,781 | INFO | app | [baedc718-631e-4dc2-b5cd-61be80212fcc] HTTP request started: POST /audio/wakeword/upload
+2026-06-09 09:08:20,783 | INFO | app | [----------] Solicitud POST /audio/wakeword/upload recibida para archivo: chunk.wav
+2026-06-09 09:08:29,848 | INFO | app | [----------] Detección de wakeword para chunk.wav: {'status': 'ok', 'wake_word_detected': True, 'text': 'alfonso', 'keyword': 'alfonso'}
+2026-06-09 09:08:29,848 | INFO | app | [baedc718-631e-4dc2-b5cd-61be80212fcc] HTTP request finished: POST /audio/wakeword/upload 200
+2026-06-09 09:17:04,284 | INFO | app | [b8d7f421-d399-46d7-8758-a0516c4f935e] HTTP request started: POST /audio/wakeword/upload
+2026-06-09 09:17:04,489 | INFO | app | [----------] Solicitud POST /audio/wakeword/upload recibida para archivo: chunk.wav
+2026-06-09 09:18:03,331 | INFO | app | [----------] Detección de wakeword para chunk.wav: {'status': 'ok', 'wake_word_detected': False, 'text': '¡suscríbete!', 'keyword': 'alfonso'}
+2026-06-09 09:18:03,342 | INFO | app | [b8d7f421-d399-46d7-8758-a0516c4f935e] HTTP request finished: POST /audio/wakeword/upload 200
+2026-06-09 09:18:09,086 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-09 09:18:13,423 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-09 09:18:13,424 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
+2026-06-09 09:18:13,425 | INFO | app | [----------] EventBus iniciado
+2026-06-09 09:18:13,440 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-09 09:19:14,844 | INFO | app | [----------] Modelo precalentado
+2026-06-09 09:19:14,844 | INFO | app | [----------] Alfonso Fase 3 listo
+2026-06-09 09:20:20,326 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-09 09:20:22,762 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-09 09:20:22,762 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
+2026-06-09 09:20:22,763 | INFO | app | [----------] EventBus iniciado
+2026-06-09 09:20:22,782 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-09 09:21:01,341 | INFO | app | [----------] Modelo precalentado
+2026-06-09 09:21:01,341 | INFO | app | [----------] Alfonso Fase 3 listo
+2026-06-09 09:21:54,211 | INFO | app | [9d5693f6-dfed-4432-b3d9-910e745aac73] HTTP request started: POST /audio/wakeword/upload
+2026-06-09 09:21:54,218 | INFO | app | [----------] Solicitud POST /audio/wakeword/upload recibida para archivo: chunk.wav
+2026-06-09 09:22:38,877 | INFO | app | [----------] Detección de wakeword para chunk.wav: {'status': 'ok', 'wake_word_detected': True, 'text': 'alfonso, buenos días.', 'keyword': 'alfonso'}
+2026-06-09 09:22:38,879 | INFO | app | [9d5693f6-dfed-4432-b3d9-910e745aac73] HTTP request finished: POST /audio/wakeword/upload 200
+2026-06-09 09:22:54,594 | INFO | app | [3b528b84-87ed-4452-9297-908b660c20b7] HTTP request started: POST /audio/wakeword/upload
+2026-06-09 09:22:54,598 | INFO | app | [----------] Solicitud POST /audio/wakeword/upload recibida para archivo: chunk.wav
+2026-06-09 09:23:07,674 | INFO | app | [----------] Detección de wakeword para chunk.wav: {'status': 'ok', 'wake_word_detected': False, 'text': 'abre google punto es', 'keyword': 'alfonso'}
+2026-06-09 09:23:07,676 | INFO | app | [3b528b84-87ed-4452-9297-908b660c20b7] HTTP request finished: POST /audio/wakeword/upload 200
+2026-06-09 09:26:18,024 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-09 09:26:21,861 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-09 09:26:21,861 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
+2026-06-09 09:26:21,862 | INFO | app | [----------] EventBus iniciado
+2026-06-09 09:26:21,871 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-09 09:27:10,384 | INFO | app | [----------] Modelo precalentado
+2026-06-09 09:27:10,384 | INFO | app | [----------] Alfonso Fase 3 listo
+2026-06-09 09:27:28,988 | INFO | app | [41ea85ec-6d13-49e0-92f2-09fab96a2f91] HTTP request started: POST /audio/wakeword/upload
+2026-06-09 09:27:28,994 | INFO | app | [----------] Solicitud POST /audio/wakeword/upload recibida para archivo: chunk.wav
+2026-06-09 09:28:11,872 | INFO | app | [----------] Orden detectada tras wakeword: 'buenos días.'. Ejecutando...
+2026-06-09 09:28:48,184 | INFO | app | [41ea85ec-6d13-49e0-92f2-09fab96a2f91] HTTP request finished: POST /audio/wakeword/upload 200
+2026-06-09 09:29:07,355 | INFO | app | [3ecd4654-39ec-474e-8019-ade791f73b19] HTTP request started: POST /audio/wakeword/upload
+2026-06-09 09:29:07,360 | INFO | app | [----------] Solicitud POST /audio/wakeword/upload recibida para archivo: chunk.wav
+2026-06-09 09:29:19,704 | INFO | app | [----------] Orden detectada tras wakeword: 'abre google.'. Ejecutando...
+2026-06-09 09:30:00,577 | INFO | app | [3ecd4654-39ec-474e-8019-ade791f73b19] HTTP request finished: POST /audio/wakeword/upload 200
+2026-06-09 09:30:27,487 | INFO | app | [82da54c6-033f-4002-802e-63cb498dc69a] HTTP request started: POST /audio/wakeword/upload
+2026-06-09 09:30:27,488 | INFO | app | [----------] Solicitud POST /audio/wakeword/upload recibida para archivo: chunk.wav
+2026-06-09 09:31:10,393 | INFO | app | [82da54c6-033f-4002-802e-63cb498dc69a] HTTP request finished: POST /audio/wakeword/upload 200
+2026-06-09 09:34:08,902 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-09 09:34:13,439 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-09 09:34:13,441 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
+2026-06-09 09:34:13,441 | INFO | app | [----------] EventBus iniciado
+2026-06-09 09:34:13,449 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-09 09:35:09,087 | INFO | app | [----------] Modelo precalentado
+2026-06-09 09:35:09,087 | INFO | app | [----------] Alfonso Fase 3 listo
+2026-06-09 09:36:42,556 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-09 09:36:45,859 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-09 09:36:45,860 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
+2026-06-09 09:36:45,860 | INFO | app | [----------] EventBus iniciado
+2026-06-09 09:36:45,869 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-09 09:37:23,281 | INFO | app | [----------] Modelo precalentado
+2026-06-09 09:37:23,281 | INFO | app | [----------] Alfonso Fase 3 listo
+2026-06-09 09:37:23,285 | INFO | app | [38a57fb8-8092-491b-b99b-b86dfd3c24b5] HTTP request started: POST /audio/wakeword/upload
+2026-06-09 09:37:23,294 | INFO | app | [----------] Solicitud POST /audio/wakeword/upload recibida para archivo: chunk.wav
+2026-06-09 09:38:27,553 | INFO | app | [----------] Orden detectada tras wakeword: 'buenos días.'. Ejecutando...
+2026-06-09 09:38:46,101 | INFO | app | [0ae4acf3-1e48-478b-8e5f-cdf8998cc091] HTTP request started: POST /audio/wakeword/upload
+2026-06-09 09:38:46,123 | INFO | app | [----------] Solicitud POST /audio/wakeword/upload recibida para archivo: chunk.wav
+2026-06-09 09:39:16,836 | INFO | app | [----------] Orden detectada tras wakeword: 'buenos días.'. Ejecutando...
+2026-06-09 09:39:23,893 | INFO | app | [38a57fb8-8092-491b-b99b-b86dfd3c24b5] HTTP request finished: POST /audio/wakeword/upload 200
+2026-06-09 09:40:13,014 | INFO | app | [0ae4acf3-1e48-478b-8e5f-cdf8998cc091] HTTP request finished: POST /audio/wakeword/upload 200
+2026-06-09 09:40:13,256 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-09 09:40:17,393 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-09 09:40:17,394 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
+2026-06-09 09:40:17,394 | INFO | app | [----------] EventBus iniciado
+2026-06-09 09:40:17,409 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-09 09:40:54,835 | INFO | app | [----------] Modelo precalentado
+2026-06-09 09:40:54,835 | INFO | app | [----------] Alfonso Fase 3 listo
+2026-06-09 09:40:54,940 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-09 09:40:55,887 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-09 09:40:55,887 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
+2026-06-09 09:40:55,887 | INFO | app | [----------] EventBus iniciado
+2026-06-09 09:40:55,900 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-09 09:40:56,804 | INFO | app | [----------] Modelo precalentado
+2026-06-09 09:40:56,804 | INFO | app | [----------] Alfonso Fase 3 listo
+2026-06-09 09:41:33,891 | INFO | app | [ab438d5a-c219-49eb-bf0c-5af54fb898aa] HTTP request started: POST /audio/wakeword/upload
+2026-06-09 09:41:33,914 | INFO | app | [----------] Solicitud POST /audio/wakeword/upload recibida para archivo: chunk.wav
+2026-06-09 09:42:47,606 | INFO | app | [----------] Orden detectada tras wakeword: 'buenos días.'. Ejecutando...
+2026-06-09 09:43:08,112 | INFO | app | [65d7874b-69ce-4940-ac76-c77dece21bc7] HTTP request started: POST /audio/wakeword/upload
+2026-06-09 09:43:08,137 | INFO | app | [----------] Solicitud POST /audio/wakeword/upload recibida para archivo: chunk.wav
+2026-06-09 09:43:51,566 | INFO | app | [----------] Orden detectada tras wakeword: 'buenos días.'. Ejecutando...
+2026-06-09 09:43:54,014 | INFO | app | [ab438d5a-c219-49eb-bf0c-5af54fb898aa] HTTP request finished: POST /audio/wakeword/upload 200
+2026-06-09 09:44:29,405 | INFO | app | [65d7874b-69ce-4940-ac76-c77dece21bc7] HTTP request finished: POST /audio/wakeword/upload 200
+2026-06-09 09:45:00,115 | INFO | app | [14388a5c-96a7-4a24-858f-379adcbcd79e] HTTP request started: POST /audio/wakeword/upload
+2026-06-09 09:45:00,139 | INFO | app | [----------] Solicitud POST /audio/wakeword/upload recibida para archivo: chunk.wav
+2026-06-09 09:45:20,440 | INFO | app | [14388a5c-96a7-4a24-858f-379adcbcd79e] HTTP request finished: POST /audio/wakeword/upload 200

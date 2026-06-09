@@ -36,10 +36,10 @@ User: qué hora es
 Output: {"tool":"get_current_datetime","args":{}}
 
 User: abre el explorador de archivos
-Output: {"tool":"open_application","args":{"command":"nautilus"}}
+Output: {"tool":"open_application","args":{"command":"exlorer"}}
 
 User: cierra el explorador de archivos
-Output: {"tool":"close_application","args":{"command":"nautilus"}}
+Output: {"tool":"close_application","args":{"command":"explorer"}}
 
 User: busca en internet noticias de hoy
 Output: {"tool":"browser_search","args":{"query":"noticias de hoy"}}
@@ -48,7 +48,7 @@ RULES:
 - añade/agrega → append_file (NEVER create_file)
 - elimina/borra → delete_file
 - hora/día/fecha → get_current_datetime
-- explorador/nautilus → open_application command:nautilus
+- explorador/explorer → open_application command:explorer
 - cierra/salir → close_application
 - navega/abre web/URL → browser_navigate
 - busca internet/google → browser_search

@@ -1,4 +1,5 @@
 fastapi
+
 uvicorn
 httpx
 playwright
@@ -15,3 +16,5 @@ openai-whisper
 sounddevice
 tqdm
 python-multipart
+
+# playwright install firefox
