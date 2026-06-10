@@ -255,3 +255,61 @@ Este sitio parece ser una búsqueda de tiempo en Bilbao, pero no puedo acceder a
 2026-06-09 17:17:43,064 | DEBUG | llm | [0cc30b5e-4662-4514-b48f-fa9978645150] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-09T15:17:43.061892548Z', 'message': {'role': 'assistant', 'content': 'en este momento no tengo la capacidad de proporcionar información actualizada sobre el clima o temperatura en Bilbao. Te recomiendo verificar las últimas previsión meteorológicas en una fuente confiable como la web del Servicio Meteorológico Nacional (SMN) o un servicio móvil especializado para obtener ese tipo de datos.'}, 'done': True, 'done_reason': 'stop', 'total_duration': 37280050556, 'load_duration': 177678650, 'prompt_eval_count': 688, 'prompt_eval_duration': 30314701969, 'eval_count': 68, 'eval_duration': 6539317475}
 2026-06-09 17:17:43,065 | DEBUG | llm | [0cc30b5e-4662-4514-b48f-fa9978645150] OLLAMA CONTENT: en este momento no tengo la capacidad de proporcionar información actualizada sobre el clima o temperatura en Bilbao. Te recomiendo verificar las últimas previsión meteorológicas en una fuente confiable como la web del Servicio Meteorológico Nacional (SMN) o un servicio móvil especializado para obtener ese tipo de datos.
 2026-06-09 17:17:43,065 | INFO | llm | [0cc30b5e-4662-4514-b48f-fa9978645150] Respuesta LLM recibida correctamente
+2026-06-10 08:56:18,813 | INFO | llm | [----------] LLM INPUT: ping
+2026-06-10 08:56:18,814 | INFO | llm | [----------] LLM MODEL: qwen2.5:1.5b  MODE: chat  num_ctx=8192  reasoning=True
+2026-06-10 08:57:06,738 | DEBUG | llm | [----------] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-10T06:57:06.624753656Z', 'message': {'role': 'assistant', 'content': 'pong! ¿Cómo puedo ayudarte hoy?'}, 'done': True, 'done_reason': 'stop', 'total_duration': 47797214052, 'load_duration': 5183994090, 'prompt_eval_count': 678, 'prompt_eval_duration': 40989573896, 'eval_count': 10, 'eval_duration': 1226877926}
+2026-06-10 08:57:06,748 | DEBUG | llm | [----------] OLLAMA CONTENT: pong! ¿Cómo puedo ayudarte hoy?
+2026-06-10 08:57:06,748 | INFO | llm | [----------] Respuesta LLM recibida correctamente
+2026-06-10 08:57:44,447 | INFO | llm | [22b733fc-6b41-4f16-a0d4-74645dc43ada] LLM INPUT: cierra firefox
+2026-06-10 08:57:44,447 | INFO | llm | [22b733fc-6b41-4f16-a0d4-74645dc43ada] LLM MODEL: qwen2.5:1.5b  MODE: tool  num_ctx=4096  reasoning=True
+2026-06-10 08:58:33,394 | DEBUG | llm | [22b733fc-6b41-4f16-a0d4-74645dc43ada] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-10T06:58:33.3753666Z', 'message': {'role': 'assistant', 'content': '{"tool":"close_application","args":{"command":"firefox"}}'}, 'done': True, 'done_reason': 'stop', 'total_duration': 48906485621, 'load_duration': 14876513379, 'prompt_eval_count': 571, 'prompt_eval_duration': 32658817566, 'eval_count': 13, 'eval_duration': 1218472044}
+2026-06-10 08:58:33,395 | DEBUG | llm | [22b733fc-6b41-4f16-a0d4-74645dc43ada] OLLAMA CONTENT: {"tool":"close_application","args":{"command":"firefox"}}
+2026-06-10 08:58:33,396 | INFO | llm | [22b733fc-6b41-4f16-a0d4-74645dc43ada] Respuesta LLM recibida correctamente
+2026-06-10 08:58:56,998 | INFO | llm | [fc2324d8-c0fb-43dc-9c12-adee989d9a82] LLM INPUT: que tiempo hace en bilbao
+2026-06-10 08:58:56,998 | INFO | llm | [fc2324d8-c0fb-43dc-9c12-adee989d9a82] LLM MODEL: qwen2.5:1.5b  MODE: chat  num_ctx=8192  reasoning=True
+2026-06-10 08:58:56,999 | DEBUG | llm | [fc2324d8-c0fb-43dc-9c12-adee989d9a82] LLM MEMORY CONTEXT: user: que tiempo hace en bilbao
+2026-06-10 08:59:49,217 | DEBUG | llm | [fc2324d8-c0fb-43dc-9c12-adee989d9a82] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-10T06:59:49.206923678Z', 'message': {'role': 'assistant', 'content': 'El clima actualmente en Bilbao (España) es de:\n\n- Temperatura promedio diaria: 15°C\n- Humedad relativa: alrededor del 70%\n- Viento: hacia el este, con velocidades entre 2 y 3 km/h\n\nEn general, se encuentra en una clima templado con un poco de humedad. No hace mucho calor ni frío para Bilbao.\n\n¿Necesitas más información sobre alguna otra cosa?'}, 'done': True, 'done_reason': 'stop', 'total_duration': 52166063324, 'load_duration': 3603306719, 'prompt_eval_count': 692, 'prompt_eval_duration': 38348385646, 'eval_count': 104, 'eval_duration': 9855499838}
+2026-06-10 08:59:49,217 | DEBUG | llm | [fc2324d8-c0fb-43dc-9c12-adee989d9a82] OLLAMA CONTENT: El clima actualmente en Bilbao (España) es de:
+
+- Temperatura promedio diaria: 15°C
+- Humedad relativa: alrededor del 70%
+- Viento: hacia el este, con velocidades entre 2 y 3 km/h
+
+En general, se encuentra en una clima templado con un poco de humedad. No hace mucho calor ni frío para Bilbao.
+
+¿Necesitas más información sobre alguna otra cosa?
+2026-06-10 08:59:49,217 | INFO | llm | [fc2324d8-c0fb-43dc-9c12-adee989d9a82] Respuesta LLM recibida correctamente
+2026-06-10 09:01:01,618 | INFO | llm | [ee101770-8d90-4bdd-8f51-b32d360caac9] LLM INPUT: como has conseguido esta informacion
+2026-06-10 09:01:01,618 | INFO | llm | [ee101770-8d90-4bdd-8f51-b32d360caac9] LLM MODEL: qwen2.5:1.5b  MODE: chat  num_ctx=8192  reasoning=True
+2026-06-10 09:01:01,619 | DEBUG | llm | [ee101770-8d90-4bdd-8f51-b32d360caac9] LLM MEMORY CONTEXT: user: como has conseguido esta informacion
+2026-06-10 09:01:51,405 | DEBUG | llm | [ee101770-8d90-4bdd-8f51-b32d360caac9] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-10T07:01:51.404059071Z', 'message': {'role': 'assistant', 'content': 'Como asistente de inteligencia artificial, he utilizado múltiples fuentes para generar la información. Estoy actualmente basado en un modelo entrenado por Luis Domingo con base en el aprendizaje automático y arquitecturas de IA avanzadas.\n\nLuis Domingo ha creado este proyecto que combina diferentes tecnologías, como la inteligencia artificial, la machine learning, y el procesamiento del lenguaje natural para crear un asistente personalizado. He tomado datos de internet, bases de datos, y aplicaciones en línea para formar una base sólida de información relevante.\n\nPor lo tanto, muchas de las respuestas que estoy proporcionando son generadas utilizando inteligencia artificial y aprendizaje automático. Te agradezco por tu interés en la creación de esta herramienta.'}, 'done': True, 'done_reason': 'stop', 'total_duration': 49781242732, 'load_duration': 142006709, 'prompt_eval_count': 694, 'prompt_eval_duration': 32479646318, 'eval_count': 173, 'eval_duration': 16574098599}
+2026-06-10 09:01:51,406 | DEBUG | llm | [ee101770-8d90-4bdd-8f51-b32d360caac9] OLLAMA CONTENT: Como asistente de inteligencia artificial, he utilizado múltiples fuentes para generar la información. Estoy actualmente basado en un modelo entrenado por Luis Domingo con base en el aprendizaje automático y arquitecturas de IA avanzadas.
+
+Luis Domingo ha creado este proyecto que combina diferentes tecnologías, como la inteligencia artificial, la machine learning, y el procesamiento del lenguaje natural para crear un asistente personalizado. He tomado datos de internet, bases de datos, y aplicaciones en línea para formar una base sólida de información relevante.
+
+Por lo tanto, muchas de las respuestas que estoy proporcionando son generadas utilizando inteligencia artificial y aprendizaje automático. Te agradezco por tu interés en la creación de esta herramienta.
+2026-06-10 09:01:51,406 | INFO | llm | [ee101770-8d90-4bdd-8f51-b32d360caac9] Respuesta LLM recibida correctamente
+2026-06-10 09:02:29,746 | INFO | llm | [04822356-0eb0-490c-811a-bf10037375f9] LLM INPUT: la has buscado en internet
+2026-06-10 09:02:29,746 | INFO | llm | [04822356-0eb0-490c-811a-bf10037375f9] LLM MODEL: qwen2.5:1.5b  MODE: chat  num_ctx=8192  reasoning=True
+2026-06-10 09:02:29,746 | DEBUG | llm | [04822356-0eb0-490c-811a-bf10037375f9] LLM MEMORY CONTEXT: user: la has buscado en internet
+2026-06-10 09:03:03,000 | DEBUG | llm | [04822356-0eb0-490c-811a-bf10037375f9] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-10T07:03:02.998627105Z', 'message': {'role': 'assistant', 'content': 'He buscado información sobre la aplicación de búsqueda. ¿Te gustaría saber cuáles son las mejores opciones?'}, 'done': True, 'done_reason': 'stop', 'total_duration': 33248306102, 'load_duration': 135789973, 'prompt_eval_count': 692, 'prompt_eval_duration': 30664982455, 'eval_count': 24, 'eval_duration': 2358068684}
+2026-06-10 09:03:03,001 | DEBUG | llm | [04822356-0eb0-490c-811a-bf10037375f9] OLLAMA CONTENT: He buscado información sobre la aplicación de búsqueda. ¿Te gustaría saber cuáles son las mejores opciones?
+2026-06-10 09:03:03,001 | INFO | llm | [04822356-0eb0-490c-811a-bf10037375f9] Respuesta LLM recibida correctamente
+2026-06-10 09:04:18,970 | INFO | llm | [df1a428b-fbcf-4002-8f63-09639dee100c] LLM INPUT: como te llamas
+2026-06-10 09:04:18,970 | INFO | llm | [df1a428b-fbcf-4002-8f63-09639dee100c] LLM MODEL: qwen2.5:1.5b  MODE: chat  num_ctx=8192  reasoning=True
+2026-06-10 09:04:18,971 | DEBUG | llm | [df1a428b-fbcf-4002-8f63-09639dee100c] LLM MEMORY CONTEXT: user: como te llamas
+2026-06-10 09:04:55,112 | DEBUG | llm | [df1a428b-fbcf-4002-8f63-09639dee100c] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-10T07:04:55.110606974Z', 'message': {'role': 'assistant', 'content': 'Como Alfonso, asistente de IA desarrollado por Luis Domingo. No tengo un nombre personal, pero soy muy útil para ayudarte en tu trabajo, ¿verdad?'}, 'done': True, 'done_reason': 'stop', 'total_duration': 36134976731, 'load_duration': 122825980, 'prompt_eval_count': 688, 'prompt_eval_duration': 31946512217, 'eval_count': 39, 'eval_duration': 3919764989}
+2026-06-10 09:04:55,112 | DEBUG | llm | [df1a428b-fbcf-4002-8f63-09639dee100c] OLLAMA CONTENT: Como Alfonso, asistente de IA desarrollado por Luis Domingo. No tengo un nombre personal, pero soy muy útil para ayudarte en tu trabajo, ¿verdad?
+2026-06-10 09:04:55,112 | INFO | llm | [df1a428b-fbcf-4002-8f63-09639dee100c] Respuesta LLM recibida correctamente
+2026-06-10 09:05:59,493 | INFO | llm | [34943dc3-8ed2-43df-8775-521aaa06ed53] LLM INPUT: mueve el raton hacia donde quieras
+2026-06-10 09:05:59,493 | INFO | llm | [34943dc3-8ed2-43df-8775-521aaa06ed53] LLM MODEL: qwen2.5:1.5b  MODE: chat  num_ctx=8192  reasoning=True
+2026-06-10 09:05:59,494 | DEBUG | llm | [34943dc3-8ed2-43df-8775-521aaa06ed53] LLM MEMORY CONTEXT: user: mueve el raton hacia donde quieras
+2026-06-10 09:06:32,576 | DEBUG | llm | [34943dc3-8ed2-43df-8775-521aaa06ed53] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-10T07:06:32.57531564Z', 'message': {'role': 'assistant', 'content': '¡Claro! Ve a la dirección que desees y mira lo interesante.'}, 'done': True, 'done_reason': 'stop', 'total_duration': 33078251587, 'load_duration': 141026307, 'prompt_eval_count': 700, 'prompt_eval_duration': 31131129780, 'eval_count': 19, 'eval_duration': 1730962950}
+2026-06-10 09:06:32,577 | DEBUG | llm | [34943dc3-8ed2-43df-8775-521aaa06ed53] OLLAMA CONTENT: ¡Claro! Ve a la dirección que desees y mira lo interesante.
+2026-06-10 09:06:32,577 | INFO | llm | [34943dc3-8ed2-43df-8775-521aaa06ed53] Respuesta LLM recibida correctamente
+2026-06-10 09:26:18,618 | INFO | llm | [----------] LLM INPUT: bueno, seguidas alfonso
+2026-06-10 09:26:18,620 | INFO | llm | [----------] LLM MODEL: qwen2.5:1.5b  MODE: chat  num_ctx=8192  reasoning=True
+2026-06-10 09:26:18,620 | DEBUG | llm | [----------] LLM MEMORY CONTEXT: user: bueno, seguidas alfonso
+2026-06-10 09:26:57,845 | DEBUG | llm | [----------] OLLAMA RAW RESPONSE: {'model': 'qwen2.5:1.5b', 'created_at': '2026-06-10T07:26:57.833651945Z', 'message': {'role': 'assistant', 'content': 'Perfecto, vamos a continuar con nuestro asunto. ¿Cómo puedo ayudarte hoy?'}, 'done': True, 'done_reason': 'stop', 'total_duration': 39115590872, 'load_duration': 436908451, 'prompt_eval_count': 698, 'prompt_eval_duration': 36437380202, 'eval_count': 19, 'eval_duration': 1816507187}
+2026-06-10 09:26:57,846 | DEBUG | llm | [----------] OLLAMA CONTENT: Perfecto, vamos a continuar con nuestro asunto. ¿Cómo puedo ayudarte hoy?
+2026-06-10 09:26:57,846 | INFO | llm | [----------] Respuesta LLM recibida correctamente

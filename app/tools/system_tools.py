@@ -1,12 +1,16 @@
 """
-system_tools.py — Fase 3 (fixed v2)
+system_tools.py — Fase 3 (fixed v3)
 
-Fixes:
-- get_system_info(): status: ok garantizado
-- close_application(): registrada en TOOLS (faltaba en arranques anteriores)
-- close_application(): usa proc.wait(timeout=3) para no colgar el EventBus
-- open_application(): sin cambios funcionales
-- get_current_datetime(): sin cambios
+Fixes respecto a versión anterior:
+1. open_application(): acepta nombres de app cortos sin extensión
+   ("firefox" funciona sin path completo en WSL).
+2. _normalize_command(): normaliza nombres comunes como "google",
+   "chrome" → "google-chrome" o "chromium-browser".
+3. WSL display: intenta detectar DISPLAY; si no está disponible,
+   usa cmd.exe /C start para apps Windows desde WSL.
+4. close_application(): ahora maneja también nombres como "chromium",
+   "google-chrome", "chromium-browser".
+5. get_system_info(): garantiza status:ok siempre.
 """
 
 import os
@@ -18,18 +22,35 @@ import psutil
 from datetime import datetime
 from pathlib import Path
 from typing import Sequence
+
 from app.utils.logger import tool_logger, error_logger
 
+# ---------------------------------------------------------------------------
+# Alias y detección de entorno
+# ---------------------------------------------------------------------------
+
+_IS_WSL = "microsoft" in platform.uname().release.lower() or \
+          os.path.exists("/proc/sys/fs/binfmt_misc/WSLInterop")
 
 _APP_ALIASES: dict[str, list[str]] = {
     "internet":               ["xdg-open", "https://www.google.com"],
-    "explorador":             [],
+    "google":                 ["xdg-open", "https://www.google.com"],
+    "explorador":             [],   # se resuelve con _find_file_manager
     "explorador de archivos": [],
     "gestor de archivos":     [],
     "file manager":           [],
+    # Alias para nombres frecuentes en voz
+    "chrome":                 ["google-chrome", "chromium-browser", "chromium"],
+    "chromium":               ["chromium-browser", "chromium", "google-chrome"],
+    "vscode":                 ["code"],
+    "visual studio code":     ["code"],
+    "terminal":               ["x-terminal-emulator", "gnome-terminal", "konsole", "xterm"],
+    "notepad":                ["gedit", "kate", "mousepad", "xed"],
 }
 
 _FILE_MANAGERS = ["nautilus", "nemo", "thunar", "dolphin", "caja", "pcmanfm", "xdg-open"]
+
+_DANGEROUS = {"rm", "del", "shutdown", "reboot", "poweroff", "format", "mkfs", "dd", ":()"}
 
 
 def _find_file_manager() -> list[str] | None:
@@ -42,30 +63,92 @@ def _find_file_manager() -> list[str] | None:
     return None
 
 
+def _has_display() -> bool:
+    """Comprueba si hay un servidor X disponible."""
+    return bool(os.environ.get("DISPLAY") or os.environ.get("WAYLAND_DISPLAY"))
+
+
+def _wsl_open(app_name: str) -> list[str] | None:
+    """
+    En WSL, intenta abrir una app Windows mediante PowerShell.
+    Útil para firefox.exe, explorer.exe, etc.
+    """
+    if not _IS_WSL:
+        return None
+    # Intentar con powershell.exe Start-Process
+    return ["powershell.exe", "-Command", f"Start-Process '{app_name}'"]
+
+
+def _resolve_app(name: str) -> list[str] | None:
+    """
+    Resuelve el nombre de una aplicación a una lista de argumentos ejecutables.
+    Devuelve None si no se puede resolver.
+    """
+    lower = name.strip().lower()
+
+    # 1. Alias explícitos
+    if lower in _APP_ALIASES:
+        candidates = _APP_ALIASES[lower]
+        if not candidates:
+            return _find_file_manager()
+        # Buscar el primero disponible
+        for candidate in candidates:
+            if shutil.which(candidate):
+                return [candidate]
+        return None
+
+    # 2. Explorador de archivos por keywords
+    if any(k in lower for k in ("explorad", "file manager", "gestor de archivo")):
+        return _find_file_manager()
+
+    # 3. Binario disponible directamente
+    if shutil.which(name):
+        return [name]
+
+    # 4. En WSL: intentar via PowerShell
+    if _IS_WSL:
+        # Nombres comunes que pueden existir en Windows
+        windows_apps = {
+            "firefox": "firefox.exe",
+            "chrome": "chrome.exe",
+            "notepad": "notepad.exe",
+            "explorer": "explorer.exe",
+        }
+        win_app = windows_apps.get(lower)
+        if win_app:
+            return _wsl_open(win_app)
+
+    return None
+
+
 def _normalize_command(command: str | Sequence[str]) -> list[str]:
-    if isinstance(command, str):
-        lower = command.strip().lower()
-        if lower in _APP_ALIASES:
-            if not _APP_ALIASES[lower]:
-                fm = _find_file_manager()
-                return fm if fm else []
-            return _APP_ALIASES[lower]
-        if "explorad" in lower or "file manager" in lower or "gestor de archivo" in lower:
-            fm = _find_file_manager()
-            return fm if fm else []
+    if isinstance(command, (list, tuple)):
+        return list(command)
+
+    command = command.strip()
+    resolved = _resolve_app(command)
+    if resolved:
+        return resolved
+
+    # Parsear como línea de comando normal
+    try:
         if os.name == "nt":
             return shlex.split(command, posix=False)
         return shlex.split(command)
-    return list(command)
+    except ValueError:
+        return [command]
 
 
 def _is_safe(command_parts: list[str]) -> bool:
-    dangerous = {"rm", "del", "shutdown", "reboot", "poweroff", "format", "mkfs", "dd", ":()"}
     for token in command_parts:
-        if token.lower() in dangerous:
+        if token.lower() in _DANGEROUS:
             return False
     return True
 
+
+# ---------------------------------------------------------------------------
+# Tools
+# ---------------------------------------------------------------------------
 
 async def get_system_info() -> dict:
     tool_logger.info("Obteniendo información del sistema")
@@ -73,8 +156,10 @@ async def get_system_info() -> dict:
         return {
             "status": "ok",
             "system": platform.system(),
+            "release": platform.release(),
             "version": platform.version(),
-            "cpu": os.cpu_count(),
+            "is_wsl": _IS_WSL,
+            "cpu_count": os.cpu_count(),
             "ram_total_gb": round(psutil.virtual_memory().total / 1024**3, 2),
             "ram_available_gb": round(psutil.virtual_memory().available / 1024**3, 2),
             "ram_used_percent": psutil.virtual_memory().percent,
@@ -113,9 +198,10 @@ async def get_current_datetime() -> dict:
 async def open_application(command: str | Sequence[str], args: Sequence[str] | None = None) -> dict:
     command_parts = _normalize_command(command)
     if args:
-        command_parts.extend(list(args))
+        command_parts = list(command_parts) + list(args)
 
-    tool_logger.info("Intentando abrir aplicación: %s", command_parts)
+    tool_logger.info("Intentando abrir aplicación: %s (wsl=%s, display=%s)",
+                     command_parts, _IS_WSL, _has_display())
 
     if not command_parts:
         return {"status": "error", "message": "Aplicación no especificada"}
@@ -124,26 +210,52 @@ async def open_application(command: str | Sequence[str], args: Sequence[str] | N
         return {"status": "error", "message": "Aplicación no permitida por política de seguridad"}
 
     binary = command_parts[0]
+
+    # Verificar binario disponible
     if shutil.which(binary) is None and not Path(binary).exists():
-        if shutil.which("xdg-open") and len(command_parts) == 1:
-            tool_logger.info("Binario '%s' no encontrado; intentando xdg-open", binary)
-            command_parts = ["xdg-open", binary]
-        else:
-            error_logger.warning("Aplicación no encontrada: %s", binary)
-            return {
-                "status": "error",
-                "message": f"Aplicación no encontrada: {binary}. En WSL asegúrate de tener el paquete instalado.",
-            }
+        # Último intento en WSL: PowerShell
+        if _IS_WSL:
+            wsl_cmd = _wsl_open(str(command) if isinstance(command, str) else command_parts[0])
+            if wsl_cmd:
+                tool_logger.info("Intentando apertura via WSL PowerShell: %s", wsl_cmd)
+                command_parts = wsl_cmd
+                binary = command_parts[0]
+        
+        if shutil.which(binary) is None and not Path(binary).exists():
+            # Intentar con xdg-open como último recurso
+            if shutil.which("xdg-open") and len(command_parts) == 1:
+                tool_logger.info("Binario '%s' no encontrado; usando xdg-open", binary)
+                command_parts = ["xdg-open", binary]
+            else:
+                error_logger.warning("Aplicación no encontrada: %s", binary)
+                hint = (
+                    "En WSL, asegúrate de tener DISPLAY configurado o usa la versión .exe de la app."
+                    if _IS_WSL else "Asegúrate de tener el paquete instalado."
+                )
+                return {
+                    "status": "error",
+                    "message": f"Aplicación no encontrada: {binary}. {hint}",
+                }
+
+    # Advertir si no hay display pero la app probablemente lo necesite
+    if not _has_display() and _IS_WSL and binary not in ("powershell.exe", "cmd.exe"):
+        tool_logger.warning("No se detectó DISPLAY. La app gráfica puede no abrirse visualmente.")
 
     try:
+        env = os.environ.copy()
+        # En WSL, intentar heredar DISPLAY si está disponible
+        if _IS_WSL and not env.get("DISPLAY"):
+            env["DISPLAY"] = ":0"
+
         process = subprocess.Popen(
             command_parts,
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,
             stdin=subprocess.DEVNULL,
             start_new_session=True,
+            env=env,
         )
-        tool_logger.info("Aplicación abierta con PID %s", process.pid)
+        tool_logger.info("Aplicación abierta con PID %s: %s", process.pid, command_parts)
         return {
             "status": "ok",
             "pid": process.pid,
@@ -158,16 +270,25 @@ async def open_application(command: str | Sequence[str], args: Sequence[str] | N
 async def close_application(command: str) -> dict:
     """
     Cierra procesos por nombre.
-    FIX: usa proc.wait(timeout=3) para no colgar el EventBus (antes causaba timeout 90s).
-    FIX: registrada en TOOLS (faltaba en arranques anteriores).
+    Maneja aliases: 'chrome' cierra también 'google-chrome', 'chromium-browser', etc.
     """
     tool_logger.info("Intentando cerrar aplicación: %s", command)
     target = command.strip().lower()
-    closed = []
 
+    # Expandir con aliases conocidos
+    _CLOSE_ALIASES: dict[str, list[str]] = {
+        "chrome": ["chrome", "google-chrome", "chromium", "chromium-browser"],
+        "firefox": ["firefox", "firefox-esr"],
+        "vscode": ["code", "vscode"],
+        "terminal": ["gnome-terminal", "konsole", "xterm", "bash", "sh"],
+    }
+    targets = _CLOSE_ALIASES.get(target, [target])
+
+    closed: list[int] = []
     for proc in psutil.process_iter(["pid", "name"]):
         try:
-            if target in proc.info["name"].lower():
+            proc_name = proc.info["name"].lower()
+            if any(t in proc_name for t in targets):
                 proc.terminate()
                 try:
                     proc.wait(timeout=3)
@@ -198,5 +319,3 @@ TOOLS = {
     "close_application":    close_application,
     "get_current_datetime": get_current_datetime,
 }
-
-
