@@ -5,6 +5,7 @@ Cliente de voz para Alfonso — Refactorizado y con Escucha Orgánica.
 from __future__ import annotations
 
 import argparse
+import base64
 import sys
 import uuid
 import numpy as np # Se mantiene para el procesamiento de audio raw
@@ -17,9 +18,6 @@ from core.config import (
 from services.audio import ( # Import AudioService from services.audio
     AudioService
 )
-# Importar o definir aquí las bibliotecas de STT y TTS cliente-side
-# from client_stt_module import LocalSTT
-# from client_tts_module import LocalTTS
 
 
 from core.api_client import (
@@ -36,6 +34,7 @@ def run(
     keyword: str,
     voice: Optional[str],
     device: Optional[int],
+    output_device: Optional[int],
     model: str,
     threshold: int,
     debug: bool,
@@ -44,10 +43,6 @@ def run(
     api = AlfonsoAPI(server_url)
     processor = ResponseProcessor()
     audio_service = AudioService() # Instantiate AudioService
-    # Inicializar servicios STT/TTS locales
-    # local_stt = LocalSTT(model=model)
-    # local_tts = LocalTTS(voice=voice)
-    stt_model = "small" if model == "tiny" else model
 
     print(f"\n{'═'*55}")
     print(f"  Alfonso — Cliente de Voz")
@@ -87,16 +82,13 @@ def run(
             if not audio_service.has_voice(wav, threshold): # Use audio_service
                 continue
 
-            # --- FASE 1.1: Detección de Wake Word local ---
-            # Reemplazar la llamada a la API por una función local de detección de wake word
-            # result = local_stt.detect_wake_word(wav, keyword=keyword)
-            # Simulamos un resultado para la propuesta
-            wake_word_detected_locally = True # Placeholder para la lógica local
-            wakeword_text = "" # Placeholder para el texto si se extrae localmente
+            # --- FASE 1.1: Detección de Wake Word vía API ---
+            wakeword_res = api.wakeword(wav, keyword=keyword)
+            wake_word_detected_locally = wakeword_res.get("status") in ("ok", "success")
+            wakeword_text = wakeword_res.get("result", {}).get("text", "")
 
             if debug:
-                # print(f"\n[debug wake] {result}") # Adaptar para debug local
-                print(f"\n[debug wake] Wake word detectada localmente: {wake_word_detected_locally}")
+                print(f"\n[debug wake] {wakeword_res}")
 
             if not wake_word_detected_locally: # Adaptar la condición de fallo
                 print(f"\n  [!] Wake word no detectada localmente.")
@@ -140,21 +132,19 @@ def run(
                         print("\n  Silencio prolongado — volviendo a wake word\n")
                         break
 
-                    print(" analizando…", end=" ", flush=True) # Este "analizando" podría ser el STT local
+                    print(" analizando…", end=" ", flush=True)
                     wav_order = audio_service.get_audio_bytes(audio_buffer) # Use audio_service
-                    print("transcribiendo localmente…", end=" ", flush=True)
-                    # --- FASE 2.1: Transcripción STT local ---
-                    # Reemplazar la llamada a la API por una función local de transcripción
-                    # user_text = local_stt.transcribe(wav_order)
-                    # Simulamos un resultado para la propuesta
-                    user_text = "Texto transcrito localmente" # Placeholder
+                    print("transcribiendo…", end=" ", flush=True)
+                    
+                    stt_res = api.stt(wav_order)
+                    user_text = stt_res.get("result", {}).get("text", "")
 
                     if debug:
-                        print(f"\n[debug stt] Texto local: {user_text}")
+                        print(f"\n[debug stt] {stt_res}")
 
-                    # if stt.get("status") not in ("ok", "success"): # Adaptar la condición de fallo
-                    #     print(f"  [!] STT error: {stt.get('message', '')}")
-                    #     continue
+                    if stt_res.get("status") not in ("ok", "success"):
+                        print(f"  [!] STT error: {stt_res.get('message', '')}")
+                        continue
                     if not user_text:
                         print("(no entendido)")
                         continue
@@ -163,9 +153,6 @@ def run(
 
                 if processor.is_exit_command(user_text):
                     print("\n  Alfonso: Hasta luego.\n")
-                    # --- FASE 2.2: TTS local para despedida ---
-                    # Reemplazar la llamada a la API por una función local de TTS
-                    # local_tts.speak("Hasta luego.")
                     print(f"Escuchando wake word '{keyword}'…\n")
                     break
 
@@ -183,9 +170,10 @@ def run(
                 response_text = processor.format_response(result_data)
                 print(response_text + "\n")
 
-                # --- FASE 2.3: TTS local para la respuesta ---
-                # Reemplazar la llamada a la API por una función local de TTS
-                # local_tts.speak(response_text)
+                # ADDED: Play audio from backend response
+                audio_b64 = result_data.get("audio")
+                if audio_b64:
+                    audio_service.play_audio(base64.b64decode(audio_b64), device=output_device)
 
     except KeyboardInterrupt:
         print("\n\nHasta luego.\n")
@@ -234,6 +222,7 @@ if __name__ == "__main__":
             keyword=args.keyword,
             voice=args.voice,
             device=args.device,
+            output_device=args.output_device,
             model=args.model,
             threshold=args.threshold,
             debug=args.debug,

@@ -758,3 +758,91 @@
 2026-06-11 14:20:30,148 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
 2026-06-11 14:21:08,627 | INFO | app | [----------] Modelo precalentado
 2026-06-11 14:21:08,628 | INFO | app | [----------] Alfonso Fase 3 listo
+2026-06-11 15:34:38,023 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-11 15:34:38,024 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
+2026-06-11 15:34:38,024 | INFO | app | [----------] EventBus iniciado
+2026-06-11 15:34:38,035 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-11 15:35:19,030 | INFO | app | [----------] Modelo precalentado
+2026-06-11 15:35:19,031 | INFO | app | [----------] Alfonso Fase 3 listo
+2026-06-11 15:43:08,696 | INFO | app | [78ef998d-165b-488d-84d0-8f9d59f2eb0b] HTTP request started: GET /health
+2026-06-11 15:43:08,731 | INFO | app | [78ef998d-165b-488d-84d0-8f9d59f2eb0b] HTTP request finished: GET /health 200
+2026-06-11 16:05:09,306 | INFO | app | [5621aed9-ba79-4199-b858-233a77d2421d] HTTP request started: GET /health
+2026-06-11 16:05:09,329 | INFO | app | [5621aed9-ba79-4199-b858-233a77d2421d] HTTP request finished: GET /health 200
+2026-06-11 16:05:37,822 | INFO | app | [ae4c264b-7fff-4715-9b1b-1d9109172b90] HTTP request started: POST /chat
+2026-06-11 16:05:37,858 | INFO | app | [ae4c264b-7fff-4715-9b1b-1d9109172b90] Solicitud /chat recibida
+2026-06-11 16:05:37,859 | INFO | app | [ae4c264b-7fff-4715-9b1b-1d9109172b90] SESSION_ID: ae4c264b-7fff-4715-9b1b-1d9109172b90
+2026-06-11 16:05:37,859 | INFO | app | [ae4c264b-7fff-4715-9b1b-1d9109172b90] USER MESSAGE: hola
+2026-06-11 16:06:16,325 | INFO | app | [ae4c264b-7fff-4715-9b1b-1d9109172b90] Solicitud /chat procesada con estado: chat
+2026-06-11 16:06:16,326 | INFO | app | [ae4c264b-7fff-4715-9b1b-1d9109172b90] LATENCY: 41.81s
+2026-06-11 16:06:16,328 | INFO | app | [ae4c264b-7fff-4715-9b1b-1d9109172b90] HTTP request finished: POST /chat 200
+2026-06-11 16:06:25,553 | INFO | app | [6639f25c-d0ae-4016-8746-07e7a09472a1] HTTP request started: POST /chat
+2026-06-11 16:06:25,555 | INFO | app | [6639f25c-d0ae-4016-8746-07e7a09472a1] Solicitud /chat recibida
+2026-06-11 16:06:25,555 | INFO | app | [6639f25c-d0ae-4016-8746-07e7a09472a1] SESSION_ID: 6639f25c-d0ae-4016-8746-07e7a09472a1
+2026-06-11 16:06:25,556 | INFO | app | [6639f25c-d0ae-4016-8746-07e7a09472a1] USER MESSAGE: que hora es
+2026-06-11 16:06:25,655 | INFO | app | [6639f25c-d0ae-4016-8746-07e7a09472a1] Solicitud /chat procesada con estado: chat
+2026-06-11 16:06:25,655 | INFO | app | [6639f25c-d0ae-4016-8746-07e7a09472a1] LATENCY: 0.10s
+2026-06-11 16:06:25,656 | INFO | app | [6639f25c-d0ae-4016-8746-07e7a09472a1] HTTP request finished: POST /chat 200
+2026-06-11 16:07:25,783 | INFO | app | [20cb5459-f987-40b7-8353-246c6743e691] HTTP request started: POST /chat
+2026-06-11 16:07:25,784 | INFO | app | [20cb5459-f987-40b7-8353-246c6743e691] Solicitud /chat recibida
+2026-06-11 16:07:25,784 | INFO | app | [20cb5459-f987-40b7-8353-246c6743e691] SESSION_ID: 20cb5459-f987-40b7-8353-246c6743e691
+2026-06-11 16:07:25,785 | INFO | app | [20cb5459-f987-40b7-8353-246c6743e691] USER MESSAGE: abre elpais.com
+2026-06-11 16:08:27,677 | INFO | app | [20cb5459-f987-40b7-8353-246c6743e691] Solicitud /chat procesada con estado: chat
+2026-06-11 16:08:27,679 | INFO | app | [20cb5459-f987-40b7-8353-246c6743e691] LATENCY: 65.26s
+2026-06-11 16:08:27,680 | INFO | app | [20cb5459-f987-40b7-8353-246c6743e691] HTTP request finished: POST /chat 200
+2026-06-11 16:08:37,834 | INFO | app | [439b3c7e-6377-4ae2-84a7-0f4427b4656d] HTTP request started: POST /chat
+2026-06-11 16:08:37,835 | INFO | app | [439b3c7e-6377-4ae2-84a7-0f4427b4656d] Solicitud /chat recibida
+2026-06-11 16:08:37,835 | INFO | app | [439b3c7e-6377-4ae2-84a7-0f4427b4656d] SESSION_ID: 439b3c7e-6377-4ae2-84a7-0f4427b4656d
+2026-06-11 16:08:37,835 | INFO | app | [439b3c7e-6377-4ae2-84a7-0f4427b4656d] USER MESSAGE: cierra firefox
+2026-06-11 16:08:40,666 | INFO | app | [439b3c7e-6377-4ae2-84a7-0f4427b4656d] Solicitud /chat procesada con estado: chat
+2026-06-11 16:08:40,667 | INFO | app | [439b3c7e-6377-4ae2-84a7-0f4427b4656d] LATENCY: 2.83s
+2026-06-11 16:08:40,667 | INFO | app | [439b3c7e-6377-4ae2-84a7-0f4427b4656d] HTTP request finished: POST /chat 200
+2026-06-11 16:08:55,602 | INFO | app | [e747f628-cee3-4d8e-ad48-f898295d1333] HTTP request started: POST /chat
+2026-06-11 16:08:55,603 | INFO | app | [e747f628-cee3-4d8e-ad48-f898295d1333] Solicitud /chat recibida
+2026-06-11 16:08:55,603 | INFO | app | [e747f628-cee3-4d8e-ad48-f898295d1333] SESSION_ID: e747f628-cee3-4d8e-ad48-f898295d1333
+2026-06-11 16:08:55,603 | INFO | app | [e747f628-cee3-4d8e-ad48-f898295d1333] USER MESSAGE: cuanta ram tiene este pc
+2026-06-11 16:09:48,192 | INFO | app | [e747f628-cee3-4d8e-ad48-f898295d1333] Solicitud /chat procesada con estado: chat
+2026-06-11 16:09:48,193 | INFO | app | [e747f628-cee3-4d8e-ad48-f898295d1333] LATENCY: 55.87s
+2026-06-11 16:09:48,193 | INFO | app | [e747f628-cee3-4d8e-ad48-f898295d1333] HTTP request finished: POST /chat 200
+2026-06-11 16:10:37,782 | INFO | app | [207a71a4-ec2d-4937-b981-1a4fa56087c3] HTTP request started: POST /chat
+2026-06-11 16:10:37,783 | INFO | app | [207a71a4-ec2d-4937-b981-1a4fa56087c3] Solicitud /chat recibida
+2026-06-11 16:10:37,783 | INFO | app | [207a71a4-ec2d-4937-b981-1a4fa56087c3] SESSION_ID: 207a71a4-ec2d-4937-b981-1a4fa56087c3
+2026-06-11 16:10:37,783 | INFO | app | [207a71a4-ec2d-4937-b981-1a4fa56087c3] USER MESSAGE: que sistema operativo tienes
+2026-06-11 16:11:16,862 | INFO | app | [207a71a4-ec2d-4937-b981-1a4fa56087c3] Solicitud /chat procesada con estado: chat
+2026-06-11 16:11:16,862 | INFO | app | [207a71a4-ec2d-4937-b981-1a4fa56087c3] LATENCY: 42.44s
+2026-06-11 16:11:16,862 | INFO | app | [207a71a4-ec2d-4937-b981-1a4fa56087c3] HTTP request finished: POST /chat 200
+2026-06-11 16:11:44,992 | INFO | app | [9e70f744-39f2-4cb7-8291-e26cd6db31d7] HTTP request started: POST /chat
+2026-06-11 16:11:44,993 | INFO | app | [9e70f744-39f2-4cb7-8291-e26cd6db31d7] Solicitud /chat recibida
+2026-06-11 16:11:44,993 | INFO | app | [9e70f744-39f2-4cb7-8291-e26cd6db31d7] SESSION_ID: 9e70f744-39f2-4cb7-8291-e26cd6db31d7
+2026-06-11 16:11:44,993 | INFO | app | [9e70f744-39f2-4cb7-8291-e26cd6db31d7] USER MESSAGE: puedes decirme que tiempo hace hoy en bilbao
+2026-06-11 16:12:24,053 | INFO | app | [9e70f744-39f2-4cb7-8291-e26cd6db31d7] Solicitud /chat procesada con estado: chat
+2026-06-11 16:12:24,053 | INFO | app | [9e70f744-39f2-4cb7-8291-e26cd6db31d7] LATENCY: 42.46s
+2026-06-11 16:12:24,054 | INFO | app | [9e70f744-39f2-4cb7-8291-e26cd6db31d7] HTTP request finished: POST /chat 200
+2026-06-11 16:12:45,308 | INFO | app | [2f29a855-3b7a-4dc7-ab71-2e4a85391a68] HTTP request started: POST /chat
+2026-06-11 16:12:45,309 | INFO | app | [2f29a855-3b7a-4dc7-ab71-2e4a85391a68] Solicitud /chat recibida
+2026-06-11 16:12:45,309 | INFO | app | [2f29a855-3b7a-4dc7-ab71-2e4a85391a68] SESSION_ID: 2f29a855-3b7a-4dc7-ab71-2e4a85391a68
+2026-06-11 16:12:45,309 | INFO | app | [2f29a855-3b7a-4dc7-ab71-2e4a85391a68] USER MESSAGE: y puedes buscarlo en internet y decirmelo
+2026-06-11 16:13:21,109 | INFO | app | [2f29a855-3b7a-4dc7-ab71-2e4a85391a68] Solicitud /chat procesada con estado: chat
+2026-06-11 16:13:21,109 | INFO | app | [2f29a855-3b7a-4dc7-ab71-2e4a85391a68] LATENCY: 39.09s
+2026-06-11 16:13:21,109 | INFO | app | [2f29a855-3b7a-4dc7-ab71-2e4a85391a68] HTTP request finished: POST /chat 200
+2026-06-11 16:14:15,210 | INFO | app | [d0e85ddb-be8a-4a91-9c95-f07b74a30547] HTTP request started: POST /chat
+2026-06-11 16:14:15,211 | INFO | app | [d0e85ddb-be8a-4a91-9c95-f07b74a30547] Solicitud /chat recibida
+2026-06-11 16:14:15,211 | INFO | app | [d0e85ddb-be8a-4a91-9c95-f07b74a30547] SESSION_ID: d0e85ddb-be8a-4a91-9c95-f07b74a30547
+2026-06-11 16:14:15,211 | INFO | app | [d0e85ddb-be8a-4a91-9c95-f07b74a30547] USER MESSAGE: busca en internet que tiempo hace en bilbao hoy
+2026-06-11 16:16:42,712 | INFO | app | [d0e85ddb-be8a-4a91-9c95-f07b74a30547] Solicitud /chat procesada con estado: chat
+2026-06-11 16:16:42,713 | INFO | app | [d0e85ddb-be8a-4a91-9c95-f07b74a30547] LATENCY: 155.68s
+2026-06-11 16:16:42,716 | INFO | app | [d0e85ddb-be8a-4a91-9c95-f07b74a30547] HTTP request finished: POST /chat 200
+2026-06-11 16:21:23,053 | INFO | app | [48603fa0-c2e5-44d6-90fe-8d332ba725c4] HTTP request started: POST /chat
+2026-06-11 16:21:23,060 | INFO | app | [48603fa0-c2e5-44d6-90fe-8d332ba725c4] Solicitud /chat recibida
+2026-06-11 16:21:23,060 | INFO | app | [48603fa0-c2e5-44d6-90fe-8d332ba725c4] SESSION_ID: 48603fa0-c2e5-44d6-90fe-8d332ba725c4
+2026-06-11 16:21:23,060 | INFO | app | [48603fa0-c2e5-44d6-90fe-8d332ba725c4] USER MESSAGE: adios
+2026-06-11 16:21:55,478 | INFO | app | [48603fa0-c2e5-44d6-90fe-8d332ba725c4] Solicitud /chat procesada con estado: chat
+2026-06-11 16:21:55,478 | INFO | app | [48603fa0-c2e5-44d6-90fe-8d332ba725c4] LATENCY: 34.11s
+2026-06-11 16:21:55,479 | INFO | app | [48603fa0-c2e5-44d6-90fe-8d332ba725c4] HTTP request finished: POST /chat 200
+2026-06-11 16:22:23,309 | INFO | app | [8d29cfa7-e4ab-4e74-8c71-5fe144feeddf] HTTP request started: POST /chat
+2026-06-11 16:22:23,310 | INFO | app | [8d29cfa7-e4ab-4e74-8c71-5fe144feeddf] Solicitud /chat recibida
+2026-06-11 16:22:23,310 | INFO | app | [8d29cfa7-e4ab-4e74-8c71-5fe144feeddf] SESSION_ID: 8d29cfa7-e4ab-4e74-8c71-5fe144feeddf
+2026-06-11 16:22:23,311 | INFO | app | [8d29cfa7-e4ab-4e74-8c71-5fe144feeddf] USER MESSAGE: apagate
+2026-06-11 16:22:59,054 | INFO | app | [8d29cfa7-e4ab-4e74-8c71-5fe144feeddf] Solicitud /chat procesada con estado: chat
+2026-06-11 16:22:59,054 | INFO | app | [8d29cfa7-e4ab-4e74-8c71-5fe144feeddf] LATENCY: 37.24s
+2026-06-11 16:22:59,055 | INFO | app | [8d29cfa7-e4ab-4e74-8c71-5fe144feeddf] HTTP request finished: POST /chat 200
+2026-06-11 16:23:10,101 | INFO | app | [----------] Agentes y EventBus detenidos

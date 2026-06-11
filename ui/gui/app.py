@@ -17,9 +17,6 @@ from core.api_client import AlfonsoAPI
 from core.processor import ResponseProcessor
 from services.audio import AudioService
 from alfonso_agent_logic import AlfonsoAgentLogic
-# Importar o definir aquí las bibliotecas de STT y TTS cliente-side
-# from client_stt_module import LocalSTT
-# from client_tts_module import LocalTTS
 
 
 class AssistantThread(QThread):
@@ -36,9 +33,6 @@ class AssistantThread(QThread):
         self.api = AlfonsoAPI(config['url']) if 'url' in config else AlfonsoAPI("http://localhost:8000")
         self.audio = AudioService()
         self.processor = ResponseProcessor()
-        # Inicializar servicios STT/TTS locales
-        # self.local_stt = LocalSTT(model=config.get('model', 'tiny'))
-        # self.local_tts = LocalTTS(voice=config.get('voice', None))
         self.running = True
         self.session_id = str(uuid.uuid4())
         self.text_mode = False
@@ -73,8 +67,9 @@ class AssistantThread(QThread):
     async def _audio_loop(self):
         """Loop de procesamiento de voz convertido a async."""
         keyword = self.config.get('keyword', 'alfonso').lower()
-        threshold = self.config.get('threshold', 500)
+        threshold = self.config.get('threshold', 30)
         device = self.config.get('device', None)
+        output_device = self.config.get('output_device', None)
 
         while self.running:
             try:
@@ -106,9 +101,6 @@ class AssistantThread(QThread):
                 level = self.audio.get_level(wav)
                 self.audio_level_updated.emit(level, self.device_name)
 
-                # Dispositivo de salida para las respuestas
-                output_device = self.config.get('output_device', None)
-
                 if not self.audio.has_voice(wav, threshold):
                     # El log de volumen ahora sale desde audio.py para ser más preciso
                     continue
@@ -116,11 +108,9 @@ class AssistantThread(QThread):
                 print("[DEBUG] Voz detectada, verificando wake word...")
                 # --- FASE 1.1: Detección de Wake Word local ---
                 # Reemplazar la llamada a la API por una función local de detección de wake word
-                # wake_word_detected_locally, wakeword_text = self.local_stt.detect_wake_word(wav, keyword)
-                # NOTA: Esto es una simulación. Requiere integración de librería de detección.
-                wake_word_detected_locally = True
-                wakeword_text = ""
-                
+                wakeword_res = self.api.wakeword(wav, keyword=keyword) # ADDED
+                wake_word_detected_locally = wakeword_res.get("status") == "ok"
+                wakeword_text = wakeword_res.get("result", {}).get("text", "") # ADDED
                 if wake_word_detected_locally: # Adaptar la condición
                     print(f"[OK] Wake word '{keyword}' detectada.")
                     self.state_changed.emit("listening")
@@ -536,6 +526,29 @@ class AlfonsoGUI(QMainWindow):
         self.text_input.returnPressed.connect(self.send_text_message)
         self.text_input.setVisible(False)
 
+        # VU Meter y nombre del micrófono
+        self.vu_container = QVBoxLayout()
+        self.mic_name_lbl = QLabel(f"MICRO: Buscando...")
+        self.mic_name_lbl.setStyleSheet("font-size: 10px; color: rgba(0, 209, 255, 120); font-weight: bold;")
+        self.mic_name_lbl.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        
+        self.vu_meter = QProgressBar()
+        self.vu_meter.setRange(0, 32768) # Rango máximo para audio de 16 bits
+        self.vu_meter.setFixedHeight(4)
+        self.vu_meter.setTextVisible(False)
+        self.vu_meter.setStyleSheet("""
+            QProgressBar {
+                background-color: rgba(0, 0, 0, 150);
+                border: 1px solid rgba(0, 209, 255, 20);
+                border-radius: 2px;
+            }
+            QProgressBar::chunk {
+                background-color: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #00ff00, stop:0.7 #ffff00, stop:1 #ff0000);
+            }
+        """)
+        self.vu_container.addWidget(self.mic_name_lbl)
+        self.vu_container.addWidget(self.vu_meter)
+
         # Botón de cierre provisional
         self.close_button = QPushButton("SHUTDOWN")
         self.close_button.setStyleSheet("""
@@ -614,29 +627,6 @@ class AlfonsoGUI(QMainWindow):
         # Actualizar con todo el historial
         self.chat_lbl.setText(self.chat_history)
         
-        # VU Meter y nombre del micrófono
-        self.vu_container = QVBoxLayout()
-        self.mic_name_lbl = QLabel(f"MICRO: Buscando...")
-        self.mic_name_lbl.setStyleSheet("font-size: 10px; color: rgba(0, 209, 255, 120); font-weight: bold;")
-        self.mic_name_lbl.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        
-        self.vu_meter = QProgressBar()
-        self.vu_meter.setRange(0, 32768) # Rango máximo para audio de 16 bits
-        self.vu_meter.setFixedHeight(4)
-        self.vu_meter.setTextVisible(False)
-        self.vu_meter.setStyleSheet("""
-            QProgressBar {
-                background-color: rgba(0, 0, 0, 150);
-                border: 1px solid rgba(0, 209, 255, 20);
-                border-radius: 2px;
-            }
-            QProgressBar::chunk {
-                background-color: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #00ff00, stop:0.7 #ffff00, stop:1 #ff0000);
-            }
-        """)
-        self.vu_container.addWidget(self.mic_name_lbl)
-        self.vu_container.addWidget(self.vu_meter)
-
         # Auto-scroll al final (fondo) para ver el último mensaje
         QTimer.singleShot(50, lambda: self.scroll_area.verticalScrollBar().setValue(self.scroll_area.verticalScrollBar().maximum()))
 

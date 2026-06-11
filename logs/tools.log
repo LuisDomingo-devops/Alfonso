@@ -172,3 +172,17 @@
 2026-06-11 10:50:35,167 | INFO | tools | [----------] Cerrados 1 procesos de 'firefox': pids=[2475]
 2026-06-11 11:13:15,245 | INFO | tools | [----------] Obteniendo fecha y hora del sistema
 2026-06-11 13:00:12,263 | INFO | tools | [----------] Obteniendo fecha y hora del sistema
+2026-06-11 16:06:25,646 | INFO | tools | [----------] Obteniendo fecha y hora del sistema
+2026-06-11 16:08:17,002 | INFO | tools | [----------] browser_navigate: https://www.elpais.com
+2026-06-11 16:08:17,204 | INFO | tools | [----------] Arrancando Playwright: browser=firefox, headless=False, path=None
+2026-06-11 16:08:22,576 | INFO | tools | [----------] Playwright listo
+2026-06-11 16:08:27,625 | INFO | tools | [----------] Navegado a https://www.elpais.com → status=200 title=EL PAÍS: el periódico global
+2026-06-11 16:08:40,524 | INFO | tools | [----------] Intentando cerrar aplicación: firefox
+2026-06-11 16:08:40,637 | INFO | tools | [----------] Cerrados 1 procesos de 'firefox': pids=[19083]
+2026-06-11 16:14:50,163 | INFO | tools | [----------] browser_navigate: https://www.google.com/search?q=tiempo+bilbao+hoy
+2026-06-11 16:14:50,164 | INFO | tools | [----------] Arrancando Playwright: browser=firefox, headless=False, path=None
+2026-06-11 16:14:54,586 | INFO | tools | [----------] Playwright listo
+2026-06-11 16:14:55,724 | INFO | tools | [----------] Navegado a https://www.google.com/search?q=tiempo+bilbao+hoy → status=None title=Loading https://www.google.com/search?q=tiempo+bilbao+hoy&sei=3sIqaqa1J9u6hbIPz8Lr2AU
+2026-06-11 16:14:55,725 | INFO | tools | [----------] browser_wait_for: selector=h3 state=visible
+2026-06-11 16:15:05,749 | INFO | tools | [----------] browser_get_text: selector=body
+2026-06-11 16:15:05,760 | INFO | tools | [----------] browser_screenshot: full_page=False
