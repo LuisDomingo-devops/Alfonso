@@ -59,3 +59,26 @@ Call log:
     - navigated to "https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dtiempo%2Bbilbao%26sei%3DIGMpaoK4GfiOxc8P082qqQk&q=EgRPdd48GKHGpdEGIjDrVXTUcedbQ8liN2eNra0kyYEHO0PaN3-3bPmwXHP4xViu9I2UH…"
 
 2026-06-10 15:16:45,868 | WARNING | errors | [----------] No se encontró proceso con nombre: explorer
+2026-06-10 15:57:21,240 | ERROR | errors | [----------] Error en browser_wait_for
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/tools/browser_tools.py", line 287, in browser_wait_for
+    await page.wait_for_selector(selector, state=state, timeout=timeout)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/playwright/async_api/_generated.py", line 8795, in wait_for_selector
+    await self._impl_obj.wait_for_selector(
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/playwright/_impl/_page.py", line 424, in wait_for_selector
+    return await self._main_frame.wait_for_selector(**locals_to_params(locals()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/playwright/_impl/_frame.py", line 372, in wait_for_selector
+    await self._channel.send(
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 69, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 559, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.TimeoutError: Page.wait_for_selector: Timeout 10000ms exceeded.
+Call log:
+  - waiting for locator("h3") to be visible
+    - waiting for" https://www.google.com/search?q=confidencial+.com&sei=NW0paunCOOeBxc8P5NbtmAo" navigation to finish...
+    - navigated to "https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dconfidencial%2B.com%26sei%3DNW0paunCOOeBxc8P5NbtmAo&q=EgRPdd48GLfapdEGIjAltLPMha6ZoeRDEigdvmDQOCm9OCHg7oW4Aqq1Z46_IU7Zt…"
+
+2026-06-11 10:50:19,804 | WARNING | errors | [----------] No se encontró proceso con nombre: explorer

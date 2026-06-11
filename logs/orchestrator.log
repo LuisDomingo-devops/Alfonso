@@ -355,3 +355,140 @@ crear un archivo llamado notas.txt con el texto hola
 2026-06-10 15:18:34,957 | DEBUG | orchestrator | [fdd0bf20-a138-44c2-9980-8e8b2c16e755] LLM OUTPUT (tool): {"tool":"close_application","args":{"command":"firefox"}}
 2026-06-10 15:18:34,957 | INFO | orchestrator | [fdd0bf20-a138-44c2-9980-8e8b2c16e755] TaskPlan: event=system.close_app args={'command': 'firefox'}
 2026-06-10 15:18:34,958 | DEBUG | orchestrator | [fdd0bf20-a138-44c2-9980-8e8b2c16e755] Evento publicado: system.close_app
+2026-06-10 15:52:46,372 | INFO | orchestrator | [751005a2-a9dd-4160-97ab-60da3e9e070f] PlannerOrchestrator.run iniciado
+2026-06-10 15:52:46,372 | INFO | orchestrator | [751005a2-a9dd-4160-97ab-60da3e9e070f] USER MESSAGE: hola
+2026-06-10 15:52:46,373 | INFO | orchestrator | [751005a2-a9dd-4160-97ab-60da3e9e070f] SESSION_ID: 751005a2-a9dd-4160-97ab-60da3e9e070f
+2026-06-10 15:52:46,413 | INFO | orchestrator | [751005a2-a9dd-4160-97ab-60da3e9e070f] Intent: chat (score=-2.50, reglas=['-2.5 [greeting]'])
+2026-06-10 15:52:46,415 | DEBUG | orchestrator | [751005a2-a9dd-4160-97ab-60da3e9e070f] Evento publicado: chat.respond
+2026-06-10 15:53:26,743 | INFO | orchestrator | [751005a2-a9dd-4160-97ab-60da3e9e070f] Respuesta chat completada
+2026-06-10 15:54:12,468 | INFO | orchestrator | [8ff5f598-7fcb-40de-b71b-5269ad5f814a] PlannerOrchestrator.run iniciado
+2026-06-10 15:54:12,468 | INFO | orchestrator | [8ff5f598-7fcb-40de-b71b-5269ad5f814a] USER MESSAGE: que hora es
+2026-06-10 15:54:12,468 | INFO | orchestrator | [8ff5f598-7fcb-40de-b71b-5269ad5f814a] SESSION_ID: 8ff5f598-7fcb-40de-b71b-5269ad5f814a
+2026-06-10 15:54:12,477 | INFO | orchestrator | [8ff5f598-7fcb-40de-b71b-5269ad5f814a] Intent: tool (score=2.00, reglas=['+2.0 [datetime_tool]'])
+2026-06-10 15:54:12,477 | INFO | orchestrator | [8ff5f598-7fcb-40de-b71b-5269ad5f814a] Atajo datetime_tool activado
+2026-06-10 15:54:12,477 | DEBUG | orchestrator | [8ff5f598-7fcb-40de-b71b-5269ad5f814a] Evento publicado: system.datetime
+2026-06-10 15:55:08,989 | INFO | orchestrator | [89893c34-9bd4-4796-8398-94e6b5d6a3e3] PlannerOrchestrator.run iniciado
+2026-06-10 15:55:08,989 | INFO | orchestrator | [89893c34-9bd4-4796-8398-94e6b5d6a3e3] USER MESSAGE: quiero leer el confidencial puedes buscarlo en internet y mostrarmelo
+2026-06-10 15:55:08,990 | INFO | orchestrator | [89893c34-9bd4-4796-8398-94e6b5d6a3e3] SESSION_ID: 89893c34-9bd4-4796-8398-94e6b5d6a3e3
+2026-06-10 15:55:08,995 | INFO | orchestrator | [89893c34-9bd4-4796-8398-94e6b5d6a3e3] Intent: chat (score=0.00, reglas=[])
+2026-06-10 15:55:08,995 | DEBUG | orchestrator | [89893c34-9bd4-4796-8398-94e6b5d6a3e3] Evento publicado: chat.respond
+2026-06-10 15:55:44,255 | INFO | orchestrator | [89893c34-9bd4-4796-8398-94e6b5d6a3e3] Respuesta chat completada
+2026-06-10 15:56:05,352 | INFO | orchestrator | [9796533a-b9cc-41a7-9ce0-b52dbe82ce1a] PlannerOrchestrator.run iniciado
+2026-06-10 15:56:05,352 | INFO | orchestrator | [9796533a-b9cc-41a7-9ce0-b52dbe82ce1a] USER MESSAGE: busca en internet el confidencial .com
+2026-06-10 15:56:05,353 | INFO | orchestrator | [9796533a-b9cc-41a7-9ce0-b52dbe82ce1a] SESSION_ID: 9796533a-b9cc-41a7-9ce0-b52dbe82ce1a
+2026-06-10 15:56:05,358 | INFO | orchestrator | [9796533a-b9cc-41a7-9ce0-b52dbe82ce1a] Intent: tool (score=2.50, reglas=['+2.5 [browser_search]'])
+2026-06-10 15:57:03,341 | DEBUG | orchestrator | [9796533a-b9cc-41a7-9ce0-b52dbe82ce1a] LLM OUTPUT (tool): {"tool":"browser_search","args":{"query":"confidencial .com"}}
+2026-06-10 15:57:03,342 | INFO | orchestrator | [9796533a-b9cc-41a7-9ce0-b52dbe82ce1a] TaskPlan: event=browser.search args={'query': 'confidencial .com'}
+2026-06-10 15:57:03,342 | DEBUG | orchestrator | [9796533a-b9cc-41a7-9ce0-b52dbe82ce1a] Evento publicado: browser.search
+2026-06-10 15:57:21,389 | INFO | orchestrator | [9796533a-b9cc-41a7-9ce0-b52dbe82ce1a] Síntesis activada para: browser.search
+2026-06-10 16:59:53,675 | INFO | orchestrator | [c36ea3fc-3378-480b-a8f4-3a0610b84b0a] PlannerOrchestrator.run iniciado
+2026-06-10 16:59:53,678 | INFO | orchestrator | [c36ea3fc-3378-480b-a8f4-3a0610b84b0a] USER MESSAGE: hola
+2026-06-10 16:59:53,678 | INFO | orchestrator | [c36ea3fc-3378-480b-a8f4-3a0610b84b0a] SESSION_ID: c36ea3fc-3378-480b-a8f4-3a0610b84b0a
+2026-06-10 16:59:53,783 | INFO | orchestrator | [c36ea3fc-3378-480b-a8f4-3a0610b84b0a] Intent: chat (score=-2.50, reglas=['-2.5 [greeting]'])
+2026-06-10 16:59:53,787 | DEBUG | orchestrator | [c36ea3fc-3378-480b-a8f4-3a0610b84b0a] Evento publicado: chat.respond
+2026-06-10 17:00:42,237 | INFO | orchestrator | [c36ea3fc-3378-480b-a8f4-3a0610b84b0a] Respuesta chat completada
+2026-06-10 17:40:23,165 | INFO | orchestrator | [bcfb69ab-a833-4753-8476-dbef8c71b3ea] PlannerOrchestrator.run iniciado
+2026-06-10 17:40:23,166 | INFO | orchestrator | [bcfb69ab-a833-4753-8476-dbef8c71b3ea] USER MESSAGE: hola
+2026-06-10 17:40:23,166 | INFO | orchestrator | [bcfb69ab-a833-4753-8476-dbef8c71b3ea] SESSION_ID: bcfb69ab-a833-4753-8476-dbef8c71b3ea
+2026-06-10 17:40:23,205 | INFO | orchestrator | [bcfb69ab-a833-4753-8476-dbef8c71b3ea] Intent: chat (score=-2.50, reglas=['-2.5 [greeting]'])
+2026-06-10 17:40:23,207 | DEBUG | orchestrator | [bcfb69ab-a833-4753-8476-dbef8c71b3ea] Evento publicado: chat.respond
+2026-06-10 17:41:40,914 | INFO | orchestrator | [bcfb69ab-a833-4753-8476-dbef8c71b3ea] Respuesta chat completada
+2026-06-11 10:43:41,784 | INFO | orchestrator | [26b4ce27-ab8a-425c-99b1-030e24b782cf] PlannerOrchestrator.run iniciado
+2026-06-11 10:43:41,786 | INFO | orchestrator | [26b4ce27-ab8a-425c-99b1-030e24b782cf] USER MESSAGE: Texto transcrito localmente
+2026-06-11 10:43:41,787 | INFO | orchestrator | [26b4ce27-ab8a-425c-99b1-030e24b782cf] SESSION_ID: 26b4ce27-ab8a-425c-99b1-030e24b782cf
+2026-06-11 10:43:41,816 | INFO | orchestrator | [26b4ce27-ab8a-425c-99b1-030e24b782cf] Intent: chat (score=0.00, reglas=[])
+2026-06-11 10:43:41,819 | DEBUG | orchestrator | [26b4ce27-ab8a-425c-99b1-030e24b782cf] Evento publicado: chat.respond
+2026-06-11 10:44:27,508 | INFO | orchestrator | [26b4ce27-ab8a-425c-99b1-030e24b782cf] Respuesta chat completada
+2026-06-11 10:45:28,015 | INFO | orchestrator | [1f089602-c8d3-4fe8-b975-a2e3e43b7a58] PlannerOrchestrator.run iniciado
+2026-06-11 10:45:28,015 | INFO | orchestrator | [1f089602-c8d3-4fe8-b975-a2e3e43b7a58] USER MESSAGE: Texto transcrito localmente
+2026-06-11 10:45:28,016 | INFO | orchestrator | [1f089602-c8d3-4fe8-b975-a2e3e43b7a58] SESSION_ID: 1f089602-c8d3-4fe8-b975-a2e3e43b7a58
+2026-06-11 10:45:28,022 | INFO | orchestrator | [1f089602-c8d3-4fe8-b975-a2e3e43b7a58] Intent: chat (score=0.00, reglas=[])
+2026-06-11 10:45:28,022 | DEBUG | orchestrator | [1f089602-c8d3-4fe8-b975-a2e3e43b7a58] Evento publicado: chat.respond
+2026-06-11 10:46:06,501 | INFO | orchestrator | [1f089602-c8d3-4fe8-b975-a2e3e43b7a58] Respuesta chat completada
+2026-06-11 10:46:39,952 | INFO | orchestrator | [bc6c72c3-78a9-45c8-b993-929ffbb5ec92] PlannerOrchestrator.run iniciado
+2026-06-11 10:46:39,952 | INFO | orchestrator | [bc6c72c3-78a9-45c8-b993-929ffbb5ec92] USER MESSAGE: Texto transcrito localmente
+2026-06-11 10:46:39,952 | INFO | orchestrator | [bc6c72c3-78a9-45c8-b993-929ffbb5ec92] SESSION_ID: bc6c72c3-78a9-45c8-b993-929ffbb5ec92
+2026-06-11 10:46:39,958 | INFO | orchestrator | [bc6c72c3-78a9-45c8-b993-929ffbb5ec92] Intent: chat (score=0.00, reglas=[])
+2026-06-11 10:46:39,959 | DEBUG | orchestrator | [bc6c72c3-78a9-45c8-b993-929ffbb5ec92] Evento publicado: chat.respond
+2026-06-11 10:47:14,812 | INFO | orchestrator | [bc6c72c3-78a9-45c8-b993-929ffbb5ec92] Respuesta chat completada
+2026-06-11 10:47:53,956 | INFO | orchestrator | [afb580ec-3d0f-4ab3-9b65-676265314bad] PlannerOrchestrator.run iniciado
+2026-06-11 10:47:53,956 | INFO | orchestrator | [afb580ec-3d0f-4ab3-9b65-676265314bad] USER MESSAGE: Texto transcrito localmente
+2026-06-11 10:47:53,956 | INFO | orchestrator | [afb580ec-3d0f-4ab3-9b65-676265314bad] SESSION_ID: afb580ec-3d0f-4ab3-9b65-676265314bad
+2026-06-11 10:47:53,962 | INFO | orchestrator | [afb580ec-3d0f-4ab3-9b65-676265314bad] Intent: chat (score=0.00, reglas=[])
+2026-06-11 10:47:53,963 | DEBUG | orchestrator | [afb580ec-3d0f-4ab3-9b65-676265314bad] Evento publicado: chat.respond
+2026-06-11 10:48:27,025 | INFO | orchestrator | [afb580ec-3d0f-4ab3-9b65-676265314bad] Respuesta chat completada
+2026-06-11 10:48:52,334 | INFO | orchestrator | [64f7c798-7d75-4fe4-a549-f23366abe17e] PlannerOrchestrator.run iniciado
+2026-06-11 10:48:52,334 | INFO | orchestrator | [64f7c798-7d75-4fe4-a549-f23366abe17e] USER MESSAGE: abre www.elpais.com
+2026-06-11 10:48:52,334 | INFO | orchestrator | [64f7c798-7d75-4fe4-a549-f23366abe17e] SESSION_ID: 64f7c798-7d75-4fe4-a549-f23366abe17e
+2026-06-11 10:48:52,339 | INFO | orchestrator | [64f7c798-7d75-4fe4-a549-f23366abe17e] Intent: tool (score=6.50, reglas=['+2.0 [browser_open]', '+2.5 [browser_open_url]', '+2.0 [url_www]'])
+2026-06-11 10:48:52,342 | INFO | orchestrator | [64f7c798-7d75-4fe4-a549-f23366abe17e] Atajo browser directo: https://www.elpais.com
+2026-06-11 10:48:52,342 | DEBUG | orchestrator | [64f7c798-7d75-4fe4-a549-f23366abe17e] Evento publicado: browser.navigate
+2026-06-11 10:49:13,928 | INFO | orchestrator | [06227a46-c27a-4ce7-a967-e3e5a4db8ae0] PlannerOrchestrator.run iniciado
+2026-06-11 10:49:13,929 | INFO | orchestrator | [06227a46-c27a-4ce7-a967-e3e5a4db8ae0] USER MESSAGE: cierra el navegador web
+2026-06-11 10:49:13,929 | INFO | orchestrator | [06227a46-c27a-4ce7-a967-e3e5a4db8ae0] SESSION_ID: 06227a46-c27a-4ce7-a967-e3e5a4db8ae0
+2026-06-11 10:49:13,935 | INFO | orchestrator | [06227a46-c27a-4ce7-a967-e3e5a4db8ae0] Intent: tool (score=2.50, reglas=['+2.5 [close_application]'])
+2026-06-11 10:50:19,715 | DEBUG | orchestrator | [06227a46-c27a-4ce7-a967-e3e5a4db8ae0] LLM OUTPUT (tool): {"tool":"close_application","args":{"command":"explorer"}}
+2026-06-11 10:50:19,719 | INFO | orchestrator | [06227a46-c27a-4ce7-a967-e3e5a4db8ae0] TaskPlan: event=system.close_app args={'command': 'explorer'}
+2026-06-11 10:50:19,721 | DEBUG | orchestrator | [06227a46-c27a-4ce7-a967-e3e5a4db8ae0] Evento publicado: system.close_app
+2026-06-11 10:50:19,807 | INFO | orchestrator | [06227a46-c27a-4ce7-a967-e3e5a4db8ae0] Agente respondió: error
+2026-06-11 10:50:31,230 | INFO | orchestrator | [f797389d-c9cb-4923-8d51-c5f43e2711b3] PlannerOrchestrator.run iniciado
+2026-06-11 10:50:31,231 | INFO | orchestrator | [f797389d-c9cb-4923-8d51-c5f43e2711b3] USER MESSAGE: cierra firefox
+2026-06-11 10:50:31,231 | INFO | orchestrator | [f797389d-c9cb-4923-8d51-c5f43e2711b3] SESSION_ID: f797389d-c9cb-4923-8d51-c5f43e2711b3
+2026-06-11 10:50:31,251 | INFO | orchestrator | [f797389d-c9cb-4923-8d51-c5f43e2711b3] Intent: tool (score=4.50, reglas=['+2.5 [close_application]', '+2.0 [close_app_simple]'])
+2026-06-11 10:50:34,890 | DEBUG | orchestrator | [f797389d-c9cb-4923-8d51-c5f43e2711b3] LLM OUTPUT (tool): {"tool":"close_application","args":{"command":"firefox"}}
+2026-06-11 10:50:34,890 | INFO | orchestrator | [f797389d-c9cb-4923-8d51-c5f43e2711b3] TaskPlan: event=system.close_app args={'command': 'firefox'}
+2026-06-11 10:50:34,890 | DEBUG | orchestrator | [f797389d-c9cb-4923-8d51-c5f43e2711b3] Evento publicado: system.close_app
+2026-06-11 10:54:30,493 | INFO | orchestrator | [b84c94ab-5e95-43ee-90c1-9cbc523a6a95] PlannerOrchestrator.run iniciado
+2026-06-11 10:54:30,493 | INFO | orchestrator | [b84c94ab-5e95-43ee-90c1-9cbc523a6a95] USER MESSAGE: hola buenos dias
+2026-06-11 10:54:30,493 | INFO | orchestrator | [b84c94ab-5e95-43ee-90c1-9cbc523a6a95] SESSION_ID: b84c94ab-5e95-43ee-90c1-9cbc523a6a95
+2026-06-11 10:54:30,520 | INFO | orchestrator | [b84c94ab-5e95-43ee-90c1-9cbc523a6a95] Intent: chat (score=-2.50, reglas=['-2.5 [greeting]'])
+2026-06-11 10:54:30,524 | DEBUG | orchestrator | [b84c94ab-5e95-43ee-90c1-9cbc523a6a95] Evento publicado: chat.respond
+2026-06-11 10:55:33,407 | INFO | orchestrator | [b84c94ab-5e95-43ee-90c1-9cbc523a6a95] Respuesta chat completada
+2026-06-11 10:58:32,290 | INFO | orchestrator | [f3682530-9412-4a5e-857e-cde91a0e9a5f] PlannerOrchestrator.run iniciado
+2026-06-11 10:58:32,290 | INFO | orchestrator | [f3682530-9412-4a5e-857e-cde91a0e9a5f] USER MESSAGE: Texto transcrito localmente
+2026-06-11 10:58:32,290 | INFO | orchestrator | [f3682530-9412-4a5e-857e-cde91a0e9a5f] SESSION_ID: f3682530-9412-4a5e-857e-cde91a0e9a5f
+2026-06-11 10:58:32,299 | INFO | orchestrator | [f3682530-9412-4a5e-857e-cde91a0e9a5f] Intent: chat (score=0.00, reglas=[])
+2026-06-11 10:58:32,300 | DEBUG | orchestrator | [f3682530-9412-4a5e-857e-cde91a0e9a5f] Evento publicado: chat.respond
+2026-06-11 10:59:04,820 | INFO | orchestrator | [f3682530-9412-4a5e-857e-cde91a0e9a5f] Respuesta chat completada
+2026-06-11 11:10:49,046 | INFO | orchestrator | [9a82b57c-3f65-4f9a-9c5a-198dc84867e7] PlannerOrchestrator.run iniciado
+2026-06-11 11:10:49,046 | INFO | orchestrator | [9a82b57c-3f65-4f9a-9c5a-198dc84867e7] USER MESSAGE: Texto transcrito localmente
+2026-06-11 11:10:49,046 | INFO | orchestrator | [9a82b57c-3f65-4f9a-9c5a-198dc84867e7] SESSION_ID: 9a82b57c-3f65-4f9a-9c5a-198dc84867e7
+2026-06-11 11:10:49,088 | INFO | orchestrator | [9a82b57c-3f65-4f9a-9c5a-198dc84867e7] Intent: chat (score=0.00, reglas=[])
+2026-06-11 11:10:49,089 | DEBUG | orchestrator | [9a82b57c-3f65-4f9a-9c5a-198dc84867e7] Evento publicado: chat.respond
+2026-06-11 11:11:24,993 | INFO | orchestrator | [9a82b57c-3f65-4f9a-9c5a-198dc84867e7] Respuesta chat completada
+2026-06-11 11:11:40,431 | INFO | orchestrator | [6927d552-ec40-4f29-958b-3e66a686c662] PlannerOrchestrator.run iniciado
+2026-06-11 11:11:40,431 | INFO | orchestrator | [6927d552-ec40-4f29-958b-3e66a686c662] USER MESSAGE: Texto transcrito localmente
+2026-06-11 11:11:40,432 | INFO | orchestrator | [6927d552-ec40-4f29-958b-3e66a686c662] SESSION_ID: 6927d552-ec40-4f29-958b-3e66a686c662
+2026-06-11 11:11:40,437 | INFO | orchestrator | [6927d552-ec40-4f29-958b-3e66a686c662] Intent: chat (score=0.00, reglas=[])
+2026-06-11 11:11:40,437 | DEBUG | orchestrator | [6927d552-ec40-4f29-958b-3e66a686c662] Evento publicado: chat.respond
+2026-06-11 11:12:12,782 | INFO | orchestrator | [6927d552-ec40-4f29-958b-3e66a686c662] Respuesta chat completada
+2026-06-11 11:12:27,525 | INFO | orchestrator | [9264df92-9bd0-4ab4-9da8-cbec69a3d050] PlannerOrchestrator.run iniciado
+2026-06-11 11:12:27,525 | INFO | orchestrator | [9264df92-9bd0-4ab4-9da8-cbec69a3d050] USER MESSAGE: Texto transcrito localmente
+2026-06-11 11:12:27,526 | INFO | orchestrator | [9264df92-9bd0-4ab4-9da8-cbec69a3d050] SESSION_ID: 9264df92-9bd0-4ab4-9da8-cbec69a3d050
+2026-06-11 11:12:27,533 | INFO | orchestrator | [9264df92-9bd0-4ab4-9da8-cbec69a3d050] Intent: chat (score=0.00, reglas=[])
+2026-06-11 11:12:27,533 | DEBUG | orchestrator | [9264df92-9bd0-4ab4-9da8-cbec69a3d050] Evento publicado: chat.respond
+2026-06-11 11:13:01,149 | INFO | orchestrator | [9264df92-9bd0-4ab4-9da8-cbec69a3d050] Respuesta chat completada
+2026-06-11 11:13:15,212 | INFO | orchestrator | [311ddc8a-bb8e-4f50-85af-04c78b3b2ffa] PlannerOrchestrator.run iniciado
+2026-06-11 11:13:15,212 | INFO | orchestrator | [311ddc8a-bb8e-4f50-85af-04c78b3b2ffa] USER MESSAGE: que hora es
+2026-06-11 11:13:15,212 | INFO | orchestrator | [311ddc8a-bb8e-4f50-85af-04c78b3b2ffa] SESSION_ID: 311ddc8a-bb8e-4f50-85af-04c78b3b2ffa
+2026-06-11 11:13:15,219 | INFO | orchestrator | [311ddc8a-bb8e-4f50-85af-04c78b3b2ffa] Intent: tool (score=2.00, reglas=['+2.0 [datetime_tool]'])
+2026-06-11 11:13:15,219 | INFO | orchestrator | [311ddc8a-bb8e-4f50-85af-04c78b3b2ffa] Atajo datetime_tool activado
+2026-06-11 11:13:15,219 | DEBUG | orchestrator | [311ddc8a-bb8e-4f50-85af-04c78b3b2ffa] Evento publicado: system.datetime
+2026-06-11 12:57:59,138 | INFO | orchestrator | [6367168a-b7ee-4c73-94a9-c1297256b798] PlannerOrchestrator.run iniciado
+2026-06-11 12:57:59,141 | INFO | orchestrator | [6367168a-b7ee-4c73-94a9-c1297256b798] USER MESSAGE: hola
+2026-06-11 12:57:59,141 | INFO | orchestrator | [6367168a-b7ee-4c73-94a9-c1297256b798] SESSION_ID: 6367168a-b7ee-4c73-94a9-c1297256b798
+2026-06-11 12:57:59,212 | INFO | orchestrator | [6367168a-b7ee-4c73-94a9-c1297256b798] Intent: chat (score=-2.50, reglas=['-2.5 [greeting]'])
+2026-06-11 12:57:59,216 | DEBUG | orchestrator | [6367168a-b7ee-4c73-94a9-c1297256b798] Evento publicado: chat.respond
+2026-06-11 12:58:47,673 | INFO | orchestrator | [6367168a-b7ee-4c73-94a9-c1297256b798] Respuesta chat completada
+2026-06-11 13:00:12,245 | INFO | orchestrator | [9f4991a0-c9f9-4b3b-8d68-b904e08d8289] PlannerOrchestrator.run iniciado
+2026-06-11 13:00:12,245 | INFO | orchestrator | [9f4991a0-c9f9-4b3b-8d68-b904e08d8289] USER MESSAGE: que hora es
+2026-06-11 13:00:12,245 | INFO | orchestrator | [9f4991a0-c9f9-4b3b-8d68-b904e08d8289] SESSION_ID: 9f4991a0-c9f9-4b3b-8d68-b904e08d8289
+2026-06-11 13:00:12,257 | INFO | orchestrator | [9f4991a0-c9f9-4b3b-8d68-b904e08d8289] Intent: tool (score=2.00, reglas=['+2.0 [datetime_tool]'])
+2026-06-11 13:00:12,257 | INFO | orchestrator | [9f4991a0-c9f9-4b3b-8d68-b904e08d8289] Atajo datetime_tool activado
+2026-06-11 13:00:12,258 | DEBUG | orchestrator | [9f4991a0-c9f9-4b3b-8d68-b904e08d8289] Evento publicado: system.datetime
+2026-06-11 13:00:17,811 | INFO | orchestrator | [7f2c6859-74b3-47eb-8871-d00a15288dc0] PlannerOrchestrator.run iniciado
+2026-06-11 13:00:17,811 | INFO | orchestrator | [7f2c6859-74b3-47eb-8871-d00a15288dc0] USER MESSAGE: ue hor es
+2026-06-11 13:00:17,812 | INFO | orchestrator | [7f2c6859-74b3-47eb-8871-d00a15288dc0] SESSION_ID: 7f2c6859-74b3-47eb-8871-d00a15288dc0
+2026-06-11 13:00:17,817 | INFO | orchestrator | [7f2c6859-74b3-47eb-8871-d00a15288dc0] Intent: chat (score=0.00, reglas=[])
+2026-06-11 13:00:17,817 | DEBUG | orchestrator | [7f2c6859-74b3-47eb-8871-d00a15288dc0] Evento publicado: chat.respond
+2026-06-11 13:00:48,910 | INFO | orchestrator | [7f2c6859-74b3-47eb-8871-d00a15288dc0] Respuesta chat completada

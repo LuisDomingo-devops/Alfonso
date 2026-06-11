@@ -155,3 +155,20 @@
 2026-06-10 15:16:45,832 | INFO | tools | [----------] Intentando cerrar aplicación: explorer
 2026-06-10 15:18:34,982 | INFO | tools | [----------] Intentando cerrar aplicación: firefox
 2026-06-10 15:18:35,099 | INFO | tools | [----------] Cerrados 1 procesos de 'firefox': pids=[2472]
+2026-06-10 15:54:12,622 | INFO | tools | [----------] Obteniendo fecha y hora del sistema
+2026-06-10 15:57:03,344 | INFO | tools | [----------] browser_navigate: https://www.google.com/search?q=confidencial+.com
+2026-06-10 15:57:03,541 | INFO | tools | [----------] Arrancando Playwright: browser=firefox, headless=False, path=None
+2026-06-10 15:57:09,296 | INFO | tools | [----------] Playwright listo
+2026-06-10 15:57:11,228 | INFO | tools | [----------] Navegado a https://www.google.com/search?q=confidencial+.com → status=None title=Loading https://www.google.com/search?q=confidencial+.com&sei=NW0paunCOOeBxc8P5NbtmAo
+2026-06-10 15:57:11,230 | INFO | tools | [----------] browser_wait_for: selector=h3 state=visible
+2026-06-10 15:57:21,248 | INFO | tools | [----------] browser_get_text: selector=body
+2026-06-10 15:57:21,256 | INFO | tools | [----------] browser_screenshot: full_page=False
+2026-06-11 10:48:52,477 | INFO | tools | [----------] browser_navigate: https://www.elpais.com
+2026-06-11 10:48:52,599 | INFO | tools | [----------] Arrancando Playwright: browser=firefox, headless=False, path=None
+2026-06-11 10:49:01,392 | INFO | tools | [----------] Playwright listo
+2026-06-11 10:49:05,745 | INFO | tools | [----------] Navegado a https://www.elpais.com → status=200 title=EL PAÍS: el periódico global
+2026-06-11 10:50:19,743 | INFO | tools | [----------] Intentando cerrar aplicación: explorer
+2026-06-11 10:50:34,891 | INFO | tools | [----------] Intentando cerrar aplicación: firefox
+2026-06-11 10:50:35,167 | INFO | tools | [----------] Cerrados 1 procesos de 'firefox': pids=[2475]
+2026-06-11 11:13:15,245 | INFO | tools | [----------] Obteniendo fecha y hora del sistema
+2026-06-11 13:00:12,263 | INFO | tools | [----------] Obteniendo fecha y hora del sistema
