@@ -16,7 +16,7 @@ from PyQt6 import uic
 from core.api_client import AlfonsoAPI
 from core.processor import ResponseProcessor
 from services.audio import AudioService
-from alfonso_agent_logic import AlfonsoAgentLogic
+from core.alfonso_agent_logic import AlfonsoAgentLogic
 
 
 class AssistantThread(QThread):
@@ -92,10 +92,25 @@ class AssistantThread(QThread):
                         response_data = chat_res.get("result", {})
                         response_text = self.processor.format_response(response_data)
                         self.new_message.emit("Alfonso", response_text)
-                        self.state_changed.emit("speaking")
+
+                        audio_b64 = response_data.get("audio")
+                        if audio_b64:
+                            self.state_changed.emit("speaking")
+                            audio_bytes = base64.b64decode(audio_b64)
+                            await asyncio.to_thread(self.audio.play_audio, audio_bytes, device=output_device)
+                        else: # If server does not provide audio, use local TTS
+                            if response_text: # Only speak if there's text to speak
+                                self.state_changed.emit("speaking")
+                                # Intentamos primero la voz humana (Edge-TTS)
+                                audio_path = await self.audio.text_to_speech_human(response_text)
+                                if audio_path:
+                                    await asyncio.to_thread(self.audio.play_audio_file, audio_path)
+                                else: # Fallback a voz robótica local si falla Edge-TTS
+                                    audio_bytes = await asyncio.to_thread(self.audio.text_to_wav_bytes, response_text)
+                                    if audio_bytes:
+                                        await asyncio.to_thread(self.audio.play_audio, audio_bytes, device=output_device)
                         
-                        # TO DO: Integrar motor TTS local aquí (ej. Piper o pyttsx3)
-                        self.state_changed.emit("idle_text")
+                        self.state_changed.emit("idle_text") # Vuelve a idle_text después de hablar
                     else:
                         self.msleep(100)
                     continue
@@ -146,13 +161,23 @@ class AssistantThread(QThread):
                         response_text = self.processor.format_response(response_data)
                         
                         self.new_message.emit("Alfonso", response_text)
-                        self.state_changed.emit("speaking")
                         
                         # --- FASE 2.2: Reproducción de Audio (TTS) ---
                         audio_b64 = response_data.get("audio")
                         if audio_b64:
+                            self.state_changed.emit("speaking")
                             audio_bytes = base64.b64decode(audio_b64)
                             await asyncio.to_thread(self.audio.play_audio, audio_bytes, device=output_device)
+                        else: # If server does not provide audio, use local TTS
+                            if response_text: # Only speak if there's text to speak
+                                self.state_changed.emit("speaking")
+                                audio_path = await self.audio.text_to_speech_human(response_text)
+                                if audio_path:
+                                    await asyncio.to_thread(self.audio.play_audio_file, audio_path)
+                                else:
+                                    audio_bytes = await asyncio.to_thread(self.audio.text_to_wav_bytes, response_text)
+                                    if audio_bytes:
+                                        await asyncio.to_thread(self.audio.play_audio, audio_bytes, device=output_device)
                     else:
                         print("[WARN] El audio se procesó pero no se detectaron palabras.")
                         self.new_message.emit("Alfonso", "Lo siento, no te he oído bien.")

@@ -18,6 +18,9 @@ import logging
 import time
 import wave
 from typing import Optional
+import pyttsx3 # Import for local TTS
+import edge_tts
+import asyncio
 from core.config import SILENCE_THRESHOLD
 import tempfile
 import os
@@ -184,7 +187,7 @@ class AudioService:
     """
 
     def __init__(self, device: Optional[int] = None, auto_detect: bool = True):
-        print("Inicializando AudioService…")
+        logger.info("Inicializando AudioService…")
         if device is None and auto_detect:
             device = auto_select_device()
 
@@ -198,16 +201,30 @@ class AudioService:
             except Exception:
                 pass
         logger.info(
-            "AudioService listo → [%s] '%s' @ %dHz (target %dHz)",
+            "AudioService listo -> [%s] '%s' @ %dHz (target %dHz)",
             device, name, self._native_rate, TARGET_RATE,
         )
+        self._tts_engine = None # Initialize pyttsx3 engine lazily
+
+    def _init_tts_engine(self):
+        """Initializes the pyttsx3 engine if not already initialized."""
+        if self._tts_engine is None:
+            try:
+                self._tts_engine = pyttsx3.init()
+                # Optional: Set properties like voice, rate, volume
+                # voices = self._tts_engine.getProperty('voices')
+                # self._tts_engine.setProperty('voice', voices[0].id)
+                # self._tts_engine.setProperty('rate', 150)
+            except Exception as e:
+                logger.error(f"Error initializing pyttsx3 engine: {e}")
+                self._tts_engine = None
 
     # ------------------------------------------------------------------
     # Listado de dispositivos
     # ------------------------------------------------------------------
 
     def list_input_devices(self) -> list:
-        print("Listando dispositivos de entrada (micrófonos)…")
+        logger.info("Listando dispositivos de entrada (micrófonos)…")
         return [
             {
                 "index": i,
@@ -220,7 +237,7 @@ class AudioService:
         ]
 
     def list_output_devices(self) -> list:
-        print("Listando dispositivos de salida (altavoces)…")
+        logger.info("Listando dispositivos de salida (altavoces)…")
         return [
             {
                 "index": i,
@@ -237,7 +254,7 @@ class AudioService:
     # ------------------------------------------------------------------
 
     def record_raw(self, duration: float, device: Optional[int] = None) -> np.ndarray:
-        print(f"Grabando {duration} segundos de audio desde dispositivo [{device}]…")
+        logger.debug(f"Grabando {duration} segundos de audio desde dispositivo [{device}]…")
         """
         Graba `duration` segundos y devuelve array float32 mono a TARGET_RATE.
         Si el dispositivo graba a otro samplerate lo remuestrea automáticamente.
@@ -285,7 +302,7 @@ class AudioService:
             return ndarray_to_wav_bytes(silence, TARGET_RATE)
 
     def get_audio_bytes(self, audio_buffer: list) -> bytes:
-        print("Concatenando buffers de audio y convirtiendo a bytes WAV…")
+        logger.debug("Concatenando buffers de audio y convirtiendo a bytes WAV…")
         """Concatena lista de arrays grabados con record_raw y devuelve WAV."""
         if not audio_buffer:
             return b""
@@ -297,7 +314,7 @@ class AudioService:
     # ------------------------------------------------------------------
 
     def play_audio(self, wav_bytes: bytes, device: Optional[int] = None) -> None:
-        print("Reproduciendo audio…")
+        logger.debug("Reproduciendo audio…")
         try:
             buf = io.BytesIO(wav_bytes)
             with wave.open(buf, "rb") as wf:
@@ -307,6 +324,53 @@ class AudioService:
             sd.play(data, fs, device=device)
             sd.wait()
         except Exception as exc:
+            logger.error("Error reproduciendo audio: %s", exc)
+
+    async def text_to_speech_human(self, text: str) -> Optional[str]:
+        """
+        Genera audio con voces neuronales humanas usando edge-tts.
+        Devuelve la ruta al archivo temporal generado.
+        """
+        try:
+            # Usamos una voz masculina española muy natural (Alvaro)
+            # Para femenina podrías usar "es-ES-ElviraNeural"
+            voice = "es-ES-AlvaroNeural"
+            
+            temp_file = tempfile.NamedTemporaryFile(delete=False, suffix=".mp3")
+            temp_path = temp_file.name
+            temp_file.close()
+
+            communicate = edge_tts.Communicate(text, voice)
+            await communicate.save(temp_path)
+            
+            logger.info(f"Audio humano generado exitosamente en {temp_path}")
+            return temp_path
+        except Exception as e:
+            logger.error(f"Error generando voz humana (edge-tts): {e}")
+            return None
+
+    def text_to_wav_bytes(self, text: str) -> bytes:
+        """
+        Convierte texto a bytes WAV usando pyttsx3.
+        Requiere: pip install pyttsx3
+        """
+        self._init_tts_engine()
+        if self._tts_engine is None:
+            logger.error("pyttsx3 engine not initialized. Cannot perform TTS.")
+            return b""
+
+        temp_file = tempfile.NamedTemporaryFile(delete=False, suffix=".wav")
+        temp_file.close()
+        temp_path = temp_file.name
+
+        try:
+            self._tts_engine.save_to_file(text, temp_path)
+            self._tts_engine.runAndWait()
+
+            with open(temp_path, "rb") as f:
+                wav_bytes = f.read()
+            return wav_bytes
+        except Exception as e:
             logger.error("Error reproduciendo audio: %s", exc)
 
     def calibrate_threshold(self, device: Optional[int], seconds: float = 2.0) -> int:
@@ -344,8 +408,8 @@ class AudioService:
     # ------------------------------------------------------------------
 
     @staticmethod
-    def get_level(wav_bytes: bytes) -> int:
-        print("Calculando nivel de audio…")
+    def get_level(wav_bytes: bytes) -> int: # Changed to staticmethod
+        logger.debug("Calculando nivel de audio…")
         """Nivel pico en escala 0-32767."""
         buf = io.BytesIO(wav_bytes)
         try:
