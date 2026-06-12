@@ -67,9 +67,15 @@ class AssistantThread(QThread):
     async def _audio_loop(self):
         """Loop de procesamiento de voz convertido a async."""
         keyword = self.config.get('keyword', 'alfonso').lower()
-        threshold = self.config.get('threshold', 30)
         device = self.config.get('device', None)
         output_device = self.config.get('output_device', None)
+
+        # Handle threshold calibration for GUI mode
+        threshold = self.config.get('threshold') # Get the raw value, which can be None
+        if threshold is None:
+            effective_device = device if device is not None else self.audio.device
+            threshold = await asyncio.to_thread(self.audio.calibrate_threshold, effective_device)
+            self.config['threshold'] = threshold # Update config for consistency
 
         while self.running:
             try:
@@ -108,34 +114,34 @@ class AssistantThread(QThread):
                 print("[DEBUG] Voz detectada, verificando wake word...")
                 # --- FASE 1.1: Detección de Wake Word local ---
                 # Reemplazar la llamada a la API por una función local de detección de wake word
-                wakeword_res = self.api.wakeword(wav, keyword=keyword) # ADDED
-                wake_word_detected_locally = wakeword_res.get("status") == "ok"
-                wakeword_text = wakeword_res.get("result", {}).get("text", "") # ADDED
-                if wake_word_detected_locally: # Adaptar la condición
-                    print(f"[OK] Wake word '{keyword}' detectada.")
+                # Por ahora, consideraremos cualquier voz detectada como una "wake word" basada en la actividad de voz.
+                # Un modelo de wake word local más sofisticado (ej. Vosk, picovoice) se integraría aquí.
+                # La variable `wakeword_text` se mantiene para compatibilidad con código posterior, pero estará vacía.
+                wake_word_detected_locally = self.audio.has_voice(wav, threshold)
+                wakeword_text = "" # No hay texto real de la detección local de wake word todavía
+                if wake_word_detected_locally:
+                    print(f"[OK] Wake word '{keyword}' detectada (mediante actividad de voz local).")
                     self.state_changed.emit("listening")
                     self.new_message.emit("Alfonso", "Dime, te escucho...")
 
                     await asyncio.sleep(0.3) # Tiempo de recuperación para el driver de audio
-                    # Fase 2: Escuchar Orden
-                    # record_chunk ya devuelve los bytes del WAV, no hace falta get_audio_bytes
+
+                    # Fase 2: Escuchar Orden (Grabamos 5s)
                     wav_order = await asyncio.to_thread(self.audio.record_chunk, 5, device=device)
                     
-                    # Emitir nivel captado durante la orden
-                    level_order = self.audio.get_level(wav_order)
-                    self.audio_level_updated.emit(level_order, self.device_name)
-
                     self.state_changed.emit("thinking")
                     
-                    # --- FASE 2.1: Transcripción (Llamada real al backend) ---
-                    stt_res = self.api.stt(wav_order) 
-                    user_text = stt_res.get("result", {}).get("text", "") if isinstance(stt_res, dict) else ""
+                    # --- FASE 2.1: Transcripción Local (Evita el 404) ---
+                    print(f"\n[INFO] Procesando transcripción local...")
+                    user_text = await asyncio.to_thread(self.audio.transcribe_local, wav_order)
                     
-                    if user_text and user_text.strip():
-                        print(f"[UI LOG] Transcripción: {user_text}")
+                    if user_text:
+                        print(f"[OK] Alfonso ha entendido: '{user_text}'")
                         self.new_message.emit("Tú", user_text)
                         
-                        chat_res = self.api.send_chat(user_text, self.session_id)
+                        # --- FASE 2.2: Envío al cerebro Alfonso (/chat) ---
+                        # El payload enviado es: {"message": user_text, "session_id": self.session_id}
+                        chat_res = await asyncio.to_thread(self.api.send_chat, user_text, self.session_id)
                         response_data = chat_res.get("result", {})
                         response_text = self.processor.format_response(response_data)
                         
@@ -147,7 +153,11 @@ class AssistantThread(QThread):
                         if audio_b64:
                             audio_bytes = base64.b64decode(audio_b64)
                             await asyncio.to_thread(self.audio.play_audio, audio_bytes, device=output_device)
+                    else:
+                        print("[WARN] El audio se procesó pero no se detectaron palabras.")
+                        self.new_message.emit("Alfonso", "Lo siento, no te he oído bien.")
                     
+                    print("[INFO] Volviendo a modo escucha (esperando wake word)...")
                     self.state_changed.emit("idle")
 
             except Exception as e:

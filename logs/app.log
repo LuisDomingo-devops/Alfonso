@@ -242,3 +242,253 @@
 2026-06-11 16:22:59,054 | INFO | app | [8d29cfa7-e4ab-4e74-8c71-5fe144feeddf] LATENCY: 37.24s
 2026-06-11 16:22:59,055 | INFO | app | [8d29cfa7-e4ab-4e74-8c71-5fe144feeddf] HTTP request finished: POST /chat 200
 2026-06-11 16:23:10,101 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-12 08:45:24,693 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-12 08:45:24,693 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
+2026-06-12 08:45:24,693 | INFO | app | [----------] EventBus iniciado
+2026-06-12 08:45:24,701 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-12 08:46:55,182 | INFO | app | [----------] Modelo precalentado
+2026-06-12 08:46:55,184 | INFO | app | [----------] Alfonso Fase 3 listo
+2026-06-12 08:48:38,227 | INFO | app | [d4944a6c-b429-4380-8da3-77f7082910f3] HTTP request started: GET /health
+2026-06-12 08:48:38,255 | INFO | app | [d4944a6c-b429-4380-8da3-77f7082910f3] HTTP request finished: GET /health 200
+2026-06-12 08:49:11,107 | INFO | app | [8390d434-25ab-4fce-afb2-be38d94a3052] HTTP request started: GET /health
+2026-06-12 08:49:11,107 | INFO | app | [8390d434-25ab-4fce-afb2-be38d94a3052] HTTP request finished: GET /health 200
+2026-06-12 09:50:16,696 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-12 09:50:16,697 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
+2026-06-12 09:50:16,697 | INFO | app | [----------] EventBus iniciado
+2026-06-12 09:50:16,706 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-12 09:51:04,892 | INFO | app | [----------] Modelo precalentado
+2026-06-12 09:51:04,893 | INFO | app | [----------] Alfonso Fase 3 listo
+2026-06-12 09:53:20,249 | INFO | app | [354e4b49-4cf8-467b-b753-2af614a0322a] HTTP request started: GET /health
+2026-06-12 09:53:20,272 | INFO | app | [354e4b49-4cf8-467b-b753-2af614a0322a] HTTP request finished: GET /health 200
+2026-06-12 09:54:41,402 | INFO | app | [3d9fb739-7c82-4cf4-a525-94723eb87021] HTTP request started: POST /chat
+2026-06-12 09:54:41,413 | INFO | app | [3d9fb739-7c82-4cf4-a525-94723eb87021] Solicitud /chat recibida
+2026-06-12 09:54:41,414 | INFO | app | [3d9fb739-7c82-4cf4-a525-94723eb87021] SESSION_ID: 3d9fb739-7c82-4cf4-a525-94723eb87021
+2026-06-12 09:54:41,414 | INFO | app | [3d9fb739-7c82-4cf4-a525-94723eb87021] USER MESSAGE: buenos dias
+2026-06-12 09:55:15,041 | INFO | app | [3d9fb739-7c82-4cf4-a525-94723eb87021] Solicitud /chat procesada con estado: chat
+2026-06-12 09:55:15,042 | INFO | app | [3d9fb739-7c82-4cf4-a525-94723eb87021] LATENCY: 33.63s
+2026-06-12 09:55:15,043 | INFO | app | [3d9fb739-7c82-4cf4-a525-94723eb87021] HTTP request finished: POST /chat 200
+2026-06-12 14:06:28,870 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-12 14:06:28,871 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
+2026-06-12 14:06:28,871 | INFO | app | [----------] EventBus iniciado
+2026-06-12 14:06:28,879 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-12 14:07:08,090 | INFO | app | [----------] Modelo precalentado
+2026-06-12 14:07:08,091 | INFO | app | [----------] Alfonso Fase 3 listo
+2026-06-12 14:13:36,692 | INFO | app | [43bcdcf8-8937-4c68-b655-2d0f1b0892f5] HTTP request started: GET /health
+2026-06-12 14:13:36,712 | INFO | app | [43bcdcf8-8937-4c68-b655-2d0f1b0892f5] HTTP request finished: GET /health 200
+2026-06-12 14:15:38,817 | INFO | app | [f530fe8a-3a8b-4244-9bda-7d80244bfe6f] HTTP request started: GET /health
+2026-06-12 14:15:38,819 | INFO | app | [f530fe8a-3a8b-4244-9bda-7d80244bfe6f] HTTP request finished: GET /health 200
+2026-06-12 14:37:05,830 | INFO | app | [0a21dd87-d0d0-43b7-ba4a-d8b92e021b48] HTTP request started: GET /health
+2026-06-12 14:37:05,855 | INFO | app | [0a21dd87-d0d0-43b7-ba4a-d8b92e021b48] HTTP request finished: GET /health 200
+2026-06-12 14:39:01,173 | INFO | app | [4873828d-db5b-4576-b7ac-405ed5082a08] HTTP request started: POST /chat
+2026-06-12 14:39:01,216 | INFO | app | [4873828d-db5b-4576-b7ac-405ed5082a08] Solicitud /chat recibida
+2026-06-12 14:39:01,217 | INFO | app | [4873828d-db5b-4576-b7ac-405ed5082a08] SESSION_ID: 4873828d-db5b-4576-b7ac-405ed5082a08
+2026-06-12 14:39:01,217 | INFO | app | [4873828d-db5b-4576-b7ac-405ed5082a08] USER MESSAGE: hola
+2026-06-12 14:39:44,713 | INFO | app | [4873828d-db5b-4576-b7ac-405ed5082a08] Solicitud /chat procesada con estado: chat
+2026-06-12 14:39:44,713 | INFO | app | [4873828d-db5b-4576-b7ac-405ed5082a08] LATENCY: 44.66s
+2026-06-12 14:39:44,715 | INFO | app | [4873828d-db5b-4576-b7ac-405ed5082a08] HTTP request finished: POST /chat 200
+2026-06-12 15:08:23,477 | INFO | app | [219c4a61-6520-4b54-90fc-c20c58c3e0a3] HTTP request started: GET /health
+2026-06-12 15:08:23,501 | INFO | app | [219c4a61-6520-4b54-90fc-c20c58c3e0a3] HTTP request finished: GET /health 200
+2026-06-12 15:09:14,973 | INFO | app | [a6d4bbfc-e4bc-4269-9ff9-79ae922715c4] HTTP request started: GET /health
+2026-06-12 15:09:14,974 | INFO | app | [a6d4bbfc-e4bc-4269-9ff9-79ae922715c4] HTTP request finished: GET /health 200
+2026-06-12 15:11:26,315 | INFO | app | [58fb7675-514b-45bc-827e-cb7d493a774c] HTTP request started: GET /health
+2026-06-12 15:11:26,316 | INFO | app | [58fb7675-514b-45bc-827e-cb7d493a774c] HTTP request finished: GET /health 200
+2026-06-12 15:11:48,539 | INFO | app | [15bbec65-f1f1-4a31-bb0c-77eba2bcf002] HTTP request started: GET /health
+2026-06-12 15:11:48,540 | INFO | app | [15bbec65-f1f1-4a31-bb0c-77eba2bcf002] HTTP request finished: GET /health 200
+2026-06-12 15:12:23,820 | INFO | app | [50bcc2b9-447e-4e31-894f-0efb570e0f34] HTTP request started: GET /health
+2026-06-12 15:12:23,821 | INFO | app | [50bcc2b9-447e-4e31-894f-0efb570e0f34] HTTP request finished: GET /health 200
+2026-06-12 15:13:24,213 | INFO | app | [b55b2918-b25d-466f-b7b6-d174e35707bd] HTTP request started: GET /health
+2026-06-12 15:13:24,215 | INFO | app | [b55b2918-b25d-466f-b7b6-d174e35707bd] HTTP request finished: GET /health 200
+2026-06-12 15:15:59,062 | INFO | app | [1d1b5827-20a1-4365-a9c9-09a77cfd31b3] HTTP request started: GET /health
+2026-06-12 15:15:59,063 | INFO | app | [1d1b5827-20a1-4365-a9c9-09a77cfd31b3] HTTP request finished: GET /health 200
+2026-06-12 15:21:18,804 | INFO | app | [a7dd0ff4-fdf1-4cbe-9187-6c94d8464050] HTTP request started: GET /health
+2026-06-12 15:21:18,806 | INFO | app | [a7dd0ff4-fdf1-4cbe-9187-6c94d8464050] HTTP request finished: GET /health 200
+2026-06-12 15:26:23,864 | INFO | app | [33ad0116-d4a0-4377-85d2-1a12647d7dc5] HTTP request started: GET /health
+2026-06-12 15:26:23,867 | INFO | app | [33ad0116-d4a0-4377-85d2-1a12647d7dc5] HTTP request finished: GET /health 200
+2026-06-12 15:32:41,041 | INFO | app | [55f94b0d-4d2e-48af-ac97-0ff367384afc] HTTP request started: GET /health
+2026-06-12 15:32:41,043 | INFO | app | [55f94b0d-4d2e-48af-ac97-0ff367384afc] HTTP request finished: GET /health 200
+2026-06-12 15:38:28,651 | INFO | app | [4efccd49-90fc-439f-88a3-ab11cc59f75c] HTTP request started: GET /health
+2026-06-12 15:38:28,652 | INFO | app | [4efccd49-90fc-439f-88a3-ab11cc59f75c] HTTP request finished: GET /health 200
+2026-06-12 15:38:55,344 | INFO | app | [4fce4ca4-59e7-424b-b8a7-7e4d5c6adc21] HTTP request started: POST /stt
+2026-06-12 15:38:55,367 | WARNING | app | [4fce4ca4-59e7-424b-b8a7-7e4d5c6adc21] HTTP exception: Not Found
+2026-06-12 15:38:55,368 | INFO | app | [4fce4ca4-59e7-424b-b8a7-7e4d5c6adc21] HTTP request finished: POST /stt 404
+2026-06-12 15:39:23,040 | INFO | app | [8624e9c4-5485-4a8d-81bc-4f0cd16c5da4] HTTP request started: POST /stt
+2026-06-12 15:39:23,041 | WARNING | app | [8624e9c4-5485-4a8d-81bc-4f0cd16c5da4] HTTP exception: Not Found
+2026-06-12 15:39:23,041 | INFO | app | [8624e9c4-5485-4a8d-81bc-4f0cd16c5da4] HTTP request finished: POST /stt 404
+2026-06-12 15:39:41,057 | INFO | app | [dbcf18ae-dddc-4575-87d4-f2905b95dd4c] HTTP request started: POST /stt
+2026-06-12 15:39:41,079 | WARNING | app | [dbcf18ae-dddc-4575-87d4-f2905b95dd4c] HTTP exception: Not Found
+2026-06-12 15:39:41,082 | INFO | app | [dbcf18ae-dddc-4575-87d4-f2905b95dd4c] HTTP request finished: POST /stt 404
+2026-06-12 15:49:17,430 | INFO | app | [a68557c6-e5bd-4d0e-acea-4702d8ab3c2d] HTTP request started: GET /health
+2026-06-12 15:49:17,432 | INFO | app | [a68557c6-e5bd-4d0e-acea-4702d8ab3c2d] HTTP request finished: GET /health 200
+2026-06-12 15:49:34,622 | INFO | app | [015c0846-20de-4481-9c7e-a5a9313f95ea] HTTP request started: POST /stt
+2026-06-12 15:49:34,624 | WARNING | app | [015c0846-20de-4481-9c7e-a5a9313f95ea] HTTP exception: Not Found
+2026-06-12 15:49:34,625 | INFO | app | [015c0846-20de-4481-9c7e-a5a9313f95ea] HTTP request finished: POST /stt 404
+2026-06-12 15:49:45,348 | INFO | app | [1e087085-7d2e-4c56-954e-957d75cb41b9] HTTP request started: POST /stt
+2026-06-12 15:49:45,349 | WARNING | app | [1e087085-7d2e-4c56-954e-957d75cb41b9] HTTP exception: Not Found
+2026-06-12 15:49:45,349 | INFO | app | [1e087085-7d2e-4c56-954e-957d75cb41b9] HTTP request finished: POST /stt 404
+2026-06-12 15:50:06,744 | INFO | app | [d5b7abb6-ac03-41c7-aa2f-eace588b7bcc] HTTP request started: POST /stt
+2026-06-12 15:50:06,744 | WARNING | app | [d5b7abb6-ac03-41c7-aa2f-eace588b7bcc] HTTP exception: Not Found
+2026-06-12 15:50:06,744 | INFO | app | [d5b7abb6-ac03-41c7-aa2f-eace588b7bcc] HTTP request finished: POST /stt 404
+2026-06-12 16:08:26,939 | INFO | app | [9bbe32bb-9278-458a-bddd-88fa60afe48e] HTTP request started: GET /docs
+2026-06-12 16:08:26,968 | INFO | app | [9bbe32bb-9278-458a-bddd-88fa60afe48e] HTTP request finished: GET /docs 200
+2026-06-12 16:08:27,483 | INFO | app | [b22e9f17-f789-431c-8cb2-bcd65f9b8f6f] HTTP request started: GET /openapi.json
+2026-06-12 16:08:27,790 | INFO | app | [b22e9f17-f789-431c-8cb2-bcd65f9b8f6f] HTTP request finished: GET /openapi.json 200
+2026-06-12 17:01:56,729 | INFO | app | [d0fbb18d-00ba-4c56-9279-49cc9b7505cd] HTTP request started: GET /health
+2026-06-12 17:01:56,759 | INFO | app | [d0fbb18d-00ba-4c56-9279-49cc9b7505cd] HTTP request finished: GET /health 200
+2026-06-12 17:02:27,740 | INFO | app | [41e8879b-bdfb-4b98-bed3-95dcbdcee1d1] HTTP request started: POST /chat
+2026-06-12 17:02:27,761 | INFO | app | [41e8879b-bdfb-4b98-bed3-95dcbdcee1d1] Solicitud /chat recibida
+2026-06-12 17:02:27,762 | INFO | app | [41e8879b-bdfb-4b98-bed3-95dcbdcee1d1] SESSION_ID: 41e8879b-bdfb-4b98-bed3-95dcbdcee1d1
+2026-06-12 17:02:27,762 | INFO | app | [41e8879b-bdfb-4b98-bed3-95dcbdcee1d1] USER MESSAGE: dime qué hora es
+2026-06-12 17:02:28,029 | INFO | app | [41e8879b-bdfb-4b98-bed3-95dcbdcee1d1] Solicitud /chat procesada con estado: chat
+2026-06-12 17:02:28,029 | INFO | app | [41e8879b-bdfb-4b98-bed3-95dcbdcee1d1] LATENCY: 0.27s
+2026-06-12 17:02:28,029 | INFO | app | [41e8879b-bdfb-4b98-bed3-95dcbdcee1d1] HTTP request finished: POST /chat 200
+2026-06-12 17:02:59,381 | INFO | app | [cc08db59-4ed9-4308-ac2c-5d717a81f928] HTTP request started: POST /chat
+2026-06-12 17:02:59,383 | INFO | app | [cc08db59-4ed9-4308-ac2c-5d717a81f928] Solicitud /chat recibida
+2026-06-12 17:02:59,383 | INFO | app | [cc08db59-4ed9-4308-ac2c-5d717a81f928] SESSION_ID: cc08db59-4ed9-4308-ac2c-5d717a81f928
+2026-06-12 17:02:59,383 | INFO | app | [cc08db59-4ed9-4308-ac2c-5d717a81f928] USER MESSAGE: abre el país puntocom
+2026-06-12 17:03:47,272 | INFO | app | [cc08db59-4ed9-4308-ac2c-5d717a81f928] Solicitud /chat procesada con estado: chat
+2026-06-12 17:03:47,273 | INFO | app | [cc08db59-4ed9-4308-ac2c-5d717a81f928] LATENCY: 47.89s
+2026-06-12 17:03:47,278 | INFO | app | [cc08db59-4ed9-4308-ac2c-5d717a81f928] HTTP request finished: POST /chat 200
+2026-06-12 17:04:15,975 | INFO | app | [790989bd-2432-4059-ad45-42496caf2c98] HTTP request started: POST /chat
+2026-06-12 17:04:15,982 | INFO | app | [790989bd-2432-4059-ad45-42496caf2c98] Solicitud /chat recibida
+2026-06-12 17:04:15,982 | INFO | app | [790989bd-2432-4059-ad45-42496caf2c98] SESSION_ID: 790989bd-2432-4059-ad45-42496caf2c98
+2026-06-12 17:04:15,982 | INFO | app | [790989bd-2432-4059-ad45-42496caf2c98] USER MESSAGE: abre la página web el país com
+2026-06-12 17:05:22,116 | INFO | app | [790989bd-2432-4059-ad45-42496caf2c98] Solicitud /chat procesada con estado: chat
+2026-06-12 17:05:22,117 | INFO | app | [790989bd-2432-4059-ad45-42496caf2c98] LATENCY: 66.13s
+2026-06-12 17:05:22,120 | INFO | app | [790989bd-2432-4059-ad45-42496caf2c98] HTTP request finished: POST /chat 200
+2026-06-12 17:05:54,162 | INFO | app | [df8cd20e-4bdd-4fb8-94eb-aa2a39a98489] HTTP request started: POST /chat
+2026-06-12 17:05:54,163 | INFO | app | [df8cd20e-4bdd-4fb8-94eb-aa2a39a98489] Solicitud /chat recibida
+2026-06-12 17:05:54,164 | INFO | app | [df8cd20e-4bdd-4fb8-94eb-aa2a39a98489] SESSION_ID: df8cd20e-4bdd-4fb8-94eb-aa2a39a98489
+2026-06-12 17:05:54,164 | INFO | app | [df8cd20e-4bdd-4fb8-94eb-aa2a39a98489] USER MESSAGE: cierra
+2026-06-12 17:06:42,350 | INFO | app | [df8cd20e-4bdd-4fb8-94eb-aa2a39a98489] Solicitud /chat procesada con estado: chat
+2026-06-12 17:06:42,350 | INFO | app | [df8cd20e-4bdd-4fb8-94eb-aa2a39a98489] LATENCY: 48.19s
+2026-06-12 17:06:42,350 | INFO | app | [df8cd20e-4bdd-4fb8-94eb-aa2a39a98489] HTTP request finished: POST /chat 200
+2026-06-12 17:06:54,481 | INFO | app | [2454296e-f4c4-42af-801d-021efd491596] HTTP request started: POST /chat
+2026-06-12 17:06:54,482 | INFO | app | [2454296e-f4c4-42af-801d-021efd491596] Solicitud /chat recibida
+2026-06-12 17:06:54,482 | INFO | app | [2454296e-f4c4-42af-801d-021efd491596] SESSION_ID: 2454296e-f4c4-42af-801d-021efd491596
+2026-06-12 17:06:54,482 | INFO | app | [2454296e-f4c4-42af-801d-021efd491596] USER MESSAGE: la factura de la luz
+2026-06-12 17:07:53,023 | INFO | app | [2454296e-f4c4-42af-801d-021efd491596] Solicitud /chat procesada con estado: chat
+2026-06-12 17:07:53,023 | INFO | app | [2454296e-f4c4-42af-801d-021efd491596] LATENCY: 58.54s
+2026-06-12 17:07:53,023 | INFO | app | [2454296e-f4c4-42af-801d-021efd491596] HTTP request finished: POST /chat 200
+2026-06-12 17:08:28,458 | INFO | app | [51a55386-05a1-4f92-965b-e24b2af1d3af] HTTP request started: POST /chat
+2026-06-12 17:08:28,459 | INFO | app | [51a55386-05a1-4f92-965b-e24b2af1d3af] Solicitud /chat recibida
+2026-06-12 17:08:28,459 | INFO | app | [51a55386-05a1-4f92-965b-e24b2af1d3af] SESSION_ID: 51a55386-05a1-4f92-965b-e24b2af1d3af
+2026-06-12 17:08:28,459 | INFO | app | [51a55386-05a1-4f92-965b-e24b2af1d3af] USER MESSAGE: cierra Firefox
+2026-06-12 17:09:05,534 | INFO | app | [51a55386-05a1-4f92-965b-e24b2af1d3af] Solicitud /chat procesada con estado: error
+2026-06-12 17:09:05,535 | INFO | app | [51a55386-05a1-4f92-965b-e24b2af1d3af] LATENCY: 37.08s
+2026-06-12 17:09:05,535 | INFO | app | [51a55386-05a1-4f92-965b-e24b2af1d3af] HTTP request finished: POST /chat 200
+2026-06-12 17:09:24,115 | INFO | app | [38b4bd32-1613-4b3e-9728-339a160e9c0e] HTTP request started: POST /chat
+2026-06-12 17:09:24,116 | INFO | app | [38b4bd32-1613-4b3e-9728-339a160e9c0e] Solicitud /chat recibida
+2026-06-12 17:09:24,117 | INFO | app | [38b4bd32-1613-4b3e-9728-339a160e9c0e] SESSION_ID: 38b4bd32-1613-4b3e-9728-339a160e9c0e
+2026-06-12 17:09:24,117 | INFO | app | [38b4bd32-1613-4b3e-9728-339a160e9c0e] USER MESSAGE: cierra firefox
+2026-06-12 17:09:25,813 | INFO | app | [38b4bd32-1613-4b3e-9728-339a160e9c0e] Solicitud /chat procesada con estado: chat
+2026-06-12 17:09:25,813 | INFO | app | [38b4bd32-1613-4b3e-9728-339a160e9c0e] LATENCY: 1.70s
+2026-06-12 17:09:25,814 | INFO | app | [38b4bd32-1613-4b3e-9728-339a160e9c0e] HTTP request finished: POST /chat 200
+2026-06-12 17:10:17,231 | INFO | app | [6bcf7752-e78b-4b2c-9ac3-afdf9c04701e] HTTP request started: POST /chat
+2026-06-12 17:10:17,232 | INFO | app | [6bcf7752-e78b-4b2c-9ac3-afdf9c04701e] Solicitud /chat recibida
+2026-06-12 17:10:17,232 | INFO | app | [6bcf7752-e78b-4b2c-9ac3-afdf9c04701e] SESSION_ID: 6bcf7752-e78b-4b2c-9ac3-afdf9c04701e
+2026-06-12 17:10:17,232 | INFO | app | [6bcf7752-e78b-4b2c-9ac3-afdf9c04701e] USER MESSAGE: abre Firefox
+2026-06-12 17:10:18,919 | INFO | app | [6bcf7752-e78b-4b2c-9ac3-afdf9c04701e] Solicitud /chat procesada con estado: chat
+2026-06-12 17:10:18,919 | INFO | app | [6bcf7752-e78b-4b2c-9ac3-afdf9c04701e] LATENCY: 1.69s
+2026-06-12 17:10:18,920 | INFO | app | [6bcf7752-e78b-4b2c-9ac3-afdf9c04701e] HTTP request finished: POST /chat 200
+2026-06-12 17:10:48,506 | INFO | app | [f8f73921-92b4-4217-a8dd-0cc3f32be45f] HTTP request started: POST /chat
+2026-06-12 17:10:48,508 | INFO | app | [f8f73921-92b4-4217-a8dd-0cc3f32be45f] Solicitud /chat recibida
+2026-06-12 17:10:48,508 | INFO | app | [f8f73921-92b4-4217-a8dd-0cc3f32be45f] SESSION_ID: f8f73921-92b4-4217-a8dd-0cc3f32be45f
+2026-06-12 17:10:48,508 | INFO | app | [f8f73921-92b4-4217-a8dd-0cc3f32be45f] USER MESSAGE: pregunto por ascensión Crespo encantado de saludarle ascensión
+2026-06-12 17:11:37,345 | INFO | app | [f8f73921-92b4-4217-a8dd-0cc3f32be45f] Solicitud /chat procesada con estado: chat
+2026-06-12 17:11:37,346 | INFO | app | [f8f73921-92b4-4217-a8dd-0cc3f32be45f] LATENCY: 48.84s
+2026-06-12 17:11:37,346 | INFO | app | [f8f73921-92b4-4217-a8dd-0cc3f32be45f] HTTP request finished: POST /chat 200
+2026-06-12 17:11:53,164 | INFO | app | [ea8b2cb3-8855-4d61-b73a-7a29bf9038f5] HTTP request started: POST /chat
+2026-06-12 17:11:53,166 | INFO | app | [ea8b2cb3-8855-4d61-b73a-7a29bf9038f5] Solicitud /chat recibida
+2026-06-12 17:11:53,167 | INFO | app | [ea8b2cb3-8855-4d61-b73a-7a29bf9038f5] SESSION_ID: ea8b2cb3-8855-4d61-b73a-7a29bf9038f5
+2026-06-12 17:11:53,167 | INFO | app | [ea8b2cb3-8855-4d61-b73a-7a29bf9038f5] USER MESSAGE: cierra Firefox
+2026-06-12 17:12:37,103 | INFO | app | [ea8b2cb3-8855-4d61-b73a-7a29bf9038f5] Solicitud /chat procesada con estado: error
+2026-06-12 17:12:37,104 | INFO | app | [ea8b2cb3-8855-4d61-b73a-7a29bf9038f5] LATENCY: 43.94s
+2026-06-12 17:12:37,104 | INFO | app | [ea8b2cb3-8855-4d61-b73a-7a29bf9038f5] HTTP request finished: POST /chat 200
+2026-06-12 17:13:03,948 | INFO | app | [7322b417-d115-40f9-8023-35eafe127d4d] HTTP request started: POST /chat
+2026-06-12 17:13:03,949 | INFO | app | [7322b417-d115-40f9-8023-35eafe127d4d] Solicitud /chat recibida
+2026-06-12 17:13:03,950 | INFO | app | [7322b417-d115-40f9-8023-35eafe127d4d] SESSION_ID: 7322b417-d115-40f9-8023-35eafe127d4d
+2026-06-12 17:13:03,950 | INFO | app | [7322b417-d115-40f9-8023-35eafe127d4d] USER MESSAGE: en modo voz no cierras firefox. por que?
+2026-06-12 17:14:05,872 | INFO | app | [7322b417-d115-40f9-8023-35eafe127d4d] Solicitud /chat procesada con estado: chat
+2026-06-12 17:14:05,872 | INFO | app | [7322b417-d115-40f9-8023-35eafe127d4d] LATENCY: 61.92s
+2026-06-12 17:14:05,873 | INFO | app | [7322b417-d115-40f9-8023-35eafe127d4d] HTTP request finished: POST /chat 200
+2026-06-12 17:21:24,100 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-12 17:45:50,270 | INFO | app | [----------] Los logs se escribirán en /home/luisd/Alfonso/logs
+2026-06-12 17:45:50,272 | INFO | app | [----------] Arrancando sistema de agentes — Fase 3
+2026-06-12 17:45:50,272 | INFO | app | [----------] EventBus iniciado
+2026-06-12 17:45:50,282 | INFO | app | [----------] Agentes registrados: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-12 17:46:25,650 | INFO | app | [----------] Modelo precalentado
+2026-06-12 17:46:25,650 | INFO | app | [----------] Alfonso Fase 3 listo
+2026-06-12 18:00:02,550 | INFO | app | [2c384d69-bbcc-4814-975a-7be7d7438a5a] HTTP request started: GET /health
+2026-06-12 18:00:02,554 | INFO | app | [2c384d69-bbcc-4814-975a-7be7d7438a5a] HTTP request finished: GET /health 200
+2026-06-12 18:00:57,121 | INFO | app | [7bd183cb-d971-41fb-9d37-a5381448a01a] HTTP request started: POST /chat
+2026-06-12 18:00:57,123 | INFO | app | [7bd183cb-d971-41fb-9d37-a5381448a01a] Solicitud /chat recibida
+2026-06-12 18:00:57,123 | INFO | app | [7bd183cb-d971-41fb-9d37-a5381448a01a] SESSION_ID: 7bd183cb-d971-41fb-9d37-a5381448a01a
+2026-06-12 18:00:57,123 | INFO | app | [7bd183cb-d971-41fb-9d37-a5381448a01a] USER MESSAGE: buenos días
+2026-06-12 18:01:28,755 | INFO | app | [7bd183cb-d971-41fb-9d37-a5381448a01a] Solicitud /chat procesada con estado: chat
+2026-06-12 18:01:28,756 | INFO | app | [7bd183cb-d971-41fb-9d37-a5381448a01a] LATENCY: 31.63s
+2026-06-12 18:01:28,756 | INFO | app | [7bd183cb-d971-41fb-9d37-a5381448a01a] HTTP request finished: POST /chat 200
+2026-06-12 21:21:43,943 | INFO | app | [28a36de7-d2b4-4488-a4e0-1544c990cd35] HTTP request started: GET /health
+2026-06-12 21:21:43,961 | INFO | app | [28a36de7-d2b4-4488-a4e0-1544c990cd35] HTTP request finished: GET /health 200
+2026-06-12 21:21:58,772 | INFO | app | [bdca1587-c41b-4d08-b779-1573928ded74] HTTP request started: POST /chat
+2026-06-12 21:21:58,780 | INFO | app | [bdca1587-c41b-4d08-b779-1573928ded74] Solicitud /chat recibida
+2026-06-12 21:21:58,780 | INFO | app | [bdca1587-c41b-4d08-b779-1573928ded74] SESSION_ID: bdca1587-c41b-4d08-b779-1573928ded74
+2026-06-12 21:21:58,780 | INFO | app | [bdca1587-c41b-4d08-b779-1573928ded74] USER MESSAGE: qué hora es
+2026-06-12 21:21:58,949 | INFO | app | [bdca1587-c41b-4d08-b779-1573928ded74] Solicitud /chat procesada con estado: chat
+2026-06-12 21:21:58,949 | INFO | app | [bdca1587-c41b-4d08-b779-1573928ded74] LATENCY: 0.17s
+2026-06-12 21:21:58,950 | INFO | app | [bdca1587-c41b-4d08-b779-1573928ded74] HTTP request finished: POST /chat 200
+2026-06-12 21:22:21,045 | INFO | app | [61db9a24-5523-4d14-a2b4-b4b9deebc638] HTTP request started: POST /chat
+2026-06-12 21:22:21,047 | INFO | app | [61db9a24-5523-4d14-a2b4-b4b9deebc638] Solicitud /chat recibida
+2026-06-12 21:22:21,047 | INFO | app | [61db9a24-5523-4d14-a2b4-b4b9deebc638] SESSION_ID: 61db9a24-5523-4d14-a2b4-b4b9deebc638
+2026-06-12 21:22:21,048 | INFO | app | [61db9a24-5523-4d14-a2b4-b4b9deebc638] USER MESSAGE: apágate
+2026-06-12 21:22:56,815 | INFO | app | [61db9a24-5523-4d14-a2b4-b4b9deebc638] Solicitud /chat procesada con estado: chat
+2026-06-12 21:22:56,815 | INFO | app | [61db9a24-5523-4d14-a2b4-b4b9deebc638] LATENCY: 35.77s
+2026-06-12 21:22:56,816 | INFO | app | [61db9a24-5523-4d14-a2b4-b4b9deebc638] HTTP request finished: POST /chat 200
+2026-06-12 21:33:30,969 | INFO | app | [0afdd184-2693-48d2-845e-d85c0d4e7a28] HTTP request started: GET /health
+2026-06-12 21:33:30,989 | INFO | app | [0afdd184-2693-48d2-845e-d85c0d4e7a28] HTTP request finished: GET /health 200
+2026-06-12 21:33:52,082 | INFO | app | [1c10e1a9-bcc5-400f-95de-f5ea17f5f83c] HTTP request started: POST /chat
+2026-06-12 21:33:52,094 | INFO | app | [1c10e1a9-bcc5-400f-95de-f5ea17f5f83c] Solicitud /chat recibida
+2026-06-12 21:33:52,094 | INFO | app | [1c10e1a9-bcc5-400f-95de-f5ea17f5f83c] SESSION_ID: 1c10e1a9-bcc5-400f-95de-f5ea17f5f83c
+2026-06-12 21:33:52,094 | INFO | app | [1c10e1a9-bcc5-400f-95de-f5ea17f5f83c] USER MESSAGE: qué hora es
+2026-06-12 21:33:52,139 | INFO | app | [1c10e1a9-bcc5-400f-95de-f5ea17f5f83c] Solicitud /chat procesada con estado: chat
+2026-06-12 21:33:52,140 | INFO | app | [1c10e1a9-bcc5-400f-95de-f5ea17f5f83c] LATENCY: 0.04s
+2026-06-12 21:33:52,140 | INFO | app | [1c10e1a9-bcc5-400f-95de-f5ea17f5f83c] HTTP request finished: POST /chat 200
+2026-06-12 21:35:09,571 | INFO | app | [38c8d0e3-f91b-4fd6-b1ca-a619282a90e0] HTTP request started: POST /chat
+2026-06-12 21:35:09,659 | INFO | app | [38c8d0e3-f91b-4fd6-b1ca-a619282a90e0] Solicitud /chat recibida
+2026-06-12 21:35:09,660 | INFO | app | [38c8d0e3-f91b-4fd6-b1ca-a619282a90e0] SESSION_ID: 38c8d0e3-f91b-4fd6-b1ca-a619282a90e0
+2026-06-12 21:35:09,665 | INFO | app | [38c8d0e3-f91b-4fd6-b1ca-a619282a90e0] USER MESSAGE: abre Firefox
+2026-06-12 21:36:26,460 | INFO | app | [38c8d0e3-f91b-4fd6-b1ca-a619282a90e0] Solicitud /chat procesada con estado: chat
+2026-06-12 21:36:26,462 | INFO | app | [38c8d0e3-f91b-4fd6-b1ca-a619282a90e0] LATENCY: 76.79s
+2026-06-12 21:36:26,481 | INFO | app | [38c8d0e3-f91b-4fd6-b1ca-a619282a90e0] HTTP request finished: POST /chat 200
+2026-06-12 22:00:44,735 | INFO | app | [a795036b-ae74-4c00-8c6b-e1b87a2f8e88] HTTP request started: GET /health
+2026-06-12 22:00:44,767 | INFO | app | [a795036b-ae74-4c00-8c6b-e1b87a2f8e88] HTTP request finished: GET /health 200
+2026-06-12 22:01:02,798 | INFO | app | [d12c746b-b08a-4c66-b2c5-ae0656523249] HTTP request started: POST /chat
+2026-06-12 22:01:02,825 | INFO | app | [d12c746b-b08a-4c66-b2c5-ae0656523249] Solicitud /chat recibida
+2026-06-12 22:01:02,825 | INFO | app | [d12c746b-b08a-4c66-b2c5-ae0656523249] SESSION_ID: d12c746b-b08a-4c66-b2c5-ae0656523249
+2026-06-12 22:01:02,826 | INFO | app | [d12c746b-b08a-4c66-b2c5-ae0656523249] USER MESSAGE: qué hora es
+2026-06-12 22:01:02,884 | INFO | app | [d12c746b-b08a-4c66-b2c5-ae0656523249] Solicitud /chat procesada con estado: chat
+2026-06-12 22:01:02,884 | INFO | app | [d12c746b-b08a-4c66-b2c5-ae0656523249] LATENCY: 0.06s
+2026-06-12 22:01:02,885 | INFO | app | [d12c746b-b08a-4c66-b2c5-ae0656523249] HTTP request finished: POST /chat 200
+2026-06-12 22:01:48,362 | INFO | app | [12eeb8a2-0f14-4123-bce3-44019858d8e0] HTTP request started: POST /chat
+2026-06-12 22:01:48,364 | INFO | app | [12eeb8a2-0f14-4123-bce3-44019858d8e0] Solicitud /chat recibida
+2026-06-12 22:01:48,364 | INFO | app | [12eeb8a2-0f14-4123-bce3-44019858d8e0] SESSION_ID: 12eeb8a2-0f14-4123-bce3-44019858d8e0
+2026-06-12 22:01:48,364 | INFO | app | [12eeb8a2-0f14-4123-bce3-44019858d8e0] USER MESSAGE: cómo te llamas
+2026-06-12 22:03:01,181 | INFO | app | [12eeb8a2-0f14-4123-bce3-44019858d8e0] Solicitud /chat procesada con estado: chat
+2026-06-12 22:03:01,182 | INFO | app | [12eeb8a2-0f14-4123-bce3-44019858d8e0] LATENCY: 72.82s
+2026-06-12 22:03:01,187 | INFO | app | [12eeb8a2-0f14-4123-bce3-44019858d8e0] HTTP request finished: POST /chat 200
+2026-06-12 22:03:43,412 | INFO | app | [07c48b6d-3ad2-4031-8fa3-c6000f28f9c2] HTTP request started: POST /chat
+2026-06-12 22:03:43,420 | INFO | app | [07c48b6d-3ad2-4031-8fa3-c6000f28f9c2] Solicitud /chat recibida
+2026-06-12 22:03:43,420 | INFO | app | [07c48b6d-3ad2-4031-8fa3-c6000f28f9c2] SESSION_ID: 07c48b6d-3ad2-4031-8fa3-c6000f28f9c2
+2026-06-12 22:03:43,420 | INFO | app | [07c48b6d-3ad2-4031-8fa3-c6000f28f9c2] USER MESSAGE: qué tiempo hace
+2026-06-12 22:04:18,735 | INFO | app | [07c48b6d-3ad2-4031-8fa3-c6000f28f9c2] Solicitud /chat procesada con estado: chat
+2026-06-12 22:04:18,735 | INFO | app | [07c48b6d-3ad2-4031-8fa3-c6000f28f9c2] LATENCY: 35.31s
+2026-06-12 22:04:18,736 | INFO | app | [07c48b6d-3ad2-4031-8fa3-c6000f28f9c2] HTTP request finished: POST /chat 200
+2026-06-12 22:05:26,535 | INFO | app | [6e1ed06e-b11d-4c67-a3ad-0d922518a356] HTTP request started: GET /health
+2026-06-12 22:05:26,535 | INFO | app | [6e1ed06e-b11d-4c67-a3ad-0d922518a356] HTTP request finished: GET /health 200
+2026-06-12 22:05:40,857 | INFO | app | [77878171-b7f4-40dc-ba55-98b29078e027] HTTP request started: POST /chat
+2026-06-12 22:05:40,858 | INFO | app | [77878171-b7f4-40dc-ba55-98b29078e027] Solicitud /chat recibida
+2026-06-12 22:05:40,858 | INFO | app | [77878171-b7f4-40dc-ba55-98b29078e027] SESSION_ID: 77878171-b7f4-40dc-ba55-98b29078e027
+2026-06-12 22:05:40,858 | INFO | app | [77878171-b7f4-40dc-ba55-98b29078e027] USER MESSAGE: qué hora es
+2026-06-12 22:05:40,890 | INFO | app | [77878171-b7f4-40dc-ba55-98b29078e027] Solicitud /chat procesada con estado: chat
+2026-06-12 22:05:40,890 | INFO | app | [77878171-b7f4-40dc-ba55-98b29078e027] LATENCY: 0.03s
+2026-06-12 22:05:40,891 | INFO | app | [77878171-b7f4-40dc-ba55-98b29078e027] HTTP request finished: POST /chat 200
+2026-06-12 22:06:43,052 | INFO | app | [----------] Agentes y EventBus detenidos

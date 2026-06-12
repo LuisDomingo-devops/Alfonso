@@ -21,3 +21,5 @@ Call log:
     - waiting for" https://www.google.com/search?q=tiempo+bilbao+hoy&sei=3sIqaqa1J9u6hbIPz8Lr2AU" navigation to finish...
     - navigated to "https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dtiempo%2Bbilbao%2Bhoy%26sei%3D3sIqaqa1J9u6hbIPz8Lr2AU&q=EgS8GtQFGN-Fq9EGIjAPhOTzybfvud6ZrpC8BMk7fkFAHS-mH7JReeSUY7SURX1…"
 
+2026-06-12 17:09:05,533 | WARNING | errors | [----------] No se encontró proceso con nombre: explorer
+2026-06-12 17:12:37,102 | WARNING | errors | [----------] No se encontró proceso con nombre: explorer

@@ -21,3 +21,20 @@
 2026-06-11 16:14:55,725 | INFO | tools | [----------] browser_wait_for: selector=h3 state=visible
 2026-06-11 16:15:05,749 | INFO | tools | [----------] browser_get_text: selector=body
 2026-06-11 16:15:05,760 | INFO | tools | [----------] browser_screenshot: full_page=False
+2026-06-12 17:02:28,008 | INFO | tools | [----------] Obteniendo fecha y hora del sistema
+2026-06-12 17:05:10,525 | INFO | tools | [----------] browser_navigate: https://www.example.com/country
+2026-06-12 17:05:10,800 | INFO | tools | [----------] Arrancando Playwright: browser=firefox, headless=False, path=None
+2026-06-12 17:05:21,117 | INFO | tools | [----------] Playwright listo
+2026-06-12 17:05:22,070 | INFO | tools | [----------] Navegado a https://www.example.com/country → status=404 title=Example Domain
+2026-06-12 17:09:05,478 | INFO | tools | [----------] Intentando cerrar aplicación: explorer
+2026-06-12 17:09:25,661 | INFO | tools | [----------] Intentando cerrar aplicación: firefox
+2026-06-12 17:09:25,799 | INFO | tools | [----------] Cerrados 1 procesos de 'firefox': pids=[3853]
+2026-06-12 17:10:18,904 | INFO | tools | [----------] Intentando abrir aplicación: ['firefox'] (wsl=True, display=True)
+2026-06-12 17:10:18,909 | INFO | tools | [----------] Aplicación abierta con PID 4577: ['firefox']
+2026-06-12 17:12:37,041 | INFO | tools | [----------] Intentando cerrar aplicación: explorer
+2026-06-12 21:21:58,940 | INFO | tools | [----------] Obteniendo fecha y hora del sistema
+2026-06-12 21:33:52,125 | INFO | tools | [----------] Obteniendo fecha y hora del sistema
+2026-06-12 21:36:26,372 | INFO | tools | [----------] Intentando abrir aplicación: ['firefox'] (wsl=True, display=True)
+2026-06-12 21:36:26,407 | INFO | tools | [----------] Aplicación abierta con PID 56438: ['firefox']
+2026-06-12 22:01:02,861 | INFO | tools | [----------] Obteniendo fecha y hora del sistema
+2026-06-12 22:05:40,874 | INFO | tools | [----------] Obteniendo fecha y hora del sistema
