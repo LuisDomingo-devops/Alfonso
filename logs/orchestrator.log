@@ -307,3 +307,35 @@
 2026-06-12 22:05:40,873 | INFO | orchestrator | [77878171-b7f4-40dc-ba55-98b29078e027] Intent: tool (score=4.00, reglas=['+2.0 [datetime_tool]', '+2.0 [datetime_tool]'])
 2026-06-12 22:05:40,873 | INFO | orchestrator | [77878171-b7f4-40dc-ba55-98b29078e027] Atajo datetime_tool activado
 2026-06-12 22:05:40,873 | DEBUG | orchestrator | [77878171-b7f4-40dc-ba55-98b29078e027] Evento publicado: system.datetime
+2026-06-13 07:48:45,641 | INFO | orchestrator | [37a925f3-2ffd-4a3e-8397-4984273ac1be] PlannerOrchestrator.run iniciado
+2026-06-13 07:48:45,643 | INFO | orchestrator | [37a925f3-2ffd-4a3e-8397-4984273ac1be] USER MESSAGE: dime qué hora
+2026-06-13 07:48:45,643 | INFO | orchestrator | [37a925f3-2ffd-4a3e-8397-4984273ac1be] SESSION_ID: 37a925f3-2ffd-4a3e-8397-4984273ac1be
+2026-06-13 07:48:45,664 | INFO | orchestrator | [37a925f3-2ffd-4a3e-8397-4984273ac1be] Intent: tool (score=2.80, reglas=['+2.0 [datetime_tool]', '+2.0 [datetime_tool]', '-1.2 [theory]'])
+2026-06-13 07:48:45,664 | INFO | orchestrator | [37a925f3-2ffd-4a3e-8397-4984273ac1be] Atajo datetime_tool activado
+2026-06-13 07:48:45,665 | DEBUG | orchestrator | [37a925f3-2ffd-4a3e-8397-4984273ac1be] Evento publicado: system.datetime
+2026-06-13 07:49:07,369 | INFO | orchestrator | [1f0ed13d-d294-4b27-83f6-3b8eef5737dc] PlannerOrchestrator.run iniciado
+2026-06-13 07:49:07,369 | INFO | orchestrator | [1f0ed13d-d294-4b27-83f6-3b8eef5737dc] USER MESSAGE: abre la página elpais.com
+2026-06-13 07:49:07,369 | INFO | orchestrator | [1f0ed13d-d294-4b27-83f6-3b8eef5737dc] SESSION_ID: 1f0ed13d-d294-4b27-83f6-3b8eef5737dc
+2026-06-13 07:49:07,375 | INFO | orchestrator | [1f0ed13d-d294-4b27-83f6-3b8eef5737dc] Intent: tool (score=2.00, reglas=['+2.0 [browser_open]'])
+2026-06-13 07:49:42,861 | DEBUG | orchestrator | [1f0ed13d-d294-4b27-83f6-3b8eef5737dc] LLM OUTPUT (tool): {"tool":"browser_navigate","args":{"url":"https://elpais.com"}}
+2026-06-13 07:49:42,862 | INFO | orchestrator | [1f0ed13d-d294-4b27-83f6-3b8eef5737dc] TaskPlan: event=browser.navigate args={'url': 'https://elpais.com'}
+2026-06-13 07:49:42,863 | DEBUG | orchestrator | [1f0ed13d-d294-4b27-83f6-3b8eef5737dc] Evento publicado: browser.navigate
+2026-06-13 07:52:05,425 | INFO | orchestrator | [26c23943-07e5-4779-b08a-4065f3d7b6f1] PlannerOrchestrator.run iniciado
+2026-06-13 07:52:05,426 | INFO | orchestrator | [26c23943-07e5-4779-b08a-4065f3d7b6f1] USER MESSAGE: cierra Firefox
+2026-06-13 07:52:05,426 | INFO | orchestrator | [26c23943-07e5-4779-b08a-4065f3d7b6f1] SESSION_ID: 26c23943-07e5-4779-b08a-4065f3d7b6f1
+2026-06-13 07:52:05,432 | INFO | orchestrator | [26c23943-07e5-4779-b08a-4065f3d7b6f1] Intent: tool (score=4.50, reglas=['+2.5 [close_application]', '+2.0 [close_app_simple]'])
+2026-06-13 07:52:07,896 | DEBUG | orchestrator | [26c23943-07e5-4779-b08a-4065f3d7b6f1] LLM OUTPUT (tool): {"tool":"close_application","args":{"command":"firefox"}}
+2026-06-13 07:52:07,896 | INFO | orchestrator | [26c23943-07e5-4779-b08a-4065f3d7b6f1] TaskPlan: event=system.close_app args={'command': 'firefox'}
+2026-06-13 07:52:07,897 | DEBUG | orchestrator | [26c23943-07e5-4779-b08a-4065f3d7b6f1] Evento publicado: system.close_app
+2026-06-13 07:52:50,941 | INFO | orchestrator | [ecfa65f5-79c9-4fed-980b-5b7d5226ef22] PlannerOrchestrator.run iniciado
+2026-06-13 07:52:50,942 | INFO | orchestrator | [ecfa65f5-79c9-4fed-980b-5b7d5226ef22] USER MESSAGE: abre visual studio code
+2026-06-13 07:52:50,942 | INFO | orchestrator | [ecfa65f5-79c9-4fed-980b-5b7d5226ef22] SESSION_ID: ecfa65f5-79c9-4fed-980b-5b7d5226ef22
+2026-06-13 07:52:50,948 | INFO | orchestrator | [ecfa65f5-79c9-4fed-980b-5b7d5226ef22] Intent: chat (score=0.00, reglas=[])
+2026-06-13 07:52:50,948 | DEBUG | orchestrator | [ecfa65f5-79c9-4fed-980b-5b7d5226ef22] Evento publicado: chat.respond
+2026-06-13 07:53:37,495 | INFO | orchestrator | [ecfa65f5-79c9-4fed-980b-5b7d5226ef22] Respuesta chat completada
+2026-06-13 07:54:31,658 | INFO | orchestrator | [5eb2763d-af02-405c-88cb-6297fb6007f4] PlannerOrchestrator.run iniciado
+2026-06-13 07:54:31,658 | INFO | orchestrator | [5eb2763d-af02-405c-88cb-6297fb6007f4] USER MESSAGE: abre Visual Studio code
+2026-06-13 07:54:31,658 | INFO | orchestrator | [5eb2763d-af02-405c-88cb-6297fb6007f4] SESSION_ID: 5eb2763d-af02-405c-88cb-6297fb6007f4
+2026-06-13 07:54:31,671 | INFO | orchestrator | [5eb2763d-af02-405c-88cb-6297fb6007f4] Intent: chat (score=0.00, reglas=[])
+2026-06-13 07:54:31,671 | DEBUG | orchestrator | [5eb2763d-af02-405c-88cb-6297fb6007f4] Evento publicado: chat.respond
+2026-06-13 07:55:30,746 | INFO | orchestrator | [5eb2763d-af02-405c-88cb-6297fb6007f4] Respuesta chat completada

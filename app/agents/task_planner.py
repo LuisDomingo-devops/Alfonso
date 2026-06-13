@@ -1,56 +1,8 @@
 """
-TaskPlanner — Fase 3 completa.
+TaskPlanner — Fase 3 (sin audio).
 
-Mapeo tools → event_types (acumulado Fases 1-3):
-
-    Filesystem:
-        create_file         → filesystem.create
-        read_file           → filesystem.read
-        append_file         → filesystem.append
-        list_directory      → filesystem.list
-        delete_file         → filesystem.delete
-
-    Sistema:
-        system_info         → system.info
-        get_current_datetime → system.datetime   ← NUEVO Fase 3
-        run_command         → system.command
-        open_application    → system.open_app
-        close_application   → system.close_app     ← NUEVO Fase 3
-
-    Navegador (Fase 3):
-        browser_navigate    → browser.navigate
-        browser_click       → browser.click
-        browser_fill        → browser.fill
-        browser_submit      → browser.submit
-        browser_screenshot  → browser.screenshot
-        browser_get_text    → browser.get_text
-        browser_get_html    → browser.get_html
-        browser_wait_for    → browser.wait_for
-        browser_scroll      → browser.scroll
-        browser_evaluate    → browser.evaluate
-        browser_search      → browser.search
-        browser_close       → browser.close
-        browser_open        → browser.open
-
-    Computer Use (Fase 3):
-        screenshot          → computer.screenshot
-        mouse_move          → computer.mouse_move
-        mouse_click         → computer.mouse_click
-        mouse_drag          → computer.mouse_drag
-        keyboard_type       → computer.keyboard_type
-        keyboard_hotkey     → computer.keyboard_hotkey
-        ocr_screenshot      → computer.ocr_screenshot
-        ocr_image           → computer.ocr_image
-        find_on_screen      → computer.find_on_screen
-        window_list         → computer.window_list
-        window_focus        → computer.window_focus
-        window_close        → computer.window_close
-
-    Automatización:
-        run_pipeline        → automation.run_pipeline
-
-    Fallback:
-        no_op               → chat.respond
+El audio (TTS/STT/wake word) se gestiona en el cliente local.
+El servidor solo mapea intenciones de texto a eventos.
 """
 
 from __future__ import annotations

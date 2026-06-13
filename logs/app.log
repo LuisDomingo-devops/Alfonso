@@ -492,3 +492,40 @@
 2026-06-12 22:05:40,890 | INFO | app | [77878171-b7f4-40dc-ba55-98b29078e027] LATENCY: 0.03s
 2026-06-12 22:05:40,891 | INFO | app | [77878171-b7f4-40dc-ba55-98b29078e027] HTTP request finished: POST /chat 200
 2026-06-12 22:06:43,052 | INFO | app | [----------] Agentes y EventBus detenidos
+2026-06-13 07:45:00,149 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-13 07:45:00,150 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-13 07:45:00,159 | INFO | app | [----------] Agentes: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-13 07:45:41,302 | INFO | app | [----------] Modelo precalentado
+2026-06-13 07:45:41,303 | INFO | app | [----------] Alfonso listo
+2026-06-13 07:48:24,535 | INFO | app | [040d0776-9aa8-41f0-9429-39529d73934b] HTTP GET /health
+2026-06-13 07:48:45,631 | INFO | app | [37a925f3-2ffd-4a3e-8397-4984273ac1be] HTTP POST /chat
+2026-06-13 07:48:45,640 | INFO | app | [37a925f3-2ffd-4a3e-8397-4984273ac1be] Solicitud /chat recibida
+2026-06-13 07:48:45,640 | INFO | app | [37a925f3-2ffd-4a3e-8397-4984273ac1be] SESSION_ID: 37a925f3-2ffd-4a3e-8397-4984273ac1be
+2026-06-13 07:48:45,641 | INFO | app | [37a925f3-2ffd-4a3e-8397-4984273ac1be] USER MESSAGE: dime qué hora
+2026-06-13 07:48:45,762 | INFO | app | [37a925f3-2ffd-4a3e-8397-4984273ac1be] Solicitud /chat procesada con estado: chat
+2026-06-13 07:48:45,762 | INFO | app | [37a925f3-2ffd-4a3e-8397-4984273ac1be] LATENCY: 0.12s
+2026-06-13 07:49:07,367 | INFO | app | [1f0ed13d-d294-4b27-83f6-3b8eef5737dc] HTTP POST /chat
+2026-06-13 07:49:07,368 | INFO | app | [1f0ed13d-d294-4b27-83f6-3b8eef5737dc] Solicitud /chat recibida
+2026-06-13 07:49:07,368 | INFO | app | [1f0ed13d-d294-4b27-83f6-3b8eef5737dc] SESSION_ID: 1f0ed13d-d294-4b27-83f6-3b8eef5737dc
+2026-06-13 07:49:07,369 | INFO | app | [1f0ed13d-d294-4b27-83f6-3b8eef5737dc] USER MESSAGE: abre la página elpais.com
+2026-06-13 07:49:54,174 | INFO | app | [1f0ed13d-d294-4b27-83f6-3b8eef5737dc] Solicitud /chat procesada con estado: chat
+2026-06-13 07:49:54,175 | INFO | app | [1f0ed13d-d294-4b27-83f6-3b8eef5737dc] LATENCY: 46.80s
+2026-06-13 07:52:05,422 | INFO | app | [26c23943-07e5-4779-b08a-4065f3d7b6f1] HTTP POST /chat
+2026-06-13 07:52:05,425 | INFO | app | [26c23943-07e5-4779-b08a-4065f3d7b6f1] Solicitud /chat recibida
+2026-06-13 07:52:05,425 | INFO | app | [26c23943-07e5-4779-b08a-4065f3d7b6f1] SESSION_ID: 26c23943-07e5-4779-b08a-4065f3d7b6f1
+2026-06-13 07:52:05,425 | INFO | app | [26c23943-07e5-4779-b08a-4065f3d7b6f1] USER MESSAGE: cierra Firefox
+2026-06-13 07:52:08,071 | INFO | app | [26c23943-07e5-4779-b08a-4065f3d7b6f1] Solicitud /chat procesada con estado: chat
+2026-06-13 07:52:08,073 | INFO | app | [26c23943-07e5-4779-b08a-4065f3d7b6f1] LATENCY: 2.65s
+2026-06-13 07:52:50,940 | INFO | app | [ecfa65f5-79c9-4fed-980b-5b7d5226ef22] HTTP POST /chat
+2026-06-13 07:52:50,941 | INFO | app | [ecfa65f5-79c9-4fed-980b-5b7d5226ef22] Solicitud /chat recibida
+2026-06-13 07:52:50,941 | INFO | app | [ecfa65f5-79c9-4fed-980b-5b7d5226ef22] SESSION_ID: ecfa65f5-79c9-4fed-980b-5b7d5226ef22
+2026-06-13 07:52:50,941 | INFO | app | [ecfa65f5-79c9-4fed-980b-5b7d5226ef22] USER MESSAGE: abre visual studio code
+2026-06-13 07:53:37,495 | INFO | app | [ecfa65f5-79c9-4fed-980b-5b7d5226ef22] Solicitud /chat procesada con estado: chat
+2026-06-13 07:53:37,496 | INFO | app | [ecfa65f5-79c9-4fed-980b-5b7d5226ef22] LATENCY: 46.55s
+2026-06-13 07:54:31,656 | INFO | app | [5eb2763d-af02-405c-88cb-6297fb6007f4] HTTP POST /chat
+2026-06-13 07:54:31,657 | INFO | app | [5eb2763d-af02-405c-88cb-6297fb6007f4] Solicitud /chat recibida
+2026-06-13 07:54:31,658 | INFO | app | [5eb2763d-af02-405c-88cb-6297fb6007f4] SESSION_ID: 5eb2763d-af02-405c-88cb-6297fb6007f4
+2026-06-13 07:54:31,658 | INFO | app | [5eb2763d-af02-405c-88cb-6297fb6007f4] USER MESSAGE: abre Visual Studio code
+2026-06-13 07:55:30,746 | INFO | app | [5eb2763d-af02-405c-88cb-6297fb6007f4] Solicitud /chat procesada con estado: chat
+2026-06-13 07:55:30,746 | INFO | app | [5eb2763d-af02-405c-88cb-6297fb6007f4] LATENCY: 59.09s
+2026-06-13 07:57:14,471 | INFO | app | [----------] Agentes y EventBus detenidos

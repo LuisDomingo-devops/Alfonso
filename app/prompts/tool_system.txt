@@ -16,15 +16,11 @@ TOOLS:
 {"tool":"run_command","args":{"command":"CMD"}}
 {"tool":"browser_navigate","args":{"url":"https://URL"}}
 {"tool":"browser_search","args":{"query":"QUERY"}}
-{"tool":"text_to_speech","args":{"text":"TEXT"}}
 {"tool":"no_op","args":{"message":"REASON"}}
 
 EXAMPLES:
 User: crea un archivo llamado notas.txt con el texto hola
 Output: {"tool":"create_file","args":{"path":"notas.txt","content":"hola"}}
-
-User: crea un archivo txt que diga hola soy alfonso
-Output: {"tool":"create_file","args":{"path":"alfonso.txt","content":"hola soy alfonso"}}
 
 User: añade hola al archivo log.txt
 Output: {"tool":"append_file","args":{"path":"log.txt","content":"hola\n"}}
@@ -35,11 +31,11 @@ Output: {"tool":"delete_file","args":{"path":"test.txt"}}
 User: qué hora es
 Output: {"tool":"get_current_datetime","args":{}}
 
-User: abre el explorador de archivos
-Output: {"tool":"open_application","args":{"command":"exlorer"}}
+User: abre firefox
+Output: {"tool":"open_application","args":{"command":"firefox"}}
 
-User: cierra el explorador de archivos
-Output: {"tool":"close_application","args":{"command":"explorer"}}
+User: cierra firefox
+Output: {"tool":"close_application","args":{"command":"firefox"}}
 
 User: busca en internet noticias de hoy
 Output: {"tool":"browser_search","args":{"query":"noticias de hoy"}}
@@ -48,8 +44,8 @@ RULES:
 - añade/agrega → append_file (NEVER create_file)
 - elimina/borra → delete_file
 - hora/día/fecha → get_current_datetime
-- explorador/explorer → open_application command:explorer
-- cierra/salir → close_application
+- abre app → open_application
+- cierra app → close_application
 - navega/abre web/URL → browser_navigate
 - busca internet/google → browser_search
-- crea sin nombre de archivo → no_op preguntando el nombre
+- crea sin nombre de archivo → no_op pidiendo el nombre
