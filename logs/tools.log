@@ -45,3 +45,14 @@
 2026-06-13 07:49:54,148 | INFO | tools | [----------] Navegado a https://elpais.com → status=200 title=EL PAÍS: el periódico global
 2026-06-13 07:52:07,916 | INFO | tools | [----------] Intentando cerrar aplicación: firefox
 2026-06-13 07:52:08,051 | INFO | tools | [----------] Cerrados 1 procesos de 'firefox': pids=[1475]
+2026-06-13 08:12:45,106 | INFO | tools | [----------] Obteniendo fecha y hora del sistema
+2026-06-13 08:41:34,258 | INFO | tools | [----------] Obteniendo fecha y hora del sistema
+2026-06-13 10:22:57,202 | INFO | tools | [----------] Obteniendo fecha y hora del sistema
+2026-06-15 16:30:58,709 | INFO | tools | [----------] Obteniendo fecha y hora del sistema
+2026-06-15 16:32:31,155 | INFO | tools | [----------] Intentando abrir aplicación: ['firefox'] (wsl=True, display=True)
+2026-06-15 16:32:31,170 | INFO | tools | [----------] Aplicación abierta con PID 31561: ['firefox']
+2026-06-15 16:34:27,644 | INFO | tools | [----------] Intentando cerrar aplicación: firefox
+2026-06-15 16:34:27,739 | INFO | tools | [----------] Cerrados 1 procesos de 'firefox': pids=[31561]
+2026-06-15 16:37:29,770 | INFO | tools | [----------] Intentando crear archivo: hola_soy.txt
+2026-06-15 16:37:29,773 | INFO | tools | [----------] Ruta absoluta final: /home/luisd/Alfonso/hola_soy.txt
+2026-06-15 16:37:29,774 | INFO | tools | [----------] Archivo creado exitosamente: /home/luisd/Alfonso/hola_soy.txt
