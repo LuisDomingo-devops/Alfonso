@@ -8,6 +8,12 @@ import base64
 import logging
 from io import BytesIO
 import ssl
+import shutil
+import platform
+from pathlib import Path
+
+# Importar el gestor de registro de apps
+from core.app_registry import update_app_registry, load_app_registry, get_app_path
 
 # Configuración de logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -17,9 +23,73 @@ logger = logging.getLogger(__name__)
 pyautogui.FAILSAFE = False
 
 class AlfonsoAgent:
-    def __init__(self, server_url="ws://localhost:8765", auth_token=None):
+    def __init__(self, server_url="ws://localhost:8765", auth_token=None, registry_file=".env.apps"):
         self.server_url = server_url
         self.auth_token = auth_token or os.getenv("ALFONSO_AUTH_TOKEN")
+        self._system = platform.system()
+        self.registry_file = registry_file
+        self.app_registry = {}  # Será cargado en start()
+
+    def _resolve_app_path(self, app_name: str) -> str:
+        """
+        Resuelve la ruta completa de una aplicación.
+        Prioridad:
+        1. Registro de aplicaciones (.env.apps)
+        2. PATH del sistema
+        3. Rutas comunes en Windows
+        """
+        app_lower = app_name.strip().lower()
+        
+        # 1. Buscar en el registro de aplicaciones
+        if app_lower in self.app_registry:
+            registered_path = self.app_registry[app_lower]
+            if os.path.exists(registered_path):
+                logger.info(f"App '{app_name}' encontrada en registro: {registered_path}")
+                return registered_path
+        
+        # 2. Intentar encontrar en PATH directamente
+        which_result = shutil.which(app_name)
+        if which_result:
+            logger.info(f"App '{app_name}' encontrada en PATH: {which_result}")
+            return which_result
+        
+        # 3. En Windows, buscar en rutas comunes (fallback)
+        if self._system == "Windows":
+            firefox_paths = [
+                r"C:\Program Files\Mozilla Firefox\firefox.exe",
+                r"C:\Program Files (x86)\Mozilla Firefox\firefox.exe",
+                os.path.expandvars(r"%ProgramFiles%\Mozilla Firefox\firefox.exe"),
+                os.path.expandvars(r"%ProgramFiles(x86)%\Mozilla Firefox\firefox.exe"),
+            ]
+            chrome_paths = [
+                r"C:\Program Files\Google\Chrome\Application\chrome.exe",
+                r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe",
+                os.path.expandvars(r"%ProgramFiles%\Google\Chrome\Application\chrome.exe"),
+                os.path.expandvars(r"%ProgramFiles(x86)%\Google\Chrome\Application\chrome.exe"),
+            ]
+            edge_paths = [
+                r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
+                os.path.expandvars(r"%ProgramFiles(x86)%\Microsoft\Edge\Application\msedge.exe"),
+            ]
+            
+            app_mapping = {
+                "firefox": firefox_paths,
+                "chrome": chrome_paths,
+                "chromium": chrome_paths,
+                "edge": edge_paths,
+                "google-chrome": chrome_paths,
+                "msedge": edge_paths,
+            }
+            
+            if app_lower in app_mapping:
+                for path in app_mapping[app_lower]:
+                    if os.path.exists(path):
+                        logger.info(f"App '{app_name}' encontrada en fallback: {path}")
+                        return path
+        
+        # 4. Retornar el comando original si no se puede resolver
+        logger.warning(f"No se encontró ruta completa para '{app_name}', usando nombre directo")
+        return app_name
 
     def _is_safe_command(self, command):
         """Valida que el comando no contenga caracteres de encadenamiento peligrosos."""
@@ -37,7 +107,14 @@ class AlfonsoAgent:
         try:
             result = None
             if action == "open_app":
-                command = params.get("command")
+                command = params.get("command", "").strip()
+                if not command:
+                    return {
+                        "id": command_id,
+                        "status": "error",
+                        "error": "No se especificó comando o aplicación"
+                    }
+                    
                 if not self._is_safe_command(command):
                     return {
                         "id": command_id,
@@ -45,9 +122,29 @@ class AlfonsoAgent:
                         "error": "Comando rechazado por razones de seguridad (caracteres no permitidos)."
                     }
                 
-                # Usar Popen para no bloquear el agente mientras la app está abierta
-                subprocess.Popen(command, shell=True)
-                result = f"Aplicación '{command}' iniciada."
+                # Resolver la ruta completa de la aplicación
+                resolved_command = self._resolve_app_path(command)
+                
+                try:
+                    logger.info(f"Iniciando aplicación: {resolved_command}")
+                    # Usar Popen para no bloquear el agente mientras la app está abierta
+                    # creationflags para ocultar la ventana de consola en Windows
+                    if self._system == "Windows":
+                        subprocess.Popen(
+                            resolved_command,
+                            shell=False,
+                            creationflags=subprocess.CREATE_NO_WINDOW if hasattr(subprocess, 'CREATE_NO_WINDOW') else 0
+                        )
+                    else:
+                        subprocess.Popen(resolved_command, shell=False)
+                    result = f"Aplicación '{command}' iniciada correctamente."
+                except FileNotFoundError:
+                    logger.error(f"Aplicación no encontrada: {resolved_command}")
+                    return {
+                        "id": command_id,
+                        "status": "error",
+                        "error": f"Aplicación '{command}' no encontrada en el sistema"
+                    }
             
             elif action == "type_text":
                 text = params.get("text", "")
@@ -103,23 +200,28 @@ class AlfonsoAgent:
 
     async def start(self):
         logger.info(f"Conectando al servidor Alfonso en {self.server_url}...")
+        
+        # Al iniciar, actualizar el registro de aplicaciones
+        logger.info("Actualizando registro de aplicaciones instaladas...")
+        try:
+            update_app_registry(self.registry_file)
+            self.app_registry = load_app_registry(self.registry_file)
+            logger.info(f"✓ Registro cargado: {len(self.app_registry)} aplicaciones disponibles")
+        except Exception as e:
+            logger.warning(f"No se pudo actualizar registro de apps: {e}")
+            self.app_registry = {}
+        
         while True:
             try:
                 # Configuración de seguridad para WebSockets
                 ssl_context = None
                 if self.server_url.startswith("wss"):
                     ssl_context = ssl.create_default_context()
-                    # En desarrollo con certificados auto-firmados podrías necesitar:
-                    # ssl_context.check_hostname = False
-                    # ssl_context.verify_mode = ssl.CERT_NONE
 
-                headers = {"Authorization": f"Bearer {self.auth_token}"} if self.auth_token else {}
-                
                 async with websockets.connect(
                     self.server_url, 
                     ping_interval=20, 
                     ping_timeout=20,
-                    extra_headers=headers,
                     ssl=ssl_context
                 ) as websocket:
                     logger.info("Conexión establecida con el servidor.")

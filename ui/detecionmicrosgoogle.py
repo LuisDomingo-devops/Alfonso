@@ -1,3 +1,8 @@
+'''
+este script detecta micrófonos en Linux y Windows, indicando si son integrados o externos, y si están siendo usados por aplicaciones como Google Meet.
+'''
+
+
 import subprocess
 import platform
 import re

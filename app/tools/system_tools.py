@@ -23,6 +23,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Sequence
 
+from app.core.alfonso_bridge import bridge as alfonso_bridge
 from app.utils.logger import tool_logger, error_logger
 
 # ---------------------------------------------------------------------------
@@ -199,6 +200,30 @@ async def open_application(command: str | Sequence[str], args: Sequence[str] | N
     command_parts = _normalize_command(command)
     if args:
         command_parts = list(command_parts) + list(args)
+
+    if alfonso_bridge.has_clients():
+        command_text = (
+            command if isinstance(command, str)
+            else " ".join(shlex.quote(str(part)) for part in command_parts)
+        )
+        tool_logger.info("Delegando open_application al agente local: %s", command_text)
+        response = await alfonso_bridge.send_command(
+            "open_app",
+            {"command": command_text},
+        )
+        if response.get("status") == "success":
+            return {
+                "status": "ok",
+                "message": response.get("result"),
+                "delegate": "alfonso_agent",
+                "command": command_text,
+            }
+        return {
+            "status": "error",
+            "message": response.get("error", "Error delegando al agente local."),
+            "delegate": "alfonso_agent",
+            "details": response,
+        }
 
     tool_logger.info("Intentando abrir aplicación: %s (wsl=%s, display=%s)",
                      command_parts, _IS_WSL, _has_display())

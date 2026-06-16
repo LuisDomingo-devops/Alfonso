@@ -18,6 +18,8 @@ import json
 import re
 from pathlib import Path
 
+from app.core.tool_registry import TOOLS, get_callable_tool_function
+
 from app.core.intent_router import IntentRouter
 from app.core.llm_client import extract_json_robust
 from app.core.memory import memory

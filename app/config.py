@@ -34,7 +34,11 @@ class Settings(BaseSettings):
     LLM_NUM_CTX_TOOL: int
     LLM_NUM_CTX_CHAT: int
     LLM_TIMEOUT: int
-    LLM_IS_REASONING: bool 
+    LLM_IS_REASONING: bool
+
+    BRIDGE_HOST: str = "0.0.0.0"
+    BRIDGE_PORT: int = 8765
+    BRIDGE_TIMEOUT: int = 30
 
     class Config:
         env_file = ".env"

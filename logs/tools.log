@@ -56,3 +56,8 @@
 2026-06-15 16:37:29,770 | INFO | tools | [----------] Intentando crear archivo: hola_soy.txt
 2026-06-15 16:37:29,773 | INFO | tools | [----------] Ruta absoluta final: /home/luisd/Alfonso/hola_soy.txt
 2026-06-15 16:37:29,774 | INFO | tools | [----------] Archivo creado exitosamente: /home/luisd/Alfonso/hola_soy.txt
+2026-06-16 09:51:49,533 | INFO | tools | [----------] Delegando open_application al agente local: firefox
+2026-06-16 12:55:44,912 | INFO | tools | [----------] Intentando abrir aplicación: ['firefox'] (wsl=True, display=True)
+2026-06-16 12:55:44,918 | INFO | tools | [----------] Aplicación abierta con PID 9133: ['firefox']
+2026-06-16 13:28:07,503 | INFO | tools | [----------] Delegando open_application al agente local: firefox
+2026-06-16 13:40:04,501 | INFO | tools | [----------] Delegando open_application al agente local: firefox

@@ -21,6 +21,7 @@ from app.core.event_bus import EventBus
 from app.core.llm_client import OllamaClient
 from app.core.metrics import increment_http_errors, increment_http_requests, record_http_latency
 from app.core.planner_orchestrator import PlannerOrchestrator
+from app.core.alfonso_bridge import bridge as alfonso_bridge
 from app.utils.logger import LOG_DIR, app_logger, attach_request_id
 
 # ---------------------------------------------------------------------------
@@ -46,6 +47,7 @@ async def lifespan(app: FastAPI):
 
     agent_registry.set_llm(llm)
     await agent_registry.start()
+    await alfonso_bridge.start()
     app_logger.info("Agentes: %s", [a["name"] for a in agent_registry.list_agents()])
 
     from app.api import routes as _routes
@@ -61,9 +63,10 @@ async def lifespan(app: FastAPI):
 
     yield
 
+    await alfonso_bridge.stop()
     await agent_registry.stop()
     await event_bus.stop()
-    app_logger.info("Agentes y EventBus detenidos")
+    app_logger.info("Alfonso detenido")
 
 
 # ---------------------------------------------------------------------------
