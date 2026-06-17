@@ -35,3 +35,8 @@
 2026-06-17 16:17:22,398 | WARNING | tools | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). La app 'explorer.exe' se intentará abrir dentro de WSL, NO en el host Windows. Arranca ui/alfonso_agent.py en Windows para delegar correctamente.
 2026-06-17 16:17:22,399 | INFO | tools | [----------] Intentando abrir aplicación: ['explorer.exe'] (wsl=True, display=True)
 2026-06-17 16:17:22,441 | INFO | tools | [----------] Aplicación abierta con PID 44098: ['explorer.exe']
+2026-06-17 17:30:09,050 | INFO | tools | [----------] Delegando open_application al agente local: explorer
+2026-06-17 18:08:03,966 | WARNING | tools | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). La app 'explorer' se intentará abrir dentro de WSL, NO en el host Windows. Arranca ui/alfonso_agent.py en Windows para delegar correctamente.
+2026-06-17 18:08:03,967 | INFO | tools | [----------] Intentando abrir aplicación: ['powershell.exe', '-Command', "Start-Process 'explorer.exe'"] (wsl=True, display=True)
+2026-06-17 18:08:04,036 | INFO | tools | [----------] Aplicación abierta con PID 103798: ['powershell.exe', '-Command', "Start-Process 'explorer.exe'"]
+2026-06-17 18:08:28,774 | INFO | tools | [----------] Intentando cerrar aplicación: explorer.exe

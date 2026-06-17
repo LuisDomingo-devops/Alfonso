@@ -632,3 +632,266 @@ PermissionError: [Errno 13] Permission denied: '/Users'
 2026-06-17 16:21:59,915 | INFO | agent.registry | [----------] AgentRegistry: 7 agentes registrados
 2026-06-17 16:31:06,120 | INFO | agent.registry | [----------] Playwright cerrado limpiamente
 2026-06-17 16:31:06,123 | INFO | agent.registry | [----------] AgentRegistry detenido
+2026-06-17 17:15:51,687 | INFO | agent.filesystem | [----------] Registrado en EventBus para evento: filesystem.create
+2026-06-17 17:15:51,688 | INFO | agent.filesystem | [----------] Registrado en EventBus para evento: filesystem.read
+2026-06-17 17:15:51,688 | INFO | agent.filesystem | [----------] Registrado en EventBus para evento: filesystem.append
+2026-06-17 17:15:51,689 | INFO | agent.filesystem | [----------] Registrado en EventBus para evento: filesystem.list
+2026-06-17 17:15:51,689 | INFO | agent.filesystem | [----------] Registrado en EventBus para evento: filesystem.delete
+2026-06-17 17:15:51,689 | INFO | agent.registry | [----------] Agente iniciado: filesystem (eventos: ['filesystem.create', 'filesystem.read', 'filesystem.append', 'filesystem.list', 'filesystem.delete'])
+2026-06-17 17:15:51,689 | INFO | agent.system | [----------] Registrado en EventBus para evento: system.info
+2026-06-17 17:15:51,689 | INFO | agent.system | [----------] Registrado en EventBus para evento: system.datetime
+2026-06-17 17:15:51,690 | INFO | agent.system | [----------] Registrado en EventBus para evento: system.command
+2026-06-17 17:15:51,691 | INFO | agent.system | [----------] Registrado en EventBus para evento: system.open_app
+2026-06-17 17:15:51,692 | INFO | agent.system | [----------] Registrado en EventBus para evento: system.close_app
+2026-06-17 17:15:51,692 | INFO | agent.registry | [----------] Agente iniciado: system (eventos: ['system.info', 'system.datetime', 'system.command', 'system.open_app', 'system.close_app'])
+2026-06-17 17:15:51,693 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.navigate
+2026-06-17 17:15:51,693 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.click
+2026-06-17 17:15:51,694 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.fill
+2026-06-17 17:15:51,694 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.submit
+2026-06-17 17:15:51,695 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.screenshot
+2026-06-17 17:15:51,695 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.get_text
+2026-06-17 17:15:51,695 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.get_html
+2026-06-17 17:15:51,695 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.wait_for
+2026-06-17 17:15:51,696 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.scroll
+2026-06-17 17:15:51,696 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.evaluate
+2026-06-17 17:15:51,696 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.close
+2026-06-17 17:15:51,697 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.search
+2026-06-17 17:15:51,697 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.open
+2026-06-17 17:15:51,697 | INFO | agent.registry | [----------] Agente iniciado: browser (eventos: ['browser.navigate', 'browser.click', 'browser.fill', 'browser.submit', 'browser.screenshot', 'browser.get_text', 'browser.get_html', 'browser.wait_for', 'browser.scroll', 'browser.evaluate', 'browser.close', 'browser.search', 'browser.open'])
+2026-06-17 17:15:51,697 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.screenshot
+2026-06-17 17:15:51,698 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.mouse_move
+2026-06-17 17:15:51,698 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.mouse_click
+2026-06-17 17:15:51,698 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.mouse_drag
+2026-06-17 17:15:51,698 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.keyboard_type
+2026-06-17 17:15:51,699 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.keyboard_hotkey
+2026-06-17 17:15:51,699 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.ocr_screenshot
+2026-06-17 17:15:51,699 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.ocr_image
+2026-06-17 17:15:51,699 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.find_on_screen
+2026-06-17 17:15:51,700 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.window_list
+2026-06-17 17:15:51,700 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.window_focus
+2026-06-17 17:15:51,700 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.window_close
+2026-06-17 17:15:51,700 | INFO | agent.registry | [----------] Agente iniciado: computer (eventos: ['computer.screenshot', 'computer.mouse_move', 'computer.mouse_click', 'computer.mouse_drag', 'computer.keyboard_type', 'computer.keyboard_hotkey', 'computer.ocr_screenshot', 'computer.ocr_image', 'computer.find_on_screen', 'computer.window_list', 'computer.window_focus', 'computer.window_close'])
+2026-06-17 17:15:51,701 | INFO | agent.mail | [----------] Registrado en EventBus para evento: mail.send
+2026-06-17 17:15:51,701 | INFO | agent.mail | [----------] Registrado en EventBus para evento: mail.read
+2026-06-17 17:15:51,701 | INFO | agent.mail | [----------] Registrado en EventBus para evento: mail.search
+2026-06-17 17:15:51,701 | INFO | agent.registry | [----------] Agente iniciado: mail (eventos: ['mail.send', 'mail.read', 'mail.search'])
+2026-06-17 17:15:51,701 | INFO | agent.automation | [----------] Registrado en EventBus para evento: automation.run_pipeline
+2026-06-17 17:15:51,702 | INFO | agent.automation | [----------] Registrado en EventBus para evento: automation.schedule
+2026-06-17 17:15:51,702 | INFO | agent.registry | [----------] Agente iniciado: automation (eventos: ['automation.run_pipeline', 'automation.schedule'])
+2026-06-17 17:15:51,702 | INFO | agent.chat | [----------] Registrado en EventBus para evento: chat.respond
+2026-06-17 17:15:51,702 | INFO | agent.registry | [----------] Agente iniciado: chat (eventos: ['chat.respond'])
+2026-06-17 17:15:51,702 | INFO | agent.registry | [----------] AgentRegistry: 7 agentes registrados
+2026-06-17 17:20:06,250 | INFO | agent.registry | [----------] Playwright cerrado limpiamente
+2026-06-17 17:20:06,250 | INFO | agent.registry | [----------] AgentRegistry detenido
+2026-06-17 17:20:07,836 | INFO | agent.filesystem | [----------] Registrado en EventBus para evento: filesystem.create
+2026-06-17 17:20:07,836 | INFO | agent.filesystem | [----------] Registrado en EventBus para evento: filesystem.read
+2026-06-17 17:20:07,837 | INFO | agent.filesystem | [----------] Registrado en EventBus para evento: filesystem.append
+2026-06-17 17:20:07,838 | INFO | agent.filesystem | [----------] Registrado en EventBus para evento: filesystem.list
+2026-06-17 17:20:07,838 | INFO | agent.filesystem | [----------] Registrado en EventBus para evento: filesystem.delete
+2026-06-17 17:20:07,839 | INFO | agent.registry | [----------] Agente iniciado: filesystem (eventos: ['filesystem.create', 'filesystem.read', 'filesystem.append', 'filesystem.list', 'filesystem.delete'])
+2026-06-17 17:20:07,840 | INFO | agent.system | [----------] Registrado en EventBus para evento: system.info
+2026-06-17 17:20:07,841 | INFO | agent.system | [----------] Registrado en EventBus para evento: system.datetime
+2026-06-17 17:20:07,842 | INFO | agent.system | [----------] Registrado en EventBus para evento: system.command
+2026-06-17 17:20:07,843 | INFO | agent.system | [----------] Registrado en EventBus para evento: system.open_app
+2026-06-17 17:20:07,844 | INFO | agent.system | [----------] Registrado en EventBus para evento: system.close_app
+2026-06-17 17:20:07,844 | INFO | agent.registry | [----------] Agente iniciado: system (eventos: ['system.info', 'system.datetime', 'system.command', 'system.open_app', 'system.close_app'])
+2026-06-17 17:20:07,845 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.navigate
+2026-06-17 17:20:07,845 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.click
+2026-06-17 17:20:07,846 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.fill
+2026-06-17 17:20:07,847 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.submit
+2026-06-17 17:20:07,849 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.screenshot
+2026-06-17 17:20:07,851 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.get_text
+2026-06-17 17:20:07,852 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.get_html
+2026-06-17 17:20:07,853 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.wait_for
+2026-06-17 17:20:07,854 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.scroll
+2026-06-17 17:20:07,854 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.evaluate
+2026-06-17 17:20:07,855 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.close
+2026-06-17 17:20:07,855 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.search
+2026-06-17 17:20:07,856 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.open
+2026-06-17 17:20:07,856 | INFO | agent.registry | [----------] Agente iniciado: browser (eventos: ['browser.navigate', 'browser.click', 'browser.fill', 'browser.submit', 'browser.screenshot', 'browser.get_text', 'browser.get_html', 'browser.wait_for', 'browser.scroll', 'browser.evaluate', 'browser.close', 'browser.search', 'browser.open'])
+2026-06-17 17:20:07,857 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.screenshot
+2026-06-17 17:20:07,857 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.mouse_move
+2026-06-17 17:20:07,857 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.mouse_click
+2026-06-17 17:20:07,858 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.mouse_drag
+2026-06-17 17:20:07,858 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.keyboard_type
+2026-06-17 17:20:07,859 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.keyboard_hotkey
+2026-06-17 17:20:07,859 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.ocr_screenshot
+2026-06-17 17:20:07,859 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.ocr_image
+2026-06-17 17:20:07,860 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.find_on_screen
+2026-06-17 17:20:07,860 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.window_list
+2026-06-17 17:20:07,860 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.window_focus
+2026-06-17 17:20:07,860 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.window_close
+2026-06-17 17:20:07,861 | INFO | agent.registry | [----------] Agente iniciado: computer (eventos: ['computer.screenshot', 'computer.mouse_move', 'computer.mouse_click', 'computer.mouse_drag', 'computer.keyboard_type', 'computer.keyboard_hotkey', 'computer.ocr_screenshot', 'computer.ocr_image', 'computer.find_on_screen', 'computer.window_list', 'computer.window_focus', 'computer.window_close'])
+2026-06-17 17:20:07,861 | INFO | agent.mail | [----------] Registrado en EventBus para evento: mail.send
+2026-06-17 17:20:07,861 | INFO | agent.mail | [----------] Registrado en EventBus para evento: mail.read
+2026-06-17 17:20:07,862 | INFO | agent.mail | [----------] Registrado en EventBus para evento: mail.search
+2026-06-17 17:20:07,863 | INFO | agent.registry | [----------] Agente iniciado: mail (eventos: ['mail.send', 'mail.read', 'mail.search'])
+2026-06-17 17:20:07,866 | INFO | agent.automation | [----------] Registrado en EventBus para evento: automation.run_pipeline
+2026-06-17 17:20:07,867 | INFO | agent.automation | [----------] Registrado en EventBus para evento: automation.schedule
+2026-06-17 17:20:07,867 | INFO | agent.registry | [----------] Agente iniciado: automation (eventos: ['automation.run_pipeline', 'automation.schedule'])
+2026-06-17 17:20:07,868 | INFO | agent.chat | [----------] Registrado en EventBus para evento: chat.respond
+2026-06-17 17:20:07,868 | INFO | agent.registry | [----------] Agente iniciado: chat (eventos: ['chat.respond'])
+2026-06-17 17:20:07,869 | INFO | agent.registry | [----------] AgentRegistry: 7 agentes registrados
+2026-06-17 17:30:09,072 | INFO | agent.system | [----------] Resultado: <AgentResult agent=system status=success>
+2026-06-17 17:31:44,191 | INFO | agent.chat | [----------] Resultado: <AgentResult agent=chat status=success>
+2026-06-17 17:33:16,845 | INFO | agent.chat | [----------] Resultado: <AgentResult agent=chat status=success>
+2026-06-17 17:34:30,831 | INFO | agent.chat | [----------] Resultado: <AgentResult agent=chat status=success>
+2026-06-17 17:36:27,718 | INFO | agent.chat | [----------] Resultado: <AgentResult agent=chat status=success>
+2026-06-17 17:38:20,320 | INFO | agent.chat | [----------] Resultado: <AgentResult agent=chat status=success>
+2026-06-17 17:55:00,265 | INFO | agent.registry | [----------] Playwright cerrado limpiamente
+2026-06-17 17:55:00,266 | INFO | agent.registry | [----------] AgentRegistry detenido
+2026-06-17 17:55:02,208 | INFO | agent.filesystem | [----------] Registrado en EventBus para evento: filesystem.create
+2026-06-17 17:55:02,208 | INFO | agent.filesystem | [----------] Registrado en EventBus para evento: filesystem.read
+2026-06-17 17:55:02,208 | INFO | agent.filesystem | [----------] Registrado en EventBus para evento: filesystem.append
+2026-06-17 17:55:02,209 | INFO | agent.filesystem | [----------] Registrado en EventBus para evento: filesystem.list
+2026-06-17 17:55:02,209 | INFO | agent.filesystem | [----------] Registrado en EventBus para evento: filesystem.delete
+2026-06-17 17:55:02,209 | INFO | agent.registry | [----------] Agente iniciado: filesystem (eventos: ['filesystem.create', 'filesystem.read', 'filesystem.append', 'filesystem.list', 'filesystem.delete'])
+2026-06-17 17:55:02,209 | INFO | agent.system | [----------] Registrado en EventBus para evento: system.info
+2026-06-17 17:55:02,210 | INFO | agent.system | [----------] Registrado en EventBus para evento: system.datetime
+2026-06-17 17:55:02,210 | INFO | agent.system | [----------] Registrado en EventBus para evento: system.command
+2026-06-17 17:55:02,210 | INFO | agent.system | [----------] Registrado en EventBus para evento: system.open_app
+2026-06-17 17:55:02,210 | INFO | agent.system | [----------] Registrado en EventBus para evento: system.close_app
+2026-06-17 17:55:02,210 | INFO | agent.registry | [----------] Agente iniciado: system (eventos: ['system.info', 'system.datetime', 'system.command', 'system.open_app', 'system.close_app'])
+2026-06-17 17:55:02,211 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.navigate
+2026-06-17 17:55:02,211 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.click
+2026-06-17 17:55:02,211 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.fill
+2026-06-17 17:55:02,211 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.submit
+2026-06-17 17:55:02,212 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.screenshot
+2026-06-17 17:55:02,212 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.get_text
+2026-06-17 17:55:02,212 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.get_html
+2026-06-17 17:55:02,213 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.wait_for
+2026-06-17 17:55:02,213 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.scroll
+2026-06-17 17:55:02,213 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.evaluate
+2026-06-17 17:55:02,213 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.close
+2026-06-17 17:55:02,214 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.search
+2026-06-17 17:55:02,214 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.open
+2026-06-17 17:55:02,214 | INFO | agent.registry | [----------] Agente iniciado: browser (eventos: ['browser.navigate', 'browser.click', 'browser.fill', 'browser.submit', 'browser.screenshot', 'browser.get_text', 'browser.get_html', 'browser.wait_for', 'browser.scroll', 'browser.evaluate', 'browser.close', 'browser.search', 'browser.open'])
+2026-06-17 17:55:02,214 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.screenshot
+2026-06-17 17:55:02,214 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.mouse_move
+2026-06-17 17:55:02,215 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.mouse_click
+2026-06-17 17:55:02,215 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.mouse_drag
+2026-06-17 17:55:02,215 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.keyboard_type
+2026-06-17 17:55:02,215 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.keyboard_hotkey
+2026-06-17 17:55:02,215 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.ocr_screenshot
+2026-06-17 17:55:02,216 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.ocr_image
+2026-06-17 17:55:02,216 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.find_on_screen
+2026-06-17 17:55:02,216 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.window_list
+2026-06-17 17:55:02,216 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.window_focus
+2026-06-17 17:55:02,217 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.window_close
+2026-06-17 17:55:02,217 | INFO | agent.registry | [----------] Agente iniciado: computer (eventos: ['computer.screenshot', 'computer.mouse_move', 'computer.mouse_click', 'computer.mouse_drag', 'computer.keyboard_type', 'computer.keyboard_hotkey', 'computer.ocr_screenshot', 'computer.ocr_image', 'computer.find_on_screen', 'computer.window_list', 'computer.window_focus', 'computer.window_close'])
+2026-06-17 17:55:02,217 | INFO | agent.mail | [----------] Registrado en EventBus para evento: mail.send
+2026-06-17 17:55:02,217 | INFO | agent.mail | [----------] Registrado en EventBus para evento: mail.read
+2026-06-17 17:55:02,217 | INFO | agent.mail | [----------] Registrado en EventBus para evento: mail.search
+2026-06-17 17:55:02,218 | INFO | agent.registry | [----------] Agente iniciado: mail (eventos: ['mail.send', 'mail.read', 'mail.search'])
+2026-06-17 17:55:02,218 | INFO | agent.automation | [----------] Registrado en EventBus para evento: automation.run_pipeline
+2026-06-17 17:55:02,218 | INFO | agent.automation | [----------] Registrado en EventBus para evento: automation.schedule
+2026-06-17 17:55:02,218 | INFO | agent.registry | [----------] Agente iniciado: automation (eventos: ['automation.run_pipeline', 'automation.schedule'])
+2026-06-17 17:55:02,218 | INFO | agent.chat | [----------] Registrado en EventBus para evento: chat.respond
+2026-06-17 17:55:02,218 | INFO | agent.registry | [----------] Agente iniciado: chat (eventos: ['chat.respond'])
+2026-06-17 17:55:02,218 | INFO | agent.registry | [----------] AgentRegistry: 7 agentes registrados
+2026-06-17 17:56:10,175 | INFO | agent.registry | [----------] Playwright cerrado limpiamente
+2026-06-17 17:56:10,175 | INFO | agent.registry | [----------] AgentRegistry detenido
+2026-06-17 17:56:11,917 | INFO | agent.filesystem | [----------] Registrado en EventBus para evento: filesystem.create
+2026-06-17 17:56:11,918 | INFO | agent.filesystem | [----------] Registrado en EventBus para evento: filesystem.read
+2026-06-17 17:56:11,919 | INFO | agent.filesystem | [----------] Registrado en EventBus para evento: filesystem.append
+2026-06-17 17:56:11,919 | INFO | agent.filesystem | [----------] Registrado en EventBus para evento: filesystem.list
+2026-06-17 17:56:11,920 | INFO | agent.filesystem | [----------] Registrado en EventBus para evento: filesystem.delete
+2026-06-17 17:56:11,920 | INFO | agent.registry | [----------] Agente iniciado: filesystem (eventos: ['filesystem.create', 'filesystem.read', 'filesystem.append', 'filesystem.list', 'filesystem.delete'])
+2026-06-17 17:56:11,921 | INFO | agent.system | [----------] Registrado en EventBus para evento: system.info
+2026-06-17 17:56:11,921 | INFO | agent.system | [----------] Registrado en EventBus para evento: system.datetime
+2026-06-17 17:56:11,921 | INFO | agent.system | [----------] Registrado en EventBus para evento: system.command
+2026-06-17 17:56:11,922 | INFO | agent.system | [----------] Registrado en EventBus para evento: system.open_app
+2026-06-17 17:56:11,922 | INFO | agent.system | [----------] Registrado en EventBus para evento: system.close_app
+2026-06-17 17:56:11,922 | INFO | agent.registry | [----------] Agente iniciado: system (eventos: ['system.info', 'system.datetime', 'system.command', 'system.open_app', 'system.close_app'])
+2026-06-17 17:56:11,923 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.navigate
+2026-06-17 17:56:11,923 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.click
+2026-06-17 17:56:11,924 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.fill
+2026-06-17 17:56:11,924 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.submit
+2026-06-17 17:56:11,924 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.screenshot
+2026-06-17 17:56:11,925 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.get_text
+2026-06-17 17:56:11,925 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.get_html
+2026-06-17 17:56:11,926 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.wait_for
+2026-06-17 17:56:11,926 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.scroll
+2026-06-17 17:56:11,927 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.evaluate
+2026-06-17 17:56:11,927 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.close
+2026-06-17 17:56:11,927 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.search
+2026-06-17 17:56:11,928 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.open
+2026-06-17 17:56:11,929 | INFO | agent.registry | [----------] Agente iniciado: browser (eventos: ['browser.navigate', 'browser.click', 'browser.fill', 'browser.submit', 'browser.screenshot', 'browser.get_text', 'browser.get_html', 'browser.wait_for', 'browser.scroll', 'browser.evaluate', 'browser.close', 'browser.search', 'browser.open'])
+2026-06-17 17:56:11,930 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.screenshot
+2026-06-17 17:56:11,930 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.mouse_move
+2026-06-17 17:56:11,931 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.mouse_click
+2026-06-17 17:56:11,933 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.mouse_drag
+2026-06-17 17:56:11,934 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.keyboard_type
+2026-06-17 17:56:11,935 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.keyboard_hotkey
+2026-06-17 17:56:11,936 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.ocr_screenshot
+2026-06-17 17:56:11,936 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.ocr_image
+2026-06-17 17:56:11,937 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.find_on_screen
+2026-06-17 17:56:11,938 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.window_list
+2026-06-17 17:56:11,938 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.window_focus
+2026-06-17 17:56:11,939 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.window_close
+2026-06-17 17:56:11,939 | INFO | agent.registry | [----------] Agente iniciado: computer (eventos: ['computer.screenshot', 'computer.mouse_move', 'computer.mouse_click', 'computer.mouse_drag', 'computer.keyboard_type', 'computer.keyboard_hotkey', 'computer.ocr_screenshot', 'computer.ocr_image', 'computer.find_on_screen', 'computer.window_list', 'computer.window_focus', 'computer.window_close'])
+2026-06-17 17:56:11,940 | INFO | agent.mail | [----------] Registrado en EventBus para evento: mail.send
+2026-06-17 17:56:11,940 | INFO | agent.mail | [----------] Registrado en EventBus para evento: mail.read
+2026-06-17 17:56:11,940 | INFO | agent.mail | [----------] Registrado en EventBus para evento: mail.search
+2026-06-17 17:56:11,941 | INFO | agent.registry | [----------] Agente iniciado: mail (eventos: ['mail.send', 'mail.read', 'mail.search'])
+2026-06-17 17:56:11,941 | INFO | agent.automation | [----------] Registrado en EventBus para evento: automation.run_pipeline
+2026-06-17 17:56:11,942 | INFO | agent.automation | [----------] Registrado en EventBus para evento: automation.schedule
+2026-06-17 17:56:11,942 | INFO | agent.registry | [----------] Agente iniciado: automation (eventos: ['automation.run_pipeline', 'automation.schedule'])
+2026-06-17 17:56:11,942 | INFO | agent.chat | [----------] Registrado en EventBus para evento: chat.respond
+2026-06-17 17:56:11,943 | INFO | agent.registry | [----------] Agente iniciado: chat (eventos: ['chat.respond'])
+2026-06-17 17:56:11,943 | INFO | agent.registry | [----------] AgentRegistry: 7 agentes registrados
+2026-06-17 18:03:46,794 | INFO | agent.registry | [----------] Playwright cerrado limpiamente
+2026-06-17 18:03:46,794 | INFO | agent.registry | [----------] AgentRegistry detenido
+2026-06-17 18:03:47,811 | INFO | agent.filesystem | [----------] Registrado en EventBus para evento: filesystem.create
+2026-06-17 18:03:47,811 | INFO | agent.filesystem | [----------] Registrado en EventBus para evento: filesystem.read
+2026-06-17 18:03:47,811 | INFO | agent.filesystem | [----------] Registrado en EventBus para evento: filesystem.append
+2026-06-17 18:03:47,812 | INFO | agent.filesystem | [----------] Registrado en EventBus para evento: filesystem.list
+2026-06-17 18:03:47,812 | INFO | agent.filesystem | [----------] Registrado en EventBus para evento: filesystem.delete
+2026-06-17 18:03:47,812 | INFO | agent.registry | [----------] Agente iniciado: filesystem (eventos: ['filesystem.create', 'filesystem.read', 'filesystem.append', 'filesystem.list', 'filesystem.delete'])
+2026-06-17 18:03:47,812 | INFO | agent.system | [----------] Registrado en EventBus para evento: system.info
+2026-06-17 18:03:47,812 | INFO | agent.system | [----------] Registrado en EventBus para evento: system.datetime
+2026-06-17 18:03:47,812 | INFO | agent.system | [----------] Registrado en EventBus para evento: system.command
+2026-06-17 18:03:47,813 | INFO | agent.system | [----------] Registrado en EventBus para evento: system.open_app
+2026-06-17 18:03:47,813 | INFO | agent.system | [----------] Registrado en EventBus para evento: system.close_app
+2026-06-17 18:03:47,813 | INFO | agent.registry | [----------] Agente iniciado: system (eventos: ['system.info', 'system.datetime', 'system.command', 'system.open_app', 'system.close_app'])
+2026-06-17 18:03:47,813 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.navigate
+2026-06-17 18:03:47,814 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.click
+2026-06-17 18:03:47,814 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.fill
+2026-06-17 18:03:47,814 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.submit
+2026-06-17 18:03:47,814 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.screenshot
+2026-06-17 18:03:47,815 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.get_text
+2026-06-17 18:03:47,815 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.get_html
+2026-06-17 18:03:47,815 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.wait_for
+2026-06-17 18:03:47,816 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.scroll
+2026-06-17 18:03:47,816 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.evaluate
+2026-06-17 18:03:47,816 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.close
+2026-06-17 18:03:47,816 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.search
+2026-06-17 18:03:47,817 | INFO | agent.browser | [----------] Registrado en EventBus para evento: browser.open
+2026-06-17 18:03:47,817 | INFO | agent.registry | [----------] Agente iniciado: browser (eventos: ['browser.navigate', 'browser.click', 'browser.fill', 'browser.submit', 'browser.screenshot', 'browser.get_text', 'browser.get_html', 'browser.wait_for', 'browser.scroll', 'browser.evaluate', 'browser.close', 'browser.search', 'browser.open'])
+2026-06-17 18:03:47,817 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.screenshot
+2026-06-17 18:03:47,817 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.mouse_move
+2026-06-17 18:03:47,817 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.mouse_click
+2026-06-17 18:03:47,817 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.mouse_drag
+2026-06-17 18:03:47,818 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.keyboard_type
+2026-06-17 18:03:47,818 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.keyboard_hotkey
+2026-06-17 18:03:47,818 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.ocr_screenshot
+2026-06-17 18:03:47,818 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.ocr_image
+2026-06-17 18:03:47,819 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.find_on_screen
+2026-06-17 18:03:47,819 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.window_list
+2026-06-17 18:03:47,819 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.window_focus
+2026-06-17 18:03:47,820 | INFO | agent.computer | [----------] Registrado en EventBus para evento: computer.window_close
+2026-06-17 18:03:47,820 | INFO | agent.registry | [----------] Agente iniciado: computer (eventos: ['computer.screenshot', 'computer.mouse_move', 'computer.mouse_click', 'computer.mouse_drag', 'computer.keyboard_type', 'computer.keyboard_hotkey', 'computer.ocr_screenshot', 'computer.ocr_image', 'computer.find_on_screen', 'computer.window_list', 'computer.window_focus', 'computer.window_close'])
+2026-06-17 18:03:47,820 | INFO | agent.mail | [----------] Registrado en EventBus para evento: mail.send
+2026-06-17 18:03:47,820 | INFO | agent.mail | [----------] Registrado en EventBus para evento: mail.read
+2026-06-17 18:03:47,821 | INFO | agent.mail | [----------] Registrado en EventBus para evento: mail.search
+2026-06-17 18:03:47,821 | INFO | agent.registry | [----------] Agente iniciado: mail (eventos: ['mail.send', 'mail.read', 'mail.search'])
+2026-06-17 18:03:47,821 | INFO | agent.automation | [----------] Registrado en EventBus para evento: automation.run_pipeline
+2026-06-17 18:03:47,821 | INFO | agent.automation | [----------] Registrado en EventBus para evento: automation.schedule
+2026-06-17 18:03:47,821 | INFO | agent.registry | [----------] Agente iniciado: automation (eventos: ['automation.run_pipeline', 'automation.schedule'])
+2026-06-17 18:03:47,822 | INFO | agent.chat | [----------] Registrado en EventBus para evento: chat.respond
+2026-06-17 18:03:47,822 | INFO | agent.registry | [----------] Agente iniciado: chat (eventos: ['chat.respond'])
+2026-06-17 18:03:47,822 | INFO | agent.registry | [----------] AgentRegistry: 7 agentes registrados
+2026-06-17 18:08:04,038 | INFO | agent.system | [----------] Resultado: <AgentResult agent=system status=success>
+2026-06-17 18:08:28,812 | INFO | agent.system | [----------] Resultado: <AgentResult agent=system status=error>
+2026-06-17 18:20:54,003 | INFO | agent.registry | [----------] Playwright cerrado limpiamente
+2026-06-17 18:20:54,004 | INFO | agent.registry | [----------] AgentRegistry detenido

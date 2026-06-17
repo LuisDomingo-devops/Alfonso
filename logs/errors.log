@@ -27,3 +27,4 @@ Call log:
 2026-06-17 15:07:54,654 | WARNING | errors | [----------] No se encontró proceso con nombre: firefox
 2026-06-17 15:08:21,165 | WARNING | errors | [----------] No se encontró proceso con nombre: explorer.exe
 2026-06-17 15:24:48,318 | ERROR | errors | [----------] Error de permisos al crear /home/username/Desktop/hola.txt: [Errno 13] Permission denied: '/home/username'
+2026-06-17 18:08:28,811 | WARNING | errors | [----------] No se encontró proceso con nombre: explorer.exe

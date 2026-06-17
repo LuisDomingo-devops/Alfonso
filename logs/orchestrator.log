@@ -211,3 +211,55 @@
 2026-06-17 16:17:22,330 | DEBUG | orchestrator | [62f22a5e-b3b0-46f7-9493-a0bdf483ae4c] LLM OUTPUT (tool): {"tool":"open_application","args":{"command":"explorer.exe"}}
 2026-06-17 16:17:22,330 | INFO | orchestrator | [62f22a5e-b3b0-46f7-9493-a0bdf483ae4c] TaskPlan: event=system.open_app args={'command': 'explorer.exe'}
 2026-06-17 16:17:22,331 | DEBUG | orchestrator | [62f22a5e-b3b0-46f7-9493-a0bdf483ae4c] Evento publicado: system.open_app
+2026-06-17 17:29:21,446 | INFO | orchestrator | [19846c53-7bcf-4098-a35d-c4195d7d0688] PlannerOrchestrator.run iniciado
+2026-06-17 17:29:21,448 | INFO | orchestrator | [19846c53-7bcf-4098-a35d-c4195d7d0688] USER MESSAGE: abre el explorador de Windows
+2026-06-17 17:29:21,449 | INFO | orchestrator | [19846c53-7bcf-4098-a35d-c4195d7d0688] SESSION_ID: 19846c53-7bcf-4098-a35d-c4195d7d0688
+2026-06-17 17:29:21,472 | INFO | orchestrator | [19846c53-7bcf-4098-a35d-c4195d7d0688] Intent: tool (score=4.00, reglas=['+1.5 [open_generic_short]', '+2.5 [open_filemanager_short]'])
+2026-06-17 17:30:08,768 | DEBUG | orchestrator | [19846c53-7bcf-4098-a35d-c4195d7d0688] LLM OUTPUT (tool): {"tool":"open_application","args":{"command":"explorer"}}
+2026-06-17 17:30:08,771 | INFO | orchestrator | [19846c53-7bcf-4098-a35d-c4195d7d0688] TaskPlan: event=system.open_app args={'command': 'explorer'}
+2026-06-17 17:30:08,773 | DEBUG | orchestrator | [19846c53-7bcf-4098-a35d-c4195d7d0688] Evento publicado: system.open_app
+2026-06-17 17:30:43,642 | INFO | orchestrator | [907f08bc-7d89-4986-8c4c-a34bc261d5c3] PlannerOrchestrator.run iniciado
+2026-06-17 17:30:43,643 | INFO | orchestrator | [907f08bc-7d89-4986-8c4c-a34bc261d5c3] USER MESSAGE: cierra el Explorador de Windows
+2026-06-17 17:30:43,643 | INFO | orchestrator | [907f08bc-7d89-4986-8c4c-a34bc261d5c3] SESSION_ID: 907f08bc-7d89-4986-8c4c-a34bc261d5c3
+2026-06-17 17:30:43,649 | INFO | orchestrator | [907f08bc-7d89-4986-8c4c-a34bc261d5c3] Intent: chat (score=0.00, reglas=[])
+2026-06-17 17:30:43,650 | DEBUG | orchestrator | [907f08bc-7d89-4986-8c4c-a34bc261d5c3] Evento publicado: chat.respond
+2026-06-17 17:31:44,198 | INFO | orchestrator | [907f08bc-7d89-4986-8c4c-a34bc261d5c3] Respuesta chat completada
+2026-06-17 17:32:39,750 | INFO | orchestrator | [069e960d-7132-4f6d-a178-0770d71e4986] PlannerOrchestrator.run iniciado
+2026-06-17 17:32:39,750 | INFO | orchestrator | [069e960d-7132-4f6d-a178-0770d71e4986] USER MESSAGE: mueve el ratón hacia la esquina superior derecha de la pantalla
+2026-06-17 17:32:39,750 | INFO | orchestrator | [069e960d-7132-4f6d-a178-0770d71e4986] SESSION_ID: 069e960d-7132-4f6d-a178-0770d71e4986
+2026-06-17 17:32:39,757 | INFO | orchestrator | [069e960d-7132-4f6d-a178-0770d71e4986] Intent: chat (score=0.00, reglas=[])
+2026-06-17 17:32:39,757 | DEBUG | orchestrator | [069e960d-7132-4f6d-a178-0770d71e4986] Evento publicado: chat.respond
+2026-06-17 17:33:16,851 | INFO | orchestrator | [069e960d-7132-4f6d-a178-0770d71e4986] Respuesta chat completada
+2026-06-17 17:33:44,918 | INFO | orchestrator | [6943f998-ce0c-45da-bb3e-4371402c56cf] PlannerOrchestrator.run iniciado
+2026-06-17 17:33:44,919 | INFO | orchestrator | [6943f998-ce0c-45da-bb3e-4371402c56cf] USER MESSAGE: factura de 50 € es decir usted estaría por encima de subir al mínimo
+2026-06-17 17:33:44,919 | INFO | orchestrator | [6943f998-ce0c-45da-bb3e-4371402c56cf] SESSION_ID: 6943f998-ce0c-45da-bb3e-4371402c56cf
+2026-06-17 17:33:44,924 | INFO | orchestrator | [6943f998-ce0c-45da-bb3e-4371402c56cf] Intent: chat (score=0.00, reglas=[])
+2026-06-17 17:33:44,924 | DEBUG | orchestrator | [6943f998-ce0c-45da-bb3e-4371402c56cf] Evento publicado: chat.respond
+2026-06-17 17:34:30,837 | INFO | orchestrator | [6943f998-ce0c-45da-bb3e-4371402c56cf] Respuesta chat completada
+2026-06-17 17:35:35,209 | INFO | orchestrator | [356b7290-854b-414e-9777-721148b7c891] PlannerOrchestrator.run iniciado
+2026-06-17 17:35:35,209 | INFO | orchestrator | [356b7290-854b-414e-9777-721148b7c891] USER MESSAGE: tienen ya cerrado el tema de la aerotermia Pedro
+2026-06-17 17:35:35,209 | INFO | orchestrator | [356b7290-854b-414e-9777-721148b7c891] SESSION_ID: 356b7290-854b-414e-9777-721148b7c891
+2026-06-17 17:35:35,215 | INFO | orchestrator | [356b7290-854b-414e-9777-721148b7c891] Intent: chat (score=0.00, reglas=[])
+2026-06-17 17:35:35,216 | DEBUG | orchestrator | [356b7290-854b-414e-9777-721148b7c891] Evento publicado: chat.respond
+2026-06-17 17:36:27,723 | INFO | orchestrator | [356b7290-854b-414e-9777-721148b7c891] Respuesta chat completada
+2026-06-17 17:37:41,943 | INFO | orchestrator | [48a07042-6397-4b46-9ec4-578618166418] PlannerOrchestrator.run iniciado
+2026-06-17 17:37:41,943 | INFO | orchestrator | [48a07042-6397-4b46-9ec4-578618166418] USER MESSAGE: vale entonces se lo dejamos aquí apuntado que está poniendo
+2026-06-17 17:37:41,943 | INFO | orchestrator | [48a07042-6397-4b46-9ec4-578618166418] SESSION_ID: 48a07042-6397-4b46-9ec4-578618166418
+2026-06-17 17:37:41,951 | INFO | orchestrator | [48a07042-6397-4b46-9ec4-578618166418] Intent: chat (score=-2.50, reglas=['-2.5 [greeting]'])
+2026-06-17 17:37:41,951 | DEBUG | orchestrator | [48a07042-6397-4b46-9ec4-578618166418] Evento publicado: chat.respond
+2026-06-17 17:38:20,325 | INFO | orchestrator | [48a07042-6397-4b46-9ec4-578618166418] Respuesta chat completada
+2026-06-17 18:07:09,558 | INFO | orchestrator | [6984ad2a-02ab-48eb-bb22-e2056048f1a9] PlannerOrchestrator.run iniciado
+2026-06-17 18:07:09,559 | INFO | orchestrator | [6984ad2a-02ab-48eb-bb22-e2056048f1a9] USER MESSAGE: abre el explorador de windows
+2026-06-17 18:07:09,559 | INFO | orchestrator | [6984ad2a-02ab-48eb-bb22-e2056048f1a9] SESSION_ID: 6984ad2a-02ab-48eb-bb22-e2056048f1a9
+2026-06-17 18:07:09,572 | INFO | orchestrator | [6984ad2a-02ab-48eb-bb22-e2056048f1a9] Intent: tool (score=4.00, reglas=['+1.5 [open_generic_short]', '+2.5 [open_filemanager_short]'])
+2026-06-17 18:08:03,703 | DEBUG | orchestrator | [6984ad2a-02ab-48eb-bb22-e2056048f1a9] LLM OUTPUT (tool): {"tool":"open_application","args":{"command":"explorer"}}
+2026-06-17 18:08:03,706 | INFO | orchestrator | [6984ad2a-02ab-48eb-bb22-e2056048f1a9] TaskPlan: event=system.open_app args={'command': 'explorer'}
+2026-06-17 18:08:03,709 | DEBUG | orchestrator | [6984ad2a-02ab-48eb-bb22-e2056048f1a9] Evento publicado: system.open_app
+2026-06-17 18:08:26,540 | INFO | orchestrator | [39d898b7-ce45-4b02-8d55-61559463386c] PlannerOrchestrator.run iniciado
+2026-06-17 18:08:26,541 | INFO | orchestrator | [39d898b7-ce45-4b02-8d55-61559463386c] USER MESSAGE: cierra el explorador de windows
+2026-06-17 18:08:26,541 | INFO | orchestrator | [39d898b7-ce45-4b02-8d55-61559463386c] SESSION_ID: 39d898b7-ce45-4b02-8d55-61559463386c
+2026-06-17 18:08:26,549 | INFO | orchestrator | [39d898b7-ce45-4b02-8d55-61559463386c] Intent: tool (score=4.50, reglas=['+2.5 [close_application]', '+2.0 [close_app_simple]'])
+2026-06-17 18:08:28,726 | DEBUG | orchestrator | [39d898b7-ce45-4b02-8d55-61559463386c] LLM OUTPUT (tool): {"tool":"close_application","args":{"command":"explorer.exe"}}
+2026-06-17 18:08:28,726 | INFO | orchestrator | [39d898b7-ce45-4b02-8d55-61559463386c] TaskPlan: event=system.close_app args={'command': 'explorer.exe'}
+2026-06-17 18:08:28,727 | DEBUG | orchestrator | [39d898b7-ce45-4b02-8d55-61559463386c] Evento publicado: system.close_app
+2026-06-17 18:08:28,812 | INFO | orchestrator | [39d898b7-ce45-4b02-8d55-61559463386c] Agente respondió: error
