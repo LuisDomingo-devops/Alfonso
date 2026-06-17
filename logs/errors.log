@@ -24,3 +24,6 @@ Call log:
 2026-06-12 17:09:05,533 | WARNING | errors | [----------] No se encontró proceso con nombre: explorer
 2026-06-12 17:12:37,102 | WARNING | errors | [----------] No se encontró proceso con nombre: explorer
 2026-06-15 16:37:29,771 | INFO | errors | [----------] Ruta relativa detectada, convirtiendo a absoluta: hola_soy.txt
+2026-06-17 15:07:54,654 | WARNING | errors | [----------] No se encontró proceso con nombre: firefox
+2026-06-17 15:08:21,165 | WARNING | errors | [----------] No se encontró proceso con nombre: explorer.exe
+2026-06-17 15:24:48,318 | ERROR | errors | [----------] Error de permisos al crear /home/username/Desktop/hola.txt: [Errno 13] Permission denied: '/home/username'

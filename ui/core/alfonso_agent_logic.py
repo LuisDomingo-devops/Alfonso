@@ -3,17 +3,26 @@ import pyautogui
 import os
 import base64
 import logging
+import asyncio
 import shutil
 import platform
 from io import BytesIO
 
 # Importar el gestor de registro de apps
-from core.app_registry import update_app_registry, load_app_registry, get_app_path
+from ui.core.app_registry import update_app_registry, load_app_registry, get_app_path, _KNOWN_APPS
 
 logger = logging.getLogger(__name__)
 
 # Desactivar el fail-safe de PyAutoGUI para evitar que se detenga si el ratón se mueve a una esquina
 pyautogui.FAILSAFE = False
+
+# FIX: comprobar la plataforma real, no solo la existencia del atributo.
+# `subprocess.CREATE_NO_WINDOW` puede existir como constante en algunos
+# entornos sin ser funcionalmente válido fuera de Windows (p.ej. WSL con
+# python compilado con soporte completo de subprocess). hasattr() por sí
+# solo no es una comprobación fiable de plataforma.
+_IS_WINDOWS = platform.system() == "Windows"
+
 
 class AlfonsoAgentLogic:
     """Encapsulates the logic for executing local system commands."""
@@ -46,12 +55,22 @@ class AlfonsoAgentLogic:
         3. Rutas comunes en Windows
         """
         app_lower = app_name.strip().lower()
+
+        # 0. Mapear alias (ej: 'visual-studio-code' -> 'vscode') usando _KNOWN_APPS
+        target_key = app_lower
+        for known_key, patterns in _KNOWN_APPS.items():
+            if app_lower == known_key.lower():
+                target_key = known_key
+                break
+            if any(p.lower() in app_lower or app_lower in p.lower() for p in patterns):
+                target_key = known_key
+                break
         
         # 1. Buscar en el registro de aplicaciones
-        if app_lower in self.app_registry:
-            registered_path = self.app_registry[app_lower]
+        if target_key in self.app_registry:
+            registered_path = self.app_registry[target_key]
             if os.path.exists(registered_path):
-                logger.info(f"App '{app_name}' encontrada en registro: {registered_path}")
+                logger.info(f"App '{app_name}' (mapeada a '{target_key}') encontrada en registro: {registered_path}")
                 return registered_path
         
         # 2. Intentar encontrar en PATH directamente
@@ -122,12 +141,14 @@ class AlfonsoAgentLogic:
                 try:
                     logger.info(f"Iniciando aplicación: {resolved_command}")
                     # Usar Popen para no bloquear mientras la app está abierta
-                    # creationflags para ocultar la ventana de consola en Windows
-                    if self._system == "Windows":
+                    # FIX: comprobar plataforma real (_IS_WINDOWS) en vez de
+                    # hasattr(subprocess, 'CREATE_NO_WINDOW'), que no garantiza
+                    # que estemos en Windows.
+                    if _IS_WINDOWS:
                         subprocess.Popen(
                             resolved_command,
                             shell=False,
-                            creationflags=subprocess.CREATE_NO_WINDOW if hasattr(subprocess, 'CREATE_NO_WINDOW') else 0
+                            creationflags=subprocess.CREATE_NO_WINDOW
                         )
                     else:
                         subprocess.Popen(resolved_command, shell=False)
@@ -142,31 +163,56 @@ class AlfonsoAgentLogic:
             
             elif action == "type_text":
                 text = params.get("text", "")
-                pyautogui.write(text)
+                await asyncio.to_thread(pyautogui.write, text)
                 result = f"Texto escrito: {text}"
             
             elif action == "press_key":
                 key = params.get("key")
-                pyautogui.press(key)
+                await asyncio.to_thread(pyautogui.press, key)
                 result = f"Tecla presionada: {key}"
 
             elif action == "move_mouse":
                 x = params.get("x", 0)
                 y = params.get("y", 0)
-                pyautogui.moveTo(x, y)
+                await asyncio.to_thread(pyautogui.moveTo, x, y)
                 result = f"Ratón movido a ({x}, {y})"
 
             elif action == "click":
                 button = params.get("button", "left")
-                pyautogui.click(button=button)
+                await asyncio.to_thread(pyautogui.click, button=button)
                 result = f"Click realizado con botón {button}"
 
             elif action == "screenshot":
-                screenshot = pyautogui.screenshot()
+                screenshot = await asyncio.to_thread(pyautogui.screenshot)
                 buffered = BytesIO()
                 screenshot.save(buffered, format="PNG")
                 img_str = base64.b64encode(buffered.getvalue()).decode()
                 result = {"message": "Captura de pantalla realizada.", "image_data": img_str}
+
+            elif action == "create_file":
+                path = params.get("path", "")
+                content = params.get("content", "")
+
+                # Corregir alucinaciones de ruta del LLM (ej: /Users/alfonso/Desktop -> C:/Users/luisd/Desktop)
+                if _IS_WINDOWS:
+                    user_home = os.path.expanduser("~")
+                    if "Desktop" in path or "Escritorio" in path:
+                        filename = os.path.basename(path)
+                        path = os.path.join(user_home, "Desktop", filename)
+                    elif path.startswith("/Users/") or path.startswith("\\Users\\"):
+                        # Si el LLM usa un usuario genérico, forzamos el actual
+                        parts = path.split(os.sep if os.sep in path else "/")
+                        if len(parts) > 3:
+                            path = os.path.join(user_home, *parts[3:])
+
+                def _write_file():
+                    os.makedirs(os.path.dirname(path), exist_ok=True)
+                    with open(path, "w", encoding="utf-8") as f:
+                        f.write(content)
+                
+                await asyncio.to_thread(_write_file)
+                result = f"Archivo creado exitosamente en: {path}"
+
             else:
                 return {"id": command_id, "status": "error", "error": f"Acción desconocida: {action}"}
             return {"id": command_id, "status": "success", "result": result}

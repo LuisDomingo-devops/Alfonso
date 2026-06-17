@@ -39,7 +39,7 @@ class AssistantThread(QThread):
         self.pending_text_message = None
 
         # NEW: Alfonso Agent Logic
-        self.agent_logic = AlfonsoAgentLogic()
+        self.agent_logic = AlfonsoAgentLogic(registry_file=self.config.get('agent_registry_file', ".env.apps"))
         self.bridge_url = config.get('bridge_url', "ws://localhost:8765") # Assuming bridge URL is passed in config
         self.websocket = None # To hold the WebSocket connection
         self.loop = None # asyncio event loop
@@ -195,17 +195,21 @@ class AssistantThread(QThread):
     async def _agent_websocket_client_loop(self):
         """Connects to AlfonsoBridge and listens for commands."""
         while self.running:
+            ws = None
             try:
                 self.agent_status_changed.emit("connecting")
                 async with websockets.connect(self.bridge_url) as ws:
                     self.websocket = ws
                     self.agent_status_changed.emit("connected")
-                    print(f"[INFO] Conectado a Alfonso Bridge en {self.bridge_url}")
+                    print(f"[AGENT] Conexión establecida con el Host en {self.bridge_url}")
                     async for message in ws:
-                        data = json.loads(message)
-                        print(f"[INFO] Comando recibido del Bridge: {data}")
-                        response = await self.agent_logic.execute_command(data)
-                        await ws.send(json.dumps(response))
+                        try:
+                            data = json.loads(message)
+                            print(f"[AGENT] Ejecutando acción: {data.get('action')}")
+                            response = await self.agent_logic.execute_command(data)
+                            await ws.send(json.dumps(response))
+                        except json.JSONDecodeError:
+                            print("[AGENT] Error: Mensaje del Bridge no es un JSON válido")
             except (websockets.exceptions.ConnectionClosed, ConnectionRefusedError) as e:
                 print(f"[WARNING] Conexión a Alfonso Bridge perdida o rechazada: {e}. Reintentando en 5 segundos...")
                 self.agent_status_changed.emit("disconnected")

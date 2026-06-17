@@ -150,8 +150,10 @@ def run(
             if keyword.lower() not in wakeword_text.lower():
                 print("skip.")
                 continue
-
-            if not wakeword_res.get("result", {}).get("wake_word_detected"):
+            
+            # Si llegamos aquí, es que el keyword está en el texto transcrito localmente.
+            # No necesitamos wakeword_res porque la validación es local.
+            if not wakeword_text:
                 print("  Wake word NO detectada, intentando nuevamente…")
                 continue
 

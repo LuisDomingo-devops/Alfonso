@@ -1,7 +1,7 @@
 """
-system_tools.py — Fase 3 (fixed v3)
+system_tools.py — Fase 3 (fixed v4)
 
-Fixes respecto a versión anterior:
+Fixes respecto a versión anterior (v3):
 1. open_application(): acepta nombres de app cortos sin extensión
    ("firefox" funciona sin path completo en WSL).
 2. _normalize_command(): normaliza nombres comunes como "google",
@@ -11,6 +11,11 @@ Fixes respecto a versión anterior:
 4. close_application(): ahora maneja también nombres como "chromium",
    "google-chrome", "chromium-browser".
 5. get_system_info(): garantiza status:ok siempre.
+6. FIX (revisión escaneo de apps host): cuando no hay agente local
+   conectado vía alfonso_bridge, se emite un warning explícito indicando
+   que la app se abrirá en WSL y NO en el host Windows, para evitar
+   confusión cuando el usuario espera ver la app en su escritorio Windows
+   pero el agente local (ui/alfonso_agent.py) no está corriendo.
 """
 
 import os
@@ -224,6 +229,19 @@ async def open_application(command: str | Sequence[str], args: Sequence[str] | N
             "delegate": "alfonso_agent",
             "details": response,
         }
+
+    # FIX: aviso explícito de que, sin agente local conectado, la app se
+    # abrirá dentro de WSL (o del propio servidor) y NO en el host Windows.
+    # Antes este caso era indistinguible en logs de una apertura intencional
+    # en WSL, lo que generaba confusión ("abrí firefox" pero apareció en WSL
+    # en vez de en Windows).
+    if _IS_WSL:
+        tool_logger.warning(
+            "No hay agente local conectado (alfonso_bridge.has_clients()=False). "
+            "La app '%s' se intentará abrir dentro de WSL, NO en el host Windows. "
+            "Arranca ui/alfonso_agent.py en Windows para delegar correctamente.",
+            command,
+        )
 
     tool_logger.info("Intentando abrir aplicación: %s (wsl=%s, display=%s)",
                      command_parts, _IS_WSL, _has_display())

@@ -98,3 +98,13 @@ def safe_get_tool(name: str):
 
     return tool
 
+def get_callable_tool_function(name: str):
+    """
+    Busca y devuelve la función ejecutable de una herramienta por su nombre.
+    Esta función es requerida por el PlannerOrchestrator.
+    """
+    _ensure_plugins_loaded()
+    tool = TOOLS.get(name)
+    if tool is None:
+        return no_op
+    return tool

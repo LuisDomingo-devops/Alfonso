@@ -61,3 +61,40 @@
 2026-06-16 12:55:44,918 | INFO | tools | [----------] Aplicación abierta con PID 9133: ['firefox']
 2026-06-16 13:28:07,503 | INFO | tools | [----------] Delegando open_application al agente local: firefox
 2026-06-16 13:40:04,501 | INFO | tools | [----------] Delegando open_application al agente local: firefox
+2026-06-17 13:18:30,395 | INFO | tools | [----------] Obteniendo fecha y hora del sistema
+2026-06-17 13:19:51,816 | INFO | tools | [----------] Delegando open_application al agente local: firefox
+2026-06-17 13:25:49,324 | INFO | tools | [----------] Delegando open_application al agente local: explorer.exe
+2026-06-17 13:26:24,923 | INFO | tools | [----------] Intentando crear archivo: /Users/alfonso/Desktop/punto.txt
+2026-06-17 13:26:24,924 | INFO | tools | [----------] Ruta absoluta final: /Users/alfonso/Desktop/punto.txt
+2026-06-17 13:48:45,812 | INFO | tools | [----------] Delegando open_application al agente local: visual-studio-code
+2026-06-17 13:49:10,140 | INFO | tools | [----------] Delegando open_application al agente local: explorer
+2026-06-17 13:49:30,254 | INFO | tools | [----------] Intentando crear archivo: /Users/username/Desktop/file.txt
+2026-06-17 13:49:30,254 | INFO | tools | [----------] Ruta absoluta final: /Users/username/Desktop/file.txt
+2026-06-17 14:58:21,080 | INFO | tools | [----------] Intentando crear archivo: /Users/alfonso/Desktop/hola_soy.txt
+2026-06-17 14:58:21,082 | INFO | tools | [----------] Ruta absoluta final: /Users/alfonso/Desktop/hola_soy.txt
+2026-06-17 15:06:20,434 | INFO | tools | [----------] Delegando open_application al agente local: visual-studio-code
+2026-06-17 15:07:20,586 | INFO | tools | [----------] Delegando open_application al agente local: explorer.exe
+2026-06-17 15:07:54,579 | INFO | tools | [----------] Intentando cerrar aplicación: firefox
+2026-06-17 15:08:21,161 | INFO | tools | [----------] Intentando cerrar aplicación: explorer.exe
+2026-06-17 15:24:48,316 | INFO | tools | [----------] Intentando crear archivo: /Users/username/Desktop/hola.txt
+2026-06-17 15:24:48,317 | INFO | tools | [----------] Ruta de macOS detectada. Corrigiendo a Linux: /home/username/Desktop/hola.txt
+2026-06-17 15:24:48,317 | INFO | tools | [----------] Ruta absoluta final: /home/username/Desktop/hola.txt
+2026-06-17 15:37:18,197 | INFO | tools | [----------] Intentando crear archivo: C:\Users\YourUsername\Desktop\hola_soy_alfonso.txt
+2026-06-17 15:37:18,198 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: C:\Users\YourUsername\Desktop\hola_soy_alfonso.txt
+2026-06-17 15:37:18,198 | INFO | tools | [----------] Ruta absoluta final: /home/luisd/Alfonso/C:\Users\YourUsername\Desktop\hola_soy_alfonso.txt
+2026-06-17 15:37:18,201 | INFO | tools | [----------] Archivo creado exitosamente: /home/luisd/Alfonso/C:\Users\YourUsername\Desktop\hola_soy_alfonso.txt
+2026-06-17 16:06:47,693 | INFO | tools | [----------] Intentando crear archivo: C:\Users\YourUsername\Desktop\hola_soy_alfonso.txt
+2026-06-17 16:06:47,694 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/YourUsername/Desktop/hola_soy_alfonso.txt
+2026-06-17 16:06:47,695 | INFO | tools | [----------] Ruta absoluta final: /mnt/c/Users/luisd/Desktop/hola_soy_alfonso.txt
+2026-06-17 16:06:47,713 | INFO | tools | [----------] Archivo creado exitosamente: /mnt/c/Users/luisd/Desktop/hola_soy_alfonso.txt
+2026-06-17 16:12:06,939 | INFO | tools | [----------] Intentando crear archivo: hola_soy_alfonso.txt
+2026-06-17 16:12:06,940 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: hola_soy_alfonso.txt
+2026-06-17 16:12:06,941 | INFO | tools | [----------] Ruta absoluta final: /home/luisd/Alfonso/hola_soy_alfonso.txt
+2026-06-17 16:12:06,941 | INFO | tools | [----------] Archivo creado exitosamente: /home/luisd/Alfonso/hola_soy_alfonso.txt
+2026-06-17 16:14:10,483 | INFO | tools | [----------] Intentando crear archivo: ./Desktop/alfonso2.txt
+2026-06-17 16:14:10,483 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: Desktop/alfonso2.txt
+2026-06-17 16:14:10,483 | INFO | tools | [----------] Ruta absoluta final: /home/luisd/Alfonso/Desktop/alfonso2.txt
+2026-06-17 16:14:10,491 | INFO | tools | [----------] Archivo creado exitosamente: /home/luisd/Alfonso/Desktop/alfonso2.txt
+2026-06-17 16:17:22,398 | WARNING | tools | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). La app 'explorer.exe' se intentará abrir dentro de WSL, NO en el host Windows. Arranca ui/alfonso_agent.py en Windows para delegar correctamente.
+2026-06-17 16:17:22,399 | INFO | tools | [----------] Intentando abrir aplicación: ['explorer.exe'] (wsl=True, display=True)
+2026-06-17 16:17:22,441 | INFO | tools | [----------] Aplicación abierta con PID 44098: ['explorer.exe']

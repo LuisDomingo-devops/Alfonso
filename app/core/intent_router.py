@@ -82,9 +82,10 @@ _TOOL_RULES: list[_Rule] = [
     _r(r"\bcuánta (ram|memoria|cpu)\b", 1.5, "sysinfo"),
 
     # ── Abrir aplicaciones — genéricas ───────────────────────────────
-    _r(r"\b(abre|abrir|lanza|lanzar|inicia|iniciar)\b.{0,20}\b(aplicación|programa|app|navegador|firefox|chrome|chromium|vscode|notepad|terminal|konsole|gedit|kate)\b", 2.0, "open_app"),
+    _r(r"\b(abre|abrir|lanza|lanzar|inicia|iniciar|ejecuta|ejecutar)\b.{0,40}\b(aplicación|programa|app|navegador|firefox|chrome|chromium|vscode|code|visual studio|notepad|terminal|konsole|gedit|kate|excel|word|powerpoint|spotify|discord|calculadora|vlc)\b", 2.5, "open_app"),
+    _r(r"^(abre|abrir|lanza|ejecuta)\s+[\w\s]{1,30}$", 1.5, "open_generic_short"),
     # Nombres de app solos (sin verbo) para voz: "firefox", "abre firefox"
-    _r(r"^(abre|abrir|lanza|lanzar|inicia|iniciar)\s+(firefox|chrome|chromium|vscode|code|terminal|konsole|gedit|kate|brave|opera)$", 2.5, "open_app_direct"),
+    _r(r"^(abre|abrir|lanza|lanzar|inicia|iniciar)\s+(firefox|chrome|chromium|vscode|code|visual studio|terminal|konsole|gedit|kate|brave|opera)$", 2.5, "open_app_direct"),
 
     # ── Cerrar aplicaciones ────────────────────────────────────────────
     _r(r"\b(cierra|cerrar|termina|terminar|mata|matar|quit|exit)\b.{0,30}\b(aplicación|programa|app|navegador|firefox|chrome|vscode|notepad|terminal|explorador de archivos|nautilus)\b", 2.5, "close_application"),

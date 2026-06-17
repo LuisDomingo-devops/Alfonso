@@ -22,6 +22,11 @@ logger = logging.getLogger(__name__)
 # Desactivar el fail-safe de PyAutoGUI para evitar que se detenga si el ratón se mueve a una esquina
 pyautogui.FAILSAFE = False
 
+# FIX: comprobar la plataforma real en vez de hasattr(subprocess, 'CREATE_NO_WINDOW').
+# hasattr no garantiza que el flag sea funcionalmente válido fuera de Windows.
+_IS_WINDOWS = platform.system() == "Windows"
+
+
 class AlfonsoAgent:
     def __init__(self, server_url="ws://localhost:8765", auth_token=None, registry_file=".env.apps"):
         self.server_url = server_url
@@ -128,12 +133,13 @@ class AlfonsoAgent:
                 try:
                     logger.info(f"Iniciando aplicación: {resolved_command}")
                     # Usar Popen para no bloquear el agente mientras la app está abierta
-                    # creationflags para ocultar la ventana de consola en Windows
-                    if self._system == "Windows":
+                    # FIX: comprobar plataforma real (_IS_WINDOWS) en vez de
+                    # hasattr(subprocess, 'CREATE_NO_WINDOW').
+                    if _IS_WINDOWS:
                         subprocess.Popen(
                             resolved_command,
                             shell=False,
-                            creationflags=subprocess.CREATE_NO_WINDOW if hasattr(subprocess, 'CREATE_NO_WINDOW') else 0
+                            creationflags=subprocess.CREATE_NO_WINDOW
                         )
                     else:
                         subprocess.Popen(resolved_command, shell=False)
@@ -201,10 +207,16 @@ class AlfonsoAgent:
     async def start(self):
         logger.info(f"Conectando al servidor Alfonso en {self.server_url}...")
         
-        # Al iniciar, actualizar el registro de aplicaciones
+        # Al iniciar, actualizar el registro de aplicaciones.
+        # FIX: update_app_registry() es síncrona y puede tardar varios
+        # segundos en Windows (recorre Program Files + registro). Ejecutarla
+        # directamente en el coroutine bloquea el event loop entero,
+        # impidiendo que el agente procese mensajes WebSocket entrantes
+        # mientras escanea. Se delega a un executor con run_in_executor.
         logger.info("Actualizando registro de aplicaciones instaladas...")
         try:
-            update_app_registry(self.registry_file)
+            loop = asyncio.get_running_loop()
+            await loop.run_in_executor(None, update_app_registry, self.registry_file)
             self.app_registry = load_app_registry(self.registry_file)
             logger.info(f"✓ Registro cargado: {len(self.app_registry)} aplicaciones disponibles")
         except Exception as e:
