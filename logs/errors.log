@@ -28,3 +28,7 @@ Call log:
 2026-06-17 15:08:21,165 | WARNING | errors | [----------] No se encontró proceso con nombre: explorer.exe
 2026-06-17 15:24:48,318 | ERROR | errors | [----------] Error de permisos al crear /home/username/Desktop/hola.txt: [Errno 13] Permission denied: '/home/username'
 2026-06-17 18:08:28,811 | WARNING | errors | [----------] No se encontró proceso con nombre: explorer.exe
+2026-06-18 11:47:56,451 | WARNING | errors | [----------] No se encontró proceso con nombre: explorer.exe
+2026-06-18 11:51:41,278 | ERROR | errors | [----------] Error de permisos al crear /home/YOUR_USERNAME/Desktop/hola.txt: [Errno 13] Permission denied: '/home/YOUR_USERNAME'
+2026-06-18 12:47:45,914 | ERROR | errors | [----------] Error de permisos al crear /mnt/c/Users/alfonso/Desktop/prueba.txt: [Errno 13] Permission denied: '/mnt/c/Users/alfonso'
+2026-06-18 13:10:22,213 | ERROR | errors | [----------] Error de permisos al adjuntar en /home/user/documents/notes.txt: [Errno 13] Permission denied: '/home/user'
