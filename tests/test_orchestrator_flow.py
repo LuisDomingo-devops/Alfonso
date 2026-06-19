@@ -3,7 +3,8 @@ import pytest
 from unittest.mock import AsyncMock, MagicMock
 from app.core.planner_orchestrator import PlannerOrchestrator
 from app.core.event_bus import EventBus
-from app.agents.base import AgentResult, TaskPlan
+from app.agents.base import AgentResult
+from app.agents.task_planner import TaskPlan
 
 @pytest.mark.asyncio
 async def test_orchestrator_request_reply_success():
@@ -57,6 +58,7 @@ async def test_orchestrator_timeout():
 
     plan = MagicMock(spec=TaskPlan)
     plan.event_type = "non.existent.event"
+    plan.args = {}
     
     # Reducimos el timeout para el test (o usamos el default)
     # En el código es 30s, aquí fallará por timeout
@@ -66,5 +68,5 @@ async def test_orchestrator_timeout():
     response = await orchestrator._dispatch(plan, None, None, "req", None, "Hola")
     
     assert response["type"] == "error"
-    assert "Timeout" in response["message"]
+    assert "Agente no respondió" in response["message"]
     await bus.stop()

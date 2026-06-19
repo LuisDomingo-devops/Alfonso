@@ -32,3 +32,61 @@ Call log:
 2026-06-18 11:51:41,278 | ERROR | errors | [----------] Error de permisos al crear /home/YOUR_USERNAME/Desktop/hola.txt: [Errno 13] Permission denied: '/home/YOUR_USERNAME'
 2026-06-18 12:47:45,914 | ERROR | errors | [----------] Error de permisos al crear /mnt/c/Users/alfonso/Desktop/prueba.txt: [Errno 13] Permission denied: '/mnt/c/Users/alfonso'
 2026-06-18 13:10:22,213 | ERROR | errors | [----------] Error de permisos al adjuntar en /home/user/documents/notes.txt: [Errno 13] Permission denied: '/home/user'
+2026-06-19 14:06:03,422 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-06-19 14:06:56,233 | WARNING | errors | [----------] LLM error (intento 1/3), reintentando en 1s: RuntimeError('Event loop is closed')
+2026-06-19 14:06:57,386 | WARNING | errors | [----------] LLM error (intento 1/3), reintentando en 1s: RuntimeError('Event loop is closed')
+2026-06-19 14:06:59,861 | WARNING | errors | [----------] LLM error (intento 1/3), reintentando en 1s: RuntimeError('Event loop is closed')
+2026-06-19 14:07:36,813 | WARNING | errors | [----------] LLM error (intento 1/3), reintentando en 1s: RuntimeError('Event loop is closed')
+2026-06-19 14:07:40,683 | WARNING | errors | [----------] LLM error (intento 1/3), reintentando en 1s: RuntimeError('Event loop is closed')
+2026-06-19 14:12:07,611 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-06-19 14:12:47,007 | WARNING | errors | [----------] LLM error (intento 1/3), reintentando en 1s: RuntimeError('Event loop is closed')
+2026-06-19 14:12:50,557 | WARNING | errors | [----------] LLM error (intento 1/3), reintentando en 1s: RuntimeError('Event loop is closed')
+2026-06-19 14:12:56,037 | WARNING | errors | [----------] LLM error (intento 1/3), reintentando en 1s: RuntimeError('Event loop is closed')
+2026-06-19 14:12:58,375 | WARNING | errors | [----------] LLM error (intento 1/3), reintentando en 1s: RuntimeError('Event loop is closed')
+2026-06-19 14:14:09,943 | WARNING | errors | [----------] LLM error (intento 1/3), reintentando en 1s: RuntimeError('Event loop is closed')
+2026-06-19 14:14:41,677 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-06-19 14:14:49,289 | WARNING | errors | [----------] LLM error (intento 1/3), reintentando en 1s: RuntimeError('Event loop is closed')
+2026-06-19 14:14:51,974 | WARNING | errors | [----------] LLM error (intento 1/3), reintentando en 1s: RuntimeError('Event loop is closed')
+2026-06-19 14:14:57,028 | WARNING | errors | [----------] LLM error (intento 1/3), reintentando en 1s: RuntimeError('Event loop is closed')
+2026-06-19 14:14:58,603 | WARNING | errors | [----------] LLM error (intento 1/3), reintentando en 1s: RuntimeError('Event loop is closed')
+2026-06-19 14:16:02,810 | WARNING | errors | [----------] LLM error (intento 1/3), reintentando en 1s: RuntimeError('Event loop is closed')
+2026-06-19 14:27:43,715 | WARNING | errors | [----------] No se encontró proceso con nombre: firefox

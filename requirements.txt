@@ -1,5 +1,4 @@
 fastapi
-
 uvicorn
 httpx
 playwright
@@ -17,4 +16,11 @@ sounddevice
 tqdm
 python-multipart
 
-# playwright install firefox
+# Fase 3: Computer Use & Vision dependencies
+pyautogui
+opencv-python
+pytesseract
+Pillow
+pygetwindow; sys_platform == 'win32'
+
+# Nota: Instalar navegadores de Playwright con: playwright install chromium

@@ -152,6 +152,31 @@ class AlfonsoAgent:
                         "error": f"Aplicación '{command}' no encontrada en el sistema"
                     }
             
+            elif action == "close_app":
+                app_name = params.get("command", params.get("app_name", "")).strip()
+                if not app_name:
+                    return {
+                        "id": command_id,
+                        "status": "error",
+                        "error": "No se especificó la aplicación a cerrar"
+                    }
+                try:
+                    if _IS_WINDOWS:
+                        exec_name = app_name if app_name.lower().endswith(".exe") else f"{app_name}.exe"
+                        if "explorador" in app_name.lower():
+                            exec_name = "explorer.exe"
+                        subprocess.run(["taskkill", "/F", "/IM", exec_name], check=True, capture_output=True)
+                    else:
+                        subprocess.run(["pkill", "-f", app_name], check=True, capture_output=True)
+                    result = f"Aplicación '{app_name}' cerrada correctamente."
+                except Exception as e:
+                    logger.error(f"Error cerrando {app_name}: {e}")
+                    return {
+                        "id": command_id,
+                        "status": "error",
+                        "error": f"No se pudo cerrar '{app_name}'"
+                    }
+
             elif action == "type_text":
                 text = params.get("text", "")
                 pyautogui.write(text)

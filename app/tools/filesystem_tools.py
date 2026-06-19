@@ -46,6 +46,19 @@ def _resolve_path(raw_path: str) -> Path:
         else:
             tool_logger.info(f"Ruta de macOS detectada. Corrigiendo a WSL: {processed_path}") #
 
+    # 2b. FIX: el LLM también alucina rutas Linux genéricas tipo /home/user/...
+    # o /home/luisd/... (usuario inexistente o distinto al actual). Antes este
+    # caso no se corregía (a diferencia de /Users/ y /mnt/c/Users/) y producía
+    # PermissionError al intentar crear /home/<usuario-inexistente>/...
+    # Ver logs/errors.log: "Permission denied: '/home/user'".
+    linux_users_path_match = re.match(r"/home/([^/]+)(.*)", processed_path)
+    if linux_users_path_match:
+        linux_user_in_path = linux_users_path_match.group(1)
+        rest_of_path = linux_users_path_match.group(2)
+        if linux_user_in_path.lower() != current_user_name.lower():
+            processed_path = f"/home/{current_user_name}{rest_of_path}"
+            tool_logger.info(f"Usuario en ruta /home/ ('{linux_user_in_path}') no coincide con el usuario actual de WSL ('{current_user_name}'). Ajustando a: {processed_path}") #
+
     # Manejar placeholders comunes que el LLM suele inventar
     for placeholder in ["YOUR_USERNAME", "YourUsername", "your_username", "username"]:
         processed_path = processed_path.replace(placeholder, current_user_name)
@@ -171,10 +184,99 @@ async def delete_file(path: str):
         "message": f"Archivo eliminado: {p}"
     }
 
+async def create_directory(path: str):
+    tool_logger.info(f"Intentando crear directorio: {path}")
+    p = _resolve_path(path)
+
+    try:
+        p.mkdir(parents=True, exist_ok=True)
+    except PermissionError as e: # Catch PermissionError specifically
+        error_logger.error(f"Error de permisos al crear directorio {p}: {e}")
+        return {"status": "error", "message": f"Permiso denegado. No se puede crear el directorio en {p.parent}. Intenta usar una ruta dentro de {get_current_user_home_path()}/"}
+    except Exception as e: # Catch any other unexpected errors
+        error_logger.error(f"Error inesperado al crear directorio {p}: {e}")
+        return {"status": "error", "message": f"Error inesperado al crear directorio: {e}"}
+
+    tool_logger.info(f"Directorio creado exitosamente: {p}")
+    return {
+        "status": "ok",
+        "message": f"Directorio creado: {p}"
+    }
+
+async def delete_directory(path: str):
+    tool_logger.info(f"Intentando eliminar directorio: {path}")
+    p = _resolve_path(path)
+
+    if not p.exists():
+        error_logger.warning(f"Directorio no encontrado para eliminar: {p}")
+        return {"status": "error", "message": "Directorio no encontrado"}
+    
+    if not p.is_dir():
+        error_logger.warning(f"Intento de eliminar un archivo como directorio: {p}")
+        return {"status": "error", "message": "No es un directorio"}
+
+    try:
+        p.rmdir()
+    except Exception as e:
+        error_logger.error(f"Error al eliminar directorio {p}: {e}")
+        return {"status": "error", "message": f"Error al eliminar directorio: {e}"}
+
+    tool_logger.info(f"Directorio eliminado exitosamente: {p}")
+    return {
+        "status": "ok",
+        "message": f"Directorio eliminado: {p}"
+    }
+
+async def move_file(old_path: str, new_path: str):
+    tool_logger.info(f"Intentando mover archivo: {old_path} -> {new_path}")
+    old_p = _resolve_path(old_path)
+    new_p = _resolve_path(new_path)
+
+    if not old_p.exists():
+        error_logger.warning(f"Archivo no encontrado para mover: {old_p}")
+        return {"status": "error", "message": "Archivo no encontrado"}
+
+    try:
+        old_p.rename(new_p)
+    except Exception as e:
+        error_logger.error(f"Error al mover archivo {old_p}: {e}")
+        return {"status": "error", "message": f"Error al mover archivo: {e}"}
+
+    tool_logger.info(f"Archivo movido exitosamente: {old_p} -> {new_p}")
+    return {
+        "status": "ok",
+        "message": f"Archivo movido: {old_p} -> {new_p}"
+    }
+
+async def rename_file(path: str, new_name: str):
+    tool_logger.info(f"Intentando renombrar archivo: {path} -> {new_name}")
+    p = _resolve_path(path)
+    new_p = p.with_name(new_name)
+
+    if not p.exists():
+        error_logger.warning(f"Archivo no encontrado para renombrar: {p}")
+        return {"status": "error", "message": "Archivo no encontrado"}
+
+    try:
+        p.rename(new_p)
+    except Exception as e:
+        error_logger.error(f"Error al renombrar archivo {p}: {e}")
+        return {"status": "error", "message": f"Error al renombrar archivo: {e}"}
+
+    tool_logger.info(f"Archivo renombrado exitosamente: {p} -> {new_p}")
+    return {
+        "status": "ok",
+        "message": f"Archivo renombrado: {p} -> {new_p}"
+    }
+
 TOOLS = {
     "create_file": create_file,
     "read_file": read_file,
     "list_directory": list_directory,
+    "create_directory": create_directory,
     "append_file": append_file,
-    "delete_file":delete_file,  
+    "delete_file":delete_file,
+    "delete_directory": delete_directory,
+    "move_file": move_file,
+    "rename_file": rename_file,
 }

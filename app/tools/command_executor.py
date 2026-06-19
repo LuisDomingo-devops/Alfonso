@@ -1,3 +1,4 @@
+import re
 import shlex
 import subprocess
 from typing import Sequence
@@ -12,9 +13,13 @@ DANGEROUS_COMMANDS = {
     "format",
     "mkfs",
     "dd",
-    "shutdown",
-    ":()",
 }
+
+# FIX: ":()" nunca coincidía con ningún token real producido por shlex.split()
+# de una fork bomb (":(){ :|:& };:" se tokeniza como ':(){', ':|:&', '};:',
+# nunca como ':()'), así que esta protección nunca se activaba. Se detecta
+# el patrón directamente sobre el string original, antes de tokenizar.
+_FORK_BOMB_PATTERN = re.compile(r":\s*\(\s*\)\s*\{")
 
 
 def _normalize_command(command: str | Sequence[str]) -> list[str]:
@@ -31,6 +36,10 @@ def _is_safe(command_parts: list[str]) -> bool:
 
 
 async def run_command(command: str | Sequence[str], cwd: str | None = None):
+    if isinstance(command, str) and _FORK_BOMB_PATTERN.search(command):
+        error_logger.warning("Comando bloqueado por política de seguridad (fork bomb detectada): %s", command)
+        return {"status": "error", "message": "Comando no permitido"}
+
     command_parts = _normalize_command(command)
     tool_logger.info("Intentando ejecutar comando: %s", command_parts)
 

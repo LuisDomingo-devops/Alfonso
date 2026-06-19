@@ -21,7 +21,10 @@ class AlfonsoBridge:
         logger.info(f"Nuevo agente local conectado: {websocket.remote_address}")
 
     async def unregister(self, websocket):
-        self.connected_clients.remove(websocket)
+        # FIX: remove() lanza KeyError si el websocket ya fue eliminado
+        # (puede pasar si handle_connection limpia dos veces por una
+        # desconexión simultánea con un envío de comando en curso).
+        self.connected_clients.discard(websocket)
         logger.info(f"Agente local desconectado: {websocket.remote_address}")
 
     async def handle_connection(self, websocket):
@@ -67,10 +70,34 @@ class AlfonsoBridge:
         self.pending_commands[command_id] = future
 
         logger.info(f"Enviando comando '{action}' con ID {command_id}")
-        
-        # Enviar a todos los clientes (en un escenario real, se seleccionaría el correcto)
-        if self.connected_clients:
-            await asyncio.gather(*(client.send(message) for client in self.connected_clients))
+
+        # FIX: si el envío falla (el cliente se desconectó justo entre el
+        # chequeo de has_clients() y el envío real), antes la excepción de
+        # client.send() se propagaba sin limpiar pending_commands, dejando
+        # el Future huérfano hasta que expiraba el timeout de 30s completo.
+        # Esto explica los "Timeout esperando respuesta para el comando..."
+        # que aparecen en los logs justo después de una desconexión.
+        send_results = await asyncio.gather(
+            *(client.send(message) for client in self.connected_clients),
+            return_exceptions=True,
+        )
+        send_failures = [r for r in send_results if isinstance(r, Exception)]
+        if send_failures and len(send_failures) == len(send_results):
+            # Todos los envíos fallaron: no hay nadie realmente conectado.
+            logger.error(
+                f"No se pudo enviar el comando {command_id} a ningún cliente "
+                f"(desconexión durante el envío): {send_failures[0]}"
+            )
+            self.pending_commands.pop(command_id, None)
+            return {
+                "status": "error",
+                "error": "El agente local se desconectó justo antes de recibir el comando.",
+            }
+        if send_failures:
+            logger.warning(
+                f"Comando {command_id} falló en {len(send_failures)}/{len(send_results)} "
+                f"clientes, pero se envió al menos a uno."
+            )
 
         try:
             # Esperar la respuesta con un timeout

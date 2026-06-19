@@ -39,3 +39,51 @@
 2026-06-18 13:21:33,364 | WARNING | tools | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). La app 'explorer' se intentará abrir dentro de WSL, NO en el host Windows. Arranca ui/alfonso_agent.py en Windows para delegar correctamente.
 2026-06-18 13:21:33,364 | INFO | tools | [----------] Intentando abrir aplicación: ['powershell.exe', '-Command', "Start-Process 'explorer.exe'"] (wsl=True, display=True)
 2026-06-18 13:21:33,396 | INFO | tools | [----------] Aplicación abierta con PID 41409: ['powershell.exe', '-Command', "Start-Process 'explorer.exe'"]
+2026-06-18 14:02:31,262 | WARNING | tools | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). La app 'firefox' se intentará abrir dentro de WSL, NO en el host Windows. Arranca ui/alfonso_agent.py en Windows para delegar correctamente.
+2026-06-18 14:02:31,263 | INFO | tools | [----------] Intentando abrir aplicación: ['firefox'] (wsl=True, display=True)
+2026-06-18 14:02:31,271 | INFO | tools | [----------] Aplicación abierta con PID 43468: ['firefox']
+2026-06-18 14:04:05,819 | WARNING | tools | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). La app 'firefox' se intentará abrir dentro de WSL, NO en el host Windows. Arranca ui/alfonso_agent.py en Windows para delegar correctamente.
+2026-06-18 14:04:05,820 | INFO | tools | [----------] Intentando abrir aplicación: ['firefox'] (wsl=True, display=True)
+2026-06-18 14:04:05,829 | INFO | tools | [----------] Aplicación abierta con PID 44256: ['firefox']
+2026-06-19 12:05:51,427 | WARNING | tools | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). La app 'firefox' se intentará abrir dentro de WSL, NO en el host Windows. Arranca ui/alfonso_agent.py en Windows para delegar correctamente.
+2026-06-19 12:05:51,430 | INFO | tools | [----------] Intentando abrir aplicación: ['firefox'] (wsl=True, display=True)
+2026-06-19 12:05:51,441 | INFO | tools | [----------] Aplicación abierta con PID 10713: ['firefox']
+2026-06-19 12:06:31,487 | INFO | tools | [----------] Intentando cerrar aplicación: firefox
+2026-06-19 12:06:31,622 | INFO | tools | [----------] Cerrados 1 procesos de 'firefox': pids=[10713]
+2026-06-19 12:06:53,599 | INFO | tools | [----------] Delegando open_application al agente local: explorer.exe
+2026-06-19 14:06:04,138 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('hello')"]
+2026-06-19 14:06:04,170 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-06-19 14:06:04,173 | INFO | tools | [----------] Listando directorio: app
+2026-06-19 14:06:04,174 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-06-19 14:06:04,174 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-06-19 14:06:04,174 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-06-19 14:06:04,177 | WARNING | tools | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). La app '/home/luisd/Alfonso/venv/bin/python3' se intentará abrir dentro de WSL, NO en el host Windows. Arranca ui/alfonso_agent.py en Windows para delegar correctamente.
+2026-06-19 14:06:04,177 | INFO | tools | [----------] Intentando abrir aplicación: ['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('app-open-test')"] (wsl=True, display=True)
+2026-06-19 14:06:04,178 | INFO | tools | [----------] Aplicación abierta con PID 54397: ['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('app-open-test')"]
+2026-06-19 14:12:08,420 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('hello')"]
+2026-06-19 14:12:08,442 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-06-19 14:12:08,445 | INFO | tools | [----------] Listando directorio: app
+2026-06-19 14:12:08,445 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-06-19 14:12:08,445 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-06-19 14:12:08,446 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-06-19 14:12:08,449 | WARNING | tools | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). La app '/home/luisd/Alfonso/venv/bin/python3' se intentará abrir dentro de WSL, NO en el host Windows. Arranca ui/alfonso_agent.py en Windows para delegar correctamente.
+2026-06-19 14:12:08,450 | INFO | tools | [----------] Intentando abrir aplicación: ['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('app-open-test')"] (wsl=True, display=True)
+2026-06-19 14:12:08,451 | INFO | tools | [----------] Aplicación abierta con PID 57071: ['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('app-open-test')"]
+2026-06-19 14:14:42,430 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('hello')"]
+2026-06-19 14:14:42,459 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-06-19 14:14:42,463 | INFO | tools | [----------] Listando directorio: app
+2026-06-19 14:14:42,464 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-06-19 14:14:42,464 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-06-19 14:14:42,465 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-06-19 14:14:42,469 | WARNING | tools | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). La app '/home/luisd/Alfonso/venv/bin/python3' se intentará abrir dentro de WSL, NO en el host Windows. Arranca ui/alfonso_agent.py en Windows para delegar correctamente.
+2026-06-19 14:14:42,469 | INFO | tools | [----------] Intentando abrir aplicación: ['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('app-open-test')"] (wsl=True, display=True)
+2026-06-19 14:14:42,470 | INFO | tools | [----------] Aplicación abierta con PID 58503: ['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('app-open-test')"]
+2026-06-19 14:26:19,648 | WARNING | tools | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). La app 'firefox' se intentará abrir dentro de WSL, NO en el host Windows. Arranca ui/alfonso_agent.py en Windows para delegar correctamente.
+2026-06-19 14:26:19,649 | INFO | tools | [----------] Intentando abrir aplicación: ['firefox'] (wsl=True, display=True)
+2026-06-19 14:26:19,660 | INFO | tools | [----------] Aplicación abierta con PID 64033: ['firefox']
+2026-06-19 14:27:11,815 | WARNING | tools | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). La app 'explorer.exe' se intentará abrir dentro de WSL, NO en el host Windows. Arranca ui/alfonso_agent.py en Windows para delegar correctamente.
+2026-06-19 14:27:11,816 | INFO | tools | [----------] Intentando abrir aplicación: ['explorer.exe'] (wsl=True, display=True)
+2026-06-19 14:27:11,852 | INFO | tools | [----------] Aplicación abierta con PID 65417: ['explorer.exe']
+2026-06-19 14:27:43,661 | INFO | tools | [----------] Intentando cerrar aplicación: firefox
+2026-06-19 14:30:29,447 | INFO | tools | [----------] Intentando cerrar aplicación: explorer.exe
+2026-06-19 14:30:29,464 | INFO | tools | [----------] Cerrados 1 procesos de 'explorer.exe': pids=[65417]
