@@ -649,3 +649,102 @@
 2026-06-19 14:33:02,964 | INFO | app | [e15fd5e6-3d1f-4d29-9cb3-12e7b558cb03] LATENCY: 81.74s
 2026-06-19 14:33:05,332 | INFO | app.core.alfonso_bridge | [----------] Nuevo agente local conectado: ('127.0.0.1', 35370)
 2026-06-19 14:33:28,162 | INFO | app.core.alfonso_bridge | [----------] Agente local desconectado: ('127.0.0.1', 35370)
+2026-06-20 16:29:16,470 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-20 16:29:16,479 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-20 16:29:16,490 | INFO | app.core.alfonso_bridge | [----------] Iniciando servidor Alfonso Bridge en 0.0.0.0:8765
+2026-06-20 16:29:16,493 | INFO | app | [----------] Agentes: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-20 16:30:07,040 | INFO | app | [----------] Modelo precalentado
+2026-06-20 16:30:07,042 | INFO | app | [----------] Alfonso listo
+2026-06-20 16:33:56,275 | INFO | app | [06837a01-8956-4013-90fb-64f6f8268dfb] HTTP GET /health
+2026-06-20 16:33:58,454 | INFO | app.core.alfonso_bridge | [----------] Nuevo agente local conectado: ('127.0.0.1', 47364)
+2026-06-20 16:34:08,222 | INFO | app | [78938f3a-36fc-4f51-9d7e-7a49069537b5] HTTP POST /chat
+2026-06-20 16:34:08,240 | INFO | app | [78938f3a-36fc-4f51-9d7e-7a49069537b5] Solicitud /chat recibida
+2026-06-20 16:34:08,240 | INFO | app | [78938f3a-36fc-4f51-9d7e-7a49069537b5] SESSION_ID: 78938f3a-36fc-4f51-9d7e-7a49069537b5
+2026-06-20 16:34:08,241 | INFO | app | [78938f3a-36fc-4f51-9d7e-7a49069537b5] USER MESSAGE: abre firfox
+2026-06-20 16:34:38,504 | INFO | app.core.alfonso_bridge | [----------] Conexión cerrada inesperadamente por el cliente.
+2026-06-20 16:34:38,519 | INFO | app.core.alfonso_bridge | [----------] Agente local desconectado: ('127.0.0.1', 47364)
+2026-06-20 16:34:56,195 | INFO | app | [78938f3a-36fc-4f51-9d7e-7a49069537b5] Solicitud /chat procesada con estado: error
+2026-06-20 16:34:56,196 | INFO | app | [78938f3a-36fc-4f51-9d7e-7a49069537b5] LATENCY: 47.95s
+2026-06-20 16:35:03,332 | INFO | app.core.alfonso_bridge | [----------] Nuevo agente local conectado: ('127.0.0.1', 38260)
+2026-06-20 16:35:43,335 | INFO | app.core.alfonso_bridge | [----------] Conexión cerrada inesperadamente por el cliente.
+2026-06-20 16:35:43,335 | INFO | app.core.alfonso_bridge | [----------] Agente local desconectado: ('127.0.0.1', 38260)
+2026-06-20 17:05:35,257 | INFO | app.core.alfonso_bridge | [----------] Nuevo agente local conectado: ('127.0.0.1', 39640)
+2026-06-20 17:06:08,163 | INFO | app | [37f5ab72-27af-4ea5-8aeb-cffdd0e9fd3c] HTTP GET /health
+2026-06-20 17:06:10,235 | INFO | app.core.alfonso_bridge | [----------] Nuevo agente local conectado: ('127.0.0.1', 55874)
+2026-06-20 17:06:24,726 | INFO | app | [d398e1d0-afd9-4bf9-9663-cfe66eaea6bb] HTTP POST /chat
+2026-06-20 17:06:24,748 | INFO | app | [d398e1d0-afd9-4bf9-9663-cfe66eaea6bb] Solicitud /chat recibida
+2026-06-20 17:06:24,748 | INFO | app | [d398e1d0-afd9-4bf9-9663-cfe66eaea6bb] SESSION_ID: d398e1d0-afd9-4bf9-9663-cfe66eaea6bb
+2026-06-20 17:06:24,749 | INFO | app | [d398e1d0-afd9-4bf9-9663-cfe66eaea6bb] USER MESSAGE: abre firfox
+2026-06-20 17:06:31,500 | INFO | app.core.alfonso_bridge | [----------] Enviando comando 'open_app' con ID a5ee718c-bd65-47ed-bf8e-02a56d4b3ac0
+2026-06-20 17:06:31,518 | INFO | app.core.alfonso_bridge | [----------] Respuesta recibida del agente: {'id': 'a5ee718c-bd65-47ed-bf8e-02a56d4b3ac0', 'status': 'success', 'result': "Aplicación 'firefox' iniciada correctamente."}
+2026-06-20 17:06:31,536 | INFO | app | [d398e1d0-afd9-4bf9-9663-cfe66eaea6bb] Solicitud /chat procesada con estado: chat
+2026-06-20 17:06:31,536 | INFO | app | [d398e1d0-afd9-4bf9-9663-cfe66eaea6bb] LATENCY: 6.79s
+2026-06-20 17:06:31,601 | INFO | app.core.alfonso_bridge | [----------] Respuesta recibida del agente: {'id': 'a5ee718c-bd65-47ed-bf8e-02a56d4b3ac0', 'status': 'success', 'result': "Aplicación 'firefox' iniciada correctamente."}
+2026-06-20 17:06:31,601 | WARNING | app.core.alfonso_bridge | [----------] Recibida respuesta para un comando desconocido: a5ee718c-bd65-47ed-bf8e-02a56d4b3ac0
+2026-06-20 17:06:45,370 | INFO | app | [eb8a087b-12c2-4921-8f9b-a49e807ab896] HTTP POST /chat
+2026-06-20 17:06:45,372 | INFO | app | [eb8a087b-12c2-4921-8f9b-a49e807ab896] Solicitud /chat recibida
+2026-06-20 17:06:45,372 | INFO | app | [eb8a087b-12c2-4921-8f9b-a49e807ab896] SESSION_ID: eb8a087b-12c2-4921-8f9b-a49e807ab896
+2026-06-20 17:06:45,372 | INFO | app | [eb8a087b-12c2-4921-8f9b-a49e807ab896] USER MESSAGE: cierra firfox
+2026-06-20 17:06:47,405 | INFO | app.core.alfonso_bridge | [----------] Enviando comando 'close_app' con ID f5c9478f-372b-47c8-bbff-4fc9ceb7281d
+2026-06-20 17:06:47,597 | INFO | app.core.alfonso_bridge | [----------] Respuesta recibida del agente: {'id': 'f5c9478f-372b-47c8-bbff-4fc9ceb7281d', 'status': 'success', 'result': "Aplicación 'firefox' cerrada correctamente."}
+2026-06-20 17:06:47,615 | INFO | app | [eb8a087b-12c2-4921-8f9b-a49e807ab896] Solicitud /chat procesada con estado: chat
+2026-06-20 17:06:47,615 | INFO | app | [eb8a087b-12c2-4921-8f9b-a49e807ab896] LATENCY: 2.24s
+2026-06-20 17:06:47,806 | INFO | app.core.alfonso_bridge | [----------] Respuesta recibida del agente: {'id': 'f5c9478f-372b-47c8-bbff-4fc9ceb7281d', 'status': 'error', 'error': "No se pudo cerrar 'firefox'"}
+2026-06-20 17:06:47,806 | WARNING | app.core.alfonso_bridge | [----------] Recibida respuesta para un comando desconocido: f5c9478f-372b-47c8-bbff-4fc9ceb7281d
+2026-06-20 17:07:03,520 | INFO | app | [750a1ce4-6629-4f19-a810-7b8f194e2071] HTTP POST /chat
+2026-06-20 17:07:03,521 | INFO | app | [750a1ce4-6629-4f19-a810-7b8f194e2071] Solicitud /chat recibida
+2026-06-20 17:07:03,521 | INFO | app | [750a1ce4-6629-4f19-a810-7b8f194e2071] SESSION_ID: 750a1ce4-6629-4f19-a810-7b8f194e2071
+2026-06-20 17:07:03,521 | INFO | app | [750a1ce4-6629-4f19-a810-7b8f194e2071] USER MESSAGE: abre el explorador de archivos
+2026-06-20 17:07:05,608 | INFO | app.core.alfonso_bridge | [----------] Enviando comando 'open_app' con ID 7edebea5-6bdd-46e5-b7c1-246548f26a0a
+2026-06-20 17:07:05,633 | INFO | app.core.alfonso_bridge | [----------] Respuesta recibida del agente: {'id': '7edebea5-6bdd-46e5-b7c1-246548f26a0a', 'status': 'success', 'result': "Aplicación 'explorer' iniciada correctamente."}
+2026-06-20 17:07:05,646 | INFO | app | [750a1ce4-6629-4f19-a810-7b8f194e2071] Solicitud /chat procesada con estado: chat
+2026-06-20 17:07:05,647 | INFO | app | [750a1ce4-6629-4f19-a810-7b8f194e2071] LATENCY: 2.12s
+2026-06-20 17:07:05,677 | INFO | app.core.alfonso_bridge | [----------] Respuesta recibida del agente: {'id': '7edebea5-6bdd-46e5-b7c1-246548f26a0a', 'status': 'success', 'result': "Aplicación 'explorer' iniciada correctamente."}
+2026-06-20 17:07:05,677 | WARNING | app.core.alfonso_bridge | [----------] Recibida respuesta para un comando desconocido: 7edebea5-6bdd-46e5-b7c1-246548f26a0a
+2026-06-20 17:07:20,257 | INFO | app | [fb194e11-980b-4642-8a3a-81ad254f5bb4] HTTP POST /chat
+2026-06-20 17:07:20,258 | INFO | app | [fb194e11-980b-4642-8a3a-81ad254f5bb4] Solicitud /chat recibida
+2026-06-20 17:07:20,258 | INFO | app | [fb194e11-980b-4642-8a3a-81ad254f5bb4] SESSION_ID: fb194e11-980b-4642-8a3a-81ad254f5bb4
+2026-06-20 17:07:20,258 | INFO | app | [fb194e11-980b-4642-8a3a-81ad254f5bb4] USER MESSAGE: cierra el explorador
+2026-06-20 17:07:22,174 | INFO | app.core.alfonso_bridge | [----------] Enviando comando 'close_app' con ID 44983080-4a25-4843-bfba-a63358419259
+2026-06-20 17:07:22,288 | INFO | app.core.alfonso_bridge | [----------] Respuesta recibida del agente: {'id': '44983080-4a25-4843-bfba-a63358419259', 'status': 'success', 'result': "Aplicación 'explorer' cerrada correctamente."}
+2026-06-20 17:07:22,299 | INFO | app | [fb194e11-980b-4642-8a3a-81ad254f5bb4] Solicitud /chat procesada con estado: chat
+2026-06-20 17:07:22,299 | INFO | app | [fb194e11-980b-4642-8a3a-81ad254f5bb4] LATENCY: 2.04s
+2026-06-20 17:07:22,416 | INFO | app.core.alfonso_bridge | [----------] Respuesta recibida del agente: {'id': '44983080-4a25-4843-bfba-a63358419259', 'status': 'error', 'error': "No se pudo cerrar 'explorer'"}
+2026-06-20 17:07:22,416 | WARNING | app.core.alfonso_bridge | [----------] Recibida respuesta para un comando desconocido: 44983080-4a25-4843-bfba-a63358419259
+2026-06-20 17:07:37,625 | INFO | app | [54fead2e-b744-4737-ac72-0f76ff029524] HTTP POST /chat
+2026-06-20 17:07:37,626 | INFO | app | [54fead2e-b744-4737-ac72-0f76ff029524] Solicitud /chat recibida
+2026-06-20 17:07:37,626 | INFO | app | [54fead2e-b744-4737-ac72-0f76ff029524] SESSION_ID: 54fead2e-b744-4737-ac72-0f76ff029524
+2026-06-20 17:07:37,626 | INFO | app | [54fead2e-b744-4737-ac72-0f76ff029524] USER MESSAGE: inicia explorer
+2026-06-20 17:07:39,381 | INFO | app.core.alfonso_bridge | [----------] Enviando comando 'open_app' con ID 78708e52-a14c-4f78-8251-5ee57defe7ce
+2026-06-20 17:07:39,388 | INFO | app.core.alfonso_bridge | [----------] Respuesta recibida del agente: {'id': '78708e52-a14c-4f78-8251-5ee57defe7ce', 'status': 'success', 'result': "Aplicación 'explorer' iniciada correctamente."}
+2026-06-20 17:07:39,399 | INFO | app | [54fead2e-b744-4737-ac72-0f76ff029524] Solicitud /chat procesada con estado: chat
+2026-06-20 17:07:39,399 | INFO | app | [54fead2e-b744-4737-ac72-0f76ff029524] LATENCY: 1.77s
+2026-06-20 17:07:39,473 | INFO | app.core.alfonso_bridge | [----------] Respuesta recibida del agente: {'id': '78708e52-a14c-4f78-8251-5ee57defe7ce', 'status': 'success', 'result': "Aplicación 'explorer' iniciada correctamente."}
+2026-06-20 17:07:39,473 | WARNING | app.core.alfonso_bridge | [----------] Recibida respuesta para un comando desconocido: 78708e52-a14c-4f78-8251-5ee57defe7ce
+2026-06-20 17:08:10,245 | INFO | app.core.alfonso_bridge | [----------] Conexión cerrada inesperadamente por el cliente.
+2026-06-20 17:08:10,246 | INFO | app.core.alfonso_bridge | [----------] Agente local desconectado: ('127.0.0.1', 55874)
+2026-06-20 17:08:32,635 | INFO | app | [2792b50f-fae0-438d-b40d-07b5adbcc5b0] HTTP POST /chat
+2026-06-20 17:08:32,637 | INFO | app | [2792b50f-fae0-438d-b40d-07b5adbcc5b0] Solicitud /chat recibida
+2026-06-20 17:08:32,637 | INFO | app | [2792b50f-fae0-438d-b40d-07b5adbcc5b0] SESSION_ID: 2792b50f-fae0-438d-b40d-07b5adbcc5b0
+2026-06-20 17:08:32,637 | INFO | app | [2792b50f-fae0-438d-b40d-07b5adbcc5b0] USER MESSAGE: cierra el exploracor de archivos
+2026-06-20 17:08:35,132 | INFO | app.core.alfonso_bridge | [----------] Enviando comando 'close_app' con ID 4213b858-626c-474d-a28b-76c3961b55e2
+2026-06-20 17:08:35,324 | INFO | app.core.alfonso_bridge | [----------] Respuesta recibida del agente: {'id': '4213b858-626c-474d-a28b-76c3961b55e2', 'status': 'success', 'result': "Aplicación 'explorer' cerrada correctamente."}
+2026-06-20 17:08:35,334 | INFO | app | [2792b50f-fae0-438d-b40d-07b5adbcc5b0] Solicitud /chat procesada con estado: chat
+2026-06-20 17:08:35,334 | INFO | app | [2792b50f-fae0-438d-b40d-07b5adbcc5b0] LATENCY: 2.70s
+2026-06-20 17:08:53,631 | INFO | app | [b803cdf9-4701-40d0-8016-9967e2d404e9] HTTP POST /chat
+2026-06-20 17:08:53,633 | INFO | app | [b803cdf9-4701-40d0-8016-9967e2d404e9] Solicitud /chat recibida
+2026-06-20 17:08:53,633 | INFO | app | [b803cdf9-4701-40d0-8016-9967e2d404e9] SESSION_ID: b803cdf9-4701-40d0-8016-9967e2d404e9
+2026-06-20 17:08:53,633 | INFO | app | [b803cdf9-4701-40d0-8016-9967e2d404e9] USER MESSAGE: inicia explorer.exe
+2026-06-20 17:08:55,561 | INFO | app.core.alfonso_bridge | [----------] Enviando comando 'open_app' con ID 99e52bab-007c-4fa6-b1ba-95f00853e58a
+2026-06-20 17:08:55,569 | INFO | app.core.alfonso_bridge | [----------] Respuesta recibida del agente: {'id': '99e52bab-007c-4fa6-b1ba-95f00853e58a', 'status': 'success', 'result': "Aplicación 'explorer.exe' iniciada correctamente."}
+2026-06-20 17:08:55,585 | INFO | app | [b803cdf9-4701-40d0-8016-9967e2d404e9] Solicitud /chat procesada con estado: chat
+2026-06-20 17:08:55,586 | INFO | app | [b803cdf9-4701-40d0-8016-9967e2d404e9] LATENCY: 1.95s
+2026-06-20 17:09:32,048 | INFO | app | [4008ed6a-3969-41aa-82ef-d173e14d771b] HTTP POST /chat
+2026-06-20 17:09:32,049 | INFO | app | [4008ed6a-3969-41aa-82ef-d173e14d771b] Solicitud /chat recibida
+2026-06-20 17:09:32,049 | INFO | app | [4008ed6a-3969-41aa-82ef-d173e14d771b] SESSION_ID: 4008ed6a-3969-41aa-82ef-d173e14d771b
+2026-06-20 17:09:32,049 | INFO | app | [4008ed6a-3969-41aa-82ef-d173e14d771b] USER MESSAGE: crea una carpeta de pruebas de alfonso en el escritorio
+2026-06-20 17:11:01,813 | INFO | app | [4008ed6a-3969-41aa-82ef-d173e14d771b] Solicitud /chat procesada con estado: chat
+2026-06-20 17:11:01,814 | INFO | app | [4008ed6a-3969-41aa-82ef-d173e14d771b] LATENCY: 89.76s
+2026-06-20 17:11:08,947 | INFO | app.core.alfonso_bridge | [----------] Nuevo agente local conectado: ('127.0.0.1', 32916)
+2026-06-20 17:13:08,964 | INFO | app.core.alfonso_bridge | [----------] Conexión cerrada inesperadamente por el cliente.
+2026-06-20 17:13:08,964 | INFO | app.core.alfonso_bridge | [----------] Agente local desconectado: ('127.0.0.1', 32916)

@@ -202,20 +202,29 @@ async def get_current_datetime() -> dict:
 
 
 async def open_application(command: str | Sequence[str], args: Sequence[str] | None = None) -> dict:
-    command_parts = _normalize_command(command)
-    if args:
-        command_parts = list(command_parts) + list(args)
+    """
+    Abre una aplicación EN EL EQUIPO DEL USUARIO, siempre vía el agente local.
+
+    FIX: antes, si no había agente conectado, esta función caía en un
+    fallback que abría el binario dentro del contenedor/WSL del servidor
+    (logs/tools.log: "se intentará abrir dentro de WSL, NO en el host
+    Windows"). Esto violaba la separación cliente/servidor: el usuario
+    pedía abrir Firefox en SU escritorio y obtenía un proceso fantasma en
+    WSL. Ahora se delega siempre; si no hay agente, se devuelve un error
+    explícito en vez de actuar sobre el servidor.
+
+    Excepción opt-in: si ALFONSO_ALLOW_SERVER_EXEC_FALLBACK=true está en el
+    entorno (uso explícito y consciente, p. ej. servidor Linux de escritorio
+    sin WSL), se permite el viejo comportamiento local como último recurso.
+    """
+    command_text = (
+        command if isinstance(command, str)
+        else " ".join(shlex.quote(str(part)) for part in (list(command) + list(args or [])))
+    )
 
     if alfonso_bridge.has_clients():
-        command_text = (
-            command if isinstance(command, str)
-            else " ".join(shlex.quote(str(part)) for part in command_parts)
-        )
         tool_logger.info("Delegando open_application al agente local: %s", command_text)
-        response = await alfonso_bridge.send_command(
-            "open_app",
-            {"command": command_text},
-        )
+        response = await alfonso_bridge.send_command("open_app", {"command": command_text})
         if response.get("status") == "success":
             return {
                 "status": "ok",
@@ -230,102 +239,132 @@ async def open_application(command: str | Sequence[str], args: Sequence[str] | N
             "details": response,
         }
 
-    # FIX: aviso explícito de que, sin agente local conectado, la app se
-    # abrirá dentro de WSL (o del propio servidor) y NO en el host Windows.
-    # Antes este caso era indistinguible en logs de una apertura intencional
-    # en WSL, lo que generaba confusión ("abrí firefox" pero apareció en WSL
-    # en vez de en Windows).
-    if _IS_WSL:
-        tool_logger.warning(
-            "No hay agente local conectado (alfonso_bridge.has_clients()=False). "
-            "La app '%s' se intentará abrir dentro de WSL, NO en el host Windows. "
-            "Arranca ui/alfonso_agent.py en Windows para delegar correctamente.",
-            command,
-        )
+    error_logger.warning(
+        "No hay agente local conectado (alfonso_bridge.has_clients()=False). "
+        "No se puede abrir '%s' en el equipo del usuario.",
+        command_text,
+    )
 
-    tool_logger.info("Intentando abrir aplicación: %s (wsl=%s, display=%s)",
-                     command_parts, _IS_WSL, _has_display())
+    if os.getenv("ALFONSO_ALLOW_SERVER_EXEC_FALLBACK", "false").lower() == "true":
+        return await _open_application_server_fallback(command, args)
+
+    return {
+        "status": "error",
+        "message": (
+            f"No hay agente local conectado. No puedo abrir '{command_text}' en tu "
+            "equipo. Arranca ui/alfonso_agent.py en tu máquina (Windows/Linux) y "
+            "vuelve a intentarlo."
+        ),
+    }
+
+
+async def close_application(command: str) -> dict:
+    """
+    Cierra una aplicación EN EL EQUIPO DEL USUARIO, siempre vía el agente local.
+
+    FIX: antes esta función NUNCA delegaba — solo mataba procesos con
+    `psutil` dentro del contenedor WSL del servidor. Por eso "cierra
+    firefox" podía reportar éxito ("Cerrados 1 procesos") sin afectar al
+    Firefox real del usuario en Windows. Ahora se delega siempre.
+    """
+    target = command.strip()
+
+    if alfonso_bridge.has_clients():
+        tool_logger.info("Delegando close_application al agente local: %s", target)
+        response = await alfonso_bridge.send_command("close_app", {"command": target})
+        if response.get("status") == "success":
+            return {
+                "status": "ok",
+                "message": response.get("result"),
+                "delegate": "alfonso_agent",
+                "command": target,
+            }
+        return {
+            "status": "error",
+            "message": response.get("error", "Error delegando al agente local."),
+            "delegate": "alfonso_agent",
+            "details": response,
+        }
+
+    error_logger.warning(
+        "No hay agente local conectado (alfonso_bridge.has_clients()=False). "
+        "No se puede cerrar '%s' en el equipo del usuario.",
+        target,
+    )
+
+    if os.getenv("ALFONSO_ALLOW_SERVER_EXEC_FALLBACK", "false").lower() == "true":
+        return await _close_application_server_fallback(target)
+
+    return {
+        "status": "error",
+        "message": (
+            f"No hay agente local conectado. No puedo cerrar '{target}' en tu "
+            "equipo. Arranca ui/alfonso_agent.py en tu máquina y vuelve a intentarlo."
+        ),
+    }
+
+
+# ---------------------------------------------------------------------------
+# Fallbacks server-side (SOLO si ALFONSO_ALLOW_SERVER_EXEC_FALLBACK=true)
+# Conservan la lógica original — útil únicamente si el servidor corre con
+# acceso directo a un escritorio real (no WSL) y se quiere usar como agente
+# de sí mismo conscientemente.
+# ---------------------------------------------------------------------------
+
+async def _open_application_server_fallback(command, args):
+    command_parts = _normalize_command(command)
+    if args:
+        command_parts = list(command_parts) + list(args)
+
+    tool_logger.warning(
+        "ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '%s' en el SERVIDOR, no en el cliente.",
+        command_parts,
+    )
 
     if not command_parts:
         return {"status": "error", "message": "Aplicación no especificada"}
-
     if not _is_safe(command_parts):
         return {"status": "error", "message": "Aplicación no permitida por política de seguridad"}
 
     binary = command_parts[0]
-
-    # Verificar binario disponible
     if shutil.which(binary) is None and not Path(binary).exists():
-        # Último intento en WSL: PowerShell
-        if _IS_WSL:
-            wsl_cmd = _wsl_open(str(command) if isinstance(command, str) else command_parts[0])
-            if wsl_cmd:
-                tool_logger.info("Intentando apertura via WSL PowerShell: %s", wsl_cmd)
-                command_parts = wsl_cmd
-                binary = command_parts[0]
-        
-        if shutil.which(binary) is None and not Path(binary).exists():
-            # Intentar con xdg-open como último recurso
-            if shutil.which("xdg-open") and len(command_parts) == 1:
-                tool_logger.info("Binario '%s' no encontrado; usando xdg-open", binary)
-                command_parts = ["xdg-open", binary]
-            else:
-                error_logger.warning("Aplicación no encontrada: %s", binary)
-                hint = (
-                    "En WSL, asegúrate de tener DISPLAY configurado o usa la versión .exe de la app."
-                    if _IS_WSL else "Asegúrate de tener el paquete instalado."
-                )
-                return {
-                    "status": "error",
-                    "message": f"Aplicación no encontrada: {binary}. {hint}",
-                }
-
-    # Advertir si no hay display pero la app probablemente lo necesite
-    if not _has_display() and _IS_WSL and binary not in ("powershell.exe", "cmd.exe"):
-        tool_logger.warning("No se detectó DISPLAY. La app gráfica puede no abrirse visualmente.")
+        if shutil.which("xdg-open") and len(command_parts) == 1:
+            command_parts = ["xdg-open", binary]
+        else:
+            return {"status": "error", "message": f"Aplicación no encontrada en el servidor: {binary}"}
 
     try:
-        env = os.environ.copy()
-        # En WSL, intentar heredar DISPLAY si está disponible
-        if _IS_WSL and not env.get("DISPLAY"):
-            env["DISPLAY"] = ":0"
-
         process = subprocess.Popen(
             command_parts,
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,
             stdin=subprocess.DEVNULL,
             start_new_session=True,
-            env=env,
         )
-        tool_logger.info("Aplicación abierta con PID %s: %s", process.pid, command_parts)
         return {
             "status": "ok",
             "pid": process.pid,
             "command": command_parts,
-            "message": f"Aplicación iniciada: {command_parts[0]}",
+            "message": f"[SERVIDOR] Aplicación iniciada: {command_parts[0]}",
+            "delegate": "server_fallback",
         }
     except Exception as exc:
-        error_logger.exception("Error abriendo aplicación")
+        error_logger.exception("Error en fallback server-side de open_application")
         return {"status": "error", "message": str(exc)}
 
 
-async def close_application(command: str) -> dict:
-    """
-    Cierra procesos por nombre.
-    Maneja aliases: 'chrome' cierra también 'google-chrome', 'chromium-browser', etc.
-    """
-    tool_logger.info("Intentando cerrar aplicación: %s", command)
-    target = command.strip().lower()
-
-    # Expandir con aliases conocidos
-    _CLOSE_ALIASES: dict[str, list[str]] = {
+async def _close_application_server_fallback(target: str):
+    tool_logger.warning(
+        "ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: cerrando '%s' en el SERVIDOR, no en el cliente.",
+        target,
+    )
+    _CLOSE_ALIASES = {
         "chrome": ["chrome", "google-chrome", "chromium", "chromium-browser"],
         "firefox": ["firefox", "firefox-esr"],
         "vscode": ["code", "vscode"],
         "terminal": ["gnome-terminal", "konsole", "xterm", "bash", "sh"],
     }
-    targets = _CLOSE_ALIASES.get(target, [target])
+    targets = _CLOSE_ALIASES.get(target.lower(), [target.lower()])
 
     closed: list[int] = []
     for proc in psutil.process_iter(["pid", "name"]):
@@ -342,18 +381,13 @@ async def close_application(command: str) -> dict:
             continue
 
     if closed:
-        tool_logger.info("Cerrados %d procesos de '%s': pids=%s", len(closed), command, closed)
         return {
             "status": "ok",
-            "message": f"Cerradas {len(closed)} instancias de {command}.",
+            "message": f"[SERVIDOR] Cerradas {len(closed)} instancias de {target}.",
             "pids": closed,
+            "delegate": "server_fallback",
         }
-
-    error_logger.warning("No se encontró proceso con nombre: %s", command)
-    return {
-        "status": "error",
-        "message": f"No hay ninguna aplicación abierta llamada '{command}'.",
-    }
+    return {"status": "error", "message": f"No hay ninguna aplicación abierta llamada '{target}' en el servidor."}
 
 
 TOOLS = {

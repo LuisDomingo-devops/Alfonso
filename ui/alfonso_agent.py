@@ -95,7 +95,56 @@ class AlfonsoAgent:
         # 4. Retornar el comando original si no se puede resolver
         logger.warning(f"No se encontró ruta completa para '{app_name}', usando nombre directo")
         return app_name
+    @staticmethod
+    def _require(module_name: str):
+        import importlib
+        try:
+            return importlib.import_module(module_name)
+        except ImportError:
+            raise RuntimeError(
+                f"Módulo '{module_name}' no instalado en el agente local. "
+                f"Ejecuta: pip install {module_name}"
+            )
 
+    def _get_window_titles(self) -> list:
+        if self._system == "Windows":
+            import pygetwindow as gw
+            return [w.title for w in gw.getAllWindows() if w.title.strip()]
+        out = subprocess.check_output(["wmctrl", "-l"], text=True)
+        return [p[3] for line in out.splitlines() if len(p := line.split(None, 3)) == 4]
+
+    def _focus_window(self, title: str) -> dict:
+        if self._system == "Windows":
+            import pygetwindow as gw
+            wins = [w for w in gw.getAllWindows() if title.lower() in w.title.lower()]
+            if not wins:
+                return {"status": "error", "message": f"Ventana no encontrada: {title}"}
+            wins[0].activate()
+            return {"status": "ok", "title": wins[0].title}
+        out = subprocess.check_output(["wmctrl", "-l"], text=True)
+        for line in out.splitlines():
+            parts = line.split(None, 3)
+            if len(parts) == 4 and title.lower() in parts[3].lower():
+                subprocess.run(["wmctrl", "-ia", parts[0]], check=True)
+                return {"status": "ok", "title": parts[3], "wid": parts[0]}
+        return {"status": "error", "message": f"Ventana no encontrada: {title}"}
+
+    def _close_window(self, title: str) -> dict:
+        if self._system == "Windows":
+            import pygetwindow as gw
+            wins = [w for w in gw.getAllWindows() if title.lower() in w.title.lower()]
+            if not wins:
+                return {"status": "error", "message": f"Ventana no encontrada: {title}"}
+            wins[0].close()
+            return {"status": "ok", "title": wins[0].title}
+        out = subprocess.check_output(["wmctrl", "-l"], text=True)
+        for line in out.splitlines():
+            parts = line.split(None, 3)
+            if len(parts) == 4 and title.lower() in parts[3].lower():
+                subprocess.run(["wmctrl", "-ic", parts[0]], check=True)
+                return {"status": "ok", "title": parts[3], "wid": parts[0]}
+        return {"status": "error", "message": f"Ventana no encontrada: {title}"}
+    
     def _is_safe_command(self, command):
         """Valida que el comando no contenga caracteres de encadenamiento peligrosos."""
         # Evita inyecciones básicas como 'notepad.exe & del /f /q C:\\*'
@@ -207,6 +256,102 @@ class AlfonsoAgent:
                     "message": "Captura de pantalla realizada.",
                     "image_data": img_str
                 }
+            elif action in ("type_text", "keyboard_type"):
+                text = params.get("text", "")
+                interval = params.get("interval", 0.03)
+                pyautogui.write(text, interval=interval)
+                result = {"chars_typed": len(text)}
+
+            elif action == "press_key":
+                key = params.get("key")
+                pyautogui.press(key)
+                result = f"Tecla presionada: {key}"
+
+            elif action == "keyboard_hotkey":
+                keys = params.get("keys", [])
+                if isinstance(keys, str):
+                    keys = [k.strip() for k in keys.replace("+", " ").split()]
+                pyautogui.hotkey(*keys)
+                result = {"keys": keys}
+
+            elif action in ("move_mouse", "mouse_move"):
+                x, y = params.get("x", 0), params.get("y", 0)
+                duration = params.get("duration", 0.25)
+                pyautogui.moveTo(x, y, duration)
+                result = f"Ratón movido a ({x}, {y})"
+
+            elif action in ("click", "mouse_click"):
+                x, y = params.get("x"), params.get("y")
+                button = params.get("button", "left")
+                clicks = params.get("clicks", 1)
+                interval = params.get("interval", 0.1)
+                if x is not None and y is not None:
+                    pyautogui.click(x, y, clicks=clicks, button=button, interval=interval)
+                else:
+                    pyautogui.click(clicks=clicks, button=button, interval=interval)
+                result = {"x": x, "y": y, "button": button, "clicks": clicks}
+
+            elif action == "mouse_drag":
+                x1, y1 = params.get("x1", 0), params.get("y1", 0)
+                x2, y2 = params.get("x2", 0), params.get("y2", 0)
+                duration = params.get("duration", 0.5)
+                button = params.get("button", "left")
+                pyautogui.moveTo(x1, y1, 0.1)
+                pyautogui.dragTo(x2, y2, duration, button=button)
+                result = {"from": [x1, y1], "to": [x2, y2]}
+
+            elif action == "ocr_screenshot":
+                pytesseract = self._require("pytesseract")
+                region = params.get("region")
+                lang = params.get("lang", "spa+eng")
+                img = pyautogui.screenshot(region=tuple(region) if region else None)
+                text = pytesseract.image_to_string(img, lang=lang)
+                result = {"text": text.strip(), "lang": lang}
+
+            elif action == "ocr_image":
+                pytesseract = self._require("pytesseract")
+                PIL_Image = self._require("PIL.Image")
+                p = Path(params.get("path", ""))
+                if not p.exists():
+                    return {"id": command_id, "status": "error", "error": f"Imagen no encontrada: {p}"}
+                img = PIL_Image.open(str(p))
+                text = pytesseract.image_to_string(img, lang=params.get("lang", "spa+eng"))
+                result = {"text": text.strip(), "path": str(p)}
+
+            elif action == "find_on_screen":
+                cv2 = self._require("cv2")
+                numpy = self._require("numpy")
+                template_path = params.get("template_path", "")
+                threshold = params.get("threshold", 0.8)
+                region = params.get("region")
+                tmpl_path = Path(template_path)
+                if not tmpl_path.exists():
+                    return {"id": command_id, "status": "error", "error": f"Template no encontrado: {template_path}"}
+                screen = pyautogui.screenshot(region=tuple(region) if region else None)
+                screen_np = numpy.array(screen.convert("RGB"))
+                screen_gray = cv2.cvtColor(screen_np, cv2.COLOR_RGB2GRAY)
+                tmpl = cv2.imread(str(tmpl_path), cv2.IMREAD_GRAYSCALE)
+                if tmpl is None:
+                    return {"id": command_id, "status": "error", "error": f"No se pudo leer el template: {template_path}"}
+                h, w = tmpl.shape
+                match = cv2.matchTemplate(screen_gray, tmpl, cv2.TM_CCOEFF_NORMED)
+                _, max_val, _, max_loc = cv2.minMaxLoc(match)
+                if max_val >= threshold:
+                    cx, cy = max_loc[0] + w // 2, max_loc[1] + h // 2
+                    if region:
+                        cx, cy = cx + region[0], cy + region[1]
+                    result = {"found": True, "x": cx, "y": cy, "confidence": round(float(max_val), 4)}
+                else:
+                    result = {"found": False, "confidence": round(float(max_val), 4)}
+
+            elif action == "window_list":
+                result = {"windows": self._get_window_titles()}
+
+            elif action == "window_focus":
+                result = self._focus_window(params.get("title", ""))
+
+            elif action == "window_close":
+                result = self._close_window(params.get("title", ""))
 
             else:
                 return {

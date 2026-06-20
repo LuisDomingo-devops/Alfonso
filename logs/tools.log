@@ -87,3 +87,10 @@
 2026-06-19 14:27:43,661 | INFO | tools | [----------] Intentando cerrar aplicación: firefox
 2026-06-19 14:30:29,447 | INFO | tools | [----------] Intentando cerrar aplicación: explorer.exe
 2026-06-19 14:30:29,464 | INFO | tools | [----------] Cerrados 1 procesos de 'explorer.exe': pids=[65417]
+2026-06-20 17:06:31,498 | INFO | tools | [----------] Delegando open_application al agente local: firefox
+2026-06-20 17:06:47,405 | INFO | tools | [----------] Delegando close_application al agente local: firefox
+2026-06-20 17:07:05,607 | INFO | tools | [----------] Delegando open_application al agente local: explorer
+2026-06-20 17:07:22,173 | INFO | tools | [----------] Delegando close_application al agente local: explorer
+2026-06-20 17:07:39,380 | INFO | tools | [----------] Delegando open_application al agente local: explorer
+2026-06-20 17:08:35,132 | INFO | tools | [----------] Delegando close_application al agente local: explorer
+2026-06-20 17:08:55,560 | INFO | tools | [----------] Delegando open_application al agente local: explorer.exe

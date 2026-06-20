@@ -90,3 +90,4 @@ json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
 2026-06-19 14:14:58,603 | WARNING | errors | [----------] LLM error (intento 1/3), reintentando en 1s: RuntimeError('Event loop is closed')
 2026-06-19 14:16:02,810 | WARNING | errors | [----------] LLM error (intento 1/3), reintentando en 1s: RuntimeError('Event loop is closed')
 2026-06-19 14:27:43,715 | WARNING | errors | [----------] No se encontró proceso con nombre: firefox
+2026-06-20 16:34:56,188 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir 'firefox' en el equipo del usuario.
