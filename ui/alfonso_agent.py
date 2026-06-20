@@ -105,6 +105,29 @@ class AlfonsoAgent:
                 f"Módulo '{module_name}' no instalado en el agente local. "
                 f"Ejecuta: pip install {module_name}"
             )
+    def _close_file_explorer_windows() -> dict:
+        """
+        Cierra únicamente las VENTANAS de File Explorer (clase CabinetWClass),
+        NUNCA el proceso explorer.exe — eso mataría el shell de Windows
+        (barra de tareas, escritorio) y dejaría al usuario sin desktop.
+        """
+        import pygetwindow as gw
+        closed = []
+        for w in gw.getAllWindows():
+            # File Explorer expone su título como el nombre de la carpeta;
+            # filtramos por clase real de ventana, no por título, para evitar
+            # falsos positivos con otras apps que contengan "explorador" en el título.
+            try:
+                import win32gui
+                class_name = win32gui.GetClassName(w._hWnd)
+            except Exception:
+                class_name = None
+            if class_name == "CabinetWClass":
+                w.close()
+                closed.append(w.title)
+        if closed:
+            return {"status": "ok", "message": f"Cerradas {len(closed)} ventanas de Explorer", "windows": closed}
+        return {"status": "error", "message": "No hay ventanas de Explorer abiertas"}
 
     def _get_window_titles(self) -> list:
         if self._system == "Windows":

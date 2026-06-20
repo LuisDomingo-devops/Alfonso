@@ -19,12 +19,12 @@ from pydantic_settings import BaseSettings
 from pathlib import Path
 
 
+
 class Settings(BaseSettings):
     OLLAMA_BASE_URL: str = "http://localhost:11434"
     MODEL_NAME: str = "qwen2.5:1.5b"
 
     CHAT_PROMPT_PATH: str = "app/prompts/chat_system.txt"
-    TOOL_PROMPT_PATH: str = "app/prompts/tool_system.txt"
     AUTOEVOLUTION_PROMPT_PATH: str = "app/prompts/autoevolution_promt.md"
 
     # ── Parámetros de inferencia ──────────────────────────────────────

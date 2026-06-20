@@ -350,3 +350,130 @@
 2026-06-20 17:09:32,061 | INFO | orchestrator | [4008ed6a-3969-41aa-82ef-d173e14d771b] Intent: chat (score=0.00, reglas=[])
 2026-06-20 17:09:32,061 | DEBUG | orchestrator | [4008ed6a-3969-41aa-82ef-d173e14d771b] Evento publicado: chat.respond
 2026-06-20 17:11:01,812 | INFO | orchestrator | [4008ed6a-3969-41aa-82ef-d173e14d771b] Respuesta chat completada
+2026-06-20 17:27:17,095 | INFO | orchestrator | [8f21af1d-27e5-4e95-8893-aa64e2bfb3df] PlannerOrchestrator.run iniciado
+2026-06-20 17:27:17,095 | INFO | orchestrator | [8f21af1d-27e5-4e95-8893-aa64e2bfb3df] USER MESSAGE: abre Firefox
+2026-06-20 17:27:17,095 | INFO | orchestrator | [8f21af1d-27e5-4e95-8893-aa64e2bfb3df] SESSION_ID: 8f21af1d-27e5-4e95-8893-aa64e2bfb3df
+2026-06-20 17:27:17,123 | INFO | orchestrator | [8f21af1d-27e5-4e95-8893-aa64e2bfb3df] Intent: tool (score=6.50, reglas=['+2.5 [open_app]', '+1.5 [open_generic_short]', '+2.5 [open_app_direct]'])
+2026-06-20 17:28:09,047 | DEBUG | orchestrator | [8f21af1d-27e5-4e95-8893-aa64e2bfb3df] LLM OUTPUT (tool): {"tool":"open_application","args":{"command":"firefox"}}
+2026-06-20 17:28:09,050 | INFO | orchestrator | [8f21af1d-27e5-4e95-8893-aa64e2bfb3df] TaskPlan: event=system.open_app args={'command': 'firefox'}
+2026-06-20 17:28:09,053 | DEBUG | orchestrator | [8f21af1d-27e5-4e95-8893-aa64e2bfb3df] Evento publicado: system.open_app
+2026-06-20 17:28:30,958 | INFO | orchestrator | [e0a08a3e-0ae7-4aa9-b486-989311b42224] PlannerOrchestrator.run iniciado
+2026-06-20 17:28:30,959 | INFO | orchestrator | [e0a08a3e-0ae7-4aa9-b486-989311b42224] USER MESSAGE: cierra una de las ventanas de Firefox abiertas
+2026-06-20 17:28:30,959 | INFO | orchestrator | [e0a08a3e-0ae7-4aa9-b486-989311b42224] SESSION_ID: e0a08a3e-0ae7-4aa9-b486-989311b42224
+2026-06-20 17:28:30,965 | INFO | orchestrator | [e0a08a3e-0ae7-4aa9-b486-989311b42224] Intent: tool (score=2.50, reglas=['+2.5 [close_application]'])
+2026-06-20 17:28:33,516 | DEBUG | orchestrator | [e0a08a3e-0ae7-4aa9-b486-989311b42224] LLM OUTPUT (tool): {"tool":"close_application","args":{"command":"firefox"}}
+2026-06-20 17:28:33,517 | INFO | orchestrator | [e0a08a3e-0ae7-4aa9-b486-989311b42224] TaskPlan: event=system.close_app args={'command': 'firefox'}
+2026-06-20 17:28:33,517 | DEBUG | orchestrator | [e0a08a3e-0ae7-4aa9-b486-989311b42224] Evento publicado: system.close_app
+2026-06-20 17:28:58,106 | INFO | orchestrator | [3c1d522b-735e-4162-9395-d5f8caf69414] PlannerOrchestrator.run iniciado
+2026-06-20 17:28:58,106 | INFO | orchestrator | [3c1d522b-735e-4162-9395-d5f8caf69414] USER MESSAGE: abre el explorador de archivos
+2026-06-20 17:28:58,106 | INFO | orchestrator | [3c1d522b-735e-4162-9395-d5f8caf69414] SESSION_ID: 3c1d522b-735e-4162-9395-d5f8caf69414
+2026-06-20 17:28:58,118 | INFO | orchestrator | [3c1d522b-735e-4162-9395-d5f8caf69414] Intent: tool (score=7.00, reglas=['+1.5 [open_generic_short]', '+3.0 [open_filemanager]', '+2.5 [open_filemanager_short]'])
+2026-06-20 17:29:00,977 | DEBUG | orchestrator | [3c1d522b-735e-4162-9395-d5f8caf69414] LLM OUTPUT (tool): {"tool":"open_application","args":{"command":"explorer"}}
+2026-06-20 17:29:00,978 | INFO | orchestrator | [3c1d522b-735e-4162-9395-d5f8caf69414] TaskPlan: event=system.open_app args={'command': 'explorer'}
+2026-06-20 17:29:00,978 | DEBUG | orchestrator | [3c1d522b-735e-4162-9395-d5f8caf69414] Evento publicado: system.open_app
+2026-06-20 17:29:25,001 | INFO | orchestrator | [aa57456e-38d1-4de0-9590-a1457ccb30e0] PlannerOrchestrator.run iniciado
+2026-06-20 17:29:25,001 | INFO | orchestrator | [aa57456e-38d1-4de0-9590-a1457ccb30e0] USER MESSAGE: el explorer ve a la carpeta mi escritorio
+2026-06-20 17:29:25,002 | INFO | orchestrator | [aa57456e-38d1-4de0-9590-a1457ccb30e0] SESSION_ID: aa57456e-38d1-4de0-9590-a1457ccb30e0
+2026-06-20 17:29:25,008 | INFO | orchestrator | [aa57456e-38d1-4de0-9590-a1457ccb30e0] Intent: chat (score=0.00, reglas=[])
+2026-06-20 17:29:25,008 | DEBUG | orchestrator | [aa57456e-38d1-4de0-9590-a1457ccb30e0] Evento publicado: chat.respond
+2026-06-20 17:30:16,759 | INFO | orchestrator | [aa57456e-38d1-4de0-9590-a1457ccb30e0] Respuesta chat completada
+2026-06-20 17:30:58,636 | INFO | orchestrator | [a3e71854-6e93-4658-88f7-5331bcd07149] PlannerOrchestrator.run iniciado
+2026-06-20 17:30:58,637 | INFO | orchestrator | [a3e71854-6e93-4658-88f7-5331bcd07149] USER MESSAGE: abre la carpeta mi escritorio
+2026-06-20 17:30:58,637 | INFO | orchestrator | [a3e71854-6e93-4658-88f7-5331bcd07149] SESSION_ID: a3e71854-6e93-4658-88f7-5331bcd07149
+2026-06-20 17:30:58,649 | INFO | orchestrator | [a3e71854-6e93-4658-88f7-5331bcd07149] Intent: tool (score=1.50, reglas=['+1.5 [open_generic_short]'])
+2026-06-20 17:31:29,922 | DEBUG | orchestrator | [a3e71854-6e93-4658-88f7-5331bcd07149] LLM OUTPUT (tool): {"tool":"open_application","args":{"command":"explorer.exe"}}
+2026-06-20 17:31:29,922 | INFO | orchestrator | [a3e71854-6e93-4658-88f7-5331bcd07149] TaskPlan: event=system.open_app args={'command': 'explorer.exe'}
+2026-06-20 17:31:29,923 | DEBUG | orchestrator | [a3e71854-6e93-4658-88f7-5331bcd07149] Evento publicado: system.open_app
+2026-06-20 17:32:08,058 | INFO | orchestrator | [72ba673f-eeba-4b42-aeaa-53f662209813] PlannerOrchestrator.run iniciado
+2026-06-20 17:32:08,059 | INFO | orchestrator | [72ba673f-eeba-4b42-aeaa-53f662209813] USER MESSAGE: cierra el explorador de archivos
+2026-06-20 17:32:08,059 | INFO | orchestrator | [72ba673f-eeba-4b42-aeaa-53f662209813] SESSION_ID: 72ba673f-eeba-4b42-aeaa-53f662209813
+2026-06-20 17:32:08,067 | INFO | orchestrator | [72ba673f-eeba-4b42-aeaa-53f662209813] Intent: tool (score=4.50, reglas=['+2.5 [close_application]', '+2.0 [close_app_simple]'])
+2026-06-20 17:32:10,053 | DEBUG | orchestrator | [72ba673f-eeba-4b42-aeaa-53f662209813] LLM OUTPUT (tool): {"tool":"close_application","args":{"command":"firefox"}}
+2026-06-20 17:32:10,054 | INFO | orchestrator | [72ba673f-eeba-4b42-aeaa-53f662209813] TaskPlan: event=system.close_app args={'command': 'firefox'}
+2026-06-20 17:32:10,054 | DEBUG | orchestrator | [72ba673f-eeba-4b42-aeaa-53f662209813] Evento publicado: system.close_app
+2026-06-20 17:32:10,301 | INFO | orchestrator | [72ba673f-eeba-4b42-aeaa-53f662209813] Agente respondió: error
+2026-06-20 17:32:36,373 | INFO | orchestrator | [44a09f49-904f-4bcf-b682-07e9b2cfbe8d] PlannerOrchestrator.run iniciado
+2026-06-20 17:32:36,373 | INFO | orchestrator | [44a09f49-904f-4bcf-b682-07e9b2cfbe8d] USER MESSAGE: cierra Explorer
+2026-06-20 17:32:36,373 | INFO | orchestrator | [44a09f49-904f-4bcf-b682-07e9b2cfbe8d] SESSION_ID: 44a09f49-904f-4bcf-b682-07e9b2cfbe8d
+2026-06-20 17:32:36,386 | INFO | orchestrator | [44a09f49-904f-4bcf-b682-07e9b2cfbe8d] Intent: tool (score=4.50, reglas=['+2.5 [close_application]', '+2.0 [close_app_simple]'])
+2026-06-20 17:32:38,009 | DEBUG | orchestrator | [44a09f49-904f-4bcf-b682-07e9b2cfbe8d] LLM OUTPUT (tool): {"tool":"close_application","args":{"command":"explorer"}}
+2026-06-20 17:32:38,009 | INFO | orchestrator | [44a09f49-904f-4bcf-b682-07e9b2cfbe8d] TaskPlan: event=system.close_app args={'command': 'explorer'}
+2026-06-20 17:32:38,009 | DEBUG | orchestrator | [44a09f49-904f-4bcf-b682-07e9b2cfbe8d] Evento publicado: system.close_app
+2026-06-20 17:32:38,185 | INFO | orchestrator | [44a09f49-904f-4bcf-b682-07e9b2cfbe8d] Agente respondió: error
+2026-06-20 17:33:01,008 | INFO | orchestrator | [8a2618e3-c4f4-404a-8a81-a4305ace711f] PlannerOrchestrator.run iniciado
+2026-06-20 17:33:01,008 | INFO | orchestrator | [8a2618e3-c4f4-404a-8a81-a4305ace711f] USER MESSAGE: abre Explorer
+2026-06-20 17:33:01,008 | INFO | orchestrator | [8a2618e3-c4f4-404a-8a81-a4305ace711f] SESSION_ID: 8a2618e3-c4f4-404a-8a81-a4305ace711f
+2026-06-20 17:33:01,013 | INFO | orchestrator | [8a2618e3-c4f4-404a-8a81-a4305ace711f] Intent: tool (score=4.50, reglas=['+1.5 [open_generic_short]', '+3.0 [open_filemanager]'])
+2026-06-20 17:33:02,712 | DEBUG | orchestrator | [8a2618e3-c4f4-404a-8a81-a4305ace711f] LLM OUTPUT (tool): {"tool":"open_application","args":{"command":"explorer"}}
+2026-06-20 17:33:02,712 | INFO | orchestrator | [8a2618e3-c4f4-404a-8a81-a4305ace711f] TaskPlan: event=system.open_app args={'command': 'explorer'}
+2026-06-20 17:33:02,712 | DEBUG | orchestrator | [8a2618e3-c4f4-404a-8a81-a4305ace711f] Evento publicado: system.open_app
+2026-06-20 17:33:23,798 | INFO | orchestrator | [ece8e5cf-0fbb-40fa-8f1b-4b9a5d8c7c5a] PlannerOrchestrator.run iniciado
+2026-06-20 17:33:23,798 | INFO | orchestrator | [ece8e5cf-0fbb-40fa-8f1b-4b9a5d8c7c5a] USER MESSAGE: crea una carpeta en el escritorio que se llame pruebas de Alfonso
+2026-06-20 17:33:23,799 | INFO | orchestrator | [ece8e5cf-0fbb-40fa-8f1b-4b9a5d8c7c5a] SESSION_ID: ece8e5cf-0fbb-40fa-8f1b-4b9a5d8c7c5a
+2026-06-20 17:33:23,806 | INFO | orchestrator | [ece8e5cf-0fbb-40fa-8f1b-4b9a5d8c7c5a] Intent: chat (score=0.00, reglas=[])
+2026-06-20 17:33:23,806 | DEBUG | orchestrator | [ece8e5cf-0fbb-40fa-8f1b-4b9a5d8c7c5a] Evento publicado: chat.respond
+2026-06-20 17:34:13,811 | INFO | orchestrator | [ece8e5cf-0fbb-40fa-8f1b-4b9a5d8c7c5a] Respuesta chat completada
+2026-06-20 17:35:47,204 | INFO | orchestrator | [0d826ba1-3f91-46e8-94bc-59114b2edc19] PlannerOrchestrator.run iniciado
+2026-06-20 17:35:47,204 | INFO | orchestrator | [0d826ba1-3f91-46e8-94bc-59114b2edc19] USER MESSAGE: crea un archivo en el escritorio que se llame pruebas
+2026-06-20 17:35:47,204 | INFO | orchestrator | [0d826ba1-3f91-46e8-94bc-59114b2edc19] SESSION_ID: 0d826ba1-3f91-46e8-94bc-59114b2edc19
+2026-06-20 17:35:47,213 | INFO | orchestrator | [0d826ba1-3f91-46e8-94bc-59114b2edc19] Intent: tool (score=1.50, reglas=['+1.5 [fs_create]'])
+2026-06-20 17:36:19,253 | DEBUG | orchestrator | [0d826ba1-3f91-46e8-94bc-59114b2edc19] LLM OUTPUT (tool): {"tool":"create_file","args":{"path":"/Users/username/Desktop/pruebas.txt","content":""}}
+2026-06-20 17:36:19,254 | INFO | orchestrator | [0d826ba1-3f91-46e8-94bc-59114b2edc19] TaskPlan: event=filesystem.create args={'path': '/Users/username/Desktop/pruebas.txt', 'content': ''}
+2026-06-20 17:36:19,254 | DEBUG | orchestrator | [0d826ba1-3f91-46e8-94bc-59114b2edc19] Evento publicado: filesystem.create
+2026-06-20 17:37:47,469 | INFO | orchestrator | [d1c662b4-768c-4a4e-9190-f61898576ae3] PlannerOrchestrator.run iniciado
+2026-06-20 17:37:47,469 | INFO | orchestrator | [d1c662b4-768c-4a4e-9190-f61898576ae3] USER MESSAGE: abre el Bloc de notas
+2026-06-20 17:37:47,469 | INFO | orchestrator | [d1c662b4-768c-4a4e-9190-f61898576ae3] SESSION_ID: d1c662b4-768c-4a4e-9190-f61898576ae3
+2026-06-20 17:37:47,475 | INFO | orchestrator | [d1c662b4-768c-4a4e-9190-f61898576ae3] Intent: tool (score=1.50, reglas=['+1.5 [open_generic_short]'])
+2026-06-20 17:37:49,389 | DEBUG | orchestrator | [d1c662b4-768c-4a4e-9190-f61898576ae3] LLM OUTPUT (tool): {"tool":"open_application","args":{"command":"notepad"}}
+2026-06-20 17:37:49,389 | INFO | orchestrator | [d1c662b4-768c-4a4e-9190-f61898576ae3] TaskPlan: event=system.open_app args={'command': 'notepad'}
+2026-06-20 17:37:49,390 | DEBUG | orchestrator | [d1c662b4-768c-4a4e-9190-f61898576ae3] Evento publicado: system.open_app
+2026-06-20 17:38:07,649 | INFO | orchestrator | [1df4b47b-dfa7-4302-9273-f22f7b6e07c4] PlannerOrchestrator.run iniciado
+2026-06-20 17:38:07,649 | INFO | orchestrator | [1df4b47b-dfa7-4302-9273-f22f7b6e07c4] USER MESSAGE: escribe en el bloc de notas hola soy Alfonso escribiendo
+2026-06-20 17:38:07,649 | INFO | orchestrator | [1df4b47b-dfa7-4302-9273-f22f7b6e07c4] SESSION_ID: 1df4b47b-dfa7-4302-9273-f22f7b6e07c4
+2026-06-20 17:38:07,656 | INFO | orchestrator | [1df4b47b-dfa7-4302-9273-f22f7b6e07c4] Intent: chat (score=0.00, reglas=[])
+2026-06-20 17:38:07,656 | DEBUG | orchestrator | [1df4b47b-dfa7-4302-9273-f22f7b6e07c4] Evento publicado: chat.respond
+2026-06-20 17:38:52,586 | INFO | orchestrator | [1df4b47b-dfa7-4302-9273-f22f7b6e07c4] Respuesta chat completada
+2026-06-20 17:41:04,093 | INFO | orchestrator | [1061eb43-8f8b-4756-ad9f-0806c83e9efc] PlannerOrchestrator.run iniciado
+2026-06-20 17:41:04,093 | INFO | orchestrator | [1061eb43-8f8b-4756-ad9f-0806c83e9efc] USER MESSAGE: Alfonso
+2026-06-20 17:41:04,094 | INFO | orchestrator | [1061eb43-8f8b-4756-ad9f-0806c83e9efc] SESSION_ID: 1061eb43-8f8b-4756-ad9f-0806c83e9efc
+2026-06-20 17:41:04,099 | INFO | orchestrator | [1061eb43-8f8b-4756-ad9f-0806c83e9efc] Intent: chat (score=0.00, reglas=[])
+2026-06-20 17:41:04,099 | DEBUG | orchestrator | [1061eb43-8f8b-4756-ad9f-0806c83e9efc] Evento publicado: chat.respond
+2026-06-20 17:41:35,395 | INFO | orchestrator | [1061eb43-8f8b-4756-ad9f-0806c83e9efc] Respuesta chat completada
+2026-06-20 17:43:25,463 | INFO | orchestrator | [875a209d-1f12-4d4f-aead-c0aa1c298198] PlannerOrchestrator.run iniciado
+2026-06-20 17:43:25,463 | INFO | orchestrator | [875a209d-1f12-4d4f-aead-c0aa1c298198] USER MESSAGE: abre la página elpais.com
+2026-06-20 17:43:25,463 | INFO | orchestrator | [875a209d-1f12-4d4f-aead-c0aa1c298198] SESSION_ID: 875a209d-1f12-4d4f-aead-c0aa1c298198
+2026-06-20 17:43:25,469 | INFO | orchestrator | [875a209d-1f12-4d4f-aead-c0aa1c298198] Intent: tool (score=2.00, reglas=['+2.0 [browser_open]'])
+2026-06-20 17:43:57,180 | DEBUG | orchestrator | [875a209d-1f12-4d4f-aead-c0aa1c298198] LLM OUTPUT (tool): {"tool":"browser_navigate","args":{"url":"https://elpais.com"}}
+2026-06-20 17:43:57,180 | INFO | orchestrator | [875a209d-1f12-4d4f-aead-c0aa1c298198] TaskPlan: event=browser.navigate args={'url': 'https://elpais.com'}
+2026-06-20 17:43:57,181 | DEBUG | orchestrator | [875a209d-1f12-4d4f-aead-c0aa1c298198] Evento publicado: browser.navigate
+2026-06-20 17:44:49,771 | INFO | orchestrator | [5c377316-4eba-4e9e-ae30-72bc9024d30c] PlannerOrchestrator.run iniciado
+2026-06-20 17:44:49,772 | INFO | orchestrator | [5c377316-4eba-4e9e-ae30-72bc9024d30c] USER MESSAGE: abre Firefox
+2026-06-20 17:44:49,772 | INFO | orchestrator | [5c377316-4eba-4e9e-ae30-72bc9024d30c] SESSION_ID: 5c377316-4eba-4e9e-ae30-72bc9024d30c
+2026-06-20 17:44:49,784 | INFO | orchestrator | [5c377316-4eba-4e9e-ae30-72bc9024d30c] Intent: tool (score=6.50, reglas=['+2.5 [open_app]', '+1.5 [open_generic_short]', '+2.5 [open_app_direct]'])
+2026-06-20 17:44:52,773 | DEBUG | orchestrator | [5c377316-4eba-4e9e-ae30-72bc9024d30c] LLM OUTPUT (tool): {"tool":"open_application","args":{"command":"firefox"}}
+2026-06-20 17:44:52,773 | INFO | orchestrator | [5c377316-4eba-4e9e-ae30-72bc9024d30c] TaskPlan: event=system.open_app args={'command': 'firefox'}
+2026-06-20 17:44:52,774 | DEBUG | orchestrator | [5c377316-4eba-4e9e-ae30-72bc9024d30c] Evento publicado: system.open_app
+2026-06-20 20:08:11,061 | INFO | orchestrator | [ab302471-c64a-4c10-8d59-4b7f2f3b04e4] PlannerOrchestrator.run iniciado
+2026-06-20 20:08:11,062 | INFO | orchestrator | [ab302471-c64a-4c10-8d59-4b7f2f3b04e4] USER MESSAGE: crea un archivo en el escritorio que se llame hola soy
+2026-06-20 20:08:11,062 | INFO | orchestrator | [ab302471-c64a-4c10-8d59-4b7f2f3b04e4] SESSION_ID: ab302471-c64a-4c10-8d59-4b7f2f3b04e4
+2026-06-20 20:08:11,070 | INFO | orchestrator | [ab302471-c64a-4c10-8d59-4b7f2f3b04e4] Intent: tool (score=1.50, reglas=['+1.5 [fs_create]'])
+2026-06-20 20:09:14,311 | DEBUG | orchestrator | [ab302471-c64a-4c10-8d59-4b7f2f3b04e4] LLM OUTPUT (tool): create_file: {"file_path":"/Users/your_username/Desktop/hola_soy.txt"}
+2026-06-20 20:11:07,066 | INFO | orchestrator | [0224e7ce-7586-49cd-a177-7cfdc036e6b4] PlannerOrchestrator.run iniciado
+2026-06-20 20:11:07,066 | INFO | orchestrator | [0224e7ce-7586-49cd-a177-7cfdc036e6b4] USER MESSAGE: abre Firefox
+2026-06-20 20:11:07,066 | INFO | orchestrator | [0224e7ce-7586-49cd-a177-7cfdc036e6b4] SESSION_ID: 0224e7ce-7586-49cd-a177-7cfdc036e6b4
+2026-06-20 20:11:07,091 | INFO | orchestrator | [0224e7ce-7586-49cd-a177-7cfdc036e6b4] Intent: tool (score=6.50, reglas=['+2.5 [open_app]', '+1.5 [open_generic_short]', '+2.5 [open_app_direct]'])
+2026-06-20 20:11:09,316 | DEBUG | orchestrator | [0224e7ce-7586-49cd-a177-7cfdc036e6b4] LLM OUTPUT (tool): browser_navigate: {"url": "https://www.google.com"}
+2026-06-20 20:16:44,600 | INFO | orchestrator | [c283d854-1971-4558-8172-60b908137db0] Planner run: abre Firefox y ve a la página elpais.com
+2026-06-20 20:17:34,637 | DEBUG | orchestrator | [c283d854-1971-4558-8172-60b908137db0] LLM RAW: browser_navigate:
+{
+  "url": "https://elpais.com/"
+}
+2026-06-20 20:17:34,648 | INFO | orchestrator | [c283d854-1971-4558-8172-60b908137db0] Tool ejecutada: no_op
+2026-06-20 20:22:59,091 | INFO | orchestrator | [14886ecf-1c6a-4b36-b3fa-33b20c086e52] Planner run: abre Firefox y ve a la página elpais.com
+2026-06-20 20:23:44,771 | DEBUG | orchestrator | [14886ecf-1c6a-4b36-b3fa-33b20c086e52] LLM RAW: browser_navigate:
+{
+  "url": "https://elpais.com/"
+}
+2026-06-20 20:23:58,770 | INFO | orchestrator | [14886ecf-1c6a-4b36-b3fa-33b20c086e52] Tool ejecutada: browser_navigate
+2026-06-20 20:24:23,519 | INFO | orchestrator | [1db8dcce-b3c7-4c01-879d-7522fd0d9e68] Planner run: cierra Firefox
+2026-06-20 20:24:26,120 | DEBUG | orchestrator | [1db8dcce-b3c7-4c01-879d-7522fd0d9e68] LLM RAW: {"tool":"close_application","args":{"application":"Firefox"}}

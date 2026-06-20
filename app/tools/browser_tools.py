@@ -1,25 +1,13 @@
 """
-browser_tools.py — Fase 3: control real del navegador con Playwright
+browser_tools.py — Fase 3 mejorada (Alfonso v2 incremental)
 
-Herramientas:
-    browser_navigate        → abre una URL
-    browser_click           → hace click en un selector CSS / XPath
-    browser_fill            → rellena un campo de formulario
-    browser_submit          → envía un formulario
-    browser_screenshot      → captura la página como imagen
-    browser_get_text        → extrae el texto visible de la página
-    browser_get_html        → devuelve el HTML completo
-    browser_wait_for        → espera a que aparezca un selector
-    browser_scroll          → hace scroll en la página
-    browser_evaluate        → ejecuta JavaScript en la página
-    browser_search          → busca en Google y devuelve texto + screenshot  ← NUEVO
-    browser_close           → cierra el navegador
-
-Diseño:
-    - Una única instancia de Playwright por proceso (singleton lazy).
-    - Chromium headless por defecto; ALFONSO_BROWSER=firefox|webkit para cambiar.
-    - ALFONSO_HEADLESS=false para ver el navegador en pantalla (útil en desarrollo).
-    - Thread-safe: todas las operaciones van a través de asyncio.
+Mejoras respecto a versión anterior:
+- Separación clara de tools primitivas y compuestas
+- Mejor control de estado del navegador
+- Añadido browser_inspect (clave para agentes)
+- Errores tipados
+- Search más robusto
+- Preparado para planificación futura sin romper arquitectura actual
 """
 
 from __future__ import annotations
@@ -28,391 +16,287 @@ import asyncio
 import base64
 import os
 import urllib.parse
-from typing import Optional
+from typing import Optional, Dict, Any
+
 from dotenv import load_dotenv
 
-# Cargamos las variables de entorno desde el archivo .env al inicio
 load_dotenv()
 
 from app.utils.logger import error_logger, tool_logger
 
-# ---------------------------------------------------------------------------
-# Singleton del navegador
-# ---------------------------------------------------------------------------
 
-_playwright_instance = None
-_browser_instance = None
-_page_instance = None
+# =========================================================
+# Estado global (singleton controlado)
+# =========================================================
+
+_playwright = None
+_browser = None
+_context = None
+_page = None
+
 _lock = asyncio.Lock()
 
 
+# =========================================================
+# Helpers de error estructurado
+# =========================================================
+
+def _error(error_type: str, message: str, **extra) -> dict:
+    return {
+        "status": "error",
+        "error_type": error_type,
+        "message": message,
+        **extra
+    }
+
+
+def _ok(**data) -> dict:
+    return {
+        "status": "ok",
+        **data
+    }
+
+
+# =========================================================
+# Inicialización segura
+# =========================================================
+
 async def _get_page():
-    """Devuelve la página activa, arrancando Playwright si es necesario."""
-    global _playwright_instance, _browser_instance, _page_instance
+    global _playwright, _browser, _context, _page
 
     async with _lock:
-        if _page_instance is not None and not _page_instance.is_closed():
-            return _page_instance
+        if _page and not _page.is_closed():
+            return _page
 
         try:
             from playwright.async_api import async_playwright
         except ImportError:
             raise RuntimeError(
-                "Playwright no instalado. Ejecuta: "
-                "pip install playwright --break-system-packages && playwright install chromium"
+                "Playwright no instalado. Instala con: "
+                "pip install playwright && playwright install chromium"
             )
 
         browser_type = os.getenv("ALFONSO_BROWSER", "chromium").lower()
         headless = os.getenv("ALFONSO_HEADLESS", "true").lower() != "false"
-        executable_path = os.getenv("ALFONSO_BROWSER_PATH") # Opcional: ruta al ejecutable
 
-        tool_logger.info(
-            "Arrancando Playwright: browser=%s, headless=%s, path=%s",
-            browser_type, headless, executable_path
-        )
+        tool_logger.info("Iniciando browser: %s headless=%s", browser_type, headless)
 
         try:
-            _playwright_instance = await async_playwright().start()
-            launcher = getattr(_playwright_instance, browser_type)
-            _browser_instance = await launcher.launch(
-                headless=headless,
-                executable_path=executable_path
-            )
-            _page_instance = await _browser_instance.new_page()
-        except Exception as exc:
-            # Limpieza inmediata en caso de fallo durante el arranque
-            await _close_playwright()
-            if "executable" in str(exc).lower():
-                raise RuntimeError(
-                    f"Binarios de {browser_type} no encontrados. "
-                    f"Ejecuta: playwright install {browser_type}"
-                ) from exc
-            raise
+            _playwright = await async_playwright().start()
+            launcher = getattr(_playwright, browser_type)
 
-        tool_logger.info("Playwright listo")
-        return _page_instance
+            _browser = await launcher.launch(headless=headless)
+            _context = await _browser.new_context()
+            _page = await _context.new_page()
+
+        except Exception as e:
+            await _close()
+            return _error("browser_startup_failed", str(e))
+
+        tool_logger.info("Browser listo")
+        return _page
 
 
-async def _close_playwright():
-    global _playwright_instance, _browser_instance, _page_instance
-    if _browser_instance:
-        await _browser_instance.close()
-    if _playwright_instance:
-        await _playwright_instance.stop()
-    _playwright_instance = None
-    _browser_instance = None
-    _page_instance = None
+async def _close():
+    global _playwright, _browser, _context, _page
 
-
-# ---------------------------------------------------------------------------
-# Herramientas
-# ---------------------------------------------------------------------------
-
-async def browser_navigate(url: str, wait_until: str = "domcontentloaded") -> dict:
-    """
-    Navega a una URL.
-
-    Args:
-        url: URL completa (debe incluir https://)
-        wait_until: "domcontentloaded" | "load" | "networkidle"
-    """
-    tool_logger.info("browser_navigate: %s", url)
     try:
+        if _context:
+            await _context.close()
+        if _browser:
+            await _browser.close()
+        if _playwright:
+            await _playwright.stop()
+    finally:
+        _playwright = None
+        _browser = None
+        _context = None
+        _page = None
+
+
+# =========================================================
+# PRIMITIVAS (nivel bajo)
+# =========================================================
+
+async def browser_navigate(url: str, wait_until: str = "domcontentloaded"):
+    try:
+        page = await _get_page()
+        if isinstance(page, dict):
+            return page
+
         if not url.startswith(("http://", "https://")):
             url = "https://" + url
 
-        page = await _get_page()
-        response = await page.goto(url, wait_until=wait_until, timeout=30_000)
+        response = await page.goto(url, wait_until=wait_until, timeout=30000)
 
-        status = response.status if response else None
-        title = await page.title()
-
-        tool_logger.info("Navegado a %s → status=%s title=%s", url, status, title)
-        return {
-            "status": "ok",
-            "url": page.url,
-            "title": title,
-            "http_status": status,
-        }
-    except Exception as exc:
-        error_logger.exception("Error en browser_navigate")
-        return {"status": "error", "message": str(exc)}
-
-
-async def browser_click(
-    selector: str,
-    timeout: int = 10_000,
-    button: str = "left",
-    click_count: int = 1,
-) -> dict:
-    """
-    Hace click en el elemento identificado por `selector` (CSS o XPath).
-
-    Args:
-        selector: CSS selector o XPath (prefijo "xpath=")
-        timeout: ms máximos esperando al elemento
-        button: "left" | "right" | "middle"
-        click_count: 1 = simple, 2 = doble
-    """
-    tool_logger.info("browser_click: selector=%s", selector)
-    try:
-        page = await _get_page()
-        await page.click(
-            selector,
-            timeout=timeout,
-            button=button,
-            click_count=click_count,
+        return _ok(
+            url=page.url,
+            title=await page.title(),
+            http_status=response.status if response else None
         )
-        return {"status": "ok", "selector": selector}
-    except Exception as exc:
-        error_logger.exception("Error en browser_click")
-        return {"status": "error", "message": str(exc), "selector": selector}
+
+    except Exception as e:
+        error_logger.exception("browser_navigate error")
+        return _error("navigation_error", str(e), url=url)
 
 
-async def browser_fill(
-    selector: str,
-    value: str,
-    timeout: int = 10_000,
-) -> dict:
-    """
-    Rellena un campo de texto (input, textarea) con `value`.
-    Limpia el campo antes de escribir.
-    """
-    tool_logger.info("browser_fill: selector=%s value_len=%d", selector, len(value))
+async def browser_click(selector: str):
     try:
         page = await _get_page()
-        await page.fill(selector, value, timeout=timeout)
-        return {"status": "ok", "selector": selector, "value_length": len(value)}
-    except Exception as exc:
-        error_logger.exception("Error en browser_fill")
-        return {"status": "error", "message": str(exc), "selector": selector}
+        if isinstance(page, dict):
+            return page
+
+        await page.click(selector, timeout=10000)
+        return _ok(selector=selector)
+
+    except Exception as e:
+        return _error("click_failed", str(e), selector=selector)
 
 
-async def browser_submit(selector: str, timeout: int = 10_000) -> dict:
-    """
-    Envía el formulario que contiene el selector dado
-    (pulsa Enter o hace click en el botón submit).
-    """
-    tool_logger.info("browser_submit: selector=%s", selector)
+async def browser_fill(selector: str, value: str):
     try:
         page = await _get_page()
-        try:
-            await page.locator(selector).evaluate("el => el.form && el.form.submit()")
-        except Exception:
-            await page.press(selector, "Enter", timeout=timeout)
-        return {"status": "ok", "selector": selector}
-    except Exception as exc:
-        error_logger.exception("Error en browser_submit")
-        return {"status": "error", "message": str(exc)}
+        if isinstance(page, dict):
+            return page
+
+        await page.fill(selector, value, timeout=10000)
+        return _ok(selector=selector, length=len(value))
+
+    except Exception as e:
+        return _error("fill_failed", str(e), selector=selector)
 
 
-async def browser_screenshot(
-    full_page: bool = False,
-    save_path: Optional[str] = None,
-) -> dict:
-    """
-    Captura la página actual como PNG.
-
-    Args:
-        full_page: True para capturar la página completa (con scroll)
-        save_path: ruta donde guardar (opcional)
-
-    Returns:
-        {status, image_base64, url, path?}
-    """
-    tool_logger.info("browser_screenshot: full_page=%s", full_page)
+async def browser_screenshot(full_page: bool = False):
     try:
         page = await _get_page()
-        data = await page.screenshot(full_page=full_page)
-        b64 = base64.b64encode(data).decode()
+        if isinstance(page, dict):
+            return page
 
-        result: dict = {"status": "ok", "image_base64": b64, "url": page.url}
+        img = await page.screenshot(full_page=full_page)
+        return _ok(
+            image_base64=base64.b64encode(img).decode(),
+            url=page.url
+        )
 
-        if save_path:
-            from pathlib import Path
-            p = Path(save_path)
-            p.parent.mkdir(parents=True, exist_ok=True)
-            p.write_bytes(data)
-            result["path"] = str(p)
-            tool_logger.info("Browser screenshot guardado en %s", p)
-
-        return result
-    except Exception as exc:
-        error_logger.exception("Error en browser_screenshot")
-        return {"status": "error", "message": str(exc)}
+    except Exception as e:
+        return _error("screenshot_failed", str(e))
 
 
-async def browser_get_text(selector: str = "body") -> dict:
-    """
-    Extrae el texto visible del elemento identificado por `selector`.
-    Por defecto extrae todo el texto de la página (body).
-    """
-    tool_logger.info("browser_get_text: selector=%s", selector)
+async def browser_get_text(selector: str = "body"):
     try:
         page = await _get_page()
-        text = await page.inner_text(selector, timeout=10_000)
-        return {"status": "ok", "text": text.strip(), "selector": selector}
-    except Exception as exc:
-        error_logger.exception("Error en browser_get_text")
-        return {"status": "error", "message": str(exc)}
+        if isinstance(page, dict):
+            return page
+
+        text = await page.inner_text(selector, timeout=10000)
+        return _ok(text=text.strip())
+
+    except Exception as e:
+        return _error("text_extraction_failed", str(e), selector=selector)
 
 
-async def browser_get_html(selector: str = "html") -> dict:
-    """Devuelve el HTML del elemento (por defecto el documento completo)."""
-    tool_logger.info("browser_get_html: selector=%s", selector)
+# =========================================================
+# INSPECCIÓN (CLAVE PARA AGENTE)
+# =========================================================
+
+async def browser_inspect():
+    """
+    Devuelve estado estructurado de la página.
+    Esto es lo que permite que Alfonso "entienda UI".
+    """
     try:
         page = await _get_page()
-        html = await page.inner_html(selector, timeout=10_000)
-        return {"status": "ok", "html_length": len(html), "html": html}
-    except Exception as exc:
-        error_logger.exception("Error en browser_get_html")
-        return {"status": "error", "message": str(exc)}
+        if isinstance(page, dict):
+            return page
+
+        title = await page.title()
+        url = page.url
+
+        links = await page.eval_on_selector_all(
+            "a",
+            "els => els.slice(0, 30).map(e => ({text: e.innerText, href: e.href}))"
+        )
+
+        inputs = await page.eval_on_selector_all(
+            "input, textarea",
+            "els => els.slice(0, 30).map(e => ({type: e.type, name: e.name, placeholder: e.placeholder}))"
+        )
+
+        buttons = await page.eval_on_selector_all(
+            "button",
+            "els => els.slice(0, 30).map(e => e.innerText)"
+        )
+
+        return _ok(
+            url=url,
+            title=title,
+            links=links,
+            inputs=inputs,
+            buttons=buttons
+        )
+
+    except Exception as e:
+        return _error("inspect_failed", str(e))
 
 
-async def browser_wait_for(
-    selector: str,
-    state: str = "visible",
-    timeout: int = 15_000,
-) -> dict:
-    """
-    Espera a que el elemento cambie a `state`.
+# =========================================================
+# COMPUESTAS (nivel alto)
+# =========================================================
 
-    Args:
-        state: "visible" | "hidden" | "attached" | "detached"
-        timeout: ms máximos de espera
-    """
-    tool_logger.info("browser_wait_for: selector=%s state=%s", selector, state)
+async def browser_search(query: str):
     try:
-        page = await _get_page()
-        await page.wait_for_selector(selector, state=state, timeout=timeout)
-        return {"status": "ok", "selector": selector, "state": state}
-    except Exception as exc:
-        error_logger.exception("Error en browser_wait_for")
-        return {"status": "error", "message": str(exc)}
+        if not query.strip():
+            return _error("invalid_query", "Query vacía")
+
+        url = "https://www.google.com/search?q=" + urllib.parse.quote_plus(query)
+
+        nav = await browser_navigate(url)
+        if nav.get("status") != "ok":
+            return nav
+
+        # fallback robusto (Google cambia DOM)
+        await asyncio.sleep(2)
+
+        text = await browser_get_text("body")
+        shot = await browser_screenshot()
+
+        return _ok(
+            query=query,
+            url=url,
+            text_preview=text.get("text", "")[:3000],
+            image_base64=shot.get("image_base64")
+        )
+
+    except Exception as e:
+        return _error("search_failed", str(e), query=query)
 
 
-async def browser_scroll(
-    x: int = 0,
-    y: int = 500,
-    selector: Optional[str] = None,
-) -> dict:
-    """
-    Hace scroll en la página o dentro de un elemento.
-
-    Args:
-        x: desplazamiento horizontal en píxeles
-        y: desplazamiento vertical en píxeles (positivo = hacia abajo)
-        selector: elemento en el que hacer scroll (None = ventana)
-    """
-    tool_logger.info("browser_scroll: x=%d y=%d selector=%s", x, y, selector)
+async def browser_close():
     try:
-        page = await _get_page()
-        if selector:
-            await page.eval_on_selector(
-                selector,
-                f"el => el.scrollBy({x}, {y})",
-            )
-        else:
-            await page.evaluate(f"window.scrollBy({x}, {y})")
-        return {"status": "ok", "x": x, "y": y}
-    except Exception as exc:
-        error_logger.exception("Error en browser_scroll")
-        return {"status": "error", "message": str(exc)}
+        await _close()
+        return _ok(message="Browser cerrado")
+    except Exception as e:
+        return _error("close_failed", str(e))
 
 
-async def browser_evaluate(script: str) -> dict:
-    """
-    Ejecuta JavaScript arbitrario en el contexto de la página.
-
-    Args:
-        script: código JS a ejecutar (debe ser una expresión o función)
-
-    Returns:
-        {status, result} donde result es el valor devuelto por el script
-    """
-    tool_logger.info("browser_evaluate: script_len=%d", len(script))
-    try:
-        page = await _get_page()
-        result = await page.evaluate(script)
-        return {"status": "ok", "result": result}
-    except Exception as exc:
-        error_logger.exception("Error en browser_evaluate")
-        return {"status": "error", "message": str(exc)}
-
-
-async def browser_search(query: str, max_text_chars: int = 3000) -> dict:
-    """
-    Busca en Google la query dada y devuelve el texto extraído más un screenshot.
-
-    Flujo:
-        1. Navega a google.com/search?q=<query>
-        2. Espera los resultados (selector h3)
-        3. Extrae texto del body (truncado a max_text_chars)
-        4. Captura screenshot
-
-    Args:
-        query: términos de búsqueda
-        max_text_chars: máximo de caracteres de texto a devolver
-
-    Returns:
-        {status, query, url, text_preview, image_base64}
-    """
-    tool_logger.info("browser_search: query=%s", query)
-
-    if not query.strip():
-        return {"status": "error", "message": "Query vacía"}
-
-    search_url = "https://www.google.com/search?q=" + urllib.parse.quote_plus(query)
-
-    nav = await browser_navigate(search_url, wait_until="domcontentloaded")
-    if nav.get("status") != "ok":
-        return nav
-
-    # Esperar resultados
-    wait = await browser_wait_for("h3", state="visible", timeout=10_000)
-    if wait.get("status") != "ok":
-        tool_logger.warning("browser_search: h3 no apareció, continuando de todas formas")
-
-    text_result = await browser_get_text("body")
-    text = text_result.get("text", "")[:max_text_chars]
-
-    screenshot = await browser_screenshot(full_page=False)
-
-    return {
-        "status": "ok",
-        "query": query,
-        "url": search_url,
-        "text_preview": text,
-        "image_base64": screenshot.get("image_base64"),
-    }
-
-
-async def browser_close() -> dict:
-    """Cierra el navegador y libera recursos de Playwright."""
-    tool_logger.info("browser_close")
-    try:
-        await _close_playwright()
-        return {"status": "ok", "message": "Navegador cerrado"}
-    except Exception as exc:
-        error_logger.exception("Error en browser_close")
-        return {"status": "error", "message": str(exc)}
-
-
-# ---------------------------------------------------------------------------
-# Registro
-# ---------------------------------------------------------------------------
+# =========================================================
+# REGISTRO
+# =========================================================
 
 TOOLS = {
-    "browser_navigate":   browser_navigate,
-    "browser_click":      browser_click,
-    "browser_fill":       browser_fill,
-    "browser_submit":     browser_submit,
+    # primitivas
+    "browser_navigate": browser_navigate,
+    "browser_click": browser_click,
+    "browser_fill": browser_fill,
     "browser_screenshot": browser_screenshot,
-    "browser_get_text":   browser_get_text,
-    "browser_get_html":   browser_get_html,
-    "browser_wait_for":   browser_wait_for,
-    "browser_scroll":     browser_scroll,
-    "browser_evaluate":   browser_evaluate,
-    "browser_search":     browser_search,
-    "browser_close":      browser_close,
+    "browser_get_text": browser_get_text,
+
+    # nueva clave
+    "browser_inspect": browser_inspect,
+
+    # compuestas
+    "browser_search": browser_search,
+
+    # control
+    "browser_close": browser_close,
 }

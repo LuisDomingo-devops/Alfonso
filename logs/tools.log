@@ -94,3 +94,23 @@
 2026-06-20 17:07:39,380 | INFO | tools | [----------] Delegando open_application al agente local: explorer
 2026-06-20 17:08:35,132 | INFO | tools | [----------] Delegando close_application al agente local: explorer
 2026-06-20 17:08:55,560 | INFO | tools | [----------] Delegando open_application al agente local: explorer.exe
+2026-06-20 17:28:09,219 | INFO | tools | [----------] Delegando open_application al agente local: firefox
+2026-06-20 17:28:33,517 | INFO | tools | [----------] Delegando close_application al agente local: firefox
+2026-06-20 17:29:01,003 | INFO | tools | [----------] Delegando open_application al agente local: explorer
+2026-06-20 17:31:29,962 | INFO | tools | [----------] Delegando open_application al agente local: explorer.exe
+2026-06-20 17:32:10,097 | INFO | tools | [----------] Delegando close_application al agente local: firefox
+2026-06-20 17:32:38,033 | INFO | tools | [----------] Delegando close_application al agente local: explorer
+2026-06-20 17:33:02,745 | INFO | tools | [----------] Delegando open_application al agente local: explorer
+2026-06-20 17:36:19,258 | INFO | tools | [----------] Intentando crear archivo: /Users/username/Desktop/pruebas.txt
+2026-06-20 17:36:19,270 | INFO | tools | [----------] Usuario de macOS en la ruta ('username') no coincide con el usuario actual de WSL ('luisd'). Ajustando a: /home/luisd/Desktop/pruebas.txt
+2026-06-20 17:36:19,272 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Desktop/pruebas.txt
+2026-06-20 17:36:19,272 | INFO | tools | [----------] Ruta absoluta final: /home/luisd/Desktop/pruebas.txt
+2026-06-20 17:36:19,275 | INFO | tools | [----------] Archivo creado exitosamente: /home/luisd/Desktop/pruebas.txt
+2026-06-20 17:37:49,398 | INFO | tools | [----------] Delegando open_application al agente local: notepad
+2026-06-20 17:43:57,211 | INFO | tools | [----------] browser_navigate: https://elpais.com
+2026-06-20 17:43:57,453 | INFO | tools | [----------] Arrancando Playwright: browser=firefox, headless=False, path=None
+2026-06-20 17:44:10,397 | INFO | tools | [----------] Playwright listo
+2026-06-20 17:44:13,636 | INFO | tools | [----------] Navegado a https://elpais.com → status=200 title=EL PAÍS: el periódico global
+2026-06-20 17:44:52,818 | INFO | tools | [----------] Delegando open_application al agente local: firefox
+2026-06-20 20:23:44,935 | INFO | tools | [----------] Iniciando browser: firefox headless=False
+2026-06-20 20:23:53,988 | INFO | tools | [----------] Browser listo
