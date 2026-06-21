@@ -477,3 +477,14 @@
 2026-06-20 20:23:58,770 | INFO | orchestrator | [14886ecf-1c6a-4b36-b3fa-33b20c086e52] Tool ejecutada: browser_navigate
 2026-06-20 20:24:23,519 | INFO | orchestrator | [1db8dcce-b3c7-4c01-879d-7522fd0d9e68] Planner run: cierra Firefox
 2026-06-20 20:24:26,120 | DEBUG | orchestrator | [1db8dcce-b3c7-4c01-879d-7522fd0d9e68] LLM RAW: {"tool":"close_application","args":{"application":"Firefox"}}
+2026-06-20 22:14:06,859 | INFO | orchestrator | [e6435dba-0ddb-4ef5-9808-5c46e8150b5e] Planner run: abre Firefox y dirígete a la página web
+2026-06-20 22:15:13,013 | DEBUG | orchestrator | [e6435dba-0ddb-4ef5-9808-5c46e8150b5e] LLM RAW: browser_navigate: {"url": "https://www.google.com"}
+browser_get_text: {"element_selector": "#q"}
+2026-06-20 22:17:58,236 | INFO | orchestrator | [fe387d89-6a68-4264-8168-21ff5bceeb5d] Planner run: crea un archivo en el escritorio que se llame hola soy Alfonso en pruebas
+2026-06-20 22:18:02,039 | DEBUG | orchestrator | [fe387d89-6a68-4264-8168-21ff5bceeb5d] LLM RAW: create_file: {"file_path":"/home/alfonso/Desktop/hola_soy_Alfonso.txt"}
+2026-06-20 22:25:36,708 | INFO | orchestrator | [939040a3-7f80-49fc-8509-6ac602e69136] Planner run: abre Firefox
+2026-06-20 22:26:26,701 | DEBUG | orchestrator | [939040a3-7f80-49fc-8509-6ac602e69136] LLM RAW: {"tool":"open_application","args":{"command":"firefox","args":{}}}
+2026-06-21 09:47:51,223 | INFO | orchestrator | [57761e61-987b-4461-a958-4bc97a381031] Planner run: abre la página elpais.com
+2026-06-21 09:48:41,252 | DEBUG | orchestrator | [57761e61-987b-4461-a958-4bc97a381031] LLM RAW: {"tool":"browser_navigate","args":{"url":"https://elpais.com/","wait_until":"networkidle2"}}
+2026-06-21 10:13:18,344 | INFO | orchestrator | [ddd0074e-38c4-4391-9339-a3559964139a] Planner run: abre la pagina elpais.com
+2026-06-21 10:14:54,606 | INFO | orchestrator | [f7048b53-7536-4113-ac82-8adcebc52b1f] Planner run: muestra el contenido

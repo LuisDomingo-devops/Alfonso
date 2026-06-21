@@ -973,3 +973,247 @@
 2026-06-20 20:24:26,120 | INFO | app | [1db8dcce-b3c7-4c01-879d-7522fd0d9e68] Solicitud /chat procesada con estado: chat
 2026-06-20 20:24:26,120 | INFO | app | [1db8dcce-b3c7-4c01-879d-7522fd0d9e68] LATENCY: 2.60s
 2026-06-20 20:24:55,966 | INFO | app.core.alfonso_bridge | [----------] Agente local desconectado: ('127.0.0.1', 58010)
+2026-06-20 21:50:41,782 | INFO | app.core.alfonso_bridge | [----------] Deteniendo servidor Alfonso Bridge...
+2026-06-20 21:50:41,848 | INFO | app.core.alfonso_bridge | [----------] Agente local desconectado: ('127.0.0.1', 47630)
+2026-06-20 21:50:41,851 | INFO | app.core.alfonso_bridge | [----------] Alfonso Bridge detenido.
+2026-06-20 21:50:41,867 | INFO | app | [----------] Alfonso detenido
+2026-06-20 21:50:44,592 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-20 21:50:44,593 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-20 21:50:44,608 | INFO | app.core.alfonso_bridge | [----------] Iniciando servidor Alfonso Bridge en 0.0.0.0:8765
+2026-06-20 21:50:44,616 | INFO | app | [----------] Agentes: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-20 21:50:44,617 | ERROR | app | [----------] Error precalentando modelo
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/main.py", line 57, in lifespan
+    await llm.generate("ping")
+  File "/home/luisd/Alfonso/app/core/llm_client.py", line 142, in generate
+    system_prompt = get_system_prompt(mode)
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/app/core/llm_client.py", line 58, in get_system_prompt
+    template = load_prompt(path)
+               ^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/app/core/llm_client.py", line 50, in load_prompt
+    return _read_prompt_file(path)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/app/core/llm_client.py", line 45, in _read_prompt_file
+    return Path(path).read_text(encoding="utf-8")
+           ^^^^
+NameError: name 'Path' is not defined. Did you mean: 'path'?
+2026-06-20 21:50:44,620 | INFO | app | [----------] Alfonso listo
+2026-06-20 21:50:45,388 | INFO | app.core.alfonso_bridge | [----------] Nuevo agente local conectado: ('127.0.0.1', 41298)
+2026-06-20 22:01:08,766 | INFO | app.core.alfonso_bridge | [----------] Deteniendo servidor Alfonso Bridge...
+2026-06-20 22:01:08,777 | INFO | app.core.alfonso_bridge | [----------] Agente local desconectado: ('127.0.0.1', 41298)
+2026-06-20 22:01:08,778 | INFO | app.core.alfonso_bridge | [----------] Alfonso Bridge detenido.
+2026-06-20 22:01:08,800 | INFO | app | [----------] Alfonso detenido
+2026-06-20 22:01:11,561 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-20 22:01:11,563 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-20 22:01:11,587 | INFO | app.core.alfonso_bridge | [----------] Iniciando servidor Alfonso Bridge en 0.0.0.0:8765
+2026-06-20 22:01:11,608 | INFO | app | [----------] Agentes: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-20 22:01:11,609 | ERROR | app | [----------] Error precargando prompts de sistema
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/main.py", line 63, in lifespan
+    get_system_prompt("chat")
+  File "/home/luisd/Alfonso/app/core/llm_client.py", line 58, in get_system_prompt
+    template = load_prompt(path)
+               ^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/app/core/llm_client.py", line 50, in load_prompt
+    return _read_prompt_file(path)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/app/core/llm_client.py", line 45, in _read_prompt_file
+    return Path(path).read_text(encoding="utf-8")
+           ^^^^
+NameError: name 'Path' is not defined. Did you mean: 'path'?
+2026-06-20 22:01:11,616 | ERROR | app | [----------] Error precalentando modelo
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/main.py", line 70, in lifespan
+    await llm.generate("ping")
+  File "/home/luisd/Alfonso/app/core/llm_client.py", line 142, in generate
+    system_prompt = get_system_prompt(mode)
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/app/core/llm_client.py", line 58, in get_system_prompt
+    template = load_prompt(path)
+               ^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/app/core/llm_client.py", line 50, in load_prompt
+    return _read_prompt_file(path)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/app/core/llm_client.py", line 45, in _read_prompt_file
+    return Path(path).read_text(encoding="utf-8")
+           ^^^^
+NameError: name 'Path' is not defined. Did you mean: 'path'?
+2026-06-20 22:01:11,620 | INFO | app | [----------] Alfonso listo
+2026-06-20 22:01:12,387 | INFO | app.core.alfonso_bridge | [----------] Nuevo agente local conectado: ('127.0.0.1', 44884)
+2026-06-20 22:03:42,267 | INFO | app.core.alfonso_bridge | [----------] Deteniendo servidor Alfonso Bridge...
+2026-06-20 22:03:42,270 | INFO | app.core.alfonso_bridge | [----------] Agente local desconectado: ('127.0.0.1', 44884)
+2026-06-20 22:03:42,271 | INFO | app.core.alfonso_bridge | [----------] Alfonso Bridge detenido.
+2026-06-20 22:03:42,274 | INFO | app | [----------] Alfonso detenido
+2026-06-20 22:03:43,544 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-20 22:03:43,545 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-20 22:03:43,558 | INFO | app.core.alfonso_bridge | [----------] Iniciando servidor Alfonso Bridge en 0.0.0.0:8765
+2026-06-20 22:03:43,571 | INFO | app | [----------] Agentes: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-20 22:03:43,573 | ERROR | app | [----------] Error precargando prompts de sistema
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/main.py", line 64, in lifespan
+    get_system_prompt("tool")
+  File "/home/luisd/Alfonso/app/core/llm_client.py", line 57, in get_system_prompt
+    path = settings.CHAT_PROMPT_PATH if mode == "chat" else settings.TOOL_PROMPT_PATH
+                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/pydantic/main.py", line 1042, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'Settings' object has no attribute 'TOOL_PROMPT_PATH'. Did you mean: 'CHAT_PROMPT_PATH'?
+2026-06-20 22:03:44,292 | INFO | app.core.alfonso_bridge | [----------] Nuevo agente local conectado: ('127.0.0.1', 60930)
+2026-06-20 22:05:05,041 | INFO | app | [----------] Modelo precalentado
+2026-06-20 22:05:05,045 | INFO | app | [----------] Alfonso listo
+2026-06-20 22:06:41,484 | INFO | app.core.alfonso_bridge | [----------] Deteniendo servidor Alfonso Bridge...
+2026-06-20 22:06:41,529 | INFO | app.core.alfonso_bridge | [----------] Agente local desconectado: ('127.0.0.1', 60930)
+2026-06-20 22:06:41,533 | INFO | app.core.alfonso_bridge | [----------] Alfonso Bridge detenido.
+2026-06-20 22:06:41,648 | INFO | app | [----------] Alfonso detenido
+2026-06-20 22:07:23,703 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-20 22:07:23,703 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-20 22:07:23,719 | INFO | app.core.alfonso_bridge | [----------] Iniciando servidor Alfonso Bridge en 0.0.0.0:8765
+2026-06-20 22:07:23,725 | INFO | app | [----------] Agentes: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-20 22:07:23,777 | ERROR | app | [----------] Error precargando prompts de sistema
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/main.py", line 64, in lifespan
+    get_system_prompt("tool")
+  File "/home/luisd/Alfonso/app/core/llm_client.py", line 58, in get_system_prompt
+    template = load_prompt(path)
+               ^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/app/core/llm_client.py", line 50, in load_prompt
+    return _read_prompt_file(path)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/app/core/llm_client.py", line 45, in _read_prompt_file
+    return Path(path).read_text(encoding="utf-8")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/pathlib.py", line 1029, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/pathlib.py", line 1015, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: [Errno 36] File name too long: 'OUTPUT: JSON only. No text. No markdown. No explanation.\n\nMANDATORY FORMAT:\n{"tool":"TOOL_NAME","args":{...}}\n\nTOOLS:\n{"tool":"no_op","args":{...}}\nno_op:\n\nargs:\n\n\n{"tool":"browser_navigate","args":{...}}\nbrowser_navigate:\n\nargs:\n\n\n{"tool":"browser_click","args":{...}}\nbrowser_click:\n\nargs:\n\n\n{"tool":"browser_fill","args":{...}}\nbrowser_fill:\n\nargs:\n\n\n{"tool":"browser_screenshot","args":{...}}\nbrowser_screenshot:\n\nargs:\n\n\n{"tool":"browser_get_text","args":{...}}\nbrowser_get_text:\n\nargs:\n\n\n{"tool":"browser_inspect","args":{...}}\nbrowser_inspect:\n\nargs:\n\n\n{"tool":"browser_search","args":{...}}\nbrowser_search:\n\nargs:\n\n\n{"tool":"browser_close","args":{...}}\nbrowser_close:\n\nargs:\n\n\n{"tool":"run_command","args":{...}}\nrun_command:\n\nargs:\n\n\n{"tool":"system_info","args":{...}}\nsystem_info:\n\nargs:\n\n\n{"tool":"open_application","args":{...}}\nopen_application:\n\nargs:\n\n\n{"tool":"close_application","args":{...}}\nclose_application:\n\nargs:\n\n\n{"tool":"get_current_datetime","args":{...}}\nget_current_datetime:\n\nargs:\n\n\n{"tool":"create_file","args":{...}}\ncreate_file:\n\nargs:\n\n\n{"tool":"read_file","args":{...}}\nread_file:\n\nargs:\n\n\n{"tool":"list_directory","args":{...}}\nlist_directory:\n\nargs:\n\n\n{"tool":"create_directory","args":{...}}\ncreate_directory:\n\nargs:\n\n\n{"tool":"append_file","args":{...}}\nappend_file:\n\nargs:\n\n\n{"tool":"delete_file","args":{...}}\ndelete_file:\n\nargs:\n\n\n{"tool":"delete_directory","args":{...}}\ndelete_directory:\n\nargs:\n\n\n{"tool":"move_file","args":{...}}\nmove_file:\n\nargs:\n\n\n{"tool":"rename_file","args":{...}}\nrename_file:\n\nargs:\n\n\n{"tool":"screenshot","args":{...}}\nscreenshot:\n\nargs:\n\n\n{"tool":"mouse_move","args":{...}}\nmouse_move:\n\nargs:\n\n\n{"tool":"mouse_click","args":{...}}\nmouse_click:\n\nargs:\n\n\n{"tool":"mouse_drag","args":{...}}\nmouse_drag:\n\nargs:\n\n\n{"tool":"keyboard_type","args":{...}}\nkeyboard_type:\n\nargs:\n\n\n{"tool":"keyboard_hotkey","args":{...}}\nkeyboard_hotkey:\n\nargs:\n\n\n{"tool":"ocr_screenshot","args":{...}}\nocr_screenshot:\n\nargs:\n\n\n{"tool":"ocr_image","args":{...}}\nocr_image:\n\nargs:\n\n\n{"tool":"find_on_screen","args":{...}}\nfind_on_screen:\n\nargs:\n\n\n{"tool":"window_list","args":{...}}\nwindow_list:\n\nargs:\n\n\n{"tool":"window_focus","args":{...}}\nwindow_focus:\n\nargs:\n\n\n{"tool":"window_close","args":{...}}\nwindow_close:\n\nargs:\n\n'
+2026-06-20 22:07:28,662 | INFO | app.core.alfonso_bridge | [----------] Nuevo agente local conectado: ('127.0.0.1', 46958)
+2026-06-20 22:07:57,616 | INFO | app | [----------] Modelo precalentado
+2026-06-20 22:07:57,616 | INFO | app | [----------] Alfonso listo
+2026-06-20 22:12:12,666 | INFO | app.core.alfonso_bridge | [----------] Deteniendo servidor Alfonso Bridge...
+2026-06-20 22:12:12,690 | INFO | app.core.alfonso_bridge | [----------] Agente local desconectado: ('127.0.0.1', 46958)
+2026-06-20 22:12:12,692 | INFO | app.core.alfonso_bridge | [----------] Alfonso Bridge detenido.
+2026-06-20 22:12:12,698 | INFO | app | [----------] Alfonso detenido
+2026-06-20 22:12:14,404 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-20 22:12:14,405 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-20 22:12:14,419 | INFO | app.core.alfonso_bridge | [----------] Iniciando servidor Alfonso Bridge en 0.0.0.0:8765
+2026-06-20 22:12:14,426 | INFO | app | [----------] Agentes: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-20 22:12:14,468 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-06-20 22:12:14,705 | INFO | app.core.alfonso_bridge | [----------] Nuevo agente local conectado: ('127.0.0.1', 59052)
+2026-06-20 22:12:57,796 | INFO | app | [----------] Modelo precalentado
+2026-06-20 22:12:57,797 | INFO | app | [----------] Alfonso listo
+2026-06-20 22:13:52,399 | INFO | app | [dcae6847-1016-48c2-b793-8bbc6ec138c3] HTTP GET /health
+2026-06-20 22:13:54,470 | INFO | app.core.alfonso_bridge | [----------] Nuevo agente local conectado: ('127.0.0.1', 36762)
+2026-06-20 22:14:06,852 | INFO | app | [e6435dba-0ddb-4ef5-9808-5c46e8150b5e] HTTP POST /chat
+2026-06-20 22:14:06,859 | INFO | app | [e6435dba-0ddb-4ef5-9808-5c46e8150b5e] Solicitud /chat recibida
+2026-06-20 22:14:06,859 | INFO | app | [e6435dba-0ddb-4ef5-9808-5c46e8150b5e] SESSION_ID: e6435dba-0ddb-4ef5-9808-5c46e8150b5e
+2026-06-20 22:14:06,859 | INFO | app | [e6435dba-0ddb-4ef5-9808-5c46e8150b5e] USER MESSAGE: abre Firefox y dirígete a la página web
+2026-06-20 22:15:13,021 | INFO | app | [e6435dba-0ddb-4ef5-9808-5c46e8150b5e] Solicitud /chat procesada con estado: chat
+2026-06-20 22:15:13,022 | INFO | app | [e6435dba-0ddb-4ef5-9808-5c46e8150b5e] LATENCY: 64.86s
+2026-06-20 22:17:58,225 | INFO | app | [fe387d89-6a68-4264-8168-21ff5bceeb5d] HTTP POST /chat
+2026-06-20 22:17:58,235 | INFO | app | [fe387d89-6a68-4264-8168-21ff5bceeb5d] Solicitud /chat recibida
+2026-06-20 22:17:58,235 | INFO | app | [fe387d89-6a68-4264-8168-21ff5bceeb5d] SESSION_ID: fe387d89-6a68-4264-8168-21ff5bceeb5d
+2026-06-20 22:17:58,236 | INFO | app | [fe387d89-6a68-4264-8168-21ff5bceeb5d] USER MESSAGE: crea un archivo en el escritorio que se llame hola soy Alfonso en pruebas
+2026-06-20 22:18:02,087 | INFO | app | [fe387d89-6a68-4264-8168-21ff5bceeb5d] Solicitud /chat procesada con estado: error
+2026-06-20 22:18:02,087 | INFO | app | [fe387d89-6a68-4264-8168-21ff5bceeb5d] LATENCY: 3.85s
+2026-06-20 22:18:14,904 | INFO | app.core.alfonso_bridge | [----------] Agente local desconectado: ('127.0.0.1', 36762)
+2026-06-20 22:22:14,741 | INFO | app.core.alfonso_bridge | [----------] Deteniendo servidor Alfonso Bridge...
+2026-06-20 22:22:14,751 | INFO | app.core.alfonso_bridge | [----------] Agente local desconectado: ('127.0.0.1', 59052)
+2026-06-20 22:22:14,751 | INFO | app.core.alfonso_bridge | [----------] Alfonso Bridge detenido.
+2026-06-20 22:22:14,758 | INFO | app | [----------] Alfonso detenido
+2026-06-20 22:22:18,353 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-20 22:22:18,354 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-20 22:22:18,375 | INFO | app.core.alfonso_bridge | [----------] Iniciando servidor Alfonso Bridge en 0.0.0.0:8765
+2026-06-20 22:22:18,383 | INFO | app | [----------] Agentes: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-20 22:22:18,437 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-06-20 22:22:25,675 | INFO | app.core.alfonso_bridge | [----------] Nuevo agente local conectado: ('127.0.0.1', 52354)
+2026-06-20 22:23:27,035 | INFO | app | [----------] Modelo precalentado
+2026-06-20 22:23:27,036 | INFO | app | [----------] Alfonso listo
+2026-06-20 22:23:27,145 | INFO | app.core.alfonso_bridge | [----------] Deteniendo servidor Alfonso Bridge...
+2026-06-20 22:23:27,152 | INFO | app.core.alfonso_bridge | [----------] Agente local desconectado: ('127.0.0.1', 52354)
+2026-06-20 22:23:27,153 | INFO | app.core.alfonso_bridge | [----------] Alfonso Bridge detenido.
+2026-06-20 22:23:27,162 | INFO | app | [----------] Alfonso detenido
+2026-06-20 22:23:28,543 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-20 22:23:28,544 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-20 22:23:28,558 | INFO | app.core.alfonso_bridge | [----------] Iniciando servidor Alfonso Bridge en 0.0.0.0:8765
+2026-06-20 22:23:28,563 | INFO | app | [----------] Agentes: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-20 22:23:28,593 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-06-20 22:23:29,718 | INFO | app.core.alfonso_bridge | [----------] Nuevo agente local conectado: ('127.0.0.1', 60338)
+2026-06-20 22:24:00,881 | INFO | app | [----------] Modelo precalentado
+2026-06-20 22:24:00,882 | INFO | app | [----------] Alfonso listo
+2026-06-20 22:25:15,101 | INFO | app | [02e54596-b3f3-41a3-a655-8682c4f7c973] HTTP GET /health
+2026-06-20 22:25:17,847 | INFO | app.core.alfonso_bridge | [----------] Nuevo agente local conectado: ('127.0.0.1', 56132)
+2026-06-20 22:25:36,700 | INFO | app | [939040a3-7f80-49fc-8509-6ac602e69136] HTTP POST /chat
+2026-06-20 22:25:36,707 | INFO | app | [939040a3-7f80-49fc-8509-6ac602e69136] Solicitud /chat recibida
+2026-06-20 22:25:36,708 | INFO | app | [939040a3-7f80-49fc-8509-6ac602e69136] SESSION_ID: 939040a3-7f80-49fc-8509-6ac602e69136
+2026-06-20 22:25:36,708 | INFO | app | [939040a3-7f80-49fc-8509-6ac602e69136] USER MESSAGE: abre Firefox
+2026-06-20 22:26:26,701 | INFO | app | [939040a3-7f80-49fc-8509-6ac602e69136] Solicitud /chat procesada con estado: chat
+2026-06-20 22:26:26,702 | INFO | app | [939040a3-7f80-49fc-8509-6ac602e69136] LATENCY: 48.71s
+2026-06-20 22:26:59,310 | INFO | app.core.alfonso_bridge | [----------] Agente local desconectado: ('127.0.0.1', 56132)
+2026-06-20 22:27:03,937 | INFO | app.core.alfonso_bridge | [----------] Conexión cerrada inesperadamente por el cliente.
+2026-06-20 22:27:03,939 | INFO | app.core.alfonso_bridge | [----------] Agente local desconectado: ('127.0.0.1', 60338)
+2026-06-21 09:45:15,321 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-21 09:45:15,326 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-21 09:45:15,352 | INFO | app.core.alfonso_bridge | [----------] Iniciando servidor Alfonso Bridge en 0.0.0.0:8765
+2026-06-21 09:45:15,368 | INFO | app | [----------] Agentes: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-21 09:45:15,474 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-06-21 09:45:19,349 | INFO | app.core.alfonso_bridge | [----------] Nuevo agente local conectado: ('127.0.0.1', 52394)
+2026-06-21 09:46:13,870 | INFO | app | [----------] Modelo precalentado
+2026-06-21 09:46:13,874 | INFO | app | [----------] Alfonso listo
+2026-06-21 09:46:43,009 | INFO | app | [b2e21535-8e0d-44d7-bc1d-607ef5e4a32f] HTTP GET /health
+2026-06-21 09:46:45,059 | INFO | app.core.alfonso_bridge | [----------] Nuevo agente local conectado: ('127.0.0.1', 47734)
+2026-06-21 09:47:51,145 | INFO | app | [57761e61-987b-4461-a958-4bc97a381031] HTTP POST /chat
+2026-06-21 09:47:51,222 | INFO | app | [57761e61-987b-4461-a958-4bc97a381031] Solicitud /chat recibida
+2026-06-21 09:47:51,222 | INFO | app | [57761e61-987b-4461-a958-4bc97a381031] SESSION_ID: 57761e61-987b-4461-a958-4bc97a381031
+2026-06-21 09:47:51,223 | INFO | app | [57761e61-987b-4461-a958-4bc97a381031] USER MESSAGE: abre la página elpais.com
+2026-06-21 09:48:41,254 | INFO | app | [57761e61-987b-4461-a958-4bc97a381031] Solicitud /chat procesada con estado: chat
+2026-06-21 09:48:41,255 | INFO | app | [57761e61-987b-4461-a958-4bc97a381031] LATENCY: 49.06s
+2026-06-21 09:50:02,443 | INFO | app.core.alfonso_bridge | [----------] Agente local desconectado: ('127.0.0.1', 47734)
+2026-06-21 09:59:11,734 | INFO | app.core.alfonso_bridge | [----------] Deteniendo servidor Alfonso Bridge...
+2026-06-21 09:59:11,762 | INFO | app.core.alfonso_bridge | [----------] Agente local desconectado: ('127.0.0.1', 52394)
+2026-06-21 09:59:11,763 | INFO | app.core.alfonso_bridge | [----------] Alfonso Bridge detenido.
+2026-06-21 09:59:11,773 | INFO | app | [----------] Alfonso detenido
+2026-06-21 09:59:13,175 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-21 09:59:13,175 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-21 09:59:13,199 | INFO | app.core.alfonso_bridge | [----------] Iniciando servidor Alfonso Bridge en 0.0.0.0:8765
+2026-06-21 09:59:13,206 | INFO | app | [----------] Agentes: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-21 09:59:13,265 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-06-21 09:59:13,791 | INFO | app.core.alfonso_bridge | [----------] Nuevo agente local conectado: ('127.0.0.1', 33752)
+2026-06-21 10:00:29,319 | INFO | app | [----------] Modelo precalentado
+2026-06-21 10:00:29,324 | INFO | app | [----------] Alfonso listo
+2026-06-21 10:09:43,885 | INFO | app.core.alfonso_bridge | [----------] Deteniendo servidor Alfonso Bridge...
+2026-06-21 10:09:43,936 | INFO | app.core.alfonso_bridge | [----------] Agente local desconectado: ('127.0.0.1', 33752)
+2026-06-21 10:09:43,938 | INFO | app.core.alfonso_bridge | [----------] Alfonso Bridge detenido.
+2026-06-21 10:09:43,948 | INFO | app | [----------] Alfonso detenido
+2026-06-21 10:09:45,761 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-21 10:09:45,762 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-21 10:09:45,780 | INFO | app.core.alfonso_bridge | [----------] Iniciando servidor Alfonso Bridge en 0.0.0.0:8765
+2026-06-21 10:09:45,788 | INFO | app | [----------] Agentes: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-21 10:09:45,851 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-06-21 10:09:46,446 | INFO | app.core.alfonso_bridge | [----------] Nuevo agente local conectado: ('127.0.0.1', 34542)
+2026-06-21 10:10:23,538 | INFO | app | [----------] Modelo precalentado
+2026-06-21 10:10:23,539 | INFO | app | [----------] Alfonso listo
+2026-06-21 10:12:57,843 | INFO | app | [683b4e12-deab-4e27-8cbd-a92288fcc45e] HTTP GET /health
+2026-06-21 10:12:59,872 | INFO | app.core.alfonso_bridge | [----------] Nuevo agente local conectado: ('127.0.0.1', 56438)
+2026-06-21 10:13:18,340 | INFO | app | [ddd0074e-38c4-4391-9339-a3559964139a] HTTP POST /chat
+2026-06-21 10:13:18,343 | INFO | app | [ddd0074e-38c4-4391-9339-a3559964139a] Solicitud /chat recibida
+2026-06-21 10:13:18,343 | INFO | app | [ddd0074e-38c4-4391-9339-a3559964139a] SESSION_ID: ddd0074e-38c4-4391-9339-a3559964139a
+2026-06-21 10:13:18,343 | INFO | app | [ddd0074e-38c4-4391-9339-a3559964139a] USER MESSAGE: abre la pagina elpais.com
+2026-06-21 10:13:40,945 | INFO | app.core.alfonso_bridge | [----------] Conexión cerrada inesperadamente por el cliente.
+2026-06-21 10:13:40,945 | INFO | app.core.alfonso_bridge | [----------] Agente local desconectado: ('127.0.0.1', 56438)
+2026-06-21 10:13:56,639 | INFO | app | [ddd0074e-38c4-4391-9339-a3559964139a] Solicitud /chat procesada con estado: chat
+2026-06-21 10:13:56,640 | INFO | app | [ddd0074e-38c4-4391-9339-a3559964139a] LATENCY: 37.21s
+2026-06-21 10:14:03,435 | INFO | app.core.alfonso_bridge | [----------] Nuevo agente local conectado: ('127.0.0.1', 33096)
+2026-06-21 10:14:54,605 | INFO | app | [f7048b53-7536-4113-ac82-8adcebc52b1f] HTTP POST /chat
+2026-06-21 10:14:54,605 | INFO | app | [f7048b53-7536-4113-ac82-8adcebc52b1f] Solicitud /chat recibida
+2026-06-21 10:14:54,606 | INFO | app | [f7048b53-7536-4113-ac82-8adcebc52b1f] SESSION_ID: f7048b53-7536-4113-ac82-8adcebc52b1f
+2026-06-21 10:14:54,606 | INFO | app | [f7048b53-7536-4113-ac82-8adcebc52b1f] USER MESSAGE: muestra el contenido
+2026-06-21 10:15:05,724 | INFO | app.core.alfonso_bridge | [----------] Conexión cerrada inesperadamente por el cliente.
+2026-06-21 10:15:05,725 | INFO | app.core.alfonso_bridge | [----------] Agente local desconectado: ('127.0.0.1', 33096)
+2026-06-21 10:15:26,367 | INFO | app | [f7048b53-7536-4113-ac82-8adcebc52b1f] Solicitud /chat procesada con estado: chat
+2026-06-21 10:15:26,367 | INFO | app | [f7048b53-7536-4113-ac82-8adcebc52b1f] LATENCY: 30.70s
+2026-06-21 10:15:33,197 | INFO | app.core.alfonso_bridge | [----------] Nuevo agente local conectado: ('127.0.0.1', 50920)
+2026-06-21 10:15:41,506 | INFO | app.core.alfonso_bridge | [----------] Agente local desconectado: ('127.0.0.1', 50920)

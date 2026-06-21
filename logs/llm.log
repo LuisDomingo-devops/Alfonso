@@ -630,3 +630,17 @@ Responde al usuario directamente, no hay necesidad de usar el bloque interno.
 2026-06-20 20:21:13,948 | INFO | llm | [----------] MODEL=qwen2.5:1.5b MODE=chat
 2026-06-20 20:22:59,189 | INFO | llm | [14886ecf-1c6a-4b36-b3fa-33b20c086e52] MODEL=qwen2.5:1.5b MODE=tool
 2026-06-20 20:24:23,525 | INFO | llm | [1db8dcce-b3c7-4c01-879d-7522fd0d9e68] MODEL=qwen2.5:1.5b MODE=tool
+2026-06-20 22:03:43,596 | INFO | llm | [----------] MODEL=qwen2.5:1.5b MODE=chat
+2026-06-20 22:07:23,783 | INFO | llm | [----------] MODEL=qwen2.5:1.5b MODE=chat
+2026-06-20 22:12:14,469 | INFO | llm | [----------] MODEL=qwen2.5:1.5b MODE=chat
+2026-06-20 22:14:06,872 | INFO | llm | [e6435dba-0ddb-4ef5-9808-5c46e8150b5e] MODEL=qwen2.5:1.5b MODE=tool
+2026-06-20 22:17:58,256 | INFO | llm | [fe387d89-6a68-4264-8168-21ff5bceeb5d] MODEL=qwen2.5:1.5b MODE=tool
+2026-06-20 22:22:18,438 | INFO | llm | [----------] MODEL=qwen2.5:1.5b MODE=chat
+2026-06-20 22:23:28,593 | INFO | llm | [----------] MODEL=qwen2.5:1.5b MODE=chat
+2026-06-20 22:25:36,720 | INFO | llm | [939040a3-7f80-49fc-8509-6ac602e69136] MODEL=qwen2.5:1.5b MODE=tool
+2026-06-21 09:45:15,475 | INFO | llm | [----------] MODEL=qwen2.5:1.5b MODE=chat
+2026-06-21 09:47:51,282 | INFO | llm | [57761e61-987b-4461-a958-4bc97a381031] MODEL=qwen2.5:1.5b MODE=tool
+2026-06-21 09:59:13,265 | INFO | llm | [----------] MODEL=qwen2.5:1.5b MODE=chat
+2026-06-21 10:09:45,851 | INFO | llm | [----------] MODEL=qwen2.5:1.5b MODE=chat
+2026-06-21 10:13:18,353 | INFO | llm | [ddd0074e-38c4-4391-9339-a3559964139a] MODEL=qwen2.5:1.5b MODE=chat
+2026-06-21 10:14:54,619 | INFO | llm | [f7048b53-7536-4113-ac82-8adcebc52b1f] MODEL=qwen2.5:1.5b MODE=chat

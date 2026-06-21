@@ -23,6 +23,7 @@ class SystemAgent(BaseAgent):
         "system.command",
         "system.open_app",
         "system.close_app",
+        "system.open_url", 
     ]
 
     async def handle(self, event_type: str, data: dict) -> AgentResult:
@@ -52,6 +53,12 @@ class SystemAgent(BaseAgent):
             result = await self.run_tool(
                 "close_application",
                 command=args.get("command", ""),
+            )
+
+        elif event_type == "system.open_url":
+            result = await self.run_tool(
+                "open_url",
+                url=args.get("url", ""),
             )
 
         else:

@@ -375,14 +375,33 @@ class AlfonsoAgent:
 
             elif action == "window_close":
                 result = self._close_window(params.get("title", ""))
-
+            
+            elif action == "open_url":
+                url = params.get("url", "").strip()
+                if not url:
+                    return {
+                        "id": command_id,
+                        "status": "error",
+                        "error": "No se especificó URL"
+                    }
+                try:
+                    import webbrowser
+                    webbrowser.open(url)
+                    result = f"URL abierta en el navegador predeterminado: {url}"
+                except Exception as e:
+                    logger.error(f"Error abriendo URL {url}: {e}")
+                    return {
+                        "id": command_id,
+                        "status": "error",
+                        "error": f"No se pudo abrir la URL: {url}"
+                    }
             else:
                 return {
                     "id": command_id,
                     "status": "error",
                     "error": f"Acción desconocida: {action}"
                 }
-
+            
             return {
                 "id": command_id,
                 "status": "success",

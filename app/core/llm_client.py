@@ -6,13 +6,13 @@ import asyncio
 import json
 import re
 from datetime import datetime
-
+from pathlib import Path          # ← esto es lo que falta
 from app.config import settings, load_prompt
 from app.core.http_client import client
 from app.core.tool_registry import get_tool
 from app.core.prompt_generator import generate_tool_prompt
 from app.utils.logger import attach_request_id, llm_logger, error_logger
-
+from app.core.prompt_generator import generate_tool_prompt
 
 # ---------------------------------------------------------------------
 # REGEX
@@ -38,20 +38,27 @@ def _get_current_date_str() -> str:
     return f"{days[now.weekday()]}, {now.day} de {months[now.month - 1]} de {now.year}, {now.strftime('%H:%M')}"
 
 
+from functools import lru_cache
+
+@lru_cache(maxsize=8)
+def _read_prompt_file(path: str) -> str:
+    return Path(path).read_text(encoding="utf-8")
+
+
+def load_prompt(path: str) -> str:
+    try:
+        return _read_prompt_file(path)
+    except FileNotFoundError:
+        error_logger.error("Prompt no encontrado en %s, usando fallback mínimo", path)
+        return "Eres Alfonso. Responde de forma útil y concisa."
+
+
 def get_system_prompt(mode: str) -> str:
-    """
-    ÚNICA responsabilidad:
-    - chat → archivo
-    - tool → generado dinámicamente
-    """
     if mode == "chat":
         template = load_prompt(settings.CHAT_PROMPT_PATH)
     else:
         template = generate_tool_prompt()
-
     return template.replace("{current_date}", _get_current_date_str())
-
-
 # ---------------------------------------------------------------------
 # VALIDACIÓN TOOL
 # ---------------------------------------------------------------------

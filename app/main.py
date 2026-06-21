@@ -18,7 +18,7 @@ from app.agents.registry import AgentRegistry
 from app.api.routes import router
 from app.api.routes_fase3 import router_browser, router_computer
 from app.core.event_bus import EventBus
-from app.core.llm_client import OllamaClient
+from app.core.llm_client import OllamaClient, get_system_prompt
 from app.core.metrics import increment_http_errors, increment_http_requests, record_http_latency
 from app.core.planner_orchestrator import PlannerOrchestrator
 from app.core.alfonso_bridge import bridge as alfonso_bridge
@@ -52,6 +52,19 @@ async def lifespan(app: FastAPI):
 
     from app.api import routes as _routes
     _routes.orchestrator = planner_orchestrator
+
+    # Precarga (y por tanto cachea en memoria) ambos prompts de sistema
+    # ANTES de aceptar tráfico. Así, si TOOL_PROMPT_PATH o CHAT_PROMPT_PATH
+    # apuntan a un archivo roto o inexistente, el error sale en los logs de
+    # arranque y no en el primer /chat de un usuario real. Con la versión
+    # cacheada de load_prompt() esto también evita el I/O de disco síncrono
+    # en cada request posterior.
+    try:
+        get_system_prompt("chat")
+        get_system_prompt("tool")
+        app_logger.info("Prompts de sistema precargados (chat + tool)")
+    except Exception:
+        app_logger.exception("Error precargando prompts de sistema")
 
     try:
         await llm.generate("ping")

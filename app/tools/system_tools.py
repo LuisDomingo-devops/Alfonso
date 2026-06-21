@@ -302,6 +302,44 @@ async def close_application(command: str) -> dict:
             "equipo. Arranca ui/alfonso_agent.py en tu máquina y vuelve a intentarlo."
         ),
     }
+async def open_url(url: str) -> dict:
+    """
+    Abre una URL en el navegador predeterminado del CLIENTE conectado
+    (vía alfonso_bridge). Si no hay agente local conectado, cae a
+    Playwright en el servidor como fallback (modo automatización/scraping,
+    NO visible para el usuario — solo para cuando Alfonso opera solo).
+    """
+    url = url.strip()
+    if not url:
+        return {"status": "error", "message": "URL no especificada"}
+
+    if not url.startswith(("http://", "https://")):
+        url = "https://" + url
+
+    if alfonso_bridge.has_clients():
+        tool_logger.info("Delegando open_url al agente local: %s", url)
+        response = await alfonso_bridge.send_command("open_url", {"url": url})
+        if response.get("status") == "success":
+            return {
+                "status": "ok",
+                "message": response.get("result"),
+                "delegate": "alfonso_agent",
+                "url": url,
+            }
+        return {
+            "status": "error",
+            "message": response.get("error", "Error abriendo la URL en el cliente."),
+            "delegate": "alfonso_agent",
+        }
+
+    tool_logger.warning(
+        "No hay agente local conectado; '%s' se abrirá en Playwright en el "
+        "servidor y NO se verá en pantalla del cliente. Arranca "
+        "ui/alfonso_agent.py para delegar correctamente.",
+        url,
+    )
+    from app.tools.browser_tools import browser_navigate
+    return await browser_navigate(url)
 
 
 # ---------------------------------------------------------------------------
@@ -395,4 +433,5 @@ TOOLS = {
     "open_application":     open_application,
     "close_application":    close_application,
     "get_current_datetime": get_current_datetime,
+    "open_url":             open_url,
 }

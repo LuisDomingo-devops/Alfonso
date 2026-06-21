@@ -23,6 +23,7 @@ _TOOL_TO_EVENT: dict[str, str] = {
     "run_command":           "system.command",
     "open_application":      "system.open_app",
     "close_application":     "system.close_app",
+    "open_url":               "system.open_url",
     # Navegador
     "browser_navigate":      "browser.navigate",
     "browser_click":         "browser.click",
