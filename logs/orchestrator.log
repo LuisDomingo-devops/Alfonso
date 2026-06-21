@@ -488,3 +488,15 @@ browser_get_text: {"element_selector": "#q"}
 2026-06-21 09:48:41,252 | DEBUG | orchestrator | [57761e61-987b-4461-a958-4bc97a381031] LLM RAW: {"tool":"browser_navigate","args":{"url":"https://elpais.com/","wait_until":"networkidle2"}}
 2026-06-21 10:13:18,344 | INFO | orchestrator | [ddd0074e-38c4-4391-9339-a3559964139a] Planner run: abre la pagina elpais.com
 2026-06-21 10:14:54,606 | INFO | orchestrator | [f7048b53-7536-4113-ac82-8adcebc52b1f] Planner run: muestra el contenido
+2026-06-21 12:05:33,600 | INFO | orchestrator | [be3ff821-3592-46dd-9e6f-88ff6e9d372f] Planner run: abre Google por favor
+2026-06-21 12:06:34,911 | DEBUG | orchestrator | [be3ff821-3592-46dd-9e6f-88ff6e9d372f] LLM RAW: {"tool":"open_url","args":{"url":"https://www.google.com"}}
+2026-06-21 12:49:47,562 | INFO | orchestrator | [e38ff120-f09b-4a95-8c19-c4fa15ebfac3] Planner run: abre la pagina elpais.com
+2026-06-21 14:01:14,145 | INFO | orchestrator | [a4c35d40-341f-46d9-9391-cf6341fb3d18] Planner run: abre la pagina elpais.com
+2026-06-21 14:11:29,953 | INFO | orchestrator | [3a06f099-e87a-41dc-9e22-343e3d6e0cc2] Planner run: abre la pagina elpais.com
+2026-06-21 14:12:40,321 | DEBUG | orchestrator | [3a06f099-e87a-41dc-9e22-343e3d6e0cc2] LLM RAW: {"tool":"open_url","args":{"url":"https://elpais.com/"}}
+2026-06-21 14:17:16,881 | INFO | orchestrator | [474523d1-e93b-4c10-b2dc-6e3180816398] Planner run: abre la pagina elpais.com
+2026-06-21 14:22:58,343 | INFO | orchestrator | [ae1ad7c5-d35d-43b2-8944-94d1981cb906] Planner run: abre la pagian de elpais.com
+2026-06-21 14:23:47,892 | DEBUG | orchestrator | [ae1ad7c5-d35d-43b2-8944-94d1981cb906] LLM RAW: {"tool":"open_url","args":{"url":"https://www.elpais.com/"}}
+2026-06-21 14:27:23,422 | INFO | orchestrator | [2624a00d-36d2-4a9c-abbc-9e86a458b695] Planner run: abre la pagina elpais.com
+2026-06-21 14:28:09,539 | DEBUG | orchestrator | [2624a00d-36d2-4a9c-abbc-9e86a458b695] LLM RAW: {"tool":"open_url","args":{"url":"https://elpais.com/"}}
+2026-06-21 14:28:39,257 | INFO | orchestrator | [dce0f460-3c10-482d-983f-d7161d87e994] Planner run: hola

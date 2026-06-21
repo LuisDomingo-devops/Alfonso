@@ -136,7 +136,11 @@ async def generic_exception_handler(request: Request, exc: Exception):
         content={"status": "error", "request_id": request_id, "detail": "Internal server error"},
     )
 
-
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    await alfonso_bridge.start()
+    yield
+    await alfonso_bridge.stop()
 # ---------------------------------------------------------------------------
 # Routers
 # ---------------------------------------------------------------------------

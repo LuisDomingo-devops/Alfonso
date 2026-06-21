@@ -6,7 +6,7 @@ import asyncio
 import json
 import re
 from datetime import datetime
-from pathlib import Path          # ← esto es lo que falta
+from pathlib import Path          
 from app.config import settings, load_prompt
 from app.core.http_client import client
 from app.core.tool_registry import get_tool
@@ -84,11 +84,22 @@ def validate_tool_call(tool_call: dict) -> dict:
 # ---------------------------------------------------------------------
 # EXTRACTOR
 # ---------------------------------------------------------------------
+import json
+import re
 
 def extract_json_robust(raw: str) -> dict | None:
+    if not raw:
+        return None
+
     raw = raw.strip()
 
-    # 1. JSON block
+    # 0. FIX CRÍTICO: JSON directo (ESTO TE FALTABA)
+    try:
+        return json.loads(raw)
+    except Exception:
+        pass
+
+    # 1. JSON block (fallback regex)
     m = _JSON_BLOCK.search(raw)
     if m:
         try:
@@ -96,9 +107,10 @@ def extract_json_robust(raw: str) -> dict | None:
         except json.JSONDecodeError:
             pass
 
+    # 2. remove think blocks
     clean = _THINK_BLOCK.sub("", raw).strip()
 
-    # 2. FIX NUEVO: tool: {json}
+    # 3. tool: {json}
     m = _TOOL_SPLIT_COLON.match(clean)
     if m:
         try:
@@ -109,7 +121,7 @@ def extract_json_robust(raw: str) -> dict | None:
         except json.JSONDecodeError:
             pass
 
-    # 3. inline tool
+    # 4. inline tool
     m = _TOOL_INLINE.match(clean)
     if m:
         try:
@@ -120,7 +132,7 @@ def extract_json_robust(raw: str) -> dict | None:
         except json.JSONDecodeError:
             pass
 
-    # 4. resto igual...
+    return None
 
 # ---------------------------------------------------------------------
 # CLIENTE

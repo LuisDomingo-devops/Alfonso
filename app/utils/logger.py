@@ -72,7 +72,7 @@ def build_logger(name: str, filename: str):
 app_logger = build_logger("app", "app.log")
 tool_logger = build_logger("tools", "tools.log")
 error_logger = build_logger("errors", "errors.log")
-orchestrator_logger = build_logger("orchestrator", "orchestrator.log")
+orchestrator_logger = build_logger("planner_orchestrator", "planner_orchestrator.log")
 agent_logger = build_logger("agent", "agent.log")
 llm_logger = build_logger("llm", "llm.log")
 tool_registry_logger = build_logger("tool_registry", "tool_registry.log")

@@ -114,3 +114,5 @@
 2026-06-20 17:44:52,818 | INFO | tools | [----------] Delegando open_application al agente local: firefox
 2026-06-20 20:23:44,935 | INFO | tools | [----------] Iniciando browser: firefox headless=False
 2026-06-20 20:23:53,988 | INFO | tools | [----------] Browser listo
+2026-06-21 14:23:47,893 | INFO | tools | [----------] Delegando open_url al agente local: https://www.elpais.com/
+2026-06-21 14:28:09,541 | INFO | tools | [----------] Delegando open_url al agente local: https://elpais.com/

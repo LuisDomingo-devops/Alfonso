@@ -4,153 +4,128 @@ import websockets
 import uuid
 import logging
 
-# Configuración de logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger("bridge")
+
+
+ALLOWED_ACTIONS = {
+    "system.open_app",
+    "system.close_app",
+    "system.open_url",
+    "keyboard.type",
+    "keyboard.press",
+    "mouse.move",
+    "mouse.click",
+    "mouse.drag",
+    "window.focus",
+    "window.close",
+    "screen.screenshot",
+}
+
 
 class AlfonsoBridge:
-    def __init__(self, host='0.0.0.0', port=8765):
+    def __init__(self, host="0.0.0.0", port=8765):
         self.host = host
         self.port = port
-        self.connected_clients = set()
-        self.pending_commands = {}
-        self._server = None
+        self.clients = set()
+        self.pending = {}
+        self.server = None
 
-    async def register(self, websocket):
-        self.connected_clients.add(websocket)
-        logger.info(f"Nuevo agente local conectado: {websocket.remote_address}")
+    async def start(self):
+        logger.info(f"Bridge en {self.host}:{self.port}")
+        self.server = await websockets.serve(self.handler, self.host, self.port)
 
-    async def unregister(self, websocket):
-        # FIX: remove() lanza KeyError si el websocket ya fue eliminado
-        # (puede pasar si handle_connection limpia dos veces por una
-        # desconexión simultánea con un envío de comando en curso).
-        self.connected_clients.discard(websocket)
-        logger.info(f"Agente local desconectado: {websocket.remote_address}")
+    async def stop(self):
+        logger.info("Cerrando bridge...")
 
-    async def handle_connection(self, websocket):
-        await self.register(websocket)
+        # cerrar clientes
+        for ws in list(self.clients):
+            await ws.close()
+
+        self.clients.clear()
+        self.pending.clear()
+
+        # cerrar server websocket
+        if self.server:
+            self.server.close()
+            await self.server.wait_closed()
+
+        logger.info("Bridge cerrado correctamente")
+
+    async def register(self, ws):
+        self.clients.add(ws)
+        logger.info(f"Cliente conectado: {ws.remote_address}")
+
+    async def unregister(self, ws):
+        self.clients.discard(ws)
+        logger.info(f"Cliente desconectado: {ws.remote_address}")
+
+    async def handler(self, ws):
+        await self.register(ws)
         try:
-            async for message in websocket:
-                data = json.loads(message)
-                logger.info(f"Respuesta recibida del agente: {data}")
-                
-                # Manejar la respuesta del comando
-                command_id = data.get("id")
-                if command_id in self.pending_commands:
-                    future = self.pending_commands.pop(command_id)
-                    future.set_result(data)
+            async for msg in ws:
+                data = json.loads(msg)
+
+                cmd_id = data.get("id")
+                if cmd_id in self.pending:
+                    fut = self.pending.pop(cmd_id)
+                    fut.set_result(data)
                 else:
-                    logger.warning(f"Recibida respuesta para un comando desconocido: {command_id}")
-        except websockets.exceptions.ConnectionClosedError:
-            logger.info("Conexión cerrada inesperadamente por el cliente.")
+                    logger.warning(f"Respuesta desconocida: {data}")
+
         finally:
-            await self.unregister(websocket)
+            await self.unregister(ws)
 
     def has_clients(self):
-        return bool(self.connected_clients)
+        return bool(self.clients)
 
     async def send_command(self, action, params=None):
-        if not self.connected_clients:
-            logger.error("No hay agentes locales conectados para ejecutar el comando.")
-            return {"status": "error", "error": "No hay agentes locales conectados."}
+        if action not in ALLOWED_ACTIONS:
+            return {
+                "status": "error",
+                "error": f"Action no permitida: {action}"
+            }
 
-        command_id = str(uuid.uuid4())
-        command = {
-            "id": command_id,
+        if not self.clients:
+            return {"status": "error", "error": "No hay clientes conectados"}
+
+        cmd_id = str(uuid.uuid4())
+
+        payload = {
+            "id": cmd_id,
             "action": action,
             "params": params or {}
         }
 
-        # Por simplicidad, enviamos a todos los clientes conectados (normalmente solo habrá uno)
-        message = json.dumps(command)
-        
-        # Crear un Future para esperar la respuesta
         loop = asyncio.get_running_loop()
-        future = loop.create_future()
-        self.pending_commands[command_id] = future
+        fut = loop.create_future()
+        self.pending[cmd_id] = fut
 
-        logger.info(f"Enviando comando '{action}' con ID {command_id}")
+        msg = json.dumps(payload)
 
-        # FIX: si el envío falla (el cliente se desconectó justo entre el
-        # chequeo de has_clients() y el envío real), antes la excepción de
-        # client.send() se propagaba sin limpiar pending_commands, dejando
-        # el Future huérfano hasta que expiraba el timeout de 30s completo.
-        # Esto explica los "Timeout esperando respuesta para el comando..."
-        # que aparecen en los logs justo después de una desconexión.
-        send_results = await asyncio.gather(
-            *(client.send(message) for client in self.connected_clients),
-            return_exceptions=True,
+        results = await asyncio.gather(
+            *(c.send(msg) for c in self.clients),
+            return_exceptions=True
         )
-        send_failures = [r for r in send_results if isinstance(r, Exception)]
-        if send_failures and len(send_failures) == len(send_results):
-            # Todos los envíos fallaron: no hay nadie realmente conectado.
-            logger.error(
-                f"No se pudo enviar el comando {command_id} a ningún cliente "
-                f"(desconexión durante el envío): {send_failures[0]}"
-            )
-            self.pending_commands.pop(command_id, None)
-            return {
-                "status": "error",
-                "error": "El agente local se desconectó justo antes de recibir el comando.",
-            }
-        if send_failures:
-            logger.warning(
-                f"Comando {command_id} falló en {len(send_failures)}/{len(send_results)} "
-                f"clientes, pero se envió al menos a uno."
-            )
+
+        if all(isinstance(r, Exception) for r in results):
+            self.pending.pop(cmd_id, None)
+            return {"status": "error", "error": "Cliente desconectado"}
 
         try:
-            # Esperar la respuesta con un timeout
-            response = await asyncio.wait_for(future, timeout=30.0)
+            response = await asyncio.wait_for(fut, timeout=30)
             return response
         except asyncio.TimeoutError:
-            logger.error(f"Timeout esperando respuesta para el comando {command_id}")
-            self.pending_commands.pop(command_id, None)
-            return {"status": "error", "error": "Timeout esperando respuesta del agente local."}
+            self.pending.pop(cmd_id, None)
+            return {"status": "error", "error": "Timeout"}
 
     async def start(self):
-        logger.info(f"Iniciando servidor Alfonso Bridge en {self.host}:{self.port}")
-        self._server = await websockets.serve(self.handle_connection, self.host, self.port)
+        logger.info(f"Bridge en {self.host}:{self.port}")
+        self.server = await websockets.serve(self.handler, self.host, self.port)
 
-    async def stop(self):
-        if self._server:
-            logger.info("Deteniendo servidor Alfonso Bridge...")
-            self._server.close()
-            await self._server.wait_closed()
-            logger.info("Alfonso Bridge detenido.")
 
 bridge = AlfonsoBridge()
 
 if __name__ == "__main__":
-    # Para pruebas: Un pequeño bucle que lee comandos de la consola y los envía
-    async def cli_interface(bridge_instance):
-        while True:
-            try:
-                # Esto es solo para pruebas manuales si se ejecuta el script directamente
-                loop = asyncio.get_running_loop()
-                line = await loop.run_in_executor(None, input, "Comando (ej. open_app:gedit): ")
-                if not line: continue
-                
-                if ":" in line:
-                    action, param = line.split(":", 1)
-                    if action == "open_app":
-                        params = {"command": param}
-                    elif action == "type_text":
-                        params = {"text": param}
-                    else:
-                        params = {"value": param}
-                else:
-                    action = line
-                    params = {}
-                
-                result = await bridge_instance.send_command(action, params)
-                print(f"Resultado: {json.dumps(result, indent=2)}")
-            except Exception as e:
-                print(f"Error: {e}")
-
-    async def main():
-        # Correr el servidor y la interfaz CLI opcional en paralelo
-        await bridge.start()
-        await asyncio.gather(cli_interface(bridge), asyncio.Future())
-
-    asyncio.run(main())
+    asyncio.run(bridge.start())
+    asyncio.get_event_loop().run_forever()

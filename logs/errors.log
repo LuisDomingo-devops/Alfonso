@@ -97,3 +97,4 @@ Traceback (most recent call last):
     result = await tool(**args) if asyncio.iscoroutinefunction(tool) else tool(**args)
                    ^^^^^^^^^^^^
 TypeError: create_file() got an unexpected keyword argument 'file_path'
+2026-06-21 14:12:40,327 | ERROR | errors | [3a06f099-e87a-41dc-9e22-343e3d6e0cc2] LLM no devolvió JSON de tool válido
