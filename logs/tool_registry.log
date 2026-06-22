@@ -775,3 +775,331 @@
 2026-06-22 12:33:35,722 | INFO | tool_registry | [----------] Registrando tool servidor: window_list
 2026-06-22 12:33:35,722 | INFO | tool_registry | [----------] Registrando tool servidor: window_focus
 2026-06-22 12:33:35,722 | INFO | tool_registry | [----------] Registrando tool servidor: window_close
+2026-06-22 12:53:17,164 | INFO | tool_registry | [----------] Cargando plugin app.tools.browser_tools
+2026-06-22 12:53:17,165 | INFO | tool_registry | [----------] Registrando tool servidor: browser_navigate
+2026-06-22 12:53:17,165 | INFO | tool_registry | [----------] Registrando tool servidor: browser_click
+2026-06-22 12:53:17,165 | INFO | tool_registry | [----------] Registrando tool servidor: browser_fill
+2026-06-22 12:53:17,165 | INFO | tool_registry | [----------] Registrando tool servidor: browser_screenshot
+2026-06-22 12:53:17,166 | INFO | tool_registry | [----------] Registrando tool servidor: browser_get_text
+2026-06-22 12:53:17,166 | INFO | tool_registry | [----------] Registrando tool servidor: browser_inspect
+2026-06-22 12:53:17,166 | INFO | tool_registry | [----------] Registrando tool servidor: browser_search
+2026-06-22 12:53:17,166 | INFO | tool_registry | [----------] Registrando tool servidor: browser_close
+2026-06-22 12:53:17,167 | INFO | tool_registry | [----------] Cargando plugin app.tools.command_executor
+2026-06-22 12:53:17,168 | INFO | tool_registry | [----------] Registrando tool servidor: run_command
+2026-06-22 12:53:17,168 | INFO | tool_registry | [----------] Cargando plugin app.tools.routes
+2026-06-22 12:53:17,189 | INFO | tool_registry | [----------] Cargando plugin app.tools.system_tools
+2026-06-22 12:53:17,189 | INFO | tool_registry | [----------] Registrando tool servidor: system_info
+2026-06-22 12:53:17,190 | INFO | tool_registry | [----------] Registrando tool servidor: open_application
+2026-06-22 12:53:17,190 | INFO | tool_registry | [----------] Registrando tool servidor: close_application
+2026-06-22 12:53:17,190 | INFO | tool_registry | [----------] Registrando tool servidor: get_current_datetime
+2026-06-22 12:53:17,190 | INFO | tool_registry | [----------] Registrando tool servidor: open_url
+2026-06-22 12:53:17,192 | INFO | tool_registry | [----------] Cargando plugin app.tools.filesystem_tools
+2026-06-22 12:53:17,192 | INFO | tool_registry | [----------] Registrando tool servidor: create_file
+2026-06-22 12:53:17,192 | INFO | tool_registry | [----------] Registrando tool servidor: read_file
+2026-06-22 12:53:17,192 | INFO | tool_registry | [----------] Registrando tool servidor: list_directory
+2026-06-22 12:53:17,193 | INFO | tool_registry | [----------] Registrando tool servidor: create_directory
+2026-06-22 12:53:17,193 | INFO | tool_registry | [----------] Registrando tool servidor: append_file
+2026-06-22 12:53:17,193 | INFO | tool_registry | [----------] Registrando tool servidor: delete_file
+2026-06-22 12:53:17,193 | INFO | tool_registry | [----------] Registrando tool servidor: delete_directory
+2026-06-22 12:53:17,193 | INFO | tool_registry | [----------] Registrando tool servidor: move_file
+2026-06-22 12:53:17,194 | INFO | tool_registry | [----------] Registrando tool servidor: rename_file
+2026-06-22 12:53:17,194 | INFO | tool_registry | [----------] Cargando plugin app.tools.computer_use_tools
+2026-06-22 12:53:17,195 | INFO | tool_registry | [----------] Registrando tool servidor: screenshot
+2026-06-22 12:53:17,195 | INFO | tool_registry | [----------] Registrando tool servidor: mouse_move
+2026-06-22 12:53:17,195 | INFO | tool_registry | [----------] Registrando tool servidor: mouse_click
+2026-06-22 12:53:17,195 | INFO | tool_registry | [----------] Registrando tool servidor: mouse_drag
+2026-06-22 12:53:17,195 | INFO | tool_registry | [----------] Registrando tool servidor: keyboard_type
+2026-06-22 12:53:17,196 | INFO | tool_registry | [----------] Registrando tool servidor: keyboard_hotkey
+2026-06-22 12:53:17,196 | INFO | tool_registry | [----------] Registrando tool servidor: ocr_screenshot
+2026-06-22 12:53:17,196 | INFO | tool_registry | [----------] Registrando tool servidor: ocr_image
+2026-06-22 12:53:17,196 | INFO | tool_registry | [----------] Registrando tool servidor: find_on_screen
+2026-06-22 12:53:17,196 | INFO | tool_registry | [----------] Registrando tool servidor: window_list
+2026-06-22 12:53:17,196 | INFO | tool_registry | [----------] Registrando tool servidor: window_focus
+2026-06-22 12:53:17,196 | INFO | tool_registry | [----------] Registrando tool servidor: window_close
+2026-06-22 13:15:56,449 | INFO | tool_registry | [----------] Cargando plugin app.tools.browser_tools
+2026-06-22 13:15:56,449 | INFO | tool_registry | [----------] Registrando tool servidor: browser_navigate
+2026-06-22 13:15:56,450 | INFO | tool_registry | [----------] Registrando tool servidor: browser_click
+2026-06-22 13:15:56,450 | INFO | tool_registry | [----------] Registrando tool servidor: browser_fill
+2026-06-22 13:15:56,450 | INFO | tool_registry | [----------] Registrando tool servidor: browser_screenshot
+2026-06-22 13:15:56,450 | INFO | tool_registry | [----------] Registrando tool servidor: browser_get_text
+2026-06-22 13:15:56,450 | INFO | tool_registry | [----------] Registrando tool servidor: browser_inspect
+2026-06-22 13:15:56,450 | INFO | tool_registry | [----------] Registrando tool servidor: browser_search
+2026-06-22 13:15:56,450 | INFO | tool_registry | [----------] Registrando tool servidor: browser_close
+2026-06-22 13:15:56,451 | INFO | tool_registry | [----------] Cargando plugin app.tools.command_executor
+2026-06-22 13:15:56,451 | INFO | tool_registry | [----------] Registrando tool servidor: run_command
+2026-06-22 13:15:56,451 | INFO | tool_registry | [----------] Cargando plugin app.tools.routes
+2026-06-22 13:15:56,477 | INFO | tool_registry | [----------] Cargando plugin app.tools.system_tools
+2026-06-22 13:15:56,477 | INFO | tool_registry | [----------] Registrando tool servidor: system_info
+2026-06-22 13:15:56,477 | INFO | tool_registry | [----------] Registrando tool servidor: open_application
+2026-06-22 13:15:56,478 | INFO | tool_registry | [----------] Registrando tool servidor: close_application
+2026-06-22 13:15:56,478 | INFO | tool_registry | [----------] Registrando tool servidor: get_current_datetime
+2026-06-22 13:15:56,478 | INFO | tool_registry | [----------] Registrando tool servidor: open_url
+2026-06-22 13:15:56,479 | INFO | tool_registry | [----------] Cargando plugin app.tools.filesystem_tools
+2026-06-22 13:15:56,479 | INFO | tool_registry | [----------] Registrando tool servidor: create_file
+2026-06-22 13:15:56,479 | INFO | tool_registry | [----------] Registrando tool servidor: read_file
+2026-06-22 13:15:56,479 | INFO | tool_registry | [----------] Registrando tool servidor: list_directory
+2026-06-22 13:15:56,479 | INFO | tool_registry | [----------] Registrando tool servidor: create_directory
+2026-06-22 13:15:56,479 | INFO | tool_registry | [----------] Registrando tool servidor: append_file
+2026-06-22 13:15:56,479 | INFO | tool_registry | [----------] Registrando tool servidor: delete_file
+2026-06-22 13:15:56,480 | INFO | tool_registry | [----------] Registrando tool servidor: delete_directory
+2026-06-22 13:15:56,480 | INFO | tool_registry | [----------] Registrando tool servidor: move_file
+2026-06-22 13:15:56,480 | INFO | tool_registry | [----------] Registrando tool servidor: rename_file
+2026-06-22 13:15:56,481 | INFO | tool_registry | [----------] Cargando plugin app.tools.computer_use_tools
+2026-06-22 13:15:56,481 | INFO | tool_registry | [----------] Registrando tool servidor: screenshot
+2026-06-22 13:15:56,481 | INFO | tool_registry | [----------] Registrando tool servidor: mouse_move
+2026-06-22 13:15:56,481 | INFO | tool_registry | [----------] Registrando tool servidor: mouse_click
+2026-06-22 13:15:56,481 | INFO | tool_registry | [----------] Registrando tool servidor: mouse_drag
+2026-06-22 13:15:56,481 | INFO | tool_registry | [----------] Registrando tool servidor: keyboard_type
+2026-06-22 13:15:56,481 | INFO | tool_registry | [----------] Registrando tool servidor: keyboard_hotkey
+2026-06-22 13:15:56,482 | INFO | tool_registry | [----------] Registrando tool servidor: ocr_screenshot
+2026-06-22 13:15:56,482 | INFO | tool_registry | [----------] Registrando tool servidor: ocr_image
+2026-06-22 13:15:56,482 | INFO | tool_registry | [----------] Registrando tool servidor: find_on_screen
+2026-06-22 13:15:56,482 | INFO | tool_registry | [----------] Registrando tool servidor: window_list
+2026-06-22 13:15:56,482 | INFO | tool_registry | [----------] Registrando tool servidor: window_focus
+2026-06-22 13:15:56,482 | INFO | tool_registry | [----------] Registrando tool servidor: window_close
+2026-06-22 13:41:27,018 | INFO | tool_registry | [----------] Cargando plugin app.tools.browser_tools
+2026-06-22 13:41:27,019 | INFO | tool_registry | [----------] Registrando tool servidor: browser_navigate
+2026-06-22 13:41:27,020 | INFO | tool_registry | [----------] Registrando tool servidor: browser_click
+2026-06-22 13:41:27,020 | INFO | tool_registry | [----------] Registrando tool servidor: browser_fill
+2026-06-22 13:41:27,020 | INFO | tool_registry | [----------] Registrando tool servidor: browser_screenshot
+2026-06-22 13:41:27,020 | INFO | tool_registry | [----------] Registrando tool servidor: browser_get_text
+2026-06-22 13:41:27,020 | INFO | tool_registry | [----------] Registrando tool servidor: browser_inspect
+2026-06-22 13:41:27,020 | INFO | tool_registry | [----------] Registrando tool servidor: browser_search
+2026-06-22 13:41:27,021 | INFO | tool_registry | [----------] Registrando tool servidor: browser_close
+2026-06-22 13:41:27,021 | INFO | tool_registry | [----------] Cargando plugin app.tools.command_executor
+2026-06-22 13:41:27,022 | INFO | tool_registry | [----------] Registrando tool servidor: run_command
+2026-06-22 13:41:27,022 | INFO | tool_registry | [----------] Cargando plugin app.tools.routes
+2026-06-22 13:41:27,058 | INFO | tool_registry | [----------] Cargando plugin app.tools.system_tools
+2026-06-22 13:41:27,058 | INFO | tool_registry | [----------] Registrando tool servidor: system_info
+2026-06-22 13:41:27,059 | INFO | tool_registry | [----------] Registrando tool servidor: open_application
+2026-06-22 13:41:27,059 | INFO | tool_registry | [----------] Registrando tool servidor: close_application
+2026-06-22 13:41:27,059 | INFO | tool_registry | [----------] Registrando tool servidor: get_current_datetime
+2026-06-22 13:41:27,059 | INFO | tool_registry | [----------] Registrando tool servidor: open_url
+2026-06-22 13:41:27,060 | INFO | tool_registry | [----------] Cargando plugin app.tools.filesystem_tools
+2026-06-22 13:41:27,060 | INFO | tool_registry | [----------] Registrando tool servidor: create_file
+2026-06-22 13:41:27,060 | INFO | tool_registry | [----------] Registrando tool servidor: read_file
+2026-06-22 13:41:27,061 | INFO | tool_registry | [----------] Registrando tool servidor: list_directory
+2026-06-22 13:41:27,061 | INFO | tool_registry | [----------] Registrando tool servidor: create_directory
+2026-06-22 13:41:27,062 | INFO | tool_registry | [----------] Registrando tool servidor: append_file
+2026-06-22 13:41:27,062 | INFO | tool_registry | [----------] Registrando tool servidor: delete_file
+2026-06-22 13:41:27,062 | INFO | tool_registry | [----------] Registrando tool servidor: delete_directory
+2026-06-22 13:41:27,062 | INFO | tool_registry | [----------] Registrando tool servidor: move_file
+2026-06-22 13:41:27,062 | INFO | tool_registry | [----------] Registrando tool servidor: rename_file
+2026-06-22 13:41:27,064 | INFO | tool_registry | [----------] Cargando plugin app.tools.computer_use_tools
+2026-06-22 13:41:27,064 | INFO | tool_registry | [----------] Registrando tool servidor: screenshot
+2026-06-22 13:41:27,064 | INFO | tool_registry | [----------] Registrando tool servidor: mouse_move
+2026-06-22 13:41:27,064 | INFO | tool_registry | [----------] Registrando tool servidor: mouse_click
+2026-06-22 13:41:27,064 | INFO | tool_registry | [----------] Registrando tool servidor: mouse_drag
+2026-06-22 13:41:27,064 | INFO | tool_registry | [----------] Registrando tool servidor: keyboard_type
+2026-06-22 13:41:27,064 | INFO | tool_registry | [----------] Registrando tool servidor: keyboard_hotkey
+2026-06-22 13:41:27,064 | INFO | tool_registry | [----------] Registrando tool servidor: ocr_screenshot
+2026-06-22 13:41:27,065 | INFO | tool_registry | [----------] Registrando tool servidor: ocr_image
+2026-06-22 13:41:27,065 | INFO | tool_registry | [----------] Registrando tool servidor: find_on_screen
+2026-06-22 13:41:27,065 | INFO | tool_registry | [----------] Registrando tool servidor: window_list
+2026-06-22 13:41:27,065 | INFO | tool_registry | [----------] Registrando tool servidor: window_focus
+2026-06-22 13:41:27,065 | INFO | tool_registry | [----------] Registrando tool servidor: window_close
+2026-06-22 14:02:13,358 | INFO | tool_registry | [----------] Cargando plugin app.tools.browser_tools
+2026-06-22 14:02:13,359 | INFO | tool_registry | [----------] Registrando tool servidor: browser_navigate
+2026-06-22 14:02:13,359 | INFO | tool_registry | [----------] Registrando tool servidor: browser_click
+2026-06-22 14:02:13,359 | INFO | tool_registry | [----------] Registrando tool servidor: browser_fill
+2026-06-22 14:02:13,359 | INFO | tool_registry | [----------] Registrando tool servidor: browser_screenshot
+2026-06-22 14:02:13,360 | INFO | tool_registry | [----------] Registrando tool servidor: browser_get_text
+2026-06-22 14:02:13,360 | INFO | tool_registry | [----------] Registrando tool servidor: browser_inspect
+2026-06-22 14:02:13,360 | INFO | tool_registry | [----------] Registrando tool servidor: browser_search
+2026-06-22 14:02:13,360 | INFO | tool_registry | [----------] Registrando tool servidor: browser_close
+2026-06-22 14:02:13,361 | INFO | tool_registry | [----------] Cargando plugin app.tools.command_executor
+2026-06-22 14:02:13,361 | INFO | tool_registry | [----------] Registrando tool servidor: run_command
+2026-06-22 14:02:13,362 | INFO | tool_registry | [----------] Cargando plugin app.tools.routes
+2026-06-22 14:02:13,397 | INFO | tool_registry | [----------] Cargando plugin app.tools.system_tools
+2026-06-22 14:02:13,397 | INFO | tool_registry | [----------] Registrando tool servidor: system_info
+2026-06-22 14:02:13,398 | INFO | tool_registry | [----------] Registrando tool servidor: open_application
+2026-06-22 14:02:13,398 | INFO | tool_registry | [----------] Registrando tool servidor: close_application
+2026-06-22 14:02:13,398 | INFO | tool_registry | [----------] Registrando tool servidor: get_current_datetime
+2026-06-22 14:02:13,398 | INFO | tool_registry | [----------] Registrando tool servidor: open_url
+2026-06-22 14:02:13,399 | INFO | tool_registry | [----------] Cargando plugin app.tools.filesystem_tools
+2026-06-22 14:02:13,399 | INFO | tool_registry | [----------] Registrando tool servidor: create_file
+2026-06-22 14:02:13,399 | INFO | tool_registry | [----------] Registrando tool servidor: read_file
+2026-06-22 14:02:13,400 | INFO | tool_registry | [----------] Registrando tool servidor: list_directory
+2026-06-22 14:02:13,400 | INFO | tool_registry | [----------] Registrando tool servidor: create_directory
+2026-06-22 14:02:13,400 | INFO | tool_registry | [----------] Registrando tool servidor: append_file
+2026-06-22 14:02:13,400 | INFO | tool_registry | [----------] Registrando tool servidor: delete_file
+2026-06-22 14:02:13,400 | INFO | tool_registry | [----------] Registrando tool servidor: delete_directory
+2026-06-22 14:02:13,400 | INFO | tool_registry | [----------] Registrando tool servidor: move_file
+2026-06-22 14:02:13,401 | INFO | tool_registry | [----------] Registrando tool servidor: rename_file
+2026-06-22 14:02:13,402 | INFO | tool_registry | [----------] Cargando plugin app.tools.computer_use_tools
+2026-06-22 14:02:13,403 | INFO | tool_registry | [----------] Registrando tool servidor: screenshot
+2026-06-22 14:02:13,403 | INFO | tool_registry | [----------] Registrando tool servidor: mouse_move
+2026-06-22 14:02:13,403 | INFO | tool_registry | [----------] Registrando tool servidor: mouse_click
+2026-06-22 14:02:13,403 | INFO | tool_registry | [----------] Registrando tool servidor: mouse_drag
+2026-06-22 14:02:13,403 | INFO | tool_registry | [----------] Registrando tool servidor: keyboard_type
+2026-06-22 14:02:13,403 | INFO | tool_registry | [----------] Registrando tool servidor: keyboard_hotkey
+2026-06-22 14:02:13,404 | INFO | tool_registry | [----------] Registrando tool servidor: ocr_screenshot
+2026-06-22 14:02:13,404 | INFO | tool_registry | [----------] Registrando tool servidor: ocr_image
+2026-06-22 14:02:13,404 | INFO | tool_registry | [----------] Registrando tool servidor: find_on_screen
+2026-06-22 14:02:13,404 | INFO | tool_registry | [----------] Registrando tool servidor: window_list
+2026-06-22 14:02:13,405 | INFO | tool_registry | [----------] Registrando tool servidor: window_focus
+2026-06-22 14:02:13,405 | INFO | tool_registry | [----------] Registrando tool servidor: window_close
+2026-06-22 14:11:28,885 | INFO | tool_registry | [----------] Cargando plugin app.tools.browser_tools
+2026-06-22 14:11:28,885 | INFO | tool_registry | [----------] Registrando tool servidor: browser_navigate
+2026-06-22 14:11:28,885 | INFO | tool_registry | [----------] Registrando tool servidor: browser_click
+2026-06-22 14:11:28,886 | INFO | tool_registry | [----------] Registrando tool servidor: browser_fill
+2026-06-22 14:11:28,886 | INFO | tool_registry | [----------] Registrando tool servidor: browser_screenshot
+2026-06-22 14:11:28,886 | INFO | tool_registry | [----------] Registrando tool servidor: browser_get_text
+2026-06-22 14:11:28,886 | INFO | tool_registry | [----------] Registrando tool servidor: browser_inspect
+2026-06-22 14:11:28,886 | INFO | tool_registry | [----------] Registrando tool servidor: browser_search
+2026-06-22 14:11:28,887 | INFO | tool_registry | [----------] Registrando tool servidor: browser_close
+2026-06-22 14:11:28,887 | INFO | tool_registry | [----------] Cargando plugin app.tools.command_executor
+2026-06-22 14:11:28,888 | INFO | tool_registry | [----------] Registrando tool servidor: run_command
+2026-06-22 14:11:28,888 | INFO | tool_registry | [----------] Cargando plugin app.tools.routes
+2026-06-22 14:11:28,912 | INFO | tool_registry | [----------] Cargando plugin app.tools.system_tools
+2026-06-22 14:11:28,912 | INFO | tool_registry | [----------] Registrando tool servidor: system_info
+2026-06-22 14:11:28,912 | INFO | tool_registry | [----------] Registrando tool servidor: open_application
+2026-06-22 14:11:28,913 | INFO | tool_registry | [----------] Registrando tool servidor: close_application
+2026-06-22 14:11:28,913 | INFO | tool_registry | [----------] Registrando tool servidor: get_current_datetime
+2026-06-22 14:11:28,913 | INFO | tool_registry | [----------] Registrando tool servidor: open_url
+2026-06-22 14:11:28,914 | INFO | tool_registry | [----------] Cargando plugin app.tools.filesystem_tools
+2026-06-22 14:11:28,914 | INFO | tool_registry | [----------] Registrando tool servidor: create_file
+2026-06-22 14:11:28,914 | INFO | tool_registry | [----------] Registrando tool servidor: read_file
+2026-06-22 14:11:28,914 | INFO | tool_registry | [----------] Registrando tool servidor: list_directory
+2026-06-22 14:11:28,914 | INFO | tool_registry | [----------] Registrando tool servidor: create_directory
+2026-06-22 14:11:28,915 | INFO | tool_registry | [----------] Registrando tool servidor: append_file
+2026-06-22 14:11:28,915 | INFO | tool_registry | [----------] Registrando tool servidor: delete_file
+2026-06-22 14:11:28,915 | INFO | tool_registry | [----------] Registrando tool servidor: delete_directory
+2026-06-22 14:11:28,915 | INFO | tool_registry | [----------] Registrando tool servidor: move_file
+2026-06-22 14:11:28,915 | INFO | tool_registry | [----------] Registrando tool servidor: rename_file
+2026-06-22 14:11:28,916 | INFO | tool_registry | [----------] Cargando plugin app.tools.computer_use_tools
+2026-06-22 14:11:28,916 | INFO | tool_registry | [----------] Registrando tool servidor: screenshot
+2026-06-22 14:11:28,916 | INFO | tool_registry | [----------] Registrando tool servidor: mouse_move
+2026-06-22 14:11:28,916 | INFO | tool_registry | [----------] Registrando tool servidor: mouse_click
+2026-06-22 14:11:28,917 | INFO | tool_registry | [----------] Registrando tool servidor: mouse_drag
+2026-06-22 14:11:28,917 | INFO | tool_registry | [----------] Registrando tool servidor: keyboard_type
+2026-06-22 14:11:28,917 | INFO | tool_registry | [----------] Registrando tool servidor: keyboard_hotkey
+2026-06-22 14:11:28,917 | INFO | tool_registry | [----------] Registrando tool servidor: ocr_screenshot
+2026-06-22 14:11:28,917 | INFO | tool_registry | [----------] Registrando tool servidor: ocr_image
+2026-06-22 14:11:28,917 | INFO | tool_registry | [----------] Registrando tool servidor: find_on_screen
+2026-06-22 14:11:28,918 | INFO | tool_registry | [----------] Registrando tool servidor: window_list
+2026-06-22 14:11:28,918 | INFO | tool_registry | [----------] Registrando tool servidor: window_focus
+2026-06-22 14:11:28,918 | INFO | tool_registry | [----------] Registrando tool servidor: window_close
+2026-06-22 14:26:14,167 | INFO | tool_registry | [----------] Cargando plugin app.tools.browser_tools
+2026-06-22 14:26:14,168 | INFO | tool_registry | [----------] Registrando tool servidor: browser_navigate
+2026-06-22 14:26:14,168 | INFO | tool_registry | [----------] Registrando tool servidor: browser_click
+2026-06-22 14:26:14,168 | INFO | tool_registry | [----------] Registrando tool servidor: browser_fill
+2026-06-22 14:26:14,168 | INFO | tool_registry | [----------] Registrando tool servidor: browser_screenshot
+2026-06-22 14:26:14,168 | INFO | tool_registry | [----------] Registrando tool servidor: browser_get_text
+2026-06-22 14:26:14,168 | INFO | tool_registry | [----------] Registrando tool servidor: browser_inspect
+2026-06-22 14:26:14,169 | INFO | tool_registry | [----------] Registrando tool servidor: browser_search
+2026-06-22 14:26:14,169 | INFO | tool_registry | [----------] Registrando tool servidor: browser_close
+2026-06-22 14:26:14,170 | INFO | tool_registry | [----------] Cargando plugin app.tools.command_executor
+2026-06-22 14:26:14,170 | INFO | tool_registry | [----------] Registrando tool servidor: run_command
+2026-06-22 14:26:14,171 | INFO | tool_registry | [----------] Cargando plugin app.tools.routes
+2026-06-22 14:26:14,185 | INFO | tool_registry | [----------] Cargando plugin app.tools.system_tools
+2026-06-22 14:26:14,186 | INFO | tool_registry | [----------] Registrando tool servidor: system_info
+2026-06-22 14:26:14,186 | INFO | tool_registry | [----------] Registrando tool servidor: open_application
+2026-06-22 14:26:14,186 | INFO | tool_registry | [----------] Registrando tool servidor: close_application
+2026-06-22 14:26:14,186 | INFO | tool_registry | [----------] Registrando tool servidor: get_current_datetime
+2026-06-22 14:26:14,186 | INFO | tool_registry | [----------] Registrando tool servidor: open_url
+2026-06-22 14:26:14,187 | INFO | tool_registry | [----------] Cargando plugin app.tools.filesystem_tools
+2026-06-22 14:26:14,187 | INFO | tool_registry | [----------] Registrando tool servidor: create_file
+2026-06-22 14:26:14,187 | INFO | tool_registry | [----------] Registrando tool servidor: read_file
+2026-06-22 14:26:14,187 | INFO | tool_registry | [----------] Registrando tool servidor: list_directory
+2026-06-22 14:26:14,187 | INFO | tool_registry | [----------] Registrando tool servidor: create_directory
+2026-06-22 14:26:14,188 | INFO | tool_registry | [----------] Registrando tool servidor: append_file
+2026-06-22 14:26:14,188 | INFO | tool_registry | [----------] Registrando tool servidor: delete_file
+2026-06-22 14:26:14,188 | INFO | tool_registry | [----------] Registrando tool servidor: delete_directory
+2026-06-22 14:26:14,188 | INFO | tool_registry | [----------] Registrando tool servidor: move_file
+2026-06-22 14:26:14,188 | INFO | tool_registry | [----------] Registrando tool servidor: rename_file
+2026-06-22 14:26:14,189 | INFO | tool_registry | [----------] Cargando plugin app.tools.computer_use_tools
+2026-06-22 14:26:14,189 | INFO | tool_registry | [----------] Registrando tool servidor: screenshot
+2026-06-22 14:26:14,189 | INFO | tool_registry | [----------] Registrando tool servidor: mouse_move
+2026-06-22 14:26:14,189 | INFO | tool_registry | [----------] Registrando tool servidor: mouse_click
+2026-06-22 14:26:14,189 | INFO | tool_registry | [----------] Registrando tool servidor: mouse_drag
+2026-06-22 14:26:14,190 | INFO | tool_registry | [----------] Registrando tool servidor: keyboard_type
+2026-06-22 14:26:14,190 | INFO | tool_registry | [----------] Registrando tool servidor: keyboard_hotkey
+2026-06-22 14:26:14,190 | INFO | tool_registry | [----------] Registrando tool servidor: ocr_screenshot
+2026-06-22 14:26:14,190 | INFO | tool_registry | [----------] Registrando tool servidor: ocr_image
+2026-06-22 14:26:14,190 | INFO | tool_registry | [----------] Registrando tool servidor: find_on_screen
+2026-06-22 14:26:14,190 | INFO | tool_registry | [----------] Registrando tool servidor: window_list
+2026-06-22 14:26:14,190 | INFO | tool_registry | [----------] Registrando tool servidor: window_focus
+2026-06-22 14:26:14,191 | INFO | tool_registry | [----------] Registrando tool servidor: window_close
+2026-06-22 15:03:10,329 | INFO | tool_registry | [----------] Cargando plugin app.tools.browser_tools
+2026-06-22 15:03:10,329 | INFO | tool_registry | [----------] Registrando tool servidor: browser_navigate
+2026-06-22 15:03:10,329 | INFO | tool_registry | [----------] Registrando tool servidor: browser_click
+2026-06-22 15:03:10,330 | INFO | tool_registry | [----------] Registrando tool servidor: browser_fill
+2026-06-22 15:03:10,330 | INFO | tool_registry | [----------] Registrando tool servidor: browser_screenshot
+2026-06-22 15:03:10,330 | INFO | tool_registry | [----------] Registrando tool servidor: browser_get_text
+2026-06-22 15:03:10,330 | INFO | tool_registry | [----------] Registrando tool servidor: browser_inspect
+2026-06-22 15:03:10,330 | INFO | tool_registry | [----------] Registrando tool servidor: browser_search
+2026-06-22 15:03:10,330 | INFO | tool_registry | [----------] Registrando tool servidor: browser_close
+2026-06-22 15:03:10,331 | INFO | tool_registry | [----------] Cargando plugin app.tools.command_executor
+2026-06-22 15:03:10,331 | INFO | tool_registry | [----------] Registrando tool servidor: run_command
+2026-06-22 15:03:10,331 | INFO | tool_registry | [----------] Cargando plugin app.tools.routes
+2026-06-22 15:03:10,354 | INFO | tool_registry | [----------] Cargando plugin app.tools.system_tools
+2026-06-22 15:03:10,354 | INFO | tool_registry | [----------] Registrando tool servidor: system_info
+2026-06-22 15:03:10,355 | INFO | tool_registry | [----------] Registrando tool servidor: open_application
+2026-06-22 15:03:10,355 | INFO | tool_registry | [----------] Registrando tool servidor: close_application
+2026-06-22 15:03:10,355 | INFO | tool_registry | [----------] Registrando tool servidor: get_current_datetime
+2026-06-22 15:03:10,355 | INFO | tool_registry | [----------] Registrando tool servidor: open_url
+2026-06-22 15:03:10,356 | INFO | tool_registry | [----------] Cargando plugin app.tools.filesystem_tools
+2026-06-22 15:03:10,356 | INFO | tool_registry | [----------] Registrando tool servidor: create_file
+2026-06-22 15:03:10,356 | INFO | tool_registry | [----------] Registrando tool servidor: read_file
+2026-06-22 15:03:10,356 | INFO | tool_registry | [----------] Registrando tool servidor: list_directory
+2026-06-22 15:03:10,357 | INFO | tool_registry | [----------] Registrando tool servidor: create_directory
+2026-06-22 15:03:10,357 | INFO | tool_registry | [----------] Registrando tool servidor: append_file
+2026-06-22 15:03:10,357 | INFO | tool_registry | [----------] Registrando tool servidor: delete_file
+2026-06-22 15:03:10,357 | INFO | tool_registry | [----------] Registrando tool servidor: delete_directory
+2026-06-22 15:03:10,358 | INFO | tool_registry | [----------] Registrando tool servidor: move_file
+2026-06-22 15:03:10,358 | INFO | tool_registry | [----------] Registrando tool servidor: rename_file
+2026-06-22 15:03:10,359 | INFO | tool_registry | [----------] Cargando plugin app.tools.computer_use_tools
+2026-06-22 15:03:10,359 | INFO | tool_registry | [----------] Registrando tool servidor: screenshot
+2026-06-22 15:03:10,359 | INFO | tool_registry | [----------] Registrando tool servidor: mouse_move
+2026-06-22 15:03:10,359 | INFO | tool_registry | [----------] Registrando tool servidor: mouse_click
+2026-06-22 15:03:10,359 | INFO | tool_registry | [----------] Registrando tool servidor: mouse_drag
+2026-06-22 15:03:10,360 | INFO | tool_registry | [----------] Registrando tool servidor: keyboard_type
+2026-06-22 15:03:10,360 | INFO | tool_registry | [----------] Registrando tool servidor: keyboard_hotkey
+2026-06-22 15:03:10,360 | INFO | tool_registry | [----------] Registrando tool servidor: ocr_screenshot
+2026-06-22 15:03:10,360 | INFO | tool_registry | [----------] Registrando tool servidor: ocr_image
+2026-06-22 15:03:10,360 | INFO | tool_registry | [----------] Registrando tool servidor: find_on_screen
+2026-06-22 15:03:10,360 | INFO | tool_registry | [----------] Registrando tool servidor: window_list
+2026-06-22 15:03:10,360 | INFO | tool_registry | [----------] Registrando tool servidor: window_focus
+2026-06-22 15:03:10,360 | INFO | tool_registry | [----------] Registrando tool servidor: window_close
+2026-06-22 15:15:11,416 | INFO | tool_registry | [----------] Cargando plugin app.tools.browser_tools
+2026-06-22 15:15:11,417 | INFO | tool_registry | [----------] Registrando tool servidor: browser_navigate
+2026-06-22 15:15:11,417 | INFO | tool_registry | [----------] Registrando tool servidor: browser_click
+2026-06-22 15:15:11,417 | INFO | tool_registry | [----------] Registrando tool servidor: browser_fill
+2026-06-22 15:15:11,417 | INFO | tool_registry | [----------] Registrando tool servidor: browser_screenshot
+2026-06-22 15:15:11,417 | INFO | tool_registry | [----------] Registrando tool servidor: browser_get_text
+2026-06-22 15:15:11,417 | INFO | tool_registry | [----------] Registrando tool servidor: browser_inspect
+2026-06-22 15:15:11,418 | INFO | tool_registry | [----------] Registrando tool servidor: browser_search
+2026-06-22 15:15:11,418 | INFO | tool_registry | [----------] Registrando tool servidor: browser_close
+2026-06-22 15:15:11,418 | INFO | tool_registry | [----------] Cargando plugin app.tools.command_executor
+2026-06-22 15:15:11,418 | INFO | tool_registry | [----------] Registrando tool servidor: run_command
+2026-06-22 15:15:11,419 | INFO | tool_registry | [----------] Cargando plugin app.tools.routes
+2026-06-22 15:15:11,446 | INFO | tool_registry | [----------] Cargando plugin app.tools.system_tools
+2026-06-22 15:15:11,446 | INFO | tool_registry | [----------] Registrando tool servidor: system_info
+2026-06-22 15:15:11,446 | INFO | tool_registry | [----------] Registrando tool servidor: open_application
+2026-06-22 15:15:11,446 | INFO | tool_registry | [----------] Registrando tool servidor: close_application
+2026-06-22 15:15:11,446 | INFO | tool_registry | [----------] Registrando tool servidor: get_current_datetime
+2026-06-22 15:15:11,446 | INFO | tool_registry | [----------] Registrando tool servidor: open_url
+2026-06-22 15:15:11,447 | INFO | tool_registry | [----------] Cargando plugin app.tools.filesystem_tools
+2026-06-22 15:15:11,447 | INFO | tool_registry | [----------] Registrando tool servidor: create_file
+2026-06-22 15:15:11,447 | INFO | tool_registry | [----------] Registrando tool servidor: read_file
+2026-06-22 15:15:11,448 | INFO | tool_registry | [----------] Registrando tool servidor: list_directory
+2026-06-22 15:15:11,448 | INFO | tool_registry | [----------] Registrando tool servidor: create_directory
+2026-06-22 15:15:11,448 | INFO | tool_registry | [----------] Registrando tool servidor: append_file
+2026-06-22 15:15:11,448 | INFO | tool_registry | [----------] Registrando tool servidor: delete_file
+2026-06-22 15:15:11,448 | INFO | tool_registry | [----------] Registrando tool servidor: delete_directory
+2026-06-22 15:15:11,448 | INFO | tool_registry | [----------] Registrando tool servidor: move_file
+2026-06-22 15:15:11,448 | INFO | tool_registry | [----------] Registrando tool servidor: rename_file
+2026-06-22 15:15:11,449 | INFO | tool_registry | [----------] Cargando plugin app.tools.computer_use_tools
+2026-06-22 15:15:11,450 | INFO | tool_registry | [----------] Registrando tool servidor: screenshot
+2026-06-22 15:15:11,450 | INFO | tool_registry | [----------] Registrando tool servidor: mouse_move
+2026-06-22 15:15:11,450 | INFO | tool_registry | [----------] Registrando tool servidor: mouse_click
+2026-06-22 15:15:11,450 | INFO | tool_registry | [----------] Registrando tool servidor: mouse_drag
+2026-06-22 15:15:11,450 | INFO | tool_registry | [----------] Registrando tool servidor: keyboard_type
+2026-06-22 15:15:11,450 | INFO | tool_registry | [----------] Registrando tool servidor: keyboard_hotkey
+2026-06-22 15:15:11,450 | INFO | tool_registry | [----------] Registrando tool servidor: ocr_screenshot
+2026-06-22 15:15:11,451 | INFO | tool_registry | [----------] Registrando tool servidor: ocr_image
+2026-06-22 15:15:11,451 | INFO | tool_registry | [----------] Registrando tool servidor: find_on_screen
+2026-06-22 15:15:11,451 | INFO | tool_registry | [----------] Registrando tool servidor: window_list
+2026-06-22 15:15:11,451 | INFO | tool_registry | [----------] Registrando tool servidor: window_focus
+2026-06-22 15:15:11,451 | INFO | tool_registry | [----------] Registrando tool servidor: window_close

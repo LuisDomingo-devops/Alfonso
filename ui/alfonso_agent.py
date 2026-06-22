@@ -44,47 +44,71 @@ class AlfonsoAgent:
 
     # ---------------- NORMALIZACIÓN ----------------
 
-    def normalize_action(self, action: str):
-        return self.handlers.get(action) and action or self.mapping.get(action, action)
+    def normalize_action(self, action: str) -> str:
+        """
+        Traduce nombres de acción 'planos' (open_app, close_app, open_url...)
+        al nombre con namespace que usan los handlers (system.open_app, etc.).
+        Si la acción ya viene con namespace, se devuelve tal cual.
+        """
+        if action in self.handlers:
+            return action
+        return self.mapping.get(action, action)
 
     # ---------------- SYSTEM ----------------
 
     def open_app(self, params):
-        app = params.get("app", "").strip()
+        # El servidor (system_tools.py) manda la clave "command";
+        # aceptamos también "app" por compatibilidad con otros llamantes.
+        app = (params.get("command") or params.get("app") or "").strip()
         if not app:
             return {"error": "app vacío"}
 
-        path = shutil.which(app) or app
-
-        subprocess.Popen(path, shell=False)
-        return {"result": f"{app} abierto"}
+        try:
+            path = shutil.which(app) or app
+            subprocess.Popen(path, shell=False)
+            return {"result": f"{app} abierto"}
+        except Exception as e:
+            return {"error": f"No se pudo abrir {app}: {e}"}
 
     def close_app(self, params):
-        app = params.get("app", "").strip()
+        app = (params.get("command") or params.get("app") or "").strip()
+        if not app:
+            return {"error": "app vacío"}
 
-        if IS_WINDOWS:
-            subprocess.run(["taskkill", "/F", "/IM", f"{app}.exe"])
-        else:
-            subprocess.run(["pkill", "-f", app])
-
-        return {"result": f"{app} cerrado"}
+        try:
+            if IS_WINDOWS:
+                subprocess.run(["taskkill", "/F", "/IM", f"{app}.exe"], check=False)
+            else:
+                subprocess.run(["pkill", "-f", app], check=False)
+            return {"result": f"{app} cerrado"}
+        except Exception as e:
+            return {"error": f"No se pudo cerrar {app}: {e}"}
 
     def open_url(self, params):
         url = params.get("url", "").strip()
         if not url:
             return {"error": "url vacía"}
 
-        webbrowser.open(url)
-        return {"result": url}
+        try:
+            webbrowser.open(url)
+            return {"result": url}
+        except Exception as e:
+            return {"error": f"No se pudo abrir la URL {url}: {e}"}
 
     # ---------------- INPUT ----------------
 
     def type_text(self, params):
-        pyautogui.write(params.get("text", ""))
+        text = params.get("text", "")
+        if not text:
+            return {"error": "text vacío"}
+        pyautogui.write(text)
         return {"result": "typed"}
 
     def press_key(self, params):
-        pyautogui.press(params.get("key"))
+        key = params.get("key")
+        if not key:
+            return {"error": "key vacío"}
+        pyautogui.press(key)
         return {"result": "pressed"}
 
     def move_mouse(self, params):
@@ -94,7 +118,106 @@ class AlfonsoAgent:
     def click_mouse(self, params):
         pyautogui.click(button=params.get("button", "left"))
         return {"result": "clicked"}
+    
+    # ----------------FILES MANAGEMENT ----------------
 
+    def create_file(self, params):
+        path = params.get("path")
+        if not path:
+            return {"error": "path vacío"}
+        try:
+            with open(path, 'w') as f:
+                f.write(params.get("content", ""))
+            return {"result": f"Archivo {path} creado"}
+        except Exception as e:
+            return {"error": f"No se pudo crear el archivo {path}: {e}"}
+        
+    def delete_file(self, params):
+        path = params.get("path")
+        if not path:
+            return {"error": "path vacío"}
+        try:
+            os.remove(path)
+            return {"result": f"Archivo {path} eliminado"}
+        except Exception as e:
+            return {"error": f"No se pudo eliminar el archivo {path}: {e}"}
+        
+    def create_directory(self, params):
+        path = params.get("path")
+        if not path:
+            return {"error": "path vacío"}
+        try:
+            os.makedirs(path, exist_ok=True)
+            return {"result": f"Directorio {path} creado"}
+        except Exception as e:
+            return {"error": f"No se pudo crear el directorio {path}: {e}"}
+    
+    def delete_directory(self, params):
+        path = params.get("path")
+        if not path:
+            return {"error": "path vacío"}
+        try:
+            shutil.rmtree(path)
+            return {"result": f"Directorio {path} eliminado"}
+        except Exception as e:
+            return {"error": f"No se pudo eliminar el directorio {path}: {e}"}
+    
+    def list_directory(self, params):
+        path = params.get("path")
+        if not path:
+            return {"error": "path vacío"}
+        try:
+            files = os.listdir(path)
+            return {"result": files}
+        except Exception as e:
+            return {"error": f"No se pudo listar el directorio {path}: {e}"}
+        
+    def move_file(self, params):    
+        src = params.get("src")
+        dst = params.get("dst")
+        if not src or not dst:
+            return {"error": "src o dst vacío"}
+        try:
+            shutil.move(src, dst)
+            return {"result": f"Archivo movido de {src} a {dst}"}
+        except Exception as e:
+            return {"error": f"No se pudo mover el archivo de {src} a {dst}: {e}"}
+        
+    def copy_file(self, params):
+        src = params.get("src")
+        dst = params.get("dst")
+        if not src or not dst:
+            return {"error": "src o dst vacío"}
+        try:
+            shutil.copy(src, dst)
+            return {"result": f"Archivo copiado de {src} a {dst}"}
+        except Exception as e:
+            return {"error": f"No se pudo copiar el archivo de {src} a {dst}: {e}"}
+    
+    def read_file(self, params):
+        path = params.get("path")
+        if not path:
+            return {"error": "path vacío"}
+        try:
+            with open(path, 'r') as f:
+                content = f.read()
+            return {"result": content}
+        except Exception as e:
+            return {"error": f"No se pudo leer el archivo {path}: {e}"}
+    
+    def append_to_file(self, params):
+        path = params.get("path")
+        content = params.get("content", "")
+        if not path:
+            return {"error": "path vacío"}
+        try:
+            with open(path, 'a') as f:
+                f.write(content)
+            return {"result": f"Contenido añadido al archivo {path}"}
+        except Exception as e:
+            return {"error": f"No se pudo añadir contenido al archivo {path}: {e}"}
+    
+    
     # ---------------- EXECUTION ----------------
 
     async def execute_action(self, msg):
@@ -116,6 +239,15 @@ class AlfonsoAgent:
 
             # 🔥 CRÍTICO: todo en thread para evitar bloquear websocket
             result = await loop.run_in_executor(None, handler, params)
+
+            # Si el handler devolvió un error lógico (p.ej. parámetro
+            # vacío), no lo reportamos como éxito.
+            if isinstance(result, dict) and "error" in result:
+                return {
+                    "id": cmd_id,
+                    "status": "error",
+                    "error": result["error"]
+                }
 
             return {
                 "id": cmd_id,

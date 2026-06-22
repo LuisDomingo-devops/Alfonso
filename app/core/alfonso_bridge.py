@@ -11,7 +11,18 @@ logger = logging.getLogger("bridge")
 ALLOWED_ACTIONS = {
     "system.open_app",
     "system.close_app",
-    "open_url",          # <- nombre real que usa system_tools.py / el agente local
+    "open_app",     # <- nombre real que usa system_tools.py (open_application)
+    "close_app",    # <- nombre real que usa system_tools.py (close_application)
+    "open_url",     # <- nombre real que usa system_tools.py (open_url)
+    "create_file",
+    "read_file",
+    "list_directory",
+    "create_directory",
+    "append_file",
+    "delete_file",
+    "delete_directory",
+    "move_file",
+    "rename_file", # <- nombre real que usa system_tools.py (delete_folder)
     "keyboard.type",
     "keyboard.press",
     "mouse.move",
@@ -76,11 +87,17 @@ class AlfonsoBridge:
                 data = json.loads(msg)
 
                 cmd_id = data.get("id")
-                if cmd_id in self.pending:
-                    fut = self.pending.pop(cmd_id)
-                    fut.set_result(data)
+                fut = self.pending.pop(cmd_id, None)
+
+                if fut is None:
+                    logger.warning("Respuesta desconocida: %s", data)
+                elif fut.done():
+                    logger.warning("Respuesta tardía descartada (future ya cerrado): %s", cmd_id)
                 else:
-                    logger.warning(f"Respuesta desconocida: {data}")
+                    fut.set_result(data)
+
+        except websockets.exceptions.ConnectionClosed as e:
+            logger.info("Conexión cerrada por el cliente (%s): %s", ws.remote_address, e)
 
         finally:
             await self.unregister(ws)
@@ -88,7 +105,7 @@ class AlfonsoBridge:
     def has_clients(self):
         return bool(self.clients)
 
-    async def send_command(self, action, params=None):
+    async def send_command(self, action, params=None, timeout=20):
         if action not in ALLOWED_ACTIONS:
             return {
                 "status": "error",
@@ -112,21 +129,24 @@ class AlfonsoBridge:
 
         msg = json.dumps(payload)
 
-        results = await asyncio.gather(
-            *(c.send(msg) for c in self.clients),
-            return_exceptions=True
-        )
-
-        if all(isinstance(r, Exception) for r in results):
-            self.pending.pop(cmd_id, None)
-            return {"status": "error", "error": "Cliente desconectado"}
-
         try:
-            response = await asyncio.wait_for(fut, timeout=30)
-            return response
-        except asyncio.TimeoutError:
+            results = await asyncio.gather(
+                *(c.send(msg) for c in self.clients),
+                return_exceptions=True
+            )
+
+            if all(isinstance(r, Exception) for r in results):
+                return {"status": "error", "error": "Cliente desconectado"}
+
+            try:
+                response = await asyncio.wait_for(fut, timeout=timeout)
+                return response
+            except asyncio.TimeoutError:
+                return {"status": "error", "error": "Timeout"}
+
+        finally:
+            # Se ejecuta siempre: timeout, cancelación externa, error de envío...
             self.pending.pop(cmd_id, None)
-            return {"status": "error", "error": "Timeout"}
 
 
 bridge = AlfonsoBridge()

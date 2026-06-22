@@ -99,3 +99,37 @@ Traceback (most recent call last):
 TypeError: create_file() got an unexpected keyword argument 'file_path'
 2026-06-21 14:12:40,327 | ERROR | errors | [3a06f099-e87a-41dc-9e22-343e3d6e0cc2] LLM no devolvió JSON de tool válido
 2026-06-21 18:32:52,676 | WARNING | errors | [9f286840-36f1-4d8a-899f-8eb6ff60e156] Tool de cliente falló: open_url -> {'id': '9e545865-ad41-4fde-a33a-33f7845c4254', 'status': 'error', 'error': 'Acción desconocida: system.open_url'}
+2026-06-22 12:56:14,770 | ERROR | errors | [9ba0daa3-7949-4cec-b8dc-bd9b6767e100] Error tool
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/home/luisd/Alfonso/app/tools/system_tools.py", line 321, in open_url
+    response = await alfonso_bridge.send_command("open_url", {"url": url})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/app/core/alfonso_bridge.py", line 125, in send_command
+    response = await asyncio.wait_for(fut, timeout=30)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/planner_orchestrator.py", line 192, in run
+    result = await asyncio.wait_for(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/tasks.py", line 519, in wait_for
+    async with timeouts.timeout(timeout):
+  File "/usr/lib/python3.12/asyncio/timeouts.py", line 115, in __aexit__
+    raise TimeoutError from exc_val
+TimeoutError
+2026-06-22 13:18:48,695 | WARNING | errors | [ec2f4535-2e9d-4d2a-9459-aeacbb7a9281] Tool de servidor falló: open_url -> {'status': 'error', 'message': 'Timeout', 'delegate': 'alfonso_agent'}
+2026-06-22 14:07:03,860 | WARNING | errors | [81ea3c37-f4e7-4981-890f-9d42a4193fc7] Tool de servidor falló: open_application -> {'status': 'error', 'message': 'Action no permitida: open_app', 'delegate': 'alfonso_agent', 'details': {'status': 'error', 'error': 'Action no permitida: open_app'}}
+2026-06-22 14:08:32,207 | WARNING | errors | [a6f0e666-7b67-434b-839c-036283993889] Tool de servidor falló: open_application -> {'status': 'error', 'message': 'Action no permitida: open_app', 'delegate': 'alfonso_agent', 'details': {'status': 'error', 'error': 'Action no permitida: open_app'}}
+2026-06-22 14:17:19,342 | WARNING | errors | [bd6a3d4e-b287-4a46-b001-8c7efb28c90c] Tool de servidor falló: open_application -> {'status': 'error', 'message': 'Timeout', 'delegate': 'alfonso_agent', 'details': {'status': 'error', 'error': 'Timeout'}}
+2026-06-22 14:18:05,765 | WARNING | errors | [b9594bb9-a894-4732-9841-2a4e82326162] Tool de servidor falló: open_application -> {'status': 'error', 'message': 'Timeout', 'delegate': 'alfonso_agent', 'details': {'status': 'error', 'error': 'Timeout'}}
+2026-06-22 14:18:45,315 | WARNING | errors | [3fcaac77-a8b8-4222-a604-5fc572583ff1] Tool de servidor falló: close_application -> {'status': 'error', 'message': 'Timeout', 'delegate': 'alfonso_agent', 'details': {'status': 'error', 'error': 'Timeout'}}
+2026-06-22 14:59:57,415 | WARNING | errors | [672a1d97-53ee-4888-ae46-031fb3288859] Tool de servidor falló: open_application -> {'status': 'error', 'message': 'Timeout', 'delegate': 'alfonso_agent', 'details': {'status': 'error', 'error': 'Timeout'}}

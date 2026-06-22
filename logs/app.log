@@ -372,3 +372,149 @@ UnboundLocalError: cannot access local variable 'result' where it is not associa
 2026-06-22 12:41:52,755 | INFO | app | [6df39f6a-92d0-4b6b-b38d-d1f539685b33] USER MESSAGE: hola
 2026-06-22 12:42:34,911 | INFO | app | [6df39f6a-92d0-4b6b-b38d-d1f539685b33] Solicitud /chat procesada con estado: chat
 2026-06-22 12:42:34,912 | INFO | app | [6df39f6a-92d0-4b6b-b38d-d1f539685b33] LATENCY: 40.06s
+2026-06-22 12:53:15,245 | INFO | app | [----------] Alfonso detenido
+2026-06-22 12:53:17,141 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-22 12:53:17,142 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-22 12:53:17,159 | INFO | app | [----------] Agentes: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-22 12:53:17,198 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-06-22 12:54:01,415 | INFO | app | [----------] Modelo precalentado
+2026-06-22 12:54:01,415 | INFO | app | [----------] Alfonso listo
+2026-06-22 12:54:22,753 | INFO | app | [e09c91dd-30a1-4cf9-aeb9-eb7f6ba74891] HTTP GET /health
+2026-06-22 12:54:45,829 | INFO | app | [9ba0daa3-7949-4cec-b8dc-bd9b6767e100] HTTP POST /chat
+2026-06-22 12:54:45,838 | INFO | app | [9ba0daa3-7949-4cec-b8dc-bd9b6767e100] Solicitud /chat recibida
+2026-06-22 12:54:45,838 | INFO | app | [9ba0daa3-7949-4cec-b8dc-bd9b6767e100] SESSION_ID: 9ba0daa3-7949-4cec-b8dc-bd9b6767e100
+2026-06-22 12:54:45,839 | INFO | app | [9ba0daa3-7949-4cec-b8dc-bd9b6767e100] USER MESSAGE: abre la pagina elpais.com
+2026-06-22 12:56:14,792 | INFO | app | [9ba0daa3-7949-4cec-b8dc-bd9b6767e100] Solicitud /chat procesada con estado: error
+2026-06-22 12:56:14,792 | INFO | app | [9ba0daa3-7949-4cec-b8dc-bd9b6767e100] LATENCY: 86.98s
+2026-06-22 13:15:54,670 | INFO | app | [----------] Alfonso detenido
+2026-06-22 13:15:56,431 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-22 13:15:56,431 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-22 13:15:56,447 | INFO | app | [----------] Agentes: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-22 13:15:56,483 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-06-22 13:17:00,759 | INFO | app | [----------] Modelo precalentado
+2026-06-22 13:17:00,763 | INFO | app | [----------] Alfonso listo
+2026-06-22 13:17:23,996 | INFO | app | [cccce665-5e3c-49ed-9ebc-6094cd9b2d1d] HTTP GET /health
+2026-06-22 13:17:43,496 | INFO | app | [ec2f4535-2e9d-4d2a-9459-aeacbb7a9281] HTTP POST /chat
+2026-06-22 13:17:43,505 | INFO | app | [ec2f4535-2e9d-4d2a-9459-aeacbb7a9281] Solicitud /chat recibida
+2026-06-22 13:17:43,506 | INFO | app | [ec2f4535-2e9d-4d2a-9459-aeacbb7a9281] SESSION_ID: ec2f4535-2e9d-4d2a-9459-aeacbb7a9281
+2026-06-22 13:17:43,506 | INFO | app | [ec2f4535-2e9d-4d2a-9459-aeacbb7a9281] USER MESSAGE: abre la pagina elpais.com
+2026-06-22 13:18:48,695 | INFO | app | [ec2f4535-2e9d-4d2a-9459-aeacbb7a9281] Solicitud /chat procesada con estado: error
+2026-06-22 13:18:48,696 | INFO | app | [ec2f4535-2e9d-4d2a-9459-aeacbb7a9281] LATENCY: 62.63s
+2026-06-22 13:41:24,493 | INFO | app | [----------] Alfonso detenido
+2026-06-22 13:41:26,990 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-22 13:41:26,990 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-22 13:41:27,014 | INFO | app | [----------] Agentes: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-22 13:41:27,066 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-06-22 13:42:32,138 | INFO | app | [----------] Modelo precalentado
+2026-06-22 13:42:32,142 | INFO | app | [----------] Alfonso listo
+2026-06-22 13:46:39,316 | INFO | app | [97634117-bf74-4f66-92e6-c7c1f511a07c] HTTP GET /health
+2026-06-22 13:46:58,973 | INFO | app | [45d92fcf-e87a-4967-8c23-f19a89e125f6] HTTP POST /chat
+2026-06-22 13:46:58,981 | INFO | app | [45d92fcf-e87a-4967-8c23-f19a89e125f6] Solicitud /chat recibida
+2026-06-22 13:46:58,982 | INFO | app | [45d92fcf-e87a-4967-8c23-f19a89e125f6] SESSION_ID: 45d92fcf-e87a-4967-8c23-f19a89e125f6
+2026-06-22 13:46:58,982 | INFO | app | [45d92fcf-e87a-4967-8c23-f19a89e125f6] USER MESSAGE: encantada de saludar de María del Carmen mi nombre es Luis domingo te estoy llamando desde
+2026-06-22 13:47:35,655 | INFO | app | [45d92fcf-e87a-4967-8c23-f19a89e125f6] Solicitud /chat procesada con estado: chat
+2026-06-22 13:47:35,655 | INFO | app | [45d92fcf-e87a-4967-8c23-f19a89e125f6] LATENCY: 35.02s
+2026-06-22 13:47:48,832 | INFO | app | [d671d1b6-0986-4f9c-b8e8-abdb22c2fa18] HTTP POST /chat
+2026-06-22 13:47:48,833 | INFO | app | [d671d1b6-0986-4f9c-b8e8-abdb22c2fa18] Solicitud /chat recibida
+2026-06-22 13:47:48,833 | INFO | app | [d671d1b6-0986-4f9c-b8e8-abdb22c2fa18] SESSION_ID: d671d1b6-0986-4f9c-b8e8-abdb22c2fa18
+2026-06-22 13:47:48,833 | INFO | app | [d671d1b6-0986-4f9c-b8e8-abdb22c2fa18] USER MESSAGE: abre elpais.com
+2026-06-22 13:48:38,546 | INFO | app | [d671d1b6-0986-4f9c-b8e8-abdb22c2fa18] Solicitud /chat procesada con estado: tool
+2026-06-22 13:48:38,546 | INFO | app | [d671d1b6-0986-4f9c-b8e8-abdb22c2fa18] LATENCY: 46.38s
+2026-06-22 14:02:11,008 | INFO | app | [----------] Alfonso detenido
+2026-06-22 14:02:13,332 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-22 14:02:13,333 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-22 14:02:13,354 | INFO | app | [----------] Agentes: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-22 14:02:13,406 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-06-22 14:03:21,738 | INFO | app | [----------] Modelo precalentado
+2026-06-22 14:03:21,740 | INFO | app | [----------] Alfonso listo
+2026-06-22 14:05:19,180 | INFO | app | [e1a44efe-87ff-4762-ae0d-7396395ba146] HTTP GET /health
+2026-06-22 14:06:01,163 | INFO | app | [74468ade-5f27-4f73-bc5e-35822a373651] HTTP POST /chat
+2026-06-22 14:06:01,178 | INFO | app | [74468ade-5f27-4f73-bc5e-35822a373651] Solicitud /chat recibida
+2026-06-22 14:06:01,179 | INFO | app | [74468ade-5f27-4f73-bc5e-35822a373651] SESSION_ID: 74468ade-5f27-4f73-bc5e-35822a373651
+2026-06-22 14:06:01,179 | INFO | app | [74468ade-5f27-4f73-bc5e-35822a373651] USER MESSAGE: abre la pagina elpais.com
+2026-06-22 14:06:46,630 | INFO | app | [74468ade-5f27-4f73-bc5e-35822a373651] Solicitud /chat procesada con estado: tool
+2026-06-22 14:06:46,631 | INFO | app | [74468ade-5f27-4f73-bc5e-35822a373651] LATENCY: 43.30s
+2026-06-22 14:07:01,333 | INFO | app | [81ea3c37-f4e7-4981-890f-9d42a4193fc7] HTTP POST /chat
+2026-06-22 14:07:01,335 | INFO | app | [81ea3c37-f4e7-4981-890f-9d42a4193fc7] Solicitud /chat recibida
+2026-06-22 14:07:01,335 | INFO | app | [81ea3c37-f4e7-4981-890f-9d42a4193fc7] SESSION_ID: 81ea3c37-f4e7-4981-890f-9d42a4193fc7
+2026-06-22 14:07:01,335 | INFO | app | [81ea3c37-f4e7-4981-890f-9d42a4193fc7] USER MESSAGE: abre vsc
+2026-06-22 14:07:03,862 | INFO | app | [81ea3c37-f4e7-4981-890f-9d42a4193fc7] Solicitud /chat procesada con estado: error
+2026-06-22 14:07:03,862 | INFO | app | [81ea3c37-f4e7-4981-890f-9d42a4193fc7] LATENCY: 2.53s
+2026-06-22 14:08:28,399 | INFO | app | [a6f0e666-7b67-434b-839c-036283993889] HTTP POST /chat
+2026-06-22 14:08:28,400 | INFO | app | [a6f0e666-7b67-434b-839c-036283993889] Solicitud /chat recibida
+2026-06-22 14:08:28,400 | INFO | app | [a6f0e666-7b67-434b-839c-036283993889] SESSION_ID: a6f0e666-7b67-434b-839c-036283993889
+2026-06-22 14:08:28,400 | INFO | app | [a6f0e666-7b67-434b-839c-036283993889] USER MESSAGE: abre el explorador de archivos
+2026-06-22 14:08:32,207 | INFO | app | [a6f0e666-7b67-434b-839c-036283993889] Solicitud /chat procesada con estado: error
+2026-06-22 14:08:32,208 | INFO | app | [a6f0e666-7b67-434b-839c-036283993889] LATENCY: 3.81s
+2026-06-22 14:11:25,558 | INFO | app | [----------] Alfonso detenido
+2026-06-22 14:11:28,855 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-22 14:11:28,855 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-22 14:11:28,880 | INFO | app | [----------] Agentes: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-22 14:11:28,919 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-06-22 14:12:23,029 | INFO | app | [----------] Modelo precalentado
+2026-06-22 14:12:23,030 | INFO | app | [----------] Alfonso listo
+2026-06-22 14:15:56,262 | INFO | app | [60a27c53-3b5f-40d5-9919-848e62ba0443] HTTP GET /health
+2026-06-22 14:16:15,220 | INFO | app | [bd6a3d4e-b287-4a46-b001-8c7efb28c90c] HTTP POST /chat
+2026-06-22 14:16:15,223 | INFO | app | [bd6a3d4e-b287-4a46-b001-8c7efb28c90c] Solicitud /chat recibida
+2026-06-22 14:16:15,224 | INFO | app | [bd6a3d4e-b287-4a46-b001-8c7efb28c90c] SESSION_ID: bd6a3d4e-b287-4a46-b001-8c7efb28c90c
+2026-06-22 14:16:15,224 | INFO | app | [bd6a3d4e-b287-4a46-b001-8c7efb28c90c] USER MESSAGE: abre vsc
+2026-06-22 14:17:19,343 | INFO | app | [bd6a3d4e-b287-4a46-b001-8c7efb28c90c] Solicitud /chat procesada con estado: error
+2026-06-22 14:17:19,344 | INFO | app | [bd6a3d4e-b287-4a46-b001-8c7efb28c90c] LATENCY: 61.02s
+2026-06-22 14:17:41,679 | INFO | app | [b9594bb9-a894-4732-9841-2a4e82326162] HTTP POST /chat
+2026-06-22 14:17:41,681 | INFO | app | [b9594bb9-a894-4732-9841-2a4e82326162] Solicitud /chat recibida
+2026-06-22 14:17:41,681 | INFO | app | [b9594bb9-a894-4732-9841-2a4e82326162] SESSION_ID: b9594bb9-a894-4732-9841-2a4e82326162
+2026-06-22 14:17:41,681 | INFO | app | [b9594bb9-a894-4732-9841-2a4e82326162] USER MESSAGE: abre vlc
+2026-06-22 14:18:05,765 | INFO | app | [b9594bb9-a894-4732-9841-2a4e82326162] Solicitud /chat procesada con estado: error
+2026-06-22 14:18:05,765 | INFO | app | [b9594bb9-a894-4732-9841-2a4e82326162] LATENCY: 22.43s
+2026-06-22 14:18:23,473 | INFO | app | [3fcaac77-a8b8-4222-a604-5fc572583ff1] HTTP POST /chat
+2026-06-22 14:18:23,475 | INFO | app | [3fcaac77-a8b8-4222-a604-5fc572583ff1] Solicitud /chat recibida
+2026-06-22 14:18:23,475 | INFO | app | [3fcaac77-a8b8-4222-a604-5fc572583ff1] SESSION_ID: 3fcaac77-a8b8-4222-a604-5fc572583ff1
+2026-06-22 14:18:23,475 | INFO | app | [3fcaac77-a8b8-4222-a604-5fc572583ff1] USER MESSAGE: cierra vlc
+2026-06-22 14:18:45,315 | INFO | app | [3fcaac77-a8b8-4222-a604-5fc572583ff1] Solicitud /chat procesada con estado: error
+2026-06-22 14:18:45,315 | INFO | app | [3fcaac77-a8b8-4222-a604-5fc572583ff1] LATENCY: 21.84s
+2026-06-22 14:21:22,795 | INFO | app | [a576fdd9-1704-474d-8b57-8ac91512b692] HTTP POST /chat
+2026-06-22 14:21:22,796 | INFO | app | [a576fdd9-1704-474d-8b57-8ac91512b692] Solicitud /chat recibida
+2026-06-22 14:21:22,796 | INFO | app | [a576fdd9-1704-474d-8b57-8ac91512b692] SESSION_ID: a576fdd9-1704-474d-8b57-8ac91512b692
+2026-06-22 14:21:22,796 | INFO | app | [a576fdd9-1704-474d-8b57-8ac91512b692] USER MESSAGE: crea un archivo en el escritorio que se llame prueba_archivo.txt y que diga hola soy alfonso y puedo ejecutar en windows
+2026-06-22 14:21:29,914 | INFO | app | [a576fdd9-1704-474d-8b57-8ac91512b692] Solicitud /chat procesada con estado: chat
+2026-06-22 14:21:29,914 | INFO | app | [a576fdd9-1704-474d-8b57-8ac91512b692] LATENCY: 7.12s
+2026-06-22 14:26:12,658 | INFO | app | [----------] Alfonso detenido
+2026-06-22 14:26:14,150 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-22 14:26:14,150 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-22 14:26:14,165 | INFO | app | [----------] Agentes: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-22 14:26:14,192 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-06-22 14:27:16,421 | INFO | app | [----------] Modelo precalentado
+2026-06-22 14:27:16,426 | INFO | app | [----------] Alfonso listo
+2026-06-22 14:38:28,723 | INFO | app | [b262f0c5-ec65-4c60-88e4-b8a24fb33010] HTTP GET /health
+2026-06-22 14:39:06,363 | INFO | app | [4a2f420d-2f5f-4f6e-8f3f-59da31f014c4] HTTP POST /chat
+2026-06-22 14:39:06,407 | INFO | app | [4a2f420d-2f5f-4f6e-8f3f-59da31f014c4] Solicitud /chat recibida
+2026-06-22 14:39:06,487 | INFO | app | [4a2f420d-2f5f-4f6e-8f3f-59da31f014c4] SESSION_ID: 4a2f420d-2f5f-4f6e-8f3f-59da31f014c4
+2026-06-22 14:39:06,487 | INFO | app | [4a2f420d-2f5f-4f6e-8f3f-59da31f014c4] USER MESSAGE: crea un archivo en el escritorio llamdo hola.txt
+2026-06-22 14:40:03,870 | INFO | app | [4a2f420d-2f5f-4f6e-8f3f-59da31f014c4] Solicitud /chat procesada con estado: chat
+2026-06-22 14:40:03,871 | INFO | app | [4a2f420d-2f5f-4f6e-8f3f-59da31f014c4] LATENCY: 53.78s
+2026-06-22 14:56:25,278 | INFO | app | [f630b743-56a2-4426-b734-37908f8d7252] HTTP POST /chat
+2026-06-22 14:56:25,288 | INFO | app | [f630b743-56a2-4426-b734-37908f8d7252] Solicitud /chat recibida
+2026-06-22 14:56:25,288 | INFO | app | [f630b743-56a2-4426-b734-37908f8d7252] SESSION_ID: f630b743-56a2-4426-b734-37908f8d7252
+2026-06-22 14:56:25,288 | INFO | app | [f630b743-56a2-4426-b734-37908f8d7252] USER MESSAGE: que aplicaciones estan disponibes en mi pc
+2026-06-22 14:57:27,813 | INFO | app | [f630b743-56a2-4426-b734-37908f8d7252] Solicitud /chat procesada con estado: chat
+2026-06-22 14:57:27,814 | INFO | app | [f630b743-56a2-4426-b734-37908f8d7252] LATENCY: 59.12s
+2026-06-22 14:58:57,087 | INFO | app | [672a1d97-53ee-4888-ae46-031fb3288859] HTTP POST /chat
+2026-06-22 14:58:57,089 | INFO | app | [672a1d97-53ee-4888-ae46-031fb3288859] Solicitud /chat recibida
+2026-06-22 14:58:57,090 | INFO | app | [672a1d97-53ee-4888-ae46-031fb3288859] SESSION_ID: 672a1d97-53ee-4888-ae46-031fb3288859
+2026-06-22 14:58:57,090 | INFO | app | [672a1d97-53ee-4888-ae46-031fb3288859] USER MESSAGE: abre telegram
+2026-06-22 14:59:57,417 | INFO | app | [672a1d97-53ee-4888-ae46-031fb3288859] Solicitud /chat procesada con estado: error
+2026-06-22 14:59:57,417 | INFO | app | [672a1d97-53ee-4888-ae46-031fb3288859] LATENCY: 56.81s
+2026-06-22 15:03:09,002 | INFO | app | [----------] Alfonso detenido
+2026-06-22 15:03:10,307 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-22 15:03:10,308 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-22 15:03:10,326 | INFO | app | [----------] Agentes: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-22 15:03:10,361 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-06-22 15:03:49,327 | INFO | app | [----------] Modelo precalentado
+2026-06-22 15:03:49,327 | INFO | app | [----------] Alfonso listo
+2026-06-22 15:15:09,959 | INFO | app | [----------] Alfonso detenido
+2026-06-22 15:15:11,394 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-22 15:15:11,395 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-22 15:15:11,413 | INFO | app | [----------] Agentes: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-22 15:15:11,452 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-06-22 15:15:50,492 | INFO | app | [----------] Modelo precalentado
+2026-06-22 15:15:50,493 | INFO | app | [----------] Alfonso listo
