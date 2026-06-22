@@ -11,7 +11,7 @@ logger = logging.getLogger("bridge")
 ALLOWED_ACTIONS = {
     "system.open_app",
     "system.close_app",
-    "system.open_url",
+    "open_url",          # <- nombre real que usa system_tools.py / el agente local
     "keyboard.type",
     "keyboard.press",
     "mouse.move",
@@ -21,7 +21,6 @@ ALLOWED_ACTIONS = {
     "window.close",
     "screen.screenshot",
 }
-
 
 class AlfonsoBridge:
     def __init__(self, host="0.0.0.0", port=8765):
@@ -33,19 +32,29 @@ class AlfonsoBridge:
 
     async def start(self):
         logger.info(f"Bridge en {self.host}:{self.port}")
-        self.server = await websockets.serve(self.handler, self.host, self.port)
+        # ping_interval/ping_timeout más generosos: con el modelo actual
+        # (qwen2.5:1.5b) una llamada /chat puede tardar 40-60s. Si el loop
+        # de asyncio se queda ocupado durante ese tiempo, el servidor de
+        # websockets puede no mandar el ping a tiempo con los valores por
+        # defecto (20s/20s) y cerrar la conexión con "ping timeout" aunque
+        # el agente local siga vivo (es justo lo que pasó en tu log).
+        self.server = await websockets.serve(
+            self.handler,
+            self.host,
+            self.port,
+            ping_interval=30,
+            ping_timeout=90,
+        )
 
     async def stop(self):
         logger.info("Cerrando bridge...")
 
-        # cerrar clientes
         for ws in list(self.clients):
             await ws.close()
 
         self.clients.clear()
         self.pending.clear()
 
-        # cerrar server websocket
         if self.server:
             self.server.close()
             await self.server.wait_closed()
@@ -118,10 +127,6 @@ class AlfonsoBridge:
         except asyncio.TimeoutError:
             self.pending.pop(cmd_id, None)
             return {"status": "error", "error": "Timeout"}
-
-    async def start(self):
-        logger.info(f"Bridge en {self.host}:{self.port}")
-        self.server = await websockets.serve(self.handler, self.host, self.port)
 
 
 bridge = AlfonsoBridge()

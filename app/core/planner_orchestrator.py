@@ -194,32 +194,72 @@ class PlannerOrchestrator:
 
         if is_client_tool(tool_name):
 
-
-            action=get_client_action(
+            action = get_client_action(
                 tool_name
             )
-
 
             logger.info(
                 "Enviando al cliente %s",
                 action
             )
 
-
-            result=await bridge.send_command(
+            result = await bridge.send_command(
                 action,
                 args
             )
 
+            if not isinstance(result, dict) or result.get("status") == "error":
+
+                error.warning(
+                    "Tool de cliente falló: %s -> %s",
+                    tool_name,
+                    result
+                )
+
+                return {
+                    "type": "error",
+                    "execution": "client",
+                    "tool": tool_name,
+                    "message": (
+                        result.get("error", "Error desconocido ejecutando tool en el cliente")
+                        if isinstance(result, dict) else "Respuesta inválida del cliente"
+                    ),
+                    "result": result
+                }
+            
+        if tool_name in _DIRECT_CONFIRM:
 
             return {
-                "type":"tool",
-                "execution":"client",
-                "tool":tool_name,
-                "result":result
+                "type":"chat",
+                "response":
+                _DIRECT_CONFIRM[tool_name]
+                }
+
+
+        if isinstance(result, dict) and result.get("status") == "error":
+
+            error.warning(
+                "Tool de servidor falló: %s -> %s",
+                tool_name,
+                result
+            )
+
+            return {
+                "type": "error",
+                "execution": "server",
+                "tool": tool_name,
+                "message": result.get("message", "Error ejecutando tool"),
+                "result": result
             }
 
 
+        return {
+            "type":"tool",
+            "execution":"server",
+            "tool":tool_name,
+            "result":result
+        }
+        
 
         #
         # SERVIDOR

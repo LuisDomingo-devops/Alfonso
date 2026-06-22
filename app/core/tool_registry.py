@@ -19,13 +19,10 @@ SERVER_TOOLS: dict[str, Callable[..., Any]] = {
     "no_op": no_op,
 }
 
-
 CLIENT_TOOLS: dict[str, str] = {
 
     "open_app": "system.open_app",
     "close_app": "system.close_app",
-
-    "open_url": "system.open_url",
 
     "click": "mouse.click",
     "move_mouse": "mouse.move",

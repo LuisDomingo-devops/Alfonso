@@ -98,3 +98,4 @@ Traceback (most recent call last):
                    ^^^^^^^^^^^^
 TypeError: create_file() got an unexpected keyword argument 'file_path'
 2026-06-21 14:12:40,327 | ERROR | errors | [3a06f099-e87a-41dc-9e22-343e3d6e0cc2] LLM no devolvió JSON de tool válido
+2026-06-21 18:32:52,676 | WARNING | errors | [9f286840-36f1-4d8a-899f-8eb6ff60e156] Tool de cliente falló: open_url -> {'id': '9e545865-ad41-4fde-a33a-33f7845c4254', 'status': 'error', 'error': 'Acción desconocida: system.open_url'}

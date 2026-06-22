@@ -195,3 +195,180 @@
 2026-06-21 17:05:00,532 | INFO | app | [5662c120-d855-4c5c-b7a8-ebc15417d5c1] USER MESSAGE: abre la pagina elpais.com
 2026-06-21 17:05:45,163 | INFO | app | [5662c120-d855-4c5c-b7a8-ebc15417d5c1] Solicitud /chat procesada con estado: tool
 2026-06-21 17:05:45,164 | INFO | app | [5662c120-d855-4c5c-b7a8-ebc15417d5c1] LATENCY: 43.30s
+2026-06-21 18:20:38,408 | INFO | app | [----------] Alfonso detenido
+2026-06-21 18:20:41,417 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-21 18:20:41,417 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-21 18:22:57,178 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-21 18:22:57,179 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-21 18:22:57,203 | INFO | app | [----------] Agentes: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-21 18:22:57,252 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-06-21 18:24:11,502 | INFO | app | [----------] Modelo precalentado
+2026-06-21 18:24:11,506 | INFO | app | [----------] Alfonso listo
+2026-06-21 18:31:51,560 | INFO | app | [00742f07-ef4b-4e44-aca3-2d8ecada0274] HTTP GET /health
+2026-06-21 18:32:02,213 | INFO | app | [9f286840-36f1-4d8a-899f-8eb6ff60e156] HTTP POST /chat
+2026-06-21 18:32:02,241 | INFO | app | [9f286840-36f1-4d8a-899f-8eb6ff60e156] Solicitud /chat recibida
+2026-06-21 18:32:02,241 | INFO | app | [9f286840-36f1-4d8a-899f-8eb6ff60e156] SESSION_ID: 9f286840-36f1-4d8a-899f-8eb6ff60e156
+2026-06-21 18:32:02,241 | INFO | app | [9f286840-36f1-4d8a-899f-8eb6ff60e156] USER MESSAGE: abre la pagina elpais.com
+2026-06-21 18:32:52,679 | INFO | app | [9f286840-36f1-4d8a-899f-8eb6ff60e156] Solicitud /chat procesada con estado: error
+2026-06-21 18:32:52,682 | INFO | app | [9f286840-36f1-4d8a-899f-8eb6ff60e156] LATENCY: 48.52s
+2026-06-21 18:34:21,311 | INFO | app | [----------] Alfonso detenido
+2026-06-21 18:34:22,864 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-21 18:34:22,864 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-21 18:34:22,883 | INFO | app | [----------] Agentes: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-21 18:34:22,917 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-06-21 18:35:20,574 | INFO | app | [----------] Modelo precalentado
+2026-06-21 18:35:20,579 | INFO | app | [----------] Alfonso listo
+2026-06-21 18:58:16,116 | INFO | app | [8457a356-8af3-4326-92b0-f89bccb7639c] HTTP POST /chat
+2026-06-21 18:58:16,139 | INFO | app | [8457a356-8af3-4326-92b0-f89bccb7639c] Solicitud /chat recibida
+2026-06-21 18:58:16,139 | INFO | app | [8457a356-8af3-4326-92b0-f89bccb7639c] SESSION_ID: 8457a356-8af3-4326-92b0-f89bccb7639c
+2026-06-21 18:58:16,140 | INFO | app | [8457a356-8af3-4326-92b0-f89bccb7639c] USER MESSAGE: abre la pagina elpais.com
+2026-06-21 18:59:06,878 | INFO | app | [8457a356-8af3-4326-92b0-f89bccb7639c] Solicitud /chat procesada con estado: tool
+2026-06-21 18:59:06,878 | INFO | app | [8457a356-8af3-4326-92b0-f89bccb7639c] LATENCY: 46.74s
+2026-06-21 19:09:34,250 | INFO | app | [----------] Alfonso detenido
+2026-06-21 19:09:36,146 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-21 19:09:36,147 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-21 19:09:36,168 | INFO | app | [----------] Agentes: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-21 19:09:36,208 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-06-21 19:10:44,289 | INFO | app | [----------] Modelo precalentado
+2026-06-21 19:10:44,293 | INFO | app | [----------] Alfonso listo
+2026-06-21 19:10:50,863 | INFO | app | [----------] Alfonso detenido
+2026-06-21 19:10:52,698 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-21 19:10:52,698 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-21 19:10:52,725 | INFO | app | [----------] Agentes: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-21 19:10:52,774 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-06-21 19:11:30,282 | INFO | app | [----------] Modelo precalentado
+2026-06-21 19:11:30,282 | INFO | app | [----------] Alfonso listo
+2026-06-21 19:12:21,535 | INFO | app | [2be2a9f9-4303-4396-b33b-56c14a2048d7] HTTP GET /health
+2026-06-21 19:12:44,454 | INFO | app | [c719e2ba-51cc-4a1a-aef9-e8dc891927e3] HTTP POST /chat
+2026-06-21 19:12:44,459 | INFO | app | [c719e2ba-51cc-4a1a-aef9-e8dc891927e3] Solicitud /chat recibida
+2026-06-21 19:12:44,459 | INFO | app | [c719e2ba-51cc-4a1a-aef9-e8dc891927e3] SESSION_ID: c719e2ba-51cc-4a1a-aef9-e8dc891927e3
+2026-06-21 19:12:44,459 | INFO | app | [c719e2ba-51cc-4a1a-aef9-e8dc891927e3] USER MESSAGE: abre la pagina elpais.com
+2026-06-21 19:13:41,298 | ERROR | app | [c719e2ba-51cc-4a1a-aef9-e8dc891927e3] Unhandled exception
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/middleware/base.py", line 191, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+  File "/usr/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/_utils.py", line 87, in collapse_excgroups
+    raise exc
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/middleware/base.py", line 193, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/app/main.py", line 100, in request_id_middleware
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/middleware/base.py", line 168, in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/middleware/base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/routing.py", line 660, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/routing.py", line 680, in app
+    await route.handle(scope, receive, send)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/routing.py", line 276, in handle
+    await self.app(scope, receive, send)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/fastapi/routing.py", line 134, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/fastapi/routing.py", line 120, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/fastapi/routing.py", line 674, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/fastapi/routing.py", line 328, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/app/api/routes.py", line 74, in chat_endpoint
+    result = await orchestrator.run(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/app/core/planner_orchestrator.py", line 239, in run
+    if isinstance(result, dict) and result.get("status") == "error":
+                  ^^^^^^
+UnboundLocalError: cannot access local variable 'result' where it is not associated with a value
+2026-06-22 12:33:35,679 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-22 12:33:35,680 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-22 12:33:35,695 | INFO | app | [----------] Agentes: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-22 12:33:35,723 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-06-22 12:34:16,475 | INFO | app | [----------] Modelo precalentado
+2026-06-22 12:34:16,478 | INFO | app | [----------] Alfonso listo
+2026-06-22 12:39:07,367 | INFO | app | [da9bd5b9-9c5b-44c9-8f57-f31652fea082] HTTP GET /health
+2026-06-22 12:40:04,579 | INFO | app | [dd59578d-6746-4670-9b98-12db300fd579] HTTP POST /chat
+2026-06-22 12:40:04,653 | INFO | app | [dd59578d-6746-4670-9b98-12db300fd579] Solicitud /chat recibida
+2026-06-22 12:40:04,653 | INFO | app | [dd59578d-6746-4670-9b98-12db300fd579] SESSION_ID: dd59578d-6746-4670-9b98-12db300fd579
+2026-06-22 12:40:04,653 | INFO | app | [dd59578d-6746-4670-9b98-12db300fd579] USER MESSAGE: abre la pagina elpais.com
+2026-06-22 12:40:56,338 | ERROR | app | [dd59578d-6746-4670-9b98-12db300fd579] Unhandled exception
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/middleware/base.py", line 191, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+  File "/usr/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/_utils.py", line 87, in collapse_excgroups
+    raise exc
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/middleware/base.py", line 193, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/app/main.py", line 100, in request_id_middleware
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/middleware/base.py", line 168, in call_next
+    raise app_exc from app_exc.__cause__ or app_exc.__context__
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/middleware/base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/routing.py", line 660, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/routing.py", line 680, in app
+    await route.handle(scope, receive, send)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/routing.py", line 276, in handle
+    await self.app(scope, receive, send)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/fastapi/routing.py", line 134, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/fastapi/routing.py", line 120, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/fastapi/routing.py", line 674, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/fastapi/routing.py", line 328, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/app/api/routes.py", line 74, in chat_endpoint
+    result = await orchestrator.run(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/app/core/planner_orchestrator.py", line 239, in run
+    if isinstance(result, dict) and result.get("status") == "error":
+                  ^^^^^^
+UnboundLocalError: cannot access local variable 'result' where it is not associated with a value
+2026-06-22 12:41:52,752 | INFO | app | [6df39f6a-92d0-4b6b-b38d-d1f539685b33] HTTP POST /chat
+2026-06-22 12:41:52,755 | INFO | app | [6df39f6a-92d0-4b6b-b38d-d1f539685b33] Solicitud /chat recibida
+2026-06-22 12:41:52,755 | INFO | app | [6df39f6a-92d0-4b6b-b38d-d1f539685b33] SESSION_ID: 6df39f6a-92d0-4b6b-b38d-d1f539685b33
+2026-06-22 12:41:52,755 | INFO | app | [6df39f6a-92d0-4b6b-b38d-d1f539685b33] USER MESSAGE: hola
+2026-06-22 12:42:34,911 | INFO | app | [6df39f6a-92d0-4b6b-b38d-d1f539685b33] Solicitud /chat procesada con estado: chat
+2026-06-22 12:42:34,912 | INFO | app | [6df39f6a-92d0-4b6b-b38d-d1f539685b33] LATENCY: 40.06s
