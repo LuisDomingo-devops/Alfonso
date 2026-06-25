@@ -2,7 +2,7 @@
 computer_use_tools.py — FIX arquitectura: delegación pura al agente local.
 
 ANTES: estas funciones importaban pyautogui/cv2/pytesseract y ejecutaban
-TODO dentro del contenedor/WSL del servidor. El servidor no tiene acceso al
+TO-DO dentro del contenedor/WSL del servidor. El servidor no tiene acceso al
 framebuffer, ratón ni teclado reales del usuario, así que nunca controlaban
 el equipo real, sólo (si acaso) una sesión X virtual dentro de WSL.
 
@@ -11,12 +11,27 @@ AHORA: cada función empaqueta sus argumentos y los envía vía
 (ui/alfonso_agent.py, corriendo en la máquina del usuario). Si no hay agente
 conectado, se devuelve un error explícito — nunca un fallback silencioso
 que actúe sobre el servidor.
+
+FIX (unificación de tablas de acciones): antes cada función mandaba su
+propio literal en guión bajo ("mouse_click", "keyboard_hotkey",
+"ocr_screenshot"...) que nunca estuvo en alfonso_bridge.py::ALLOWED_ACTIONS
+(que solo reconocía la convención con punto, p.ej. "mouse.click", y ni
+siquiera tenía entradas para ocr_screenshot/ocr_image/find_on_screen/
+window_list en ninguna forma). Toda llamada a estas funciones devolvía
+silenciosamente {"status": "error", "error": "Action no permitida: ..."}
+sin que nada en los logs lo hiciera evidente como tal, porque el error se
+generaba dentro de _delegate() y se propagaba como un "error" genérico de
+tool, indistinguible de un fallo real del agente local. Ahora se usan las
+constantes de app.core.actions.Action, que es la misma fuente que alimenta
+ALLOWED_ACTIONS — ya no puede haber desincronización entre lo que esta
+tabla manda y lo que el bridge acepta.
 """
 
 from __future__ import annotations
 
 from typing import Optional
 
+from app.core.actions import Action
 from app.core.alfonso_bridge import bridge as alfonso_bridge
 from app.utils.logger import error_logger, tool_logger
 
@@ -63,7 +78,7 @@ async def screenshot(
     region: Optional[tuple[int, int, int, int]] = None,
     save_path: Optional[str] = None,
 ) -> dict:
-    return await _delegate("screenshot", {"region": region, "save_path": save_path})
+    return await _delegate(Action.SCREEN_SCREENSHOT, {"region": region, "save_path": save_path})
 
 
 # ---------------------------------------------------------------------------
@@ -71,7 +86,7 @@ async def screenshot(
 # ---------------------------------------------------------------------------
 
 async def mouse_move(x: int, y: int, duration: float = 0.25) -> dict:
-    return await _delegate("mouse_move", {"x": x, "y": y, "duration": duration})
+    return await _delegate(Action.MOUSE_MOVE, {"x": x, "y": y, "duration": duration})
 
 
 async def mouse_click(
@@ -82,7 +97,7 @@ async def mouse_click(
     interval: float = 0.1,
 ) -> dict:
     return await _delegate(
-        "mouse_click",
+        Action.MOUSE_CLICK,
         {"x": x, "y": y, "button": button, "clicks": clicks, "interval": interval},
     )
 
@@ -94,7 +109,7 @@ async def mouse_drag(
     button: str = "left",
 ) -> dict:
     return await _delegate(
-        "mouse_drag",
+        Action.MOUSE_DRAG,
         {"x1": x1, "y1": y1, "x2": x2, "y2": y2, "duration": duration, "button": button},
     )
 
@@ -104,12 +119,12 @@ async def mouse_drag(
 # ---------------------------------------------------------------------------
 
 async def keyboard_type(text: str, interval: float = 0.03) -> dict:
-    return await _delegate("keyboard_type", {"text": text, "interval": interval})
+    return await _delegate(Action.KEYBOARD_TYPE, {"text": text, "interval": interval})
 
 
 async def keyboard_hotkey(*keys: str) -> dict:
     # ComputerAgent llama a esta tool con *keys posicionales (ver computer_agent.py)
-    return await _delegate("keyboard_hotkey", {"keys": list(keys)})
+    return await _delegate(Action.KEYBOARD_HOTKEY, {"keys": list(keys)})
 
 
 # ---------------------------------------------------------------------------
@@ -120,12 +135,12 @@ async def ocr_screenshot(
     region: Optional[tuple[int, int, int, int]] = None,
     lang: str = "spa+eng",
 ) -> dict:
-    return await _delegate("ocr_screenshot", {"region": region, "lang": lang})
+    return await _delegate(Action.SCREEN_OCR_SCREENSHOT, {"region": region, "lang": lang})
 
 
 async def ocr_image(path: str, lang: str = "spa+eng") -> dict:
     # NOTA: `path` se resuelve en el filesystem del AGENTE LOCAL, no del servidor.
-    return await _delegate("ocr_image", {"path": path, "lang": lang})
+    return await _delegate(Action.SCREEN_OCR_IMAGE, {"path": path, "lang": lang})
 
 
 # ---------------------------------------------------------------------------
@@ -138,7 +153,7 @@ async def find_on_screen(
     region: Optional[tuple[int, int, int, int]] = None,
 ) -> dict:
     return await _delegate(
-        "find_on_screen",
+        Action.SCREEN_FIND,
         {"template_path": template_path, "threshold": threshold, "region": region},
     )
 
@@ -148,15 +163,15 @@ async def find_on_screen(
 # ---------------------------------------------------------------------------
 
 async def window_list() -> dict:
-    return await _delegate("window_list", {})
+    return await _delegate(Action.WINDOW_LIST, {})
 
 
 async def window_focus(title: str) -> dict:
-    return await _delegate("window_focus", {"title": title})
+    return await _delegate(Action.WINDOW_FOCUS, {"title": title})
 
 
 async def window_close(title: str) -> dict:
-    return await _delegate("window_close", {"title": title})
+    return await _delegate(Action.WINDOW_CLOSE, {"title": title})
 
 
 # ---------------------------------------------------------------------------

@@ -16,6 +16,10 @@ Fixes respecto a versión anterior (v3):
    que la app se abrirá en WSL y NO en el host Windows, para evitar
    confusión cuando el usuario espera ver la app en su escritorio Windows
    pero el agente local (ui/alfonso_agent.py) no está corriendo.
+7. FIX (unificación de tablas de acciones): los literales "open_app",
+   "close_app", "open_url" que se mandaban al bridge ahora vienen de
+   app.core.actions.Action — mismo valor exacto, pero ya no son una copia
+   independiente que pueda divergir de ALLOWED_ACTIONS.
 """
 
 import os
@@ -28,6 +32,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Sequence
 
+from app.core.actions import Action
 from app.core.alfonso_bridge import bridge as alfonso_bridge
 from app.utils.logger import tool_logger, error_logger
 
@@ -50,8 +55,8 @@ _APP_ALIASES: dict[str, list[str]] = {
     "chromium":               ["chromium-browser", "chromium", "google-chrome"],
     "vscode":                 ["code"],
     "visual studio code":     ["code"],
-    "terminal":               ["x-terminal-emulator", "gnome-terminal", "konsole", "xterm"],
-    "notepad":                ["gedit", "kate", "mousepad", "xed"],
+    "terminal":               ["x-terminal-emulator", "gnome-terminal", "konsole", "xterm", "terminal", "bash", "sh", "cmd", "powershell"],
+    "notepad":                ["gedit", "kate", "mousepad", "xed", "leafpad", "notepad"],
 }
 
 _FILE_MANAGERS = ["nautilus", "nemo", "thunar", "dolphin", "caja", "pcmanfm", "xdg-open"]
@@ -224,7 +229,7 @@ async def open_application(command: str | Sequence[str], args: Sequence[str] | N
 
     if alfonso_bridge.has_clients():
         tool_logger.info("Delegando open_application al agente local: %s", command_text)
-        response = await alfonso_bridge.send_command("open_app", {"command": command_text})
+        response = await alfonso_bridge.send_command(Action.OPEN_APP, {"command": command_text})
         if response.get("status") == "success":
             return {
                 "status": "ok",
@@ -271,7 +276,7 @@ async def close_application(command: str) -> dict:
 
     if alfonso_bridge.has_clients():
         tool_logger.info("Delegando close_application al agente local: %s", target)
-        response = await alfonso_bridge.send_command("close_app", {"command": target})
+        response = await alfonso_bridge.send_command(Action.CLOSE_APP, {"command": target})
         if response.get("status") == "success":
             return {
                 "status": "ok",
@@ -318,7 +323,7 @@ async def open_url(url: str) -> dict:
 
     if alfonso_bridge.has_clients():
         tool_logger.info("Delegando open_url al agente local: %s", url)
-        response = await alfonso_bridge.send_command("open_url", {"url": url})
+        response = await alfonso_bridge.send_command(Action.OPEN_URL, {"url": url})
         if response.get("status") == "success":
             return {
                 "status": "ok",

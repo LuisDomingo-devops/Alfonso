@@ -3,6 +3,7 @@ from pathlib import Path
 from typing import Any, Callable, Type
 
 from app.config import settings
+from app.core.actions import CLIENT_ALIASES
 from app.core.tool_base import ToolArgsModel, ValidatedArgs, coerce_and_validate
 from app.utils.logger import (
     attach_request_id,
@@ -27,23 +28,11 @@ SERVER_TOOLS: dict[str, Callable[..., Any]] = {
 # (sin ninguna validación) — la migración es incremental, módulo a módulo.
 ARGS_SCHEMAS: dict[str, tuple[Type[ToolArgsModel], dict[str, str]]] = {}
 
-CLIENT_TOOLS: dict[str, str] = {
-
-    "open_app": "system.open_app",
-    "close_app": "system.close_app",
-
-    "click": "mouse.click",
-    "move_mouse": "mouse.move",
-    "drag_mouse": "mouse.drag",
-
-    "type_text": "keyboard.type",
-    "press_key": "keyboard.press",
-
-    "focus_window": "window.focus",
-    "close_window": "window.close",
-
-    "screenshot": "screen.screenshot",
-}
+# Antes este diccionario era una copia independiente y mantenida a mano
+# de los mismos alias que también vivían en app/core/actions.py. Ahora
+# es exactamente ese dict — un solo lugar donde se declaran los alias
+# cortos que el LLM puede emitir en modo "tool" para acciones de cliente.
+CLIENT_TOOLS: dict[str, str] = CLIENT_ALIASES
 
 
 _plugins_loaded = False

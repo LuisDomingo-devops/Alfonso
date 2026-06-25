@@ -4,34 +4,11 @@ import websockets
 import uuid
 import logging
 
+from app.core.actions import ALLOWED_ACTIONS
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("bridge")
 
-
-ALLOWED_ACTIONS = {
-    "system.open_app",
-    "system.close_app",
-    "open_app",     # <- nombre real que usa system_tools.py (open_application)
-    "close_app",    # <- nombre real que usa system_tools.py (close_application)
-    "open_url",     # <- nombre real que usa system_tools.py (open_url)
-    "create_file",
-    "read_file",
-    "list_directory",
-    "create_directory",
-    "append_file",
-    "delete_file",
-    "delete_directory",
-    "move_file",
-    "rename_file", # <- nombre real que usa system_tools.py (delete_folder)
-    "keyboard.type",
-    "keyboard.press",
-    "mouse.move",
-    "mouse.click",
-    "mouse.drag",
-    "window.focus",
-    "window.close",
-    "screen.screenshot",
-}
 
 class AlfonsoBridge:
     def __init__(self, host="0.0.0.0", port=8765):
