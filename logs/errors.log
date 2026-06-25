@@ -133,3 +133,38 @@ TimeoutError
 2026-06-22 14:18:05,765 | WARNING | errors | [b9594bb9-a894-4732-9841-2a4e82326162] Tool de servidor falló: open_application -> {'status': 'error', 'message': 'Timeout', 'delegate': 'alfonso_agent', 'details': {'status': 'error', 'error': 'Timeout'}}
 2026-06-22 14:18:45,315 | WARNING | errors | [3fcaac77-a8b8-4222-a604-5fc572583ff1] Tool de servidor falló: close_application -> {'status': 'error', 'message': 'Timeout', 'delegate': 'alfonso_agent', 'details': {'status': 'error', 'error': 'Timeout'}}
 2026-06-22 14:59:57,415 | WARNING | errors | [672a1d97-53ee-4888-ae46-031fb3288859] Tool de servidor falló: open_application -> {'status': 'error', 'message': 'Timeout', 'delegate': 'alfonso_agent', 'details': {'status': 'error', 'error': 'Timeout'}}
+2026-06-24 14:08:28,019 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "\\wsl.localhost\Ubuntu\home\luisd\Alfonso\app\core\response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\luisd\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\luisd\AppData\Local\Programs\Python\Python312\Lib\json\decoder.py", line 338, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\luisd\AppData\Local\Programs\Python\Python312\Lib\json\decoder.py", line 356, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-06-24 14:08:29,799 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir 'C:\Users\luisd\AppData\Local\Programs\Python\Python312\python.exe' en el equipo del usuario.
+2026-06-24 14:08:40,543 | ERROR | errors | [----------] LLM failed permanently
+Traceback (most recent call last):
+  File "\\wsl.localhost\Ubuntu\home\luisd\Alfonso\app\core\llm_client.py", line 186, in generate
+    raise RuntimeError(response.text)
+RuntimeError: {"error":"model 'qwen2.5:1.5b' not found"}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "\\wsl.localhost\Ubuntu\home\luisd\Alfonso\app\core\llm_client.py", line 186, in generate
+    raise RuntimeError(response.text)
+RuntimeError: {"error":"model 'qwen2.5:1.5b' not found"}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "\\wsl.localhost\Ubuntu\home\luisd\Alfonso\app\core\llm_client.py", line 186, in generate
+    raise RuntimeError(response.text)
+RuntimeError: {"error":"model 'qwen2.5:1.5b' not found"}
+2026-06-24 14:08:40,727 | ERROR | errors | [----------] Error de permisos al crear \\wsl.localhost\Ubuntu\mnt\c\Users\luisd\AppData\Local\Temp\pytest-of-luisd\pytest-7\test_prepare_tool_args_end_to_0\salida.txt: [WinError 5] Acceso denegado: '\\\\wsl.localhost\\Ubuntu\\mnt\\c\\Users\\luisd\\AppData\\Local\\Temp\\pytest-of-luisd\\pytest-7\\test_prepare_tool_args_end_to_0'

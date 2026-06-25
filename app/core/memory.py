@@ -6,42 +6,60 @@ Los datos sobreviven reinicios del servidor.
 """
 
 import json
+import os
 import sqlite3
+import sys
 from collections import deque
 from pathlib import Path
 from typing import Deque, Dict, List
 
-# La base de datos se crea junto a la carpeta de logs del proyecto
-DB_PATH = Path(__file__).resolve().parents[2] / "data" / "memory.db"
+# 1. DETECCIÓN DE ENTORNO DE PRUEBAS
+# Si se detecta pytest, usamos una base de datos temporal diferente (memory_test.db)
+# para evitar colisiones con la base de datos de desarrollo y prevenir bloqueos.
+IS_TESTING = "pytest" in sys.modules or os.getenv("TESTING") == "true"
+
+if IS_TESTING:
+    DB_PATH = Path(__file__).resolve().parents[2] / "data" / "memory_test.db"
+else:
+    DB_PATH = Path(__file__).resolve().parents[2] / "data" / "memory.db"
+
+# Variable de control para la inicialización perezosa (Lazy Initialization)
+_db_initialized = False
+
+
+def _init_db_schema(conn: sqlite3.Connection) -> None:
+    """Crea las tablas e índices necesarios si no existen."""
+    conn.execute("""
+        CREATE TABLE IF NOT EXISTS messages (
+            id          INTEGER PRIMARY KEY AUTOINCREMENT,
+            session_id  TEXT    NOT NULL,
+            role        TEXT    NOT NULL,
+            content     TEXT    NOT NULL,
+            created_at  TEXT    NOT NULL DEFAULT (datetime('now'))
+        )
+    """)
+    conn.execute("""
+        CREATE INDEX IF NOT EXISTS idx_messages_session
+        ON messages (session_id, id)
+    """)
+    conn.commit()
 
 
 def _get_connection() -> sqlite3.Connection:
+    global _db_initialized
+    
     DB_PATH.parent.mkdir(parents=True, exist_ok=True)
     conn = sqlite3.connect(str(DB_PATH), check_same_thread=False)
     conn.row_factory = sqlite3.Row
+    
+    # 2. INICIALIZACIÓN PEREZOSA (LAZY INITIALIZATION)
+    # En lugar de ejecutarse al importar el módulo, se ejecuta únicamente
+    # cuando la aplicación (o un test) solicita la primera conexión real.
+    if not _db_initialized:
+        _init_db_schema(conn)
+        _db_initialized = True
+        
     return conn
-
-
-def _init_db() -> None:
-    with _get_connection() as conn:
-        conn.execute("""
-            CREATE TABLE IF NOT EXISTS messages (
-                id          INTEGER PRIMARY KEY AUTOINCREMENT,
-                session_id  TEXT    NOT NULL,
-                role        TEXT    NOT NULL,
-                content     TEXT    NOT NULL,
-                created_at  TEXT    NOT NULL DEFAULT (datetime('now'))
-            )
-        """)
-        conn.execute("""
-            CREATE INDEX IF NOT EXISTS idx_messages_session
-            ON messages (session_id, id)
-        """)
-        conn.commit()
-
-
-# Inicializar la base de datos al importar el módulo
-_init_db()
 
 
 class SessionMemory:
@@ -135,7 +153,7 @@ class SessionMemory:
         with _get_connection() as conn:
             rows = conn.execute(
                 "SELECT DISTINCT session_id FROM messages ORDER BY session_id"
-            ).fetchall()
+                ).fetchall()
         return [r["session_id"] for r in rows]
 
 

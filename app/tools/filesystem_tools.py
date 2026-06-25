@@ -280,3 +280,62 @@ TOOLS = {
     "move_file": move_file,
     "rename_file": rename_file,
 }
+
+
+# ---------------------------------------------------------------------------
+# Fase 1 (BaseTool + Pydantic) — esquemas permisivos
+# ---------------------------------------------------------------------------
+# Este es el módulo donde se vio el error real en producción
+# (logs/errors.log: "create_file() got an unexpected keyword argument
+# 'file_path'"). Los alias de abajo cubren las variantes que el modelo
+# qwen2.5:1.5b ha mandado realmente; campos no listados aquí simplemente
+# se ignoran en modo permisivo en vez de romper la llamada.
+
+from app.core.tool_base import ToolArgsModel  # noqa: E402  (al final a propósito)
+
+_PATH_ALIASES = {
+    "file_path": "path",
+    "filename": "path",
+    "file_name": "path",
+    "ruta": "path",
+    "nombre": "path",
+    "nombre_archivo": "path",
+}
+
+_CONTENT_ALIASES = {
+    "contenido": "content",
+    "text": "content",
+    "texto": "content",
+    "data": "content",
+}
+
+
+class CreateFileArgs(ToolArgsModel):
+    path: str
+    content: str = ""
+
+
+class ReadFileArgs(ToolArgsModel):
+    path: str
+
+
+class AppendFileArgs(ToolArgsModel):
+    path: str
+    content: str = ""
+
+
+class DeleteFileArgs(ToolArgsModel):
+    path: str
+
+
+class ListDirectoryArgs(ToolArgsModel):
+    path: str = "."
+
+
+ARGS_SCHEMAS = {
+    "create_file": (CreateFileArgs, {**_PATH_ALIASES, **_CONTENT_ALIASES}),
+    "read_file": (ReadFileArgs, dict(_PATH_ALIASES)),
+    "append_file": (AppendFileArgs, {**_PATH_ALIASES, **_CONTENT_ALIASES}),
+    "delete_file": (DeleteFileArgs, dict(_PATH_ALIASES)),
+    "list_directory": (ListDirectoryArgs, dict(_PATH_ALIASES)),
+}

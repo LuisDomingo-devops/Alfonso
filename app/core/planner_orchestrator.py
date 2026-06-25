@@ -11,7 +11,8 @@ from app.core.memory import memory
 from app.core.tool_registry import (
     get_tool,
     is_client_tool,
-    get_client_action
+    get_client_action,
+    prepare_tool_args
 )
 
 from app.core.alfonso_bridge import bridge
@@ -139,18 +140,33 @@ class PlannerOrchestrator:
             }
 
         #
-        # CLIENTE
+        # CLIENTE / SERVIDOR
         #
+
+        result = None  # FIX: evita UnboundLocalError cuando la tool no es de cliente
 
         if is_client_tool(tool_name):
 
             action = get_client_action(tool_name)
-            logger.info("Enviando al cliente %s", action)
 
-            result = await bridge.send_command(action, args)
+            logger.info(
+                "Enviando al cliente %s",
+                action
+            )
+
+            result = await bridge.send_command(
+                action,
+                args
+            )
 
             if not isinstance(result, dict) or result.get("status") == "error":
-                error.warning("Tool de cliente falló: %s -> %s", tool_name, result)
+
+                error.warning(
+                    "Tool de cliente falló: %s -> %s",
+                    tool_name,
+                    result
+                )
+
                 return {
                     "type": "error",
                     "execution": "client",
@@ -162,64 +178,67 @@ class PlannerOrchestrator:
                     "result": result
                 }
 
-            if tool_name in _DIRECT_CONFIRM:
+        else:
+
+            tool = get_tool(tool_name, request_id)
+
+            if not tool:
                 return {
-                    "type": "chat",
-                    "response": _DIRECT_CONFIRM[tool_name]
+                    "type": "error",
+                    "message": f"No existe {tool_name}"
                 }
 
+            try:
+
+                if asyncio.iscoroutinefunction(tool):
+
+                    result = await asyncio.wait_for(
+                        tool(**args),
+                        timeout=_TOOL_TIMEOUT
+                    )
+
+                else:
+
+                    loop = asyncio.get_running_loop()
+
+                    result = await asyncio.wait_for(
+                        loop.run_in_executor(
+                            None,
+                            lambda: tool(**args)
+                        ),
+                        timeout=_TOOL_TIMEOUT
+                    )
+
+            except Exception as e:
+
+                error.exception("Error tool")
+
+                return {
+                    "type": "error",
+                    "message": str(e)
+                }
+
+        if tool_name in _DIRECT_CONFIRM:
+
             return {
-                "type": "tool",
-                "execution": "client",
-                "tool": tool_name,
-                "result": result
-            }
-
-        #
-        # SERVIDOR
-        #
-
-        tool = get_tool(tool_name, request_id)
-
-        if not tool:
-            return {
-                "type": "error",
-                "message": f"No existe {tool_name}"
-            }
-
-        try:
-            if asyncio.iscoroutinefunction(tool):
-                result = await asyncio.wait_for(
-                    tool(**args),
-                    timeout=_TOOL_TIMEOUT
-                )
-            else:
-                loop = asyncio.get_running_loop()
-                result = await asyncio.wait_for(
-                    loop.run_in_executor(None, lambda: tool(**args)),
-                    timeout=_TOOL_TIMEOUT
-                )
-        except Exception as e:
-            error.exception("Error tool")
-            return {
-                "type": "error",
-                "message": str(e)
+                "type": "chat",
+                "response": _DIRECT_CONFIRM[tool_name]
             }
 
         if isinstance(result, dict) and result.get("status") == "error":
-            error.warning("Tool de servidor falló: %s -> %s", tool_name, result)
+
+            error.warning(
+                "Tool de servidor falló: %s -> %s",
+                tool_name,
+                result
+            )
+
             return {
                 "type": "error",
                 "execution": "server",
                 "tool": tool_name,
                 "message": result.get("message", "Error ejecutando tool"),
                 "result": result
-            }
-
-        if tool_name in _DIRECT_CONFIRM:
-            return {
-                "type": "chat",
-                "response": _DIRECT_CONFIRM[tool_name]
             }
 
         return {

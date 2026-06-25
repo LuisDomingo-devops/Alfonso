@@ -518,3 +518,60 @@ UnboundLocalError: cannot access local variable 'result' where it is not associa
 2026-06-22 15:15:11,452 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
 2026-06-22 15:15:50,492 | INFO | app | [----------] Modelo precalentado
 2026-06-22 15:15:50,493 | INFO | app | [----------] Alfonso listo
+2026-06-24 14:08:36,945 | INFO | app | [----------] Logs en \\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs
+2026-06-24 14:08:36,948 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-24 14:08:37,079 | INFO | app | [----------] Agentes: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-24 14:08:37,106 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-06-24 14:08:40,555 | INFO | app | [----------] Modelo precalentado
+2026-06-24 14:08:40,555 | INFO | app | [----------] Alfonso listo
+2026-06-24 14:08:40,555 | INFO | app | [eb092aad-66c2-4884-8e91-f1cd3b4f0a0a] HTTP GET /health
+2026-06-24 14:08:40,585 | INFO | app | [a7564372-17d1-4b96-976f-f2f299434131] HTTP GET /metrics
+2026-06-24 14:08:40,597 | INFO | app | [5df79332-baf0-4605-a921-b14fc9ed1280] HTTP POST /chat
+2026-06-24 14:08:40,607 | INFO | app | [5df79332-baf0-4605-a921-b14fc9ed1280] Solicitud /chat recibida
+2026-06-24 14:08:40,608 | INFO | app | [5df79332-baf0-4605-a921-b14fc9ed1280] SESSION_ID: test_sess
+2026-06-24 14:08:40,609 | INFO | app | [5df79332-baf0-4605-a921-b14fc9ed1280] USER MESSAGE: hola
+2026-06-24 14:08:40,610 | INFO | app | [5df79332-baf0-4605-a921-b14fc9ed1280] Solicitud /chat procesada con estado: chat
+2026-06-24 14:08:40,611 | INFO | app | [5df79332-baf0-4605-a921-b14fc9ed1280] LATENCY: 0.00s
+2026-06-24 14:08:40,621 | INFO | app | [a24af96a-e68c-4977-9de0-8126a6e53e84] HTTP POST /chat
+2026-06-24 14:08:40,630 | INFO | app | [970786e4-67d1-424d-9470-6d5ffcefc863] HTTP GET /tools
+2026-06-24 14:08:40,645 | INFO | app | [821a14ed-9af8-4881-ac4f-65f7104b4837] HTTP GET /memory
+2026-06-24 14:08:40,655 | INFO | app | [da6922fc-9696-4858-b04f-c2cf8e2f8256] HTTP GET /memory/test_session
+2026-06-24 14:08:40,663 | INFO | app | [0dbe3bc4-4081-4339-838d-8e594dcb3762] HTTP DELETE /memory/test_session
+2026-06-24 14:08:40,672 | INFO | app | [----------] Alfonso detenido
+2026-06-24 14:23:47,528 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-24 14:23:47,529 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-24 14:23:47,544 | INFO | app | [----------] Agentes: ['filesystem', 'system', 'browser', 'computer', 'mail', 'automation', 'chat']
+2026-06-24 14:23:47,576 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-06-24 14:24:28,330 | INFO | app | [----------] Modelo precalentado
+2026-06-24 14:24:28,336 | INFO | app | [----------] Alfonso listo
+2026-06-24 14:28:20,482 | INFO | app | [9fe74e8c-ca38-4d82-a443-ae92ade98e18] HTTP GET /health
+2026-06-24 14:28:35,283 | INFO | app | [508a4dc3-2efb-4b63-b1ec-fbadc3044190] HTTP POST /chat
+2026-06-24 14:28:35,292 | INFO | app | [508a4dc3-2efb-4b63-b1ec-fbadc3044190] Solicitud /chat recibida
+2026-06-24 14:28:35,292 | INFO | app | [508a4dc3-2efb-4b63-b1ec-fbadc3044190] SESSION_ID: 508a4dc3-2efb-4b63-b1ec-fbadc3044190
+2026-06-24 14:28:35,293 | INFO | app | [508a4dc3-2efb-4b63-b1ec-fbadc3044190] USER MESSAGE: Corcha me encanta saludarle Francisco soy Luis domingo
+2026-06-24 14:29:09,590 | INFO | app | [508a4dc3-2efb-4b63-b1ec-fbadc3044190] Solicitud /chat procesada con estado: chat
+2026-06-24 14:29:09,590 | INFO | app | [508a4dc3-2efb-4b63-b1ec-fbadc3044190] LATENCY: 33.66s
+2026-06-24 14:35:50,258 | INFO | app | [1ae0b4f8-8374-4d6b-a71f-547b9abf009f] HTTP POST /chat
+2026-06-24 14:35:50,264 | INFO | app | [1ae0b4f8-8374-4d6b-a71f-547b9abf009f] Solicitud /chat recibida
+2026-06-24 14:35:50,264 | INFO | app | [1ae0b4f8-8374-4d6b-a71f-547b9abf009f] SESSION_ID: 1ae0b4f8-8374-4d6b-a71f-547b9abf009f
+2026-06-24 14:35:50,264 | INFO | app | [1ae0b4f8-8374-4d6b-a71f-547b9abf009f] USER MESSAGE: hola
+2026-06-24 14:36:22,770 | INFO | app | [1ae0b4f8-8374-4d6b-a71f-547b9abf009f] Solicitud /chat procesada con estado: chat
+2026-06-24 14:36:22,779 | INFO | app | [1ae0b4f8-8374-4d6b-a71f-547b9abf009f] LATENCY: 32.51s
+2026-06-24 14:38:28,238 | INFO | app | [03d5070e-3491-409d-a45a-3f3fc6b270aa] HTTP POST /chat
+2026-06-24 14:38:28,238 | INFO | app | [03d5070e-3491-409d-a45a-3f3fc6b270aa] Solicitud /chat recibida
+2026-06-24 14:38:28,238 | INFO | app | [03d5070e-3491-409d-a45a-3f3fc6b270aa] SESSION_ID: 03d5070e-3491-409d-a45a-3f3fc6b270aa
+2026-06-24 14:38:28,239 | INFO | app | [03d5070e-3491-409d-a45a-3f3fc6b270aa] USER MESSAGE: como te llamas
+2026-06-24 14:39:01,231 | INFO | app | [03d5070e-3491-409d-a45a-3f3fc6b270aa] Solicitud /chat procesada con estado: chat
+2026-06-24 14:39:01,232 | INFO | app | [03d5070e-3491-409d-a45a-3f3fc6b270aa] LATENCY: 32.57s
+2026-06-24 14:40:55,703 | INFO | app | [e6783c50-c25b-45c7-972d-8e4041da0b63] HTTP POST /chat
+2026-06-24 14:40:55,704 | INFO | app | [e6783c50-c25b-45c7-972d-8e4041da0b63] Solicitud /chat recibida
+2026-06-24 14:40:55,704 | INFO | app | [e6783c50-c25b-45c7-972d-8e4041da0b63] SESSION_ID: e6783c50-c25b-45c7-972d-8e4041da0b63
+2026-06-24 14:40:55,704 | INFO | app | [e6783c50-c25b-45c7-972d-8e4041da0b63] USER MESSAGE: que hora es?
+2026-06-24 14:41:47,066 | INFO | app | [e6783c50-c25b-45c7-972d-8e4041da0b63] Solicitud /chat procesada con estado: tool
+2026-06-24 14:41:47,067 | INFO | app | [e6783c50-c25b-45c7-972d-8e4041da0b63] LATENCY: 51.36s
+2026-06-24 14:51:25,131 | INFO | app | [070f084d-2c3e-44a2-90bf-a19982b68e43] HTTP POST /chat
+2026-06-24 14:51:25,142 | INFO | app | [070f084d-2c3e-44a2-90bf-a19982b68e43] Solicitud /chat recibida
+2026-06-24 14:51:25,142 | INFO | app | [070f084d-2c3e-44a2-90bf-a19982b68e43] SESSION_ID: 070f084d-2c3e-44a2-90bf-a19982b68e43
+2026-06-24 14:51:25,142 | INFO | app | [070f084d-2c3e-44a2-90bf-a19982b68e43] USER MESSAGE: dime que hora es
+2026-06-24 14:51:27,050 | INFO | app | [070f084d-2c3e-44a2-90bf-a19982b68e43] Solicitud /chat procesada con estado: tool
+2026-06-24 14:51:27,051 | INFO | app | [070f084d-2c3e-44a2-90bf-a19982b68e43] LATENCY: 1.91s
