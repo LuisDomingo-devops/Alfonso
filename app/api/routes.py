@@ -50,9 +50,10 @@ async def tools_list():
 
 @router.get("/agents")
 async def agents_list():
-    from app.main import agent_registry
-    return {"agents": agent_registry.list_agents()}
-
+    return {
+        "agents": [],
+        "note": "Capa de agentes/EventBus retirada en Fase 4; PlannerOrchestrator es el único pipeline."
+    }
 
 @router.get("/metrics")
 async def metrics():

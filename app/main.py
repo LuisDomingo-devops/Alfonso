@@ -1,8 +1,6 @@
 """
-main.py — Alfonso Core Fase 3 (sin audio server-side)
+main.py — Alfonso Core (PlannerOrchestrator como único pipeline)
 
-El audio (STT/TTS/wake word) se gestiona completamente en el cliente local (ui/).
-El servidor solo expone /chat y las rutas de herramientas.
 """
 
 import time
@@ -14,24 +12,21 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
-from app.agents.registry import AgentRegistry
 from app.api.routes import router
 from app.api.routes_fase3 import router_browser, router_computer
-from app.core.event_bus import EventBus
 from app.core.llm_client import OllamaClient, get_system_prompt
 from app.core.metrics import increment_http_errors, increment_http_requests, record_http_latency
 from app.core.planner_orchestrator import PlannerOrchestrator
 from app.core.alfonso_bridge import bridge as alfonso_bridge
+from app.tools.browser_tools import _close as _close_playwright
 from app.utils.logger import LOG_DIR, app_logger, attach_request_id
 
 # ---------------------------------------------------------------------------
 # Instancias globales
 # ---------------------------------------------------------------------------
 
-llm              = OllamaClient()
-event_bus        = EventBus()
-agent_registry   = AgentRegistry(event_bus, llm)
-planner_orchestrator = PlannerOrchestrator(event_bus)
+llm = OllamaClient()
+planner_orchestrator = PlannerOrchestrator()
 
 
 # ---------------------------------------------------------------------------
@@ -43,22 +38,11 @@ async def lifespan(app: FastAPI):
     app_logger.info("Logs en %s", LOG_DIR)
     app_logger.info("Arrancando Alfonso — audio delegado al cliente local")
 
-    await event_bus.start()
-
-    agent_registry.set_llm(llm)
-    await agent_registry.start()
     await alfonso_bridge.start()
-    app_logger.info("Agentes: %s", [a["name"] for a in agent_registry.list_agents()])
 
     from app.api import routes as _routes
     _routes.orchestrator = planner_orchestrator
 
-    # Precarga (y por tanto cachea en memoria) ambos prompts de sistema
-    # ANTES de aceptar tráfico. Así, si TOOL_PROMPT_PATH o CHAT_PROMPT_PATH
-    # apuntan a un archivo roto o inexistente, el error sale en los logs de
-    # arranque y no en el primer /chat de un usuario real. Con la versión
-    # cacheada de load_prompt() esto también evita el I/O de disco síncrono
-    # en cada request posterior.
     try:
         get_system_prompt("chat")
         get_system_prompt("tool")
@@ -77,8 +61,13 @@ async def lifespan(app: FastAPI):
     yield
 
     await alfonso_bridge.stop()
-    await agent_registry.stop()
-    await event_bus.stop()
+
+    try:
+        await _close_playwright()
+        app_logger.info("Playwright cerrado limpiamente")
+    except Exception:
+        app_logger.exception("Error cerrando Playwright")
+
     app_logger.info("Alfonso detenido")
 
 
@@ -86,7 +75,7 @@ async def lifespan(app: FastAPI):
 # App
 # ---------------------------------------------------------------------------
 
-app = FastAPI(title="Alfonso Core — Fase 3", lifespan=lifespan)
+app = FastAPI(title="Alfonso Core — Fase 4", lifespan=lifespan)
 
 
 @app.middleware("http")
@@ -136,14 +125,6 @@ async def generic_exception_handler(request: Request, exc: Exception):
         content={"status": "error", "request_id": request_id, "detail": "Internal server error"},
     )
 
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    await alfonso_bridge.start()
-    yield
-    await alfonso_bridge.stop()
-# ---------------------------------------------------------------------------
-# Routers
-# ---------------------------------------------------------------------------
 
 app.include_router(router)
 app.include_router(router_browser)
