@@ -243,7 +243,7 @@ async def browser_inspect():
 # COMPUESTAS (nivel alto)
 # =========================================================
 
-async def browser_search(query: str):
+async def browser_search(query: str, max_text_chars: int = 3000):
     try:
         if not query.strip():
             return _error("invalid_query", "Query vacía")
@@ -263,7 +263,7 @@ async def browser_search(query: str):
         return _ok(
             query=query,
             url=url,
-            text_preview=text.get("text", "")[:3000],
+            text_preview=text.get("text", "")[:max_text_chars],
             image_base64=shot.get("image_base64")
         )
 
@@ -272,9 +272,20 @@ async def browser_search(query: str):
 
 
 async def browser_close():
+    """Cierra el navegador. Si hay un cliente conectado, delega el cierre cerrando los navegadores comunes (chrome, firefox, msedge)."""
+    from app.core.alfonso_bridge import bridge as alfonso_bridge
+    if alfonso_bridge.has_clients():
+        from app.tools.system_tools import close_application
+        tool_logger.info("Delegando browser_close al cliente")
+        results = []
+        for browser_name in ["chrome", "firefox", "msedge"]:
+            res = await close_application(browser_name)
+            results.append(res)
+        return _ok(message="Comandos de cierre de navegador delegados al cliente", results=results)
+
     try:
         await _close()
-        return _ok(message="Browser cerrado")
+        return _ok(message="Browser cerrado en el servidor")
     except Exception as e:
         return _error("close_failed", str(e))
 

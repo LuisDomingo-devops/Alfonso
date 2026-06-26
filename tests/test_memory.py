@@ -15,7 +15,9 @@ def mem(tmp_path, monkeypatch):
     db_path = tmp_path / "test_memory.db"
     monkeypatch.setattr(memory_module, "DB_PATH", db_path)
     # Re-inicializar la base de datos en la ruta temporal
-    memory_module._init_db()
+    memory_module._db_initialized = False
+    with memory_module._get_connection() as conn:
+        pass
     return SessionMemory(max_messages=5)
 
 
@@ -70,7 +72,9 @@ def test_persistence_across_instances(tmp_path, monkeypatch):
     import app.core.memory as memory_module
     db_path = tmp_path / "persist_test.db"
     monkeypatch.setattr(memory_module, "DB_PATH", db_path)
-    memory_module._init_db()
+    memory_module._db_initialized = False
+    with memory_module._get_connection() as conn:
+        pass
 
     # Primera instancia: escribe datos
     mem1 = SessionMemory(max_messages=10)

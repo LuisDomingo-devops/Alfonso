@@ -22,5 +22,6 @@ opencv-python
 pytesseract
 Pillow
 pygetwindow; sys_platform == 'win32'
+chromadb
 
 # Nota: Instalar navegadores de Playwright con: playwright install chromium

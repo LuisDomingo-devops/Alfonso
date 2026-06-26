@@ -575,3 +575,450 @@ UnboundLocalError: cannot access local variable 'result' where it is not associa
 2026-06-24 14:51:25,142 | INFO | app | [070f084d-2c3e-44a2-90bf-a19982b68e43] USER MESSAGE: dime que hora es
 2026-06-24 14:51:27,050 | INFO | app | [070f084d-2c3e-44a2-90bf-a19982b68e43] Solicitud /chat procesada con estado: tool
 2026-06-24 14:51:27,051 | INFO | app | [070f084d-2c3e-44a2-90bf-a19982b68e43] LATENCY: 1.91s
+2026-06-26 13:03:33,193 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-26 13:03:33,194 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-26 13:03:33,211 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-06-26 13:04:14,185 | INFO | app | [----------] Modelo precalentado
+2026-06-26 13:04:14,192 | INFO | app | [----------] Alfonso listo
+2026-06-26 13:04:14,260 | INFO | app | [014e9f26-d831-4636-9164-bc1f4c6ed506] HTTP GET /health
+2026-06-26 13:04:14,296 | INFO | app | [9a131a91-c8f5-4054-9e58-349e668f794c] HTTP GET /metrics
+2026-06-26 13:04:14,308 | INFO | app | [1de5f941-2b9e-4fb0-bb9b-c75775cb261d] HTTP POST /chat
+2026-06-26 13:04:14,315 | INFO | app | [1de5f941-2b9e-4fb0-bb9b-c75775cb261d] Solicitud /chat recibida
+2026-06-26 13:04:14,316 | INFO | app | [1de5f941-2b9e-4fb0-bb9b-c75775cb261d] SESSION_ID: test_sess
+2026-06-26 13:04:14,316 | INFO | app | [1de5f941-2b9e-4fb0-bb9b-c75775cb261d] USER MESSAGE: hola
+2026-06-26 13:04:14,316 | INFO | app | [1de5f941-2b9e-4fb0-bb9b-c75775cb261d] Solicitud /chat procesada con estado: chat
+2026-06-26 13:04:14,316 | INFO | app | [1de5f941-2b9e-4fb0-bb9b-c75775cb261d] LATENCY: 0.00s
+2026-06-26 13:04:14,325 | INFO | app | [42e40956-cc10-408b-bcd0-5e466abc7e33] HTTP POST /chat
+2026-06-26 13:04:14,332 | INFO | app | [2db42fa9-4e58-43fa-913f-32a14344b201] HTTP GET /tools
+2026-06-26 13:04:14,338 | INFO | app | [f2296131-9dfb-43e9-9569-3af785109a94] HTTP GET /memory
+2026-06-26 13:04:14,344 | INFO | app | [bd74b525-55fd-4f20-b8d9-f8ecdf2dd5a4] HTTP GET /memory/test_session
+2026-06-26 13:04:14,350 | INFO | app | [9066c641-9fbe-4d89-861e-e0b99cd1a094] HTTP DELETE /memory/test_session
+2026-06-26 13:04:14,355 | INFO | app | [----------] Playwright cerrado limpiamente
+2026-06-26 13:04:14,356 | INFO | app | [----------] Alfonso detenido
+2026-06-26 13:04:33,638 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-26 13:04:33,638 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-26 13:04:33,652 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-06-26 13:04:59,361 | INFO | app | [----------] Modelo precalentado
+2026-06-26 13:04:59,361 | INFO | app | [----------] Alfonso listo
+2026-06-26 13:04:59,368 | INFO | app | [aaaa02c7-b909-485c-833c-8b914b3707fd] HTTP GET /health
+2026-06-26 13:04:59,375 | INFO | app | [17836010-c77e-4825-b2e9-8e2202b44178] HTTP GET /metrics
+2026-06-26 13:04:59,379 | INFO | app | [97c96db5-aeb0-4387-ba41-98893e3f0a6f] HTTP POST /chat
+2026-06-26 13:04:59,381 | INFO | app | [97c96db5-aeb0-4387-ba41-98893e3f0a6f] Solicitud /chat recibida
+2026-06-26 13:04:59,381 | INFO | app | [97c96db5-aeb0-4387-ba41-98893e3f0a6f] SESSION_ID: test_sess
+2026-06-26 13:04:59,381 | INFO | app | [97c96db5-aeb0-4387-ba41-98893e3f0a6f] USER MESSAGE: hola
+2026-06-26 13:04:59,381 | INFO | app | [97c96db5-aeb0-4387-ba41-98893e3f0a6f] Solicitud /chat procesada con estado: chat
+2026-06-26 13:04:59,382 | INFO | app | [97c96db5-aeb0-4387-ba41-98893e3f0a6f] LATENCY: 0.00s
+2026-06-26 13:04:59,386 | INFO | app | [c24a39e4-1cae-4d89-bcf0-866537664a29] HTTP POST /chat
+2026-06-26 13:04:59,396 | INFO | app | [915e92a2-e3d3-42d1-9fca-73c25cafabbd] HTTP GET /tools
+2026-06-26 13:04:59,401 | INFO | app | [63285f43-9e7a-434b-8a84-749520a13dc2] HTTP GET /memory
+2026-06-26 13:04:59,407 | INFO | app | [476f74ee-daa8-493e-8397-e7a5b8377602] HTTP GET /memory/test_session
+2026-06-26 13:04:59,412 | INFO | app | [e3bb878d-f35a-4709-ba34-180cab97ee96] HTTP DELETE /memory/test_session
+2026-06-26 13:04:59,416 | INFO | app | [----------] Playwright cerrado limpiamente
+2026-06-26 13:04:59,417 | INFO | app | [----------] Alfonso detenido
+2026-06-26 13:23:46,857 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-26 13:23:46,858 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-26 13:23:46,882 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-06-26 13:24:27,073 | INFO | app | [----------] Modelo precalentado
+2026-06-26 13:24:27,079 | INFO | app | [----------] Alfonso listo
+2026-06-26 13:24:27,136 | INFO | app | [3b68b8e2-1376-469e-b440-74118614b102] HTTP GET /health
+2026-06-26 13:24:27,172 | INFO | app | [e8565c01-83ef-4f6a-930d-c57b0ceb9e22] HTTP GET /metrics
+2026-06-26 13:24:27,183 | INFO | app | [3ad33740-bd5c-4835-9b1b-dde00062cb8f] HTTP POST /chat
+2026-06-26 13:24:27,216 | INFO | app | [3ad33740-bd5c-4835-9b1b-dde00062cb8f] Solicitud /chat recibida
+2026-06-26 13:24:27,217 | INFO | app | [3ad33740-bd5c-4835-9b1b-dde00062cb8f] SESSION_ID: test_sess
+2026-06-26 13:24:27,217 | INFO | app | [3ad33740-bd5c-4835-9b1b-dde00062cb8f] USER MESSAGE: hola
+2026-06-26 13:24:27,217 | INFO | app | [3ad33740-bd5c-4835-9b1b-dde00062cb8f] Solicitud /chat procesada con estado: chat
+2026-06-26 13:24:27,217 | INFO | app | [3ad33740-bd5c-4835-9b1b-dde00062cb8f] LATENCY: 0.00s
+2026-06-26 13:24:27,233 | INFO | app | [26ae1412-f1b3-4445-a156-c9c0320d71bd] HTTP POST /chat
+2026-06-26 13:24:27,242 | INFO | app | [86201ab0-8a2c-42a6-b2cd-1146dacac9aa] HTTP GET /tools
+2026-06-26 13:24:27,248 | INFO | app | [cc03fdd8-94f3-4407-91ae-3491ceb85dd0] HTTP GET /memory
+2026-06-26 13:24:27,254 | INFO | app | [38bb0c6c-3cd7-491f-9082-fabed2b03a9d] HTTP GET /memory/test_session
+2026-06-26 13:24:27,260 | INFO | app | [1c5bb6c4-10f6-4d2f-87ba-1324d63f5472] HTTP DELETE /memory/test_session
+2026-06-26 13:24:27,264 | INFO | app | [----------] Playwright cerrado limpiamente
+2026-06-26 13:24:27,264 | INFO | app | [----------] Alfonso detenido
+2026-06-26 13:33:18,416 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-26 13:33:18,417 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-26 13:33:18,438 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-06-26 13:34:01,210 | INFO | app | [----------] Modelo precalentado
+2026-06-26 13:34:01,219 | INFO | app | [----------] Alfonso listo
+2026-06-26 13:34:01,295 | INFO | app | [451caced-152b-4357-8695-ec6b97f45983] HTTP GET /health
+2026-06-26 13:34:01,345 | INFO | app | [b18509ea-671e-401d-b6a4-c959858a28d4] HTTP GET /metrics
+2026-06-26 13:34:01,361 | INFO | app | [15f40b6f-5c95-45db-89ca-57f2fb7f6481] HTTP POST /chat
+2026-06-26 13:34:01,372 | INFO | app | [15f40b6f-5c95-45db-89ca-57f2fb7f6481] Solicitud /chat recibida
+2026-06-26 13:34:01,373 | INFO | app | [15f40b6f-5c95-45db-89ca-57f2fb7f6481] SESSION_ID: test_sess
+2026-06-26 13:34:01,373 | INFO | app | [15f40b6f-5c95-45db-89ca-57f2fb7f6481] USER MESSAGE: hola
+2026-06-26 13:34:01,374 | INFO | app | [15f40b6f-5c95-45db-89ca-57f2fb7f6481] Solicitud /chat procesada con estado: chat
+2026-06-26 13:34:01,374 | INFO | app | [15f40b6f-5c95-45db-89ca-57f2fb7f6481] LATENCY: 0.00s
+2026-06-26 13:34:01,379 | INFO | app | [1cb79660-7106-4e95-b066-959d8549f3b8] HTTP POST /chat
+2026-06-26 13:34:01,388 | INFO | app | [119423e6-ef49-44da-ab78-fe1554f050ed] HTTP GET /tools
+2026-06-26 13:34:01,395 | INFO | app | [16bea223-cac4-425d-bb28-c7849e775150] HTTP GET /memory
+2026-06-26 13:34:01,402 | INFO | app | [a38aae84-9b5a-401c-994b-1ad796927e1f] HTTP GET /memory/test_session
+2026-06-26 13:34:01,409 | INFO | app | [f533f8d7-ac2b-42f6-95fc-36d3ef6576a9] HTTP DELETE /memory/test_session
+2026-06-26 13:34:01,415 | INFO | app | [----------] Playwright cerrado limpiamente
+2026-06-26 13:34:01,415 | INFO | app | [----------] Alfonso detenido
+2026-06-26 13:38:44,374 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-26 13:38:44,375 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-26 13:38:44,401 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-06-26 13:39:24,636 | INFO | app | [----------] Modelo precalentado
+2026-06-26 13:39:24,637 | INFO | app | [----------] Alfonso listo
+2026-06-26 13:39:24,662 | INFO | app | [857b77b8-96fc-4e5f-bf67-78315d0e1048] HTTP GET /health
+2026-06-26 13:39:24,682 | INFO | app | [dc1e1028-8f63-428f-836b-e975f448e27c] HTTP GET /metrics
+2026-06-26 13:39:24,691 | INFO | app | [1c2acd9c-c70a-4bfe-9cd1-e8ecc69d1a73] HTTP POST /chat
+2026-06-26 13:39:24,698 | INFO | app | [1c2acd9c-c70a-4bfe-9cd1-e8ecc69d1a73] Solicitud /chat recibida
+2026-06-26 13:39:24,698 | INFO | app | [1c2acd9c-c70a-4bfe-9cd1-e8ecc69d1a73] SESSION_ID: test_sess
+2026-06-26 13:39:24,698 | INFO | app | [1c2acd9c-c70a-4bfe-9cd1-e8ecc69d1a73] USER MESSAGE: hola
+2026-06-26 13:39:24,699 | INFO | app | [1c2acd9c-c70a-4bfe-9cd1-e8ecc69d1a73] Solicitud /chat procesada con estado: chat
+2026-06-26 13:39:24,699 | INFO | app | [1c2acd9c-c70a-4bfe-9cd1-e8ecc69d1a73] LATENCY: 0.00s
+2026-06-26 13:39:24,705 | INFO | app | [4551799c-e564-4584-8a3c-99333506ac4b] HTTP POST /chat
+2026-06-26 13:39:24,713 | INFO | app | [03c93571-0d0d-42a8-a52d-8e69e6d5dc80] HTTP GET /tools
+2026-06-26 13:39:24,718 | INFO | app | [d285e3a3-b357-483d-b993-5d0813e3ada6] HTTP GET /memory
+2026-06-26 13:39:24,725 | INFO | app | [ebfec788-bba1-457e-9ca4-6a84fec598c4] HTTP GET /memory/test_session
+2026-06-26 13:39:24,731 | INFO | app | [782a0656-c590-4216-b0b2-7da95d63c79f] HTTP DELETE /memory/test_session
+2026-06-26 13:41:57,879 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-26 13:41:57,880 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-26 13:41:57,902 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-06-26 13:41:57,903 | INFO | app | [----------] Precalentamiento de modelo omitido en entorno de test
+2026-06-26 13:41:57,903 | INFO | app | [----------] Alfonso listo
+2026-06-26 13:41:57,905 | INFO | app | [af909871-9929-4e5f-afff-4dfb3ec54f19] HTTP GET /health
+2026-06-26 13:41:57,911 | INFO | app | [014d117d-c52a-4c42-87cb-0ec1125784fc] HTTP GET /metrics
+2026-06-26 13:41:57,916 | INFO | app | [09defe5d-4c48-4e78-9317-adc857f41a7f] HTTP POST /chat
+2026-06-26 13:41:57,918 | INFO | app | [09defe5d-4c48-4e78-9317-adc857f41a7f] Solicitud /chat recibida
+2026-06-26 13:41:57,919 | INFO | app | [09defe5d-4c48-4e78-9317-adc857f41a7f] SESSION_ID: test_sess
+2026-06-26 13:41:57,919 | INFO | app | [09defe5d-4c48-4e78-9317-adc857f41a7f] USER MESSAGE: hola
+2026-06-26 13:41:57,919 | INFO | app | [09defe5d-4c48-4e78-9317-adc857f41a7f] Solicitud /chat procesada con estado: chat
+2026-06-26 13:41:57,919 | INFO | app | [09defe5d-4c48-4e78-9317-adc857f41a7f] LATENCY: 0.00s
+2026-06-26 13:41:57,925 | INFO | app | [4c1f64d9-3dbc-45e5-9c11-9dcab8659c36] HTTP POST /chat
+2026-06-26 13:41:57,931 | INFO | app | [393916d8-4c26-4207-a5c2-97fff8640b6b] HTTP GET /tools
+2026-06-26 13:41:57,936 | INFO | app | [d8028c3d-ce5c-47ea-8266-3e1e647e9c4a] HTTP GET /memory
+2026-06-26 13:41:57,939 | INFO | app | [06abcbc8-7b83-4f0d-98fe-26e5c6d5536d] HTTP GET /memory/test_session
+2026-06-26 13:41:57,948 | INFO | app | [965a9e77-2b97-4bf0-a894-bd49bd4ece1d] HTTP DELETE /memory/test_session
+2026-06-26 13:45:14,204 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-26 13:45:14,213 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-26 13:45:14,241 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-06-26 13:45:14,241 | INFO | app | [----------] Precalentamiento de modelo omitido en entorno de test
+2026-06-26 13:45:14,241 | INFO | app | [----------] Alfonso listo
+2026-06-26 13:45:14,243 | INFO | app | [b39bfaec-093b-48a5-b030-37ee97753b07] HTTP GET /health
+2026-06-26 13:45:14,247 | INFO | app | [1eb8626e-e141-471e-b3ea-bc309fe77a68] HTTP GET /metrics
+2026-06-26 13:45:14,252 | INFO | app | [fb251b99-9a23-4c3f-9b94-576a6de1b569] HTTP POST /chat
+2026-06-26 13:45:14,253 | INFO | app | [fb251b99-9a23-4c3f-9b94-576a6de1b569] Solicitud /chat recibida
+2026-06-26 13:45:14,253 | INFO | app | [fb251b99-9a23-4c3f-9b94-576a6de1b569] SESSION_ID: test_sess
+2026-06-26 13:45:14,254 | INFO | app | [fb251b99-9a23-4c3f-9b94-576a6de1b569] USER MESSAGE: hola
+2026-06-26 13:45:14,254 | INFO | app | [fb251b99-9a23-4c3f-9b94-576a6de1b569] Solicitud /chat procesada con estado: chat
+2026-06-26 13:45:14,254 | INFO | app | [fb251b99-9a23-4c3f-9b94-576a6de1b569] LATENCY: 0.00s
+2026-06-26 13:45:14,257 | INFO | app | [50dde9d3-fd70-4cb6-b7f1-dcde12493964] HTTP POST /chat
+2026-06-26 13:45:14,261 | INFO | app | [e069ecec-5074-4a3d-9d99-92b848f89d52] HTTP GET /tools
+2026-06-26 13:45:14,266 | INFO | app | [6396aa98-e714-439f-a461-d3847feff4d0] HTTP GET /memory
+2026-06-26 13:45:14,269 | INFO | app | [a90f0ece-7738-4ba2-846e-7793c2e9c648] HTTP GET /memory/test_session
+2026-06-26 13:45:14,272 | INFO | app | [a0e0551d-7eac-4eee-9fe1-4ce39be20bf4] HTTP DELETE /memory/test_session
+2026-06-26 13:45:14,275 | INFO | app | [----------] Playwright cerrado limpiamente
+2026-06-26 13:45:14,275 | INFO | app | [----------] Alfonso detenido
+2026-06-26 13:45:33,075 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-26 13:45:33,075 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-26 13:45:33,091 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-06-26 13:45:33,091 | INFO | app | [----------] Precalentamiento de modelo omitido en entorno de test
+2026-06-26 13:45:33,091 | INFO | app | [----------] Alfonso listo
+2026-06-26 13:45:33,094 | INFO | app | [565638fb-359f-4afe-8a73-fe12552e50bd] HTTP GET /health
+2026-06-26 13:45:33,098 | INFO | app | [52c54bef-922e-451a-a729-b4cd1cea060e] HTTP GET /metrics
+2026-06-26 13:45:33,104 | INFO | app | [ca2989dd-8369-4e62-ac88-44bf7d82774f] HTTP POST /chat
+2026-06-26 13:45:33,106 | INFO | app | [ca2989dd-8369-4e62-ac88-44bf7d82774f] Solicitud /chat recibida
+2026-06-26 13:45:33,106 | INFO | app | [ca2989dd-8369-4e62-ac88-44bf7d82774f] SESSION_ID: test_sess
+2026-06-26 13:45:33,106 | INFO | app | [ca2989dd-8369-4e62-ac88-44bf7d82774f] USER MESSAGE: hola
+2026-06-26 13:45:33,106 | INFO | app | [ca2989dd-8369-4e62-ac88-44bf7d82774f] Solicitud /chat procesada con estado: chat
+2026-06-26 13:45:33,106 | INFO | app | [ca2989dd-8369-4e62-ac88-44bf7d82774f] LATENCY: 0.00s
+2026-06-26 13:45:33,109 | INFO | app | [dc6e8bae-e241-4761-9bf3-cf7fce309467] HTTP POST /chat
+2026-06-26 13:45:33,113 | INFO | app | [8e8a2acf-9854-441e-81ae-ad19ebe7c899] HTTP GET /tools
+2026-06-26 13:45:33,118 | INFO | app | [911c6b6b-f4a5-4926-bfaa-f20abb551d4d] HTTP GET /memory
+2026-06-26 13:45:33,122 | INFO | app | [3ff4f3a0-aa70-4ca3-88d1-08abfd5fa6fb] HTTP GET /memory/test_session
+2026-06-26 13:45:33,126 | INFO | app | [7fc73cbb-44b1-4ef2-b1ec-5d51f38896f3] HTTP DELETE /memory/test_session
+2026-06-26 13:45:33,129 | INFO | app | [----------] Playwright cerrado limpiamente
+2026-06-26 13:45:33,129 | INFO | app | [----------] Alfonso detenido
+2026-06-26 13:49:53,978 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-26 13:49:53,979 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-26 13:49:54,000 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-06-26 13:50:31,311 | INFO | app | [----------] Modelo precalentado
+2026-06-26 13:50:31,314 | INFO | app | [----------] Alfonso listo
+2026-06-26 13:51:04,175 | INFO | app | [9c44f94c-ad37-4a15-a290-27d6764fcc10] HTTP GET /health
+2026-06-26 13:51:09,173 | INFO | app | [e9d0a0ee-1bb5-4e26-ac01-01168bd9652e] HTTP POST /chat
+2026-06-26 13:51:09,178 | INFO | app | [e9d0a0ee-1bb5-4e26-ac01-01168bd9652e] Solicitud /chat recibida
+2026-06-26 13:51:09,179 | INFO | app | [e9d0a0ee-1bb5-4e26-ac01-01168bd9652e] SESSION_ID: e9d0a0ee-1bb5-4e26-ac01-01168bd9652e
+2026-06-26 13:51:09,179 | INFO | app | [e9d0a0ee-1bb5-4e26-ac01-01168bd9652e] USER MESSAGE: hola
+2026-06-26 13:51:54,611 | INFO | app | [e9d0a0ee-1bb5-4e26-ac01-01168bd9652e] Solicitud /chat procesada con estado: chat
+2026-06-26 13:51:54,612 | INFO | app | [e9d0a0ee-1bb5-4e26-ac01-01168bd9652e] LATENCY: 45.92s
+2026-06-26 13:52:59,041 | INFO | app | [8a286a92-8d38-47d6-b32a-c60233479a36] HTTP POST /chat
+2026-06-26 13:52:59,042 | INFO | app | [8a286a92-8d38-47d6-b32a-c60233479a36] Solicitud /chat recibida
+2026-06-26 13:52:59,042 | INFO | app | [8a286a92-8d38-47d6-b32a-c60233479a36] SESSION_ID: 8a286a92-8d38-47d6-b32a-c60233479a36
+2026-06-26 13:52:59,042 | INFO | app | [8a286a92-8d38-47d6-b32a-c60233479a36] USER MESSAGE: abre la pagina el pais.com
+2026-06-26 13:53:34,798 | INFO | app | [8a286a92-8d38-47d6-b32a-c60233479a36] Solicitud /chat procesada con estado: tool
+2026-06-26 13:53:34,798 | INFO | app | [8a286a92-8d38-47d6-b32a-c60233479a36] LATENCY: 35.76s
+2026-06-26 13:57:56,943 | INFO | app | [----------] Playwright cerrado limpiamente
+2026-06-26 13:57:56,944 | INFO | app | [----------] Alfonso detenido
+2026-06-26 13:58:00,999 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-26 13:58:01,000 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-26 13:58:01,036 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-06-26 13:58:41,842 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-26 13:58:41,843 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-26 13:59:01,093 | INFO | app | [----------] Modelo precalentado
+2026-06-26 13:59:01,094 | INFO | app | [----------] Alfonso listo
+2026-06-26 13:59:01,200 | INFO | app | [----------] Playwright cerrado limpiamente
+2026-06-26 13:59:01,200 | INFO | app | [----------] Alfonso detenido
+2026-06-26 13:59:03,771 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-26 13:59:03,771 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-26 13:59:03,803 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-06-26 13:59:05,693 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-26 13:59:05,694 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-26 13:59:05,694 | INFO | app | [----------] Inicio del bridge omitido en entorno de test
+2026-06-26 13:59:05,696 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-06-26 13:59:05,696 | INFO | app | [----------] Precalentamiento de modelo omitido en entorno de test
+2026-06-26 13:59:05,697 | INFO | app | [----------] Alfonso listo
+2026-06-26 13:59:05,701 | INFO | app | [8883ecae-6e3a-46d4-b7d3-d13ed2aafa40] HTTP GET /health
+2026-06-26 13:59:05,715 | INFO | app | [f4da47ae-0ae1-4a34-a9cb-48d1754ccdbd] HTTP GET /metrics
+2026-06-26 13:59:05,722 | INFO | app | [e867ac88-46ac-48a7-8e8f-a4a914b9b3eb] HTTP POST /chat
+2026-06-26 13:59:05,725 | INFO | app | [e867ac88-46ac-48a7-8e8f-a4a914b9b3eb] Solicitud /chat recibida
+2026-06-26 13:59:05,726 | INFO | app | [e867ac88-46ac-48a7-8e8f-a4a914b9b3eb] SESSION_ID: test_sess
+2026-06-26 13:59:05,726 | INFO | app | [e867ac88-46ac-48a7-8e8f-a4a914b9b3eb] USER MESSAGE: hola
+2026-06-26 13:59:05,726 | INFO | app | [e867ac88-46ac-48a7-8e8f-a4a914b9b3eb] Solicitud /chat procesada con estado: chat
+2026-06-26 13:59:05,726 | INFO | app | [e867ac88-46ac-48a7-8e8f-a4a914b9b3eb] LATENCY: 0.00s
+2026-06-26 13:59:05,734 | INFO | app | [a5fc68c8-2715-45e2-9b99-56a1ce716da5] HTTP POST /chat
+2026-06-26 13:59:05,743 | INFO | app | [7e0acd66-0614-4a94-bbb2-952405797be4] HTTP GET /tools
+2026-06-26 13:59:05,753 | INFO | app | [f9542bed-22cd-4216-be90-0afdd77ce5ff] HTTP GET /memory
+2026-06-26 13:59:05,760 | INFO | app | [8870e0fc-4648-496c-9004-73a1adf41707] HTTP GET /memory/test_session
+2026-06-26 13:59:05,767 | INFO | app | [2b43126e-60db-485e-ab89-5a56830114aa] HTTP DELETE /memory/test_session
+2026-06-26 13:59:05,771 | INFO | app | [----------] Detención del bridge omitida en entorno de test
+2026-06-26 13:59:05,772 | INFO | app | [----------] Playwright cerrado limpiamente
+2026-06-26 13:59:05,772 | INFO | app | [----------] Alfonso detenido
+2026-06-26 13:59:23,808 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-26 13:59:23,808 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-26 13:59:23,809 | INFO | app | [----------] Inicio del bridge omitido en entorno de test
+2026-06-26 13:59:23,810 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-06-26 13:59:23,810 | INFO | app | [----------] Precalentamiento de modelo omitido en entorno de test
+2026-06-26 13:59:23,810 | INFO | app | [----------] Alfonso listo
+2026-06-26 13:59:23,815 | INFO | app | [421d204f-cd51-418c-aaeb-0e56a6687d73] HTTP GET /health
+2026-06-26 13:59:23,824 | INFO | app | [f0e05579-441f-4cfb-80d1-061a163863a6] HTTP GET /metrics
+2026-06-26 13:59:23,831 | INFO | app | [8687977f-a234-4483-aaf9-838ea50a8760] HTTP POST /chat
+2026-06-26 13:59:23,834 | INFO | app | [8687977f-a234-4483-aaf9-838ea50a8760] Solicitud /chat recibida
+2026-06-26 13:59:23,834 | INFO | app | [8687977f-a234-4483-aaf9-838ea50a8760] SESSION_ID: test_sess
+2026-06-26 13:59:23,835 | INFO | app | [8687977f-a234-4483-aaf9-838ea50a8760] USER MESSAGE: hola
+2026-06-26 13:59:23,835 | INFO | app | [8687977f-a234-4483-aaf9-838ea50a8760] Solicitud /chat procesada con estado: chat
+2026-06-26 13:59:23,835 | INFO | app | [8687977f-a234-4483-aaf9-838ea50a8760] LATENCY: 0.00s
+2026-06-26 13:59:23,841 | INFO | app | [e525dbf4-f00b-44ec-a8f0-83586c2b593a] HTTP POST /chat
+2026-06-26 13:59:23,855 | INFO | app | [d4659e6e-e8f7-4e7b-a9c0-31d5580c9842] HTTP GET /tools
+2026-06-26 13:59:23,862 | INFO | app | [8b67963b-1952-4ab7-a8be-b3caa80f468e] HTTP GET /memory
+2026-06-26 13:59:23,868 | INFO | app | [6a932e8c-d26d-4a18-b5a2-1eecc3b99d53] HTTP GET /memory/test_session
+2026-06-26 13:59:23,874 | INFO | app | [7fccfe80-7627-4864-8848-9dc7d7dae203] HTTP DELETE /memory/test_session
+2026-06-26 13:59:23,880 | INFO | app | [----------] Detención del bridge omitida en entorno de test
+2026-06-26 13:59:23,881 | INFO | app | [----------] Playwright cerrado limpiamente
+2026-06-26 13:59:23,881 | INFO | app | [----------] Alfonso detenido
+2026-06-26 13:59:45,702 | INFO | app | [----------] Modelo precalentado
+2026-06-26 13:59:45,702 | INFO | app | [----------] Alfonso listo
+2026-06-26 13:59:45,805 | INFO | app | [----------] Playwright cerrado limpiamente
+2026-06-26 13:59:45,805 | INFO | app | [----------] Alfonso detenido
+2026-06-26 13:59:47,550 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-26 13:59:47,551 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-26 13:59:47,569 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-06-26 13:59:48,758 | INFO | app | [----------] Modelo precalentado
+2026-06-26 13:59:48,758 | INFO | app | [----------] Alfonso listo
+2026-06-26 13:59:48,860 | INFO | app | [----------] Playwright cerrado limpiamente
+2026-06-26 13:59:48,861 | INFO | app | [----------] Alfonso detenido
+2026-06-26 13:59:50,435 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-26 13:59:50,436 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-26 13:59:50,451 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-06-26 13:59:51,879 | INFO | app | [----------] Modelo precalentado
+2026-06-26 13:59:51,880 | INFO | app | [----------] Alfonso listo
+2026-06-26 14:08:15,538 | INFO | app | [----------] Playwright cerrado limpiamente
+2026-06-26 14:08:15,541 | INFO | app | [----------] Alfonso detenido
+2026-06-26 14:08:21,592 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-26 14:08:21,592 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-26 14:08:21,638 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-06-26 14:08:54,776 | INFO | app | [----------] Modelo precalentado
+2026-06-26 14:08:54,776 | INFO | app | [----------] Alfonso listo
+2026-06-26 14:09:45,969 | INFO | app | [c46de59c-a2ed-4494-a8c2-016806fb2b55] HTTP GET /health
+2026-06-26 14:09:59,088 | INFO | app | [151aa9ff-d93b-45a1-acac-55dc8e45d6bf] HTTP POST /chat
+2026-06-26 14:09:59,091 | INFO | app | [151aa9ff-d93b-45a1-acac-55dc8e45d6bf] Solicitud /chat recibida
+2026-06-26 14:09:59,091 | INFO | app | [151aa9ff-d93b-45a1-acac-55dc8e45d6bf] SESSION_ID: 151aa9ff-d93b-45a1-acac-55dc8e45d6bf
+2026-06-26 14:09:59,091 | INFO | app | [151aa9ff-d93b-45a1-acac-55dc8e45d6bf] USER MESSAGE: hola
+2026-06-26 14:10:58,607 | INFO | app | [151aa9ff-d93b-45a1-acac-55dc8e45d6bf] Solicitud /chat procesada con estado: chat
+2026-06-26 14:10:58,607 | INFO | app | [151aa9ff-d93b-45a1-acac-55dc8e45d6bf] LATENCY: 60.38s
+2026-06-26 14:11:12,469 | INFO | app | [975077ff-139f-4feb-846b-3217b9945cba] HTTP POST /chat
+2026-06-26 14:11:12,472 | INFO | app | [975077ff-139f-4feb-846b-3217b9945cba] Solicitud /chat recibida
+2026-06-26 14:11:12,472 | INFO | app | [975077ff-139f-4feb-846b-3217b9945cba] SESSION_ID: 975077ff-139f-4feb-846b-3217b9945cba
+2026-06-26 14:11:12,472 | INFO | app | [975077ff-139f-4feb-846b-3217b9945cba] USER MESSAGE: abre la pagina elpais.com
+2026-06-26 14:11:49,953 | INFO | app | [975077ff-139f-4feb-846b-3217b9945cba] Solicitud /chat procesada con estado: tool
+2026-06-26 14:11:49,953 | INFO | app | [975077ff-139f-4feb-846b-3217b9945cba] LATENCY: 38.01s
+2026-06-26 14:12:01,640 | INFO | app | [9a2c779e-75ce-4acb-aee2-6666ecfef20b] HTTP POST /chat
+2026-06-26 14:12:01,643 | INFO | app | [9a2c779e-75ce-4acb-aee2-6666ecfef20b] Solicitud /chat recibida
+2026-06-26 14:12:01,644 | INFO | app | [9a2c779e-75ce-4acb-aee2-6666ecfef20b] SESSION_ID: 9a2c779e-75ce-4acb-aee2-6666ecfef20b
+2026-06-26 14:12:01,644 | INFO | app | [9a2c779e-75ce-4acb-aee2-6666ecfef20b] USER MESSAGE: hola
+2026-06-26 14:12:49,373 | INFO | app | [9a2c779e-75ce-4acb-aee2-6666ecfef20b] Solicitud /chat procesada con estado: chat
+2026-06-26 14:12:49,374 | INFO | app | [9a2c779e-75ce-4acb-aee2-6666ecfef20b] LATENCY: 48.31s
+2026-06-26 14:13:11,670 | INFO | app | [7e216570-a6d3-43af-834a-21182f79c4e6] HTTP POST /chat
+2026-06-26 14:13:11,671 | INFO | app | [7e216570-a6d3-43af-834a-21182f79c4e6] Solicitud /chat recibida
+2026-06-26 14:13:11,671 | INFO | app | [7e216570-a6d3-43af-834a-21182f79c4e6] SESSION_ID: 7e216570-a6d3-43af-834a-21182f79c4e6
+2026-06-26 14:13:11,671 | INFO | app | [7e216570-a6d3-43af-834a-21182f79c4e6] USER MESSAGE: cierra el navegador web
+2026-06-26 14:13:54,581 | INFO | app | [7e216570-a6d3-43af-834a-21182f79c4e6] Solicitud /chat procesada con estado: tool
+2026-06-26 14:13:54,581 | INFO | app | [7e216570-a6d3-43af-834a-21182f79c4e6] LATENCY: 43.49s
+2026-06-26 14:15:53,012 | INFO | app | [8d69b303-9fff-4a04-bfb3-ad50474936e6] HTTP POST /chat
+2026-06-26 14:15:53,015 | INFO | app | [8d69b303-9fff-4a04-bfb3-ad50474936e6] Solicitud /chat recibida
+2026-06-26 14:15:53,015 | INFO | app | [8d69b303-9fff-4a04-bfb3-ad50474936e6] SESSION_ID: 8d69b303-9fff-4a04-bfb3-ad50474936e6
+2026-06-26 14:15:53,016 | INFO | app | [8d69b303-9fff-4a04-bfb3-ad50474936e6] USER MESSAGE: crea un archivo en el escritorio que se llame pruebas_alfonso.txt y que diga funcionan los cambios antigravity
+2026-06-26 14:16:32,113 | INFO | app | [8d69b303-9fff-4a04-bfb3-ad50474936e6] Solicitud /chat procesada con estado: error
+2026-06-26 14:16:32,113 | INFO | app | [8d69b303-9fff-4a04-bfb3-ad50474936e6] LATENCY: 39.10s
+2026-06-26 14:37:19,907 | INFO | app | [----------] Playwright cerrado limpiamente
+2026-06-26 14:37:19,912 | INFO | app | [----------] Alfonso detenido
+2026-06-26 14:37:22,381 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-26 14:37:22,382 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-26 14:37:22,405 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-06-26 14:38:20,519 | INFO | app | [----------] Modelo precalentado
+2026-06-26 14:38:20,520 | INFO | app | [----------] Alfonso listo
+2026-06-26 14:38:20,626 | INFO | app | [----------] Playwright cerrado limpiamente
+2026-06-26 14:38:20,627 | INFO | app | [----------] Alfonso detenido
+2026-06-26 14:38:23,224 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-26 14:38:23,224 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-26 14:38:23,258 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-06-26 14:38:44,067 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-26 14:38:44,068 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-26 14:38:44,068 | INFO | app | [----------] Inicio del bridge omitido en entorno de test
+2026-06-26 14:38:44,071 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-06-26 14:38:44,071 | INFO | app | [----------] Precalentamiento de modelo omitido en entorno de test
+2026-06-26 14:38:44,071 | INFO | app | [----------] Alfonso listo
+2026-06-26 14:38:44,076 | INFO | app | [af1226c6-5a02-4083-a2f2-4f1160be0dea] HTTP GET /health
+2026-06-26 14:38:44,086 | INFO | app | [e1e04051-ae71-4ec1-8292-cf6d6fd2d478] HTTP GET /metrics
+2026-06-26 14:38:44,095 | INFO | app | [fa455dfd-0895-4342-bf0e-ae3d9408278c] HTTP POST /chat
+2026-06-26 14:38:44,097 | INFO | app | [fa455dfd-0895-4342-bf0e-ae3d9408278c] Solicitud /chat recibida
+2026-06-26 14:38:44,098 | INFO | app | [fa455dfd-0895-4342-bf0e-ae3d9408278c] SESSION_ID: test_sess
+2026-06-26 14:38:44,098 | INFO | app | [fa455dfd-0895-4342-bf0e-ae3d9408278c] USER MESSAGE: hola
+2026-06-26 14:38:44,098 | INFO | app | [fa455dfd-0895-4342-bf0e-ae3d9408278c] Solicitud /chat procesada con estado: chat
+2026-06-26 14:38:44,098 | INFO | app | [fa455dfd-0895-4342-bf0e-ae3d9408278c] LATENCY: 0.00s
+2026-06-26 14:38:44,105 | INFO | app | [bd1962d0-07c3-4767-af43-9005ba1b12a0] HTTP POST /chat
+2026-06-26 14:38:44,115 | INFO | app | [9e7242b1-909d-48b8-83f4-48dc34c41f0c] HTTP GET /tools
+2026-06-26 14:38:44,122 | INFO | app | [85a658a6-986e-4b8e-8ca9-6261210ab829] HTTP GET /memory
+2026-06-26 14:38:44,128 | INFO | app | [7f1f76e5-d832-42cb-8ba4-101c79f115a3] HTTP GET /memory/test_session
+2026-06-26 14:38:44,134 | INFO | app | [550b0f33-b02b-42e0-9c04-b1dbf6d021bc] HTTP DELETE /memory/test_session
+2026-06-26 14:38:44,139 | INFO | app | [----------] Detención del bridge omitida en entorno de test
+2026-06-26 14:38:44,139 | INFO | app | [----------] Playwright cerrado limpiamente
+2026-06-26 14:38:44,139 | INFO | app | [----------] Alfonso detenido
+2026-06-26 14:39:02,646 | INFO | app | [----------] Modelo precalentado
+2026-06-26 14:39:02,647 | INFO | app | [----------] Alfonso listo
+2026-06-26 14:39:53,486 | INFO | app | [72b399b9-c037-41bc-a9ae-908ba457047f] HTTP GET /health
+2026-06-26 14:40:08,764 | INFO | app | [1e037b86-5b36-4e64-9254-efd4b999bb02] HTTP POST /chat
+2026-06-26 14:40:08,765 | INFO | app | [1e037b86-5b36-4e64-9254-efd4b999bb02] Solicitud /chat recibida
+2026-06-26 14:40:08,765 | INFO | app | [1e037b86-5b36-4e64-9254-efd4b999bb02] SESSION_ID: 1e037b86-5b36-4e64-9254-efd4b999bb02
+2026-06-26 14:40:08,765 | INFO | app | [1e037b86-5b36-4e64-9254-efd4b999bb02] USER MESSAGE: me encanta saluda
+2026-06-26 14:40:54,424 | INFO | app | [1e037b86-5b36-4e64-9254-efd4b999bb02] Solicitud /chat procesada con estado: chat
+2026-06-26 14:40:54,424 | INFO | app | [1e037b86-5b36-4e64-9254-efd4b999bb02] LATENCY: 46.75s
+2026-06-26 14:41:17,503 | INFO | app | [7ecb61d5-5015-499f-ad84-f0db046075d7] HTTP POST /chat
+2026-06-26 14:41:17,504 | INFO | app | [7ecb61d5-5015-499f-ad84-f0db046075d7] Solicitud /chat recibida
+2026-06-26 14:41:17,504 | INFO | app | [7ecb61d5-5015-499f-ad84-f0db046075d7] SESSION_ID: 7ecb61d5-5015-499f-ad84-f0db046075d7
+2026-06-26 14:41:17,504 | INFO | app | [7ecb61d5-5015-499f-ad84-f0db046075d7] USER MESSAGE: abre elpais.com
+2026-06-26 14:42:19,874 | INFO | app | [7ecb61d5-5015-499f-ad84-f0db046075d7] Solicitud /chat procesada con estado: error
+2026-06-26 14:42:19,874 | INFO | app | [7ecb61d5-5015-499f-ad84-f0db046075d7] LATENCY: 63.55s
+2026-06-26 14:55:10,303 | INFO | app | [dcaefecd-6c13-4a77-821c-8541803f4100] HTTP POST /chat
+2026-06-26 14:55:10,386 | INFO | app | [dcaefecd-6c13-4a77-821c-8541803f4100] Solicitud /chat recibida
+2026-06-26 14:55:10,387 | INFO | app | [dcaefecd-6c13-4a77-821c-8541803f4100] SESSION_ID: dcaefecd-6c13-4a77-821c-8541803f4100
+2026-06-26 14:55:10,387 | INFO | app | [dcaefecd-6c13-4a77-821c-8541803f4100] USER MESSAGE: cierra el navegador web
+2026-06-26 14:56:07,434 | INFO | app | [dcaefecd-6c13-4a77-821c-8541803f4100] Solicitud /chat procesada con estado: tool
+2026-06-26 14:56:07,434 | INFO | app | [dcaefecd-6c13-4a77-821c-8541803f4100] LATENCY: 58.13s
+2026-06-26 15:01:39,481 | INFO | app | [d451d484-c15c-4a7c-a368-76c7f59e1167] HTTP POST /chat
+2026-06-26 15:01:39,483 | INFO | app | [d451d484-c15c-4a7c-a368-76c7f59e1167] Solicitud /chat recibida
+2026-06-26 15:01:39,484 | INFO | app | [d451d484-c15c-4a7c-a368-76c7f59e1167] SESSION_ID: d451d484-c15c-4a7c-a368-76c7f59e1167
+2026-06-26 15:01:39,484 | INFO | app | [d451d484-c15c-4a7c-a368-76c7f59e1167] USER MESSAGE: crea un archivo en el escritorio que se llame pruebas_alfonso.txt y que diga funciona con los cambios de antigravity
+2026-06-26 15:02:33,348 | INFO | app | [d451d484-c15c-4a7c-a368-76c7f59e1167] Solicitud /chat procesada con estado: chat
+2026-06-26 15:02:33,348 | INFO | app | [d451d484-c15c-4a7c-a368-76c7f59e1167] LATENCY: 54.91s
+2026-06-26 15:03:53,416 | INFO | app | [b9767592-d14e-4b59-85d4-01631bec634e] HTTP POST /chat
+2026-06-26 15:03:53,417 | INFO | app | [b9767592-d14e-4b59-85d4-01631bec634e] Solicitud /chat recibida
+2026-06-26 15:03:53,417 | INFO | app | [b9767592-d14e-4b59-85d4-01631bec634e] SESSION_ID: b9767592-d14e-4b59-85d4-01631bec634e
+2026-06-26 15:03:53,418 | INFO | app | [b9767592-d14e-4b59-85d4-01631bec634e] USER MESSAGE: elimina alfonso_pruebas.txt
+2026-06-26 15:04:38,052 | INFO | app | [b9767592-d14e-4b59-85d4-01631bec634e] Solicitud /chat procesada con estado: error
+2026-06-26 15:04:38,052 | INFO | app | [b9767592-d14e-4b59-85d4-01631bec634e] LATENCY: 45.68s
+2026-06-26 15:10:28,020 | INFO | app | [----------] Playwright cerrado limpiamente
+2026-06-26 15:10:28,020 | INFO | app | [----------] Alfonso detenido
+2026-06-26 15:10:30,779 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-26 15:10:30,780 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-26 15:10:30,808 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-06-26 15:11:25,729 | INFO | app | [----------] Modelo precalentado
+2026-06-26 15:11:25,731 | INFO | app | [----------] Alfonso listo
+2026-06-26 15:19:50,542 | INFO | app | [----------] Playwright cerrado limpiamente
+2026-06-26 15:19:50,543 | INFO | app | [----------] Alfonso detenido
+2026-06-26 15:19:52,661 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-26 15:19:52,662 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-26 15:19:52,685 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-06-26 15:20:10,836 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-26 15:20:10,837 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-26 15:20:10,837 | INFO | app | [----------] Inicio del bridge omitido en entorno de test
+2026-06-26 15:20:10,845 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-06-26 15:20:10,845 | INFO | app | [----------] Precalentamiento de modelo omitido en entorno de test
+2026-06-26 15:20:10,845 | INFO | app | [----------] Alfonso listo
+2026-06-26 15:20:10,853 | INFO | app | [3d6f12b1-1929-4f15-86c0-b7976e2c7273] HTTP GET /health
+2026-06-26 15:20:10,876 | INFO | app | [1072976f-e0e5-47bd-a6bf-3f8cc274d353] HTTP GET /metrics
+2026-06-26 15:20:10,893 | INFO | app | [bb3769c5-4b17-44ea-9397-a3ff1cd99e4a] HTTP POST /chat
+2026-06-26 15:20:10,902 | INFO | app | [bb3769c5-4b17-44ea-9397-a3ff1cd99e4a] Solicitud /chat recibida
+2026-06-26 15:20:10,903 | INFO | app | [bb3769c5-4b17-44ea-9397-a3ff1cd99e4a] SESSION_ID: test_sess
+2026-06-26 15:20:10,903 | INFO | app | [bb3769c5-4b17-44ea-9397-a3ff1cd99e4a] USER MESSAGE: hola
+2026-06-26 15:20:10,903 | INFO | app | [bb3769c5-4b17-44ea-9397-a3ff1cd99e4a] Solicitud /chat procesada con estado: chat
+2026-06-26 15:20:10,903 | INFO | app | [bb3769c5-4b17-44ea-9397-a3ff1cd99e4a] LATENCY: 0.00s
+2026-06-26 15:20:10,920 | INFO | app | [4ae40d5b-9571-4f79-a094-af60766418b1] HTTP POST /chat
+2026-06-26 15:20:10,941 | INFO | app | [93ebedc8-da9e-4683-9ea9-2bd5c747c5ec] HTTP GET /tools
+2026-06-26 15:20:10,974 | INFO | app | [10ecf419-6f04-47a9-bc1f-d202f6d167e2] HTTP GET /memory
+2026-06-26 15:20:10,984 | INFO | app | [ed6f6ce4-fd3b-464e-9de2-d80931beaaa7] HTTP GET /memory/test_session
+2026-06-26 15:20:10,993 | INFO | app | [64996238-4c79-4abc-8672-bb62dadc73a5] HTTP DELETE /memory/test_session
+2026-06-26 15:20:10,997 | INFO | app | [----------] Detención del bridge omitida en entorno de test
+2026-06-26 15:20:10,997 | INFO | app | [----------] Playwright cerrado limpiamente
+2026-06-26 15:20:10,998 | INFO | app | [----------] Alfonso detenido
+2026-06-26 15:20:25,607 | INFO | app | [----------] Modelo precalentado
+2026-06-26 15:20:25,608 | INFO | app | [----------] Alfonso listo
+2026-06-26 15:20:25,711 | INFO | app | [----------] Playwright cerrado limpiamente
+2026-06-26 15:20:25,712 | INFO | app | [----------] Alfonso detenido
+2026-06-26 15:20:27,402 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-26 15:20:27,403 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-26 15:20:27,421 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-06-26 15:20:57,308 | INFO | app | [----------] Modelo precalentado
+2026-06-26 15:20:57,309 | INFO | app | [----------] Alfonso listo
+2026-06-26 15:26:03,626 | INFO | app | [----------] Playwright cerrado limpiamente
+2026-06-26 15:26:03,626 | INFO | app | [----------] Alfonso detenido
+2026-06-26 15:26:05,138 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-26 15:26:05,138 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-26 15:26:05,155 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-06-26 15:26:11,243 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-26 15:26:11,244 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-26 15:26:11,244 | INFO | app | [----------] Inicio del bridge omitido en entorno de test
+2026-06-26 15:26:11,245 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-06-26 15:26:11,245 | INFO | app | [----------] Precalentamiento de modelo omitido en entorno de test
+2026-06-26 15:26:11,246 | INFO | app | [----------] Alfonso listo
+2026-06-26 15:26:11,250 | INFO | app | [a04efdfa-b0a8-432d-9ef3-4c63c29d2d0d] HTTP GET /health
+2026-06-26 15:26:11,255 | INFO | app | [bfc98e22-42f2-4cee-aa0e-34fac4dc16fe] HTTP GET /metrics
+2026-06-26 15:26:11,261 | INFO | app | [5cfcd31f-22c2-42a2-b99a-a67d837df438] HTTP POST /chat
+2026-06-26 15:26:11,263 | INFO | app | [5cfcd31f-22c2-42a2-b99a-a67d837df438] Solicitud /chat recibida
+2026-06-26 15:26:11,263 | INFO | app | [5cfcd31f-22c2-42a2-b99a-a67d837df438] SESSION_ID: test_sess
+2026-06-26 15:26:11,263 | INFO | app | [5cfcd31f-22c2-42a2-b99a-a67d837df438] USER MESSAGE: hola
+2026-06-26 15:26:11,264 | INFO | app | [5cfcd31f-22c2-42a2-b99a-a67d837df438] Solicitud /chat procesada con estado: chat
+2026-06-26 15:26:11,264 | INFO | app | [5cfcd31f-22c2-42a2-b99a-a67d837df438] LATENCY: 0.00s
+2026-06-26 15:26:11,269 | INFO | app | [d6c7ed6e-3b9e-460d-8a75-f4576c2d2a42] HTTP POST /chat
+2026-06-26 15:26:11,277 | INFO | app | [6fb28fcc-a545-4eb0-b7f7-5ba0d8674d5f] HTTP GET /tools
+2026-06-26 15:26:11,282 | INFO | app | [18592ed5-073d-49f8-8952-b4b77889bd8c] HTTP GET /memory
+2026-06-26 15:26:11,287 | INFO | app | [b48685d5-8bfc-491c-9562-8ac7b66a9ca8] HTTP GET /memory/test_session
+2026-06-26 15:26:11,292 | INFO | app | [c1565634-4a89-41d1-948c-b9a31da023fc] HTTP DELETE /memory/test_session
+2026-06-26 15:26:11,296 | INFO | app | [----------] Detención del bridge omitida en entorno de test
+2026-06-26 15:26:11,297 | INFO | app | [----------] Playwright cerrado limpiamente
+2026-06-26 15:26:11,297 | INFO | app | [----------] Alfonso detenido
+2026-06-26 15:26:37,393 | INFO | app | [----------] Modelo precalentado
+2026-06-26 15:26:37,394 | INFO | app | [----------] Alfonso listo
+2026-06-26 15:38:13,158 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-06-26 15:38:13,159 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-06-26 15:38:13,159 | INFO | app | [----------] Inicio del bridge omitido en entorno de test
+2026-06-26 15:38:13,160 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-06-26 15:38:13,160 | INFO | app | [----------] Precalentamiento de modelo omitido en entorno de test
+2026-06-26 15:38:13,160 | INFO | app | [----------] Alfonso listo
+2026-06-26 15:38:13,163 | INFO | app | [1ce3ed88-703c-43ea-9dd0-e86a2883a6ee] HTTP GET /health
+2026-06-26 15:38:13,168 | INFO | app | [65bebc84-e6f9-4d10-af06-c6224526b293] HTTP GET /metrics
+2026-06-26 15:38:13,172 | INFO | app | [9dffd541-6711-4cb1-a069-1b5a561780ce] HTTP POST /chat
+2026-06-26 15:38:13,173 | INFO | app | [9dffd541-6711-4cb1-a069-1b5a561780ce] Solicitud /chat recibida
+2026-06-26 15:38:13,174 | INFO | app | [9dffd541-6711-4cb1-a069-1b5a561780ce] SESSION_ID: test_sess
+2026-06-26 15:38:13,174 | INFO | app | [9dffd541-6711-4cb1-a069-1b5a561780ce] USER MESSAGE: hola
+2026-06-26 15:38:13,174 | INFO | app | [9dffd541-6711-4cb1-a069-1b5a561780ce] Solicitud /chat procesada con estado: chat
+2026-06-26 15:38:13,174 | INFO | app | [9dffd541-6711-4cb1-a069-1b5a561780ce] LATENCY: 0.00s
+2026-06-26 15:38:13,177 | INFO | app | [b4ff6e76-f842-4420-a45a-752c9748f02c] HTTP POST /chat
+2026-06-26 15:38:13,181 | INFO | app | [bab9113c-4596-4929-9ed9-9e8b28d29e7f] HTTP GET /tools
+2026-06-26 15:38:13,185 | INFO | app | [90148ef5-46e2-4396-8b12-ce7539cbf617] HTTP GET /memory
+2026-06-26 15:38:13,188 | INFO | app | [1ccfeb30-41a9-49ba-9fc3-3ab95bbba451] HTTP GET /memory/test_session
+2026-06-26 15:38:13,191 | INFO | app | [6b14cacc-5181-412a-aab9-cba33b2b25d1] HTTP DELETE /memory/test_session
+2026-06-26 15:38:13,194 | INFO | app | [----------] Detención del bridge omitida en entorno de test
+2026-06-26 15:38:13,194 | INFO | app | [----------] Playwright cerrado limpiamente
+2026-06-26 15:38:13,194 | INFO | app | [----------] Alfonso detenido

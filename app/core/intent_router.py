@@ -88,12 +88,12 @@ _TOOL_RULES: list[_Rule] = [
     _r(r"^(abre|abrir|lanza|lanzar|inicia|iniciar)\s+(firefox|chrome|chromium|vscode|code|visual studio|terminal|konsole|gedit|kate|brave|opera)$", 2.5, "open_app_direct"),
 
     # ── Cerrar aplicaciones ────────────────────────────────────────────
-    _r(r"\b(cierra|cerrar|termina|terminar|mata|matar|quit|exit)\b.{0,30}\b(aplicación|programa|app|navegador|firefox|chrome|vscode|notepad|terminal|explorad?or( de (archivos|windows))?|nautilus|explorer)\b", 2.5, "close_application"),
+    _r(r"\b(cierra|cerrar|termina|terminar|mata|matar|quit|exit)\b.{0,30}\b(aplicación|programa|app|navegador|firefox|chrome|vscode|notepad|terminal|explorad+or( de (archivos|windows))?|nautilus|explorer)\b", 2.5, "close_application"),
     _r(r"^(cierra|cerrar|mata|matar)\s+[\w\s]{1,30}$", 2.0, "close_app_simple"),
 
     # ── Abrir explorador de archivos (FIX WSL) ───────────────────────
-    _r(r"\b(abre|abrir|lanza|inicia)\b.{0,25}\b(explorad?or de archivos|gestor de archivos|file manager|nautilus|nemo|thunar|dolphin|explorer|caja)\b", 3.0, "open_filemanager"),
-    _r(r"\b(abre|abrir)\b.{0,15}\b(explorad?or|explorador)\b", 2.5, "open_filemanager_short"),
+    _r(r"\b(abre|abrir|lanza|inicia)\b.{0,25}\b(explorad+or de archivos|gestor de archivos|file manager|nautilus|nemo|thunar|dolphin|explorer|caja)\b", 3.0, "open_filemanager"),
+    _r(r"\b(abre|abrir)\b.{0,15}\b(explorad+or)\b", 2.5, "open_filemanager_short"),
 
     # ── Navegador web — acciones (Fase 3) ────────────────────────────
     _r(r"\b(navega|navegar|ve|ir)\b.{0,20}\b(a la web|a la página|a la url|al sitio|a https?://|a www\.)\b", 2.5, "browser_navigate"),

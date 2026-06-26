@@ -27,6 +27,10 @@ class Settings(BaseSettings):
 
     TOOL_VALIDATION_MODE: str = "permissive"
 
+    # ── Memoria Vectorial (Fase 4) ──────────────────────────────────
+    CHROMA_DB_PATH: str = "data/chroma"
+    EMBEDDING_MODEL_NAME: str = "nomic-embed-text"
+
     # ── VALIDADOR ULTRA-ROBUSTO ANTE COMENTARIOS CACHEADOS ────────────
     @model_validator(mode="before")
     @classmethod

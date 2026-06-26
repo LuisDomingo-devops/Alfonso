@@ -26,7 +26,8 @@ def test_list_directory_tool():
     assert isinstance(result["entries"], list)
 
 
-def test_open_application_tool():
+def test_open_application_tool(monkeypatch):
+    monkeypatch.setenv("ALFONSO_ALLOW_SERVER_EXEC_FALLBACK", "true")
     tool = get_tool("open_application")
     assert tool is not None
 

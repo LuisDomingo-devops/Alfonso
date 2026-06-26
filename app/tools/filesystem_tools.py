@@ -1,7 +1,48 @@
 from pathlib import Path
-from app.utils.logger import tool_logger, error_logger
 import os
-import re # Import re for regular expressions
+import re
+from app.utils.logger import tool_logger, error_logger
+from app.core.actions import Action
+from app.core.alfonso_bridge import bridge as alfonso_bridge
+
+async def _delegate(action: str, args: dict) -> dict | None:
+    if alfonso_bridge.has_clients():
+        # Resolver rutas para que el agente local las reciba ya normalizadas desde el contexto de WSL
+        resolved_args = args.copy()
+        if "path" in resolved_args:
+            resolved_args["path"] = str(_resolve_path(resolved_args["path"]))
+        if "src" in resolved_args:
+            resolved_args["src"] = str(_resolve_path(resolved_args["src"]))
+        if "dst" in resolved_args:
+            # En rename_file, dst puede ser un new_name (ej: nuevo_nombre.txt), resolverlo solo si no es un nombre simple
+            dst_val = resolved_args["dst"]
+            if not dst_val.startswith(".") and "/" not in dst_val and "\\" not in dst_val:
+                pass
+            else:
+                resolved_args["dst"] = str(_resolve_path(dst_val))
+        if "new_name" in resolved_args:
+            new_name_val = resolved_args["new_name"]
+            if not new_name_val.startswith(".") and "/" not in new_name_val and "\\" not in new_name_val:
+                pass
+            else:
+                resolved_args["new_name"] = str(_resolve_path(new_name_val))
+
+        tool_logger.info(f"Delegando filesystem tool '{action}' al agente local")
+        response = await alfonso_bridge.send_command(action, resolved_args)
+        if response.get("status") == "success":
+            return {
+                "status": "ok",
+                "message": response.get("result", "Operación exitosa en el cliente."),
+                "delegate": "alfonso_agent",
+                "details": response,
+            }
+        return {
+            "status": "error",
+            "message": response.get("error", "Error en la operación del cliente."),
+            "delegate": "alfonso_agent",
+            "details": response,
+        }
+    return None
 
 # Helper to get the current user's home directory path
 def get_current_user_home_path():
@@ -59,6 +100,12 @@ def _resolve_path(raw_path: str) -> Path:
             processed_path = f"/home/{current_user_name}{rest_of_path}"
             tool_logger.info(f"Usuario en ruta /home/ ('{linux_user_in_path}') no coincide con el usuario actual de WSL ('{current_user_name}'). Ajustando a: {processed_path}") #
 
+    # 2c. Corrección de alucinación común: /usr/share/applications/ para archivos normales (no-desktop)
+    if "/usr/share/applications/" in processed_path and not processed_path.endswith(".desktop"):
+        filename = Path(processed_path).name
+        processed_path = f"~/Desktop/{filename}"
+        tool_logger.info(f"Alucinación de /usr/share/applications detectada para archivo no-desktop. Redirigiendo a: {processed_path}")
+
     # Manejar placeholders comunes que el LLM suele inventar
     for placeholder in ["YOUR_USERNAME", "YourUsername", "your_username", "username"]:
         processed_path = processed_path.replace(placeholder, current_user_name)
@@ -77,6 +124,11 @@ def _resolve_path(raw_path: str) -> Path:
     return p
 
 async def create_file(path: str, content: str):
+    """Crea un archivo nuevo con el contenido especificado (ej. en el Escritorio/Desktop o ruta relativa)."""
+    del_res = await _delegate(Action.CREATE_FILE, {"path": path, "content": content})
+    if del_res is not None:
+        return del_res
+
     tool_logger.info(f"Intentando crear archivo: {path}")
     p = _resolve_path(path)
     
@@ -100,6 +152,10 @@ async def create_file(path: str, content: str):
 
 
 async def read_file(path: str):
+    """Lee el contenido de un archivo existente."""
+    del_res = await _delegate(Action.READ_FILE, {"path": path})
+    if del_res is not None:
+        return del_res
 
     tool_logger.info(f"Intentando leer archivo: {path}")
     p = _resolve_path(path)
@@ -116,6 +172,11 @@ async def read_file(path: str):
 
 
 async def list_directory(path: str = "."):
+    """Lista los archivos y carpetas de un directorio."""
+    del_res = await _delegate(Action.LIST_DIRECTORY, {"path": path})
+    if del_res is not None:
+        return del_res
+
     tool_logger.info(f"Listando directorio: {path}")
     p = _resolve_path(path)
 
@@ -140,6 +201,10 @@ async def list_directory(path: str = "."):
 
 
 async def append_file(path: str, content: str):
+    del_res = await _delegate(Action.APPEND_FILE, {"path": path, "content": content})
+    if del_res is not None:
+        return del_res
+
     tool_logger.info(f"Agregando contenido al archivo: {path}")
     p = _resolve_path(path)
 
@@ -161,6 +226,10 @@ async def append_file(path: str, content: str):
     }
 
 async def delete_file(path: str):
+    del_res = await _delegate(Action.DELETE_FILE, {"path": path})
+    if del_res is not None:
+        return del_res
+
     tool_logger.info(f"Intentando eliminar archivo: {path}")
     p = _resolve_path(path)
 
@@ -185,6 +254,10 @@ async def delete_file(path: str):
     }
 
 async def create_directory(path: str):
+    del_res = await _delegate(Action.CREATE_DIRECTORY, {"path": path})
+    if del_res is not None:
+        return del_res
+
     tool_logger.info(f"Intentando crear directorio: {path}")
     p = _resolve_path(path)
 
@@ -204,6 +277,10 @@ async def create_directory(path: str):
     }
 
 async def delete_directory(path: str):
+    del_res = await _delegate(Action.DELETE_DIRECTORY, {"path": path})
+    if del_res is not None:
+        return del_res
+
     tool_logger.info(f"Intentando eliminar directorio: {path}")
     p = _resolve_path(path)
 
@@ -228,6 +305,10 @@ async def delete_directory(path: str):
     }
 
 async def move_file(old_path: str, new_path: str):
+    del_res = await _delegate(Action.MOVE_FILE, {"old_path": old_path, "new_path": new_path})
+    if del_res is not None:
+        return del_res
+
     tool_logger.info(f"Intentando mover archivo: {old_path} -> {new_path}")
     old_p = _resolve_path(old_path)
     new_p = _resolve_path(new_path)
@@ -249,6 +330,10 @@ async def move_file(old_path: str, new_path: str):
     }
 
 async def rename_file(path: str, new_name: str):
+    del_res = await _delegate(Action.RENAME_FILE, {"path": path, "new_name": new_name})
+    if del_res is not None:
+        return del_res
+
     tool_logger.info(f"Intentando renombrar archivo: {path} -> {new_name}")
     p = _resolve_path(path)
     new_p = p.with_name(new_name)

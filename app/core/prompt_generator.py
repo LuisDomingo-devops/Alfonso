@@ -30,6 +30,12 @@ def generate_tool_prompt() -> str:
             arg_names = []
 
         args_preview = ",".join(f'"{a}":...' for a in arg_names)
-        lines.append(f'{{"tool":"{tool_name}","args":{{{args_preview}}}}}')
+        
+        # Obtener la primera línea del docstring para orientar al modelo sobre la función de la herramienta
+        doc = inspect.getdoc(func) or ""
+        doc_line = doc.split("\n")[0].strip() if doc else ""
+        desc = f"  # {doc_line}" if doc_line else ""
+        
+        lines.append(f'{{"tool":"{tool_name}","args":{{{args_preview}}}}}{desc}')
 
     return header + "\n".join(lines)

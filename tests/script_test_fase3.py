@@ -282,8 +282,8 @@ async def test_computer() -> None:
 
     try:
         import pyautogui  # noqa
-    except ImportError:
-        skip(suite, "pyautogui import", "instala: pip install pyautogui")
+    except Exception as e:
+        skip(suite, "pyautogui import / display error", str(e))
         return
 
     try:

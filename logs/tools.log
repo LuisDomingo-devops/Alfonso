@@ -34,3 +34,328 @@
 2026-06-24 14:08:40,726 | INFO | tools | [----------] Ruta absoluta final: \\wsl.localhost\Ubuntu\mnt\c\Users\luisd\AppData\Local\Temp\pytest-of-luisd\pytest-7\test_prepare_tool_args_end_to_0\salida.txt
 2026-06-24 14:41:47,057 | INFO | tools | [----------] Obteniendo fecha y hora del sistema
 2026-06-24 14:51:27,050 | INFO | tools | [----------] Obteniendo fecha y hora del sistema
+2026-06-26 13:03:33,146 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('hello')"]
+2026-06-26 13:03:33,161 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-06-26 13:03:33,164 | INFO | tools | [----------] Listando directorio: app
+2026-06-26 13:03:33,164 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-06-26 13:03:33,164 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-06-26 13:03:33,165 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-06-26 13:04:14,396 | INFO | tools | [----------] Intentando crear archivo: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 13:04:14,397 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 13:04:14,397 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 13:04:14,398 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 13:04:33,599 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('hello')"]
+2026-06-26 13:04:33,615 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-06-26 13:04:33,617 | INFO | tools | [----------] Listando directorio: app
+2026-06-26 13:04:33,617 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-06-26 13:04:33,617 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-06-26 13:04:33,618 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-06-26 13:04:33,620 | WARNING | tools | [----------] ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('app-open-test')"]' en el SERVIDOR, no en el cliente.
+2026-06-26 13:04:59,437 | INFO | tools | [----------] Intentando crear archivo: /tmp/pytest-of-luisd/pytest-1/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 13:04:59,437 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-1/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 13:04:59,437 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-1/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 13:04:59,438 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-1/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 13:13:19,966 | INFO | tools | [----------] Obteniendo fecha y hora del sistema
+2026-06-26 13:13:20,412 | INFO | tools | [----------] Intentando crear archivo: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:20,413 | INFO | tools | [----------] Ruta resuelta: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:20,413 | INFO | tools | [----------] Ruta absoluta final: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:20,413 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:20,413 | INFO | tools | [----------] Intentando leer archivo: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:20,413 | INFO | tools | [----------] Ruta resuelta: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:20,414 | INFO | tools | [----------] Archivo leído exitosamente: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:20,414 | INFO | tools | [----------] Agregando contenido al archivo: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:20,414 | INFO | tools | [----------] Ruta resuelta: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:20,415 | INFO | tools | [----------] Contenido agregado exitosamente: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:20,415 | INFO | tools | [----------] Intentando leer archivo: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:20,415 | INFO | tools | [----------] Ruta resuelta: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:20,415 | INFO | tools | [----------] Archivo leído exitosamente: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:20,415 | INFO | tools | [----------] Listando directorio: /tmp
+2026-06-26 13:13:20,416 | INFO | tools | [----------] Ruta resuelta: /tmp
+2026-06-26 13:13:20,416 | INFO | tools | [----------] Directorio listado correctamente: /tmp
+2026-06-26 13:13:20,417 | INFO | tools | [----------] Intentando eliminar archivo: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:20,417 | INFO | tools | [----------] Ruta resuelta: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:20,417 | INFO | tools | [----------] Archivo eliminado exitosamente: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:20,417 | INFO | tools | [----------] Intentando leer archivo: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:20,418 | INFO | tools | [----------] Ruta resuelta: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:20,524 | INFO | tools | [----------] Iniciando browser: firefox headless=False
+2026-06-26 13:13:23,714 | INFO | tools | [----------] Browser listo
+2026-06-26 13:13:43,923 | INFO | tools | [----------] Obteniendo fecha y hora del sistema
+2026-06-26 13:13:43,998 | INFO | tools | [----------] Intentando crear archivo: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:43,998 | INFO | tools | [----------] Ruta resuelta: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:43,998 | INFO | tools | [----------] Ruta absoluta final: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:43,999 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:43,999 | INFO | tools | [----------] Intentando leer archivo: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:43,999 | INFO | tools | [----------] Ruta resuelta: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:43,999 | INFO | tools | [----------] Archivo leído exitosamente: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:43,999 | INFO | tools | [----------] Agregando contenido al archivo: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:44,000 | INFO | tools | [----------] Ruta resuelta: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:44,000 | INFO | tools | [----------] Contenido agregado exitosamente: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:44,000 | INFO | tools | [----------] Intentando leer archivo: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:44,001 | INFO | tools | [----------] Ruta resuelta: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:44,001 | INFO | tools | [----------] Archivo leído exitosamente: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:44,001 | INFO | tools | [----------] Listando directorio: /tmp
+2026-06-26 13:13:44,002 | INFO | tools | [----------] Ruta resuelta: /tmp
+2026-06-26 13:13:44,002 | INFO | tools | [----------] Directorio listado correctamente: /tmp
+2026-06-26 13:13:44,002 | INFO | tools | [----------] Intentando eliminar archivo: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:44,002 | INFO | tools | [----------] Ruta resuelta: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:44,003 | INFO | tools | [----------] Archivo eliminado exitosamente: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:44,003 | INFO | tools | [----------] Intentando leer archivo: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:44,003 | INFO | tools | [----------] Ruta resuelta: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:44,052 | INFO | tools | [----------] Iniciando browser: firefox headless=False
+2026-06-26 13:13:45,977 | INFO | tools | [----------] Browser listo
+2026-06-26 13:13:56,725 | INFO | tools | [----------] Obteniendo fecha y hora del sistema
+2026-06-26 13:13:56,808 | INFO | tools | [----------] Intentando crear archivo: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:56,809 | INFO | tools | [----------] Ruta resuelta: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:56,809 | INFO | tools | [----------] Ruta absoluta final: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:56,809 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:56,809 | INFO | tools | [----------] Intentando leer archivo: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:56,810 | INFO | tools | [----------] Ruta resuelta: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:56,810 | INFO | tools | [----------] Archivo leído exitosamente: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:56,810 | INFO | tools | [----------] Agregando contenido al archivo: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:56,811 | INFO | tools | [----------] Ruta resuelta: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:56,811 | INFO | tools | [----------] Contenido agregado exitosamente: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:56,811 | INFO | tools | [----------] Intentando leer archivo: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:56,811 | INFO | tools | [----------] Ruta resuelta: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:56,812 | INFO | tools | [----------] Archivo leído exitosamente: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:56,812 | INFO | tools | [----------] Listando directorio: /tmp
+2026-06-26 13:13:56,813 | INFO | tools | [----------] Ruta resuelta: /tmp
+2026-06-26 13:13:56,813 | INFO | tools | [----------] Directorio listado correctamente: /tmp
+2026-06-26 13:13:56,813 | INFO | tools | [----------] Intentando eliminar archivo: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:56,814 | INFO | tools | [----------] Ruta resuelta: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:56,814 | INFO | tools | [----------] Archivo eliminado exitosamente: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:56,814 | INFO | tools | [----------] Intentando leer archivo: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:56,815 | INFO | tools | [----------] Ruta resuelta: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:56,861 | INFO | tools | [----------] Iniciando browser: firefox headless=False
+2026-06-26 13:13:59,084 | INFO | tools | [----------] Browser listo
+2026-06-26 13:23:46,816 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('hello')"]
+2026-06-26 13:23:46,833 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-06-26 13:23:46,835 | INFO | tools | [----------] Listando directorio: app
+2026-06-26 13:23:46,836 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-06-26 13:23:46,836 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-06-26 13:23:46,836 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-06-26 13:23:46,838 | WARNING | tools | [----------] ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('app-open-test')"]' en el SERVIDOR, no en el cliente.
+2026-06-26 13:24:27,306 | INFO | tools | [----------] Intentando crear archivo: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 13:24:27,307 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 13:24:27,307 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 13:24:27,307 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 13:33:18,370 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('hello')"]
+2026-06-26 13:33:18,395 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-06-26 13:33:18,397 | INFO | tools | [----------] Listando directorio: app
+2026-06-26 13:33:18,397 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-06-26 13:33:18,397 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-06-26 13:33:18,398 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-06-26 13:33:18,400 | WARNING | tools | [----------] ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('app-open-test')"]' en el SERVIDOR, no en el cliente.
+2026-06-26 13:34:01,460 | INFO | tools | [----------] Intentando crear archivo: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 13:34:01,461 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 13:34:01,461 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 13:34:01,461 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 13:34:06,940 | INFO | tools | [----------] Obteniendo fecha y hora del sistema
+2026-06-26 13:34:07,057 | INFO | tools | [----------] Intentando crear archivo: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:34:07,058 | INFO | tools | [----------] Ruta resuelta: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:34:07,058 | INFO | tools | [----------] Ruta absoluta final: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:34:07,058 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:34:07,058 | INFO | tools | [----------] Intentando leer archivo: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:34:07,058 | INFO | tools | [----------] Ruta resuelta: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:34:07,058 | INFO | tools | [----------] Archivo leído exitosamente: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:34:07,058 | INFO | tools | [----------] Agregando contenido al archivo: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:34:07,059 | INFO | tools | [----------] Ruta resuelta: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:34:07,059 | INFO | tools | [----------] Contenido agregado exitosamente: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:34:07,059 | INFO | tools | [----------] Intentando leer archivo: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:34:07,059 | INFO | tools | [----------] Ruta resuelta: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:34:07,059 | INFO | tools | [----------] Archivo leído exitosamente: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:34:07,059 | INFO | tools | [----------] Listando directorio: /tmp
+2026-06-26 13:34:07,060 | INFO | tools | [----------] Ruta resuelta: /tmp
+2026-06-26 13:34:07,060 | INFO | tools | [----------] Directorio listado correctamente: /tmp
+2026-06-26 13:34:07,060 | INFO | tools | [----------] Intentando eliminar archivo: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:34:07,061 | INFO | tools | [----------] Ruta resuelta: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:34:07,061 | INFO | tools | [----------] Archivo eliminado exitosamente: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:34:07,061 | INFO | tools | [----------] Intentando leer archivo: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:34:07,061 | INFO | tools | [----------] Ruta resuelta: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:34:07,182 | INFO | tools | [----------] Iniciando browser: firefox headless=False
+2026-06-26 13:34:12,576 | INFO | tools | [----------] Browser listo
+2026-06-26 13:38:25,475 | INFO | tools | [----------] Iniciando browser: firefox headless=False
+2026-06-26 13:38:28,930 | INFO | tools | [----------] Browser listo
+2026-06-26 13:38:29,211 | INFO | tools | [----------] Iniciando browser: firefox headless=False
+2026-06-26 13:38:31,439 | INFO | tools | [----------] Browser listo
+2026-06-26 13:38:31,727 | INFO | tools | [----------] Iniciando browser: firefox headless=False
+2026-06-26 13:38:33,911 | INFO | tools | [----------] Browser listo
+2026-06-26 13:38:43,921 | INFO | tools | [----------] computer_use: delegando 'mouse.click' args={'x': 10, 'y': 20, 'button': 'left', 'clicks': 1, 'interval': 0.1}
+2026-06-26 13:38:43,934 | INFO | tools | [----------] computer_use: delegando 'keyboard.type' args={'text': 'hola', 'interval': 0.03}
+2026-06-26 13:38:44,219 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('hello')"]
+2026-06-26 13:38:44,236 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-06-26 13:38:44,238 | INFO | tools | [----------] Listando directorio: app
+2026-06-26 13:38:44,238 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-06-26 13:38:44,238 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-06-26 13:38:44,239 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-06-26 13:38:44,242 | WARNING | tools | [----------] ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('app-open-test')"]' en el SERVIDOR, no en el cliente.
+2026-06-26 13:41:45,238 | INFO | tools | [----------] Iniciando browser: firefox headless=False
+2026-06-26 13:41:48,007 | INFO | tools | [----------] Browser listo
+2026-06-26 13:41:48,286 | INFO | tools | [----------] Iniciando browser: firefox headless=False
+2026-06-26 13:41:50,620 | INFO | tools | [----------] Browser listo
+2026-06-26 13:41:51,004 | INFO | tools | [----------] Iniciando browser: firefox headless=False
+2026-06-26 13:41:54,137 | INFO | tools | [----------] Browser listo
+2026-06-26 13:41:57,426 | INFO | tools | [----------] computer_use: delegando 'mouse.click' args={'x': 10, 'y': 20, 'button': 'left', 'clicks': 1, 'interval': 0.1}
+2026-06-26 13:41:57,437 | INFO | tools | [----------] computer_use: delegando 'keyboard.type' args={'text': 'hola', 'interval': 0.03}
+2026-06-26 13:41:57,734 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('hello')"]
+2026-06-26 13:41:57,757 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-06-26 13:41:57,760 | INFO | tools | [----------] Listando directorio: app
+2026-06-26 13:41:57,761 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-06-26 13:41:57,761 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-06-26 13:41:57,761 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-06-26 13:41:57,764 | WARNING | tools | [----------] ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('app-open-test')"]' en el SERVIDOR, no en el cliente.
+2026-06-26 13:44:28,668 | INFO | tools | [----------] Iniciando browser: firefox headless=False
+2026-06-26 13:44:34,190 | INFO | tools | [----------] Browser listo
+2026-06-26 13:44:34,659 | INFO | tools | [----------] Iniciando browser: firefox headless=False
+2026-06-26 13:44:39,250 | INFO | tools | [----------] Browser listo
+2026-06-26 13:44:39,916 | INFO | tools | [----------] Iniciando browser: firefox headless=False
+2026-06-26 13:44:43,605 | INFO | tools | [----------] Browser listo
+2026-06-26 13:45:12,658 | INFO | tools | [----------] computer_use: delegando 'mouse.click' args={'x': 10, 'y': 20, 'button': 'left', 'clicks': 1, 'interval': 0.1}
+2026-06-26 13:45:12,664 | INFO | tools | [----------] computer_use: delegando 'keyboard.type' args={'text': 'hola', 'interval': 0.03}
+2026-06-26 13:45:12,905 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('hello')"]
+2026-06-26 13:45:12,923 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-06-26 13:45:12,925 | INFO | tools | [----------] Listando directorio: app
+2026-06-26 13:45:12,926 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-06-26 13:45:12,926 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-06-26 13:45:12,926 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-06-26 13:45:12,928 | WARNING | tools | [----------] ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('app-open-test')"]' en el SERVIDOR, no en el cliente.
+2026-06-26 13:45:14,289 | INFO | tools | [----------] Intentando crear archivo: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 13:45:14,290 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 13:45:14,290 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 13:45:14,290 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 13:45:32,787 | INFO | tools | [----------] computer_use: delegando 'mouse.click' args={'x': 10, 'y': 20, 'button': 'left', 'clicks': 1, 'interval': 0.1}
+2026-06-26 13:45:32,792 | INFO | tools | [----------] computer_use: delegando 'keyboard.type' args={'text': 'hola', 'interval': 0.03}
+2026-06-26 13:45:32,990 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('hello')"]
+2026-06-26 13:45:33,011 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-06-26 13:45:33,013 | INFO | tools | [----------] Listando directorio: app
+2026-06-26 13:45:33,014 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-06-26 13:45:33,014 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-06-26 13:45:33,014 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-06-26 13:45:33,016 | WARNING | tools | [----------] ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('app-open-test')"]' en el SERVIDOR, no en el cliente.
+2026-06-26 13:45:33,142 | INFO | tools | [----------] Intentando crear archivo: /tmp/pytest-of-luisd/pytest-1/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 13:45:33,142 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-1/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 13:45:33,142 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-1/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 13:45:33,143 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-1/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 13:53:34,576 | INFO | tools | [----------] Delegando open_url al agente local: https://www.pais.com
+2026-06-26 13:58:41,199 | INFO | tools | [----------] computer_use: delegando 'mouse.click' args={'x': 10, 'y': 20, 'button': 'left', 'clicks': 1, 'interval': 0.1}
+2026-06-26 13:58:41,213 | INFO | tools | [----------] computer_use: delegando 'keyboard.type' args={'text': 'hola', 'interval': 0.03}
+2026-06-26 13:58:41,607 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('hello')"]
+2026-06-26 13:58:41,654 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-06-26 13:58:41,659 | INFO | tools | [----------] Listando directorio: app
+2026-06-26 13:58:41,662 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-06-26 13:58:41,662 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-06-26 13:58:41,663 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-06-26 13:58:41,669 | WARNING | tools | [----------] ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('app-open-test')"]' en el SERVIDOR, no en el cliente.
+2026-06-26 13:58:45,481 | INFO | tools | [----------] Delegando open_application al agente local: notepad
+2026-06-26 13:58:45,487 | INFO | tools | [----------] Delegando open_url al agente local: https://google.com
+2026-06-26 13:58:45,495 | INFO | tools | [----------] Delegando close_application al agente local: notepad
+2026-06-26 13:58:45,534 | INFO | tools | [----------] Intentando crear archivo: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 13:58:45,535 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 13:58:45,535 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 13:58:45,536 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 13:59:05,084 | INFO | tools | [----------] computer_use: delegando 'mouse.click' args={'x': 10, 'y': 20, 'button': 'left', 'clicks': 1, 'interval': 0.1}
+2026-06-26 13:59:05,099 | INFO | tools | [----------] computer_use: delegando 'keyboard.type' args={'text': 'hola', 'interval': 0.03}
+2026-06-26 13:59:05,458 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('hello')"]
+2026-06-26 13:59:05,511 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-06-26 13:59:05,516 | INFO | tools | [----------] Listando directorio: app
+2026-06-26 13:59:05,518 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-06-26 13:59:05,518 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-06-26 13:59:05,522 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-06-26 13:59:05,530 | WARNING | tools | [----------] ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('app-open-test')"]' en el SERVIDOR, no en el cliente.
+2026-06-26 13:59:05,779 | INFO | tools | [----------] Delegando open_application al agente local: notepad
+2026-06-26 13:59:05,789 | INFO | tools | [----------] Delegando open_url al agente local: https://google.com
+2026-06-26 13:59:05,797 | INFO | tools | [----------] Delegando close_application al agente local: notepad
+2026-06-26 13:59:05,830 | INFO | tools | [----------] Intentando crear archivo: /tmp/pytest-of-luisd/pytest-1/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 13:59:05,830 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-1/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 13:59:05,830 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-1/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 13:59:05,831 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-1/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 13:59:23,299 | INFO | tools | [----------] computer_use: delegando 'mouse.click' args={'x': 10, 'y': 20, 'button': 'left', 'clicks': 1, 'interval': 0.1}
+2026-06-26 13:59:23,305 | INFO | tools | [----------] computer_use: delegando 'keyboard.type' args={'text': 'hola', 'interval': 0.03}
+2026-06-26 13:59:23,637 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('hello')"]
+2026-06-26 13:59:23,683 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-06-26 13:59:23,688 | INFO | tools | [----------] Listando directorio: app
+2026-06-26 13:59:23,689 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-06-26 13:59:23,689 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-06-26 13:59:23,690 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-06-26 13:59:23,695 | WARNING | tools | [----------] ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('app-open-test')"]' en el SERVIDOR, no en el cliente.
+2026-06-26 13:59:23,888 | INFO | tools | [----------] Delegando open_application al agente local: notepad
+2026-06-26 13:59:23,895 | INFO | tools | [----------] Delegando open_url al agente local: https://google.com
+2026-06-26 13:59:23,903 | INFO | tools | [----------] Delegando close_application al agente local: notepad
+2026-06-26 13:59:23,941 | INFO | tools | [----------] Intentando crear archivo: /tmp/pytest-of-luisd/pytest-2/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 13:59:23,941 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-2/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 13:59:23,941 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-2/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 13:59:23,942 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-2/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 14:11:49,726 | INFO | tools | [----------] Delegando open_url al agente local: https://elpais.com/
+2026-06-26 14:16:32,092 | INFO | tools | [----------] Delegando filesystem tool 'create_file' al agente local
+2026-06-26 14:38:43,351 | INFO | tools | [----------] computer_use: delegando 'mouse.click' args={'x': 10, 'y': 20, 'button': 'left', 'clicks': 1, 'interval': 0.1}
+2026-06-26 14:38:43,361 | INFO | tools | [----------] computer_use: delegando 'keyboard.type' args={'text': 'hola', 'interval': 0.03}
+2026-06-26 14:38:43,797 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('hello')"]
+2026-06-26 14:38:43,936 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-06-26 14:38:43,939 | INFO | tools | [----------] Listando directorio: app
+2026-06-26 14:38:43,940 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-06-26 14:38:43,940 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-06-26 14:38:43,941 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-06-26 14:38:43,946 | WARNING | tools | [----------] ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('app-open-test')"]' en el SERVIDOR, no en el cliente.
+2026-06-26 14:38:44,147 | INFO | tools | [----------] Delegando open_application al agente local: notepad
+2026-06-26 14:38:44,154 | INFO | tools | [----------] Delegando open_url al agente local: https://google.com
+2026-06-26 14:38:44,162 | INFO | tools | [----------] Delegando close_application al agente local: notepad
+2026-06-26 14:38:44,193 | INFO | tools | [----------] Intentando crear archivo: /tmp/pytest-of-luisd/pytest-3/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 14:38:44,193 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-3/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 14:38:44,194 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-3/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 14:38:44,194 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-3/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 14:41:59,871 | INFO | tools | [----------] Delegando open_url al agente local: https://www.elpais.com/
+2026-06-26 15:02:33,307 | INFO | tools | [----------] Intentando crear archivo: /Users/alfonso/Desktop/pruebas_alfonso.txt
+2026-06-26 15:02:33,323 | INFO | tools | [----------] Usuario de macOS en la ruta ('alfonso') no coincide con el usuario actual de WSL ('luisd'). Ajustando a: /home/luisd/Desktop/pruebas_alfonso.txt
+2026-06-26 15:02:33,331 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Desktop/pruebas_alfonso.txt
+2026-06-26 15:02:33,332 | INFO | tools | [----------] Ruta absoluta final: /home/luisd/Desktop/pruebas_alfonso.txt
+2026-06-26 15:02:33,340 | INFO | tools | [----------] Archivo creado exitosamente: /home/luisd/Desktop/pruebas_alfonso.txt
+2026-06-26 15:04:38,041 | INFO | tools | [----------] Intentando eliminar archivo: /home/user/alfonso_pruebas.txt
+2026-06-26 15:04:38,042 | INFO | tools | [----------] Usuario en ruta /home/ ('user') no coincide con el usuario actual de WSL ('luisd'). Ajustando a: /home/luisd/alfonso_pruebas.txt
+2026-06-26 15:04:38,050 | INFO | tools | [----------] Ruta resuelta: /home/luisd/alfonso_pruebas.txt
+2026-06-26 15:20:09,890 | INFO | tools | [----------] computer_use: delegando 'mouse.click' args={'x': 10, 'y': 20, 'button': 'left', 'clicks': 1, 'interval': 0.1}
+2026-06-26 15:20:09,915 | INFO | tools | [----------] computer_use: delegando 'keyboard.type' args={'text': 'hola', 'interval': 0.03}
+2026-06-26 15:20:10,473 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('hello')"]
+2026-06-26 15:20:10,543 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-06-26 15:20:10,547 | INFO | tools | [----------] Listando directorio: app
+2026-06-26 15:20:10,548 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-06-26 15:20:10,549 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-06-26 15:20:10,550 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-06-26 15:20:10,554 | WARNING | tools | [----------] ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('app-open-test')"]' en el SERVIDOR, no en el cliente.
+2026-06-26 15:20:11,012 | INFO | tools | [----------] Delegando open_application al agente local: notepad
+2026-06-26 15:20:11,018 | INFO | tools | [----------] Delegando open_url al agente local: https://google.com
+2026-06-26 15:20:11,027 | INFO | tools | [----------] Delegando close_application al agente local: notepad
+2026-06-26 15:20:11,070 | INFO | tools | [----------] Intentando crear archivo: /tmp/pytest-of-luisd/pytest-4/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 15:20:11,071 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-4/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 15:20:11,071 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-4/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 15:20:11,071 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-4/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 15:26:10,835 | INFO | tools | [----------] computer_use: delegando 'mouse.click' args={'x': 10, 'y': 20, 'button': 'left', 'clicks': 1, 'interval': 0.1}
+2026-06-26 15:26:10,842 | INFO | tools | [----------] computer_use: delegando 'keyboard.type' args={'text': 'hola', 'interval': 0.03}
+2026-06-26 15:26:11,100 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('hello')"]
+2026-06-26 15:26:11,161 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-06-26 15:26:11,164 | INFO | tools | [----------] Listando directorio: app
+2026-06-26 15:26:11,165 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-06-26 15:26:11,165 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-06-26 15:26:11,165 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-06-26 15:26:11,168 | WARNING | tools | [----------] ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('app-open-test')"]' en el SERVIDOR, no en el cliente.
+2026-06-26 15:26:11,303 | INFO | tools | [----------] Delegando open_application al agente local: notepad
+2026-06-26 15:26:11,310 | INFO | tools | [----------] Delegando open_url al agente local: https://google.com
+2026-06-26 15:26:11,317 | INFO | tools | [----------] Delegando close_application al agente local: notepad
+2026-06-26 15:26:11,342 | INFO | tools | [----------] Intentando crear archivo: /tmp/pytest-of-luisd/pytest-5/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 15:26:11,342 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-5/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 15:26:11,343 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-5/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 15:26:11,343 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-5/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 15:38:12,835 | INFO | tools | [----------] computer_use: delegando 'mouse.click' args={'x': 10, 'y': 20, 'button': 'left', 'clicks': 1, 'interval': 0.1}
+2026-06-26 15:38:12,839 | INFO | tools | [----------] computer_use: delegando 'keyboard.type' args={'text': 'hola', 'interval': 0.03}
+2026-06-26 15:38:13,073 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('hello')"]
+2026-06-26 15:38:13,092 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-06-26 15:38:13,094 | INFO | tools | [----------] Listando directorio: app
+2026-06-26 15:38:13,094 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-06-26 15:38:13,094 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-06-26 15:38:13,095 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-06-26 15:38:13,096 | WARNING | tools | [----------] ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('app-open-test')"]' en el SERVIDOR, no en el cliente.
+2026-06-26 15:38:13,200 | INFO | tools | [----------] Delegando open_application al agente local: notepad
+2026-06-26 15:38:13,203 | INFO | tools | [----------] Delegando open_url al agente local: https://google.com
+2026-06-26 15:38:13,206 | INFO | tools | [----------] Delegando close_application al agente local: notepad
+2026-06-26 15:38:13,219 | INFO | tools | [----------] Intentando crear archivo: /tmp/pytest-of-luisd/pytest-6/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 15:38:13,220 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-6/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 15:38:13,220 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-6/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 15:38:13,220 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-6/test_prepare_tool_args_end_to_0/salida.txt

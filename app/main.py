@@ -38,7 +38,13 @@ async def lifespan(app: FastAPI):
     app_logger.info("Logs en %s", LOG_DIR)
     app_logger.info("Arrancando Alfonso — audio delegado al cliente local")
 
-    await alfonso_bridge.start()
+    import sys
+    is_testing = "pytest" in sys.modules
+
+    if not is_testing:
+        await alfonso_bridge.start()
+    else:
+        app_logger.info("Inicio del bridge omitido en entorno de test")
 
     from app.api import routes as _routes
     _routes.orchestrator = planner_orchestrator
@@ -51,8 +57,11 @@ async def lifespan(app: FastAPI):
         app_logger.exception("Error precargando prompts de sistema")
 
     try:
-        await llm.generate("ping")
-        app_logger.info("Modelo precalentado")
+        if not is_testing:
+            await llm.generate("ping")
+            app_logger.info("Modelo precalentado")
+        else:
+            app_logger.info("Precalentamiento de modelo omitido en entorno de test")
     except Exception:
         app_logger.exception("Error precalentando modelo")
 
@@ -60,7 +69,10 @@ async def lifespan(app: FastAPI):
 
     yield
 
-    await alfonso_bridge.stop()
+    if not is_testing:
+        await alfonso_bridge.stop()
+    else:
+        app_logger.info("Detención del bridge omitida en entorno de test")
 
     try:
         await _close_playwright()

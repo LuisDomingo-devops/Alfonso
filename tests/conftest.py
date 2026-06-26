@@ -17,9 +17,8 @@ def session_memory_fixture():
     """
     from app.core.memory import SessionMemory
     # Usamos ':memory:' para una base de datos en memoria que se destruye al finalizar el test.
-    mem = SessionMemory(db_path=":memory:")
+    mem = SessionMemory(max_messages=20)
     yield mem
-    # No es necesario limpiar explícitamente, la DB en memoria se borra.
 
 @pytest.fixture(autouse=True)
 def mock_memory():

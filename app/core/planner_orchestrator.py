@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import asyncio
 import re
@@ -6,6 +6,7 @@ import re
 from app.core.intent_router import IntentRouter
 from app.core.llm_client import extract_json_robust
 from app.core.memory import memory
+from app.core.vector_memory import vector_memory
 
 from app.core.tool_registry import (
     get_tool,
@@ -78,6 +79,30 @@ def _extract_tool_and_args(data):
     return None, {}
 
 
+def _check_and_store_fact(user_message: str, session_id: str) -> bool:
+    msg_lower = user_message.lower()
+    patterns = [
+        "recuerda que",
+        "guarda que",
+        "mi favorito es",
+        "mi favorita es",
+        "me gusta",
+        "tengo un",
+        "vivo en",
+        "mi nombre es",
+        "me llamo",
+    ]
+    if any(p in msg_lower for p in patterns):
+        cleaned_fact = user_message
+        for p in ["recuerda que", "guarda que"]:
+            if msg_lower.startswith(p):
+                cleaned_fact = user_message[len(p):].strip()
+                break
+        vector_memory.add_fact(session_id, cleaned_fact)
+        return True
+    return False
+
+
 class PlannerOrchestrator:
     """
     Pipeline único de Alfonso (post Fase 2): no hay EventBus ni AgentRegistry.
@@ -87,17 +112,37 @@ class PlannerOrchestrator:
     """
 
     async def run(self, user_message, llm, request_id=None, session_id=None):
+        logger = attach_request_id(orchestrator_logger, request_id)
+        error = attach_request_id(error_logger, request_id)
+
         logger.info("PlannerOrchestrator.run() — request_id=%s, session_id=%s", request_id, session_id)
         user_message = _normalize_message(user_message)
 
-        logger = attach_request_id(orchestrator_logger, request_id)
-        error = attach_request_id(error_logger, request_id)
+        # Guardar hechos en la memoria vectorial si aplica (Fase 4)
+        _check_and_store_fact(user_message, session_id)
 
         # Persistimos el turno del usuario en memoria corta ANTES de generar,
         # sea cual sea el intent. Así un mensaje "tool" también queda en el
         # historial que un futuro turno "chat" podrá recuperar como contexto.
         if session_id:
             memory.add_message(session_id, "user", user_message)
+
+        # Consultar recuerdos semánticos relevantes (Fase 4)
+        facts = vector_memory.query_facts(user_message, limit=3)
+        memory_parts = []
+        if facts:
+            memory_parts.append("[Recuerdos semánticos relevantes del usuario:]")
+            for fact in facts:
+                memory_parts.append(f"- {fact}")
+            memory_parts.append("")
+            
+        if session_id:
+            session_summary = memory.get_summary(session_id)
+            if session_summary:
+                memory_parts.append("[Historial de la conversación reciente:]")
+                memory_parts.append(session_summary)
+                
+        memory_text = "\n".join(memory_parts) if memory_parts else None
 
         router = _router.detect_with_detail(user_message)
 
@@ -106,7 +151,6 @@ class PlannerOrchestrator:
         # ------------------------------------------------------------
         if router["intent"] == "chat" and not _force_tool(user_message):
             logger.info("Intent detectado: chat (no se fuerza tool)")
-            memory_text = memory.get_summary(session_id) if session_id else None
 
             response = await llm.generate(
                 user_message,
@@ -130,6 +174,7 @@ class PlannerOrchestrator:
             user_message,
             mode="tool",
             request_id=request_id,
+            memory=memory_text,
         )
 
         data = extract_json_robust(raw)

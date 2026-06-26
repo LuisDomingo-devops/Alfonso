@@ -168,3 +168,236 @@ Traceback (most recent call last):
     raise RuntimeError(response.text)
 RuntimeError: {"error":"model 'qwen2.5:1.5b' not found"}
 2026-06-24 14:08:40,727 | ERROR | errors | [----------] Error de permisos al crear \\wsl.localhost\Ubuntu\mnt\c\Users\luisd\AppData\Local\Temp\pytest-of-luisd\pytest-7\test_prepare_tool_args_end_to_0\salida.txt: [WinError 5] Acceso denegado: '\\\\wsl.localhost\\Ubuntu\\mnt\\c\\Users\\luisd\\AppData\\Local\\Temp\\pytest-of-luisd\\pytest-7\\test_prepare_tool_args_end_to_0'
+2026-06-26 13:03:33,026 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-06-26 13:03:33,166 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-06-26 13:04:33,334 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-06-26 13:04:33,619 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-06-26 13:13:20,418 | WARNING | errors | [----------] Archivo no encontrado: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:44,003 | WARNING | errors | [----------] Archivo no encontrado: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:13:56,815 | WARNING | errors | [----------] Archivo no encontrado: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:23:46,606 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-06-26 13:23:46,838 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-06-26 13:33:18,154 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-06-26 13:33:18,400 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-06-26 13:34:07,061 | WARNING | errors | [----------] Archivo no encontrado: /tmp/alfonso_test_fase3.txt
+2026-06-26 13:38:43,944 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-06-26 13:38:44,241 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-06-26 13:41:57,446 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-06-26 13:41:57,763 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-06-26 13:45:12,668 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-06-26 13:45:12,928 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-06-26 13:45:32,795 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-06-26 13:45:33,016 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-06-26 13:58:41,227 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-06-26 13:58:41,668 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-06-26 13:59:05,109 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-06-26 13:59:05,530 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-06-26 13:59:23,314 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-06-26 13:59:23,694 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-06-26 14:16:32,111 | WARNING | errors | [8d69b303-9fff-4a04-bfb3-ad50474936e6] Tool de servidor falló: create_file -> {'status': 'error', 'message': "No se pudo crear el archivo /usr/share/applications/pruebas_alfonso.txt: [Errno 2] No such file or directory: '/usr/share/applications/pruebas_alfonso.txt'", 'delegate': 'alfonso_agent', 'details': {'id': '2ba294d0-c928-4f37-9e86-557291642f46', 'status': 'error', 'error': "No se pudo crear el archivo /usr/share/applications/pruebas_alfonso.txt: [Errno 2] No such file or directory: '/usr/share/applications/pruebas_alfonso.txt'"}}
+2026-06-26 14:38:43,377 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-06-26 14:38:43,945 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-06-26 14:42:19,873 | WARNING | errors | [7ecb61d5-5015-499f-ad84-f0db046075d7] Tool de servidor falló: open_url -> {'status': 'error', 'message': 'Timeout', 'delegate': 'alfonso_agent'}
+2026-06-26 15:04:38,051 | WARNING | errors | [----------] Archivo no encontrado para eliminar: /home/luisd/alfonso_pruebas.txt
+2026-06-26 15:04:38,052 | WARNING | errors | [b9767592-d14e-4b59-85d4-01631bec634e] Tool de servidor falló: delete_file -> {'status': 'error', 'message': 'Archivo no encontrado'}
+2026-06-26 15:20:09,941 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-06-26 15:20:10,554 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-06-26 15:26:10,849 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-06-26 15:26:11,168 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-06-26 15:38:12,846 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-06-26 15:38:13,096 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.

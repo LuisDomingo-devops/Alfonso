@@ -219,23 +219,44 @@ def run(
                     print(f"Escuchando wake word '{keyword}'…\n")
                     break
 
-                print("  Alfonso: ", end="", flush=True)
+                print(f"\n[CLIENTE_INFO] Enviando a /chat del servidor: '{user_text}' (session: {session_id[:8]}...)")
                 chat = api.send_chat(user_text, session_id)
+                
+                status = chat.get("status") if isinstance(chat, dict) else "unknown"
+                print(f"[CLIENTE_INFO] Respuesta del servidor recibida (Estado: {status})")
 
                 if debug:
                     print(f"\n[debug chat] {chat}")
 
-                if chat.get("status") not in ("ok", "success"):
-                    print(f"[!] Chat error: {chat.get('message', '')}")
+                if not isinstance(chat, dict) or chat.get("status") not in ("ok", "success"):
+                    err_msg = chat.get('message', 'Formato de respuesta inválido') if isinstance(chat, dict) else 'Error de red/conexión'
+                    print(f"[!] Chat error: {err_msg}")
                     continue
 
                 result_data   = chat.get("result", {})
                 response_text = processor.format_response(result_data)
                 print(response_text + "\n")
 
-                audio_b64 = result_data.get("audio")
-                if audio_b64:
-                    audio.play_audio(base64.b64decode(audio_b64), device=output_device)
+                 audio_b64 = result_data.get("audio")
+                 if audio_b64:
+                     audio.play_audio(base64.b64decode(audio_b64), device=output_device)
+                 elif response_text:
+                     # Si el servidor no devuelve audio, generamos el TTS localmente en el cliente
+                     import asyncio
+                     try:
+                         # Intentar generar voz humana con Edge-TTS
+                         audio_path = asyncio.run(audio.text_to_speech_human(response_text))
+                         if audio_path:
+                             audio.play_audio_file(audio_path)
+                         else:
+                             # Fallback a voz robótica local
+                             audio_bytes = audio.text_to_wav_bytes(response_text)
+                             if audio_bytes:
+                                 audio.play_audio(audio_bytes, device=output_device)
+                     except Exception as e:
+                         # Silencioso en modo normal, mostrar en debug
+                         if debug:
+                             print(f"\n[debug] Error generando TTS local en cliente: {e}")
 
     except KeyboardInterrupt:
         print("\n\nHasta luego.\n")

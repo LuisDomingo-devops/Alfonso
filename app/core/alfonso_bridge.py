@@ -50,6 +50,13 @@ class AlfonsoBridge:
         logger.info("Bridge cerrado correctamente")
 
     async def register(self, ws):
+        # Cerrar clientes antiguos para evitar zombies/fantasmas (duplicación de comandos)
+        for client in list(self.clients):
+            try:
+                await client.close()
+            except Exception as e:
+                logger.warning(f"Error cerrando cliente antiguo: {e}")
+        self.clients.clear()
         self.clients.add(ws)
         logger.info(f"Cliente conectado: {ws.remote_address}")
 
