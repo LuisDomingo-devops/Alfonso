@@ -237,10 +237,10 @@ def run(
                 response_text = processor.format_response(result_data)
                 print(response_text + "\n")
 
-                 audio_b64 = result_data.get("audio")
-                 if audio_b64:
-                     audio.play_audio(base64.b64decode(audio_b64), device=output_device)
-                 elif response_text:
+                audio_b64 = result_data.get("audio")
+                if audio_b64:
+                    audio.play_audio(base64.b64decode(audio_b64), device=output_device)
+                elif response_text:
                      # Si el servidor no devuelve audio, generamos el TTS localmente en el cliente
                      import asyncio
                      try:

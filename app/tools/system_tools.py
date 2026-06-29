@@ -110,6 +110,8 @@ def _resolve_app(name: str) -> list[str] | None:
 
     # 2. Explorador de archivos por keywords
     if any(k in lower for k in ("explorad", "file manager", "gestor de archivo")):
+        if _IS_WSL:
+            return ["explorer.exe"]
         return _find_file_manager()
 
     # 3. Binario disponible directamente
@@ -127,7 +129,7 @@ def _resolve_app(name: str) -> list[str] | None:
         }
         win_app = windows_apps.get(lower)
         if win_app:
-            return _wsl_open(win_app)
+            return [win_app]
 
     return None
 

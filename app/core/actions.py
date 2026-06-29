@@ -133,4 +133,13 @@ CLIENT_ALIASES: dict[str, str] = {
     "close_window": Action.WINDOW_CLOSE,
     "screenshot": Action.SCREEN_SCREENSHOT,
     "open_url": Action.OPEN_URL,
+    "create_file": Action.CREATE_FILE,
+    "read_file": Action.READ_FILE,
+    "list_directory": Action.LIST_DIRECTORY,
+    "create_directory": Action.CREATE_DIRECTORY,
+    "append_file": Action.APPEND_FILE,
+    "delete_file": Action.DELETE_FILE,
+    "delete_directory": Action.DELETE_DIRECTORY,
+    "move_file": Action.MOVE_FILE,
+    "rename_file": Action.RENAME_FILE,
 }

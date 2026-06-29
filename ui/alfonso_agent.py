@@ -137,12 +137,27 @@ class AlfonsoAgent:
         if not app:
             return {"error": "app vacío"}
 
+        # Mapeo de comandos de Linux a Windows en el CLI
+        if IS_WINDOWS:
+            if "nautilus" in app.lower():
+                app = "explorer.exe"
+            elif app.lower().endswith("/code") or app.lower() == "code":
+                app = "code"
+
         try:
             path = shutil.which(app) or app
-            subprocess.Popen(path, shell=False)
+            use_shell = IS_WINDOWS and (path.lower() in ["explorer.exe", "code"] or not path.endswith(".exe"))
+            subprocess.Popen(path, shell=use_shell)
             return {"result": f"{app} abierto"}
         except Exception as e:
-            return {"error": f"No se pudo abrir {app}: {e}"}
+            try:
+                if IS_WINDOWS:
+                    subprocess.Popen(app, shell=True)
+                    return {"result": f"{app} abierto (shell fallback)"}
+                else:
+                    raise
+            except Exception as ex:
+                return {"error": f"No se pudo abrir {app}: {ex}"}
 
     def close_app(self, params):
         app = (params.get("command") or params.get("app") or "").strip()
@@ -169,8 +184,14 @@ class AlfonsoAgent:
             return {"error": "url vacía"}
 
         try:
-            import threading
-            threading.Thread(target=webbrowser.open, args=(url,), daemon=True).start()
+            if IS_WINDOWS:
+                try:
+                    subprocess.Popen(["explorer.exe", url], shell=False)
+                except Exception:
+                    os.startfile(url)
+            else:
+                import threading
+                threading.Thread(target=webbrowser.open, args=(url,), daemon=True).start()
             return {"result": url}
         except Exception as e:
             return {"error": f"No se pudo abrir la URL {url}: {e}"}

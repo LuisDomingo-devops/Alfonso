@@ -250,21 +250,31 @@ class AlfonsoAgentLogic:
                 try:
                     logger.info(f"Iniciando aplicación: {resolved_command}")
                     if _IS_WINDOWS:
+                        # Para comandos nativos del shell de Windows como explorer.exe o code, usar shell=True es más seguro y previene FileNotFoundError
+                        use_shell = resolved_command.lower() in ["explorer.exe", "code"] or not resolved_command.endswith(".exe")
                         subprocess.Popen(
                             resolved_command,
-                            shell=False,
-                            creationflags=subprocess.CREATE_NO_WINDOW
+                            shell=use_shell,
+                            creationflags=subprocess.CREATE_NO_WINDOW if not use_shell else 0
                         )
                     else:
                         subprocess.Popen(resolved_command, shell=False)
                     result = f"Aplicación '{command}' iniciada correctamente."
                 except FileNotFoundError:
-                    logger.error(f"Aplicación no encontrada: {resolved_command}")
-                    return {
-                        "id": command_id,
-                        "status": "error",
-                        "error": f"Aplicación '{command}' no encontrada en el sistema"
-                    }
+                    try:
+                        # Fallback for Windows using shell=True
+                        if _IS_WINDOWS:
+                            subprocess.Popen(resolved_command, shell=True)
+                            result = f"Aplicación '{command}' iniciada (shell fallback)."
+                        else:
+                            raise
+                    except Exception as e:
+                        logger.error(f"Aplicación no encontrada: {resolved_command} — {e}")
+                        return {
+                            "id": command_id,
+                            "status": "error",
+                            "error": f"Aplicación '{command}' no encontrada en el sistema: {e}"
+                        }
                 
             elif action == "close_app":
                 app_name = params.get("command", params.get("app_name", "")).strip()
@@ -292,7 +302,18 @@ class AlfonsoAgentLogic:
                 url = params.get("url", "").strip()
                 if not url:
                     return {"id": command_id, "status": "error", "error": "URL vacía"}
-                asyncio.create_task(asyncio.to_thread(webbrowser.open, url))
+                if _IS_WINDOWS:
+                    try:
+                        subprocess.Popen(["explorer.exe", url], shell=False)
+                    except Exception as e:
+                        logger.error(f"Error con subprocess.Popen explorer.exe: {e}")
+                        try:
+                            os.startfile(url)
+                        except Exception as ex:
+                            logger.error(f"Error con os.startfile: {ex}")
+                            asyncio.create_task(asyncio.to_thread(webbrowser.open, url))
+                else:
+                    asyncio.create_task(asyncio.to_thread(webbrowser.open, url))
                 result = f"URL abierta: {url}"
 
             elif action == "type_text":

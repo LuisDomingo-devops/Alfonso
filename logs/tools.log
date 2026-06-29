@@ -444,3 +444,18 @@
 2026-06-29 13:55:17,769 | INFO | tools | [----------] Delegando close_application al agente local: chrome
 2026-06-29 13:55:37,769 | INFO | tools | [----------] Delegando close_application al agente local: firefox
 2026-06-29 13:57:23,643 | INFO | tools | [----------] Delegando close_application al agente local: explorer.exe
+2026-06-29 14:30:48,446 | INFO | tools | [----------] Delegando close_application al agente local: firefox
+2026-06-29 14:32:16,444 | INFO | tools | [----------] Delegando open_application al agente local: /usr/bin/nautilus
+2026-06-29 14:33:37,663 | INFO | tools | [----------] Delegando browser_close al cliente
+2026-06-29 14:33:37,664 | INFO | tools | [----------] Delegando close_application al agente local: chrome
+2026-06-29 14:33:57,664 | INFO | tools | [----------] Delegando close_application al agente local: firefox
+2026-06-29 14:35:15,317 | INFO | tools | [----------] Delegando browser_close al cliente
+2026-06-29 14:35:15,317 | INFO | tools | [----------] Delegando close_application al agente local: chrome
+2026-06-29 14:35:34,098 | INFO | tools | [----------] Delegando close_application al agente local: firefox
+2026-06-29 14:36:50,134 | INFO | tools | [----------] Delegando close_application al agente local: explorer.exe
+2026-06-29 15:02:56,398 | INFO | tools | [----------] Delegando close_application al agente local: google-chrome
+2026-06-29 15:04:06,930 | INFO | tools | [----------] Delegando close_application al agente local: firefox
+2026-06-29 15:13:49,245 | INFO | tools | [----------] Delegando browser_close al cliente
+2026-06-29 15:13:49,245 | INFO | tools | [----------] Delegando close_application al agente local: chrome
+2026-06-29 15:14:07,690 | INFO | tools | [----------] Delegando close_application al agente local: firefox
+2026-06-29 15:32:01,577 | INFO | tools | [----------] Delegando close_application al agente local: /sbin/iptables -F && /sbin/iptables -X
