@@ -28,6 +28,8 @@ class AlfonsoAgent:
             "system.close_app": self.close_app,
             "system.open_url": self.open_url,
             "open_url": self.open_url,
+            "system.browser_close": self.browser_close,
+            "browser_close": self.browser_close,
             "keyboard.type": self.type_text,
             "keyboard.press": self.press_key,
             "keyboard.hotkey": self.press_hotkey,
@@ -58,6 +60,7 @@ class AlfonsoAgent:
             "open_app": "system.open_app",
             "close_app": "system.close_app",
             "open_url": "system.open_url",
+            "browser_close": "system.browser_close",
             "type_text": "keyboard.type",
             "press_key": "keyboard.press",
             "move_mouse": "mouse.move",
@@ -148,7 +151,12 @@ class AlfonsoAgent:
 
         try:
             if IS_WINDOWS:
-                subprocess.run(["taskkill", "/F", "/IM", f"{app}.exe"], check=False)
+                exec_name = app if app.lower().endswith(".exe") else f"{app}.exe"
+                if exec_name.lower() == "explorer.exe" or "explorador" in app.lower():
+                    logger.warning("Evitando taskkill en explorer.exe para no tumbar la shell de Windows. Usando Alt+F4.")
+                    pyautogui.hotkey("alt", "f4")
+                    return {"result": "Se envió Alt+F4 a la ventana activa"}
+                subprocess.run(["taskkill", "/F", "/IM", exec_name], check=False)
             else:
                 subprocess.run(["pkill", "-f", app], check=False)
             return {"result": f"{app} cerrado"}
@@ -161,10 +169,18 @@ class AlfonsoAgent:
             return {"error": "url vacía"}
 
         try:
-            webbrowser.open(url)
+            import threading
+            threading.Thread(target=webbrowser.open, args=(url,), daemon=True).start()
             return {"result": url}
         except Exception as e:
             return {"error": f"No se pudo abrir la URL {url}: {e}"}
+
+    def browser_close(self, params):
+        results = []
+        for browser_name in ["chrome", "firefox", "msedge"]:
+            res = self.close_app({"command": browser_name})
+            results.append(res)
+        return {"result": "Navegadores cerrados", "details": results}
 
     # ---------------- INPUT ----------------
 

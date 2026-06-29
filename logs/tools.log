@@ -359,3 +359,88 @@
 2026-06-26 15:38:13,220 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-6/test_prepare_tool_args_end_to_0/salida.txt
 2026-06-26 15:38:13,220 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-6/test_prepare_tool_args_end_to_0/salida.txt
 2026-06-26 15:38:13,220 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-6/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 15:50:06,308 | INFO | tools | [----------] computer_use: delegando 'mouse.click' args={'x': 10, 'y': 20, 'button': 'left', 'clicks': 1, 'interval': 0.1}
+2026-06-26 15:50:06,311 | INFO | tools | [----------] computer_use: delegando 'keyboard.type' args={'text': 'hola', 'interval': 0.03}
+2026-06-26 15:50:06,491 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('hello')"]
+2026-06-26 15:50:06,506 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-06-26 15:50:06,508 | INFO | tools | [----------] Listando directorio: app
+2026-06-26 15:50:06,508 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-06-26 15:50:06,508 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-06-26 15:50:06,509 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-06-26 15:50:06,511 | WARNING | tools | [----------] ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('app-open-test')"]' en el SERVIDOR, no en el cliente.
+2026-06-26 15:50:06,599 | INFO | tools | [----------] Delegando open_application al agente local: notepad
+2026-06-26 15:50:06,602 | INFO | tools | [----------] Delegando open_url al agente local: https://google.com
+2026-06-26 15:50:06,604 | INFO | tools | [----------] Delegando close_application al agente local: notepad
+2026-06-26 15:50:06,616 | INFO | tools | [----------] Intentando crear archivo: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 15:50:06,616 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 15:50:06,616 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 15:50:06,616 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-06-26 15:53:01,991 | INFO | tools | [----------] Intentando crear directorio: ~/Desktop/AlfonsoPruebas
+2026-06-26 15:53:01,993 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Desktop/AlfonsoPruebas
+2026-06-26 15:53:01,994 | INFO | tools | [----------] Directorio creado exitosamente: /home/luisd/Desktop/AlfonsoPruebas
+2026-06-26 15:53:01,994 | INFO | tools | [----------] Intentando crear archivo: ~/Desktop/AlfonsoPruebas/saludo.txt
+2026-06-26 15:53:01,995 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Desktop/AlfonsoPruebas/saludo.txt
+2026-06-26 15:53:01,995 | INFO | tools | [----------] Ruta absoluta final: /home/luisd/Desktop/AlfonsoPruebas/saludo.txt
+2026-06-26 15:53:01,995 | INFO | tools | [----------] Archivo creado exitosamente: /home/luisd/Desktop/AlfonsoPruebas/saludo.txt
+2026-06-26 15:53:01,995 | INFO | tools | [----------] Agregando contenido al archivo: ~/Desktop/AlfonsoPruebas/saludo.txt
+2026-06-26 15:53:01,995 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Desktop/AlfonsoPruebas/saludo.txt
+2026-06-26 15:53:01,995 | INFO | tools | [----------] Contenido agregado exitosamente: /home/luisd/Desktop/AlfonsoPruebas/saludo.txt
+2026-06-26 15:53:01,995 | INFO | tools | [----------] Intentando leer archivo: ~/Desktop/AlfonsoPruebas/saludo.txt
+2026-06-26 15:53:01,996 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Desktop/AlfonsoPruebas/saludo.txt
+2026-06-26 15:53:01,996 | INFO | tools | [----------] Archivo leído exitosamente: /home/luisd/Desktop/AlfonsoPruebas/saludo.txt
+2026-06-26 15:53:01,996 | INFO | tools | [----------] Listando directorio: ~/Desktop/AlfonsoPruebas
+2026-06-26 15:53:01,996 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Desktop/AlfonsoPruebas
+2026-06-26 15:53:01,996 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Desktop/AlfonsoPruebas
+2026-06-26 15:53:01,996 | INFO | tools | [----------] Intentando renombrar archivo: ~/Desktop/AlfonsoPruebas/saludo.txt -> saludo_renombrado.txt
+2026-06-26 15:53:01,997 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Desktop/AlfonsoPruebas/saludo.txt
+2026-06-26 15:53:01,997 | INFO | tools | [----------] Archivo renombrado exitosamente: /home/luisd/Desktop/AlfonsoPruebas/saludo.txt -> /home/luisd/Desktop/AlfonsoPruebas/saludo_renombrado.txt
+2026-06-26 15:53:01,997 | INFO | tools | [----------] Listando directorio: ~/Desktop/AlfonsoPruebas
+2026-06-26 15:53:01,997 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Desktop/AlfonsoPruebas
+2026-06-26 15:53:01,997 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Desktop/AlfonsoPruebas
+2026-06-26 15:53:01,997 | INFO | tools | [----------] Intentando eliminar archivo: ~/Desktop/AlfonsoPruebas/saludo_renombrado.txt
+2026-06-26 15:53:01,998 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Desktop/AlfonsoPruebas/saludo_renombrado.txt
+2026-06-26 15:53:01,998 | INFO | tools | [----------] Archivo eliminado exitosamente: /home/luisd/Desktop/AlfonsoPruebas/saludo_renombrado.txt
+2026-06-26 15:53:01,998 | INFO | tools | [----------] Intentando eliminar directorio: ~/Desktop/AlfonsoPruebas
+2026-06-26 15:53:01,998 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Desktop/AlfonsoPruebas
+2026-06-26 15:53:01,998 | INFO | tools | [----------] Directorio eliminado exitosamente: /home/luisd/Desktop/AlfonsoPruebas
+2026-06-26 15:55:41,539 | INFO | tools | [----------] Intentando crear directorio: C:\Users\luisd\Desktop\Alfonso_Prueba_Windows
+2026-06-26 15:55:41,540 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/luisd/Desktop/Alfonso_Prueba_Windows
+2026-06-26 15:55:41,540 | INFO | tools | [----------] Ruta resuelta: /mnt/c/Users/luisd/Desktop/Alfonso_Prueba_Windows
+2026-06-26 15:55:41,544 | INFO | tools | [----------] Directorio creado exitosamente: /mnt/c/Users/luisd/Desktop/Alfonso_Prueba_Windows
+2026-06-26 15:55:41,544 | INFO | tools | [----------] Intentando crear archivo: C:\Users\luisd\Desktop\Alfonso_Prueba_Windows\leeme.txt
+2026-06-26 15:55:41,544 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/luisd/Desktop/Alfonso_Prueba_Windows/leeme.txt
+2026-06-26 15:55:41,544 | INFO | tools | [----------] Ruta resuelta: /mnt/c/Users/luisd/Desktop/Alfonso_Prueba_Windows/leeme.txt
+2026-06-26 15:55:41,545 | INFO | tools | [----------] Ruta absoluta final: /mnt/c/Users/luisd/Desktop/Alfonso_Prueba_Windows/leeme.txt
+2026-06-26 15:55:41,554 | INFO | tools | [----------] Archivo creado exitosamente: /mnt/c/Users/luisd/Desktop/Alfonso_Prueba_Windows/leeme.txt
+2026-06-26 15:55:41,554 | INFO | tools | [----------] Intentando crear archivo: C:\Users\luisd\Desktop\Alfonso_Prueba_Windows\estado_de_prueba.txt
+2026-06-26 15:55:41,554 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/luisd/Desktop/Alfonso_Prueba_Windows/estado_de_prueba.txt
+2026-06-26 15:55:41,554 | INFO | tools | [----------] Ruta resuelta: /mnt/c/Users/luisd/Desktop/Alfonso_Prueba_Windows/estado_de_prueba.txt
+2026-06-26 15:55:41,555 | INFO | tools | [----------] Ruta absoluta final: /mnt/c/Users/luisd/Desktop/Alfonso_Prueba_Windows/estado_de_prueba.txt
+2026-06-26 15:55:41,561 | INFO | tools | [----------] Archivo creado exitosamente: /mnt/c/Users/luisd/Desktop/Alfonso_Prueba_Windows/estado_de_prueba.txt
+2026-06-26 16:00:25,164 | INFO | tools | [----------] Intentando crear archivo: C:\Users\luisd\Desktop\Alfonso_Prueba_Windows\test_delegacion.txt
+2026-06-26 16:00:25,173 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/luisd/Desktop/Alfonso_Prueba_Windows/test_delegacion.txt
+2026-06-26 16:00:25,175 | INFO | tools | [----------] Ruta resuelta: /mnt/c/Users/luisd/Desktop/Alfonso_Prueba_Windows/test_delegacion.txt
+2026-06-26 16:00:25,175 | INFO | tools | [----------] Ruta absoluta final: /mnt/c/Users/luisd/Desktop/Alfonso_Prueba_Windows/test_delegacion.txt
+2026-06-26 16:00:25,198 | INFO | tools | [----------] Archivo creado exitosamente: /mnt/c/Users/luisd/Desktop/Alfonso_Prueba_Windows/test_delegacion.txt
+2026-06-26 17:04:30,459 | INFO | tools | [----------] Delegando open_url al agente local: https://elpais.com/
+2026-06-26 17:06:23,079 | INFO | tools | [----------] Delegando browser_close al cliente
+2026-06-26 17:06:23,083 | INFO | tools | [----------] Delegando close_application al agente local: chrome
+2026-06-26 17:06:41,964 | INFO | tools | [----------] Delegando close_application al agente local: firefox
+2026-06-26 17:33:08,772 | INFO | tools | [----------] Obteniendo fecha y hora del sistema
+2026-06-26 17:37:12,125 | INFO | tools | [----------] Delegando open_application al agente local: /usr/bin/nautilus
+2026-06-26 17:39:47,179 | INFO | tools | [----------] Intentando crear archivo: /Users/alfonso/Desktop/alfonso_pruebas.txt
+2026-06-26 17:39:47,186 | INFO | tools | [----------] Usuario de macOS en la ruta ('alfonso') no coincide con el usuario actual de WSL ('luisd'). Ajustando a: /home/luisd/Desktop/alfonso_pruebas.txt
+2026-06-26 17:39:47,192 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Desktop/alfonso_pruebas.txt
+2026-06-26 17:39:47,192 | INFO | tools | [----------] Ruta absoluta final: /home/luisd/Desktop/alfonso_pruebas.txt
+2026-06-26 17:39:47,196 | INFO | tools | [----------] Archivo creado exitosamente: /home/luisd/Desktop/alfonso_pruebas.txt
+2026-06-27 19:33:00,000 | INFO | tools | [----------] Obteniendo fecha y hora del sistema
+2026-06-27 19:53:48,998 | INFO | tools | [----------] Iniciando browser: firefox headless=False
+2026-06-27 19:53:57,591 | INFO | tools | [----------] Browser listo
+2026-06-29 13:51:02,255 | INFO | tools | [----------] Delegando browser_close al cliente
+2026-06-29 13:51:02,258 | INFO | tools | [----------] Delegando close_application al agente local: chrome
+2026-06-29 13:51:22,260 | INFO | tools | [----------] Delegando close_application al agente local: firefox
+2026-06-29 13:53:47,148 | INFO | tools | [----------] Delegando open_application al agente local: /usr/bin/nautilus
+2026-06-29 13:55:17,769 | INFO | tools | [----------] Delegando browser_close al cliente
+2026-06-29 13:55:17,769 | INFO | tools | [----------] Delegando close_application al agente local: chrome
+2026-06-29 13:55:37,769 | INFO | tools | [----------] Delegando close_application al agente local: firefox
+2026-06-29 13:57:23,643 | INFO | tools | [----------] Delegando close_application al agente local: explorer.exe

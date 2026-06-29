@@ -47,6 +47,63 @@ class AlfonsoAgentLogic:
             logger.warning(f"No se pudo actualizar registro de apps: {e}")
             self.app_registry = {}
 
+    def _resolve_local_path(self, raw_path: str) -> str:
+        if not raw_path:
+            return raw_path
+        
+        # 1. Normalizar barras
+        path = raw_path.replace("\\", "/")
+        
+        # 2. Si estamos en Windows, traducir rutas de WSL (/mnt/<drive>/...)
+        if self._system == "Windows":
+            import re
+            # Traducir /mnt/c/... a C:\...
+            mnt_match = re.match(r"^/mnt/([a-zA-Z])(.*)$", path)
+            if mnt_match:
+                drive = mnt_match.group(1).upper()
+                remainder = mnt_match.group(2).replace("/", "\\")
+                path = f"{drive}:{remainder}"
+                logger.info(f"Ruta de WSL detectada en Windows. Corrigiendo a: {path}")
+            
+            # Traducir /home/<user>/... a \\wsl.localhost\Ubuntu\home\<user>\...
+            home_match = re.match(r"^/home/([^/]+)(.*)$", path)
+            if home_match:
+                user = home_match.group(1)
+                remainder = home_match.group(2).replace("/", "\\")
+                path = f"\\\\wsl.localhost\\Ubuntu\\home\\{user}{remainder}"
+                logger.info(f"Ruta de home de WSL detectada en Windows. Corrigiendo a UNC: {path}")
+
+        # 3. Mapear rutas absolutas de macOS o de otros usuarios al home del usuario local
+        import re
+        match = re.match(r"^(?:/Users/[^/]+|C:/Users/[^/]+)(/.*)$", path, re.IGNORECASE)
+        if match:
+            remainder = match.group(1).lstrip("/")
+            home = os.path.expanduser("~")
+            path = os.path.join(home, remainder)
+
+        # 4. Expandir ~ o ~/ a HOME del usuario local
+        if path.startswith("~/"):
+            home = os.path.expanduser("~")
+            path = path.replace("~/", home + "/")
+        elif path.startswith("~"):
+            home = os.path.expanduser("~")
+            path = home + path[1:]
+
+        # 5. Redireccionar Desktop/Escritorio al directorio real de Desktop
+        parts = path.split("/")
+        if len(parts) > 1:
+            for idx, part in enumerate(parts):
+                if part.lower() in ["desktop", "escritorio"]:
+                    home = os.path.expanduser("~")
+                    desktop_dir = os.path.join(home, "Desktop")
+                    if not os.path.exists(desktop_dir):
+                        desktop_dir = os.path.join(home, "Escritorio")
+                    remainder = "/".join(parts[idx+1:])
+                    path = os.path.join(desktop_dir, remainder)
+                    break
+
+        return os.path.normpath(path)
+
     def _resolve_app_path(self, app_name: str) -> str:
         """
         Resuelve la ruta completa de una aplicación.
@@ -56,6 +113,14 @@ class AlfonsoAgentLogic:
         3. Rutas comunes en Windows
         """
         app_lower = app_name.strip().lower()
+
+        # Mapear comandos específicos de Linux a Windows si es aplicable
+        if self._system == "Windows":
+            if "nautilus" in app_lower:
+                logger.info(f"Mapeando nautilus a explorer.exe en Windows")
+                return "explorer.exe"
+            if app_lower.endswith("/code") or app_lower == "code":
+                return "code"
 
         # 0. Mapear alias (ej: 'visual-studio-code' -> 'vscode') usando _KNOWN_APPS
         target_key = app_lower
@@ -209,11 +274,16 @@ class AlfonsoAgentLogic:
                 try:
                     if _IS_WINDOWS:
                         exec_name = app_name if app_name.lower().endswith(".exe") else f"{app_name}.exe"
-                        if "explorador" in app_name.lower(): exec_name = "explorer.exe"
-                        subprocess.run(["taskkill", "/F", "/IM", exec_name], check=True, capture_output=True)
+                        if exec_name.lower() == "explorer.exe" or "explorador" in app_name.lower():
+                            logger.warning("Evitando taskkill en explorer.exe para no tumbar la shell de Windows. Usando Alt+F4.")
+                            pyautogui.hotkey("alt", "f4")
+                            result = "Se envió Alt+F4 a la ventana activa."
+                        else:
+                            subprocess.run(["taskkill", "/F", "/IM", exec_name], check=True, capture_output=True)
+                            result = f"Aplicación '{app_name}' cerrada correctamente."
                     else:
                         subprocess.run(["pkill", "-f", app_name], check=True, capture_output=True)
-                    result = f"Aplicación '{app_name}' cerrada correctamente."
+                        result = f"Aplicación '{app_name}' cerrada correctamente."
                 except Exception as e:
                     logger.error(f"Error cerrando {app_name}: {e}")
                     return {"id": command_id, "status": "error", "error": f"No se pudo cerrar '{app_name}'"}
@@ -222,7 +292,7 @@ class AlfonsoAgentLogic:
                 url = params.get("url", "").strip()
                 if not url:
                     return {"id": command_id, "status": "error", "error": "URL vacía"}
-                await asyncio.to_thread(webbrowser.open, url)
+                asyncio.create_task(asyncio.to_thread(webbrowser.open, url))
                 result = f"URL abierta: {url}"
 
             elif action == "type_text":
@@ -284,46 +354,33 @@ class AlfonsoAgentLogic:
                 result = "closed"
 
             elif action == "create_file":
-                path = params.get("path", "")
+                path = self._resolve_local_path(params.get("path", ""))
                 content = params.get("content", "")
-
-                # Corregir alucinaciones de ruta del LLM (ej: /Users/alfonso/Desktop -> C:/Users/luisd/Desktop)
-                if _IS_WINDOWS:
-                    user_home = os.path.expanduser("~")
-                    if "Desktop" in path or "Escritorio" in path:
-                        filename = os.path.basename(path)
-                        path = os.path.join(user_home, "Desktop", filename)
-                    elif path.startswith("/Users/") or path.startswith("\\Users\\"):
-                        parts = path.split(os.sep if os.sep in path else "/")
-                        if len(parts) > 3:
-                            path = os.path.join(user_home, *parts[3:])
-
                 def _write_file():
                     os.makedirs(os.path.dirname(path), exist_ok=True)
                     with open(path, "w", encoding="utf-8") as f:
                         f.write(content)
-                
                 await asyncio.to_thread(_write_file)
                 result = f"Archivo creado exitosamente en: {path}"
 
             elif action == "read_file":
-                path = params.get("path", "")
+                path = self._resolve_local_path(params.get("path", ""))
                 def _read_file():
                     with open(path, "r", encoding="utf-8") as f:
                         return f.read()
                 result = await asyncio.to_thread(_read_file)
 
             elif action == "list_directory":
-                path = params.get("path", ".")
+                path = self._resolve_local_path(params.get("path", "."))
                 result = await asyncio.to_thread(os.listdir, path)
 
             elif action == "create_directory":
-                path = params.get("path", "")
+                path = self._resolve_local_path(params.get("path", ""))
                 await asyncio.to_thread(os.makedirs, path, exist_ok=True)
                 result = f"Directorio creado: {path}"
 
             elif action == "append_file":
-                path = params.get("path", "")
+                path = self._resolve_local_path(params.get("path", ""))
                 content = params.get("content", "")
                 def _append_file():
                     with open(path, "a", encoding="utf-8") as f:
@@ -332,26 +389,28 @@ class AlfonsoAgentLogic:
                 result = f"Contenido añadido al archivo: {path}"
 
             elif action == "delete_file":
-                path = params.get("path", "")
+                path = self._resolve_local_path(params.get("path", ""))
                 await asyncio.to_thread(os.remove, path)
                 result = f"Archivo eliminado: {path}"
 
             elif action == "delete_directory":
-                path = params.get("path", "")
+                path = self._resolve_local_path(params.get("path", ""))
                 await asyncio.to_thread(shutil.rmtree, path)
                 result = f"Directorio eliminado: {path}"
 
             elif action == "move_file":
-                src = params.get("old_path") or params.get("src")
-                dst = params.get("new_path") or params.get("dst")
+                src = self._resolve_local_path(params.get("old_path") or params.get("src", ""))
+                dst = self._resolve_local_path(params.get("new_path") or params.get("dst", ""))
                 await asyncio.to_thread(shutil.move, src, dst)
                 result = f"Archivo movido de {src} a {dst}"
 
             elif action == "rename_file":
-                src = params.get("path") or params.get("src")
-                dst = params.get("new_name") or params.get("dst")
+                src = self._resolve_local_path(params.get("path") or params.get("src", ""))
+                dst = params.get("new_name") or params.get("dst", "")
                 if not os.path.isabs(dst) and not dst.startswith(".") and "/" not in dst and "\\" not in dst:
                     dst = os.path.join(os.path.dirname(src), dst)
+                else:
+                    dst = self._resolve_local_path(dst)
                 await asyncio.to_thread(os.rename, src, dst)
                 result = f"Archivo renombrado de {src} a {dst}"
 

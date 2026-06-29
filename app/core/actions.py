@@ -59,6 +59,7 @@ class Action:
     OPEN_APP = "open_app"
     CLOSE_APP = "close_app"
     OPEN_URL = "open_url"
+    BROWSER_CLOSE = "browser_close"
 
     # --- Filesystem ----------------------------------------------------
     # Mismo motivo: convención bare ya en uso por el agente local.
@@ -131,4 +132,5 @@ CLIENT_ALIASES: dict[str, str] = {
     "focus_window": Action.WINDOW_FOCUS,
     "close_window": Action.WINDOW_CLOSE,
     "screenshot": Action.SCREEN_SCREENSHOT,
+    "open_url": Action.OPEN_URL,
 }

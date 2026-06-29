@@ -198,7 +198,12 @@ class AssistantThread(QThread):
             ws = None
             try:
                 self.agent_status_changed.emit("connecting")
-                async with websockets.connect(self.bridge_url) as ws:
+                async with websockets.connect(
+                    self.bridge_url,
+                    ping_interval=30,
+                    ping_timeout=90,
+                    max_size=2**23
+                ) as ws:
                     self.websocket = ws
                     self.agent_status_changed.emit("connected")
                     print(f"[AGENT] Conexión establecida con el Host en {self.bridge_url}")
@@ -402,6 +407,133 @@ class AnimatedWaveWidget(QWidget):
             painter.drawLine(int(center_x - outer_rect/2), scan_y, int(center_x + outer_rect/2), scan_y)
 
 
+import random
+
+class DataMatrixGrid(QWidget):
+    """Cuadrícula de 8x8 con estados aleatorios parpadeantes (M.U.T.H.U.R. / JARVIS)."""
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.setFixedSize(140, 140)
+        self.matrix = [[random.choice([0, 1]) for _ in range(8)] for _ in range(8)]
+        # Apagado (muy oscuro), Verde neón, Ámbar retro
+        self.colors = [QColor(20, 20, 25), QColor(0, 255, 102), QColor(255, 184, 0)]
+        self.timer = QTimer(self)
+        self.timer.timeout.connect(self.update_matrix)
+        self.timer.start(300)
+
+    def update_matrix(self):
+        for i in range(8):
+            for j in range(8):
+                if random.random() < 0.2:
+                    self.matrix[i][j] = random.choice([0, 1, 2])
+        self.update()
+
+    def paintEvent(self, event):
+        painter = QPainter(self)
+        painter.setRenderHint(QPainter.RenderHint.Antialiasing)
+        
+        # Fondo con transparencia de cristal esmerilado
+        painter.fillRect(self.rect(), QColor(5, 10, 15, 180))
+        
+        # Borde cian sutil
+        pen = QPen(QColor(0, 191, 255, 60), 1)
+        painter.setPen(pen)
+        painter.drawRect(0, 0, self.width() - 1, self.height() - 1)
+        
+        cell_w = (self.width() - 20) / 8
+        cell_h = (self.height() - 20) / 8
+        
+        for i in range(8):
+            for j in range(8):
+                val = self.matrix[i][j]
+                color = self.colors[val]
+                painter.setBrush(QBrush(color))
+                painter.setPen(Qt.PenStyle.NoPen)
+                x = 10 + i * cell_w + 2
+                y = 10 + j * cell_h + 2
+                painter.drawRect(int(x), int(y), int(cell_w - 4), int(cell_h - 4))
+
+
+class SystemRingChart(QWidget):
+    """Anillos concéntricos giratorios y segmentados de telemetría (JARVIS)."""
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.setFixedSize(140, 140)
+        self.angle_offset = 0
+        self.cpu_usage = 42
+        self.ram_usage = 58
+        self.timer = QTimer(self)
+        self.timer.timeout.connect(self.tick)
+        self.timer.start(50)
+
+    def tick(self):
+        self.angle_offset = (self.angle_offset + 2) % 360
+        self.cpu_usage = max(10, min(95, self.cpu_usage + random.randint(-4, 4)))
+        self.ram_usage = max(10, min(95, self.ram_usage + random.randint(-1, 1)))
+        self.update()
+
+    def paintEvent(self, event):
+        painter = QPainter(self)
+        painter.setRenderHint(QPainter.RenderHint.Antialiasing)
+        
+        # Fondo translúcido
+        painter.fillRect(self.rect(), QColor(5, 10, 15, 180))
+        
+        # Borde exterior cian
+        pen_border = QPen(QColor(0, 191, 255, 60), 1)
+        painter.setPen(pen_border)
+        painter.drawRect(0, 0, self.width() - 1, self.height() - 1)
+
+        cx, cy = self.width() / 2, self.height() / 2
+        
+        # Anillo exterior - CPU (Cian/Azul eléctrico)
+        pen_cyan = QPen(QColor(0, 240, 255, 180), 2)
+        painter.setPen(pen_cyan)
+        r1 = 48
+        span = int((self.cpu_usage / 100.0) * 360 * 16)
+        painter.drawArc(int(cx - r1), int(cy - r1), r1*2, r1*2, self.angle_offset * 16, span)
+        
+        # Anillo interior - RAM (Ámbar)
+        pen_amber = QPen(QColor(255, 184, 0, 180), 3)
+        painter.setPen(pen_amber)
+        r2 = 32
+        span_ram = int((self.ram_usage / 100.0) * 360 * 16)
+        painter.drawArc(int(cx - r2), int(cy - r2), r2*2, r2*2, -self.angle_offset * 16, span_ram)
+        
+        # Línea de barrido de radar
+        pen_radar = QPen(QColor(0, 240, 255, 40), 1)
+        painter.setPen(pen_radar)
+        painter.save()
+        painter.translate(cx, cy)
+        painter.rotate(self.angle_offset)
+        painter.drawLine(0, 0, 0, -r1)
+        painter.restore()
+
+        # Texto informativo en mayúsculas (M.U.T.H.U.R.)
+        painter.setPen(QColor(0, 240, 255))
+        painter.setFont(self.font())
+        painter.drawText(8, 20, "SYS CORE")
+        painter.drawText(8, 130, f"CPU:{self.cpu_usage}%")
+        painter.setPen(QColor(255, 184, 0))
+        painter.drawText(75, 130, f"RAM:{self.ram_usage}%")
+
+
+class CrtTerminalLabel(QLabel):
+    """Consola de texto con efecto CRT y líneas de escaneo (M.U.T.H.U.R.)."""
+    def __init__(self, text="", parent=None):
+        super().__init__(text, parent)
+        
+    def paintEvent(self, event):
+        super().paintEvent(event)
+        
+        # Superponer líneas de barrido oscuras muy sutiles
+        painter = QPainter(self)
+        pen = QPen(QColor(0, 0, 0, 50), 1)
+        painter.setPen(pen)
+        for y in range(0, self.height(), 3):
+            painter.drawLine(0, y, self.width(), y)
+
+
 class ReactorWindow(QMainWindow):
     """Ventana independiente para el núcleo central (Reactor ARC)."""
     def __init__(self, config):
@@ -421,33 +553,209 @@ class ReactorWindow(QMainWindow):
         self.animated_wave = AnimatedWaveWidget()
         self.state_lbl = QLabel("STANDBY")
         self.state_lbl.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.state_lbl.setStyleSheet("font-size: 10px; color: #00d1ff; text-transform: uppercase; font-weight: bold;")
+        self.state_lbl.setStyleSheet("font-size: 11px; color: #00FFFF; text-transform: uppercase; font-family: 'Roboto Mono', 'Consolas'; font-weight: bold; letter-spacing: 1px;")
 
         self.layout.addWidget(self.animated_wave, alignment=Qt.AlignmentFlag.AlignCenter)
         self.layout.addWidget(self.state_lbl)
         self.setCentralWidget(self.container)
+        self._drag_pos = None
+
+    def mousePressEvent(self, event):
+        if event.button() == Qt.MouseButton.LeftButton:
+            self._drag_pos = event.globalPosition().toPoint() - self.frameGeometry().topLeft()
+            event.accept()
+
+    def mouseMoveEvent(self, event):
+        if event.buttons() == Qt.MouseButton.LeftButton and self._drag_pos is not None:
+            self.move(event.globalPosition().toPoint() - self._drag_pos)
+            event.accept()
 
     def update_visual_state(self, state):
         self.animated_wave.set_state(state)
         state_labels = {
-            "connecting": "INICIALIZANDO", "idle": "STANDBY", "idle_text": "MODO TEXTO", 
-            "listening": "ESCUCHANDO", "thinking": "PROCESANDO", "speaking": "TRANSMITIENDO", 
-            "error": "ERROR CRÍTICO"
+            "connecting": "INICIALIZANDO", "idle": "STANDBY", "idle_text": "MODO TECLADO", 
+            "listening": "ESCUCHANDO", "thinking": "PROCESANDO...", "speaking": "TRANSMITIENDO", 
+            "error": "ERROR DEL SISTEMA"
         }
         self.state_lbl.setText(state_labels.get(state, "OFFLINE"))
         
         border_colors = {
-            "connecting": "#f1c40f", "idle": "#004466", "idle_text": "#6496ff", "listening": "#00d1ff",
-            "thinking": "#bd00ff", "speaking": "#00ff85", "error": "#ff4b4b"
+            "connecting": "#FFBF00", "idle": "#00BFFF", "idle_text": "#0088FF", "listening": "#00FFFF",
+            "thinking": "#FF00FF", "speaking": "#00FF00", "error": "#FF4B4B"
         }
-        color = border_colors.get(state, "#004466")
+        color = border_colors.get(state, "#00BFFF")
         self.container.setStyleSheet(f"""
             #ReactorContainer {{
-                background-color: rgba(5, 15, 25, 180);
+                background-color: rgba(10, 10, 15, 220);
                 border-radius: 150px;
                 border: 2px solid {color};
             }}
         """)
+
+
+class LogMonitorWindow(QMainWindow):
+    """Ventana independiente para monitorear logs del servidor en tiempo real (M.U.T.H.U.R.)."""
+    def __init__(self, config):
+        super().__init__()
+        self.setWindowFlags(
+            Qt.WindowType.FramelessWindowHint | 
+            Qt.WindowType.WindowStaysOnTopHint | 
+            Qt.WindowType.Tool
+        )
+        self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
+        self.setFixedSize(450, 350)
+
+        # Buscar directorio de logs de forma robusta
+        base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        self.logs_dir = os.path.join(base_dir, 'logs')
+        
+        self.current_log_file = "app.log"
+        self._drag_pos = None
+
+        self.container = QFrame(self)
+        self.container.setObjectName("LogContainer")
+        self.container.setStyleSheet("""
+            #LogContainer {
+                background-color: rgba(10, 10, 15, 235);
+                border-radius: 10px;
+                border: 2px solid #FFB800; /* Estilo MUTHUR Ámbar por defecto */
+            }
+            QLabel {
+                color: #FFB800;
+                font-family: 'Roboto Mono', 'Consolas', monospace;
+                font-size: 10px;
+                font-weight: bold;
+            }
+            QPushButton {
+                background-color: rgba(255, 184, 0, 20);
+                color: #FFB800;
+                border: 1px solid #FFB800;
+                border-radius: 4px;
+                padding: 4px 8px;
+                font-family: 'Roboto Mono', 'Consolas';
+                font-size: 9px;
+                font-weight: bold;
+            }
+            QPushButton:hover {
+                background-color: rgba(255, 184, 0, 50);
+                color: #FFFFFF;
+            }
+            QPushButton:checked {
+                background-color: #FFB800;
+                color: #000000;
+            }
+        """)
+
+        layout = QVBoxLayout(self.container)
+        
+        # Título y Botones de selección de logs
+        title_lbl = QLabel("MUTHUR LOG MONITORING SYSTEM")
+        title_lbl.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        title_lbl.setStyleSheet("font-size: 11px; letter-spacing: 1px;")
+        layout.addWidget(title_lbl)
+
+        btn_layout = QHBoxLayout()
+        self.btn_app = QPushButton("APP")
+        self.btn_app.setCheckable(True)
+        self.btn_app.setChecked(True)
+        self.btn_app.clicked.connect(lambda: self.change_log_file("app.log", self.btn_app))
+
+        self.btn_agent = QPushButton("AGENT")
+        self.btn_agent.setCheckable(True)
+        self.btn_agent.clicked.connect(lambda: self.change_log_file("agent.log", self.btn_agent))
+
+        self.btn_errors = QPushButton("ERRORS")
+        self.btn_errors.setCheckable(True)
+        self.btn_errors.clicked.connect(lambda: self.change_log_file("errors.log", self.btn_errors))
+
+        self.buttons = [self.btn_app, self.btn_agent, self.btn_errors]
+        
+        btn_layout.addWidget(self.btn_app)
+        btn_layout.addWidget(self.btn_agent)
+        btn_layout.addWidget(self.btn_errors)
+        layout.addLayout(btn_layout)
+
+        # Consola de Visualización
+        self.scroll_area = QScrollArea()
+        self.scroll_area.setWidgetResizable(True)
+        self.scroll_area.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        self.scroll_area.viewport().setStyleSheet("background-color: #050508;")
+        self.scroll_area.setStyleSheet("""
+            QScrollArea {
+                background-color: #050508;
+                border: 1px solid rgba(255, 184, 0, 40);
+                border-radius: 4px;
+            }
+            QScrollBar:vertical {
+                border: none;
+                background: rgba(255, 184, 0, 10);
+                width: 6px;
+                margin: 0px;
+                border-radius: 3px;
+            }
+            QScrollBar::handle:vertical {
+                background: rgba(255, 184, 0, 120);
+                min-height: 20px;
+                border-radius: 3px;
+            }
+        """)
+
+        self.log_display = CrtTerminalLabel("INICIALIZANDO LECTURA DE LOGS...")
+        self.log_display.setAlignment(Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignTop)
+        self.log_display.setWordWrap(True)
+        self.log_display.setContentsMargins(10, 10, 10, 10)
+        self.log_display.setStyleSheet("""
+            color: #FFB800;
+            background-color: #050508;
+            font-family: 'Roboto Mono', 'Consolas', monospace;
+            font-size: 10px;
+        """)
+        self.scroll_area.setWidget(self.log_display)
+        layout.addWidget(self.scroll_area)
+
+        self.setCentralWidget(self.container)
+
+        # Temporizador para leer logs periódicamente
+        self.timer = QTimer(self)
+        self.timer.timeout.connect(self.read_logs)
+        self.timer.start(1000) # Cada segundo
+        
+        self.read_logs()
+
+    def mousePressEvent(self, event):
+        if event.button() == Qt.MouseButton.LeftButton:
+            self._drag_pos = event.globalPosition().toPoint() - self.frameGeometry().topLeft()
+            event.accept()
+
+    def mouseMoveEvent(self, event):
+        if event.buttons() == Qt.MouseButton.LeftButton and self._drag_pos is not None:
+            self.move(event.globalPosition().toPoint() - self._drag_pos)
+            event.accept()
+
+    def change_log_file(self, filename, active_btn):
+        self.current_log_file = filename
+        for btn in self.buttons:
+            btn.setChecked(btn == active_btn)
+        self.log_display.setText(f"CARGANDO LOG: {filename.upper()}...")
+        self.read_logs()
+
+    def read_logs(self):
+        filepath = os.path.join(self.logs_dir, self.current_log_file)
+        if not os.path.exists(filepath):
+            self.log_display.setText(f"ERROR: ARCHIVO DE LOG NO ENCONTRADO\n{filepath}")
+            return
+        
+        try:
+            with open(filepath, 'r', encoding='utf-8', errors='ignore') as f:
+                lines = f.readlines()
+                last_lines = lines[-40:]
+                content = "".join(last_lines)
+                if not content.strip():
+                    content = "ARCHIVO DE LOG VACÍO"
+                self.log_display.setText(content)
+                QTimer.singleShot(20, lambda: self.scroll_area.verticalScrollBar().setValue(self.scroll_area.verticalScrollBar().maximum()))
+        except Exception as e:
+            self.log_display.setText(f"ERROR AL LEER EL ARCHIVO:\n{str(e)}")
 
 
 class AlfonsoGUI(QMainWindow):
@@ -455,177 +763,219 @@ class AlfonsoGUI(QMainWindow):
         super().__init__()
         self.config = config
         
-
-        # Cargar la interfaz diseñada en Qt Designer
-        # uic.loadUi("gui/consola.ui", self)
-
         self.setWindowFlags(
             Qt.WindowType.FramelessWindowHint | 
             Qt.WindowType.WindowStaysOnTopHint | 
             Qt.WindowType.Tool
         )
-        self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground) # Mantener fondo transparente
-        self.setFixedSize(400, 400) # Tamaño optimizado para la consola de mensajes
-        # La posición se gestionará en la función launch
-        self.setFixedSize(400, 400)
+        self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
+        self.setFixedSize(580, 450) # Ampliado para el diseño lateral
 
-        # Widget principal redondeado
+        # Contenedor principal
         self.container = QFrame()
         self.container.setObjectName("MainContainer")
         self.container.setStyleSheet("""
             #MainContainer {
-                background-color: rgba(5, 15, 25, 240);
-                border-radius: 15px;
-                border: 2px solid rgba(0, 200, 255, 80);
+                background-color: rgba(10, 10, 15, 245);
+                border-radius: 12px;
+                border: 2px solid rgba(0, 240, 255, 90);
             }
             QLabel {
-                color: #00d1ff;
-                font-family: 'Consolas', 'Segoe UI', monospace;
+                color: #00FFFF;
+                font-family: 'Roboto Mono', 'Consolas', monospace;
+                font-size: 11px;
+                font-weight: bold;
                 letter-spacing: 1px;
             }
             QLineEdit {
-                background-color: rgba(50, 50, 50, 200);
-                color: white;
-                border: 1px solid rgba(255, 255, 255, 20);
-                border-radius: 8px;
-                padding: 5px;
+                background-color: rgba(20, 20, 25, 230);
+                color: #FFFFFF;
+                border: 1px solid rgba(0, 240, 255, 80);
+                border-radius: 4px;
+                padding: 6px;
+                font-family: 'Roboto Mono', 'Consolas';
             }
             QPushButton {
-                background-color: rgba(0, 209, 255, 30);
-                color: #00d1ff;
-                border: 1px solid #00d1ff;
+                background-color: rgba(0, 191, 255, 30);
+                color: #00FFFF;
+                border: 1px solid #00BFFF;
                 border-radius: 4px;
-                padding: 5px 10px;
+                padding: 6px 12px;
+                font-family: 'Roboto Mono', 'Consolas';
                 font-weight: bold;
+                font-size: 10px;
             }
-            QPushButton#ModeBtn {
-                font-size: 9px;
+            QPushButton:hover {
+                background-color: rgba(0, 240, 255, 60);
+                color: #FFFFFF;
+            }
+            QPushButton:pressed {
+                background-color: #00FFFF;
+                color: #000000;
             }
         """)
         
-        main_layout = QVBoxLayout(self.container) # Usar main_layout para el contenedor principal
-        # Área de Chat scrollable (Estilo HUD)
+        main_layout = QVBoxLayout(self.container)
+        
+        # Distribución en dos columnas
+        content_layout = QHBoxLayout()
+        
+        # Columna Izquierda: Telemetría / Diagnósticos (JARVIS style)
+        left_layout = QVBoxLayout()
+        left_layout.setContentsMargins(5, 5, 5, 5)
+        left_layout.setSpacing(10)
+        
+        lbl_core = QLabel("DIAGNOSTICS")
+        lbl_core.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.ring_widget = SystemRingChart()
+        
+        lbl_flow = QLabel("DATA TELEMETRY")
+        lbl_flow.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.matrix_widget = DataMatrixGrid()
+        
+        left_layout.addWidget(lbl_core)
+        left_layout.addWidget(self.ring_widget, alignment=Qt.AlignmentFlag.AlignCenter)
+        left_layout.addWidget(lbl_flow)
+        left_layout.addWidget(self.matrix_widget, alignment=Qt.AlignmentFlag.AlignCenter)
+        left_layout.addStretch()
+        
+        # Columna Derecha: Terminal / Conversación (M.U.T.H.U.R. style)
+        right_layout = QVBoxLayout()
+        
         self.scroll_area = QScrollArea()
         self.scroll_area.setObjectName("ChatScroll")
         self.scroll_area.setWidgetResizable(True)
         self.scroll_area.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
-        self.scroll_area.viewport().setStyleSheet("background-color: #000000;")
+        self.scroll_area.viewport().setStyleSheet("background-color: #050508;")
         self.scroll_area.setStyleSheet("""
             #ChatScroll {
-                background-color: #000000;
-                border: 1px solid rgba(0, 255, 255, 30);
-                border-radius: 10px;
+                background-color: #050508;
+                border: 1px solid rgba(0, 240, 255, 40);
+                border-radius: 6px;
             }
             QScrollBar:vertical {
                 border: none;
-                background: rgba(0, 255, 255, 10);
-                width: 4px;
+                background: rgba(0, 240, 255, 10);
+                width: 6px;
                 margin: 0px;
-                border-radius: 2px;
+                border-radius: 3px;
             }
             QScrollBar::handle:vertical {
-                background: rgba(0, 255, 255, 150);
+                background: rgba(0, 240, 255, 120);
                 min-height: 20px;
-                border-radius: 2px;
-            }
-            QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
-                border: none;
-                background: none;
+                border-radius: 3px;
             }
         """)
 
-        self.chat_lbl = QLabel("SISTEMA ALFONSO ONLINE\nEsperando wake word...")
+        # Consola de texto CRT personalizada
+        self.chat_lbl = CrtTerminalLabel("MUTHUR v4.2 ONLINE\nEsperando wake word...")
         self.chat_lbl.setObjectName("ChatLabel")
         self.chat_lbl.setAlignment(Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignTop)
         self.chat_lbl.setWordWrap(True)
-        self.chat_lbl.setContentsMargins(10, 10, 10, 10)
+        self.chat_lbl.setContentsMargins(12, 12, 12, 12)
         self.chat_lbl.setStyleSheet("""
             #ChatLabel {
-                font-size: 12px; 
-                line-height: 1.4;
-                color: #00ff00;
-                background-color: #000000;
+                font-size: 11px; 
+                line-height: 1.5;
+                color: #00FF66; /* Verde fósforo retro */
+                background-color: #050508;
+                font-family: 'Roboto Mono', 'Consolas', monospace;
             }
         """)
         self.scroll_area.setWidget(self.chat_lbl)
+        right_layout.addWidget(self.scroll_area)
 
-        # Controles de modo texto
-        mode_button_layout = QHBoxLayout()
-        self.mode_button = QPushButton("TECLADO")
-        self.mode_button.setObjectName("ModeBtn")
-        self.mode_button.setMaximumWidth(100)
-        self.mode_button.clicked.connect(self.toggle_text_mode)
-        mode_button_layout.addStretch()
-        mode_button_layout.addWidget(self.mode_button)
-        mode_button_layout.addStretch()
-
-        # Input de texto (inicialmente oculto)
-        self.text_input = QLineEdit()
-        self.text_input.setPlaceholderText("Escribe tu mensaje aquí...")
-        self.text_input.returnPressed.connect(self.send_text_message)
-        self.text_input.setVisible(False)
-
-        # VU Meter y nombre del micrófono
+        # Barra de Medición de Micrófono (VU Meter)
         self.vu_container = QVBoxLayout()
-        self.mic_name_lbl = QLabel(f"MICRO: Buscando...")
-        self.mic_name_lbl.setStyleSheet("font-size: 10px; color: rgba(0, 209, 255, 120); font-weight: bold;")
-        self.mic_name_lbl.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.mic_name_lbl = QLabel("MIC: BUSCANDO DISPOSITIVO...")
+        self.mic_name_lbl.setStyleSheet("font-size: 9px; color: rgba(0, 240, 255, 150);")
+        self.mic_name_lbl.setAlignment(Qt.AlignmentFlag.AlignLeft)
         
         self.vu_meter = QProgressBar()
-        self.vu_meter.setRange(0, 32768) # Rango máximo para audio de 16 bits
-        self.vu_meter.setFixedHeight(4)
+        self.vu_meter.setRange(0, 32768)
+        self.vu_meter.setFixedHeight(6)
         self.vu_meter.setTextVisible(False)
         self.vu_meter.setStyleSheet("""
             QProgressBar {
-                background-color: rgba(0, 0, 0, 150);
-                border: 1px solid rgba(0, 209, 255, 20);
-                border-radius: 2px;
+                background-color: rgba(5, 5, 8, 200);
+                border: 1px solid rgba(0, 240, 255, 30);
+                border-radius: 3px;
             }
             QProgressBar::chunk {
-                background-color: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #00ff00, stop:0.7 #ffff00, stop:1 #ff0000);
+                background-color: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #00FF66, stop:0.7 #FFB800, stop:1 #FF4B4B);
             }
         """)
         self.vu_container.addWidget(self.mic_name_lbl)
         self.vu_container.addWidget(self.vu_meter)
+        right_layout.addLayout(self.vu_container)
 
-        # Botón de cierre provisional
+        # Selector de Modos y Entrada de Texto
+        mode_button_layout = QHBoxLayout()
+        self.mode_button = QPushButton("MÉTODO: TECLADO")
+        self.mode_button.setObjectName("ModeBtn")
+        self.mode_button.clicked.connect(self.toggle_text_mode)
+        
         self.close_button = QPushButton("SHUTDOWN")
         self.close_button.setStyleSheet("""
             QPushButton {
-                background-color: rgba(255, 75, 75, 40);
-                color: white;
-                border: 1px solid #ff4b4b;
-                font-size: 8px;
+                background-color: rgba(255, 75, 75, 20);
+                color: #FF4B4B;
+                border: 1px solid #FF4B4B;
+            }
+            QPushButton:hover {
+                background-color: #FF4B4B;
+                color: #000000;
             }
         """)
         self.close_button.clicked.connect(self.close_gui)
         
-        main_layout.addWidget(self.scroll_area)
-        main_layout.addLayout(self.vu_container)
-        main_layout.addLayout(mode_button_layout)
-        main_layout.addWidget(self.text_input)
-        main_layout.addWidget(self.close_button, alignment=Qt.AlignmentFlag.AlignCenter)
+        mode_button_layout.addWidget(self.mode_button)
+        mode_button_layout.addStretch()
+        mode_button_layout.addWidget(self.close_button)
+        
+        right_layout.addLayout(mode_button_layout)
+
+        self.text_input = QLineEdit()
+        self.text_input.setPlaceholderText("INTRODUZCA ORDEN EN TERMINAL...")
+        self.text_input.returnPressed.connect(self.send_text_message)
+        self.text_input.setVisible(False)
+        right_layout.addWidget(self.text_input)
+
+        # Armar el layout global horizontal
+        content_layout.addLayout(left_layout, 1)
+        content_layout.addLayout(right_layout, 2)
+        
+        main_layout.addLayout(content_layout)
         self.setCentralWidget(self.container)
 
         self.text_mode_enabled = False
         self.start_assistant()
-        self.chat_history = "" # Historial acumulativo
+        self.chat_history = ""
+        self._drag_pos = None
+
+    def mousePressEvent(self, event):
+        if event.button() == Qt.MouseButton.LeftButton:
+            self._drag_pos = event.globalPosition().toPoint() - self.frameGeometry().topLeft()
+            event.accept()
+
+    def mouseMoveEvent(self, event):
+        if event.buttons() == Qt.MouseButton.LeftButton and self._drag_pos is not None:
+            self.move(event.globalPosition().toPoint() - self._drag_pos)
+            event.accept()
 
     def toggle_text_mode(self):
-        """Alterna entre modo voz y modo texto."""
         self.text_mode_enabled = not self.text_mode_enabled
         if self.text_mode_enabled:
-            self.mode_button.setText("Modo Voz")
+            self.mode_button.setText("MÉTODO: VOZ")
             self.text_input.setVisible(True)
             self.text_input.setFocus()
         else:
-            self.mode_button.setText("Modo Texto")
+            self.mode_button.setText("MÉTODO: TECLADO")
             self.text_input.setVisible(False)
             self.text_input.clear()
         self.thread.set_text_mode(self.text_mode_enabled)
 
     def send_text_message(self):
-        """Envía el mensaje de texto al hilo del asistente."""
         text = self.text_input.text().strip()
         if text:
             self.text_input.clear()
@@ -643,92 +993,103 @@ class AlfonsoGUI(QMainWindow):
         self.thread = AssistantThread(thread_config)
         self.thread.new_message.connect(self.update_chat)
         self.thread.state_changed.connect(self.update_visual_state)
-        # NEW: Connect agent_status_changed signal
         self.thread.agent_status_changed.connect(self.update_agent_status)
         self.thread.audio_level_updated.connect(self.update_vu_meter)
         self.thread.start()
 
     def update_vu_meter(self, level, device_name):
-        self.mic_name_lbl.setText(f"MIC: {device_name}")
+        self.mic_name_lbl.setText(f"MIC: {device_name.upper()}")
         self.vu_meter.setValue(level)
     
     def close_gui(self):
-        """Cierre ordenado del proceso."""
         if self.thread:
-            self.thread.stop() # Call the new stop method
-        os._exit(0) # Force exit after thread cleanup
+            self.thread.stop()
+        os._exit(0)
 
     def update_chat(self, sender, text):
-        color = "#00ff00" if sender == "Alfonso" else "#00ee00"
+        # MUTHUR retro terminal colors
+        color = "#00FF66" if sender == "Alfonso" else "#FFB800"
         new_entry = f"<p><b style='color:{color};'>[{sender.upper()}]</b><br>{text}</p>"
         self.chat_history += new_entry
-        
-        # Actualizar con todo el historial
         self.chat_lbl.setText(self.chat_history)
         
-        # Auto-scroll al final (fondo) para ver el último mensaje
         QTimer.singleShot(50, lambda: self.scroll_area.verticalScrollBar().setValue(self.scroll_area.verticalScrollBar().maximum()))
 
-    # NEW: Method to update agent status in GUI (e.g., in a status bar)
     def update_agent_status(self, status: str):
-        print(f"[AGENT STATUS] {status}")
-        # You could update a QLabel in the GUI here to show agent connection status
-        # For example: self.agent_status_label.setText(f"Agente: {status}")
+        print(f"[AGENT STATUS] {status.upper()}")
 
     def closeEvent(self, event):
-        """Maneja el evento de cierre de la ventana."""
         if self.thread and self.thread.isRunning():
             reply = QMessageBox.question(self, 'Cerrar Alfonso',
                                          "¿Estás seguro de que quieres cerrar Alfonso?",
                                          QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
                                          QMessageBox.StandardButton.No)
             if reply == QMessageBox.StandardButton.Yes:
-                self.thread.stop()  # Call the new stop method
+                self.thread.stop()
                 event.accept()
             else:
                 event.ignore()
 
     def update_visual_state(self, state):
-        # El borde del contenedor principal también reacciona al estado
         border_colors = {
-            "connecting": "#f1c40f", "idle": "#555", "idle_text": "#6496ff", "listening": "#00d1ff",
-            "thinking": "#bd00ff", "speaking": "#00ff85", "error": "#ff4b4b"
+            "connecting": "#FFBF00", "idle": "#00BFFF", "idle_text": "#0088FF", "listening": "#00FFFF",
+            "thinking": "#FF00FF", "speaking": "#00FF00", "error": "#FF4B4B"
         }
-        border_color = border_colors.get(state, "#555")
+        border_color = border_colors.get(state, "#00BFFF")
+        
+        # Color del texto de terminal según el estado
+        terminal_text_colors = {
+            "connecting": "#FFBF00", "idle": "#00FF66", "idle_text": "#0088FF", "listening": "#00FFFF",
+            "thinking": "#FF00FF", "speaking": "#00FF00", "error": "#FF4B4B"
+        }
+        text_color = terminal_text_colors.get(state, "#00FF66")
+
         self.container.setStyleSheet(f"""
             #MainContainer {{
-                background-color: rgba(5, 10, 20, 245);
-                border-radius: 15px;
+                background-color: rgba(10, 10, 15, 245);
+                border-radius: 12px;
                 border: 2px solid {border_color};
             }}
-            QLabel {{ color: {border_color}; font-family: 'Segoe UI'; }}
-            #ChatScroll, #ChatScroll > QWidget, #ChatScroll QWidget#qt_scrollarea_viewport {{ 
-                background-color: #000000; 
+            QLabel {{ 
+                color: {border_color}; 
+                font-family: 'Roboto Mono', 'Consolas'; 
             }}
-            #ChatLabel {{ background-color: #000000; color: #00ff00; font-family: 'Consolas', 'Courier New', monospace; }}
+            #ChatScroll, #ChatScroll > QWidget, #ChatScroll QWidget#qt_scrollarea_viewport {{ 
+                background-color: #050508; 
+            }}
+            #ChatLabel {{ 
+                background-color: #050508; 
+                color: {text_color}; 
+                font-family: 'Roboto Mono', 'Consolas', monospace; 
+            }}
             QLineEdit {{
-                background-color: rgba(50, 50, 50, 200);
+                background-color: rgba(20, 20, 25, 230);
                 color: white;
                 border: 1px solid {border_color};
-                border-radius: 8px;
-                padding: 5px;
+                border-radius: 4px;
+                padding: 6px;
             }}
         """)
+
 
 def launch(config):
     app = QApplication(sys.argv)
     console = AlfonsoGUI(config)
     reactor = ReactorWindow(config)
+    log_monitor = LogMonitorWindow(config)
     
-    # Conectar señales del hilo de la consola al reactor
     console.thread.state_changed.connect(reactor.update_visual_state)
     
-    # Posicionamiento HUD
     screen = app.primaryScreen().availableGeometry()
     reactor.move((screen.width() - reactor.width()) // 2, screen.height() - reactor.height() - 50)
+    
     # Consola a la izquierda del reactor
     console.move(reactor.x() - console.width() - 20, screen.height() - console.height() - 50)
     
+    # Monitor de logs a la derecha del reactor
+    log_monitor.move(reactor.x() + reactor.width() + 20, screen.height() - log_monitor.height() - 50)
+    
     console.show()
     reactor.show()
+    log_monitor.show()
     sys.exit(app.exec())

@@ -401,3 +401,127 @@ Traceback (most recent call last):
     raise JSONDecodeError("Expecting value", s, err.value) from None
 json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
 2026-06-26 15:38:13,096 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-06-26 15:50:06,315 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-06-26 15:50:06,511 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-06-26 17:04:49,350 | WARNING | errors | [3f5685d9-67c2-412e-bdce-27130bf70817] Tool de servidor falló: open_url -> {'status': 'error', 'message': 'Timeout', 'delegate': 'alfonso_agent'}
+2026-06-26 17:06:51,959 | ERROR | errors | [c7bf56e2-7903-4f01-8a4c-0277e08348c9] Error ejecutando tool de servidor: browser_close
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/home/luisd/Alfonso/app/tools/browser_tools.py", line 282, in browser_close
+    res = await close_application(browser_name)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/app/tools/system_tools.py", line 279, in close_application
+    response = await alfonso_bridge.send_command(Action.CLOSE_APP, {"command": target})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/app/core/alfonso_bridge.py", line 126, in send_command
+    response = await asyncio.wait_for(fut, timeout=timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/planner_orchestrator.py", line 240, in run
+    result = await asyncio.wait_for(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/tasks.py", line 519, in wait_for
+    async with timeouts.timeout(timeout):
+  File "/usr/lib/python3.12/asyncio/timeouts.py", line 115, in __aexit__
+    raise TimeoutError from exc_val
+TimeoutError
+2026-06-26 17:34:54,314 | WARNING | errors | [a7deea09-ff25-4b27-b46b-e1fb6195bafa] Tool de cliente falló: open_url -> {'status': 'error', 'error': 'Timeout'}
+2026-06-26 17:36:03,083 | WARNING | errors | [7ea67314-4635-4170-840e-05ce3940c50b] Tool de cliente falló: browser_close -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-06-26 17:37:31,067 | WARNING | errors | [188f4adf-03d8-401a-97c6-e87cb9cfe152] Tool de servidor falló: open_application -> {'status': 'error', 'message': 'Timeout', 'delegate': 'alfonso_agent', 'details': {'status': 'error', 'error': 'Timeout'}}
+2026-06-27 19:42:58,398 | WARNING | errors | [7efd47b1-311f-450d-8dc6-2ce9d80053a0] Tool de cliente falló: browser_close -> {'id': 'b6323127-faac-4ab8-8051-b49721d7fd6e', 'status': 'error', 'error': 'Acción desconocida: browser_close'}
+2026-06-29 12:57:06,140 | WARNING | errors | [0f95da9b-ec43-4adb-ad99-1ea75f3cc3e6] Tool de cliente falló: open_url -> {'status': 'error', 'error': 'Timeout'}
+2026-06-29 12:58:10,637 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede cerrar 'firefox' en el equipo del usuario.
+2026-06-29 12:58:10,638 | WARNING | errors | [0abf1c48-ddc6-420a-b750-367c937308fe] Tool de servidor falló: close_application -> {'status': 'error', 'message': "No hay agente local conectado. No puedo cerrar 'firefox' en tu equipo. Arranca ui/alfonso_agent.py en tu máquina y vuelve a intentarlo."}
+2026-06-29 13:26:25,742 | WARNING | errors | [837c4bee-2701-4f7b-b12e-63a519b4c717] Tool de cliente falló: open_url -> {'status': 'error', 'error': 'Timeout'}
+2026-06-29 13:29:22,270 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede cerrar 'facebook' en el equipo del usuario.
+2026-06-29 13:29:22,272 | WARNING | errors | [4fc62281-eee4-422b-b34c-e071216496ef] Tool de servidor falló: close_application -> {'status': 'error', 'message': "No hay agente local conectado. No puedo cerrar 'facebook' en tu equipo. Arranca ui/alfonso_agent.py en tu máquina y vuelve a intentarlo."}
+2026-06-29 13:49:40,173 | WARNING | errors | [954dcb72-b68f-4e77-b37d-40627a93f858] Tool de cliente falló: open_url -> {'status': 'error', 'error': 'Timeout'}
+2026-06-29 13:51:30,947 | ERROR | errors | [02bcc7f4-029d-4359-a456-2682a1e069f7] Error ejecutando tool de servidor: browser_close
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/home/luisd/Alfonso/app/tools/browser_tools.py", line 282, in browser_close
+    res = await close_application(browser_name)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/app/tools/system_tools.py", line 279, in close_application
+    response = await alfonso_bridge.send_command(Action.CLOSE_APP, {"command": target})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/app/core/alfonso_bridge.py", line 126, in send_command
+    response = await asyncio.wait_for(fut, timeout=timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/planner_orchestrator.py", line 240, in run
+    result = await asyncio.wait_for(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/tasks.py", line 519, in wait_for
+    async with timeouts.timeout(timeout):
+  File "/usr/lib/python3.12/asyncio/timeouts.py", line 115, in __aexit__
+    raise TimeoutError from exc_val
+TimeoutError
+2026-06-29 13:54:05,887 | WARNING | errors | [c8c1e2c4-5483-419e-bc39-7391e758011e] Tool de servidor falló: open_application -> {'status': 'error', 'message': 'Timeout', 'delegate': 'alfonso_agent', 'details': {'status': 'error', 'error': 'Timeout'}}
+2026-06-29 13:55:46,345 | ERROR | errors | [35544d4e-f184-4daf-ad7f-218319fc6e98] Error ejecutando tool de servidor: browser_close
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/home/luisd/Alfonso/app/tools/browser_tools.py", line 282, in browser_close
+    res = await close_application(browser_name)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/app/tools/system_tools.py", line 279, in close_application
+    response = await alfonso_bridge.send_command(Action.CLOSE_APP, {"command": target})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/app/core/alfonso_bridge.py", line 126, in send_command
+    response = await asyncio.wait_for(fut, timeout=timeout)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/planner_orchestrator.py", line 240, in run
+    result = await asyncio.wait_for(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/tasks.py", line 519, in wait_for
+    async with timeouts.timeout(timeout):
+  File "/usr/lib/python3.12/asyncio/timeouts.py", line 115, in __aexit__
+    raise TimeoutError from exc_val
+TimeoutError
+2026-06-29 13:57:42,239 | WARNING | errors | [5b2ef733-4202-4bf0-b847-ddfe4f8c7a1d] Tool de servidor falló: close_application -> {'status': 'error', 'message': 'Timeout', 'delegate': 'alfonso_agent', 'details': {'status': 'error', 'error': 'Timeout'}}
+2026-06-29 13:58:32,271 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir 'explorer.exe' en el equipo del usuario.
+2026-06-29 13:58:32,271 | WARNING | errors | [2fb69f9c-37e1-4246-bd7a-acbbdec0cd9a] Tool de servidor falló: open_application -> {'status': 'error', 'message': "No hay agente local conectado. No puedo abrir 'explorer.exe' en tu equipo. Arranca ui/alfonso_agent.py en tu máquina (Windows/Linux) y vuelve a intentarlo."}
+2026-06-29 14:12:45,454 | WARNING | errors | [10a40e92-f3d3-4480-8dc4-5d809fc28dde] Tool de cliente falló: open_url -> {'status': 'error', 'error': 'Timeout'}
+2026-06-29 14:14:50,248 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede cerrar 'firefox' en el equipo del usuario.
+2026-06-29 14:14:50,249 | WARNING | errors | [1c766968-e137-4ac6-9f3c-52a9dcfabf24] Tool de servidor falló: close_application -> {'status': 'error', 'message': "No hay agente local conectado. No puedo cerrar 'firefox' en tu equipo. Arranca ui/alfonso_agent.py en tu máquina y vuelve a intentarlo."}
