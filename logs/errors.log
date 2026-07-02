@@ -626,3 +626,724 @@ TimeoutError
 2026-06-29 15:18:32,695 | WARNING | errors | [0dc98e49-56f0-4395-b258-ebe807b065dd] Tool de cliente falló: open_url -> {'status': 'error', 'error': 'Timeout'}
 2026-06-29 15:30:20,327 | WARNING | errors | [595722ac-651c-4514-8548-628a3ca3e039] Tool de cliente falló: open_url -> {'status': 'error', 'error': 'Timeout'}
 2026-06-29 15:32:21,582 | WARNING | errors | [c791f085-293e-4fb6-84eb-a9903ca07476] Tool de servidor falló: close_application -> {'status': 'error', 'message': 'Timeout', 'delegate': 'alfonso_agent', 'details': {'status': 'error', 'error': 'Timeout'}}
+2026-06-29 16:01:10,265 | WARNING | errors | [45a6888d-a3d9-419c-8735-87a925ffd26d] Tool de cliente falló: open_url -> {'status': 'error', 'error': 'Timeout'}
+2026-06-29 16:02:31,406 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede cerrar '/sbin/iptables -F && /sbin/iptables -X' en el equipo del usuario.
+2026-06-29 16:02:31,406 | WARNING | errors | [8ff0f84e-3f9f-43c8-8a42-e2f58cca84e8] Tool de servidor falló: close_application -> {'status': 'error', 'message': "No hay agente local conectado. No puedo cerrar '/sbin/iptables -F && /sbin/iptables -X' en tu equipo. Arranca ui/alfonso_agent.py en tu máquina y vuelve a intentarlo."}
+2026-06-29 16:21:56,145 | WARNING | errors | [896d6491-7f5c-475e-b8bc-ce198a6b160d] Tool de cliente falló: create_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-06-29 16:22:59,732 | WARNING | errors | [f6c8d2c4-743d-4deb-9d2e-a950facf9153] LLM no devolvió JSON de tool válido
+2026-06-29 16:23:49,866 | WARNING | errors | [f343ece4-1acc-4e91-adcc-90a51f1440cb] Tool de cliente falló: open_url -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-06-29 16:30:14,920 | WARNING | errors | [70206743-9781-40ad-bb9b-87784962a337] Tool de cliente falló: create_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-06-29 16:31:14,710 | WARNING | errors | [73e8013a-b8b7-48f0-a429-873ec5071942] Tool de cliente falló: create_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-06-29 16:32:08,734 | WARNING | errors | [8ba93abc-ab60-48de-b677-337d9d2bb3fe] Tool de cliente falló: open_url -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-06-29 16:33:04,193 | WARNING | errors | [5c34d4db-ee33-491f-8869-c4f78088911e] LLM no devolvió JSON de tool válido
+2026-06-29 16:34:01,742 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir 'explorer.exe' en el equipo del usuario.
+2026-06-29 16:34:01,743 | WARNING | errors | [27d7c16c-6083-4a57-b70a-fb3e04f8739b] Tool de servidor falló: open_application -> {'status': 'error', 'message': "No hay agente local conectado. No puedo abrir 'explorer.exe' en tu equipo. Arranca ui/alfonso_agent.py en tu máquina (Windows/Linux) y vuelve a intentarlo."}
+2026-06-29 16:34:57,020 | WARNING | errors | [f2e02506-eca2-4e02-9155-72aa93f64fbb] LLM no devolvió JSON de tool válido
+2026-06-29 16:35:56,301 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/usr/bin/vlc' en el equipo del usuario.
+2026-06-29 16:35:56,302 | WARNING | errors | [bc296811-fa45-4017-8f7c-6b2edd42adcb] Tool de servidor falló: open_application -> {'status': 'error', 'message': "No hay agente local conectado. No puedo abrir '/usr/bin/vlc' en tu equipo. Arranca ui/alfonso_agent.py en tu máquina (Windows/Linux) y vuelve a intentarlo."}
+2026-06-29 16:36:54,796 | WARNING | errors | [a77fb962-2abf-4362-ba6c-61b682997cfb] Tool de cliente falló: create_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-06-29 17:09:24,791 | WARNING | errors | [4a47a88d-9c22-4f44-8dc2-0daeeb75f3cf] LLM no devolvió JSON de tool válido
+2026-06-29 17:11:31,838 | WARNING | errors | [c95af0c8-984b-4d0c-8354-a0b9b4ec35d6] LLM no devolvió JSON de tool válido
+2026-06-29 17:12:31,369 | ERROR | errors | [8a8dcc6c-3b5c-4db7-850f-7774aace8f39] Error ejecutando tool de servidor: open_application
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/planner_orchestrator.py", line 247, in run
+    tool(**args),
+    ^^^^^^^^^^^^
+TypeError: open_application() got an unexpected keyword argument 'cwd'
+2026-06-29 17:13:34,482 | ERROR | errors | [8dd117c5-4d1b-40d6-b5ce-4b218e023bbc] Error ejecutando tool de servidor: close_application
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/planner_orchestrator.py", line 246, in run
+    result = await asyncio.wait_for(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/home/luisd/Alfonso/app/tools/system_tools.py", line 277, in close_application
+    target = command.strip()
+             ^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'strip'
+2026-06-29 17:19:16,604 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir 'explorer.exe' en el equipo del usuario.
+2026-06-29 17:19:21,887 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede cerrar 'explorer.exe' en el equipo del usuario.
+2026-06-29 17:19:27,190 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir 'vlc' en el equipo del usuario.
+2026-06-29 17:19:32,480 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede cerrar 'vlc' en el equipo del usuario.
+2026-06-29 17:40:28,647 | WARNING | errors | [2ed5ad69-7804-4269-9496-2dac13680b99] LLM no devolvió JSON de tool válido
+2026-06-29 17:44:27,653 | WARNING | errors | [c024f0e1-c69c-46b6-a87a-9ffd5e2ae300] LLM no devolvió JSON de tool válido
+2026-06-29 17:46:21,990 | WARNING | errors | [71307f01-647f-4a04-b76f-734c8e59997a] LLM no devolvió JSON de tool válido
+2026-06-29 17:56:46,522 | WARNING | errors | [567e19ce-3a08-4e7e-b773-41f69bfdbdd4] LLM no devolvió JSON de tool válido
+2026-06-29 17:57:49,526 | WARNING | errors | [6c73f264-10da-480b-86be-900000f7a303] LLM no devolvió JSON de tool válido
+2026-06-29 18:01:03,682 | WARNING | errors | [a28295fc-0601-4529-8262-34b4d9271ef5] LLM no devolvió JSON de tool válido
+2026-06-29 18:03:11,480 | WARNING | errors | [2f538fa8-382f-4c82-8c00-71af0847a945] LLM no devolvió JSON de tool válido
+2026-06-29 18:09:12,763 | WARNING | errors | [6f5f9555-06b2-4332-a86f-27d75fcd3eab] LLM no devolvió JSON de tool válido
+2026-06-29 18:12:23,210 | ERROR | errors | [47b4e168-7738-4c97-9199-77e24f317c4b] Error ejecutando tool de servidor: open_application
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/planner_orchestrator.py", line 247, in run
+    tool(**args),
+    ^^^^^^^^^^^^
+TypeError: open_application() got an unexpected keyword argument 'cwd'
+2026-06-29 18:15:22,155 | WARNING | errors | [e9cefb50-e1e4-499e-8dc7-981caa57ff51] LLM no devolvió JSON de tool válido
+2026-06-29 19:00:37,460 | WARNING | errors | [905c77ef-8725-42b4-a339-e616421e7110] Tool de cliente falló: open_url -> {'status': 'error', 'error': 'Timeout'}
+2026-06-29 19:05:06,874 | WARNING | errors | [0998631e-77cf-4463-bb78-b51a9ca8cc00] Tool de cliente falló: browser_close -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-06-29 19:11:28,464 | WARNING | errors | [8974970f-22ab-4648-9798-0e6c52487afd] Tool de cliente falló: create_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-06-29 19:12:49,212 | WARNING | errors | [c3bcd4b7-f6cf-4cc8-87de-0b5b9a8726f2] LLM no devolvió JSON de tool válido
+2026-06-29 19:14:01,137 | WARNING | errors | [d4215ac3-ad9b-4d63-be86-2a70a601aa12] Tool de cliente falló: open_url -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-06-29 19:16:21,426 | WARNING | errors | [6722b766-408a-401a-a445-d3bdac5294b8] Tool de cliente falló: open_application -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-06-29 19:17:29,174 | WARNING | errors | [5101e08c-201f-4f29-97c7-564aca3876d1] Tool de cliente falló: browser_close -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-06-29 19:18:36,441 | WARNING | errors | [3b61ebec-5a6b-4860-a9f3-3ca3cd0c9317] Tool de cliente falló: open_application -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-06-29 19:19:44,254 | WARNING | errors | [2fdcc574-acb6-4d56-a8b3-5c70cc6acd78] LLM no devolvió JSON de tool válido
+2026-06-29 20:43:50,504 | WARNING | errors | [81cc9c90-f027-4a7e-bbea-bd768a0f371d] LLM no devolvió JSON de tool válido
+2026-06-29 20:50:24,243 | WARNING | errors | [6ef47222-83f6-4ad1-9a32-18c55b6ef7d3] LLM no devolvió JSON de tool válido
+2026-06-29 23:02:19,719 | WARNING | errors | [b67ccde6-a009-4145-a8f7-307763762136] LLM no devolvió JSON de tool válido
+2026-06-29 23:04:37,366 | WARNING | errors | [090ebf9a-d9f6-4b5d-b16b-c5c9eada0681] LLM no devolvió JSON de tool válido
+2026-06-29 23:06:47,075 | WARNING | errors | [8159e050-875e-43a9-9d24-335e14c46de6] LLM no devolvió JSON de tool válido
+2026-06-29 23:09:04,187 | WARNING | errors | [08998e6e-d68c-4be2-a739-ab87a464683f] LLM no devolvió JSON de tool válido
+2026-06-30 09:49:02,410 | WARNING | errors | [1e127708-53bf-43b7-8998-b6a447289d18] Tool de cliente falló: open_application -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-06-30 11:35:34,097 | WARNING | errors | [efaa8925-7cbb-4f3b-bb3d-1b2ff2180879] Tool de cliente falló: open_application -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-06-30 12:28:48,503 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-06-30 12:28:48,906 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-06-30 12:28:49,017 | WARNING | errors | [----------] Tool de cliente falló: list_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-06-30 12:29:08,559 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-06-30 12:29:08,914 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-06-30 12:29:24,949 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-06-30 12:29:25,436 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-06-30 13:02:27,034 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-06-30 13:02:27,367 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-06-30 13:16:08,998 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-06-30 13:16:09,389 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-06-30 13:19:25,860 | WARNING | errors | [19a08d60-0353-4d25-aa31-ec444b3e3a64] Tool de cliente falló: list_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-06-30 13:25:46,966 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-06-30 13:25:47,403 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-06-30 13:28:35,504 | WARNING | errors | [d0470738-e0d4-4289-96f7-9cf5f42f8197] Tool de cliente falló: list_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-06-30 13:48:39,812 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-06-30 13:48:40,207 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-06-30 13:50:19,700 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-06-30 13:50:20,041 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-06-30 14:17:58,820 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-06-30 14:17:59,243 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-06-30 14:30:17,482 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-06-30 14:30:17,831 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-06-30 14:40:10,272 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-06-30 14:40:10,541 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python' en el equipo del usuario.
+2026-06-30 14:41:38,454 | WARNING | errors | [2c64bf5c-476d-449e-ad6d-24387a63e251] LLM no devolvió JSON de tool válido
+2026-06-30 14:43:15,228 | WARNING | errors | [----------] Archivo no encontrado: /tmp/alfonso_test_fase3.txt
+2026-06-30 15:16:56,303 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-06-30 15:16:59,434 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python' en el equipo del usuario.
+2026-06-30 15:19:48,695 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-06-30 15:19:53,825 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python' en el equipo del usuario.
+2026-06-30 16:17:45,837 | WARNING | errors | [8a03fa8d-a138-4cca-8040-585a42a3c68a] Tool de cliente falló: open_url -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-06-30 16:20:55,004 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-06-30 16:21:04,055 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-06-30 16:25:19,327 | WARNING | errors | [cffad81d-a56a-4858-8d88-6f7d303b5a22] Tool de cliente falló: open_url -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-06-30 16:31:31,903 | WARNING | errors | [76cc564b-d4a6-4199-b29d-62bd9bd22e82] Tool de cliente falló: open_url -> {'id': 'f4f81519-7d00-40fe-87fa-d04df72c8107', 'status': 'error', 'error': "No se pudo abrir la URL https://www.google.com: name 'IS_WINDOWS' is not defined"}
+2026-06-30 17:02:07,863 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-06-30 17:02:13,529 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-06-30 17:04:43,674 | WARNING | errors | [53d2f62a-806a-440e-aea5-47f19abf6847] Tool de cliente falló: open_url -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-06-30 17:09:17,089 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-06-30 17:09:21,261 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-06-30 17:17:34,135 | WARNING | errors | [ce817dcb-add7-4234-8d90-86ea3ed4f470] LLM no devolvió JSON de tool válido
+2026-06-30 17:20:45,159 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-06-30 17:20:51,778 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-06-30 17:28:03,691 | WARNING | errors | [d4431e41-4031-41e3-989e-6b4f866a180f] LLM no devolvió JSON de tool válido
+2026-06-30 17:32:41,344 | WARNING | errors | [9cb9298a-f007-4876-8146-d7153de16e20] LLM no devolvió JSON de tool válido
+2026-06-30 17:34:55,974 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-06-30 17:35:02,263 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-06-30 17:37:26,542 | WARNING | errors | [d9d4abcb-2af6-46c1-8c53-9782e3a3e8b9] LLM no devolvió JSON de tool válido
+2026-06-30 17:41:47,824 | WARNING | errors | [0e0488bc-b694-4eea-ae93-d567e8a6239d] Tool de cliente falló: create_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-06-30 17:44:18,211 | WARNING | errors | [ca2e4aff-4a71-46d3-95c2-c59a78d9f8e9] Tool de cliente falló: create_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-06-30 17:45:50,611 | WARNING | errors | [d5b4a660-5e6a-4a43-ba6e-7b9a447c4e95] Tool de cliente falló: create_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-06-30 21:31:56,140 | WARNING | errors | [c748407f-6bd9-4122-b320-cb677fbd3e3a] Tool de cliente falló: create_directory -> {'id': 'e2725787-a483-4165-86a5-c7fbefe0b981', 'status': 'error', 'error': 'No se pudo crear el directorio \\March 2\\\ncreate_file \\March 2\\document.txt "document content here": [WinError 123] El nombre de archivo, el nombre de directorio o la sintaxis de la etiqueta del volumen no son correctos: \'\\\\March 2\\\\\\ncreate_file \''}
+2026-07-01 09:31:45,283 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-07-01 09:31:49,008 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-07-01 09:37:30,108 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-07-01 09:37:34,645 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-07-01 09:40:54,668 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-07-01 09:40:58,837 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-07-01 09:45:21,296 | WARNING | errors | [00a5d6d3-74db-4956-9123-bea4eec94749] Tool de cliente falló: create_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 09:55:13,806 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-07-01 09:55:19,630 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-07-01 10:05:54,719 | WARNING | errors | [eea8f3f4-dfe7-4b43-b99d-80cad034fb73] Tool de cliente falló: create_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 10:07:26,804 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-07-01 10:07:32,064 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-07-01 10:09:47,808 | WARNING | errors | [6c509b15-b0e0-4181-8358-f2d9d926ca08] Tool de cliente falló: create_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 12:18:09,651 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-07-01 12:18:13,817 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-07-01 12:27:35,954 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-07-01 12:27:43,233 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-07-01 12:39:36,767 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-07-01 12:39:40,851 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-07-01 12:46:27,651 | WARNING | errors | [ec788c1e-09c3-4da4-b02a-0d092e8e961b] Tool de cliente falló: create_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 12:46:37,445 | WARNING | errors | [b90dfd10-e524-4613-b6ea-4253ba635d71] Tool de cliente falló: create_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 12:46:45,198 | WARNING | errors | [02048e7a-2422-43b6-9a41-0111ab8f6f7c] Tool de cliente falló: create_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 12:46:52,551 | WARNING | errors | [7fca951a-15b6-43b4-9901-899b54070199] Tool de cliente falló: read_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 12:47:01,904 | WARNING | errors | [fb5b0f20-5110-4b15-895b-cc812a5a842a] Tool de cliente falló: rename_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 12:49:17,669 | WARNING | errors | [b79c2753-5492-4e2c-8b55-dc0a893b3714] Tool de cliente falló: delete_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 12:49:25,623 | WARNING | errors | [964618d6-3327-4e45-b0bd-ad6bb3335677] Tool de cliente falló: delete_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 12:50:33,719 | WARNING | errors | [2890db0e-4037-4edf-bca6-a0e98cdc4b1c] Tool de cliente falló: create_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 12:50:45,014 | WARNING | errors | [980ef595-3cd3-4518-92f7-f35bd1785d2f] Tool de cliente falló: create_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 12:50:53,569 | WARNING | errors | [0e66b0c9-5ae8-4bd7-b62c-abbbc6f3cd1b] Tool de cliente falló: create_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 12:50:59,949 | WARNING | errors | [73c22c7b-4023-4da1-af14-268e1422b570] LLM no devolvió JSON de tool válido
+2026-07-01 12:51:10,449 | WARNING | errors | [7514e4ab-9ca5-436f-97b8-6ac4658c5446] Tool de cliente falló: rename_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 12:53:51,460 | WARNING | errors | [e01f3e4b-517b-4d85-b1fa-c4afca54caee] Tool de cliente falló: delete_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 12:53:58,181 | WARNING | errors | [b150f47d-5f7c-41d3-8232-141e5cdef585] Tool de cliente falló: delete_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 12:56:25,049 | WARNING | errors | [aa546c02-234b-4e0f-a74b-09616e2b3ca0] Tool de cliente falló: create_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 12:56:30,790 | WARNING | errors | [ca627d10-3dab-4331-bae4-96ee6dcb9411] Tool de cliente falló: create_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 12:57:05,587 | WARNING | errors | [aa369db5-c096-4db6-9238-08c1965f7722] Tool de cliente falló: create_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 13:00:33,972 | WARNING | errors | [03bee296-712a-430d-bda2-306b3234453e] LLM no devolvió JSON de tool válido
+2026-07-01 13:01:07,387 | WARNING | errors | [5986bd68-af37-4084-bccf-604aed18fcab] LLM no devolvió JSON de tool válido
+2026-07-01 13:17:55,544 | WARNING | errors | [22f6c416-7329-4df8-a6db-d8d4603f165b] LLM no devolvió JSON de tool válido
+2026-07-01 13:18:22,225 | WARNING | errors | [a95a73f7-079c-4555-ac48-e099261352a7] LLM no devolvió JSON de tool válido
+2026-07-01 13:18:53,855 | WARNING | errors | [13a926e9-7e18-485f-a8a2-ea301993f769] LLM no devolvió JSON de tool válido
+2026-07-01 13:21:43,148 | WARNING | errors | [b811764a-d8ab-4630-9b9e-b1c984d2943a] LLM no devolvió JSON de tool válido
+2026-07-01 13:22:14,215 | WARNING | errors | [5a159acb-9687-4f3a-aecc-b098b306d667] LLM no devolvió JSON de tool válido
+2026-07-01 13:30:26,284 | WARNING | errors | [84f67687-4449-4fe0-a79f-99250bf6f7b1] LLM no devolvió JSON de tool válido
+2026-07-01 13:31:02,580 | WARNING | errors | [81bf9b77-ee21-42b3-9fa3-ebcb392e36d0] LLM no devolvió JSON de tool válido
+2026-07-01 13:31:41,409 | WARNING | errors | [05c4ce5e-708d-45b9-9a45-d5d0e19e585c] LLM no devolvió JSON de tool válido
+2026-07-01 13:32:19,930 | WARNING | errors | [af5195a7-0b6a-416c-a3c4-5ce19332e954] LLM no devolvió JSON de tool válido
+2026-07-01 13:35:31,476 | WARNING | errors | [17a41eb8-0352-46ab-af2d-bac8d0b3769c] LLM no devolvió JSON de tool válido
+2026-07-01 13:45:05,274 | WARNING | errors | [3c02e4f5-4ce1-4f50-b3d9-528f50dd5a79] Tool de cliente falló: create_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 13:45:45,461 | WARNING | errors | [e8ff6bd2-7c50-4df6-a151-9e0fc26cc68c] Tool de cliente falló: create_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 13:46:27,832 | WARNING | errors | [32af6895-f717-4297-932d-ae4c33bf5d93] Tool de cliente falló: create_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 13:47:12,486 | WARNING | errors | [a735edd5-99ce-4c19-8f84-0e89657209de] LLM no devolvió JSON de tool válido
+2026-07-01 13:48:00,048 | WARNING | errors | [631d84f1-62bc-4730-9d51-051a6a4eda12] Tool de cliente falló: rename_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 13:51:37,094 | WARNING | errors | [98b38f1d-6ffb-4bcc-8f71-502f5a51260d] Tool de cliente falló: delete_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 13:52:17,239 | WARNING | errors | [1ac56765-09e5-43c3-b6d6-c82fa27dd506] Tool de cliente falló: delete_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 13:52:19,056 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-07-01 13:52:22,448 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-07-01 13:56:21,674 | WARNING | errors | [2e3f07c9-17f6-4f00-adef-180be0856fb1] LLM no devolvió JSON de tool válido
+2026-07-01 13:57:08,364 | WARNING | errors | [a758969b-e786-46f1-ba7d-305a2e203b40] LLM no devolvió JSON de tool válido
+2026-07-01 13:57:59,972 | WARNING | errors | [f1748b39-8cfd-44ac-97df-08d7c7ba161d] Tool de cliente falló: rename_file -> {'id': 'ddc58b93-794b-49fa-95b6-04f54c7385f9', 'status': 'error', 'error': 'src o dst vacío'}
+2026-07-01 14:01:48,018 | WARNING | errors | [896fbcdb-a6b1-43ad-bbfd-a7dbac48dbc8] Tool de cliente falló: delete_file -> {'id': 'cae1a331-473c-4a40-bcaf-19284c98796a', 'status': 'error', 'error': "No se pudo eliminar el archivo C:\\Users\\luisd\\Desktop\\PruebaManual\\prueba_ok.txt: [WinError 2] El sistema no puede encontrar el archivo especificado: 'C:\\\\Users\\\\luisd\\\\Desktop\\\\PruebaManual\\\\prueba_ok.txt'"}
+2026-07-01 14:05:58,264 | WARNING | errors | [4def08d0-fc11-4f77-91c5-553d2be018d9] Tool de cliente falló: create_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 14:08:23,463 | WARNING | errors | [b4956d57-6ebf-4549-a645-744f2fa12c53] LLM no devolvió JSON de tool válido
+2026-07-01 14:13:06,975 | WARNING | errors | [80e83aad-a9a1-4c3e-af60-c3094144ce7f] LLM no devolvió JSON de tool válido
+2026-07-01 14:13:53,631 | WARNING | errors | [7005b562-a661-44ac-b6f3-036b05081caa] Tool de cliente falló: delete_directory -> {'id': '1e561fb9-d423-4fc2-9d76-d17829325440', 'status': 'error', 'error': "No se pudo eliminar el directorio C:\\Users\\luisd\\Desktop\\PruebaManual: [WinError 3] El sistema no puede encontrar la ruta especificada: 'C:\\\\Users\\\\luisd\\\\Desktop\\\\PruebaManual'"}
+2026-07-01 14:13:56,238 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-07-01 14:14:00,911 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-07-01 14:15:19,614 | WARNING | errors | [9ade541e-4f08-4572-b91b-c5b0416f2131] LLM no devolvió JSON de tool válido
+2026-07-01 14:20:19,518 | WARNING | errors | [f88e3808-3a46-48cb-8df1-bbf71b356260] Tool de cliente falló: create_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 14:21:01,816 | WARNING | errors | [5683c3af-505c-45df-a8f8-87ca2ea95815] Tool de cliente falló: create_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 14:21:45,176 | WARNING | errors | [b402b3b0-13de-443c-82f5-d844f4125f8c] LLM no devolvió JSON de tool válido
+2026-07-01 14:22:32,036 | WARNING | errors | [76c8cc42-d48b-4286-b39c-90b700871bf0] LLM no devolvió JSON de tool válido
+2026-07-01 14:23:18,106 | WARNING | errors | [38f57430-1e72-44b2-88d1-b0f8f6804aa7] Tool de cliente falló: rename_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 14:27:01,649 | WARNING | errors | [30f723d3-210f-41ec-9cdf-49f78120bc00] LLM no devolvió JSON de tool válido
+2026-07-01 14:27:41,848 | WARNING | errors | [673bc551-abce-432d-837c-6e01b62ac38e] Tool de cliente falló: delete_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 14:27:44,246 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-07-01 14:27:47,885 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-07-01 15:03:17,161 | WARNING | errors | [cd27badc-6ce7-4c54-9d79-427584626a2c] Tool de cliente falló: create_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 15:07:46,674 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-07-01 15:07:49,167 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-07-01 15:07:52,973 | WARNING | errors | [----------] Tool de cliente falló: delete_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 15:08:29,561 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-07-01 15:08:31,743 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-07-01 15:32:49,643 | WARNING | errors | [5253e719-3b35-4f72-9078-3620c93b8708] Tool de cliente falló: create_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 15:32:51,363 | WARNING | errors | [86875be1-c5d5-457f-b82b-df0aca859c9f] Tool de cliente falló: delete_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 15:32:54,845 | WARNING | errors | [058a7502-11d4-4fa2-aad7-2e2b9a38e1f8] Tool de cliente falló: create_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 15:32:56,887 | WARNING | errors | [2d051950-c92d-41f7-8f6a-4178c4bc6506] Tool de cliente falló: delete_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 15:32:58,261 | WARNING | errors | [025839fe-b31f-4a52-8ffc-e8c7438ae16c] Tool de cliente falló: append_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 15:33:02,530 | WARNING | errors | [a50bd39f-177a-4bb8-9d2d-bdad93351266] Tool de cliente falló: read_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 15:33:06,947 | WARNING | errors | [47bff612-a476-490b-89f7-f2c02c2e8dad] Tool de cliente falló: rename_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 15:34:38,630 | WARNING | errors | [21a4fb3c-6667-4c1e-822d-526bc9f65cd5] Tool de cliente falló: delete_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 15:34:42,288 | WARNING | errors | [0c4c3a50-0ce1-4056-9e1b-9a11c138e87b] Tool de cliente falló: delete_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 15:34:44,427 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-07-01 15:34:48,531 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python' en el equipo del usuario.
+2026-07-01 15:43:17,979 | WARNING | errors | [e0a99cf9-0616-4ece-bc54-e4e2f2e88c39] Tool de cliente falló: create_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 15:43:21,560 | WARNING | errors | [b81767b0-8c94-42f8-8e58-af11186fff3e] Tool de cliente falló: create_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 15:43:25,145 | WARNING | errors | [807c3304-4168-4434-b45f-41bf4769ca33] Tool de cliente falló: append_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 15:43:29,306 | WARNING | errors | [9a29647a-618b-4a1e-a3d6-f50d01c1076f] Tool de cliente falló: read_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 15:43:32,651 | WARNING | errors | [0d465685-f6c0-4722-98cd-83e6c8d5d4fb] Tool de cliente falló: rename_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 15:45:07,751 | WARNING | errors | [82dcb66b-af31-47a4-8273-c3097abe6742] Tool de cliente falló: delete_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 15:45:11,209 | WARNING | errors | [afcb6392-0bef-4f30-92b2-afe33fb72268] Tool de cliente falló: delete_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 15:45:13,511 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-07-01 15:45:16,948 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python' en el equipo del usuario.
+2026-07-01 15:57:51,868 | WARNING | errors | [9723ecec-8f0b-49c7-8ee9-a9e9d5c0a1d6] Tool de cliente falló: create_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 15:57:55,320 | WARNING | errors | [d7ae1754-a868-45a5-8c62-d0f03e8c21fb] Tool de cliente falló: create_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 15:57:58,617 | WARNING | errors | [f14baf19-9ea0-4358-8bab-b7d3613ef75a] Tool de cliente falló: append_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 15:58:01,871 | WARNING | errors | [377f6227-ddcd-41f7-ae6f-20f9eafe1eb0] Tool de cliente falló: read_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 15:58:05,198 | WARNING | errors | [ae932560-e460-4de8-aedd-0cf66b45166f] Tool de cliente falló: rename_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 15:59:40,611 | WARNING | errors | [5fdaaf46-4e1e-4fc7-bdd2-045b5990251e] Tool de cliente falló: delete_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 15:59:43,888 | WARNING | errors | [e688fafd-21c5-4dc3-9342-1025c440ff2f] Tool de cliente falló: delete_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 15:59:45,699 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-07-01 15:59:47,155 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python' en el equipo del usuario.
+2026-07-01 16:07:57,230 | WARNING | errors | [7e22ce3d-60e8-48dd-88b7-a5cd9662d59f] Tool de cliente falló: create_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 16:08:00,823 | WARNING | errors | [43173fc8-82ba-4e7d-9ca1-143982dda1de] Tool de cliente falló: create_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 16:08:02,829 | WARNING | errors | [5dc88bed-b4e2-4f5a-99d6-fa43c54b18d5] Tool de cliente falló: append_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 16:08:06,340 | WARNING | errors | [c63581a8-4924-40bf-8c52-43854d086d78] Tool de cliente falló: read_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 16:08:09,960 | WARNING | errors | [6736cc3b-1251-4b61-9c2f-1cd4ced142b7] Tool de cliente falló: rename_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 16:09:45,205 | WARNING | errors | [0875836f-7da2-4720-9d24-4627b9fe84bf] Tool de cliente falló: delete_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 16:09:48,739 | WARNING | errors | [ad165623-ed52-49a4-94c7-1c5292ebc0a3] Tool de cliente falló: delete_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 16:09:50,645 | ERROR | errors | [----------] Error parseando respuesta JSON
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/response_parser.py", line 12, in parse
+    data = json.loads(raw_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-07-01 16:09:54,088 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python' en el equipo del usuario.
+2026-07-01 16:18:28,917 | WARNING | errors | [8b471ff2-e500-4f7d-a538-bad7acf6a934] Tool de cliente falló: create_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 16:19:15,051 | WARNING | errors | [cf7310e4-bbe5-4b20-af27-0c37f5efde18] Tool de cliente falló: create_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 16:20:00,440 | WARNING | errors | [6e961e13-8f46-4768-8560-c3dbb18d4412] Tool de cliente falló: append_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 16:20:03,861 | WARNING | errors | [993fddc8-1b64-46fc-b14f-abb8dbc8400f] Tool de cliente falló: read_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 16:20:07,673 | WARNING | errors | [909c9146-1a61-4116-b484-13a6a434574d] Tool de cliente falló: rename_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 16:23:55,517 | WARNING | errors | [7984bbed-2b71-44a3-8610-31d1b65e42bb] Tool de cliente falló: create_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 16:24:40,817 | WARNING | errors | [40a19596-c892-4f0e-8b77-551eab0a485c] Tool de cliente falló: create_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 16:25:32,647 | WARNING | errors | [eade2cde-1db2-48fd-9390-a84cda7e52cc] Tool de cliente falló: append_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 16:25:36,333 | WARNING | errors | [b15cb3af-93de-4e4c-98fc-0a4d517b5c5d] Tool de cliente falló: read_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 16:25:39,736 | WARNING | errors | [8757cf5a-3073-4bd8-bac6-b401bbf100eb] Tool de cliente falló: rename_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 16:31:07,046 | WARNING | errors | [43c5a848-cd9a-4cab-95fc-11ee7375d4c4] Tool de cliente falló: create_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 16:31:49,675 | WARNING | errors | [481f4a29-3638-4817-a5cb-81d3a76e66c7] Tool de cliente falló: create_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 17:46:58,084 | WARNING | errors | [dd711cd2-2f5a-4c5c-8cc5-e0040e7d303d] Tool de cliente falló: create_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-01 17:47:50,287 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-07-02 08:54:10,541 | WARNING | errors | [a75219db-b80a-4440-8bf3-c3d3a7c5a9b3] Tool de cliente falló: open_url -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-02 08:54:14,989 | WARNING | errors | [f9debe5d-a801-4139-a6a8-b4f2cb383ff7] Tool de cliente falló: open_application -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-02 10:02:35,119 | WARNING | errors | [7aae2e59-d418-4300-bfce-0cb00a1be743] Tool de cliente falló: delete_file -> {'id': '8d158d2a-f9fd-4da0-a134-0431a09d44c5', 'status': 'error', 'error': "No se pudo eliminar el archivo C:\\Users\\luisd\\Desktop\\alfonsito: [WinError 5] Acceso denegado: 'C:\\\\Users\\\\luisd\\\\Desktop\\\\alfonsito'"}
+2026-07-02 13:14:16,276 | WARNING | errors | [16c4918a-78c3-4d43-a364-6e282cc883ce] Tool de cliente falló: create_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-02 13:27:50,535 | WARNING | errors | [6fbf8592-da47-4caa-916e-d56320002b49] LLM no devolvió JSON de tool válido
+2026-07-02 14:33:12,948 | WARNING | errors | [83b56e1c-c34e-46b3-857b-55c7ae9d51d1] Tool de cliente falló: append_file -> {'status': 'error', 'error': 'No hay clientes conectados'}

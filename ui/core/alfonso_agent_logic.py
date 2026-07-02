@@ -53,10 +53,13 @@ class AlfonsoAgentLogic:
         
         # 1. Normalizar barras
         path = raw_path.replace("\\", "/")
+
+        # Eliminar prefijos comunes como "mi ", "el ", "la "
+        import re
+        path = re.sub(r"\b(mi|el|la|los|las)\s+(escritorio|desktop|documentos|documents|descargas|downloads|imagenes|imágenes|pictures|musica|música|music|videos|perfil|usuario|home|inicio)\b", r"\2", path, flags=re.IGNORECASE)
         
         # 2. Si estamos en Windows, traducir rutas de WSL (/mnt/<drive>/...)
         if self._system == "Windows":
-            import re
             # Traducir /mnt/c/... a C:\...
             mnt_match = re.match(r"^/mnt/([a-zA-Z])(.*)$", path)
             if mnt_match:
@@ -74,7 +77,6 @@ class AlfonsoAgentLogic:
                 logger.info(f"Ruta de home de WSL detectada en Windows. Corrigiendo a UNC: {path}")
 
         # 3. Mapear rutas absolutas de macOS o de otros usuarios al home del usuario local
-        import re
         match = re.match(r"^(?:/Users/[^/]+|C:/Users/[^/]+)(/.*)$", path, re.IGNORECASE)
         if match:
             remainder = match.group(1).lstrip("/")
@@ -89,20 +91,64 @@ class AlfonsoAgentLogic:
             home = os.path.expanduser("~")
             path = home + path[1:]
 
-        # 5. Redireccionar Desktop/Escritorio al directorio real de Desktop
+        # 5. Redireccionar carpetas comunes (Escritorio, Documentos, Descargas, etc.) al HOME del usuario
         parts = path.split("/")
-        if len(parts) > 1:
+        if len(parts) >= 1:
             for idx, part in enumerate(parts):
-                if part.lower() in ["desktop", "escritorio"]:
-                    home = os.path.expanduser("~")
-                    desktop_dir = os.path.join(home, "Desktop")
-                    if not os.path.exists(desktop_dir):
-                        desktop_dir = os.path.join(home, "Escritorio")
+                part_lower = part.lower()
+                target_folder = None
+                
+                if part_lower in ["desktop", "escritorio"]:
+                    target_folder = "Desktop"
+                elif part_lower in ["documents", "documentos"]:
+                    target_folder = "Documents"
+                elif part_lower in ["downloads", "descargas"]:
+                    target_folder = "Downloads"
+                elif part_lower in ["pictures", "imagenes", "imágenes"]:
+                    target_folder = "Pictures"
+                elif part_lower in ["music", "musica", "música"]:
+                    target_folder = "Music"
+                elif part_lower in ["videos"]:
+                    target_folder = "Videos"
+                elif part_lower in ["perfil", "usuario", "home", "inicio"]:
                     remainder = "/".join(parts[idx+1:])
-                    path = os.path.join(desktop_dir, remainder)
+                    path = os.path.join(os.path.expanduser("~"), remainder)
+                    break
+                
+                if target_folder:
+                    home = os.path.expanduser("~")
+                    resolved_dir = os.path.join(home, target_folder)
+                    # Si no existe en inglés, buscar en español
+                    if not os.path.exists(resolved_dir):
+                        spanish_mappings = {
+                            "Desktop": "Escritorio",
+                            "Documents": "Documentos",
+                            "Downloads": "Descargas",
+                            "Pictures": "Imágenes",
+                            "Music": "Música",
+                        }
+                        if target_folder in spanish_mappings:
+                            alt_dir = os.path.join(home, spanish_mappings[target_folder])
+                            if os.path.exists(alt_dir):
+                                resolved_dir = alt_dir
+                                
+                    remainder = "/".join(parts[idx+1:])
+                    path = os.path.join(resolved_dir, remainder)
                     break
 
-        return os.path.normpath(path)
+        resolved_path = os.path.normpath(path)
+        
+        # 6. Si la ruta final resuelta no existe, buscar el nombre del archivo/carpeta en el perfil
+        if not os.path.exists(resolved_path):
+            basename = os.path.basename(resolved_path)
+            # Solo buscar si es un nombre simple o relativo corto
+            if basename and (basename == path or "/" not in path):
+                found_path = _find_in_home(basename)
+                if found_path:
+                    logger.info(f"Ruta no encontrada originalmente, resuelta mediante búsqueda en el Home: {found_path}")
+                    return found_path
+
+        return resolved_path
 
     def _resolve_app_path(self, app_name: str) -> str:
         """
@@ -393,7 +439,8 @@ class AlfonsoAgentLogic:
 
             elif action == "list_directory":
                 path = self._resolve_local_path(params.get("path", "."))
-                result = await asyncio.to_thread(os.listdir, path)
+                files = await asyncio.to_thread(os.listdir, path)
+                result = {"path": path, "result": files}
 
             elif action == "create_directory":
                 path = self._resolve_local_path(params.get("path", ""))

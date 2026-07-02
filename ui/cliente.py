@@ -73,7 +73,27 @@ def run(
     
     print("Iniciando cliente de voz Alfonso…\n")
 
-    session_id = str(uuid.uuid4())
+    # Cargar o crear Session ID persistente en ui/logs/session_config.json
+    import os, json
+    ui_dir = os.path.dirname(os.path.abspath(__file__))
+    logs_dir = os.path.join(ui_dir, "logs")
+    os.makedirs(logs_dir, exist_ok=True)
+    config_path = os.path.join(logs_dir, "session_config.json")
+    
+    session_id = None
+    if os.path.exists(config_path):
+        try:
+            with open(config_path, "r", encoding="utf-8") as f:
+                session_id = json.load(f).get("session_id")
+        except Exception:
+            pass
+    if not session_id:
+        session_id = str(uuid.uuid4())
+        try:
+            with open(config_path, "w", encoding="utf-8") as f:
+                json.dump({"session_id": session_id}, f, indent=4)
+        except Exception:
+            pass
     api        = AlfonsoAPI(server_url)
     processor  = ResponseProcessor()
 

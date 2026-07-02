@@ -16,6 +16,9 @@ TOOLS:
 {"tool":"run_command","args":{"command":"CMD"}}
 {"tool":"browser_navigate","args":{"url":"https://URL"}}
 {"tool":"browser_search","args":{"query":"QUERY"}}
+{"tool":"save_user_preference","args":{"fact":"FACT"}}
+{"tool":"forget_user_fact","args":{"query":"QUERY"}}
+{"tool":"get_user_profile","args":{}}
 {"tool":"no_op","args":{"message":"REASON"}}
 
 EXAMPLES:
@@ -40,6 +43,15 @@ Output: {"tool":"close_application","args":{"command":"firefox"}}
 User: busca en internet noticias de hoy
 Output: {"tool":"browser_search","args":{"query":"noticias de hoy"}}
 
+User: recuerda que prefiero programar de noche con música clásica
+Output: {"tool":"save_user_preference","args":{"fact":"Prefiero programar de noche con música clásica"}}
+
+User: olvida que me gusta la música clásica
+Output: {"tool":"forget_user_fact","args":{"query":"música clásica"}}
+
+User: ¿qué recuerdas sobre mí? o ¿cuál es mi perfil?
+Output: {"tool":"get_user_profile","args":{}}
+
 RULES:
 - añade/agrega → append_file (NEVER create_file)
 - elimina/borra → delete_file
@@ -48,4 +60,8 @@ RULES:
 - cierra app → close_application
 - navega/abre web/URL → browser_navigate
 - busca internet/google → browser_search
+- recuerda/guarda preferencia/hecho → save_user_preference
+- olvida/borra de la memoria → forget_user_fact
+- qué recuerdas/cuál es mi perfil/mis datos → get_user_profile
 - crea sin nombre de archivo → no_op pidiendo el nombre
+- escritorio/desktop → list_directory con path="Desktop"

@@ -122,9 +122,9 @@ async def keyboard_type(text: str, interval: float = 0.03) -> dict:
     return await _delegate(Action.KEYBOARD_TYPE, {"text": text, "interval": interval})
 
 
-async def keyboard_hotkey(*keys: str) -> dict:
-    # ComputerAgent llama a esta tool con *keys posicionales (ver computer_agent.py)
-    return await _delegate(Action.KEYBOARD_HOTKEY, {"keys": list(keys)})
+async def keyboard_hotkey(*args_keys: str, keys: list[str] | None = None) -> dict:
+    final_keys = list(args_keys) if args_keys else (keys or [])
+    return await _delegate(Action.KEYBOARD_HOTKEY, {"keys": final_keys})
 
 
 # ---------------------------------------------------------------------------

@@ -32,6 +32,7 @@ orchestrator: Any = None
 class ChatRequest(BaseModel):
     message: str
     session_id: Optional[str] = None
+    client_info: Optional[dict] = None
 
 
 # ---------------------------------------------------------------------------
@@ -67,8 +68,19 @@ async def chat_endpoint(req: ChatRequest, request: Request):
     request_id = getattr(request.state, "request_id", None) or str(uuid.uuid4())
     logger = attach_request_id(app_logger, request_id)
 
+    # Buscar session_id en las cabeceras primero (como lo envía el cliente en X-Session-ID)
+    session_id = request.headers.get("X-Session-ID") or req.session_id or request_id
+
+    # Actualizar info del cliente en tiempo real si viene en la petición
+    if req.client_info:
+        from app.core.alfonso_bridge import bridge
+        if bridge.client_info:
+            bridge.client_info.update(req.client_info)
+        else:
+            bridge.client_info = req.client_info
+
     logger.info("Solicitud /chat recibida")
-    logger.info("SESSION_ID: %s", req.session_id or request_id)
+    logger.info("SESSION_ID: %s", session_id)
     logger.info("USER MESSAGE: %s", req.message)
 
     with Timer() as t:
@@ -76,7 +88,7 @@ async def chat_endpoint(req: ChatRequest, request: Request):
             req.message,
             llm,
             request_id=request_id,
-            session_id=req.session_id or request_id,
+            session_id=session_id,
         )
 
     status = result.get("type", "unknown")

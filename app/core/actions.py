@@ -123,7 +123,10 @@ ALLOWED_ACTIONS: frozenset[str] = frozenset(
 # salvo que sea intencional.
 CLIENT_ALIASES: dict[str, str] = {
     "open_app": Action.OPEN_APP,
+    "open_application": Action.OPEN_APP,
     "close_app": Action.CLOSE_APP,
+    "close_application": Action.CLOSE_APP,
+    "browser_close": Action.BROWSER_CLOSE,
     "click": Action.MOUSE_CLICK,
     "move_mouse": Action.MOUSE_MOVE,
     "drag_mouse": Action.MOUSE_DRAG,

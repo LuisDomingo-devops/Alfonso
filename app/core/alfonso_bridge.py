@@ -17,6 +17,7 @@ class AlfonsoBridge:
         self.clients = set()
         self.pending = {}
         self.server = None
+        self.client_info = None
 
     async def start(self):
         logger.info(f"Bridge en {self.host}:{self.port}")
@@ -30,8 +31,7 @@ class AlfonsoBridge:
             self.handler,
             self.host,
             self.port,
-            ping_interval=30,
-            ping_timeout=90,
+            ping_interval=None,
         )
 
     async def stop(self):
@@ -42,6 +42,7 @@ class AlfonsoBridge:
 
         self.clients.clear()
         self.pending.clear()
+        self.client_info = None
 
         if self.server:
             self.server.close()
@@ -62,6 +63,7 @@ class AlfonsoBridge:
 
     async def unregister(self, ws):
         self.clients.discard(ws)
+        self.client_info = None
         logger.info(f"Cliente desconectado: {ws.remote_address}")
 
     async def handler(self, ws):
@@ -69,6 +71,19 @@ class AlfonsoBridge:
         try:
             async for msg in ws:
                 data = json.loads(msg)
+
+                # Interceptar handshake del cliente
+                if data.get("type") == "handshake":
+                    self.client_info = data
+                    logger.info("Handshake recibido del cliente")
+                    try:
+                        import os
+                        os.makedirs("data", exist_ok=True)
+                        with open("data/last_client_info.json", "w", encoding="utf-8") as f:
+                            json.dump(data, f, indent=4)
+                    except Exception as e:
+                        logger.error(f"No se pudo guardar last_client_info.json: {e}")
+                    continue
 
                 cmd_id = data.get("id")
                 fut = self.pending.pop(cmd_id, None)
@@ -89,7 +104,7 @@ class AlfonsoBridge:
     def has_clients(self):
         return bool(self.clients)
 
-    async def send_command(self, action, params=None, timeout=20):
+    async def send_command(self, action, params=None, timeout=60):
         if action not in ALLOWED_ACTIONS:
             return {
                 "status": "error",

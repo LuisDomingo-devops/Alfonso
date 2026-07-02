@@ -54,32 +54,33 @@ _TOOL_RULES: list[_Rule] = [
     _r(r"\b(borra|elimina|delete|remove)\b.{0,30}\b(el|ese|este|un|la)\b.{0,15}\b(archivo|fichero)\b", 2.5, "fs_delete_generic"),
 
     # ── Filesystem — append ──────────────────────────────────────────
-    _r(r"\b(añade|añadir|agrega|agregar|append)\b.{0,50}\b(archivo|fichero|al archivo|a ese archivo|al final|\.txt|\.py|\.json|\.csv|\.md)\b", 3.0, "fs_append"),
-    _r(r"\b(escribe al final|añade al final|agrega al final)\b", 2.5, "fs_append"),
+    _r(r"\b(escribe|escribir|escriba|añade|añadir|añada|agrega|agregar|agregue|append)\b.{0,50}\b(archivo|fichero|al archivo|a ese archivo|al final|\.txt|\.py|\.json|\.csv|\.md)\b", 3.0, "fs_append"),
+    _r(r"\b(escribe al final|escriba al final|añade al final|añada al final|agrega al final|agregue al final)\b", 2.5, "fs_append"),
 
     # ── Filesystem — crear con nombre explícito ──────────────────────
-    _r(r"\b(crea|crear|genera|generar|haz|hacer)\b.{0,30}\b(archivo|fichero|carpeta|directorio)\b.{0,30}\b(llamado|con nombre|llámalo|llamada)\b", 2.5, "fs_create_named"),
+    _r(r"\b(crea|crear|genera|generar|haz|hacer)\b.{0,30}\b(archivo|fichero|carpeta|directorio)\b.{0,30}\b(llamado|con nombre|llam[aá]lo|llamada|se llame)\b", 3.0, "fs_create_named"),
+    _r(r"\b(crea|crear|genera|generar|haz|hacer|nueva|nuevo)\b.{0,30}\b(carpeta|directorio|folder)\b", 3.0, "fs_create_dir"),
     _r(r"\b(crea|crear|genera|generar)\b.{0,20}[\w\-]+\.(txt|py|json|csv|md|log|yaml|yml|toml|ini)\b", 2.5, "fs_create_named"),
-    _r(r"\b(archivo|fichero)\b.{0,20}\b(llamado|con nombre|llámalo)\b", 2.0, "fs_create_named"),
+    _r(r"\b(archivo|fichero)\b.{0,20}\b(llamado|con nombre|llam[aá]lo)\b", 2.0, "fs_create_named"),
 
     # ── Filesystem — crear genérico ──────────────────────────────────
     _r(r"\b(crea|crear|genera|generar|haz|hacer)\b.{0,30}\b(archivo|fichero)\b", 1.5, "fs_create"),
-    _r(r"\b(escribe|escribir)\b.{0,20}\b(archivo|fichero)\b", 1.5, "fs_create"),
+    _r(r"\b(escribe|escribir|escriba)\b.{0,20}\b(archivo|fichero)\b", 1.5, "fs_create"),
 
     # ── Filesystem — leer ────────────────────────────────────────────
     _r(r"\b(lee|leer|abre|abrir|muestra|mostrar|ver|dame)\b.{0,30}\b(archivo|fichero|contenido de)\b", 2.0, "fs_read"),
     _r(r"\b(lee|leer)\b.{0,15}\b(el|un|ese|este)\b.{0,15}\b(archivo|fichero)\b", 2.0, "fs_read"),
 
     # ── Filesystem — listar ──────────────────────────────────────────
-    _r(r"\b(lista|listar|muestra|mostrar)\b.{0,20}\b(archivos|ficheros|directorio|carpeta|contenido de)\b", 2.0, "fs_list"),
-    _r(r"\b(qué hay en|qué contiene)\b.{0,30}\b(carpeta|directorio)\b", 1.5, "fs_list"),
+    _r(r"\b(lista|listar|muestra|mostrar)\b.{0,20}\b(archivos|ficheros|directorio|carpeta|contenido de|escritorio|desktop)\b", 2.0, "fs_list"),
+    _r(r"\b(qu[eé] hay en|qu[eé] contiene)\b.{0,30}\b(carpeta|directorio|escritorio|desktop)\b", 1.5, "fs_list"),
 
     # ── Comandos del sistema ─────────────────────────────────────────
     _r(r"\b(ejecuta|ejecutar|corre|correr|lanza|lanzar)\b.{0,20}\b(comando|script|programa)\b", 2.0, "cmd"),
 
     # ── Información del sistema ──────────────────────────────────────
-    _r(r"\b(info(rmación)?|estado|status)\b.{0,20}\b(sistema|cpu|ram|memoria|disco)\b", 1.5, "sysinfo"),
-    _r(r"\bcuánta (ram|memoria|cpu)\b", 1.5, "sysinfo"),
+    _r(r"\b(info(rmaci[oó]n)?|estado|status)\b.{0,20}\b(sistema|cpu|ram|memoria|disco)\b", 1.5, "sysinfo"),
+    _r(r"\bcu[aá]nta (ram|memoria|cpu)\b", 1.5, "sysinfo"),
 
     # ── Abrir aplicaciones — genéricas ───────────────────────────────
     _r(r"\b(abre|abrir|lanza|lanzar|inicia|iniciar|ejecuta|ejecutar)\b.{0,40}\b(aplicación|programa|app|navegador|firefox|chrome|chromium|vscode|code|visual studio|notepad|terminal|konsole|gedit|kate|excel|word|powerpoint|spotify|discord|calculadora|vlc)\b", 2.5, "open_app"),
@@ -101,18 +102,18 @@ _TOOL_RULES: list[_Rule] = [
     _r(r"\b(abre|abrir|entra|entrar|ve|ir)\b.{0,20}\b(la web|la página|internet|el navegador|una url|el sitio|https?://|www\.)\b", 2.0, "browser_open"),
     _r(r"\b(abre|abrir|entra|ve)\b.{0,10}(google|youtube|facebook|twitter|instagram|linkedin|amazon|wikipedia|github|reddit|twitch|netflix|spotify)\b", 2.5, "browser_open_domain"),
     _r(r"^(abre|abrir|entra en|ve a)\s+(www\.|https?://)?[\w\-]+(\.\w{2,})+", 2.5, "browser_open_url"),
-    _r(r"\b(busca|buscar|googlea|googleas?)\b.{0,30}\b(en internet|en google|en la web|online|en línea)\b", 2.5, "browser_search"),
+    _r(r"\b(busca|buscar|googlea|googleas?)\b.{0,30}\b(en internet|en google|en la web|online|en l[ií]nea)\b", 2.5, "browser_search"),
     _r(r"https?://[\w\-\.]+\.\w{2,}", 2.0, "url_explicit"),
     _r(r"\bwww\.[\w\-]+\.\w{2,}", 2.0, "url_www"),
 
     # ── Fecha y hora actuales via sistema ─────────────────────────────
-    _r(r"\b(qué hora|que hora|la hora actual|qué son las|son las)\b", 2.0, "datetime_tool"),
-    _r(r"\b(qué día|que dia|hoy es|día de hoy|fecha actual|fecha de hoy)\b", 2.0, "datetime_tool"),
-    _r(r"\b(qué (día|fecha|hora)|dime la (hora|fecha)|dime qué día)\b", 2.0, "datetime_tool"),
+    _r(r"\b(qu[eé] hora|la hora actual|qu[eé] son las|son las)\b", 2.0, "datetime_tool"),
+    _r(r"\b(qu[eé] d[ií]a|hoy es|d[ií]a de hoy|fecha actual|fecha de hoy)\b", 2.0, "datetime_tool"),
+    _r(r"\b(qu[eé] (d[ií]a|fecha|hora)|dime la (hora|fecha)|dime qu[eé] d[ií]a)\b", 2.0, "datetime_tool"),
 
     # ── Mail (Fase 3 — patrones avanzados) ───────────────────────────
     _r(r"\b(responde|contesta|redacta respuesta)\b.{0,30}\b(mail|correo|reclamación|abogado)\b", 3.0, "mail_reply"),
-    _r(r"\b(aplica|inscríbete|postula)\b.{0,30}\b(oferta|trabajo|empleo|infojobs)\b", 3.5, "mail_apply"),
+    _r(r"\b(aplica|inscr[ií]bete|postula)\b.{0,30}\b(oferta|trabajo|empleo|infojobs)\b", 3.5, "mail_apply"),
 
     # ── Paths y extensiones explícitas ───────────────────────────────
     _r(r"[\w\-]+\.(txt|py|json|csv|md|log|yaml|yml|toml|ini)\b", 1.2, "extension"),

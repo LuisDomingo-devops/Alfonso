@@ -57,7 +57,3 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
-
-
-def load_prompt(path: str) -> str:
-    return Path(path).read_text(encoding="utf-8")

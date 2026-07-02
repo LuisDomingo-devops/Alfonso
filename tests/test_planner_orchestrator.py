@@ -77,21 +77,21 @@ async def test_orchestrator_server_tool_flow(mock_llm, session_memory_fixture):
 
     with patch("app.core.planner_orchestrator.memory", session_memory_fixture), \
          patch("app.core.planner_orchestrator.vector_memory", mock_vector):
-        # El LLM responde con una herramienta de servidor: list_directory
-        mock_llm.generate.return_value = '{"tool": "list_directory", "args": {"path": "/tmp"}}'
+        # El LLM responde con una herramienta de servidor: get_current_datetime
+        mock_llm.generate.return_value = '{"tool": "get_current_datetime", "args": {}}'
         
-        mock_tool_func = AsyncMock(return_value={"status": "ok", "entries": []})
+        mock_tool_func = AsyncMock(return_value={"status": "ok", "human": "jueves"})
         
         with patch("app.core.planner_orchestrator.get_tool", return_value=mock_tool_func):
             orchestrator = PlannerOrchestrator()
             result = await orchestrator.run(
-                user_message="lista el directorio tmp",
+                user_message="qué hora es",
                 llm=mock_llm,
                 session_id="test_session"
             )
             
             assert result["type"] == "tool"
             assert result["execution"] == "server"
-            assert result["tool"] == "list_directory"
-            assert result["result"] == {"status": "ok", "entries": []}
-            mock_tool_func.assert_called_once_with(path="/tmp")
+            assert result["tool"] == "get_current_datetime"
+            assert result["result"] == {"status": "ok", "human": "jueves"}
+            mock_tool_func.assert_called_once_with()

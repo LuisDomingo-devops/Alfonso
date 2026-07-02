@@ -16,16 +16,40 @@ class AlfonsoAPI:
         try:
             r = requests.get(f"{self.base_url}/health", timeout=5)
             return r.status_code == 200
-        except Exception:
+        except Exception as e:
+            print("[DEBUG PING ERROR]:", e)
+            import traceback
+            traceback.print_exc()
             return False
 
     def send_chat(self, message: str, session_id: str) -> dict:
+        # Obtener estructura fresca del escritorio en tiempo real
+        desktop_structure = []
+        try:
+            import os
+            desktop_dir = os.path.join(os.path.expanduser("~"), "Desktop")
+            if not os.path.exists(desktop_dir):
+                desktop_dir = os.path.join(os.path.expanduser("~"), "Escritorio")
+            if os.path.exists(desktop_dir):
+                for entry in os.scandir(desktop_dir):
+                    if not entry.name.startswith(".") and not entry.name.startswith("desktop.ini"):
+                        marker = " (Carpeta)" if entry.is_dir() else ""
+                        desktop_structure.append(f"{entry.name}{marker}")
+                desktop_structure = sorted(desktop_structure)[:30]
+        except Exception:
+            pass
+
         try:
             r = requests.post(
                 f"{self.base_url}/chat",
-                json={"message": message},
+                json={
+                    "message": message,
+                    "client_info": {
+                        "desktop_structure": desktop_structure
+                    }
+                },
                 headers={"X-Session-ID": session_id},
-                timeout=120,
+                timeout=300,
             )
             r.raise_for_status()
             return r.json()

@@ -47,3 +47,27 @@ def test_intent_router_browser():
     
     res2 = router.detect_with_detail("busca en internet noticias sobre el clima")
     assert res2["intent"] == "tool"
+
+
+def test_intent_router_accents_optional():
+    router = IntentRouter()
+    
+    # "dame la informacion del sistema" (sin tilde) debe matchear sysinfo y tener intent="tool"
+    res1 = router.detect_with_detail("dame la informacion del sistema")
+    assert res1["intent"] == "tool"
+    assert any("sysinfo" in r for r in res1["fired_rules"])
+    
+    # "que hora es" (sin tilde en qué)
+    res2 = router.detect_with_detail("que hora es")
+    assert res2["intent"] == "tool"
+    assert any("datetime_tool" in r for r in res2["fired_rules"])
+
+    # "que contiene mi escritorio" y "lista mi desktop"
+    res3 = router.detect_with_detail("que contiene mi escritorio")
+    assert res3["intent"] == "tool"
+    assert any("fs_list" in r for r in res3["fired_rules"])
+
+    res4 = router.detect_with_detail("lista mi desktop")
+    assert res4["intent"] == "tool"
+    assert any("fs_list" in r for r in res4["fired_rules"])
+

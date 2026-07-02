@@ -9,12 +9,86 @@ import webbrowser
 import logging
 import os
 
-logging.basicConfig(level=logging.INFO)
+# Configuración de logs con escritura a archivo ui/logs/agent.log para visibilidad en GUI
+ui_dir = os.path.dirname(os.path.abspath(__file__))
+logs_dir = os.path.join(ui_dir, "logs")
+os.makedirs(logs_dir, exist_ok=True)
+log_file = os.path.join(logs_dir, "agent.log")
+
 logger = logging.getLogger("agent")
+logger.setLevel(logging.INFO)
+
+# Formateador de logs
+formatter = logging.Formatter('%(asctime)s | %(levelname)s | %(name)s | %(message)s')
+
+# Handler para consola
+console_handler = logging.StreamHandler()
+console_handler.setFormatter(formatter)
+logger.addHandler(console_handler)
+
+# Handler para archivo (agent.log)
+try:
+    file_handler = logging.FileHandler(log_file, encoding="utf-8")
+    file_handler.setFormatter(formatter)
+    logger.addHandler(file_handler)
+except Exception as e:
+    print(f"No se pudo crear el archivo de logs del agente: {e}")
 
 pyautogui.FAILSAFE = True
-
 IS_WINDOWS = platform.system() == "Windows"
+
+try:
+    from core.alfonso_agent_logic import AlfonsoAgentLogic
+except ImportError:
+    import sys
+    sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+    from core.alfonso_agent_logic import AlfonsoAgentLogic
+
+def _find_in_home(target_name: str) -> str | None:
+    """Busca un archivo o carpeta en el perfil del usuario de forma rápida."""
+    home = os.path.expanduser("~")
+    # Ignorar carpetas ocultas o de sistema pesadas para que sea 100% rápido
+    exclude_dirs = {
+        "appdata", "program files", "program files (x86)", "windows", 
+        ".git", ".vscode", "node_modules", "venv", ".venv", "__pycache__",
+        "searches", "links", "contacts", "saved games", "desktop.ini"
+    }
+    
+    # Primero buscamos en carpetas del primer nivel directo (Desktop, Documents, Downloads, etc.)
+    priority_dirs = ["Desktop", "Escritorio", "Documents", "Documentos", "Downloads", "Descargas", "Pictures", "Imágenes"]
+    for p_dir in priority_dirs:
+        full_p_dir = os.path.join(home, p_dir)
+        if os.path.exists(full_p_dir):
+            for root, dirs, files in os.walk(full_p_dir):
+                # Filtrar carpetas excluidas
+                dirs[:] = [d for d in dirs if d.lower() not in exclude_dirs and not d.startswith(".")]
+                
+                # Buscar en carpetas
+                for d in dirs:
+                    if d.lower() == target_name.lower():
+                        return os.path.join(root, d)
+                # Buscar en archivos
+                for f in files:
+                    if f.lower() == target_name.lower():
+                        return os.path.join(root, f)
+                        
+    # Búsqueda en la raíz del HOME
+    for root, dirs, files in os.walk(home):
+        depth = root[len(home):].count(os.sep)
+        if depth > 2:
+            dirs[:] = [] # No ir más profundo
+            continue
+            
+        dirs[:] = [d for d in dirs if d.lower() not in exclude_dirs and not d.startswith(".")]
+        
+        for d in dirs:
+            if d.lower() == target_name.lower():
+                return os.path.join(root, d)
+        for f in files:
+            if f.lower() == target_name.lower():
+                return os.path.join(root, f)
+                
+    return None
 
 
 class AlfonsoAgent:
@@ -22,6 +96,7 @@ class AlfonsoAgent:
     def __init__(self, server_url="ws://localhost:8765"):
         self.server_url = server_url
         self.queue = asyncio.Queue()
+        self.agent_logic = AlfonsoAgentLogic()
 
         self.handlers = {
             "system.open_app": self.open_app,
@@ -86,6 +161,10 @@ class AlfonsoAgent:
             return raw_path
         # 1. Limpiar/corregir barras
         path = raw_path.replace("\\", "/")
+
+        # Eliminar prefijos comunes como "mi ", "el ", "la "
+        import re
+        path = re.sub(r"\b(mi|el|la|los|las)\s+(escritorio|desktop|documentos|documents|descargas|downloads|imagenes|imágenes|pictures|musica|música|music|videos|perfil|usuario|home|inicio)\b", r"\2", path, flags=re.IGNORECASE)
         
         # 2. Corregir alucinación /usr/share/applications/
         if "/usr/share/applications/" in path and not path.endswith(".desktop"):
@@ -94,7 +173,6 @@ class AlfonsoAgent:
             logger.info(f"Corrigiendo ruta de /usr/share/applications/ a Escritorio: {path}")
 
         # 3. Mapear rutas absolutas de otros sistemas (WSL/macOS) al home del usuario local
-        import re
         match = re.match(r"^(?:/home/[^/]+|/Users/[^/]+|/mnt/[a-z]/Users/[^/]+)(/.*)$", path, re.IGNORECASE)
         if match:
             remainder = match.group(1).lstrip("/")
@@ -113,20 +191,64 @@ class AlfonsoAgent:
         if "%" in path:
             path = re.sub(r'%([^%]+)%', lambda m: os.environ.get(m.group(1), m.group(0)), path)
 
-        # 6. Redireccionar Desktop/Escritorio al directorio real de Desktop
+        # 6. Redireccionar carpetas comunes (Escritorio, Documentos, Descargas, etc.) al HOME del usuario
         parts = path.split("/")
-        if len(parts) > 1:
+        if len(parts) >= 1:
             for idx, part in enumerate(parts):
-                if part.lower() in ["desktop", "escritorio"]:
-                    home = os.path.expanduser("~")
-                    desktop_dir = os.path.join(home, "Desktop")
-                    if not os.path.exists(desktop_dir):
-                        desktop_dir = os.path.join(home, "Escritorio")
+                part_lower = part.lower()
+                target_folder = None
+                
+                if part_lower in ["desktop", "escritorio"]:
+                    target_folder = "Desktop"
+                elif part_lower in ["documents", "documentos"]:
+                    target_folder = "Documents"
+                elif part_lower in ["downloads", "descargas"]:
+                    target_folder = "Downloads"
+                elif part_lower in ["pictures", "imagenes", "imágenes"]:
+                    target_folder = "Pictures"
+                elif part_lower in ["music", "musica", "música"]:
+                    target_folder = "Music"
+                elif part_lower in ["videos"]:
+                    target_folder = "Videos"
+                elif part_lower in ["perfil", "usuario", "home", "inicio"]:
                     remainder = "/".join(parts[idx+1:])
-                    path = os.path.join(desktop_dir, remainder)
+                    path = os.path.join(os.path.expanduser("~"), remainder)
+                    break
+                
+                if target_folder:
+                    home = os.path.expanduser("~")
+                    resolved_dir = os.path.join(home, target_folder)
+                    # Si no existe en inglés, buscar en español
+                    if not os.path.exists(resolved_dir):
+                        spanish_mappings = {
+                            "Desktop": "Escritorio",
+                            "Documents": "Documentos",
+                            "Downloads": "Descargas",
+                            "Pictures": "Imágenes",
+                            "Music": "Música",
+                        }
+                        if target_folder in spanish_mappings:
+                            alt_dir = os.path.join(home, spanish_mappings[target_folder])
+                            if os.path.exists(alt_dir):
+                                resolved_dir = alt_dir
+                                
+                    remainder = "/".join(parts[idx+1:])
+                    path = os.path.join(resolved_dir, remainder)
                     break
 
-        return os.path.normpath(path)
+        resolved_path = os.path.normpath(path)
+        
+        # 7. Si la ruta final resuelta no existe, buscar el nombre del archivo/carpeta en el perfil
+        if not os.path.exists(resolved_path):
+            basename = os.path.basename(resolved_path)
+            # Solo buscar si es un nombre simple o relativo corto
+            if basename and (basename == path or "/" not in path):
+                found_path = _find_in_home(basename)
+                if found_path:
+                    logger.info(f"Ruta no encontrada originalmente, resuelta mediante búsqueda en el Home: {found_path}")
+                    return found_path
+
+        return resolved_path
 
     # ---------------- SYSTEM ----------------
 
@@ -143,6 +265,8 @@ class AlfonsoAgent:
                 app = "explorer.exe"
             elif app.lower().endswith("/code") or app.lower() == "code":
                 app = "code"
+            else:
+                app = self.agent_logic._resolve_app_path(app)
 
         try:
             path = shutil.which(app) or app
@@ -249,6 +373,10 @@ class AlfonsoAgent:
             return {"error": "path vacío"}
         path = self._resolve_local_path(path)
         try:
+            if os.path.isdir(path):
+                # Redirección automática si es un directorio
+                shutil.rmtree(path)
+                return {"result": f"Directorio {path} eliminado (redirección desde delete_file)"}
             os.remove(path)
             return {"result": f"Archivo {path} eliminado"}
         except Exception as e:
@@ -271,6 +399,10 @@ class AlfonsoAgent:
             return {"error": "path vacío"}
         path = self._resolve_local_path(path)
         try:
+            if os.path.isfile(path):
+                # Redirección automática si es un archivo
+                os.remove(path)
+                return {"result": f"Archivo {path} eliminado (redirección desde delete_directory)"}
             shutil.rmtree(path)
             return {"result": f"Directorio {path} eliminado"}
         except Exception as e:
@@ -282,8 +414,12 @@ class AlfonsoAgent:
             return {"error": "path vacío"}
         path = self._resolve_local_path(path)
         try:
+            if not os.path.exists(path):
+                return {"error": f"La carpeta '{path}' no existe en el equipo."}
+            if not os.path.isdir(path):
+                return {"error": f"El objeto en '{path}' no es una carpeta."}
             files = os.listdir(path)
-            return {"result": files}
+            return {"path": path, "result": files}
         except Exception as e:
             return {"error": f"No se pudo listar el directorio {path}: {e}"}
         
@@ -488,12 +624,90 @@ class AlfonsoAgent:
             try:
                 async with websockets.connect(
                     self.server_url,
-                    ping_interval=60,
-                    ping_timeout=300,
+                    ping_interval=None,
                     max_size=2**23
                 ) as ws:
 
                     logger.info("Conectado al bridge")
+
+                    # Enviar handshake con info del sistema local
+                    import getpass
+                    try:
+                        uname_str = getpass.getuser()
+                    except Exception:
+                        uname_str = os.path.basename(os.path.expanduser("~"))
+                    
+                    # Recopilar información detallada del hardware del cliente (de forma resiliente)
+                    ram_total_gb = None
+                    try:
+                        import psutil
+                        ram_total_gb = round(psutil.virtual_memory().total / (1024 ** 3), 2)
+                    except Exception:
+                        try:
+                            if platform.system() == "Windows":
+                                # Fallback nativo de Windows si no está psutil
+                                out = subprocess.check_output("wmic ComputerSystem get TotalPhysicalMemory", shell=True)
+                                bytes_str = out.decode().split("\n")[1].strip()
+                                ram_total_gb = round(int(bytes_str) / (1024 ** 3), 2)
+                        except Exception:
+                            pass
+                    
+                    screen_res = "Desconocida"
+                    try:
+                        import pyautogui
+                        width, height = pyautogui.size()
+                        screen_res = f"{width}x{height}"
+                    except Exception:
+                        pass
+                        
+                    # Obtener estructura básica del escritorio del cliente (primer nivel)
+                    desktop_structure = []
+                    try:
+                        desktop_dir = os.path.join(os.path.expanduser("~"), "Desktop")
+                        if not os.path.exists(desktop_dir):
+                            desktop_dir = os.path.join(os.path.expanduser("~"), "Escritorio")
+                            
+                        if os.path.exists(desktop_dir):
+                            for entry in os.scandir(desktop_dir):
+                                if not entry.name.startswith(".") and not entry.name.startswith("desktop.ini"):
+                                    marker = " (Carpeta)" if entry.is_dir() else ""
+                                    desktop_structure.append(f"{entry.name}{marker}")
+                            desktop_structure = sorted(desktop_structure)[:30]
+                    except Exception as e:
+                        desktop_structure = [f"Error leyendo escritorio: {e}"]
+                        
+                    # Obtener dispositivos de audio
+                    audio_in = []
+                    audio_out = []
+                    try:
+                        import sounddevice as sd
+                        devices = sd.query_devices()
+                        for d in devices:
+                            name = d.get("name", "Desconocido")
+                            idx = d.get("index")
+                            if d.get("max_input_channels", 0) > 0:
+                                audio_in.append(f"[{idx}] {name}")
+                            if d.get("max_output_channels", 0) > 0:
+                                audio_out.append(f"[{idx}] {name}")
+                    except Exception:
+                        pass
+                    
+                    handshake = {
+                        "type": "handshake",
+                        "system": platform.system(),
+                        "release": platform.release(),
+                        "username": uname_str,
+                        "home": os.path.expanduser("~"),
+                        "cwd": os.getcwd(),
+                        "ram_total_gb": ram_total_gb,
+                        "screen_resolution": screen_res,
+                        "desktop_structure": desktop_structure,
+                        "audio_devices": {
+                            "input": audio_in[:6],
+                            "output": audio_out[:6]
+                        }
+                    }
+                    await ws.send(json.dumps(handshake))
 
                     worker_task = asyncio.create_task(self.worker(ws))
                     receiver_task = asyncio.create_task(self.receiver(ws))
@@ -512,4 +726,6 @@ class AlfonsoAgent:
 
 
 if __name__ == "__main__":
-    asyncio.run(AlfonsoAgent().start())
+    import sys
+    url = sys.argv[1] if len(sys.argv) > 1 else "ws://localhost:8765"
+    asyncio.run(AlfonsoAgent(url).start())

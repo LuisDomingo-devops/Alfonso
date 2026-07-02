@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import asyncio
+import inspect
 import re
 
 from app.core.intent_router import IntentRouter
@@ -12,6 +13,7 @@ from app.core.tool_registry import (
     get_tool,
     is_client_tool,
     get_client_action,
+    prepare_tool_args,
 )
 
 from app.core.alfonso_bridge import bridge
@@ -32,8 +34,6 @@ _TOOL_TIMEOUT = 30
 
 _DIRECT_CONFIRM = {
     "browser_navigate": "Navegación completada.",
-    "create_file": "Archivo creado correctamente.",
-    "delete_file": "Archivo eliminado.",
 }
 
 
@@ -44,8 +44,43 @@ FORCE_TOOL_KEYWORDS = [
     "ejecuta",
     "click",
     "escribe",
+    "escriba",
+    "escribir",
+    "escribas",
+    "añade",
+    "añada",
+    "añde",
+    "anade",
+    "añadi",
+    "añadir",
+    "anadir",
+    "añadas",
+    "anada",
+    "agrega",
+    "agregar",
+    "agregue",
+    "ponga",
+    "poner",
     "navega",
     "visita",
+    "crea",
+    "crear",
+    "borra",
+    "borrar",
+    "borar",
+    "elimina",
+    "elmina",
+    "elminar",
+    "suprime",
+    "suprimir",
+    "cierra",
+    "cerrar",
+    "renombra",
+    "renombrar",
+    "cambia",
+    "cambiar",
+    "cambiae",
+    "cambiá",
 ]
 
 
@@ -102,7 +137,188 @@ def _check_and_store_fact(user_message: str, session_id: str) -> bool:
         return True
     return False
 
+def find_base_path_in_history(folder_name: str, history: list) -> str | None:
+    # Buscar patrones de ruta que terminen en folder_name o folder_name/ en la sesión actual
+    pattern = re.compile(rf"((?:[a-zA-Z]:|/mnt/[a-z]/Users/[^/]+|/home/[^/]+)/[^ ]+/{re.escape(folder_name)})", re.IGNORECASE)
+    for msg in history:
+        content = msg.get("content", "")
+        m = pattern.search(content.replace("\\", "/"))
+        if m:
+            return m.group(1)
+    return None
 
+
+def parse_file_operation_directly(msg: str, client_info: dict | None, history: list) -> dict | None:
+    msg_clean = msg.strip()
+    
+    # Obtener rutas de base
+    home = "C:/Users/luisd"
+    desktop = "C:/Users/luisd/Desktop"
+    if isinstance(client_info, dict):
+        home = client_info.get("home", home).replace("\\", "/")
+        desktop = f"{home}/Desktop"
+        
+    def is_likely_path(p: str) -> bool:
+        return "/" in p or "\\" in p or "." in p or p.startswith("~") or p.startswith("C:") or p.startswith("c:")
+
+    def resolve_path(p: str) -> str:
+        p = p.strip().replace("\\", "/")
+        if (p.startswith('"') and p.endswith('"')) or (p.startswith("'") and p.endswith("'")):
+            p = p[1:-1].strip()
+            
+        parts = p.split("/")
+        if len(parts) > 1:
+            base_folder = parts[0]
+            base_path = find_base_path_in_history(base_folder, history)
+            if base_path:
+                remainder = "/".join(parts[1:])
+                return f"{base_path}/{remainder}"
+                
+        if re.match(r"^[a-zA-Z]:", p) or p.startswith("/") or p.startswith("~"):
+            return p
+            
+        # Si es un nombre de archivo plano y no contiene barras de ruta, resolverlo bajo el último directorio operativo del historial
+        if "/" not in p and "\\" not in p:
+            last_folder = None
+            for h in reversed(history):
+                try:
+                    import json
+                    h_data = json.loads(h.get("content", ""))
+                    tool_args = h_data.get("args", {})
+                    path_val = tool_args.get("path", "")
+                    if path_val:
+                        path_val = path_val.replace("\\", "/")
+                        # Si la herramienta anterior creó una carpeta, la usamos de base
+                        if h_data.get("tool") in ("create_directory",):
+                            last_folder = path_val
+                            break
+                        # Si fue un archivo, extraemos su carpeta contenedora
+                        elif "/" in path_val:
+                            last_folder = "/".join(path_val.split("/")[:-1])
+                            break
+                except Exception:
+                    pass
+            if last_folder:
+                return f"{last_folder}/{p}"
+
+        if "escritorio" in msg.lower() or "desktop" in msg.lower():
+            return f"{desktop}/{p}"
+        return f"{home}/{p}"
+
+    # 1. RENAME FILE/FOLDER
+    # Estructura directa: "renombra X a Y" o "cambia el nombre de X a Y"
+    m = re.search(r"\b(?:renombra|renombrá|cambia|cambiar|cambiae)\s+(?:el\s+nombre\s+de\s+|el\s+archivo\s+|la\s+carpeta\s+)?(\S+)\s+(?:a|por)\s+(\S+)", msg_clean, re.IGNORECASE)
+    if not m:
+        # Estructura pasiva/descriptiva: "el archivo que se llama X cambiae el nombre a Y"
+        m = re.search(r"\b(?:el\s+archivo\s+)?(?:dentro\s+de\s+\S+\s+)?(?:que\s+se\s+llama\s+)?(\S+)\s+(?:cambia|cambiae|renombra|cambiá)\s+(?:el\s+nombre\s+)?(?:a|por)\s+(\S+)", msg_clean, re.IGNORECASE)
+        
+    if m:
+        src = m.group(1)
+        if is_likely_path(src):
+            src_res = resolve_path(src)
+            dst_raw = m.group(2).strip().replace("\\", "/")
+            new_name = dst_raw.split("/")[-1]
+            return {"tool": "rename_file", "args": {"path": src_res, "new_name": new_name}}
+
+    # 2. READ FILE (lee el archivo <path>)
+    m = re.search(r"\b(?:lee|leé)\s+(?:el\s+archivo\s+|contenido\s+de\s+)?(\S+)", msg_clean, re.IGNORECASE)
+    if m:
+        path = m.group(1)
+        if is_likely_path(path):
+            return {"tool": "read_file", "args": {"path": resolve_path(path)}}
+
+    # 3. DELETE FILE (elimina el archivo <path>)
+    m = re.search(r"\b(?:elimina|elmina|elminar|borra|borrar|suprime)\s+el\s+archivo\s+(\S+)", msg_clean, re.IGNORECASE)
+    if m:
+        path = m.group(1)
+        if is_likely_path(path):
+            return {"tool": "delete_file", "args": {"path": resolve_path(path)}}
+
+    # 4. DELETE DIRECTORY (elimina la carpeta <path>)
+    m = re.search(r"\b(?:elimina|elmina|elminar|borra|borrar)\s+la\s+carpeta\s+(\S+)", msg_clean, re.IGNORECASE)
+    if m:
+        path = m.group(1)
+        if is_likely_path(path):
+            return {"tool": "delete_directory", "args": {"path": resolve_path(path)}}
+
+    # 5. CREATE DIRECTORY (crea una carpeta llamada <name> en el escritorio)
+    m = re.search(r"\bcrea\s+(?:una\s+carpeta\s+|un\s+directorio\s+)(?:de\s+mi\s+|en\s+mi\s+|en\s+el\s+)?(?:escritorio|desktop)?\s*(?:que\s+se\s+llame\s+|llamada\s+|llamado\s+)?([a-zA-Z0-9_\-\s]+)", msg_clean, re.IGNORECASE)
+    if m:
+        folder_name = m.group(1).strip()
+        # Limpiar sufijos que se hayan podido colar en la captura
+        folder_name = re.sub(r"\s+(?:en\s+mi\s+|en\s+el\s+|de\s+mi\s+)?(?:escritorio|desktop)$", "", folder_name, flags=re.IGNORECASE).strip()
+        if "escritorio" in msg_clean.lower() or "desktop" in msg_clean.lower():
+            res_path = f"{desktop}/{folder_name}"
+        else:
+            res_path = f"{home}/{folder_name}"
+        return {"tool": "create_directory", "args": {"path": res_path}}
+
+    # 6. DELETE/READ/WRITE CON RESOLUCIÓN DINÁMICA DE EXTENSIONES (elimina el archivo X de la carpeta Y)
+    m = re.search(r"\b(?:elimina|elmina|elminar|borra|borrar|suprime|lee|muestra)\s+el\s+archivo\s+(\S+)\s+(?:de\s+la\s+carpeta\s+|de\s+|en\s+la\s+carpeta\s+|en\s+)(\S+)", msg_clean, re.IGNORECASE)
+    if m:
+        filename = m.group(1).strip()
+        folder = m.group(2).strip()
+        folder_res = resolve_path(folder)
+        
+        final_filename = filename
+        try:
+            import os
+            # Mapear ruta de Windows en WSL si aplica
+            check_path = folder_res
+            if check_path.startswith("C:/") or check_path.startswith("c:/"):
+                check_path = "/mnt/" + check_path[0].lower() + check_path[2:]
+            
+            if os.path.isdir(check_path):
+                for f in os.listdir(check_path):
+                    if os.path.splitext(f)[0].lower() == filename.lower():
+                        final_filename = f
+                        break
+        except Exception:
+            pass
+            
+        final_path = f"{folder_res}/{final_filename}"
+        action = "delete_file" if any(x in msg_clean.lower() for x in ["elimina", "elmina", "borra"]) else "read_file"
+        return {"tool": action, "args": {"path": final_path}}
+
+    # 7. APPEND DETERMINISTA (añade a X Y / al archivo X añade Y)
+    # Caso A: "añade a [archivo] [contenido]" (soportando erratas como añde / anade)
+    m = re.search(r"\b(?:añade|añde|anade|agrega|escribe|escribir)\s+(?:a\s+|en\s+)(?:el\s+archivo\s+)?(\S+)\s+(.+)", msg_clean, re.IGNORECASE)
+    if not m:
+        # Caso B: "al archivo [archivo] añade/escribe [contenido]"
+        m = re.search(r"\bal\s+archivo\s+(\S+)\s+(?:añade|añde|anade|agrega|escribe)\s+(.+)", msg_clean, re.IGNORECASE)
+        
+    if m:
+        filename = m.group(1).strip()
+        content = m.group(2).strip()
+        return {"tool": "append_file", "args": {"path": resolve_path(filename), "content": content}}
+
+    # 8. CREATE FILE DETERMINISTA (crea el archivo X que diga Y / dentro de esta carpeta crea un archivo X que diga Y)
+    m = re.search(r"\b(?:crea|escribir|escribe)\s+(?:un\s+archivo\s+|el\s+archivo\s+)?(\S+)\s+(?:que\s+diga|con\s+contenido)\s+(.+)", msg_clean, re.IGNORECASE)
+    if m:
+        filename = m.group(1).strip()
+        content = m.group(2).strip()
+        
+        folder = None
+        if any(x in msg_clean.lower() for x in ["esta carpeta", "este directorio", "esa carpeta"]):
+            for h in reversed(history):
+                try:
+                    import json
+                    h_data = json.loads(h.get("content", ""))
+                    if h_data.get("tool") in ("create_directory",):
+                        folder = h_data.get("args", {}).get("path")
+                        break
+                except Exception:
+                    pass
+        if not folder:
+            if "escritorio" in msg_clean.lower() or "desktop" in msg_clean.lower():
+                folder = desktop
+            else:
+                folder = home
+                
+        final_path = f"{folder}/{filename}" if folder else resolve_path(filename)
+        return {"tool": "create_file", "args": {"path": final_path, "content": content}}
+
+    return None
 class PlannerOrchestrator:
     """
     Pipeline único de Alfonso (post Fase 2): no hay EventBus ni AgentRegistry.
@@ -128,11 +344,33 @@ class PlannerOrchestrator:
             memory.add_message(session_id, "user", user_message)
 
         # Consultar recuerdos semánticos relevantes (Fase 4)
-        facts = vector_memory.query_facts(user_message, limit=3)
+        # 1. Buscar datos generales/personales relevantes al mensaje
+        general_facts = vector_memory.query_facts(user_message, limit=3)
+        
+        # 2. Buscar explícitamente directrices de estilo conversacional y preferencias de formato
+        style_queries = ["estilo de respuesta", "preferencia de formato", "personalidad de Alfonso"]
+        style_facts = []
+        for q in style_queries:
+            results = vector_memory.query_facts(q, limit=2)
+            for fact in results:
+                if fact not in style_facts:
+                    style_facts.append(fact)
+        
         memory_parts = []
-        if facts:
+        
+        # Inyectar primero la sección específica de estilo
+        if style_facts:
+            memory_parts.append("[Directrices de estilo preferidas por el usuario:]")
+            for fact in style_facts:
+                memory_parts.append(f"- {fact}")
+            memory_parts.append("")
+            
+        # Inyectar los recuerdos semánticos generales relevantes
+        # Excluimos duplicados que ya estén en estilo
+        filtered_general = [f for f in general_facts if f not in style_facts]
+        if filtered_general:
             memory_parts.append("[Recuerdos semánticos relevantes del usuario:]")
-            for fact in facts:
+            for fact in filtered_general:
                 memory_parts.append(f"- {fact}")
             memory_parts.append("")
             
@@ -168,32 +406,44 @@ class PlannerOrchestrator:
             }
 
         # ------------------------------------------------------------
-        # TOOL — parseo de la respuesta del LLM en modo tool
+        # DETECCION DE TOOL DIRECTA (DETERMINISTA)
         # ------------------------------------------------------------
-        raw = await llm.generate(
-            user_message,
-            mode="tool",
-            request_id=request_id,
-            memory=memory_text,
-        )
+        history_msgs = memory.get_history(session_id) if session_id else []
+        direct_tool = parse_file_operation_directly(user_message, bridge.client_info, history_msgs)
+        
+        if direct_tool:
+            tool_name = direct_tool["tool"]
+            args = direct_tool["args"]
+            logger.info("Filtro determinista: detectada tool %s con args %s", tool_name, args)
+        else:
+            # ------------------------------------------------------------
+            # TOOL — parseo de la respuesta del LLM en modo tool
+            # ------------------------------------------------------------
+            raw = await llm.generate(
+                user_message,
+                mode="tool",
+                request_id=request_id,
+                memory=memory_text,
+            )
+            logger.info("Raw LLM output: %s", repr(raw))
 
-        data = extract_json_robust(raw)
-        logger.info("LLM tool response: %s", data)
-        if not data:
-            error.warning("LLM no devolvió JSON de tool válido")
-            return {
-                "type": "error",
-                "message": "JSON tool inválido",
-                "raw": raw,
-            }
+            data = extract_json_robust(raw)
+            logger.info("LLM tool response: %s", data)
+            if not data:
+                error.warning("LLM no devolvió JSON de tool válido")
+                return {
+                    "type": "error",
+                    "message": "JSON tool inválido",
+                    "raw": raw,
+                }
 
-        tool_name, args = _extract_tool_and_args(data)
+            tool_name, args = _extract_tool_and_args(data)
 
-        if not tool_name:
-            return {
-                "type": "error",
-                "message": "Tool desconocida",
-            }
+            if not tool_name:
+                return {
+                    "type": "error",
+                    "message": "Tool desconocida",
+                }
 
         # ------------------------------------------------------------
         # EJECUCIÓN — cliente (bridge) o servidor (tool_registry)
@@ -235,6 +485,24 @@ class PlannerOrchestrator:
                     "message": f"No existe {tool_name}",
                 }
 
+            # Validar/Adaptar argumentos usando el esquema de la Fase 1
+            validation_res = prepare_tool_args(tool_name, args, request_id)
+            if not validation_res.ok:
+                error.warning("Validación de argumentos falló para %s: %s", tool_name, validation_res.error)
+                return {
+                    "type": "error",
+                    "message": validation_res.error,
+                }
+            args = validation_res.args
+
+            # Inyectar session_id si la firma de la función lo requiere
+            try:
+                sig = inspect.signature(tool)
+                if "session_id" in sig.parameters:
+                    args["session_id"] = session_id or "global"
+            except Exception as e:
+                logger.warning("No se pudo inspeccionar la firma de la tool %s: %s", tool_name, e)
+
             try:
                 if asyncio.iscoroutinefunction(tool):
                     result = await asyncio.wait_for(
@@ -272,6 +540,12 @@ class PlannerOrchestrator:
                 }
 
             execution = "server"
+
+        # Registrar llamadas de herramientas y sus resultados en el historial de la sesión para el contexto de Alfonso
+        if session_id:
+            import json
+            memory.add_message(session_id, "assistant", json.dumps({"tool": tool_name, "args": args}))
+            memory.add_message(session_id, "system", f"Tool output: {json.dumps(result)}")
 
         # ------------------------------------------------------------
         # RESPUESTA UNIFICADA

@@ -1,17 +1,16 @@
 import sys
 import os
 import uuid
-import numpy as np # Necesario para las funciones trigonométricas en la animación
+import numpy as np
 import asyncio
-import websockets
-import json
 import base64
+import random
+import datetime
 
 from PyQt6.QtWidgets import (QApplication, QMainWindow, QVBoxLayout, 
-                             QWidget, QLabel, QFrame, QMessageBox, QPushButton, QLineEdit, QHBoxLayout, QScrollArea, QProgressBar)
-from PyQt6.QtCore import QThread, pyqtSignal, Qt, QTimer, QPropertyAnimation, QEasingCurve, pyqtProperty, QEvent # Añadidos para la animación
-from PyQt6.QtGui import QScreen, QPainter, QColor, QBrush, QPen, QPainterPath # Añadidos para el dibujo personalizado
-from PyQt6 import uic
+                             QWidget, QLabel, QFrame, QPushButton, QLineEdit, QHBoxLayout, QScrollArea, QProgressBar, QGridLayout, QTableWidget, QTableWidgetItem, QHeaderView, QMenu)
+from PyQt6.QtCore import QThread, pyqtSignal, Qt, QTimer, QPropertyAnimation, QEasingCurve, pyqtProperty, QEvent
+from PyQt6.QtGui import QScreen, QPainter, QColor, QBrush, QPen, QPainterPath, QFont, QKeyEvent
 
 from core.api_client import AlfonsoAPI
 from core.processor import ResponseProcessor
@@ -23,7 +22,6 @@ class AssistantThread(QThread):
     """Hilo secundario para el loop de escucha de voz."""
     new_message = pyqtSignal(str, str) # sender, message
     state_changed = pyqtSignal(str)    # idle, idle_text, listening, thinking, speaking
-    # NEW: Signal for agent status (optional, but good for GUI feedback)
     agent_status_changed = pyqtSignal(str) # connected, disconnected, error
     audio_level_updated = pyqtSignal(int, str) # level, device_name
 
@@ -34,17 +32,36 @@ class AssistantThread(QThread):
         self.audio = AudioService()
         self.processor = ResponseProcessor()
         self.running = True
-        self.session_id = str(uuid.uuid4())
+        # Obtener o crear Session ID persistente en ui/logs/session_config.json
+        gui_dir = os.path.dirname(os.path.abspath(__file__))
+        ui_dir = os.path.dirname(gui_dir)
+        logs_dir = os.path.join(ui_dir, "logs")
+        os.makedirs(logs_dir, exist_ok=True)
+        config_path = os.path.join(logs_dir, "session_config.json")
+        
+        session_id = None
+        if os.path.exists(config_path):
+            try:
+                import json
+                with open(config_path, "r", encoding="utf-8") as f:
+                    session_id = json.load(f).get("session_id")
+            except Exception:
+                pass
+        
+        if not session_id:
+            session_id = str(uuid.uuid4())
+            try:
+                import json
+                with open(config_path, "w", encoding="utf-8") as f:
+                    json.dump({"session_id": session_id}, f, indent=4)
+            except Exception:
+                pass
+                
+        self.session_id = session_id
         self.text_mode = False
         self.pending_text_message = None
-
-        # NEW: Alfonso Agent Logic
-        self.agent_logic = AlfonsoAgentLogic(registry_file=self.config.get('agent_registry_file', ".env.apps"))
-        self.bridge_url = config.get('bridge_url', "ws://localhost:8765") # Assuming bridge URL is passed in config
-        self.websocket = None # To hold the WebSocket connection
-        self.loop = None # asyncio event loop
+        self.loop = None 
         
-        # Identificar el micrófono con "nombre y apellidos"
         self.device_name = "Dispositivo Predeterminado"
         device_id = config.get('device')
         if device_id is not None:
@@ -54,32 +71,27 @@ class AssistantThread(QThread):
                     break
 
     def set_text_mode(self, enabled: bool):
-        """Cambia entre modo voz y modo texto."""
         self.text_mode = enabled
         self.state_changed.emit("idle_text" if enabled else "idle")
 
     def send_text_message(self, message: str):
-        """Procesa un mensaje de texto (llamado desde la GUI)."""
         if not message.strip():
             return
         self.pending_text_message = message
 
     async def _audio_loop(self):
-        """Loop de procesamiento de voz convertido a async."""
         keyword = self.config.get('keyword', 'alfonso').lower()
         device = self.config.get('device', None)
         output_device = self.config.get('output_device', None)
 
-        # Handle threshold calibration for GUI mode
-        threshold = self.config.get('threshold') # Get the raw value, which can be None
+        threshold = self.config.get('threshold')
         if threshold is None:
             effective_device = device if device is not None else self.audio.device
             threshold = await asyncio.to_thread(self.audio.calibrate_threshold, effective_device)
-            self.config['threshold'] = threshold # Update config for consistency
+            self.config['threshold'] = threshold 
 
         while self.running:
             try:
-                # MODO TEXTO
                 if self.text_mode:
                     if self.pending_text_message:
                         user_text = self.pending_text_message
@@ -98,55 +110,41 @@ class AssistantThread(QThread):
                             self.state_changed.emit("speaking")
                             audio_bytes = base64.b64decode(audio_b64)
                             await asyncio.to_thread(self.audio.play_audio, audio_bytes, device=output_device)
-                        else: # If server does not provide audio, use local TTS
-                            if response_text: # Only speak if there's text to speak
+                        else:
+                            if response_text:
                                 self.state_changed.emit("speaking")
-                                # Intentamos primero la voz humana (Edge-TTS)
                                 audio_path = await self.audio.text_to_speech_human(response_text)
                                 if audio_path:
                                     await asyncio.to_thread(self.audio.play_audio_file, audio_path)
-                                else: # Fallback a voz robótica local si falla Edge-TTS
+                                else:
                                     audio_bytes = await asyncio.to_thread(self.audio.text_to_wav_bytes, response_text)
                                     if audio_bytes:
                                         await asyncio.to_thread(self.audio.play_audio, audio_bytes, device=output_device)
                         
-                        self.state_changed.emit("idle_text") # Vuelve a idle_text después de hablar
+                        self.state_changed.emit("idle_text")
                     else:
                         self.msleep(100)
                     continue
 
-                # Fase 1: Grabar chunk de audio (usamos to_thread para no bloquear el loop de comandos)
                 wav = await asyncio.to_thread(self.audio.record_chunk, 3, device=device)
-                
-                # Emitir nivel de audio y nombre del micro para la GUI
                 level = self.audio.get_level(wav)
                 self.audio_level_updated.emit(level, self.device_name)
 
                 if not self.audio.has_voice(wav, threshold):
-                    # El log de volumen ahora sale desde audio.py para ser más preciso
                     continue
 
                 print("[DEBUG] Voz detectada, verificando wake word...")
-                # --- FASE 1.1: Detección de Wake Word local ---
-                # Reemplazar la llamada a la API por una función local de detección de wake word
-                # Por ahora, consideraremos cualquier voz detectada como una "wake word" basada en la actividad de voz.
-                # Un modelo de wake word local más sofisticado (ej. Vosk, picovoice) se integraría aquí.
-                # La variable `wakeword_text` se mantiene para compatibilidad con código posterior, pero estará vacía.
                 wake_word_detected_locally = self.audio.has_voice(wav, threshold)
-                wakeword_text = "" # No hay texto real de la detección local de wake word todavía
                 if wake_word_detected_locally:
                     print(f"[OK] Wake word '{keyword}' detectada (mediante actividad de voz local).")
                     self.state_changed.emit("listening")
                     self.new_message.emit("Alfonso", "Dime, te escucho...")
 
-                    await asyncio.sleep(0.3) # Tiempo de recuperación para el driver de audio
+                    await asyncio.sleep(0.3)
 
-                    # Fase 2: Escuchar Orden (Grabamos 5s)
                     wav_order = await asyncio.to_thread(self.audio.record_chunk, 5, device=device)
-                    
                     self.state_changed.emit("thinking")
                     
-                    # --- FASE 2.1: Transcripción Local (Evita el 404) ---
                     print(f"\n[INFO] Procesando transcripción local...")
                     user_text = await asyncio.to_thread(self.audio.transcribe_local, wav_order)
                     
@@ -154,22 +152,19 @@ class AssistantThread(QThread):
                         print(f"[OK] Alfonso ha entendido: '{user_text}'")
                         self.new_message.emit("Tú", user_text)
                         
-                        # --- FASE 2.2: Envío al cerebro Alfonso (/chat) ---
-                        # El payload enviado es: {"message": user_text, "session_id": self.session_id}
                         chat_res = await asyncio.to_thread(self.api.send_chat, user_text, self.session_id)
                         response_data = chat_res.get("result", {})
                         response_text = self.processor.format_response(response_data)
                         
                         self.new_message.emit("Alfonso", response_text)
                         
-                        # --- FASE 2.2: Reproducción de Audio (TTS) ---
                         audio_b64 = response_data.get("audio")
                         if audio_b64:
                             self.state_changed.emit("speaking")
                             audio_bytes = base64.b64decode(audio_b64)
                             await asyncio.to_thread(self.audio.play_audio, audio_bytes, device=output_device)
-                        else: # If server does not provide audio, use local TTS
-                            if response_text: # Only speak if there's text to speak
+                        else:
+                            if response_text:
                                 self.state_changed.emit("speaking")
                                 audio_path = await self.audio.text_to_speech_human(response_text)
                                 if audio_path:
@@ -187,51 +182,14 @@ class AssistantThread(QThread):
 
             except Exception as e:
                 print(f"[ERROR] Error en el loop de audio: {e}")
-                # En lugar de romper el loop (break), esperamos un poco e intentamos reconectar
                 self.state_changed.emit("error")
                 await asyncio.sleep(2)
                 continue
 
-    async def _agent_websocket_client_loop(self):
-        """Connects to AlfonsoBridge and listens for commands."""
-        while self.running:
-            ws = None
-            try:
-                self.agent_status_changed.emit("connecting")
-                async with websockets.connect(
-                    self.bridge_url,
-                    ping_interval=30,
-                    ping_timeout=90,
-                    max_size=2**23
-                ) as ws:
-                    self.websocket = ws
-                    self.agent_status_changed.emit("connected")
-                    print(f"[AGENT] Conexión establecida con el Host en {self.bridge_url}")
-                    async for message in ws:
-                        try:
-                            data = json.loads(message)
-                            print(f"[AGENT] Ejecutando acción: {data.get('action')}")
-                            response = await self.agent_logic.execute_command(data)
-                            await ws.send(json.dumps(response))
-                        except json.JSONDecodeError:
-                            print("[AGENT] Error: Mensaje del Bridge no es un JSON válido")
-            except (websockets.exceptions.ConnectionClosed, ConnectionRefusedError) as e:
-                print(f"[WARNING] Conexión a Alfonso Bridge perdida o rechazada: {e}. Reintentando en 5 segundos...")
-                self.agent_status_changed.emit("disconnected")
-                self.websocket = None
-                await asyncio.sleep(5)
-            except Exception as e:
-                print(f"[ERROR] Error inesperado en el cliente del agente: {e}")
-                self.agent_status_changed.emit("error")
-                self.websocket = None
-                await asyncio.sleep(5)
-
     def run(self):
-        """Main entry point for the QThread, running the asyncio event loop."""
         self.loop = asyncio.new_event_loop()
         asyncio.set_event_loop(self.loop)
 
-        # Initial backend connection check (can be blocking here or made async)
         self.state_changed.emit("connecting")
         print(f"[INFO] Intentando conectar al servidor backend: {self.api.base_url}")
         try:
@@ -247,9 +205,8 @@ class AssistantThread(QThread):
 
         self.state_changed.emit("idle")
 
-        # Run both the audio loop and the agent WebSocket client loop concurrently
         try:
-            self.loop.run_until_complete(asyncio.gather(self._audio_loop(), self._agent_websocket_client_loop()))
+            self.loop.run_until_complete(self._audio_loop())
         except asyncio.CancelledError:
             print("[INFO] AssistantThread tasks cancelled.")
         finally:
@@ -257,174 +214,371 @@ class AssistantThread(QThread):
             print("[INFO] Asyncio event loop closed.")
 
     def stop(self):
-        """Stops the running asyncio tasks and the event loop."""
         self.running = False
         if self.loop and self.loop.is_running():
-            # Schedule tasks to be cancelled from the event loop thread
             self.loop.call_soon_threadsafe(lambda: [task.cancel() for task in asyncio.all_tasks(self.loop)])
-            # The QThread.wait() will block until run() finishes.
-        self.wait() # Wait for the QThread to finish its run() method
+        self.wait()
+
+
+class HUDPanel(QFrame):
+    """Contenedor visual estilo HUD con bordes iluminados y títulos retro (M.U.T.H.U.R.)."""
+    def __init__(self, title, parent=None):
+        super().__init__(parent)
+        self.title = title
+        self.setObjectName("HUDPanel")
+        self.setStyleSheet("""
+            #HUDPanel {
+                background-color: rgba(6, 8, 12, 230);
+                border: 1px solid rgba(0, 240, 255, 30);
+                border-radius: 4px;
+            }
+        """)
+        self.main_layout = QVBoxLayout(self)
+        self.main_layout.setContentsMargins(15, 35, 15, 15)
+        
+    def paintEvent(self, event):
+        super().paintEvent(event)
+        painter = QPainter(self)
+        painter.setRenderHint(QPainter.RenderHint.Antialiasing)
+        
+        # Paleta de colores
+        cyan = QColor(0, 240, 255, 120)
+        amber = QColor(255, 184, 0, 220)
+        
+        # Título del panel
+        font = QFont("Consolas", 10, QFont.Weight.Bold)
+        painter.setFont(font)
+        painter.setPen(amber)
+        painter.drawText(15, 22, self.title.upper())
+        
+        # Esquinas estilo HUD
+        w, h = self.width(), self.height()
+        painter.setPen(QPen(cyan, 2))
+        length = 12
+        # Superior Izquierda
+        painter.drawLine(0, 0, length, 0)
+        painter.drawLine(0, 0, 0, length)
+        # Superior Derecha
+        painter.drawLine(w, 0, w - length, 0)
+        painter.drawLine(w, 0, w, length)
+        # Inferior Izquierda
+        painter.drawLine(0, h, length, h)
+        painter.drawLine(0, h, 0, h - length)
+        # Inferior Derecha
+        painter.drawLine(w, h, w - length, h)
+        painter.drawLine(w, h, w, h - length)
+
 
 class AnimatedWaveWidget(QWidget):
-    """
-    Widget personalizado para mostrar una animación de onda/pulso
-    que reacciona al estado del asistente.
-    """
+    """Visualizador de rostro digital de Cain (Robocop 2) reactivo y animado."""
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.setFixedSize(250, 250) # Reactor Core más grande y simétrico
+        self.setMinimumSize(280, 280)
         self._state = "idle"
         self._animation_phase = 0.0
         self._timer = QTimer(self)
         self._timer.timeout.connect(self._update_animation)
-        self._timer.start(30) # Aproximadamente 30 FPS
+        self._timer.start(30)
 
-        self._base_color = QColor(85, 85, 85) # Gris por defecto
+        self._raw_photo = QPixmap(os.path.join(gui_dir, "alfonso_photo.jpg"))
+        self._processed_photo = None
+        if not self._raw_photo.isNull():
+            self._processed_photo = self._process_hologram_image(self._raw_photo)
+
+        # Colores originales de los estados conservados exactamente
+        self._base_color = QColor(255, 184, 0)
         self._target_color = self._base_color
         self._current_color = self._base_color
-
-        self._pulse_amplitude = 0 # Amplitud del pulso del círculo central
-        self._wave_amplitude = 0  # Amplitud de la onda
-        self._wave_frequency = 0  # Frecuencia de la onda
-        self._wave_speed = 0      # Velocidad de desplazamiento de la onda
 
         self._color_animation = QPropertyAnimation(self, b"current_color")
         self._color_animation.setDuration(500)
         self._color_animation.setEasingCurve(QEasingCurve.Type.InOutQuad)
 
+    def _process_hologram_image(self, raw_pixmap):
+        from PyQt6.QtGui import QImage, QColor, QPainter, QBrush, QPixmap
+        from PyQt6.QtCore import Qt, QSize
+        import math
+        
+        # 1. Scale photo to a standard size for processing (e.g. 240x280)
+        img = raw_pixmap.toImage().scaled(240, 280, Qt.AspectRatioMode.KeepAspectRatioByExpanding, Qt.TransformationMode.SmoothTransformation)
+        
+        # Crop tightly to center face
+        cx_img = (img.width() - 200) // 2
+        cy_img = (img.height() - 240) // 2
+        img = img.copy(cx_img, cy_img, 200, 240)
+        
+        # Convert to ARGB32
+        img = img.convertToFormat(QImage.Format.Format_ARGB32)
+        
+        # 2. Apply soft vignette to black (isolate the face)
+        width, height = img.width(), img.height()
+        mask_cx, mask_cy = width / 2.0, height / 2.0
+        rx, ry = 85.0, 110.0 # Radios de la elipse facial
+        
+        for y in range(height):
+            for x in range(width):
+                col = QColor.fromRgb(img.pixel(x, y))
+                
+                # Factor de viñeta elíptica suave para fundir el borde de la foto a negro
+                dx = (x - mask_cx) / rx
+                dy = (y - mask_cy) / ry
+                dist = math.sqrt(dx*dx + dy*dy)
+                
+                if dist >= 1.0:
+                    alpha_factor = 0.0
+                else:
+                    # Atenuación coseno suave hacia los bordes
+                    alpha_factor = math.cos(dist * math.pi / 2.0) ** 2
+                
+                # Multiplicar los componentes R, G, B por el factor de viñeta para fundir a negro puro
+                r_final = int(col.red() * alpha_factor)
+                g_final = int(col.green() * alpha_factor)
+                b_final = int(col.blue() * alpha_factor)
+                
+                img.setPixel(x, y, QColor(r_final, g_final, b_final, col.alpha()).rgb())
+        
+        # 3. Generate the CRT Phosphor shadow mask pattern on top
+        crt_mask = QImage(QSize(200, 240), QImage.Format.Format_ARGB32)
+        crt_mask.fill(Qt.GlobalColor.transparent)
+        
+        m_painter = QPainter(crt_mask)
+        m_painter.drawImage(0, 0, img)
+        
+        # Draw dense diagonal grid dots or fine lines to match the screen grid
+        m_painter.setPen(QColor(0, 0, 0, 100)) # dark grid
+        for y in range(0, 240, 2):
+            offset = 1 if (y % 4 == 0) else 0
+            for x in range(offset, 200, 2):
+                m_painter.drawPoint(x, y)
+                
+        m_painter.end()
+        
+        return QPixmap.fromImage(crt_mask)
+
     def set_current_color(self, color: QColor):
-        """Setter para la propiedad animada 'current_color'."""
         self._current_color = color
         self.update()
 
     def get_current_color(self) -> QColor:
-        """Getter para la propiedad animada 'current_color'."""
         return self._current_color
 
-    # Define current_color como una propiedad animable para QPropertyAnimation
     current_color = pyqtProperty(QColor, get_current_color, fset=set_current_color)
 
     def set_state(self, state: str):
-        """Actualiza el estado del widget y ajusta la animación."""
         if self._state == state:
             return
 
         self._state = state
-        self._animation_phase = 0.0 # Reiniciar fase de animación al cambiar de estado
+        self._animation_phase = 0.0
 
-        # Configuraciones de animación para cada estado
+        # Mismo código de color original conservado exactamente
         state_configs = {
-            "connecting": {"color": QColor(0, 255, 255), "pulse_amp": 5, "wave_amp": 10, "wave_freq": 0.05, "wave_speed": 0.05},
-            "idle":       {"color": QColor(0, 150, 255, 150), "pulse_amp": 2, "wave_amp": 5, "wave_freq": 0.02, "wave_speed": 0.02},
-            "idle_text":  {"color": QColor(100, 150, 255), "pulse_amp": 3, "wave_amp": 8, "wave_freq": 0.05, "wave_speed": 0.03},
-            "listening":  {"color": QColor(0, 255, 255), "pulse_amp": 15, "wave_amp": 20, "wave_freq": 0.15, "wave_speed": 0.12},
-            "thinking":   {"color": QColor(255, 0, 255), "pulse_amp": 8, "wave_amp": 30, "wave_freq": 0.08, "wave_speed": 0.05},
-            "speaking":   {"color": QColor(0, 255, 150), "pulse_amp": 12, "wave_amp": 25, "wave_freq": 0.2, "wave_speed": 0.15},
-            "error":      {"color": QColor(255, 50, 50), "pulse_amp": 0, "wave_amp": 0, "wave_freq": 0, "wave_speed": 0},
+            "connecting": {"color": QColor(255, 184, 0)},
+            "idle":       {"color": QColor(0, 191, 255, 150)},
+            "idle_text":  {"color": QColor(0, 240, 255)},
+            "listening":  {"color": QColor(0, 255, 102)},
+            "thinking":   {"color": QColor(255, 100, 0)},
+            "speaking":   {"color": QColor(0, 255, 240)},
+            "error":      {"color": QColor(255, 50, 50)},
         }
 
         config = state_configs.get(state, state_configs["idle"])
         self._target_color = config["color"]
-        self._pulse_amplitude = config["pulse_amp"]
-        self._wave_amplitude = config["wave_amp"]
-        self._wave_frequency = config["wave_freq"]
-        self._wave_speed = config["wave_speed"]
 
-        # Animar el cambio de color
         self._color_animation.stop()
         self._color_animation.setStartValue(self._current_color)
         self._color_animation.setEndValue(self._target_color)
         self._color_animation.start()
 
-        if state == "error": # Detener animación en estado de error
-            self._timer.stop()
+        if state == "error":
+            self._timer.start(30)
         else:
-            self._timer.start(30) # Reiniciar timer si no está en error
-
-        self.update() # Forzar un repintado inicial
-
-    def _update_animation(self):
-        """Actualiza la fase de animación y repinta el widget."""
-        self._animation_phase += self._wave_speed
-        if self._animation_phase > 2 * np.pi: # Mantener la fase en un rango manejable
-            self._animation_phase -= 2 * np.pi
+            self._timer.start(30)
         self.update()
 
     def paintEvent(self, event):
-        """Método de pintado personalizado para dibujar la onda/pulso."""
         painter = QPainter(self)
         painter.setRenderHint(QPainter.RenderHint.Antialiasing)
 
         width = self.width()
         height = self.height()
-        center_x = width / 2
-        center_y = height / 2
+        cx = width / 2
+        cy = height / 2
         
-        # Color base con transparencia para efectos HUD
         base_color = self._current_color
         
-        # 1. Anillo Exterior (Dashed/Segmentado)
-        pen_outer = QPen(base_color, 1)
-        pen_outer.setStyle(Qt.PenStyle.DashLine)
-        painter.setPen(pen_outer)
-        outer_rect = int(min(width, height) * 0.8)
-        painter.save()
-        painter.translate(center_x, center_y)
-        painter.rotate(np.degrees(self._animation_phase * 0.5))
-        painter.drawEllipse(int(-outer_rect/2), int(-outer_rect/2), outer_rect, outer_rect)
-        painter.restore()
+        # Jitter / glitch sutil para estados de procesamiento / error
+        jitter_x = 0
+        jitter_y = 0
+        if self._state in ["thinking", "error"]:
+            jitter_x = random.randint(-4, 4)
+            jitter_y = random.randint(-4, 4)
 
-        # 2. Anillo de Datos (Círculos pequeños rotando)
-        pen_data = QPen(base_color, 2)
-        painter.setPen(pen_data)
-        mid_rect = int(min(width, height) * 0.6)
-        start_angle = int(np.degrees(self._animation_phase) * 16)
-        span_angle = 60 * 16 # 60 grados
-        painter.drawArc(int(center_x - mid_rect/2), int(center_y - mid_rect/2), 
-                        mid_rect, mid_rect, start_angle, span_angle)
-        painter.drawArc(int(center_x - mid_rect/2), int(center_y - mid_rect/2), 
-                        mid_rect, mid_rect, start_angle + 180*16, span_angle)
+        # Dibujar Cuadrícula de Fondo CRT
+        painter.setPen(QPen(QColor(base_color.red(), base_color.green(), base_color.blue(), 15), 1))
+        grid_size = 20
+        for x in range(0, width, grid_size):
+            painter.drawLine(x, 0, x, height)
+        for y in range(0, height, grid_size):
+            painter.drawLine(0, y, width, y)
 
-        # 3. Núcleo Pulsante
-        pulse_val = np.abs(np.sin(self._animation_phase * 2))
-        core_size = int(20 + self._pulse_amplitude * pulse_val)
-        
-        # Brillo exterior del núcleo
-        glow_color = QColor(base_color)
-        glow_color.setAlpha(int(100 * pulse_val))
-        painter.setBrush(QBrush(glow_color))
-        painter.setPen(Qt.PenStyle.NoPen)
-        painter.drawEllipse(int(center_x - core_size), int(center_y - core_size), core_size*2, core_size*2)
-        
-        # Núcleo sólido
-        painter.setBrush(QBrush(base_color))
-        painter.drawEllipse(int(center_x - 10), int(center_y - 10), 20, 20)
-        
-        # 4. Líneas de Escaneo laterales (opcional, estilo HUD)
-        if self._state in ["listening", "speaking"]:
-            painter.setPen(QPen(base_color, 1))
-            scan_y = int(center_y + self._wave_amplitude * np.sin(self._animation_phase * 3))
-            painter.drawLine(int(center_x - outer_rect/2), scan_y, int(center_x + outer_rect/2), scan_y)
+        # Línea de barrido CRT
+        scan_y = int((self._animation_phase / (2 * np.pi)) * height)
+        painter.setPen(QPen(QColor(base_color.red(), base_color.green(), base_color.blue(), 75), 1.5))
+        painter.drawLine(0, scan_y, width, scan_y)
 
+        # --- DIBUJAR ROSTRO HOLOGRÁFICO PROCESADO ---
+        if self._processed_photo and not self._processed_photo.isNull():
+            # Dimensiones base del holograma centrado
+            h_w, h_h = 200, 240
+            rx = int(cx - h_w / 2 + jitter_x)
+            ry = int(cy - h_h / 2 + jitter_y)
+            
+            # 1. Animación Orgánica Humana: Respiración (Sutil escala senoidal continua en IDLE)
+            breath_scale_x = 1.0 + np.sin(self._animation_phase * 1.5) * 0.008
+            breath_scale_y = 1.0 + np.cos(self._animation_phase * 1.5) * 0.005
+            
+            # 2. Animación Activa de Mandíbula/Mouth Warp al hablar (speaking)
+            speak_warp = 0.0
+            if self._state == "speaking":
+                # Oscilación rápida simulando abrir/cerrar boca de manera natural
+                speak_warp = np.abs(np.sin(self._animation_phase * 8.5)) * 0.08
+                breath_scale_y += speak_warp
+            
+            final_w = int(h_w * breath_scale_x)
+            final_h = int(h_h * breath_scale_y)
+            rx = int(cx - final_w / 2 + jitter_x)
+            ry = int(cy - final_h / 2 + jitter_y)
+            
+            # Dibujar la foto base procesada con las transformaciones de respiración/hablar
+            # Para simular parpadeo de ojos real (Blinking) de forma holográfica
+            # El ciclo senoidal rápido simula que cierra los párpados de vez en cuando
+            is_blinking = False
+            # Parpadeo periódico cada ~4 segundos
+            cycle = int(self._animation_phase * 10) % 150
+            if cycle in [140, 141, 142, 143]: # Parpadeo rápido (120ms)
+                is_blinking = True
 
-import random
+            # Modo Glitch para Thinking / Error: Cortar la imagen en tiras horizontales desplazadas
+            if self._state in ["thinking", "error"] and random.random() < 0.35:
+                segment_h = final_h // 5
+                for i in range(5):
+                    seg_y = ry + i * segment_h
+                    seg_offset = random.choice([-8, -4, 4, 8]) if random.random() < 0.4 else 0
+                    painter.drawPixmap(
+                        rx + seg_offset, seg_y, final_w, segment_h,
+                        self._processed_photo,
+                        0, i * (240 // 5), 200, 240 // 5
+                    )
+            else:
+                # Dibujo del holograma base
+                painter.drawPixmap(rx, ry, final_w, final_h, self._processed_photo)
+                
+            # Sobredibujar efectos encima de la foto (Corte de ojos y boca en tiempo real)
+            # A. Parpadeo de ojos (Blinking): Pone una sombra oscura sobre el área ocular de la foto
+            if is_blinking:
+                painter.save()
+                # Ojos en el retrato (relativos al rectángulo dinámico rx, ry)
+                eye_y = ry + int(final_h * 0.35)
+                eye_h = int(final_h * 0.06)
+                eye_l_x = rx + int(final_w * 0.34)
+                eye_r_x = rx + int(final_w * 0.58)
+                eye_w = int(final_w * 0.12)
+                
+                # Relleno del color de la sombra (simula párpados cerrados fundiéndose)
+                painter.fillRect(eye_l_x, eye_y, eye_w, eye_h, QColor(0, 0, 0, 220))
+                painter.fillRect(eye_r_x, eye_y, eye_w, eye_h, QColor(0, 0, 0, 220))
+                painter.restore()
+                
+            # B. Vocalización de la boca (Mouth warp overlay):
+            # Dibuja una sombra dinámica en los labios que se contrae y expande al hablar
+            if self._state == "speaking" and speak_warp > 0.01:
+                painter.save()
+                # Posición de la boca aproximada en la imagen
+                mouth_y = ry + int(final_h * 0.62)
+                mouth_x = rx + int(final_w * 0.38)
+                mouth_w = int(final_w * 0.24)
+                mouth_h = int(final_h * 0.03 + speak_warp * 30) # Se estira al abrir
+                
+                # Hueco oscuro interno de la boca que se modula al hablar
+                painter.fillRect(mouth_x + 4, mouth_y + 1, mouth_w - 8, mouth_h, QColor(0, 0, 0, 160))
+                painter.restore()
+
+            # C. Ondas de telemetría y escaneo sobre el rostro para enfatizar el estado activo
+            if self._state == "listening":
+                # Ondas concéntricas sutiles sobre los ojos (posicionados en el holograma)
+                # Ojos aproximados: L=(cx-25), R=(cx+25), Y=(cy-15)
+                painter.setPen(QPen(QColor(0, 255, 102, 100), 1))
+                pulse = int((self._animation_phase * 12) % 30)
+                painter.drawEllipse(int(cx - 25 + jitter_x - pulse/2), int(cy - 15 + jitter_y - pulse/2), pulse, pulse)
+                painter.drawEllipse(int(cx + 25 + jitter_x - pulse/2), int(cy - 15 + jitter_y - pulse/2), pulse, pulse)
+                
+            elif self._state == "speaking":
+                # Brillo de transmisión (Overlay translúcido fluctuante)
+                painter.save()
+                painter.setCompositionMode(QPainter.CompositionMode.CompositionMode_Screen)
+                opacity = int(40 + np.abs(np.sin(self._animation_phase * 8.0)) * 60)
+                painter.setOpacity(opacity / 255.0)
+                painter.drawPixmap(rx, ry, final_w, final_h, self._processed_photo)
+                painter.restore()
+                
+            elif self._state == "error":
+                # Flashear tinte rojo sobre el error
+                painter.save()
+                painter.setCompositionMode(QPainter.CompositionMode.CompositionMode_Screen)
+                painter.fillRect(rx, ry, final_w, final_h, QColor(255, 0, 0, 45))
+                painter.restore()
+
+            # E. Efecto de Ruido Estático VCR / Tracking analógico
+            painter.save()
+            # Línea de tracking VCR distorsionada horizontal
+            track_y = ry + int(((self._animation_phase * 1.5) % 1.0) * final_h)
+            painter.setPen(QPen(QColor(255, 255, 255, 60), 3))
+            painter.drawLine(rx, track_y, rx + final_w, track_y)
+            # Puntos de ruido estático VHS saltando aleatoriamente en el holograma
+            painter.setPen(QPen(QColor(255, 255, 255, 120), 1.2))
+            for _ in range(12):
+                noise_x = random.randint(rx, rx + final_w)
+                noise_y = random.randint(ry, ry + final_h)
+                painter.drawPoint(noise_x, noise_y)
+            painter.restore()
+
+            # D. Marco / HUD de escaneo holográfico exterior
+            painter.setPen(QPen(QColor(base_color.red(), base_color.green(), base_color.blue(), 140), 1))
+            # Retículo exterior
+            pad = 8
+            painter.drawRect(rx - pad, ry - pad, h_w + pad*2, h_h + pad*2)
+            # Indicadores de telemetría (esquinas resaltadas)
+            painter.setPen(QPen(base_color, 2))
+            len_hud = 15
+            # Top-Left
+            painter.drawLine(rx - pad, ry - pad, rx - pad + len_hud, ry - pad)
+            painter.drawLine(rx - pad, ry - pad, rx - pad, ry - pad + len_hud)
+            # Top-Right
+            painter.drawLine(rx + h_w + pad, ry - pad, rx + h_w + pad - len_hud, ry - pad)
+            painter.drawLine(rx + h_w + pad, ry - pad, rx + h_w + pad, ry - pad + len_hud)
+            # Bot-Left
+            painter.drawLine(rx - pad, ry + h_h + pad, rx - pad + len_hud, ry + h_h + pad)
+            painter.drawLine(rx - pad, ry + h_h + pad, rx - pad, ry + h_h + pad - len_hud)
+            # Bot-Right
+            painter.drawLine(rx + h_w + pad, ry + h_h + pad, rx + h_w + pad - len_hud, ry + h_h + pad)
+            painter.drawLine(rx + h_w + pad, ry + h_h + pad, rx + h_w + pad, ry + h_h + pad - len_hud)
 
 class DataMatrixGrid(QWidget):
-    """Cuadrícula de 8x8 con estados aleatorios parpadeantes (M.U.T.H.U.R. / JARVIS)."""
+    """Cuadrícula 8x8 con animación parpadeante."""
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.setFixedSize(140, 140)
+        self.setFixedSize(160, 160)
         self.matrix = [[random.choice([0, 1]) for _ in range(8)] for _ in range(8)]
-        # Apagado (muy oscuro), Verde neón, Ámbar retro
-        self.colors = [QColor(20, 20, 25), QColor(0, 255, 102), QColor(255, 184, 0)]
+        self.colors = [QColor(15, 20, 25), QColor(0, 240, 255), QColor(255, 184, 0)]
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.update_matrix)
-        self.timer.start(300)
+        self.timer.start(250)
 
     def update_matrix(self):
         for i in range(8):
             for j in range(8):
-                if random.random() < 0.2:
+                if random.random() < 0.25:
                     self.matrix[i][j] = random.choice([0, 1, 2])
         self.update()
 
@@ -432,491 +586,484 @@ class DataMatrixGrid(QWidget):
         painter = QPainter(self)
         painter.setRenderHint(QPainter.RenderHint.Antialiasing)
         
-        # Fondo con transparencia de cristal esmerilado
-        painter.fillRect(self.rect(), QColor(5, 10, 15, 180))
-        
-        # Borde cian sutil
-        pen = QPen(QColor(0, 191, 255, 60), 1)
-        painter.setPen(pen)
-        painter.drawRect(0, 0, self.width() - 1, self.height() - 1)
-        
-        cell_w = (self.width() - 20) / 8
-        cell_h = (self.height() - 20) / 8
+        cell_w = self.width() / 8
+        cell_h = self.height() / 8
         
         for i in range(8):
             for j in range(8):
                 val = self.matrix[i][j]
                 color = self.colors[val]
                 painter.setBrush(QBrush(color))
-                painter.setPen(Qt.PenStyle.NoPen)
-                x = 10 + i * cell_w + 2
-                y = 10 + j * cell_h + 2
-                painter.drawRect(int(x), int(y), int(cell_w - 4), int(cell_h - 4))
-
-
-class SystemRingChart(QWidget):
-    """Anillos concéntricos giratorios y segmentados de telemetría (JARVIS)."""
-    def __init__(self, parent=None):
-        super().__init__(parent)
-        self.setFixedSize(140, 140)
-        self.angle_offset = 0
-        self.cpu_usage = 42
-        self.ram_usage = 58
-        self.timer = QTimer(self)
-        self.timer.timeout.connect(self.tick)
-        self.timer.start(50)
-
-    def tick(self):
-        self.angle_offset = (self.angle_offset + 2) % 360
-        self.cpu_usage = max(10, min(95, self.cpu_usage + random.randint(-4, 4)))
-        self.ram_usage = max(10, min(95, self.ram_usage + random.randint(-1, 1)))
-        self.update()
-
-    def paintEvent(self, event):
-        painter = QPainter(self)
-        painter.setRenderHint(QPainter.RenderHint.Antialiasing)
-        
-        # Fondo translúcido
-        painter.fillRect(self.rect(), QColor(5, 10, 15, 180))
-        
-        # Borde exterior cian
-        pen_border = QPen(QColor(0, 191, 255, 60), 1)
-        painter.setPen(pen_border)
-        painter.drawRect(0, 0, self.width() - 1, self.height() - 1)
-
-        cx, cy = self.width() / 2, self.height() / 2
-        
-        # Anillo exterior - CPU (Cian/Azul eléctrico)
-        pen_cyan = QPen(QColor(0, 240, 255, 180), 2)
-        painter.setPen(pen_cyan)
-        r1 = 48
-        span = int((self.cpu_usage / 100.0) * 360 * 16)
-        painter.drawArc(int(cx - r1), int(cy - r1), r1*2, r1*2, self.angle_offset * 16, span)
-        
-        # Anillo interior - RAM (Ámbar)
-        pen_amber = QPen(QColor(255, 184, 0, 180), 3)
-        painter.setPen(pen_amber)
-        r2 = 32
-        span_ram = int((self.ram_usage / 100.0) * 360 * 16)
-        painter.drawArc(int(cx - r2), int(cy - r2), r2*2, r2*2, -self.angle_offset * 16, span_ram)
-        
-        # Línea de barrido de radar
-        pen_radar = QPen(QColor(0, 240, 255, 40), 1)
-        painter.setPen(pen_radar)
-        painter.save()
-        painter.translate(cx, cy)
-        painter.rotate(self.angle_offset)
-        painter.drawLine(0, 0, 0, -r1)
-        painter.restore()
-
-        # Texto informativo en mayúsculas (M.U.T.H.U.R.)
-        painter.setPen(QColor(0, 240, 255))
-        painter.setFont(self.font())
-        painter.drawText(8, 20, "SYS CORE")
-        painter.drawText(8, 130, f"CPU:{self.cpu_usage}%")
-        painter.setPen(QColor(255, 184, 0))
-        painter.drawText(75, 130, f"RAM:{self.ram_usage}%")
+                painter.setPen(QPen(QColor(0, 240, 255, 40), 1))
+                x = i * cell_w + 1
+                y = j * cell_h + 1
+                painter.drawRect(int(x), int(y), int(cell_w - 2), int(cell_h - 2))
 
 
 class CrtTerminalLabel(QLabel):
-    """Consola de texto con efecto CRT y líneas de escaneo (M.U.T.H.U.R.)."""
-    def __init__(self, text="", parent=None):
+    """Label de texto con líneas CRT decorativas de fósforo/ámbar."""
+    def __init__(self, text="", color_hex="#00FF66", parent=None):
         super().__init__(text, parent)
+        self.color_hex = color_hex
+        self.setTextInteractionFlags(Qt.TextInteractionFlag.TextSelectableByMouse)
+        self.setFocusPolicy(Qt.FocusPolicy.ClickFocus)
         
     def paintEvent(self, event):
         super().paintEvent(event)
-        
-        # Superponer líneas de barrido oscuras muy sutiles
         painter = QPainter(self)
-        pen = QPen(QColor(0, 0, 0, 50), 1)
+        pen = QPen(QColor(0, 0, 0, 45), 1)
         painter.setPen(pen)
         for y in range(0, self.height(), 3):
             painter.drawLine(0, y, self.width(), y)
 
+    def keyPressEvent(self, event):
+        if event.key() == Qt.Key.Key_C and event.modifiers() == Qt.KeyboardModifier.ControlModifier:
+            selected = self.selectedText()
+            if selected:
+                QApplication.clipboard().setText(selected)
+                event.accept()
+        else:
+            super().keyPressEvent(event)
 
-class ReactorWindow(QMainWindow):
-    """Ventana independiente para el núcleo central (Reactor ARC)."""
-    def __init__(self, config):
-        super().__init__()
-        self.setWindowFlags(
-            Qt.WindowType.FramelessWindowHint | 
-            Qt.WindowType.WindowStaysOnTopHint | 
-            Qt.WindowType.Tool
-        )
-        self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
-        self.setFixedSize(300, 300)
-
-        self.container = QFrame(self)
-        self.container.setObjectName("ReactorContainer")
-        self.layout = QVBoxLayout(self.container)
-
-        self.animated_wave = AnimatedWaveWidget()
-        self.state_lbl = QLabel("STANDBY")
-        self.state_lbl.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.state_lbl.setStyleSheet("font-size: 11px; color: #00FFFF; text-transform: uppercase; font-family: 'Roboto Mono', 'Consolas'; font-weight: bold; letter-spacing: 1px;")
-
-        self.layout.addWidget(self.animated_wave, alignment=Qt.AlignmentFlag.AlignCenter)
-        self.layout.addWidget(self.state_lbl)
-        self.setCentralWidget(self.container)
-        self._drag_pos = None
-
-    def mousePressEvent(self, event):
-        if event.button() == Qt.MouseButton.LeftButton:
-            self._drag_pos = event.globalPosition().toPoint() - self.frameGeometry().topLeft()
+    def wheelEvent(self, event):
+        if event.modifiers() == Qt.KeyboardModifier.ControlModifier:
+            delta = event.angleDelta().y()
+            font = self.font()
+            size = font.pointSize()
+            if size <= 0:
+                size = font.pixelSize()
+                if size <= 0:
+                    size = 11
+                new_size = max(8, min(48, size + (1 if delta > 0 else -1)))
+                font.setPixelSize(new_size)
+            else:
+                new_size = max(8, min(48, size + (1 if delta > 0 else -1)))
+                font.setPointSize(new_size)
+            self.setFont(font)
             event.accept()
+        else:
+            super().wheelEvent(event)
 
-    def mouseMoveEvent(self, event):
-        if event.buttons() == Qt.MouseButton.LeftButton and self._drag_pos is not None:
-            self.move(event.globalPosition().toPoint() - self._drag_pos)
-            event.accept()
-
-    def update_visual_state(self, state):
-        self.animated_wave.set_state(state)
-        state_labels = {
-            "connecting": "INICIALIZANDO", "idle": "STANDBY", "idle_text": "MODO TECLADO", 
-            "listening": "ESCUCHANDO", "thinking": "PROCESANDO...", "speaking": "TRANSMITIENDO", 
-            "error": "ERROR DEL SISTEMA"
-        }
-        self.state_lbl.setText(state_labels.get(state, "OFFLINE"))
-        
-        border_colors = {
-            "connecting": "#FFBF00", "idle": "#00BFFF", "idle_text": "#0088FF", "listening": "#00FFFF",
-            "thinking": "#FF00FF", "speaking": "#00FF00", "error": "#FF4B4B"
-        }
-        color = border_colors.get(state, "#00BFFF")
-        self.container.setStyleSheet(f"""
-            #ReactorContainer {{
-                background-color: rgba(10, 10, 15, 220);
-                border-radius: 150px;
-                border: 2px solid {color};
-            }}
-        """)
+    def contextMenuEvent(self, event):
+        menu = QMenu(self)
+        copy_action = menu.addAction("Copiar Selección")
+        copy_action.setEnabled(self.hasSelectedText())
+        action = menu.exec(event.globalPos())
+        if action == copy_action:
+            QApplication.clipboard().setText(self.selectedText())
 
 
-class LogMonitorWindow(QMainWindow):
-    """Ventana independiente para monitorear logs del servidor en tiempo real (M.U.T.H.U.R.)."""
-    def __init__(self, config):
-        super().__init__()
-        self.setWindowFlags(
-            Qt.WindowType.FramelessWindowHint | 
-            Qt.WindowType.WindowStaysOnTopHint | 
-            Qt.WindowType.Tool
-        )
-        self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
-        self.setFixedSize(450, 350)
-
-        # Buscar directorio de logs de forma robusta
-        base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-        self.logs_dir = os.path.join(base_dir, 'logs')
-        
-        self.current_log_file = "app.log"
-        self._drag_pos = None
-
-        self.container = QFrame(self)
-        self.container.setObjectName("LogContainer")
-        self.container.setStyleSheet("""
-            #LogContainer {
-                background-color: rgba(10, 10, 15, 235);
-                border-radius: 10px;
-                border: 2px solid #FFB800; /* Estilo MUTHUR Ámbar por defecto */
-            }
-            QLabel {
-                color: #FFB800;
-                font-family: 'Roboto Mono', 'Consolas', monospace;
-                font-size: 10px;
-                font-weight: bold;
-            }
-            QPushButton {
-                background-color: rgba(255, 184, 0, 20);
-                color: #FFB800;
-                border: 1px solid #FFB800;
-                border-radius: 4px;
-                padding: 4px 8px;
-                font-family: 'Roboto Mono', 'Consolas';
-                font-size: 9px;
-                font-weight: bold;
-            }
-            QPushButton:hover {
-                background-color: rgba(255, 184, 0, 50);
-                color: #FFFFFF;
-            }
-            QPushButton:checked {
-                background-color: #FFB800;
-                color: #000000;
-            }
-        """)
-
-        layout = QVBoxLayout(self.container)
-        
-        # Título y Botones de selección de logs
-        title_lbl = QLabel("MUTHUR LOG MONITORING SYSTEM")
-        title_lbl.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        title_lbl.setStyleSheet("font-size: 11px; letter-spacing: 1px;")
-        layout.addWidget(title_lbl)
-
-        btn_layout = QHBoxLayout()
-        self.btn_app = QPushButton("APP")
-        self.btn_app.setCheckable(True)
-        self.btn_app.setChecked(True)
-        self.btn_app.clicked.connect(lambda: self.change_log_file("app.log", self.btn_app))
-
-        self.btn_agent = QPushButton("AGENT")
-        self.btn_agent.setCheckable(True)
-        self.btn_agent.clicked.connect(lambda: self.change_log_file("agent.log", self.btn_agent))
-
-        self.btn_errors = QPushButton("ERRORS")
-        self.btn_errors.setCheckable(True)
-        self.btn_errors.clicked.connect(lambda: self.change_log_file("errors.log", self.btn_errors))
-
-        self.buttons = [self.btn_app, self.btn_agent, self.btn_errors]
-        
-        btn_layout.addWidget(self.btn_app)
-        btn_layout.addWidget(self.btn_agent)
-        btn_layout.addWidget(self.btn_errors)
-        layout.addLayout(btn_layout)
-
-        # Consola de Visualización
-        self.scroll_area = QScrollArea()
-        self.scroll_area.setWidgetResizable(True)
-        self.scroll_area.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
-        self.scroll_area.viewport().setStyleSheet("background-color: #050508;")
-        self.scroll_area.setStyleSheet("""
-            QScrollArea {
-                background-color: #050508;
-                border: 1px solid rgba(255, 184, 0, 40);
-                border-radius: 4px;
-            }
-            QScrollBar:vertical {
-                border: none;
-                background: rgba(255, 184, 0, 10);
-                width: 6px;
-                margin: 0px;
-                border-radius: 3px;
-            }
-            QScrollBar::handle:vertical {
-                background: rgba(255, 184, 0, 120);
-                min-height: 20px;
-                border-radius: 3px;
-            }
-        """)
-
-        self.log_display = CrtTerminalLabel("INICIALIZANDO LECTURA DE LOGS...")
-        self.log_display.setAlignment(Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignTop)
-        self.log_display.setWordWrap(True)
-        self.log_display.setContentsMargins(10, 10, 10, 10)
-        self.log_display.setStyleSheet("""
-            color: #FFB800;
-            background-color: #050508;
-            font-family: 'Roboto Mono', 'Consolas', monospace;
-            font-size: 10px;
-        """)
-        self.scroll_area.setWidget(self.log_display)
-        layout.addWidget(self.scroll_area)
-
-        self.setCentralWidget(self.container)
-
-        # Temporizador para leer logs periódicamente
-        self.timer = QTimer(self)
-        self.timer.timeout.connect(self.read_logs)
-        self.timer.start(1000) # Cada segundo
-        
-        self.read_logs()
-
-    def mousePressEvent(self, event):
-        if event.button() == Qt.MouseButton.LeftButton:
-            self._drag_pos = event.globalPosition().toPoint() - self.frameGeometry().topLeft()
-            event.accept()
-
-    def mouseMoveEvent(self, event):
-        if event.buttons() == Qt.MouseButton.LeftButton and self._drag_pos is not None:
-            self.move(event.globalPosition().toPoint() - self._drag_pos)
-            event.accept()
-
-    def change_log_file(self, filename, active_btn):
-        self.current_log_file = filename
-        for btn in self.buttons:
-            btn.setChecked(btn == active_btn)
-        self.log_display.setText(f"CARGANDO LOG: {filename.upper()}...")
-        self.read_logs()
-
-    def read_logs(self):
-        filepath = os.path.join(self.logs_dir, self.current_log_file)
-        if not os.path.exists(filepath):
-            self.log_display.setText(f"ERROR: ARCHIVO DE LOG NO ENCONTRADO\n{filepath}")
-            return
-        
-        try:
-            with open(filepath, 'r', encoding='utf-8', errors='ignore') as f:
-                lines = f.readlines()
-                last_lines = lines[-40:]
-                content = "".join(last_lines)
-                if not content.strip():
-                    content = "ARCHIVO DE LOG VACÍO"
-                self.log_display.setText(content)
-                QTimer.singleShot(20, lambda: self.scroll_area.verticalScrollBar().setValue(self.scroll_area.verticalScrollBar().maximum()))
-        except Exception as e:
-            self.log_display.setText(f"ERROR AL LEER EL ARCHIVO:\n{str(e)}")
-
-
-class AlfonsoGUI(QMainWindow):
+class AlfonsoHUDDashboard(QMainWindow):
+    """Dashboard consolidado MUTHUR SYSTEMS en pantalla completa."""
     def __init__(self, config):
         super().__init__()
         self.config = config
+        self.setWindowTitle("MUTHUR SYSTEMS ver 3.7.19")
+        self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
+        self.showFullScreen() 
         
-        self.setWindowFlags(
-            Qt.WindowType.FramelessWindowHint | 
-            Qt.WindowType.WindowStaysOnTopHint | 
-            Qt.WindowType.Tool
-        )
-        self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
-        self.setFixedSize(580, 450) # Ampliado para el diseño lateral
-
-        # Contenedor principal
-        self.container = QFrame()
-        self.container.setObjectName("MainContainer")
-        self.container.setStyleSheet("""
-            #MainContainer {
-                background-color: rgba(10, 10, 15, 245);
-                border-radius: 12px;
-                border: 2px solid rgba(0, 240, 255, 90);
+        self.setStyleSheet("""
+            QMainWindow {
+                background-color: #030406;
             }
             QLabel {
-                color: #00FFFF;
-                font-family: 'Roboto Mono', 'Consolas', monospace;
+                font-family: 'Consolas', 'Roboto Mono', monospace;
                 font-size: 11px;
-                font-weight: bold;
-                letter-spacing: 1px;
-            }
-            QLineEdit {
-                background-color: rgba(20, 20, 25, 230);
-                color: #FFFFFF;
-                border: 1px solid rgba(0, 240, 255, 80);
-                border-radius: 4px;
-                padding: 6px;
-                font-family: 'Roboto Mono', 'Consolas';
+                color: #FFB800;
             }
             QPushButton {
-                background-color: rgba(0, 191, 255, 30);
-                color: #00FFFF;
-                border: 1px solid #00BFFF;
-                border-radius: 4px;
-                padding: 6px 12px;
-                font-family: 'Roboto Mono', 'Consolas';
+                background-color: rgba(255, 184, 0, 15);
+                color: #FFB800;
+                border: 1px solid rgba(255, 184, 0, 50);
+                border-radius: 3px;
+                padding: 5px 12px;
+                font-family: 'Consolas';
+                font-size: 11px;
                 font-weight: bold;
-                font-size: 10px;
             }
             QPushButton:hover {
-                background-color: rgba(0, 240, 255, 60);
+                background-color: rgba(255, 184, 0, 40);
                 color: #FFFFFF;
             }
             QPushButton:pressed {
-                background-color: #00FFFF;
+                background-color: #FFB800;
                 color: #000000;
             }
+            QLineEdit {
+                background-color: rgba(10, 12, 16, 240);
+                color: #FFFFFF;
+                border: 1px solid rgba(0, 240, 255, 70);
+                border-radius: 4px;
+                padding: 8px;
+                font-family: 'Consolas';
+                font-size: 12px;
+            }
         """)
+
+        self.central_widget = QWidget()
+        self.setCentralWidget(self.central_widget)
+        self.main_layout = QVBoxLayout(self.central_widget)
+        self.main_layout.setContentsMargins(15, 15, 15, 15)
+        self.main_layout.setSpacing(15)
+
+        self.setup_header()
+        self.setup_body_columns()
+        self.setup_footer()
+
+        # Carpeta de logs local para la UI y el Agente (ui/logs)
+        self.ui_logs_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "logs")
+        os.makedirs(self.ui_logs_dir, exist_ok=True)
+
+        # Carpeta de logs del servidor (WSL / app)
+        base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        self.logs_dir = os.path.join(base_dir, 'logs')
+        if not os.path.isdir(self.logs_dir):
+            wsl_logs = r"\\wsl.localhost\Ubuntu\home\luisd\Alfonso\logs"
+            if os.path.isdir(wsl_logs):
+                self.logs_dir = wsl_logs
+                
+        self.current_log_file = "app.log"
+
+        self.text_mode_enabled = False
+        self.chat_history = ""
+        self.uptime_seconds = 67472 
         
-        main_layout = QVBoxLayout(self.container)
+        self.ui_timer = QTimer(self)
+        self.ui_timer.timeout.connect(self.update_telemetry)
+        self.ui_timer.start(1000)
+
+        self.log_timer = QTimer(self)
+        self.log_timer.timeout.connect(self.read_logs)
+        self.log_timer.start(1000)
+
+        self.agent_process = None
+        self.start_agent()
+        self.start_assistant()
+
+    def start_agent(self):
+        try:
+            import subprocess
+            gui_dir = os.path.dirname(os.path.abspath(__file__))
+            ui_dir = os.path.dirname(gui_dir)
+            agent_path = os.path.join(ui_dir, "alfonso_agent.py")
+            
+            python_exe = sys.executable
+            bridge_url = self.config.get('bridge_url', "ws://localhost:8765")
+            
+            # Limpiar agentes duplicados de forma no bloqueante usando psutil
+            try:
+                import psutil
+                current_pid = os.getpid()
+                for proc in psutil.process_iter(['pid', 'cmdline']):
+                    try:
+                        cmdline = proc.info.get('cmdline')
+                        if cmdline and any("alfonso_agent.py" in arg for arg in cmdline):
+                            if proc.info.get('pid') != current_pid:
+                                proc.terminate()
+                    except Exception:
+                        pass
+            except Exception:
+                pass
+
+            creation_flags = 0
+            if sys.platform == "win32":
+                # CREATE_NO_WINDOW = 0x08000000
+                creation_flags = 0x08000000
+                
+            self.agent_process = subprocess.Popen(
+                [python_exe, agent_path, bridge_url],
+                creationflags=creation_flags
+            )
+        except Exception as e:
+            print(f"Error al iniciar el agente: {e}")
+
+    def keyPressEvent(self, event: QKeyEvent):
+        if event.key() == Qt.Key.Key_Escape:
+            self.close_gui()
+        super().keyPressEvent(event)
+
+    def setup_header(self):
+        header_layout = QHBoxLayout()
         
-        # Distribución en dos columnas
-        content_layout = QHBoxLayout()
+        logo_lbl = QLabel("MUTHUR SYSTEMS\nver 3.7.19")
+        logo_lbl.setStyleSheet("font-size: 14px; font-weight: bold; color: #FFB800; letter-spacing: 1px;")
+        header_layout.addWidget(logo_lbl)
         
-        # Columna Izquierda: Telemetría / Diagnósticos (JARVIS style)
+        header_layout.addStretch()
+
+        self.tab_dashboard = QPushButton("DASHBOARD")
+        self.tab_dashboard.setStyleSheet("background-color: rgba(255, 184, 0, 40); border: 1px solid #FFB800; color: #FFFFFF;")
+        self.tab_modules = QPushButton("MODULES")
+        self.tab_diagnostics = QPushButton("DIAGNOSTICS")
+        self.tab_logs = QPushButton("LOGS")
+        self.tab_config = QPushButton("CONFIG")
+        
+        header_layout.addWidget(self.tab_dashboard)
+        header_layout.addWidget(self.tab_modules)
+        header_layout.addWidget(self.tab_diagnostics)
+        header_layout.addWidget(self.tab_logs)
+        header_layout.addWidget(self.tab_config)
+
+        header_layout.addStretch()
+
+        self.clock_lbl = QLabel("USER: ADMINISTRATOR   00:00:00\n00.00.0000")
+        self.clock_lbl.setAlignment(Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter)
+        self.clock_lbl.setStyleSheet("font-size: 12px; color: #00F0FF; font-weight: bold;")
+        header_layout.addWidget(self.clock_lbl)
+
+        self.main_layout.addLayout(header_layout)
+
+    def setup_body_columns(self):
+        body_layout = QHBoxLayout()
+        body_layout.setSpacing(15)
+
+        # COLUMNA IZQUIERDA
         left_layout = QVBoxLayout()
-        left_layout.setContentsMargins(5, 5, 5, 5)
-        left_layout.setSpacing(10)
+        left_layout.setSpacing(15)
+
+        self.panel_status = HUDPanel("SYSTEM STATUS")
+        status_vbox = QVBoxLayout()
+        self.lbl_sys_id = QLabel("SYS. ID: MUTHUR-OS.3.7.19")
+        self.lbl_core_temp = QLabel("CORE TEMP: 52.4 C")
+        self.lbl_memory = QLabel("MEMORY: 68%")
+        self.lbl_uptime = QLabel("UPTIME: 18:44:32")
+        self.lbl_power = QLabel("POWER: NOMINAL")
+        self.lbl_network = QLabel("NETWORK: SECURE")
+        self.lbl_sys_load = QLabel("SYS. LOAD: 42%")
+        self.lbl_operational = QLabel("\nALL SYSTEMS OPERATIONAL")
+        self.lbl_operational.setStyleSheet("color: #00FF66; font-weight: bold;")
         
-        lbl_core = QLabel("DIAGNOSTICS")
-        lbl_core.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.ring_widget = SystemRingChart()
-        
-        lbl_flow = QLabel("DATA TELEMETRY")
-        lbl_flow.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.matrix_widget = DataMatrixGrid()
-        
-        left_layout.addWidget(lbl_core)
-        left_layout.addWidget(self.ring_widget, alignment=Qt.AlignmentFlag.AlignCenter)
-        left_layout.addWidget(lbl_flow)
-        left_layout.addWidget(self.matrix_widget, alignment=Qt.AlignmentFlag.AlignCenter)
-        left_layout.addStretch()
-        
-        # Columna Derecha: Terminal / Conversación (M.U.T.H.U.R. style)
-        right_layout = QVBoxLayout()
-        
-        self.scroll_area = QScrollArea()
-        self.scroll_area.setObjectName("ChatScroll")
-        self.scroll_area.setWidgetResizable(True)
-        self.scroll_area.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
-        self.scroll_area.viewport().setStyleSheet("background-color: #050508;")
-        self.scroll_area.setStyleSheet("""
-            #ChatScroll {
-                background-color: #050508;
-                border: 1px solid rgba(0, 240, 255, 40);
-                border-radius: 6px;
-            }
-            QScrollBar:vertical {
+        for lbl in [self.lbl_sys_id, self.lbl_core_temp, self.lbl_memory, self.lbl_uptime, 
+                    self.lbl_power, self.lbl_network, self.lbl_sys_load, self.lbl_operational]:
+            status_vbox.addWidget(lbl)
+        self.panel_status.main_layout.addLayout(status_vbox)
+        left_layout.addWidget(self.panel_status, 1)
+
+        self.panel_proc = HUDPanel("ACTIVE PROCESSES")
+        self.proc_table = QTableWidget(7, 3)
+        self.proc_table.setHorizontalHeaderLabels(["PID", "PROC_NAME", "STATUS"])
+        self.proc_table.verticalHeader().setVisible(False)
+        self.proc_table.setStyleSheet("""
+            QTableWidget {
+                background-color: transparent;
                 border: none;
-                background: rgba(0, 240, 255, 10);
-                width: 6px;
-                margin: 0px;
-                border-radius: 3px;
+                gridline-color: rgba(0, 240, 255, 30);
+                color: #00FF66;
+                font-family: 'Consolas';
+                font-size: 10px;
             }
-            QScrollBar::handle:vertical {
-                background: rgba(0, 240, 255, 120);
-                min-height: 20px;
-                border-radius: 3px;
-            }
-        """)
-
-        # Consola de texto CRT personalizada
-        self.chat_lbl = CrtTerminalLabel("MUTHUR v4.2 ONLINE\nEsperando wake word...")
-        self.chat_lbl.setObjectName("ChatLabel")
-        self.chat_lbl.setAlignment(Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignTop)
-        self.chat_lbl.setWordWrap(True)
-        self.chat_lbl.setContentsMargins(12, 12, 12, 12)
-        self.chat_lbl.setStyleSheet("""
-            #ChatLabel {
-                font-size: 11px; 
-                line-height: 1.5;
-                color: #00FF66; /* Verde fósforo retro */
-                background-color: #050508;
-                font-family: 'Roboto Mono', 'Consolas', monospace;
+            QHeaderView::section {
+                background-color: rgba(255, 184, 0, 20);
+                color: #FFB800;
+                border: 1px solid rgba(0, 240, 255, 30);
+                font-size: 9px;
             }
         """)
-        self.scroll_area.setWidget(self.chat_lbl)
-        right_layout.addWidget(self.scroll_area)
+        processes = [
+            ("2104", "CORE.DAEMON", "RUNNING"),
+            ("2156", "NET.SERVICE", "RUNNING"),
+            ("2258", "DB.WATCHER", "RUNNING"),
+            ("2312", "IO.HANDLER", "RUNNING"),
+            ("2458", "SECURITY.MOD", "RUNNING"),
+            ("2596", "DIAG.MONITOR", "RUNNING"),
+            ("2768", "LOG.WRITER", "RUNNING")
+        ]
+        for row, (pid, name, status) in enumerate(processes):
+            self.proc_table.setItem(row, 0, QTableWidgetItem(pid))
+            self.proc_table.setItem(row, 1, QTableWidgetItem(name))
+            self.proc_table.setItem(row, 2, QTableWidgetItem(status))
+        self.proc_table.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
+        self.panel_proc.main_layout.addWidget(self.proc_table)
+        left_layout.addWidget(self.panel_proc, 1)
 
-        # Barra de Medición de Micrófono (VU Meter)
-        self.vu_container = QVBoxLayout()
-        self.mic_name_lbl = QLabel("MIC: BUSCANDO DISPOSITIVO...")
-        self.mic_name_lbl.setStyleSheet("font-size: 9px; color: rgba(0, 240, 255, 150);")
-        self.mic_name_lbl.setAlignment(Qt.AlignmentFlag.AlignLeft)
+        self.panel_logs = HUDPanel("LOG OUTPUT")
+        log_ctrls = QHBoxLayout()
+        self.btn_log_app = QPushButton("APP")
+        self.btn_log_app.clicked.connect(lambda: self.change_log_file("app.log", self.btn_log_app))
+        self.btn_log_agent = QPushButton("AGENT")
+        self.btn_log_agent.clicked.connect(lambda: self.change_log_file("agent.log", self.btn_log_agent))
+        self.btn_log_errors = QPushButton("ERRORS")
+        self.btn_log_errors.clicked.connect(lambda: self.change_log_file("errors.log", self.btn_log_errors))
+        log_ctrls.addWidget(self.btn_log_app)
+        log_ctrls.addWidget(self.btn_log_agent)
+        log_ctrls.addWidget(self.btn_log_errors)
+        self.panel_logs.main_layout.addLayout(log_ctrls)
+
+        self.log_scroll = QScrollArea()
+        self.log_scroll.setWidgetResizable(True)
+        self.log_scroll.viewport().setStyleSheet("background-color: #030406;")
+        self.log_display = CrtTerminalLabel("INITIALIZING LOG SYSTEM...", color_hex="#FFB800")
+        self.log_display.setWordWrap(True)
+        self.log_display.setStyleSheet("font-family: 'Consolas'; font-size: 14px; color: #FFB800; background-color: #030406;")
+        self.log_scroll.setWidget(self.log_display)
+        self.panel_logs.main_layout.addWidget(self.log_scroll)
+
+        body_layout.addLayout(left_layout, 1)
+
+        # COLUMNA CENTRAL
+        center_layout = QVBoxLayout()
+        center_layout.setSpacing(15)
+
+        self.panel_core = HUDPanel("CORE VISUALIZATION")
+        self.animated_wave = AnimatedWaveWidget()
+        self.panel_core.main_layout.addWidget(self.animated_wave, alignment=Qt.AlignmentFlag.AlignCenter)
         
+        self.state_lbl = QLabel("STANDBY")
+        self.state_lbl.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.state_lbl.setStyleSheet("font-size: 13px; font-weight: bold; color: #00F0FF; letter-spacing: 2px;")
+        self.panel_core.main_layout.addWidget(self.state_lbl)
+        center_layout.addWidget(self.panel_core, 2)
+
+        self.panel_chat = HUDPanel("CHAT CONSOLE / SIGNAL ANALYSIS")
+        
+        self.chat_scroll = QScrollArea()
+        self.chat_scroll.setWidgetResizable(True)
+        self.chat_scroll.viewport().setStyleSheet("background-color: #030406;")
+        self.chat_lbl = CrtTerminalLabel("MUTHUR v4.2 ONLINE\nEsperando wake word...", color_hex="#00FF66")
+        self.chat_lbl.setWordWrap(True)
+        self.chat_lbl.setStyleSheet("font-family: 'Consolas'; font-size: 11px; color: #00FF66; background-color: #030406; line-height: 1.4;")
+        self.chat_scroll.setWidget(self.chat_lbl)
+        self.panel_chat.main_layout.addWidget(self.chat_scroll)
+
+        chat_input_layout = QHBoxLayout()
+        self.btn_mode = QPushButton("VOZ")
+        self.btn_mode.clicked.connect(self.toggle_text_mode)
+        self.btn_mode.setStyleSheet("min-width: 60px;")
+        self.text_input = QLineEdit()
+        self.text_input.setPlaceholderText("INTRODUZCA ORDEN EN TERMINAL...")
+        self.text_input.returnPressed.connect(self.send_text_message)
+        
+        chat_input_layout.addWidget(self.btn_mode)
+        chat_input_layout.addWidget(self.text_input)
+        self.panel_chat.main_layout.addLayout(chat_input_layout)
+
+        center_layout.addWidget(self.panel_chat, 1)
+
+        body_layout.addLayout(center_layout, 1)
+
+        # COLUMNA DERECHA
+        right_layout = QVBoxLayout()
+        right_layout.setSpacing(15)
+
+        self.panel_scan = HUDPanel("SYSTEM SCAN / MIC INPUT")
+        self.mic_name_lbl = QLabel("MIC: BUSCANDO DISPOSITIVO...")
+        self.mic_name_lbl.setStyleSheet("font-size: 9px; color: #00F0FF;")
         self.vu_meter = QProgressBar()
         self.vu_meter.setRange(0, 32768)
-        self.vu_meter.setFixedHeight(6)
+        self.vu_meter.setFixedHeight(8)
         self.vu_meter.setTextVisible(False)
         self.vu_meter.setStyleSheet("""
             QProgressBar {
-                background-color: rgba(5, 5, 8, 200);
+                background-color: rgba(5, 8, 12, 230);
                 border: 1px solid rgba(0, 240, 255, 30);
-                border-radius: 3px;
+                border-radius: 4px;
             }
             QProgressBar::chunk {
                 background-color: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #00FF66, stop:0.7 #FFB800, stop:1 #FF4B4B);
             }
         """)
-        self.vu_container.addWidget(self.mic_name_lbl)
-        self.vu_container.addWidget(self.vu_meter)
-        right_layout.addLayout(self.vu_container)
+        self.panel_scan.main_layout.addWidget(self.mic_name_lbl)
+        self.panel_scan.main_layout.addWidget(self.vu_meter)
+        right_layout.addWidget(self.panel_scan, 1)
 
-        # Selector de Modos y Entrada de Texto
-        mode_button_layout = QHBoxLayout()
-        self.mode_button = QPushButton("MÉTODO: TECLADO")
-        self.mode_button.setObjectName("ModeBtn")
-        self.mode_button.clicked.connect(self.toggle_text_mode)
+        self.panel_matrix = HUDPanel("DATA MATRIX")
+        self.matrix_widget = DataMatrixGrid()
+        self.panel_matrix.main_layout.addWidget(self.matrix_widget, alignment=Qt.AlignmentFlag.AlignCenter)
+        right_layout.addWidget(self.panel_matrix, 2)
+
+        self.panel_modules = HUDPanel("MODULE OVERVIEW")
+        modules_layout = QGridLayout()
+        modules_layout.setSpacing(10)
         
-        self.close_button = QPushButton("SHUTDOWN")
-        self.close_button.setStyleSheet("""
+        mods = [
+            ("CORE", "ONLINE", "#00FF66"),
+            ("NETWORK", "ONLINE", "#00FF66"),
+            ("SECURITY", "ONLINE", "#00FF66"),
+            ("DATABASE", "ONLINE", "#00FF66"),
+            ("I/O SYSTEMS", "NOMINAL", "#FFB800")
+        ]
+        for idx, (name, status, color) in enumerate(mods):
+            name_lbl = QLabel(name)
+            name_lbl.setStyleSheet("font-weight: bold; color: #FFFFFF;")
+            status_lbl = QLabel(status)
+            status_lbl.setStyleSheet(f"color: {color}; font-weight: bold;")
+            status_lbl.setAlignment(Qt.AlignmentFlag.AlignRight)
+            modules_layout.addWidget(name_lbl, idx, 0)
+            modules_layout.addWidget(status_lbl, idx, 1)
+            
+        self.panel_modules.main_layout.addLayout(modules_layout)
+        right_layout.addWidget(self.panel_modules, 2)
+
+        self.panel_health = HUDPanel("SYSTEM HEALTH")
+        health_layout = QHBoxLayout()
+        self.health_bar = QProgressBar()
+        self.health_bar.setRange(0, 100)
+        self.health_bar.setValue(98)
+        self.health_bar.setFixedHeight(12)
+        self.health_bar.setTextVisible(False)
+        self.health_bar.setStyleSheet("""
+            QProgressBar {
+                background-color: rgba(5, 8, 12, 230);
+                border: 1px solid rgba(0, 240, 255, 30);
+                border-radius: 6px;
+            }
+            QProgressBar::chunk {
+                background-color: #00F0FF;
+            }
+        """)
+        health_val_lbl = QLabel("98%")
+        health_val_lbl.setStyleSheet("font-weight: bold; color: #00F0FF; font-size: 12px;")
+        health_layout.addWidget(self.health_bar)
+        health_layout.addWidget(health_val_lbl)
+        self.panel_health.main_layout.addLayout(health_layout)
+        right_layout.addWidget(self.panel_health, 1)
+
+        body_layout.addLayout(right_layout, 1)
+
+        body_layout.setStretch(0, 1)
+        body_layout.setStretch(1, 1)
+        body_layout.setStretch(2, 1)
+        self.main_layout.addLayout(body_layout, 3)
+        self.main_layout.addWidget(self.panel_logs, 1)
+
+    def setup_footer(self):
+        footer_layout = QHBoxLayout()
+
+        self.alert_btn = QPushButton(" 2 ALERTS ")
+        self.alert_btn.setStyleSheet("""
+            QPushButton {
+                background-color: rgba(255, 75, 75, 25);
+                color: #FF4B4B;
+                border: 2px solid #FF4B4B;
+                font-weight: bold;
+                letter-spacing: 1px;
+            }
+            QPushButton:hover {
+                background-color: #FF4B4B;
+                color: #000000;
+            }
+        """)
+        footer_layout.addWidget(self.alert_btn)
+        
+        footer_layout.addStretch()
+
+        self.btn_minimize = QPushButton("MINIMIZE")
+        self.btn_minimize.setStyleSheet("""
+            QPushButton {
+                background-color: rgba(0, 240, 255, 20);
+                color: #00F0FF;
+                border: 1px solid #00F0FF;
+            }
+            QPushButton:hover {
+                background-color: #00F0FF;
+                color: #000000;
+            }
+        """)
+        self.btn_minimize.clicked.connect(self.showMinimized)
+        footer_layout.addWidget(self.btn_minimize)
+
+        self.btn_shutdown = QPushButton("SHUTDOWN SYSTEM")
+        self.btn_shutdown.setStyleSheet("""
             QPushButton {
                 background-color: rgba(255, 75, 75, 20);
                 color: #FF4B4B;
@@ -927,51 +1074,20 @@ class AlfonsoGUI(QMainWindow):
                 color: #000000;
             }
         """)
-        self.close_button.clicked.connect(self.close_gui)
-        
-        mode_button_layout.addWidget(self.mode_button)
-        mode_button_layout.addStretch()
-        mode_button_layout.addWidget(self.close_button)
-        
-        right_layout.addLayout(mode_button_layout)
+        self.btn_shutdown.clicked.connect(self.close_gui)
+        footer_layout.addWidget(self.btn_shutdown)
 
-        self.text_input = QLineEdit()
-        self.text_input.setPlaceholderText("INTRODUZCA ORDEN EN TERMINAL...")
-        self.text_input.returnPressed.connect(self.send_text_message)
-        self.text_input.setVisible(False)
-        right_layout.addWidget(self.text_input)
-
-        # Armar el layout global horizontal
-        content_layout.addLayout(left_layout, 1)
-        content_layout.addLayout(right_layout, 2)
-        
-        main_layout.addLayout(content_layout)
-        self.setCentralWidget(self.container)
-
-        self.text_mode_enabled = False
-        self.start_assistant()
-        self.chat_history = ""
-        self._drag_pos = None
-
-    def mousePressEvent(self, event):
-        if event.button() == Qt.MouseButton.LeftButton:
-            self._drag_pos = event.globalPosition().toPoint() - self.frameGeometry().topLeft()
-            event.accept()
-
-    def mouseMoveEvent(self, event):
-        if event.buttons() == Qt.MouseButton.LeftButton and self._drag_pos is not None:
-            self.move(event.globalPosition().toPoint() - self._drag_pos)
-            event.accept()
+        self.main_layout.addLayout(footer_layout)
 
     def toggle_text_mode(self):
         self.text_mode_enabled = not self.text_mode_enabled
         if self.text_mode_enabled:
-            self.mode_button.setText("MÉTODO: VOZ")
-            self.text_input.setVisible(True)
+            self.btn_mode.setText("TECLADO")
+            self.btn_mode.setStyleSheet("background-color: rgba(0, 240, 255, 30); color: #00F0FF; border: 1px solid #00F0FF;")
             self.text_input.setFocus()
         else:
-            self.mode_button.setText("MÉTODO: TECLADO")
-            self.text_input.setVisible(False)
+            self.btn_mode.setText("VOZ")
+            self.btn_mode.setStyleSheet("")
             self.text_input.clear()
         self.thread.set_text_mode(self.text_mode_enabled)
 
@@ -979,13 +1095,10 @@ class AlfonsoGUI(QMainWindow):
         text = self.text_input.text().strip()
         if text:
             self.text_input.clear()
+            # Si el usuario envía texto pero está en modo VOZ, cambiar automáticamente a modo teclado/texto
+            if not self.text_mode_enabled:
+                self.toggle_text_mode()
             self.thread.send_text_message(text)
-
-    def move_to_bottom_center(self):
-        screen = QApplication.primaryScreen().availableGeometry()
-        x = (screen.width() - self.width()) // 2
-        y = screen.height() - self.height() - 20
-        self.move(x, y)
 
     def start_assistant(self):
         thread_config = self.config.copy()
@@ -993,103 +1106,93 @@ class AlfonsoGUI(QMainWindow):
         self.thread = AssistantThread(thread_config)
         self.thread.new_message.connect(self.update_chat)
         self.thread.state_changed.connect(self.update_visual_state)
-        self.thread.agent_status_changed.connect(self.update_agent_status)
         self.thread.audio_level_updated.connect(self.update_vu_meter)
         self.thread.start()
 
     def update_vu_meter(self, level, device_name):
         self.mic_name_lbl.setText(f"MIC: {device_name.upper()}")
         self.vu_meter.setValue(level)
-    
-    def close_gui(self):
-        if self.thread:
-            self.thread.stop()
-        os._exit(0)
 
     def update_chat(self, sender, text):
-        # MUTHUR retro terminal colors
         color = "#00FF66" if sender == "Alfonso" else "#FFB800"
         new_entry = f"<p><b style='color:{color};'>[{sender.upper()}]</b><br>{text}</p>"
         self.chat_history += new_entry
         self.chat_lbl.setText(self.chat_history)
-        
-        QTimer.singleShot(50, lambda: self.scroll_area.verticalScrollBar().setValue(self.scroll_area.verticalScrollBar().maximum()))
-
-    def update_agent_status(self, status: str):
-        print(f"[AGENT STATUS] {status.upper()}")
-
-    def closeEvent(self, event):
-        if self.thread and self.thread.isRunning():
-            reply = QMessageBox.question(self, 'Cerrar Alfonso',
-                                         "¿Estás seguro de que quieres cerrar Alfonso?",
-                                         QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
-                                         QMessageBox.StandardButton.No)
-            if reply == QMessageBox.StandardButton.Yes:
-                self.thread.stop()
-                event.accept()
-            else:
-                event.ignore()
+        QTimer.singleShot(50, lambda: self.chat_scroll.verticalScrollBar().setValue(self.chat_scroll.verticalScrollBar().maximum()))
 
     def update_visual_state(self, state):
-        border_colors = {
-            "connecting": "#FFBF00", "idle": "#00BFFF", "idle_text": "#0088FF", "listening": "#00FFFF",
-            "thinking": "#FF00FF", "speaking": "#00FF00", "error": "#FF4B4B"
+        self.animated_wave.set_state(state)
+        state_labels = {
+            "connecting": "INICIALIZANDO OS", "idle": "STANDBY", "idle_text": "TECLADO ACTIVO", 
+            "listening": "ESCUCHANDO...", "thinking": "PROCESANDO...", "speaking": "HABLANDO...", 
+            "error": "ERROR CRITICO"
         }
-        border_color = border_colors.get(state, "#00BFFF")
+        self.state_lbl.setText(state_labels.get(state, "OFFLINE"))
         
-        # Color del texto de terminal según el estado
-        terminal_text_colors = {
-            "connecting": "#FFBF00", "idle": "#00FF66", "idle_text": "#0088FF", "listening": "#00FFFF",
-            "thinking": "#FF00FF", "speaking": "#00FF00", "error": "#FF4B4B"
+        state_colors = {
+            "connecting": "#FFB800", "idle": "#00F0FF", "idle_text": "#00F0FF",
+            "listening": "#00FF66", "thinking": "#FFB800", "speaking": "#00FF66", "error": "#FF4B4B"
         }
-        text_color = terminal_text_colors.get(state, "#00FF66")
+        self.state_lbl.setStyleSheet(f"font-size: 13px; font-weight: bold; color: {state_colors.get(state, '#00F0FF')}; letter-spacing: 2px;")
 
-        self.container.setStyleSheet(f"""
-            #MainContainer {{
-                background-color: rgba(10, 10, 15, 245);
-                border-radius: 12px;
-                border: 2px solid {border_color};
-            }}
-            QLabel {{ 
-                color: {border_color}; 
-                font-family: 'Roboto Mono', 'Consolas'; 
-            }}
-            #ChatScroll, #ChatScroll > QWidget, #ChatScroll QWidget#qt_scrollarea_viewport {{ 
-                background-color: #050508; 
-            }}
-            #ChatLabel {{ 
-                background-color: #050508; 
-                color: {text_color}; 
-                font-family: 'Roboto Mono', 'Consolas', monospace; 
-            }}
-            QLineEdit {{
-                background-color: rgba(20, 20, 25, 230);
-                color: white;
-                border: 1px solid {border_color};
-                border-radius: 4px;
-                padding: 6px;
-            }}
-        """)
+    def change_log_file(self, filename, active_btn):
+        self.current_log_file = filename
+        self.log_display.setText(f"CARGANDO LOG: {filename.upper()}...")
+        self.read_logs()
+
+    def read_logs(self):
+        logs_base = self.ui_logs_dir if self.current_log_file == "agent.log" else self.logs_dir
+        filepath = os.path.join(logs_base, self.current_log_file)
+        if not os.path.exists(filepath):
+            self.log_display.setText(f"ERROR: ARCHIVO DE LOG NO ENCONTRADO\n{filepath}")
+            return
+        
+        try:
+            with open(filepath, 'r', encoding='utf-8', errors='ignore') as f:
+                lines = f.readlines()
+                last_lines = lines[-25:]
+                content = "".join(last_lines)
+                if not content.strip():
+                    content = "ARCHIVO DE LOG VACÍO"
+                self.log_display.setText(content)
+                QTimer.singleShot(20, lambda: self.log_scroll.verticalScrollBar().setValue(self.log_scroll.verticalScrollBar().maximum()))
+        except Exception as e:
+            self.log_display.setText(f"ERROR AL LEER EL ARCHIVO:\n{str(e)}")
+
+    def update_telemetry(self):
+        now = datetime.datetime.now()
+        time_str = now.strftime("%H:%M:%S")
+        date_str = now.strftime("%d.%m.%Y")
+        self.clock_lbl.setText(f"USER: ADMINISTRATOR   {time_str}\n{date_str}")
+
+        self.uptime_seconds += 1
+        h = self.uptime_seconds // 3600
+        m = (self.uptime_seconds % 3600) // 60
+        s = self.uptime_seconds % 60
+        self.lbl_uptime.setText(f"UPTIME: {h:02d}:{m:02d}:{s:02d}")
+
+        temp = 52.4 + random.uniform(-0.5, 0.5)
+        load = max(10, min(95, int(42 + random.uniform(-5, 5))))
+        self.lbl_core_temp.setText(f"CORE TEMP: {temp:.1f} C")
+        self.lbl_sys_load.setText(f"SYS. LOAD: {load}%")
+
+    def close_gui(self):
+        if self.thread:
+            self.thread.stop()
+        if hasattr(self, 'agent_process') and self.agent_process:
+            try:
+                self.agent_process.terminate()
+                self.agent_process.wait(timeout=2)
+            except Exception:
+                pass
+        os._exit(0)
+
+    def closeEvent(self, event):
+        self.close_gui()
 
 
 def launch(config):
     app = QApplication(sys.argv)
-    console = AlfonsoGUI(config)
-    reactor = ReactorWindow(config)
-    log_monitor = LogMonitorWindow(config)
-    
-    console.thread.state_changed.connect(reactor.update_visual_state)
-    
-    screen = app.primaryScreen().availableGeometry()
-    reactor.move((screen.width() - reactor.width()) // 2, screen.height() - reactor.height() - 50)
-    
-    # Consola a la izquierda del reactor
-    console.move(reactor.x() - console.width() - 20, screen.height() - console.height() - 50)
-    
-    # Monitor de logs a la derecha del reactor
-    log_monitor.move(reactor.x() + reactor.width() + 20, screen.height() - log_monitor.height() - 50)
-    
-    console.show()
-    reactor.show()
-    log_monitor.show()
+    dashboard = AlfonsoHUDDashboard(config)
+    dashboard.show()
     sys.exit(app.exec())

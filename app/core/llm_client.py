@@ -7,12 +7,11 @@ import json
 import re
 from datetime import datetime
 from pathlib import Path          
-from app.config import settings, load_prompt
+from app.config import settings
 from app.core.http_client import client
 from app.core.tool_registry import get_tool
 from app.core.prompt_generator import generate_tool_prompt
 from app.utils.logger import attach_request_id, llm_logger, error_logger
-from app.core.prompt_generator import generate_tool_prompt
 
 # ---------------------------------------------------------------------
 # REGEX
@@ -23,6 +22,8 @@ _JSON_BLOCK = re.compile(r"```(?:json)?\s*(\{.*?\})\s*```", re.DOTALL)
 _BARE_JSON = re.compile(r"\{[^{}]*(?:\{[^{}]*\}[^{}]*)*\}", re.DOTALL)
 _TOOL_INLINE = re.compile(r"^([a-z_]+)\s+(\{.*\})$", re.DOTALL | re.IGNORECASE)
 _TOOL_SPLIT_COLON = re.compile(r"^([a-zA-Z_]+)\s*:\s*(\{.*\})$", re.DOTALL | re.IGNORECASE)
+_TOOL_PLAIN_COLON = re.compile(r"^([a-zA-Z0-9_-]+)\s*:\s*(.+)$", re.DOTALL)
+_TOOL_PLAIN_SPACE = re.compile(r"^([a-zA-Z0-9_-]+)\s+(.+)$", re.DOTALL)
 
 # ---------------------------------------------------------------------
 # UTIL
@@ -56,6 +57,12 @@ def load_prompt(path: str) -> str:
 def get_system_prompt(mode: str) -> str:
     if mode == "chat":
         template = load_prompt(settings.CHAT_PROMPT_PATH)
+        try:
+            from app.core.prompt_generator import get_client_context_str
+            client_ctx = get_client_context_str()
+            template = template + "\n\n" + client_ctx
+        except Exception:
+            pass
     else:
         template = generate_tool_prompt()
     return template.replace("{current_date}", _get_current_date_str())
@@ -99,6 +106,18 @@ def extract_json_robust(raw: str) -> dict | None:
     except Exception:
         pass
 
+    # 0.5. Si hay múltiples líneas (ej. múltiples herramientas generadas), probar línea por línea
+    if "\n" in raw:
+        for line in raw.split("\n"):
+            line = line.strip()
+            if line.startswith("{") and line.endswith("}"):
+                try:
+                    data = json.loads(line)
+                    if isinstance(data, dict) and "tool" in data:
+                        return data
+                except Exception:
+                    pass
+
     # 1. JSON block (fallback regex)
     m = _JSON_BLOCK.search(raw)
     if m:
@@ -109,6 +128,11 @@ def extract_json_robust(raw: str) -> dict | None:
 
     # 2. remove think blocks
     clean = _THINK_BLOCK.sub("", raw).strip()
+
+    try:
+        return json.loads(clean)
+    except Exception:
+        pass
 
     # 3. tool: {json}
     m = _TOOL_SPLIT_COLON.match(clean)
@@ -131,6 +155,57 @@ def extract_json_robust(raw: str) -> dict | None:
             }
         except json.JSONDecodeError:
             pass
+
+    # 5. Fallback para formatos planos sin JSON: "tool_name: value" o "tool_name value"
+    for regex in [_TOOL_PLAIN_COLON, _TOOL_PLAIN_SPACE]:
+        m = regex.match(clean)
+        if m:
+            t_name = m.group(1).lower().strip()
+            val = m.group(2).strip()
+            if not val.startswith("{"):
+                # Quitar comillas si las hay
+                if (val.startswith('"') and val.endswith('"')) or (val.startswith("'") and val.endswith("'")):
+                    val = val[1:-1].strip()
+                
+                # Intentar mapear al primer parámetro de la función del registry
+                try:
+                    from app.core.tool_registry import safe_get_tool, list_tools
+                    import inspect
+                    if t_name in list_tools():
+                        func = safe_get_tool(t_name)
+                        if func:
+                            sig = inspect.signature(func)
+                            params = [p for p in sig.parameters.keys() if p not in ("self", "session_id")]
+                            if params:
+                                return {
+                                    "tool": t_name,
+                                    "args": {params[0]: val}
+                                }
+                except Exception:
+                    pass
+
+                # Mapeo manual alternativo para herramientas comunes
+                CLIENT_ARGS_MAPPING = {
+                    "open_url": "url",
+                    "open_application": "command",
+                    "open_app": "command",
+                    "close_application": "command",
+                    "close_app": "command",
+                    "create_file": "path",
+                    "delete_file": "path",
+                    "read_file": "path",
+                    "list_directory": "path",
+                    "create_directory": "path",
+                    "delete_directory": "path",
+                    "keyboard_type": "text",
+                    "keyboard_press": "key",
+                    "press_key": "key",
+                }
+                if t_name in CLIENT_ARGS_MAPPING:
+                    return {
+                        "tool": t_name,
+                        "args": {CLIENT_ARGS_MAPPING[t_name]: val}
+                    }
 
     return None
 
