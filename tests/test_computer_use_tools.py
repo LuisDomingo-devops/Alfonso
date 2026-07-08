@@ -1,6 +1,6 @@
 import pytest
 from unittest.mock import AsyncMock, patch, MagicMock
-from app.tools.computer_use_tools import (
+from app.tools.client.system_tools import (
     mouse_click,
     keyboard_type,
     screenshot,
@@ -14,7 +14,7 @@ async def test_mouse_click_delegation():
     mock_bridge.has_clients = MagicMock(return_value=True)
     mock_bridge.send_command.return_value = {"status": "success", "result": "click_ok"}
     
-    with patch("app.tools.computer_use_tools.alfonso_bridge", mock_bridge):
+    with patch("app.tools.client.system_tools.alfonso_bridge", mock_bridge):
         res = await mouse_click(x=10, y=20)
         assert res["status"] == "ok"
         mock_bridge.send_command.assert_called_once_with(
@@ -29,7 +29,7 @@ async def test_keyboard_type_delegation():
     mock_bridge.has_clients = MagicMock(return_value=True)
     mock_bridge.send_command.return_value = {"status": "success", "result": "type_ok"}
     
-    with patch("app.tools.computer_use_tools.alfonso_bridge", mock_bridge):
+    with patch("app.tools.client.system_tools.alfonso_bridge", mock_bridge):
         res = await keyboard_type("hola")
         assert res["status"] == "ok"
         mock_bridge.send_command.assert_called_once_with(

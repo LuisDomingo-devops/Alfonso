@@ -360,3 +360,696 @@ json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
 2026-07-02 13:14:16,276 | WARNING | errors | [16c4918a-78c3-4d43-a364-6e282cc883ce] Tool de cliente falló: create_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
 2026-07-02 13:27:50,535 | WARNING | errors | [6fbf8592-da47-4caa-916e-d56320002b49] LLM no devolvió JSON de tool válido
 2026-07-02 14:33:12,948 | WARNING | errors | [83b56e1c-c34e-46b3-857b-55c7ae9d51d1] Tool de cliente falló: append_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-03 14:32:00,964 | WARNING | errors | [a0f1e8f5-d0d8-4cb6-a95d-1c63154d4eec] Tool de servidor falló: calendar_create_event -> {'status': 'error', 'message': "Error al crear la cita: Error binding parameter 6: type 'list' is not supported"}
+2026-07-03 15:20:05,027 | WARNING | errors | [92bd976d-2ca4-413f-848e-7d4015c6f489] Tool de servidor falló: calendar_delete_event -> {'status': 'error', 'message': 'No se encontró ninguna cita con ID 7.'}
+2026-07-03 15:20:31,952 | WARNING | errors | [206d7507-026d-4e8f-a489-c564a09447f9] Tool de servidor falló: calendar_delete_event -> {'status': 'error', 'message': 'No se encontró ninguna cita con ID 7.'}
+2026-07-04 12:21:56,294 | WARNING | errors | [9ed720af-4f0a-42bb-833d-41a91fbdac2a] LLM no devolvió JSON de tool válido
+2026-07-04 18:56:28,966 | WARNING | errors | [cf44d757-205e-4e26-a5b3-628dbfb1757a] Tool de cliente falló: create_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-04 18:58:37,217 | WARNING | errors | [3874e50d-5da4-4912-83fb-3cae4eed72e7] Tool de cliente falló: append_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-04 18:58:41,492 | WARNING | errors | [46d275a7-b3f7-48c2-a430-a2fa73a03130] Tool de cliente falló: read_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-04 18:58:45,646 | WARNING | errors | [f625ab22-dbab-4dc4-aa53-11f46feacccc] Tool de cliente falló: rename_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-04 19:00:52,341 | WARNING | errors | [6144b0ce-45fd-4715-8645-f2ae698da02a] Tool de cliente falló: delete_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-04 19:00:56,284 | WARNING | errors | [077f7452-989c-4b1d-a4ae-90f8cb98f204] Tool de cliente falló: delete_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-04 19:00:56,296 | WARNING | errors | [4946c816-338c-4cdb-a27e-221c6fe776e9] Tool de cliente falló: create_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-04 19:01:04,558 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python' en el equipo del usuario.
+2026-07-05 11:56:28,681 | ERROR | errors | [4522566a-40e7-4170-8a16-4a97958dd829] Error ejecutando tool de servidor: mail_get_unread_summary
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/home/luisd/Alfonso/app/tools/mail_tools.py", line 156, in mail_get_unread_summary
+    await mail_classify_emails()
+  File "/home/luisd/Alfonso/app/tools/mail_tools.py", line 87, in mail_classify_emails
+    raw_response = await _llm.generate(prompt, mode="tool")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/app/core/llm_client.py", line 255, in generate
+    response = await client.post(
+               ^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1859, in post
+    return await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1540, in request
+    return await self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1629, in send
+    response = await self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1657, in _send_handling_auth
+    response = await self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1694, in _send_handling_redirects
+    response = await self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1730, in _send_single_request
+    response = await transport.handle_async_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 394, in handle_async_request
+    resp = await self._pool.handle_async_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/connection_pool.py", line 256, in handle_async_request
+    raise exc from None
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/connection_pool.py", line 236, in handle_async_request
+    response = await connection.handle_async_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/connection.py", line 103, in handle_async_request
+    return await self._connection.handle_async_request(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 136, in handle_async_request
+    raise exc
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 106, in handle_async_request
+    ) = await self._receive_response_headers(**kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 177, in _receive_response_headers
+    event = await self._receive_event(timeout=timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 217, in _receive_event
+    data = await self._network_stream.read(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_backends/anyio.py", line 35, in read
+    return await self._stream.receive(max_bytes=max_bytes)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 1284, in receive
+    await self._protocol.read_event.wait()
+  File "/usr/lib/python3.12/asyncio/locks.py", line 212, in wait
+    await fut
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/planner_orchestrator.py", line 988, in run
+    result = await asyncio.wait_for(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/tasks.py", line 519, in wait_for
+    async with timeouts.timeout(timeout):
+  File "/usr/lib/python3.12/asyncio/timeouts.py", line 115, in __aexit__
+    raise TimeoutError from exc_val
+TimeoutError
+2026-07-05 12:00:43,701 | WARNING | errors | [cbb0f92e-151d-4b4e-bfe2-a61ace471674] Tool de cliente falló: create_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 12:02:45,203 | WARNING | errors | [09428289-4c9b-4e8f-a736-a2bb0a4e593d] Tool de cliente falló: append_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 12:02:49,412 | WARNING | errors | [09f74d28-4618-4258-8302-179a917c172c] Tool de cliente falló: read_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 12:02:53,973 | WARNING | errors | [99ba29d4-e4dd-49f7-ac96-1f4ec6516fe9] Tool de cliente falló: rename_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 12:04:19,233 | WARNING | errors | [a88809f1-d574-4906-b7d8-80fa1bc5af02] Tool de cliente falló: create_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 12:04:55,245 | WARNING | errors | [e564c96b-e17c-40b2-b6bf-ccebeac8f2ca] Tool de cliente falló: delete_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 12:04:59,409 | WARNING | errors | [4844a6e7-5d59-427b-b2f7-88370fd1075f] Tool de cliente falló: delete_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 12:05:06,855 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python' en el equipo del usuario.
+2026-07-05 12:50:17,918 | WARNING | errors | [6be0b9ea-2d0c-4f16-a3d4-56405b412b8e] Tool de cliente falló: create_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 12:50:45,395 | WARNING | errors | [57251e57-01eb-4b7a-8ecc-0cf410f0450a] Tool de cliente falló: append_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 12:50:49,700 | WARNING | errors | [fbc935aa-5298-4133-8353-b1d79623113a] Tool de cliente falló: read_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 12:50:54,072 | WARNING | errors | [4641f857-ff4b-4b31-9e06-3197e311d89d] Tool de cliente falló: rename_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 12:52:54,255 | WARNING | errors | [ca57ee30-f6f8-4112-9466-3525f28ac90f] Tool de cliente falló: delete_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 12:52:58,596 | WARNING | errors | [5833717e-9257-469d-8877-81cf9b588fdd] Tool de cliente falló: delete_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 12:53:07,680 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python' en el equipo del usuario.
+2026-07-05 12:54:16,592 | WARNING | errors | [3ebf64e2-a868-4976-b961-a99ca8e01ae8] Tool de cliente falló: create_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 13:47:53,645 | WARNING | errors | [4389447d-ee99-4b40-8f34-61435b8f828b] Tool de servidor falló: mail_open_ui -> {'status': 'error', 'message': 'El cliente de escritorio no está conectado.'}
+2026-07-05 13:48:21,886 | WARNING | errors | [9ba94f2d-ec59-4cbc-8c45-1e781aaa1949] Tool de servidor falló: mail_open_ui -> {'status': 'error', 'message': 'Error del cliente al abrir el correo: Acción no soportada: mail.open'}
+2026-07-05 13:49:49,465 | WARNING | errors | [404fd6f3-7099-49d4-a47e-a4c2a3dd56e3] Tool de servidor falló: mail_open_ui -> {'status': 'error', 'message': 'Error del cliente al abrir el correo: Acción no soportada: mail.open'}
+2026-07-05 13:52:11,569 | WARNING | errors | [daebc7cf-b3bb-4deb-8b91-3293faeafbf0] Tool de servidor falló: mail_open_ui -> {'status': 'error', 'message': 'Error del cliente al abrir el correo: Acción no soportada: mail.open'}
+2026-07-05 18:25:28,799 | WARNING | errors | [a84c5770-ee78-4061-b8fa-b8514d38fdaa] Tool de cliente falló: create_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 18:25:53,032 | WARNING | errors | [2b9ca216-23fd-4637-af9f-6351ba9b7d4c] Tool de cliente falló: append_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 18:25:57,864 | WARNING | errors | [c680f105-9644-45f9-b8de-7094abcbbb84] Tool de cliente falló: read_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 18:26:02,459 | WARNING | errors | [f370a4fa-d64e-4d54-ae5d-133d6665b33c] Tool de cliente falló: rename_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 18:28:03,839 | WARNING | errors | [5f0c84a4-a580-4368-b561-afe60efac73e] Tool de cliente falló: delete_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 18:28:08,199 | WARNING | errors | [c84b5a43-4e14-48f8-a8db-28d25dc6143e] Tool de cliente falló: delete_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 18:28:16,714 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python' en el equipo del usuario.
+2026-07-05 18:29:55,204 | WARNING | errors | [171c7636-2a0a-43de-b504-ab0b0c8bead0] Tool de cliente falló: create_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 18:52:27,959 | WARNING | errors | [d61cdaaf-f334-476b-841a-3e9651526054] Tool de cliente falló: create_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 18:52:31,573 | WARNING | errors | [978d3109-6ece-4099-8da4-b83484a4a59e] Tool de cliente falló: append_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 18:52:36,491 | WARNING | errors | [bb2712cb-8e7a-468e-9d1a-a1b11a213733] Tool de cliente falló: read_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 18:52:40,948 | WARNING | errors | [3f7b9778-3f0e-4811-b998-45b21fe352b0] Tool de cliente falló: rename_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 18:54:42,467 | WARNING | errors | [8920b42d-0401-47d5-9e9b-ececc94c2cda] Tool de cliente falló: delete_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 18:54:47,121 | WARNING | errors | [46052f77-5652-403e-880a-158d80b3ee6e] Tool de cliente falló: delete_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 18:54:55,138 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python' en el equipo del usuario.
+2026-07-05 18:57:21,708 | WARNING | errors | [2adb57de-6056-4354-9d57-a09210468ed4] Tool de cliente falló: create_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 19:20:01,317 | WARNING | errors | [69640217-59e9-4718-8ed9-4f4357da690d] Tool de cliente falló: create_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 19:20:05,189 | WARNING | errors | [3a8cf1d3-6d79-4cbc-a72e-459728d59368] Tool de cliente falló: append_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 19:20:09,880 | WARNING | errors | [e1e844f2-a1da-41e0-a803-82ac12083c29] Tool de cliente falló: read_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 19:20:13,231 | WARNING | errors | [b4d30489-cddd-40de-b4ea-b2871d9f57ec] Tool de cliente falló: rename_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 19:22:16,561 | WARNING | errors | [78df5fc5-4eea-4407-8f9a-d91c01b94d13] Tool de cliente falló: delete_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 19:22:20,137 | WARNING | errors | [a9bce2f6-829f-45cf-902e-e95da8038e86] Tool de cliente falló: delete_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 19:22:30,046 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python' en el equipo del usuario.
+2026-07-05 19:25:14,829 | WARNING | errors | [e885951d-d88a-407a-a8c6-30ab37cc63fc] Tool de cliente falló: create_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 19:30:04,463 | WARNING | errors | [57d74bd9-a535-4f6a-ab3c-bc9f5b031bd5] Tool de cliente falló: create_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 19:30:07,318 | WARNING | errors | [f8618fb9-27e2-4d77-b00c-2614371e4e27] Tool de cliente falló: append_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 19:30:08,821 | WARNING | errors | [f51ca205-7c9d-45c9-aefa-7eeba504335a] Tool de cliente falló: read_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 19:30:13,052 | WARNING | errors | [8048f252-6335-4cd2-9c35-a353ddc83dd9] Tool de cliente falló: rename_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 19:32:14,773 | WARNING | errors | [3f441f9f-16cd-44a1-a55e-3010c8327b5f] Tool de cliente falló: delete_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 19:32:19,078 | WARNING | errors | [9cb94b08-da9d-4193-abc6-00247092addd] Tool de cliente falló: delete_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 19:32:28,506 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python' en el equipo del usuario.
+2026-07-05 19:34:16,547 | WARNING | errors | [acfebacb-1b1d-42c9-8bba-cd5ad11af029] Tool de cliente falló: create_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 20:24:10,891 | WARNING | errors | [52a45ab8-f9e7-4870-9693-741a987f092b] Tool de cliente falló: create_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 20:25:38,537 | WARNING | errors | [8d0682fe-1359-4377-9705-f3ea46a10f51] Tool de cliente falló: append_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 20:25:43,041 | WARNING | errors | [5d2c5dca-7f8a-4667-801e-6dc41cc1fa84] Tool de cliente falló: read_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 20:25:47,484 | WARNING | errors | [200ecd6d-b822-4a23-a30b-f31aaa445253] Tool de cliente falló: rename_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 20:27:49,780 | WARNING | errors | [b192787d-5510-4dff-961a-b5ba915657e9] Tool de cliente falló: delete_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 20:27:54,172 | WARNING | errors | [891c6113-437a-47ab-82c8-918ad50e46ac] Tool de cliente falló: delete_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 20:28:10,008 | WARNING | errors | [cf0d07cb-51bb-4f3d-8e10-5b7b002db06e] Tool de cliente falló: create_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-05 20:28:13,102 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python' en el equipo del usuario.
+2026-07-05 20:54:55,485 | ERROR | errors | [de8df837-0573-4bc1-8d5b-8d364e41f1b4] LLM failed permanently
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 394, in handle_async_request
+    resp = await self._pool.handle_async_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/connection_pool.py", line 256, in handle_async_request
+    raise exc from None
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/connection_pool.py", line 236, in handle_async_request
+    response = await connection.handle_async_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/connection.py", line 103, in handle_async_request
+    return await self._connection.handle_async_request(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 136, in handle_async_request
+    raise exc
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 106, in handle_async_request
+    ) = await self._receive_response_headers(**kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 177, in _receive_response_headers
+    event = await self._receive_event(timeout=timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 217, in _receive_event
+    data = await self._network_stream.read(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_backends/anyio.py", line 32, in read
+    with map_exceptions(exc_map):
+  File "/usr/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ReadTimeout
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/llm_client.py", line 255, in generate
+    response = await client.post(
+               ^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1859, in post
+    return await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1540, in request
+    return await self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1629, in send
+    response = await self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1657, in _send_handling_auth
+    response = await self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1694, in _send_handling_redirects
+    response = await self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1730, in _send_single_request
+    response = await transport.handle_async_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 393, in handle_async_request
+    with map_httpcore_exceptions():
+  File "/usr/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ReadTimeout
+2026-07-05 21:35:53,949 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python' en el equipo del usuario.
+2026-07-05 21:46:41,731 | ERROR | errors | [----------] LLM failed permanently
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 394, in handle_async_request
+    resp = await self._pool.handle_async_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/connection_pool.py", line 256, in handle_async_request
+    raise exc from None
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/connection_pool.py", line 236, in handle_async_request
+    response = await connection.handle_async_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/connection.py", line 103, in handle_async_request
+    return await self._connection.handle_async_request(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 136, in handle_async_request
+    raise exc
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 106, in handle_async_request
+    ) = await self._receive_response_headers(**kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 177, in _receive_response_headers
+    event = await self._receive_event(timeout=timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 217, in _receive_event
+    data = await self._network_stream.read(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_backends/anyio.py", line 32, in read
+    with map_exceptions(exc_map):
+  File "/usr/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ReadTimeout
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/llm_client.py", line 255, in generate
+    response = await client.post(
+               ^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1859, in post
+    return await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1540, in request
+    return await self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1629, in send
+    response = await self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1657, in _send_handling_auth
+    response = await self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1694, in _send_handling_redirects
+    response = await self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1730, in _send_single_request
+    response = await transport.handle_async_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 393, in handle_async_request
+    with map_httpcore_exceptions():
+  File "/usr/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ReadTimeout
+2026-07-05 22:15:54,284 | ERROR | errors | [----------] LLM failed permanently
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 394, in handle_async_request
+    resp = await self._pool.handle_async_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/connection_pool.py", line 256, in handle_async_request
+    raise exc from None
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/connection_pool.py", line 236, in handle_async_request
+    response = await connection.handle_async_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/connection.py", line 103, in handle_async_request
+    return await self._connection.handle_async_request(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 136, in handle_async_request
+    raise exc
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 106, in handle_async_request
+    ) = await self._receive_response_headers(**kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 177, in _receive_response_headers
+    event = await self._receive_event(timeout=timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 217, in _receive_event
+    data = await self._network_stream.read(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_backends/anyio.py", line 32, in read
+    with map_exceptions(exc_map):
+  File "/usr/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ReadTimeout
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/llm_client.py", line 255, in generate
+    response = await client.post(
+               ^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1859, in post
+    return await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1540, in request
+    return await self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1629, in send
+    response = await self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1657, in _send_handling_auth
+    response = await self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1694, in _send_handling_redirects
+    response = await self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1730, in _send_single_request
+    response = await transport.handle_async_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 393, in handle_async_request
+    with map_httpcore_exceptions():
+  File "/usr/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ReadTimeout
+2026-07-05 22:45:10,611 | ERROR | errors | [----------] LLM failed permanently
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 394, in handle_async_request
+    resp = await self._pool.handle_async_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/connection_pool.py", line 256, in handle_async_request
+    raise exc from None
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/connection_pool.py", line 236, in handle_async_request
+    response = await connection.handle_async_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/connection.py", line 103, in handle_async_request
+    return await self._connection.handle_async_request(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 136, in handle_async_request
+    raise exc
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 106, in handle_async_request
+    ) = await self._receive_response_headers(**kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 177, in _receive_response_headers
+    event = await self._receive_event(timeout=timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 217, in _receive_event
+    data = await self._network_stream.read(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_backends/anyio.py", line 32, in read
+    with map_exceptions(exc_map):
+  File "/usr/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ReadTimeout
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/llm_client.py", line 255, in generate
+    response = await client.post(
+               ^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1859, in post
+    return await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1540, in request
+    return await self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1629, in send
+    response = await self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1657, in _send_handling_auth
+    response = await self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1694, in _send_handling_redirects
+    response = await self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1730, in _send_single_request
+    response = await transport.handle_async_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 393, in handle_async_request
+    with map_httpcore_exceptions():
+  File "/usr/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ReadTimeout
+2026-07-05 22:48:48,126 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-07-05 23:02:38,386 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-07-06 10:47:18,961 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-07-06 11:26:41,202 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-07-06 11:56:05,340 | WARNING | errors | [ebbed180-a6e8-4b13-8956-e9e53335d60d] Tool de cliente falló: create_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-06 11:58:07,505 | WARNING | errors | [79f6dd4d-6391-4ab9-9c92-2e83870471ee] Tool de cliente falló: append_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-06 11:58:12,439 | WARNING | errors | [89a56fcd-113b-49ac-b421-5bd99c4237ac] Tool de cliente falló: read_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-06 11:58:15,865 | WARNING | errors | [029d9d66-9dd6-4b9b-a250-2f51d10abbf0] Tool de cliente falló: rename_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-06 12:00:19,273 | WARNING | errors | [a9910b30-2802-4ada-a33f-7c5a42c57465] Tool de cliente falló: delete_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-06 12:00:22,766 | WARNING | errors | [7a2b683b-582d-423d-a8e9-99bb29587e58] Tool de cliente falló: delete_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-06 12:00:46,053 | WARNING | errors | [3a8dec65-4feb-480f-8006-c3423484e92c] Tool de cliente falló: create_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-06 12:00:47,024 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-07-06 13:04:15,655 | ERROR | errors | [----------] LLM failed permanently
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 394, in handle_async_request
+    resp = await self._pool.handle_async_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/connection_pool.py", line 256, in handle_async_request
+    raise exc from None
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/connection_pool.py", line 236, in handle_async_request
+    response = await connection.handle_async_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/connection.py", line 103, in handle_async_request
+    return await self._connection.handle_async_request(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 136, in handle_async_request
+    raise exc
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 106, in handle_async_request
+    ) = await self._receive_response_headers(**kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 177, in _receive_response_headers
+    event = await self._receive_event(timeout=timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 217, in _receive_event
+    data = await self._network_stream.read(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_backends/anyio.py", line 32, in read
+    with map_exceptions(exc_map):
+  File "/usr/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ReadTimeout
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/llm_client.py", line 255, in generate
+    response = await client.post(
+               ^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1859, in post
+    return await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1540, in request
+    return await self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1629, in send
+    response = await self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1657, in _send_handling_auth
+    response = await self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1694, in _send_handling_redirects
+    response = await self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1730, in _send_single_request
+    response = await transport.handle_async_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 393, in handle_async_request
+    with map_httpcore_exceptions():
+  File "/usr/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ReadTimeout
+2026-07-06 13:50:00,984 | ERROR | errors | [----------] LLM failed permanently
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 394, in handle_async_request
+    resp = await self._pool.handle_async_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/connection_pool.py", line 256, in handle_async_request
+    raise exc from None
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/connection_pool.py", line 236, in handle_async_request
+    response = await connection.handle_async_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/connection.py", line 103, in handle_async_request
+    return await self._connection.handle_async_request(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 136, in handle_async_request
+    raise exc
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 106, in handle_async_request
+    ) = await self._receive_response_headers(**kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 177, in _receive_response_headers
+    event = await self._receive_event(timeout=timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 217, in _receive_event
+    data = await self._network_stream.read(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_backends/anyio.py", line 32, in read
+    with map_exceptions(exc_map):
+  File "/usr/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ReadTimeout
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/llm_client.py", line 255, in generate
+    response = await client.post(
+               ^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1859, in post
+    return await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1540, in request
+    return await self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1629, in send
+    response = await self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1657, in _send_handling_auth
+    response = await self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1694, in _send_handling_redirects
+    response = await self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1730, in _send_single_request
+    response = await transport.handle_async_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 393, in handle_async_request
+    with map_httpcore_exceptions():
+  File "/usr/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ReadTimeout
+2026-07-06 17:07:47,010 | ERROR | errors | [----------] LLM failed permanently
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 394, in handle_async_request
+    resp = await self._pool.handle_async_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/connection_pool.py", line 256, in handle_async_request
+    raise exc from None
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/connection_pool.py", line 236, in handle_async_request
+    response = await connection.handle_async_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/connection.py", line 103, in handle_async_request
+    return await self._connection.handle_async_request(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 136, in handle_async_request
+    raise exc
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 106, in handle_async_request
+    ) = await self._receive_response_headers(**kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 177, in _receive_response_headers
+    event = await self._receive_event(timeout=timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 217, in _receive_event
+    data = await self._network_stream.read(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_backends/anyio.py", line 32, in read
+    with map_exceptions(exc_map):
+  File "/usr/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ReadTimeout
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/core/llm_client.py", line 255, in generate
+    response = await client.post(
+               ^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1859, in post
+    return await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1540, in request
+    return await self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1629, in send
+    response = await self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1657, in _send_handling_auth
+    response = await self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1694, in _send_handling_redirects
+    response = await self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1730, in _send_single_request
+    response = await transport.handle_async_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 393, in handle_async_request
+    with map_httpcore_exceptions():
+  File "/usr/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ReadTimeout
+2026-07-06 18:46:26,399 | WARNING | errors | [f8d778ab-2491-4bb7-b2b5-2fee69905fd3] Tool de cliente falló: close_application -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-07 17:23:33,937 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-07-07 17:24:27,411 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-07-07 17:51:23,969 | WARNING | errors | [518f172c-6bdd-4e34-bbf1-2933924879d2] Tool de cliente falló: close_application -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-07 18:43:16,525 | WARNING | errors | [89a4d33d-09c9-4295-a2f8-649cad845b47] Tool de cliente falló: create_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-07 18:43:48,341 | WARNING | errors | [af0ad179-1e8e-458e-8e54-dc52c1929227] Tool de cliente falló: append_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-07 18:43:52,520 | WARNING | errors | [85bf40f8-1ee1-4484-9e33-ced41781ab07] Tool de cliente falló: read_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-07 18:43:56,885 | WARNING | errors | [1d264124-579f-4aa0-aaae-40c524e4ff89] Tool de cliente falló: rename_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-07 18:46:02,837 | WARNING | errors | [f4b9c7c8-d37b-45c2-b27d-098e758306e2] Tool de cliente falló: delete_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-07 18:46:07,416 | WARNING | errors | [b2269206-4dee-476e-8235-e895e54f54c7] Tool de cliente falló: delete_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-07 18:46:35,032 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-07-07 18:47:41,280 | WARNING | errors | [f8c35f96-ffaa-4dfc-9c4d-af791f723939] Tool de cliente falló: create_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-07 19:14:01,311 | ERROR | errors | [9b435654-af0a-4d44-a4da-6c444e366445] LLM failed permanently
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 394, in handle_async_request
+    resp = await self._pool.handle_async_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/connection_pool.py", line 256, in handle_async_request
+    raise exc from None
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/connection_pool.py", line 236, in handle_async_request
+    response = await connection.handle_async_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/connection.py", line 103, in handle_async_request
+    return await self._connection.handle_async_request(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 136, in handle_async_request
+    raise exc
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 106, in handle_async_request
+    ) = await self._receive_response_headers(**kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 177, in _receive_response_headers
+    event = await self._receive_event(timeout=timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 217, in _receive_event
+    data = await self._network_stream.read(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_backends/anyio.py", line 32, in read
+    with map_exceptions(exc_map):
+  File "/usr/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ReadTimeout
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/adapters/llm_client.py", line 281, in generate
+    response = await client.post(
+               ^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1859, in post
+    return await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1540, in request
+    return await self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1629, in send
+    response = await self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1657, in _send_handling_auth
+    response = await self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1694, in _send_handling_redirects
+    response = await self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1730, in _send_single_request
+    response = await transport.handle_async_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 393, in handle_async_request
+    with map_httpcore_exceptions():
+  File "/usr/lib/python3.12/contextlib.py", line 158, in __exit__
+    self.gen.throw(value)
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ReadTimeout
+2026-07-07 19:29:21,998 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-07-07 19:35:57,395 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-07-07 19:36:56,580 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.

@@ -1,3 +1,19 @@
+"""
+TIMER — Medición precisa de latencias y tiempos de ejecución.
+
+¿QUÉ HACE?
+Expone un administrador de contexto para medir la duración de ejecuciones de código.
+
+¿CUÁNDO LO HACE?
+Al registrar latencias de endpoints REST o llamadas a herramientas.
+
+¿CÓMO LO HACE?
+Usando `time.perf_counter()` en los métodos especiales `__enter__` y `__exit__` de Python.
+
+¿CON QUÉ OTROS SCRIPTS ESTÁ RELACIONADO?
+- app/api/routes.py (mide la latencia de /chat y herramientas de Playwright)
+"""
+
 import time
 
 

@@ -13,9 +13,9 @@ import asyncio
 
 import pytest
 
-from app.core import tool_registry
-from app.core.tool_base import coerce_and_validate
-from app.tools.filesystem_tools import CreateFileArgs, ARGS_SCHEMAS
+from app.adapters import tool_registry
+from app.adapters.tool_base import coerce_and_validate
+from app.tools.server.filesystem_tools import CreateFileArgs, ARGS_SCHEMAS
 
 
 def test_permissive_recovers_known_alias():

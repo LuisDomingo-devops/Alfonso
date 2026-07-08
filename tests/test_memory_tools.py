@@ -1,6 +1,6 @@
 import pytest
-from app.core.vector_memory import vector_memory
-from app.tools.memory_tools import save_user_preference, forget_user_fact, get_user_profile
+from app.adapters.memory import vector_memory
+from app.tools.server.memory_tools import save_user_preference, forget_user_fact, get_user_profile
 
 
 @pytest.fixture(autouse=True)

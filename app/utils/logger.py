@@ -1,3 +1,19 @@
+"""
+LOGGER — Configuración del registro de logs.
+
+¿QUÉ HACE?
+Define e inicializa la configuración de logs con rotación diaria para la app, el planificador y los errores.
+
+¿CUÁNDO LO HACE?
+Al inicio de la aplicación y a lo largo de toda la ejecución de cualquier script del servidor.
+
+¿CÓMO LO HACE?
+Configurando handlers de la biblioteca estándar `logging` e inyectando request IDs.
+
+¿CON QUÉ OTROS SCRIPTS ESTÁ RELACIONADO?
+- app/main.py (middleware HTTP utiliza el logger para registrar peticiones entrantes)
+"""
+
 import logging
 from logging.handlers import RotatingFileHandler
 from pathlib import Path

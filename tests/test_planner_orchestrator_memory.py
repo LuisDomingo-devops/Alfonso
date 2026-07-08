@@ -1,8 +1,7 @@
 import pytest
 from unittest.mock import AsyncMock, MagicMock
-from app.core.planner_orchestrator import PlannerOrchestrator
-from app.core.vector_memory import vector_memory
-from app.core.memory import memory
+from app.domain.planner_orchestrator import PlannerOrchestrator
+from app.adapters.memory import memory, vector_memory
 
 
 @pytest.fixture(autouse=True)

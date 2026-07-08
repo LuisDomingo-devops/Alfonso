@@ -10,6 +10,9 @@ Basándote en el siguiente resumen de logs, identifica:
 2. DEGRADACIONES: comportamiento incorrecto pero no crashea (ej: LLM responde texto cuando debería JSON)
 3. MEJORAS DE RENDIMIENTO: patrones que sugieren optimización
 4. MEJORAS DE PROMPTS: si el LLM confunde intenciones o genera respuestas incorrectas
+5. ALUCINACIONES Y CORRECCIONES: cuando el log de 'user_corrections' o los diálogos muestren que Alfonso inventó hechos, ejecutó acciones que no debía o alucinó datos.
+
+IMPORTANTE: Presta máxima atención a los logs etiquetados como 'user_corrections'. Indican que el usuario detectó y corrigió un error directo o alucinación de Alfonso.
 
 Para cada problema, clasifícalo así:
 - severity: critical / high / medium / low

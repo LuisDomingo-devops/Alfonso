@@ -1,0 +1,197 @@
+"""
+INTENT ROUTER — Enrutador heurístico de intenciones.
+
+¿QUÉ HACE?
+Analiza la consulta del usuario para clasificarla rápidamente en una intención o delegar directamente a un agente específico.
+
+¿CUÁNDO LO HACE?
+Al inicio de cada llamada al endpoint de chat para determinar la ruta óptima de procesamiento.
+
+¿CÓMO LO HACE?
+Mediante coincidencia semántica y palabras clave específicas con expresiones regulares rápidas.
+
+¿CON QUÉ OTROS SCRIPTS ESTÁ RELACIONADO?
+- app/core/planner_orchestrator.py (invoca este router al inicio de su pipeline)
+- app/core/agents/dev/dev_agent.py (recibe delegaciones si el intent es desarrollo)
+- app/core/agents/marcos/marcos_agent.py (recibe delegaciones si el intent es legal)
+"""
+
+from __future__ import annotations
+
+import re
+from dataclasses import dataclass
+from typing import Literal
+
+Intent = Literal["chat", "tool"]
+
+# Dominios populares sin protocolo que el usuario puede decir
+_KNOWN_DOMAINS_RE = re.compile(
+    r"\b(google|youtube|facebook|twitter|instagram|linkedin|amazon|wikipedia|"
+    r"github|openai|anthropic|reddit|twitch|netflix|spotify)(\.(com|es|org|net|io))?\b",
+    re.IGNORECASE,
+)
+
+_TRAILING_PUNCT_RE = re.compile(r"[.,;:!?¡¿\s]+$")
+
+
+def _normalize(msg: str) -> str:
+    """Elimina puntuación final que puede venir de transcripciones de voz."""
+    return _TRAILING_PUNCT_RE.sub("", msg.strip())
+
+
+@dataclass
+class _Rule:
+    pattern: re.Pattern
+    weight: float
+    category: str
+
+
+def _r(pattern: str, weight: float, category: str) -> _Rule:
+    return _Rule(re.compile(pattern, re.IGNORECASE), weight, category)
+
+
+# ---------------------------------------------------------------------------
+# Reglas positivas — indican que se necesita una tool
+# ---------------------------------------------------------------------------
+_TOOL_RULES: list[_Rule] = [
+
+    # ── Filesystem — DELETE ──────────────────────────────────────────
+    _r(r"\b(elimina|eliminar|borra|borrar|suprime|suprimir|remove|delete|quita|quitar)\b.{0,40}\b(archivo|fichero|\.txt|\.py|\.json|\.csv|\.md|\.log|\.yaml|\.yml|\.toml|\.ini)\b", 3.5, "fs_delete"),
+    _r(r"\b(elimina|eliminar|borra|borrar|suprime|suprimir|remove|delete)\b.{0,20}[\w\-]+\.(txt|py|json|csv|md|log|yaml|yml|toml|ini)\b", 3.0, "fs_delete_ext"),
+    _r(r"\b(borra|elimina|delete|remove)\b.{0,30}\b(el|ese|este|un|la)\b.{0,15}\b(archivo|fichero)\b", 2.5, "fs_delete_generic"),
+
+    # ── Filesystem — append ──────────────────────────────────────────
+    _r(r"\b(escribe|escribir|escriba|añade|añadir|añada|agrega|agregar|agregue|append)\b.{0,50}\b(archivo|fichero|al archivo|a ese archivo|al final|\.txt|\.py|\.json|\.csv|\.md)\b", 3.0, "fs_append"),
+    _r(r"\b(escribe al final|escriba al final|añade al final|añada al final|agrega al final|agregue al final)\b", 2.5, "fs_append"),
+
+    # ── Filesystem — crear con nombre explícito ──────────────────────
+    _r(r"\b(crea|crear|genera|generar|haz|hacer)\b.{0,30}\b(archivo|fichero|carpeta|directorio)\b.{0,30}\b(llamado|con nombre|llam[aá]lo|llamada|se llame)\b", 3.0, "fs_create_named"),
+    _r(r"\b(crea|crear|genera|generar|haz|hacer|nueva|nuevo)\b.{0,30}\b(carpeta|directorio|folder)\b", 3.0, "fs_create_dir"),
+    _r(r"\b(crea|crear|genera|generar)\b.{0,20}[\w\-]+\.(txt|py|json|csv|md|log|yaml|yml|toml|ini)\b", 2.5, "fs_create_named"),
+    _r(r"\b(archivo|fichero)\b.{0,20}\b(llamado|con nombre|llam[aá]lo)\b", 2.0, "fs_create_named"),
+
+    # ── Filesystem — crear genérico ──────────────────────────────────
+    _r(r"\b(crea|crear|genera|generar|haz|hacer)\b.{0,30}\b(archivo|fichero)\b", 1.5, "fs_create"),
+    _r(r"\b(escribe|escribir|escriba)\b.{0,20}\b(archivo|fichero)\b", 1.5, "fs_create"),
+
+    # ── Filesystem — leer ────────────────────────────────────────────
+    _r(r"\b(lee|leer|abre|abrir|muestra|mostrar|ver|dame)\b.{0,30}\b(archivo|fichero|contenido de)\b", 2.0, "fs_read"),
+    _r(r"\b(lee|leer)\b.{0,15}\b(el|un|ese|este)\b.{0,15}\b(archivo|fichero)\b", 2.0, "fs_read"),
+
+    # ── Filesystem — listar ──────────────────────────────────────────
+    _r(r"\b(lista|listar|muestra|mostrar)\b.{0,20}\b(archivos|ficheros|directorio|carpeta|contenido de|escritorio|desktop)\b", 2.0, "fs_list"),
+    _r(r"\b(qu[eé] hay en|qu[eé] contiene)\b.{0,30}\b(carpeta|directorio|escritorio|desktop)\b", 1.5, "fs_list"),
+
+    # ── Comandos del sistema ─────────────────────────────────────────
+    _r(r"\b(ejecuta|ejecutar|corre|correr|lanza|lanzar)\b.{0,20}\b(comando|script|programa)\b", 2.0, "cmd"),
+
+    # ── Información del sistema ──────────────────────────────────────
+    _r(r"\b(info(rmaci[oó]n)?|estado|status)\b.{0,20}\b(sistema|cpu|ram|memoria|disco)\b", 1.5, "sysinfo"),
+    _r(r"\bcu[aá]nta (ram|memoria|cpu)\b", 1.5, "sysinfo"),
+
+    # ── Abrir aplicaciones — genéricas ───────────────────────────────
+    _r(r"\b(abre|abrir|lanza|lanzar|inicia|iniciar|ejecuta|ejecutar)\b.{0,40}\b(aplicación|programa|app|navegador|firefox|chrome|chromium|vscode|code|visual studio|notepad|terminal|konsole|gedit|kate|excel|word|powerpoint|spotify|discord|calculadora|vlc)\b", 2.5, "open_app"),
+    _r(r"^(abre|abrir|lanza|ejecuta)\s+[\w\s]{1,30}$", 1.5, "open_generic_short"),
+    # Nombres de app solos (sin verbo) para voz: "firefox", "abre firefox"
+    _r(r"^(abre|abrir|lanza|lanzar|inicia|iniciar)\s+(firefox|chrome|chromium|vscode|code|visual studio|terminal|konsole|gedit|kate|brave|opera)$", 2.5, "open_app_direct"),
+
+    # ── Cerrar aplicaciones ────────────────────────────────────────────
+    _r(r"\b(cierra|cerrar|termina|terminar|mata|matar|quit|exit)\b.{0,30}\b(aplicación|programa|app|navegador|firefox|chrome|vscode|notepad|terminal|explorad+or( de (archivos|windows))?|nautilus|explorer)\b", 2.5, "close_application"),
+    _r(r"^(cierra|cerrar|mata|matar)\s+[\w\s]{1,30}$", 2.0, "close_app_simple"),
+
+    # ── Abrir explorador de archivos (FIX WSL) ───────────────────────
+    _r(r"\b(abre|abrir|lanza|inicia)\b.{0,25}\b(explorad+or de archivos|gestor de archivos|file manager|nautilus|nemo|thunar|dolphin|explorer|caja)\b", 3.0, "open_filemanager"),
+    _r(r"\b(abre|abrir)\b.{0,15}\b(explorad+or)\b", 2.5, "open_filemanager_short"),
+
+    # ── Navegador web — acciones (Fase 3) ────────────────────────────
+    _r(r"\b(navega|navegar|ve|ir)\b.{0,20}\b(a la web|a la página|a la url|al sitio|a https?://|a www\.)\b", 2.5, "browser_navigate"),
+    # FIX: "abre google", "abre youtube", "abre www.X", dominios conocidos
+    _r(r"\b(abre|abrir|entra|entrar|ve|ir)\b.{0,20}\b(la web|la página|internet|el navegador|una url|el sitio|https?://|www\.)\b", 2.0, "browser_open"),
+    _r(r"\b(abre|abrir|entra|ve)\b.{0,10}(google|youtube|facebook|twitter|instagram|linkedin|amazon|wikipedia|github|reddit|twitch|netflix|spotify)\b", 2.5, "browser_open_domain"),
+    _r(r"^(abre|abrir|entra en|ve a)\s+(www\.|https?://)?[\w\-]+(\.\w{2,})+", 2.5, "browser_open_url"),
+    _r(r"\b(busca|buscar|googlea|googleas?)\b.{0,30}\b(en internet|en google|en la web|online|en l[ií]nea)\b", 2.5, "browser_search"),
+    _r(r"https?://[\w\-\.]+\.\w{2,}", 2.0, "url_explicit"),
+    _r(r"\bwww\.[\w\-]+\.\w{2,}", 2.0, "url_www"),
+
+    # ── Fecha y hora actuales via sistema ─────────────────────────────
+    _r(r"\b(qu[eé] hora|la hora actual|qu[eé] son las|son las)\b", 2.0, "datetime_tool"),
+    _r(r"\b(qu[eé] d[ií]a|hoy es|d[ií]a de hoy|fecha actual|fecha de hoy)\b", 2.0, "datetime_tool"),
+    _r(r"\b(qu[eé] (d[ií]a|fecha|hora)|dime la (hora|fecha)|dime qu[eé] d[ií]a)\b", 2.0, "datetime_tool"),
+
+    # ── Mail (Fase 3 — patrones avanzados) ───────────────────────────
+    _r(r"\b(responde|contesta|redacta respuesta)\b.{0,30}\b(mail|correo|reclamación|abogado)\b", 3.0, "mail_reply"),
+    _r(r"\b(aplica|inscr[ií]bete|postula)\b.{0,30}\b(oferta|trabajo|empleo|infojobs)\b", 3.5, "mail_apply"),
+    _r(r"\b(resumen de(l)? (correo|mail)|resume(ir)? los correos|resumen de la mañana|notificaciones de correo|resumen matutino)\b", 3.5, "mail_summary"),
+    _r(r"\b(clasifica(r)? (el |los )?(correo|mail|correos|emails))\b", 3.5, "mail_classify"),
+    _r(r"\b(lee|ver|lista(r)?|muestra(r)?|abrir|abre|dame) (el |los )?(correo|mail|correos|emails)\b", 3.0, "mail_list"),
+    _r(r"\b(genera(r)?|crea(r)?|inyecta(r)?|pon(er)?) (correos|mails|emails) (de prueba|simulados)\b", 3.5, "mail_seed"),
+
+    # ── Calendario Nativo (Fase 5) ───────────────────────────────────
+    _r(r"\b(abre|abrir|mostrar|ver)\b.{0,20}\b(el calendario|calendario|citas|agenda)\b", 3.5, "calendar_open"),
+    _r(r"\b(apunta|apuntar|punta|puntar|agenda|agendar|programa|programar|crea|cre|crear|añade|añadir|anota|anotar|registra|registrar)\b.{0,30}\b(cita|reunión|evento|compromiso|al calendario|en el calendario)\b", 3.0, "calendar_create"),
+    _r(r"\b(elimina|eliminar|borra|borrar|cancela|cancelar|quita|quitar)\b.{0,30}\b(cita|reunión|evento|compromiso)\b", 3.0, "calendar_delete"),
+    _r(r"\b(cambia|cambiar|modifica|modificar|actualiza|actualizar|mueve|mover)\b.{0,30}\b(cita|reunión|evento|compromiso|hora|fecha)\b", 3.0, "calendar_update"),
+    _r(r"\b(qué tengo hoy|qué citas tengo|lista las citas|muestra la agenda|citas de hoy|qué citas tengo para|mi agenda)\b", 3.0, "calendar_list"),
+
+    # ── Paths y extensiones explícitas ───────────────────────────────
+    _r(r"[\w\-]+\.(txt|py|json|csv|md|log|yaml|yml|toml|ini)\b", 1.2, "extension"),
+    _r(r"[/\\][\w/\\.\-]+\.\w{1,6}", 1.0, "path"),
+]
+
+# ---------------------------------------------------------------------------
+# Reglas negativas — penalizan el score de tool
+# ---------------------------------------------------------------------------
+_CHAT_RULES: list[_Rule] = [
+    # Escritura creativa
+    _r(r"\b(escribe|escribir|redacta|redactar)\b.{0,40}\b(carta|email|correo|poema|texto|artículo|ensayo|historia|cuento|mensaje|resumen|canción)\b", -2.5, "creative"),
+
+    # Preguntas teóricas
+    _r(r"\b(qué es|qué son|cómo funciona|explica|explícame|dime qué)\b", -1.2, "theory"),
+
+    # Saludos / conversación
+    _r(r"^(hola|buenos? días|buenas? tardes|buenas? noches|hey|hi|qué tal|cómo estás|gracias|ok|vale|genial|perfecto|de acuerdo)\b", -2.5, "greeting"),
+
+    # Preguntas generales
+    _r(r"\b(cuándo|dónde|por qué|para qué|quién)\b.{0,40}\?", -0.8, "question"),
+
+    # "¿Puedes hacer X?" sin nombre de archivo
+    _r(r"^(puedes|podrías|puedo)\b.{0,30}\?$", -0.5, "question_can"),
+]
+
+_THRESHOLD = 1.5
+
+
+class IntentRouter:
+
+    def detect(self, message: str) -> Intent:
+        return self.detect_with_detail(message)["intent"]
+
+    def detect_with_detail(self, message: str) -> dict:
+        # Normalizar antes de matchear (elimina puntuación final de STT)
+        normalized = _normalize(message)
+
+        score = 0.0
+        fired: list[str] = []
+
+        for rule in _TOOL_RULES:
+            if rule.pattern.search(normalized):
+                score += rule.weight
+                fired.append(f"+{rule.weight} [{rule.category}]")
+
+        for rule in _CHAT_RULES:
+            if rule.pattern.search(normalized):
+                score += rule.weight
+                fired.append(f"{rule.weight} [{rule.category}]")
+
+        # Boost adicional: dominio conocido mencionado explícitamente
+        if _KNOWN_DOMAINS_RE.search(normalized):
+            if any(k in normalized.lower() for k in ("abre", "ve", "entra", "navega", "busca", "abre")):
+                score += 1.5
+                fired.append("+1.5 [known_domain_boost]")
+
+        return {
+            "intent": "tool" if score >= _THRESHOLD else "chat",
+            "score": round(score, 2),
+            "threshold": _THRESHOLD,
+            "fired_rules": fired,
+        }

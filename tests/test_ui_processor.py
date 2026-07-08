@@ -118,3 +118,20 @@ def test_format_response_client_list_directory_no_path():
     }
     expected = "Contenido del directorio:\nAlfonso\ncredentials\nui"
     assert ResponseProcessor.format_response(data) == expected
+
+def test_format_response_multi_tool():
+    data = {
+        "type": "multi_tool",
+        "results": [
+            {
+                "tool": "calendar_open_ui",
+                "result": {"status": "ok", "message": "Calendario abierto."}
+            },
+            {
+                "tool": "mail_open_ui",
+                "result": {"status": "ok", "message": "Correo abierto."}
+            }
+        ]
+    }
+    expected = "Calendario abierto. Correo abierto."
+    assert ResponseProcessor.format_response(data) == expected

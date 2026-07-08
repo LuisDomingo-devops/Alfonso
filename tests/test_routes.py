@@ -53,3 +53,24 @@ def test_memory_endpoints(client):
     assert resp2.status_code == 200
     resp3 = client.delete("/memory/test_session")
     assert resp3.status_code == 200
+
+
+def test_mail_endpoints(client):
+    resp_seed = client.post("/mail/emails/seed")
+    assert resp_seed.status_code == 200
+    assert resp_seed.json()["status"] == "ok"
+    
+    resp_list = client.get("/mail/emails")
+    assert resp_list.status_code == 200
+    emails = resp_list.json()
+    assert len(emails) > 0
+    
+    email_id = emails[0]["id"]
+    resp_get = client.get(f"/mail/emails/{email_id}")
+    assert resp_get.status_code == 200
+    assert resp_get.json()["id"] == email_id
+    
+    resp_read = client.post(f"/mail/emails/{email_id}/read")
+    assert resp_read.status_code == 200
+    assert resp_read.json()["status"] == "ok"
+

@@ -19,6 +19,12 @@ TOOLS:
 {"tool":"save_user_preference","args":{"fact":"FACT"}}
 {"tool":"forget_user_fact","args":{"query":"QUERY"}}
 {"tool":"get_user_profile","args":{}}
+{"tool":"calendar_create_event","args":{"title":"TITLE","start_time":"YYYY-MM-DD HH:MM","end_time":"YYYY-MM-DD HH:MM","description":"DESC","location":"LOC","attendees":"ATT"}}
+{"tool":"calendar_list_events","args":{"start_date":"YYYY-MM-DD","end_date":"YYYY-MM-DD"}}
+{"tool":"calendar_delete_event","args":{"event_id":1}}
+{"tool":"calendar_open_ui","args":{}}
+{"tool":"dev_studio_open_ui","args":{}}
+{"tool":"dev_studio_close_ui","args":{}}
 {"tool":"no_op","args":{"message":"REASON"}}
 
 EXAMPLES:
@@ -52,6 +58,18 @@ Output: {"tool":"forget_user_fact","args":{"query":"música clásica"}}
 User: ¿qué recuerdas sobre mí? o ¿cuál es mi perfil?
 Output: {"tool":"get_user_profile","args":{}}
 
+User: apunta una cita para mañana a las 5 PM con Carlos en la oficina para ver el presupuesto
+Output: {"tool":"calendar_create_event","args":{"title":"Reunión con Carlos para ver el presupuesto","start_time":"2026-07-04 17:00","location":"oficina","attendees":"Carlos"}}
+
+User: dime qué citas tengo para hoy
+Output: {"tool":"calendar_list_events","args":{"start_date":"2026-07-03","end_date":"2026-07-03"}}
+
+User: elimina la cita de calendario número 5
+Output: {"tool":"calendar_delete_event","args":{"event_id":5}}
+
+User: abre el calendario
+Output: {"tool":"calendar_open_ui","args":{}}
+
 RULES:
 - añade/agrega → append_file (NEVER create_file)
 - elimina/borra → delete_file
@@ -63,5 +81,11 @@ RULES:
 - recuerda/guarda preferencia/hecho → save_user_preference
 - olvida/borra de la memoria → forget_user_fact
 - qué recuerdas/cuál es mi perfil/mis datos → get_user_profile
+- apunta cita/agenda/reunión → calendar_create_event
+- ver citas/agenda/calendario → calendar_list_events
+- borrar/eliminar cita o evento → calendar_delete_event
+- abre el calendario/ver calendario visualmente → calendar_open_ui
+- abre dev studio/ver el editor visualmente → dev_studio_open_ui
+- cierra dev studio/cerrar el editor visualmente → dev_studio_close_ui
 - crea sin nombre de archivo → no_op pidiendo el nombre
 - escritorio/desktop → list_directory con path="Desktop"

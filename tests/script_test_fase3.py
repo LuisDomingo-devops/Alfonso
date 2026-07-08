@@ -62,7 +62,7 @@ def test_intent_router() -> None:
     print(f"{'─'*50}")
 
     try:
-        from app.core.intent_router import IntentRouter
+        from app.domain.intent_router import IntentRouter
         router = IntentRouter()
     except ImportError as e:
         skip(suite, "import", str(e))
@@ -107,7 +107,7 @@ async def test_datetime_tool() -> None:
     print(f"{'─'*50}")
 
     try:
-        from app.tools.system_tools import get_current_datetime
+        from app.tools.client.system_tools import get_current_datetime
     except ImportError as e:
         skip(suite, "import", str(e))
         return
@@ -146,7 +146,7 @@ async def test_filesystem() -> None:
     print(f"{'─'*50}")
 
     try:
-        from app.tools.filesystem_tools import (
+        from app.tools.server.filesystem_tools import (
             create_file, read_file, append_file, list_directory, delete_file
         )
     except ImportError as e:
@@ -223,7 +223,7 @@ async def test_browser() -> None:
         return
 
     try:
-        from app.tools.browser_tools import (
+        from app.tools.client.browser_tools import (
             browser_navigate, browser_get_text, browser_screenshot,
             browser_search, browser_close,
         )
@@ -287,9 +287,9 @@ async def test_computer() -> None:
         return
 
     try:
-        from app.tools.computer_use_tools import screenshot, window_list
+        from app.tools.client.system_tools import screenshot, window_list
     except ImportError as e:
-        skip(suite, "computer_use_tools import", str(e))
+        skip(suite, "system_tools import", str(e))
         return
 
     # screenshot

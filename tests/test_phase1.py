@@ -1,8 +1,8 @@
 import asyncio
 import sys
 
-from app.core.tool_registry import get_tool
-from app.core.memory import memory
+from app.adapters.tool_registry import get_tool
+from app.adapters.memory import memory
 
 
 def test_run_command_tool():

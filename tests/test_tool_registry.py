@@ -1,5 +1,5 @@
 import pytest
-from app.core.tool_registry import list_tools, load_plugins, get_tool
+from app.adapters.tool_registry import list_tools, load_plugins, get_tool
 
 def test_tool_registry_loads_plugins():
     load_plugins()

@@ -1,5 +1,5 @@
 import pytest
-from app.core.vector_memory import VectorMemory
+from app.adapters.memory.vector_memory import VectorMemory
 
 
 @pytest.fixture

@@ -2,7 +2,7 @@
 Tests para la memoria persistente con SQLite.
 """
 import pytest
-from app.core.memory import SessionMemory
+from app.adapters.memory import SessionMemory
 
 
 @pytest.fixture
@@ -11,7 +11,7 @@ def mem(tmp_path, monkeypatch):
     Crea una instancia de SessionMemory con una base de datos temporal
     para que los tests no interfieran con la base de datos real.
     """
-    import app.core.memory as memory_module
+    import app.adapters.memory.memory as memory_module
     db_path = tmp_path / "test_memory.db"
     monkeypatch.setattr(memory_module, "DB_PATH", db_path)
     # Re-inicializar la base de datos en la ruta temporal
@@ -69,7 +69,7 @@ def test_persistence_across_instances(tmp_path, monkeypatch):
     Verifica que los datos sobreviven al crear una nueva instancia de SessionMemory,
     simulando un reinicio del servidor.
     """
-    import app.core.memory as memory_module
+    import app.adapters.memory.memory as memory_module
     db_path = tmp_path / "persist_test.db"
     monkeypatch.setattr(memory_module, "DB_PATH", db_path)
     memory_module._db_initialized = False

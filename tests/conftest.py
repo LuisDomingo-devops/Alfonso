@@ -2,9 +2,9 @@ import sys
 from unittest.mock import MagicMock, patch, AsyncMock
 import pytest
 import os
-# Deshabilita el mock global del módulo app.core.memory que causaba problemas.
+# Deshabilita el mock global del módulo app.adapters.memory que causaba problemas.
 # En su lugar, usaremos fixtures específicos o mocks más precisos.
-# Si app.core.memory tiene una instancia global 'memory', la parchearemos.
+# Si app.adapters.memory tiene una instancia global 'memory', la parchearemos.
 # Forzamos a que cualquier instancia de SessionMemory use una DB en memoria durante los tests
 os.environ["ALFONSO_DB_PATH"] = ":memory:"
 
@@ -15,7 +15,7 @@ def session_memory_fixture():
     Proporciona una instancia de SessionMemory con una base de datos SQLite en memoria
     para cada test, asegurando aislamiento.
     """
-    from app.core.memory import SessionMemory
+    from app.adapters.memory import SessionMemory
     # Usamos ':memory:' para una base de datos en memoria que se destruye al finalizar el test.
     mem = SessionMemory(max_messages=20)
     yield mem
@@ -23,11 +23,11 @@ def session_memory_fixture():
 @pytest.fixture(autouse=True)
 def mock_memory():
     """
-    Fixture para parchear la instancia global 'memory' en app.core.memory
+    Fixture para parchear la instancia global 'memory' en app.adapters.memory
     y en cualquier módulo que la importe, como planner_orchestrator.
     Esto evita que los tests interactúen con la DB real.
     """
-    with patch("app.core.memory.memory") as mocked:
+    with patch("app.adapters.memory.memory") as mocked:
         # Configuramos comportamientos básicos si es necesario
         mocked.get_summary.return_value = ""
         yield mocked

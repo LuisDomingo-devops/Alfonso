@@ -4,16 +4,8 @@ from tqdm import tqdm
 from log_reader import parse_log_file, summarize_for_llm
 from log_analyzer import analyze_logs
 from code_generator import generate_fix
-# from patch_manager import save_proposal # Desactivado temporalmente
+from BRAIN.patch_manager import save_proposal
 from app.config import settings
-
-def save_proposal_placeholder(proposals):
-    """Sustituto temporal para evitar errores de importación."""
-    print("\n=== INFORME DE EVOLUCIÓN (MODO PAUSA) ===")
-    for p in proposals:
-        print(f"\nProblema: {p['issue']['description']}")
-        print(f"Propuesta: {p['proposal']}")
-    return "REPORT_PAUSED"
 
 LOG_FILES = {
     "app": Path("logs/app.log"),
@@ -21,14 +13,14 @@ LOG_FILES = {
     "llm": Path("logs/llm.log"),
     "orchestrator": Path("logs/orchestrator.log"),
     "tools": Path("logs/tools.log"),
+    "user_corrections": Path("logs/user_corrections.log"),
 }
 
-# Archivos de código que puede leer el generador
+# Archivos de código core que puede leer el generador
 CODE_FILES = {
-    "app/core/orchestrator.py": Path("app/core/orchestrator.py"),
-    "app/core/llm_client.py": Path("app/core/llm_client.py"),
-    "app/core/intent_router.py": Path("app/core/intent_router.py"),
-    "app/tools/audio_tools.py": Path("app/tools/audio_tools.py"),
+    "app/domain/planner_orchestrator.py": Path("app/domain/planner_orchestrator.py"),
+    "app/adapters/llm_client.py": Path("app/adapters/llm_client.py"),
+    "app/domain/intent_router.py": Path("app/domain/intent_router.py"),
     "app/prompts/tool_system.txt": Path("app/prompts/tool_system.txt"),
     "app/prompts/chat_system.txt": Path("app/prompts/chat_system.txt"),
 }
@@ -101,12 +93,25 @@ async def run_evolution_cycle(
         print("[Brain] No hay suficientes problemas críticos para generar propuestas.")
         return None
     
-    # 4. Leer código relevante
-    codebase = {
-        name: path.read_text(encoding="utf-8")
-        for name, path in CODE_FILES.items()
-        if path.exists()
-    }
+    # 4. Leer código relevante de forma dinámica
+    codebase = {}
+    # Cargar archivos core predefinidos
+    for name, path in CODE_FILES.items():
+            try:
+                codebase[name] = path.read_text(encoding="utf-8", errors="replace")
+            except Exception as e:
+                print(f"[Brain] Error al leer archivo core {name}: {e}")
+            
+    # Cargar dinámicamente archivos indicados en los issues
+    for issue in issues:
+        location = issue.get("location")
+        if location:
+            path_loc = Path(location)
+            if path_loc.exists():
+                try:
+                    codebase[location] = path_loc.read_text(encoding="utf-8", errors="replace")
+                except Exception as e:
+                    print(f"[Brain] Error al leer archivo {location}: {e}")
     
     # 5. Generar propuestas de fix
     proposals = []
@@ -120,9 +125,14 @@ async def run_evolution_cycle(
             except Exception as e:
                 pbar.write(f"[Brain] Error generando fix: {e}")
     
-    # 6. Guardar informe para revisión humana
-    report_path = save_proposal_placeholder(proposals)
-    print(f"[Brain] Informe guardado: {report_path}")
-    print(f"[Brain] Revisa el informe y aplica manualmente los fixes que consideres correctos.")
+    # 6. Guardar informes para revisión humana
+    report_paths = []
+    for proposal in proposals:
+        report_path = save_proposal(proposal)
+        report_paths.append(str(report_path))
+        print(f"[Brain] Propuesta guardada: {report_path}")
+        
+    print(f"[Brain] Se han generado y guardado {len(report_paths)} propuesta(s) de evolución.")
+    print(f"[Brain] Revisa los informes en la carpeta BRAIN/reports/ y aplica manualmente los fixes.")
     
-    return report_path
+    return report_paths

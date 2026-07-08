@@ -1,6 +1,20 @@
 """
-main.py — Alfonso Core (PlannerOrchestrator como único pipeline)
+MAIN — Punto de entrada del Servidor Core de Alfonso.
 
+¿QUÉ HACE?
+Configura e inicializa la aplicación FastAPI, definiendo middlewares globales (registro de request ID, latencia HTTP) y manejadores de excepciones, y expone los servicios web.
+
+¿CUÁNDO LO HACE?
+Al arrancar el servidor web a través de comandos ASGI como uvicorn/gunicorn.
+
+¿CÓMO LO HACE?
+Crea una instancia de FastAPI, registra el router principal unificado, configura manejadores de eventos (lifespan) para iniciar y detener el bridge WebSocket y precalentar el modelo LLM.
+
+¿CON QUÉ OTROS SCRIPTS ESTÁ RELACIONADO?
+- app/api/routes.py: Importa y registra el router principal consolidado.
+- app/core/planner_orchestrator.py: Inicializa el planificador orquestador global.
+- app/core/llm_client.py: Inicializa y precalienta el cliente LLM de Ollama.
+- app/core/alfonso_bridge.py: Arranca/detiene la comunicación en tiempo real con el cliente.
 """
 
 import time
@@ -13,12 +27,11 @@ from fastapi.responses import JSONResponse
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from app.api.routes import router
-from app.api.routes_fase3 import router_browser, router_computer
-from app.core.llm_client import OllamaClient, get_system_prompt
-from app.core.metrics import increment_http_errors, increment_http_requests, record_http_latency
-from app.core.planner_orchestrator import PlannerOrchestrator
-from app.core.alfonso_bridge import bridge as alfonso_bridge
-from app.tools.browser_tools import _close as _close_playwright
+from app.adapters.llm_client import OllamaClient, get_system_prompt
+from app.adapters.metrics import increment_http_errors, increment_http_requests, record_http_latency
+from app.domain.planner_orchestrator import PlannerOrchestrator
+from app.adapters.alfonso_bridge import bridge as alfonso_bridge
+from app.tools.client.browser_tools import _close as _close_playwright
 from app.utils.logger import LOG_DIR, app_logger, attach_request_id
 
 # ---------------------------------------------------------------------------
@@ -139,5 +152,3 @@ async def generic_exception_handler(request: Request, exc: Exception):
 
 
 app.include_router(router)
-app.include_router(router_browser)
-app.include_router(router_computer)
