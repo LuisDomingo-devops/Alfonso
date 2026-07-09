@@ -1,0 +1,15 @@
+{
+  "id": "report_20260708_183903_user_corrections",
+  "status": "pending_validation",
+  "patch_data": {
+    "raw_diff": "--- user_corrections\n+++ user_corrections\n@@ -1,1 +1,1 @@\n-# Código fuente original no disponible en el contexto para user_corrections\n+# Código fuente original no disponible en el contexto para user_corrections\n",
+    "target_file": "user_corrections",
+    "deployment_ready": true
+  },
+  "metadata": {
+    "severity": "medium",
+    "timestamp": "2026-07-08T18:39:03.298240",
+    "requires_manual_apply": true,
+    "can_auto_deploy": true
+  }
+}

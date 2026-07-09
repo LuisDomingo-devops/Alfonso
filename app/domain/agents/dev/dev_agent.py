@@ -58,9 +58,11 @@ class DevAgent:
     def execute_command_in_sandbox(self, cmd: str) -> dict:
         """Ejecuta un comando en el directorio del sandbox y retorna stdout, stderr y exit code."""
         try:
+            import shlex
+            args = shlex.split(cmd)
             res = subprocess.run(
-                cmd,
-                shell=True,
+                args,
+                shell=False,
                 cwd=str(self.sandbox_path),
                 capture_output=True,
                 text=True,
@@ -116,40 +118,20 @@ print("Hello")
             {"role": "user", "content": prompt}
         ]
 
-        # 3. Invocar al LLM
-        response_text = ""
+        # 3. Invocar al LLM usando el cliente unificado con opciones personalizadas
         try:
-            payload = {
-                "model": self.llm.llm_client.settings.MODEL_NAME if hasattr(self.llm, "llm_client") else "qwen2.5:1.5b",
-                "messages": messages,
-                "stream": False,
-                "keep_alive": -1,
-                "options": {
-                    "num_ctx": 8192,
-                    "temperature": 0.1,  # Baja temperatura para código determinista
-                },
-            }
-            from app.adapters.http_client import client
-            from app.config import settings
-            
-            response = await client.post(
-                f"{settings.OLLAMA_BASE_URL}/api/chat",
-                json=payload,
-            )
-            if response.status_code == 200:
-                data = response.json()
-                response_text = data["message"]["content"].strip()
-            else:
-                orchestrator_logger.error("Error llamando a Ollama para DevAgent: %s", response.text)
-        except Exception as e:
-            orchestrator_logger.exception("Error en la ejecución de DevAgent: %s", e)
-
-        if not response_text:
             response_text = await self.llm.generate(
                 prompt,
                 mode="chat",
-                memory=self.system_prompt
+                memory=self.system_prompt,
+                options={
+                    "num_ctx": 8192,
+                    "temperature": 0.1,  # Baja temperatura para código determinista
+                }
             )
+        except Exception as e:
+            orchestrator_logger.exception("Error en la ejecución de DevAgent: %s", e)
+            response_text = ""
 
         # 4. Post-procesamiento: Extraer y guardar archivos en el sandbox
         # Buscamos tanto [FILE:nombre] fuera del bloque como comentarios tipo FILE:nombre dentro del bloque

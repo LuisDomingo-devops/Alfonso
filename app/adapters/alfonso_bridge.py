@@ -84,22 +84,58 @@ class AlfonsoBridge:
         logger.info(f"Cliente desconectado: {ws.remote_address}")
 
     async def handler(self, ws):
-        await self.register(ws)
+        try:
+            # Esperar el handshake como primer mensaje con un timeout de 5 segundos
+            msg = await asyncio.wait_for(ws.recv(), timeout=5.0)
+            data = json.loads(msg)
+            if data.get("type") != "handshake":
+                logger.warning("Conexión rechazada: el primer mensaje debe ser un handshake")
+                await ws.close(code=4000, reason="Handshake required")
+                return
+            
+            # Validar token si está configurado
+            from app.config import settings
+            token = data.get("token")
+            if settings.ALFONSO_BRIDGE_TOKEN:
+                if not token or token != settings.ALFONSO_BRIDGE_TOKEN:
+                    logger.warning("Conexión rechazada: Token incorrecto o ausente")
+                    await ws.close(code=4003, reason="Forbidden - Invalid Token")
+                    return
+
+            # Registrar cliente solo tras handshake exitoso
+            await self.register(ws)
+            self.client_info = data
+            logger.info("Handshake recibido y validado del cliente")
+            try:
+                import os
+                os.makedirs("data", exist_ok=True)
+                with open("data/last_client_info.json", "w", encoding="utf-8") as f:
+                    json.dump(data, f, indent=4)
+            except Exception as e:
+                logger.error(f"No se pudo guardar last_client_info.json: {e}")
+
+        except asyncio.TimeoutError:
+            logger.warning("Conexión rechazada por timeout esperando handshake")
+            await ws.close(code=4008, reason="Handshake timeout")
+            return
+        except Exception as e:
+            logger.error(f"Error durante el handshake inicial: {e}")
+            await ws.close(code=4000, reason="Invalid request")
+            return
+
         try:
             async for msg in ws:
                 data = json.loads(msg)
 
-                # Interceptar handshake del cliente
+                # Si vuelven a mandar un handshake, simplemente lo actualizamos o ignoramos
                 if data.get("type") == "handshake":
+                    token = data.get("token")
+                    from app.config import settings
+                    if settings.ALFONSO_BRIDGE_TOKEN and token != settings.ALFONSO_BRIDGE_TOKEN:
+                        logger.warning("Handshake subsiguiente rechazado: token inválido")
+                        await ws.close(code=4003, reason="Forbidden - Invalid Token")
+                        return
                     self.client_info = data
-                    logger.info("Handshake recibido del cliente")
-                    try:
-                        import os
-                        os.makedirs("data", exist_ok=True)
-                        with open("data/last_client_info.json", "w", encoding="utf-8") as f:
-                            json.dump(data, f, indent=4)
-                    except Exception as e:
-                        logger.error(f"No se pudo guardar last_client_info.json: {e}")
                     continue
 
                 cmd_id = data.get("id")

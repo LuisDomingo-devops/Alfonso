@@ -972,6 +972,12 @@ class PlannerOrchestrator:
             "genera código", "genera codigo", "generar codigo", "generar código", "sandbox", "compila", "compilar"
         ]) or ("marcosdev" in msg_lower or "ingeniero de software" in msg_lower or "devagent" in msg_lower)
 
+        is_security_query = any(kw in msg_lower for kw in [
+            "ciberseguridad", "cybersecurity", "seguridad", "security", "vulnerabilidad", 
+            "vulnerabilities", "auditoría de seguridad", "auditoria de seguridad", "hack",
+            "phishing", "malware", "firewall", "puerto", "risk", "riesgo", "alerta de seguridad"
+        ]) or ("cyberagent" in msg_lower or "agente de seguridad" in msg_lower or "securityagent" in msg_lower)
+
         if is_marcos_query:
             logger.info("Consulta de tipo legal. Delegando a MarcosAgent.")
             from app.domain.agents.marcos.marcos_agent import marcos_agent
@@ -987,6 +993,17 @@ class PlannerOrchestrator:
             logger.info("Consulta de desarrollo. Delegando a DevAgent.")
             from app.domain.agents.dev.dev_agent import dev_agent
             response = await dev_agent.generate_response(user_message)
+            if session_id:
+                memory.add_message(session_id, "assistant", response)
+            return {
+                "type": "chat",
+                "response": response,
+            }
+
+        if is_security_query:
+            logger.info("Consulta de seguridad. Delegando a CyberSecurityAgent.")
+            from app.domain.agents.security.security_agent import security_agent
+            response = await security_agent.generate_response(user_message)
             if session_id:
                 memory.add_message(session_id, "assistant", response)
             return {

@@ -34,12 +34,16 @@ from app.adapters.alfonso_bridge import bridge as alfonso_bridge
 from app.tools.client.browser_tools import _close as _close_playwright
 from app.utils.logger import LOG_DIR, app_logger, attach_request_id
 
+import asyncio
+from app.domain.agents.security.security_agent import security_agent
+
 # ---------------------------------------------------------------------------
 # Instancias globales
 # ---------------------------------------------------------------------------
 
 llm = OllamaClient()
 planner_orchestrator = PlannerOrchestrator()
+_bg_security_task = None
 
 
 # ---------------------------------------------------------------------------
@@ -48,6 +52,7 @@ planner_orchestrator = PlannerOrchestrator()
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    global _bg_security_task
     app_logger.info("Logs en %s", LOG_DIR)
     app_logger.info("Arrancando Alfonso — audio delegado al cliente local")
 
@@ -56,8 +61,10 @@ async def lifespan(app: FastAPI):
 
     if not is_testing:
         await alfonso_bridge.start()
+        # Iniciar monitoreo de seguridad en segundo plano
+        _bg_security_task = asyncio.create_task(security_agent.start_background_monitoring())
     else:
-        app_logger.info("Inicio del bridge omitido en entorno de test")
+        app_logger.info("Inicio del bridge y monitoreo de seguridad omitidos en entorno de test")
 
     from app.api import routes as _routes
     _routes.orchestrator = planner_orchestrator
@@ -84,6 +91,8 @@ async def lifespan(app: FastAPI):
 
     if not is_testing:
         await alfonso_bridge.stop()
+        if _bg_security_task:
+            _bg_security_task.cancel()
     else:
         app_logger.info("Detención del bridge omitida en entorno de test")
 
@@ -101,6 +110,41 @@ async def lifespan(app: FastAPI):
 # ---------------------------------------------------------------------------
 
 app = FastAPI(title="Alfonso Core — Fase 4", lifespan=lifespan)
+
+
+@app.middleware("http")
+async def security_waf_middleware(request: Request, call_next):
+    ip = request.client.host if request.client else "127.0.0.1"
+
+    if security_agent.is_blocked(ip):
+        return JSONResponse(
+            status_code=403,
+            content={"status": "error", "detail": "IP address blacklisted due to security violations."}
+        )
+
+    # Leer body de forma segura para escaneo sin interrumpir flujo
+    body_bytes = b""
+    content_length = request.headers.get("content-length")
+    if content_length and int(content_length) < 65536:
+        try:
+            body_bytes = await request.body()
+            async def receive():
+                return {"type": "http.request", "body": body_bytes, "more_body": False}
+            request._receive = receive
+        except Exception:
+            pass
+
+    body_str = body_bytes.decode("utf-8", errors="ignore")
+    path_and_query = f"{request.url.path}?{request.url.query}" if request.url.query else request.url.path
+    headers_dict = dict(request.headers)
+
+    if security_agent.inspect_request(ip, path_and_query, request.method, headers_dict, body_str):
+        return JSONResponse(
+            status_code=403,
+            content={"status": "error", "detail": "Request rejected due to potential security threat."}
+        )
+
+    return await call_next(request)
 
 
 @app.middleware("http")

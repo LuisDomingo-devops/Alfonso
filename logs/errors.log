@@ -77,3 +77,6 @@ httpx.ReadTimeout
 2026-07-07 19:29:21,998 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
 2026-07-07 19:35:57,395 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
 2026-07-07 19:36:56,580 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-07-08 18:51:53,349 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python' en el equipo del usuario.
+2026-07-09 09:21:45,980 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-07-09 09:32:58,485 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.

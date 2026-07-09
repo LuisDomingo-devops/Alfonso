@@ -100,3 +100,54 @@
 2026-07-07 19:37:05,714 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-5/test_prepare_tool_args_end_to_0/salida.txt
 2026-07-07 19:37:05,714 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-5/test_prepare_tool_args_end_to_0/salida.txt
 2026-07-07 19:37:05,715 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-5/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-08 18:51:35,494 | INFO | tools | [----------] Cita creada con ID 96 y añadida a ChromaDB.
+2026-07-08 18:51:35,503 | INFO | tools | [----------] computer_use: delegando 'mouse.click' args={'x': 10, 'y': 20, 'button': 'left', 'clicks': 1, 'interval': 0.1}
+2026-07-08 18:51:35,507 | INFO | tools | [----------] computer_use: delegando 'keyboard.type' args={'text': 'hola', 'interval': 0.03}
+2026-07-08 18:51:53,317 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python', '-c', "print('hello')"]
+2026-07-08 18:51:53,342 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-07-08 18:51:53,344 | INFO | tools | [----------] Listando directorio: app
+2026-07-08 18:51:53,345 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-07-08 18:51:53,345 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-07-08 18:51:53,346 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-07-08 18:51:53,349 | WARNING | tools | [----------] ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '['/home/luisd/Alfonso/venv/bin/python', '-c', "print('app-open-test')"]' en el SERVIDOR, no en el cliente.
+2026-07-08 18:52:01,449 | INFO | tools | [----------] Delegando open_application al agente local: notepad
+2026-07-08 18:52:01,453 | INFO | tools | [----------] Delegando open_url al agente local: https://google.com
+2026-07-08 18:52:01,458 | INFO | tools | [----------] Delegando close_application al agente local: notepad
+2026-07-08 18:52:01,477 | INFO | tools | [----------] Intentando crear archivo: /tmp/pytest-of-luisd/pytest-6/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-08 18:52:01,477 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-6/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-08 18:52:01,478 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-6/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-08 18:52:01,478 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-6/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-09 09:21:28,767 | INFO | tools | [----------] Cita creada con ID 99 y añadida a ChromaDB.
+2026-07-09 09:21:28,776 | INFO | tools | [----------] computer_use: delegando 'mouse.click' args={'x': 10, 'y': 20, 'button': 'left', 'clicks': 1, 'interval': 0.1}
+2026-07-09 09:21:28,780 | INFO | tools | [----------] computer_use: delegando 'keyboard.type' args={'text': 'hola', 'interval': 0.03}
+2026-07-09 09:21:45,906 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('hello')"]
+2026-07-09 09:21:45,969 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-07-09 09:21:45,972 | INFO | tools | [----------] Listando directorio: app
+2026-07-09 09:21:45,973 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-07-09 09:21:45,974 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-07-09 09:21:45,975 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-07-09 09:21:45,981 | WARNING | tools | [----------] ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('app-open-test')"]' en el SERVIDOR, no en el cliente.
+2026-07-09 09:21:55,950 | INFO | tools | [----------] Delegando open_application al agente local: notepad
+2026-07-09 09:21:55,959 | INFO | tools | [----------] Delegando open_url al agente local: https://google.com
+2026-07-09 09:21:55,970 | INFO | tools | [----------] Delegando close_application al agente local: notepad
+2026-07-09 09:21:56,006 | INFO | tools | [----------] Intentando crear archivo: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-09 09:21:56,007 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-09 09:21:56,007 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-09 09:21:56,008 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-09 09:32:42,095 | INFO | tools | [----------] Cita creada con ID 102 y añadida a ChromaDB.
+2026-07-09 09:32:42,103 | INFO | tools | [----------] computer_use: delegando 'mouse.click' args={'x': 10, 'y': 20, 'button': 'left', 'clicks': 1, 'interval': 0.1}
+2026-07-09 09:32:42,106 | INFO | tools | [----------] computer_use: delegando 'keyboard.type' args={'text': 'hola', 'interval': 0.03}
+2026-07-09 09:32:58,447 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('hello')"]
+2026-07-09 09:32:58,477 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-07-09 09:32:58,480 | INFO | tools | [----------] Listando directorio: app
+2026-07-09 09:32:58,481 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-07-09 09:32:58,481 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-07-09 09:32:58,482 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-07-09 09:32:58,485 | WARNING | tools | [----------] ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('app-open-test')"]' en el SERVIDOR, no en el cliente.
+2026-07-09 09:33:07,633 | INFO | tools | [----------] Delegando open_application al agente local: notepad
+2026-07-09 09:33:07,639 | INFO | tools | [----------] Delegando open_url al agente local: https://google.com
+2026-07-09 09:33:07,644 | INFO | tools | [----------] Delegando close_application al agente local: notepad
+2026-07-09 09:33:07,666 | INFO | tools | [----------] Intentando crear archivo: /tmp/pytest-of-luisd/pytest-2/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-09 09:33:07,666 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-2/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-09 09:33:07,667 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-2/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-09 09:33:07,667 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-2/test_prepare_tool_args_end_to_0/salida.txt

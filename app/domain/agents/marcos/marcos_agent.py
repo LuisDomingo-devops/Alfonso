@@ -88,37 +88,18 @@ Por favor, asesora y responde a esta consulta de forma rigurosa basándote en lo
         ]
         
         try:
-            payload = {
-                "model": self.llm.llm_client.settings.MODEL_NAME if hasattr(self.llm, "llm_client") else "qwen2.5:1.5b",
-                "messages": messages,
-                "stream": False,
-                "keep_alive": -1,
-                "options": {
+            return await self.llm.generate(
+                prompt,
+                mode="chat",
+                memory=self.system_prompt,
+                options={
                     "num_ctx": 4096,  # Mayor contexto para leyes
                     "temperature": 0.2, # Respuestas más precisas y formales
-                },
-            }
-            from app.adapters.http_client import client
-            from app.config import settings
-            
-            response = await client.post(
-                f"{settings.OLLAMA_BASE_URL}/api/chat",
-                json=payload,
+                }
             )
-            if response.status_code == 200:
-                data = response.json()
-                return data["message"]["content"].strip()
-            else:
-                orchestrator_logger.error("Error llamando a Ollama para Marcos: %s", response.text)
         except Exception as e:
             orchestrator_logger.exception("Error en la ejecución del agente Marcos: %s", e)
-            
-        # Fallback usando el método estándar si falla la llamada directa
-        return await self.llm.generate(
-            prompt,
-            mode="chat",
-            memory=self.system_prompt
-        )
+            return "Lo siento, ha ocurrido un error al procesar tu consulta legal."
 
 # Instancia global única
 marcos_agent = MarcosAgent()

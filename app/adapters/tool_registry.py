@@ -133,12 +133,15 @@ def load_plugins():
             )
 
 
-        except Exception:
+        except Exception as e:
 
             tool_registry_logger.exception(
                 "Error cargando %s",
                 full_module_name
             )
+
+            if settings.TOOL_VALIDATION_MODE != "permissive":
+                raise e
 
             continue
 

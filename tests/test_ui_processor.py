@@ -2,8 +2,8 @@ import sys
 from pathlib import Path
 import pytest
 
-# Add ui/ directory to sys.path so we can import core.processor
-ui_path = str(Path(__file__).resolve().parents[1] / "ui")
+# Add client/ directory to sys.path so we can import core.processor
+ui_path = str(Path(__file__).resolve().parents[1] / "client")
 if ui_path not in sys.path:
     sys.path.insert(0, ui_path)
 

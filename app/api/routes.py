@@ -25,7 +25,8 @@ import uuid
 from pathlib import Path
 from typing import Any, List, Optional
 
-from fastapi import APIRouter, HTTPException, Query, Request
+from fastapi import APIRouter, HTTPException, Query, Request, Depends, status
+from fastapi.security.api_key import APIKeyHeader
 from pydantic import BaseModel, Field
 
 # Imports del núcleo
@@ -36,14 +37,29 @@ from app.adapters.tool_registry import get_tool, list_tools
 from app.domain.agents.dev.dev_agent import dev_agent
 from app.utils.logger import app_logger, attach_request_id
 from app.utils.timer import Timer
+from app.config import settings
+
+# ── API Key Security ────────────────────────────────────────────────────────
+API_KEY_NAME = "X-API-Key"
+api_key_header = APIKeyHeader(name=API_KEY_NAME, auto_error=False)
+
+async def verify_api_key(api_key: str = Depends(api_key_header)):
+    if settings.ALFONSO_API_KEY:
+        if not api_key or api_key != settings.ALFONSO_API_KEY:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Invalid API Key or API Key missing"
+            )
+    return api_key
 
 # Routers
 router = APIRouter()
-router_browser = APIRouter(prefix="/browser", tags=["browser"])
-router_computer = APIRouter(prefix="/computer", tags=["computer"])
-router_calendar = APIRouter(prefix="/calendar", tags=["calendar"])
-router_mail = APIRouter(prefix="/mail", tags=["mail"])
-router_dev = APIRouter(prefix="/dev", tags=["developer"])
+router_browser = APIRouter(prefix="/browser", tags=["browser"], dependencies=[Depends(verify_api_key)])
+router_computer = APIRouter(prefix="/computer", tags=["computer"], dependencies=[Depends(verify_api_key)])
+router_calendar = APIRouter(prefix="/calendar", tags=["calendar"], dependencies=[Depends(verify_api_key)])
+router_mail = APIRouter(prefix="/mail", tags=["mail"], dependencies=[Depends(verify_api_key)])
+router_dev = APIRouter(prefix="/dev", tags=["developer"], dependencies=[Depends(verify_api_key)])
+router_security = APIRouter(prefix="/security", tags=["security"], dependencies=[Depends(verify_api_key)])
 
 # Inyectado desde lifespan en main.py
 orchestrator: Any = None
@@ -259,12 +275,12 @@ async def health():
     return {"status": "ok", "phase": "3"}
 
 
-@router.get("/tools")
+@router.get("/tools", dependencies=[Depends(verify_api_key)])
 async def tools_list():
     return {"tools": list_tools()}
 
 
-@router.get("/agents")
+@router.get("/agents", dependencies=[Depends(verify_api_key)])
 async def agents_list():
     return {
         "agents": [],
@@ -272,12 +288,12 @@ async def agents_list():
     }
 
 
-@router.get("/metrics")
+@router.get("/metrics", dependencies=[Depends(verify_api_key)])
 async def metrics():
     return snapshot()
 
 
-@router.post("/chat")
+@router.post("/chat", dependencies=[Depends(verify_api_key)])
 async def chat_endpoint(req: ChatRequest, request: Request):
     from app.main import llm
 
@@ -797,9 +813,43 @@ async def get_smart_reply_draft(email_id: int):
     return res
 
 
+# ── Security Endpoints ──────────────────────────────────────────────────────
+
+@router_security.get("/status")
+async def get_security_status():
+    from app.domain.agents.security.security_agent import security_agent
+    return {
+        "status": "success",
+        "active_alerts_count": len([a for a in security_agent.alerts if a["level"] in ["WARNING", "HIGH"]]),
+        "total_alerts_count": len(security_agent.alerts),
+        "blocked_ips_count": len(security_agent.blocked_ips),
+        "last_scan_time": security_agent.last_scan_time
+    }
+
+@router_security.get("/alerts")
+async def get_security_alerts():
+    from app.domain.agents.security.security_agent import security_agent
+    return {
+        "status": "success",
+        "alerts": security_agent.alerts
+    }
+
+@router_security.post("/scan")
+async def trigger_security_scan():
+    from app.domain.agents.security.security_agent import security_agent
+    await security_agent.scan_system()
+    return {
+        "status": "success",
+        "message": "Manual security scan completed successfully.",
+        "active_alerts_count": len([a for a in security_agent.alerts if a["level"] in ["WARNING", "HIGH"]]),
+        "total_alerts_count": len(security_agent.alerts)
+    }
+
+
 # Incluimos los sub-routers en el router principal
 router.include_router(router_browser)
 router.include_router(router_computer)
 router.include_router(router_calendar)
 router.include_router(router_mail)
 router.include_router(router_dev)
+router.include_router(router_security)

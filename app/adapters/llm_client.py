@@ -247,6 +247,7 @@ class OllamaClient:
         mode: str = "chat",
         request_id: str = None,
         memory: str | None = None,
+        options: dict | None = None,
         _retry: int = 0,
     ) -> str:
 
@@ -264,15 +265,19 @@ class OllamaClient:
 
         num_ctx = settings.LLM_NUM_CTX_TOOL if mode == "tool" else settings.LLM_NUM_CTX_CHAT
 
+        options_payload = {
+            "num_ctx": num_ctx,
+            "temperature": 0.0 if mode == "tool" else 0.7,
+        }
+        if options:
+            options_payload.update(options)
+
         payload = {
             "model": settings.MODEL_NAME,
             "messages": messages,
             "stream": False,
             "keep_alive": -1,
-            "options": {
-                "num_ctx": num_ctx,
-                "temperature": 0.0 if mode == "tool" else 0.7,
-            },
+            "options": options_payload,
         }
 
         logger.info("MODEL=%s MODE=%s", settings.MODEL_NAME, mode)
@@ -303,10 +308,14 @@ class OllamaClient:
                     mode=mode,
                     request_id=request_id,
                     memory=memory,
+                    options=options,
                     _retry=_retry + 1,
                 )
 
             error.exception("LLM failed permanently")
+
+            if mode == "chat":
+                return "Estoy teniendo problemas técnicos para responderte. Por favor, inténtalo de nuevo en unos instantes."
 
             return json.dumps({
                 "tool": "no_op",
