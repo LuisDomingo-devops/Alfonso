@@ -75,6 +75,12 @@ async def sync_emails_to_calendar() -> int:
     """
     Escanea correos no procesados para el calendario y agenda citas de forma automática.
     """
+    from app.core.gmail_sync import sync_from_gmail
+    try:
+        await sync_from_gmail()
+    except Exception as e:
+        tool_logger.warning(f"Error al sincronizar desde Gmail: {e}")
+
     from app.adapters.mail_db import list_emails, update_email
     import re
     from datetime import datetime, timedelta
@@ -221,6 +227,8 @@ async def mail_classify_emails() -> dict:
 
         classified_count = 0
         updates = []
+        llm_calls_made = 0
+        max_llm_calls = 2
 
         for email in unclassified:
             body_lower = email["body"].lower() + " " + email["subject"].lower()
@@ -231,7 +239,11 @@ async def mail_classify_emails() -> dict:
             importance = None
             summary = None
             
-            if any(x in body_lower for x in ["juzgado", "judicial", "requerimiento", "citación", "notificación electrónica", "plazo de 10", "notaría", "notario", "plusvalía", "escritura", "abogado"]):
+            if any(x in body_lower for x in ["mailer-daemon", "delivery status notification", "failed", "failure", "undeliverable", "no-reply"]):
+                category = "otros"
+                importance = "Baja"
+                summary = "Notificación automática del sistema o fallo de entrega de correo."
+            elif any(x in body_lower for x in ["juzgado", "judicial", "requerimiento", "citación", "notificación electrónica", "plazo de 10", "notaría", "notario", "plusvalía", "escritura", "abogado"]):
                 category = "legal"
                 importance = "Alta"
                 if "notificación" in body_lower or "requerimiento" in body_lower:
@@ -271,6 +283,23 @@ async def mail_classify_emails() -> dict:
                 })
                 continue
 
+            # Si excedemos el límite de llamadas LLM en esta ejecución, asignamos default de inmediato
+            if llm_calls_made >= max_llm_calls:
+                update_email(
+                    email["id"],
+                    category="otros",
+                    importance="Media",
+                    summary=email["subject"],
+                )
+                classified_count += 1
+                updates.append({
+                    "id": email["id"],
+                    "subject": email["subject"],
+                    "category": "otros",
+                    "importance": "Media",
+                })
+                continue
+
             # --- 2. Fallback de Clasificación por LLM (con timeout) ---
             prompt = f"""Analiza el siguiente correo electrónico y clasifícalo.
 Remitente: {email['sender']}
@@ -283,6 +312,7 @@ Responde ESTRICTAMENTE en formato JSON válido con las siguientes claves y valor
 - "summary": un resumen muy breve en una sola frase corta y clara en español de lo que trata el correo.
 """
             try:
+                llm_calls_made += 1
                 # Ponemos un timeout de 4.0s para evitar que el servidor se congele si Ollama es lento
                 raw_response = await asyncio.wait_for(_llm.generate(prompt, mode="tool"), timeout=4.0)
                 parsed = extract_json_robust(raw_response)
@@ -532,6 +562,36 @@ async def mail_close_ui() -> dict:
         return {"status": "error", "message": f"Error al cerrar la interfaz de correo: {str(e)}"}
 
 
+def send_smtp_email_if_configured(recipient: str, subject: str, body: str) -> str:
+    """Envía un correo real usando SMTP de Gmail si las credenciales existen."""
+    import os
+    from dotenv import load_dotenv
+    load_dotenv()
+    import smtplib
+    from email.mime.text import MIMEText
+    
+    gmail_user = os.getenv("GMAIL_EMAIL")
+    gmail_pass = os.getenv("GMAIL_APP_PASSWORD")
+    
+    if gmail_user and gmail_pass:
+        msg = MIMEText(body)
+        msg["Subject"] = subject
+        msg["From"] = gmail_user
+        msg["To"] = recipient
+        
+        try:
+            server = smtplib.SMTP("smtp.gmail.com", 587)
+            server.starttls()
+            server.login(gmail_user, gmail_pass)
+            server.send_message(msg)
+            server.quit()
+            return gmail_user
+        except Exception as e:
+            print(f"[ERROR] Error al enviar SMTP real: {e}")
+            raise e
+    return "luisd@alfonso.dev"
+
+
 async def mail_send_email(recipient: str, subject: str, body: str) -> dict:
     """
     Envía un nuevo correo electrónico escribiéndolo en la carpeta de enviados.
@@ -543,9 +603,15 @@ async def mail_send_email(recipient: str, subject: str, body: str) -> dict:
         from app.adapters.mail_db import create_email
         from datetime import datetime
         
+        sender_email = "luisd@alfonso.dev"
+        try:
+            sender_email = send_smtp_email_if_configured(recipient, subject, body)
+        except Exception as e:
+            return {"status": "error", "message": f"Error al enviar correo por Gmail SMTP: {str(e)}"}
+            
         now_str = datetime.now().strftime("%Y-%m-%d %H:%M")
         email_id = create_email(
-            sender="luisd@alfonso.dev",
+            sender=sender_email,
             recipient=recipient,
             subject=subject,
             body=body,
@@ -612,9 +678,15 @@ async def mail_reply_email(email_id: int, body: str, reply_all: bool = False) ->
         if not subject.startswith("Re:"):
             subject = f"Re: {subject}"
             
+        sender_email = "luisd@alfonso.dev"
+        try:
+            sender_email = send_smtp_email_if_configured(recipient, subject, body)
+        except Exception as e:
+            return {"status": "error", "message": f"Error al responder correo por Gmail SMTP: {str(e)}"}
+
         now_str = datetime.now().strftime("%Y-%m-%d %H:%M")
         new_id = create_email(
-            sender="luisd@alfonso.dev",
+            sender=sender_email,
             recipient=recipient,
             subject=subject,
             body=body,
@@ -661,9 +733,15 @@ async def mail_forward_email(email_id: int, recipient: str, comment: Optional[st
         if comment:
             body = f"{comment}\n\n---------- Mensaje reenviado ----------\nDe: {orig_email['sender']}\nFecha: {orig_email['received_at']}\nAsunto: {orig_email['subject']}\n\n{body}"
             
+        sender_email = "luisd@alfonso.dev"
+        try:
+            sender_email = send_smtp_email_if_configured(recipient, subject, body)
+        except Exception as e:
+            return {"status": "error", "message": f"Error al reenviar correo por Gmail SMTP: {str(e)}"}
+
         now_str = datetime.now().strftime("%Y-%m-%d %H:%M")
         new_id = create_email(
-            sender="luisd@alfonso.dev",
+            sender=sender_email,
             recipient=recipient,
             subject=subject,
             body=body,

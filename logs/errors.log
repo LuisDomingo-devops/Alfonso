@@ -80,3 +80,94 @@ httpx.ReadTimeout
 2026-07-08 18:51:53,349 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python' en el equipo del usuario.
 2026-07-09 09:21:45,980 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
 2026-07-09 09:32:58,485 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python3' en el equipo del usuario.
+2026-07-12 10:28:17,088 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python' en el equipo del usuario.
+2026-07-12 11:37:46,545 | WARNING | errors | [3279fce1-1b65-4bc3-ab15-f30fb1d5d3e3] Tool de cliente falló: create_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-12 11:39:21,538 | WARNING | errors | [1ef4610a-b176-4d3b-b5d6-02d442513de9] Tool de cliente falló: append_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-12 11:39:25,845 | WARNING | errors | [160a1e6e-6dc2-4e1b-a8ee-0dcec678c1a7] Tool de cliente falló: read_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-12 11:39:30,274 | WARNING | errors | [c398eafd-3694-4684-acd8-5389990651e9] Tool de cliente falló: rename_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-12 11:41:37,452 | WARNING | errors | [fcaf2a00-56e5-4561-b756-3532e38c9f7a] Tool de cliente falló: delete_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-12 11:41:38,416 | WARNING | errors | [7fe78852-31ce-4dd4-8463-bb25dc66088d] Tool de cliente falló: create_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-12 11:41:41,766 | WARNING | errors | [783b8f5e-3556-4234-afff-2e83ea72da2c] Tool de cliente falló: delete_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-12 11:42:31,258 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python' en el equipo del usuario.
+2026-07-12 12:09:12,741 | ERROR | errors | [6d9255df-1019-4e09-aae0-15f14b1ce924] Error ejecutando tool de servidor: mail_get_unread_summary
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/home/luisd/Alfonso/app/tools/server/mail_tools.py", line 429, in mail_get_unread_summary
+    summary_text = await asyncio.wait_for(_llm.generate(prompt, mode="chat"), timeout=8.0)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/home/luisd/Alfonso/app/adapters/llm_client.py", line 286, in generate
+    response = await client.post(
+               ^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1859, in post
+    return await self.request(
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1540, in request
+    return await self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1629, in send
+    response = await self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1657, in _send_handling_auth
+    response = await self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1694, in _send_handling_redirects
+    response = await self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_client.py", line 1730, in _send_single_request
+    response = await transport.handle_async_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpx/_transports/default.py", line 394, in handle_async_request
+    resp = await self._pool.handle_async_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/connection_pool.py", line 256, in handle_async_request
+    raise exc from None
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/connection_pool.py", line 236, in handle_async_request
+    response = await connection.handle_async_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/connection.py", line 103, in handle_async_request
+    return await self._connection.handle_async_request(request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 136, in handle_async_request
+    raise exc
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 106, in handle_async_request
+    ) = await self._receive_response_headers(**kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 177, in _receive_response_headers
+    event = await self._receive_event(timeout=timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_async/http11.py", line 217, in _receive_event
+    data = await self._network_stream.read(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/httpcore/_backends/anyio.py", line 35, in read
+    return await self._stream.receive(max_bytes=max_bytes)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luisd/Alfonso/venv/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 1284, in receive
+    await self._protocol.read_event.wait()
+  File "/usr/lib/python3.12/asyncio/locks.py", line 212, in wait
+    await fut
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/luisd/Alfonso/app/domain/planner_orchestrator.py", line 1165, in run
+    result = await asyncio.wait_for(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/tasks.py", line 519, in wait_for
+    async with timeouts.timeout(timeout):
+  File "/usr/lib/python3.12/asyncio/timeouts.py", line 115, in __aexit__
+    raise TimeoutError from exc_val
+TimeoutError
+2026-07-12 12:29:29,226 | WARNING | errors | [593e3704-e050-4c28-9d37-a143fa7044d2] Tool de cliente falló: create_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-12 12:31:36,905 | WARNING | errors | [e77dbc8b-99a6-4c03-9a11-cd120932b247] Tool de cliente falló: append_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-12 12:31:41,235 | WARNING | errors | [4b4b2c1e-2327-47bd-80fb-3dcee4299903] Tool de cliente falló: read_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-12 12:31:45,666 | WARNING | errors | [d848a88c-7386-4162-8f94-ef9ed19e4bb5] Tool de cliente falló: rename_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-12 12:33:52,151 | WARNING | errors | [7a145497-5403-4227-a122-f1d14053f44a] Tool de cliente falló: delete_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-12 12:33:52,157 | WARNING | errors | [7f746679-2e54-4be2-bc0f-e525eaee86ba] Tool de cliente falló: create_file -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-12 12:33:56,851 | WARNING | errors | [d5853194-354d-4960-8ba0-269ad0806939] Tool de cliente falló: delete_directory -> {'status': 'error', 'error': 'No hay clientes conectados'}
+2026-07-12 12:34:48,663 | WARNING | errors | [----------] No hay agente local conectado (alfonso_bridge.has_clients()=False). No se puede abrir '/home/luisd/Alfonso/venv/bin/python' en el equipo del usuario.
