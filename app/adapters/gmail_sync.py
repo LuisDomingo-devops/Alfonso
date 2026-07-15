@@ -28,6 +28,8 @@ def clean_header(header_value) -> str:
 
 
 async def sync_from_gmail() -> int:
+    import socket
+    socket.setdefaulttimeout(3.0)
     from dotenv import load_dotenv
     load_dotenv()
     gmail_user = os.getenv("GMAIL_EMAIL")
@@ -56,7 +58,7 @@ async def sync_from_gmail() -> int:
         try:
             # Procesar últimos 30 correos para rapidez
             for e_id in reversed(email_ids[-30:]):
-                status, data = mail.fetch(e_id, "(RFC822)")
+                status, data = mail.fetch(e_id, "(BODY.PEEK[])")
                 if status != "OK":
                     continue
                     

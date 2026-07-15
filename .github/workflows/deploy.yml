@@ -1,0 +1,30 @@
+name: Deploy to Hugging Face Spaces
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Push to Hugging Face
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          # REEMPLAZA AQUÍ con tu usuario de Hugging Face y el nombre de tu Space
+          # Ejemplo: luisd/mi-alfonso
+          HF_SPACE: "LuisJDomingo/Alfonso"
+        run: |
+          # Evita errores de credenciales configurando git
+          git config --global user.email "ci-runner@github.com"
+          git config --global user.name "GitHub Actions"
+          
+          # Añadir repositorio remoto de Hugging Face y empujar la rama main
+          git remote add hf https://user:$HF_TOKEN@huggingface.co/spaces/$HF_SPACE
+          git push --force hf main

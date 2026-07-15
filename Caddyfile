@@ -1,0 +1,12 @@
+# Caddyfile — Multiplexación de puertos para Hugging Face Spaces
+
+:7860 {
+    # Redirigir el WebSocket al puerto de Alfonso Bridge
+    reverse_proxy /ws* localhost:8765 {
+        header_up Host {host}
+        header_up X-Real-IP {remote}
+    }
+
+    # Redirigir todo lo demás a la API de FastAPI
+    reverse_proxy /* localhost:8000
+}

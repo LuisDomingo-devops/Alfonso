@@ -46,6 +46,12 @@ def setup_test_db(monkeypatch):
             processed_for_calendar INTEGER DEFAULT 0
         )
     """)
+    conn.execute("""
+        CREATE TABLE IF NOT EXISTS settings (
+            key TEXT PRIMARY KEY,
+            value TEXT NOT NULL
+        )
+    """)
     conn.commit()
     
     monkeypatch.setattr(mail_db, "get_connection", lambda: DummyConnection(conn))
@@ -159,3 +165,114 @@ def test_mail_api_endpoints(monkeypatch):
     r = client.get("/mail/emails/1/draft")
     assert r.status_code == 200
     assert r.json()["role"] == "[Abogado Mock]"
+
+
+def test_save_invoice_to_desktop(tmp_path, monkeypatch):
+    import app.tools.server.mail_tools as tools
+    
+    # Mockear la ruta del escritorio con un directorio temporal de pruebas
+    test_dir = tmp_path / "facturas pendientes"
+    monkeypatch.setattr(tools, "INVOICE_DESKTOP_PATH", str(test_dir))
+    
+    email_data = {
+        "id": 123,
+        "sender": "Iberdrola Clientes <factura-no-reply@iberdrola.es>",
+        "recipient": "luisd@alfonso.dev",
+        "subject": "Su factura de luz del periodo Mayo-Junio ya está disponible (68.42 €)",
+        "body": "Estimado Luis, le informamos que ya puede descargar su factura de luz.",
+        "received_at": "2026-07-12 10:00"
+    }
+    
+    # Llamar al helper
+    tools.save_invoice_to_desktop(email_data)
+    
+    # Verificar que el directorio del proveedor se ha creado
+    provider_dir = test_dir / "Iberdrola_Clientes"
+    assert provider_dir.exists()
+    
+    # Verificar que el archivo se ha guardado
+    expected_file = provider_dir / "20260712_1000_Factura_123.txt"
+    assert expected_file.exists()
+    
+    # Verificar contenido del archivo
+    content = expected_file.read_text(encoding="utf-8")
+    assert "ID de Correo: 123" in content
+    assert "factura-no-reply@iberdrola.es" in content
+    assert "68.42" in content
+
+
+@pytest.mark.asyncio
+async def test_mail_set_invoice_folder_and_save(tmp_path, monkeypatch):
+    import app.tools.server.mail_tools as tools
+    
+    # Ruta personalizada temporal
+    custom_dir = tmp_path / "ultimas_facturas"
+    
+    # Llamar a la herramienta para cambiar la configuración
+    res = await tools.mail_set_invoice_folder(str(custom_dir))
+    assert res["status"] == "ok"
+    assert res["folder_path"] == str(custom_dir)
+    
+    email_data = {
+        "id": 456,
+        "sender": "Amazon.es <auto-confirm@amazon.es>",
+        "recipient": "luisd@alfonso.dev",
+        "subject": "Confirmación de envío",
+        "body": "Su pedido de 45.00 EUR ha sido enviado.",
+        "received_at": "2026-07-12 11:00"
+    }
+    
+    # Llamar al helper
+    tools.save_invoice_to_desktop(email_data)
+    
+    # Verificar guardado en subcarpeta del proveedor dentro de la ruta personalizada
+    expected_file = custom_dir / "Amazones" / "20260712_1100_Factura_456.txt"
+    assert expected_file.exists()
+    
+    content = expected_file.read_text(encoding="utf-8")
+    assert "ID de Correo: 456" in content
+    assert "auto-confirm@amazon.es" in content
+
+
+def test_check_and_process_payments(tmp_path, monkeypatch):
+    import app.tools.server.mail_tools as tools
+    
+    # Configurar rutas temporales
+    active_dir = tmp_path / "facturas pendientes"
+    backup_dir = tmp_path / "gastos"
+    
+    monkeypatch.setattr(tools, "INVOICE_DESKTOP_PATH", str(active_dir))
+    monkeypatch.setattr(tools, "INVOICE_BACKUP_PATH", str(backup_dir))
+    
+    # 1. Crear una factura pendiente simulada en la carpeta activa
+    provider_dir = active_dir / "Iberdrola_Clientes"
+    provider_dir.mkdir(parents=True)
+    invoice_file = provider_dir / "20260712_1000_Factura_123.txt"
+    invoice_file.write_text("Detalles de la factura de Iberdrola", encoding="utf-8")
+    
+    # 2. Correo de confirmación de pago
+    payment_email = {
+        "id": 124,
+        "sender": "Iberdrola Clientes <factura-no-reply@iberdrola.es>",
+        "recipient": "luisd@alfonso.dev",
+        "subject": "Confirmación de pago de su factura",
+        "body": "Hemos recibido el pago de su factura de luz del periodo Mayo-Junio correctamente. Gracias.",
+        "received_at": "2026-07-12 10:15"
+    }
+    
+    # Ejecutar procesamiento de pago
+    tools.check_and_process_payments(payment_email)
+    
+    # 3. Verificar que el archivo se ha movido al respaldo
+    backup_provider_dir = backup_dir / "Iberdrola_Clientes"
+    assert backup_provider_dir.exists()
+    
+    moved_file = backup_provider_dir / "20260712_1000_Factura_123.txt"
+    assert moved_file.exists()
+    assert moved_file.read_text(encoding="utf-8") == "Detalles de la factura de Iberdrola"
+    
+    # Verificar que la carpeta activa vacía se ha eliminado
+    assert not provider_dir.exists()
+
+
+

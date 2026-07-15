@@ -36,6 +36,7 @@ from app.utils.logger import LOG_DIR, app_logger, attach_request_id
 
 import asyncio
 from app.domain.agents.security.security_agent import security_agent
+from app.config import settings
 
 # ---------------------------------------------------------------------------
 # Instancias globales
@@ -44,6 +45,7 @@ from app.domain.agents.security.security_agent import security_agent
 llm = OllamaClient()
 planner_orchestrator = PlannerOrchestrator()
 _bg_security_task = None
+_ollama_process = None
 
 
 # ---------------------------------------------------------------------------
@@ -52,12 +54,56 @@ _bg_security_task = None
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    global _bg_security_task
+    global _bg_security_task, _ollama_process
     app_logger.info("Logs en %s", LOG_DIR)
     app_logger.info("Arrancando Alfonso — audio delegado al cliente local")
 
     import sys
+    import socket
+    import subprocess
+    import shutil
+    from urllib.parse import urlparse
     is_testing = "pytest" in sys.modules
+
+    # Auto-arranque de Ollama en segundo plano (solo si no es entorno de testing)
+    if not is_testing:
+        try:
+            url = urlparse(settings.OLLAMA_BASE_URL)
+            host = url.hostname or "localhost"
+            port = url.port or 11434
+            is_local = host in ("localhost", "127.0.0.1", "::1")
+
+            def is_ollama_responding() -> bool:
+                s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                s.settimeout(0.5)
+                try:
+                    s.connect((host, port))
+                    s.close()
+                    return True
+                except Exception:
+                    return False
+
+            if is_local and not is_ollama_responding():
+                ollama_bin = shutil.which("ollama.exe") or shutil.which("ollama")
+                if ollama_bin:
+                    app_logger.info("Ollama no detectado en el puerto %s. Iniciando %s serve...", port, ollama_bin)
+                    _ollama_process = subprocess.Popen(
+                        [ollama_bin, "serve"],
+                        stdout=subprocess.DEVNULL,
+                        stderr=subprocess.DEVNULL
+                    )
+                    # Esperar hasta 3 segundos a que responda
+                    for _ in range(6):
+                        await asyncio.sleep(0.5)
+                        if is_ollama_responding():
+                            app_logger.info("Ollama arrancado correctamente en segundo plano.")
+                            break
+                    else:
+                        app_logger.warning("Ollama se inició pero no responde en el puerto esperado.")
+                else:
+                    app_logger.warning("Ollama no está en el PATH del sistema. No se pudo auto-arrancar.")
+        except Exception:
+            app_logger.exception("Error durante el intento de auto-arranque de Ollama")
 
     if not is_testing:
         await alfonso_bridge.start()
@@ -80,6 +126,9 @@ async def lifespan(app: FastAPI):
         if not is_testing:
             await llm.generate("ping")
             app_logger.info("Modelo precalentado")
+            # Lanzar clasificación al levantar el servidor de forma asíncrona
+            from app.tools.server.mail_tools import mail_classify_emails
+            asyncio.create_task(mail_classify_emails())
         else:
             app_logger.info("Precalentamiento de modelo omitido en entorno de test")
     except Exception:
@@ -101,6 +150,20 @@ async def lifespan(app: FastAPI):
         app_logger.info("Playwright cerrado limpiamente")
     except Exception:
         app_logger.exception("Error cerrando Playwright")
+
+    # Detener Ollama si lo arrancamos nosotros
+    if _ollama_process:
+        try:
+            app_logger.info("Deteniendo proceso de Ollama iniciado por Alfonso...")
+            _ollama_process.terminate()
+            try:
+                _ollama_process.wait(timeout=3.0)
+                app_logger.info("Ollama cerrado limpiamente.")
+            except subprocess.TimeoutExpired:
+                _ollama_process.kill()
+                app_logger.info("Proceso de Ollama forzado a cerrarse.")
+        except Exception:
+            app_logger.exception("Error apagando proceso de Ollama")
 
     app_logger.info("Alfonso detenido")
 

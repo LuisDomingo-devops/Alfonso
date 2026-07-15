@@ -2,7 +2,7 @@ import pytest
 import os
 import sqlite3
 from unittest.mock import MagicMock, patch
-from app.core import gmail_sync
+from app.adapters import gmail_sync
 from app.adapters import mail_db
 
 class DummyConnection:

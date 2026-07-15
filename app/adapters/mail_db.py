@@ -61,6 +61,12 @@ def _init_mail_schema(conn: sqlite3.Connection) -> None:
         CREATE INDEX IF NOT EXISTS idx_emails_category
         ON emails (category)
     """)
+    conn.execute("""
+        CREATE TABLE IF NOT EXISTS settings (
+            key TEXT PRIMARY KEY,
+            value TEXT NOT NULL
+        )
+    """)
     conn.commit()
 
 
@@ -286,5 +292,25 @@ def delete_email(email_id: int) -> bool:
         cursor = conn.execute("DELETE FROM emails WHERE id = ?", (email_id,))
         conn.commit()
         return cursor.rowcount > 0
+    finally:
+        conn.close()
+
+
+def get_setting(key: str, default: Optional[str] = None) -> Optional[str]:
+    """Recupera un valor de configuración persistente por su clave."""
+    conn = get_connection()
+    try:
+        row = conn.execute("SELECT value FROM settings WHERE key = ?", (key,)).fetchone()
+        return row["value"] if row else default
+    finally:
+        conn.close()
+
+
+def set_setting(key: str, value: str) -> None:
+    """Guarda o actualiza un valor de configuración persistente."""
+    conn = get_connection()
+    try:
+        conn.execute("INSERT OR REPLACE INTO settings (key, value) VALUES (?, ?)", (key, value))
+        conn.commit()
     finally:
         conn.close()

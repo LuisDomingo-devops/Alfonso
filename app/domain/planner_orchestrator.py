@@ -48,7 +48,7 @@ _router = IntentRouter()
 
 _TRAILING_PUNCT_RE = re.compile(r"[.,;:!?¡¿\s]+$")
 
-_TOOL_TIMEOUT = 30
+_TOOL_TIMEOUT = 300
 
 
 _DIRECT_CONFIRM = {

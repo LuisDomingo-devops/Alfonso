@@ -251,6 +251,8 @@ def _request_id(request: Request) -> str:
 
 def _tool_response(request_id: str, result: dict, t: Timer) -> dict:
     status = "success" if result.get("status") == "ok" else "error"
+    logger = attach_request_id(app_logger, request_id)
+    logger.info("RESPUESTA TOOL DIRECTO: %s", result)
     return {
         "status": status,
         "request_id": request_id,
@@ -323,6 +325,14 @@ async def chat_endpoint(req: ChatRequest, request: Request):
 
     status = result.get("type", "unknown")
     logger.info("Solicitud /chat procesada con estado: %s", status)
+    if status == "chat":
+        logger.info("RESPUESTA ENVIADA AL USUARIO (CHAT): %s", result.get("response"))
+    elif status == "tool":
+        logger.info("RESPUESTA ENVIADA AL USUARIO (TOOL %s): %s", result.get("tool"), result.get("result"))
+    elif status == "multi_tool":
+        logger.info("RESPUESTA ENVIADA AL USUARIO (MULTI_TOOL): %s", result.get("results"))
+    else:
+        logger.info("RESPUESTA ENVIADA AL USUARIO: %s", result)
     logger.info("LATENCY: %.2fs", t.elapsed)
 
     return {"request_id": request_id, "result": result}

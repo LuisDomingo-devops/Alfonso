@@ -1254,8 +1254,17 @@ class AlfonsoHUDDashboard(QMainWindow):
         self.vu_meter.setValue(level)
 
     def update_chat(self, sender, text):
+        import re
         color = "#00FF66" if sender == "Alfonso" else "#FFB800"
-        new_entry = f"<p><b style='color:{color};'>[{sender.upper()}]</b><br>{text}</p>"
+        
+        # Formatear markdown básico y saltos de línea para renderizado HTML en QLabel
+        html_text = text
+        html_text = html_text.replace("\n", "<br>")
+        html_text = re.sub(r"\*\*(.*?)\*\*", r"<b>\1</b>", html_text)
+        html_text = re.sub(r"\*(.*?)\*", r"<i>\1</i>", html_text)
+        html_text = re.sub(r"_(.*?)_", r"<i>\1</i>", html_text)
+        
+        new_entry = f"<p><b style='color:{color};'>[{sender.upper()}]</b><br>{html_text}</p>"
         self.chat_history += new_entry
         self.chat_lbl.setText(self.chat_history)
         QTimer.singleShot(50, lambda: self.chat_scroll.verticalScrollBar().setValue(self.chat_scroll.verticalScrollBar().maximum()))
