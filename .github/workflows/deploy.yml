@@ -23,6 +23,7 @@ jobs:
           HF_SPACE: "LuisJDomingo/Alfonso"
         run: |
           # Configurar Git LFS en el runner de GitHub
+          git config lfs.allowincompletepush true
           git lfs install
           
           # Evita errores de credenciales configurando git
