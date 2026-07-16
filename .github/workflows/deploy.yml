@@ -23,7 +23,7 @@ jobs:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
           # REEMPLAZA AQUÍ con tu usuario de Hugging Face y el nombre de tu Space
           # Ejemplo: luisd/mi-alfonso
-          HF_SPACE: "LuisJDomingo/Alfonso"
+          HF_SPACE: "LuisJDomingo/Alfonso-core"
         run: |
           # Configurar Git LFS en el runner de GitHub
           git config lfs.allowincompletepush true
