@@ -1,0 +1,28 @@
+{
+  "name": "Alfonso DevContainer",
+  "image": "mcr.microsoft.com/devcontainers/python:3.12",
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {}
+  },
+  "forwardPorts": [8000, 8765],
+  "portsAttributes": {
+    "8000": {
+      "label": "Alfonso API",
+      "onAutoForward": "notify",
+      "visibility": "public"
+    },
+    "8765": {
+      "label": "Alfonso Bridge WebSocket",
+      "onAutoForward": "notify",
+      "visibility": "public"
+    }
+  },
+  "postCreateCommand": "pip install -r requirements.txt && curl -fsSL https://ollama.com/install.sh | sh",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python"
+      ]
+    }
+  }
+}
