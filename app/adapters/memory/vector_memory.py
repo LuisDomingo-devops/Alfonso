@@ -11,8 +11,8 @@ Durante la delegación a agentes (MarcosAgent o DevAgent) para añadir contexto 
 Conectándose a una base de datos local persistente ChromaDB e indexando datos en colecciones (`dev_knowledge` y `legal_knowledge`).
 
 ¿CON QUÉ OTROS SCRIPTS ESTÁ RELACIONADO?
-- app/core/agents/dev/dev_agent.py (consulta pautas de código en dev_knowledge)
-- app/core/agents/marcos/marcos_agent.py (consulta leyes en legal_knowledge)
+- app/domain/agents/dev/dev_agent.py (consulta pautas de código en dev_knowledge)
+- app/domain/agents/marcos/marcos_agent.py (consulta leyes en legal_knowledge)
 """
 
 import uuid
@@ -55,7 +55,7 @@ class VectorMemory:
         except Exception as e:
             orchestrator_logger.warning("No se pudo refrescar la colección de ChromaDB: %s", e)
 
-    def add_fact(self, session_id: str, fact: str) -> str:
+    def add_fact(self, session_id: str, fact: str, client_id: str | None = None) -> str:
         """
         Inserta un hecho relevante en la base de datos vectorial.
         Devuelve el ID generado para el hecho.
@@ -65,28 +65,31 @@ class VectorMemory:
         
         self._refresh_collection()
         fact_id = str(uuid.uuid4())
+        cid = client_id or "default"
         try:
             self.collection.add(
                 documents=[fact.strip()],
-                metadatas=[{"session_id": session_id or "global"}],
+                metadatas=[{"session_id": session_id or "global", "client_id": cid}],
                 ids=[fact_id]
             )
-            orchestrator_logger.info("Recuerdo semántico guardado: %s (ID: %s)", fact.strip(), fact_id)
+            orchestrator_logger.info("Recuerdo semántico guardado para cliente %s: %s (ID: %s)", cid, fact.strip(), fact_id)
             return fact_id
         except Exception as e:
             orchestrator_logger.exception("Error guardando hecho en ChromaDB: %s", e)
             return ""
 
-    def query_facts(self, query: str, limit: int = 3) -> list[str]:
+    def query_facts(self, query: str, limit: int = 3, client_id: str | None = None) -> list[str]:
         """Recupera los N recuerdos más similares semánticamente a la consulta."""
         if not query or not query.strip():
             return []
         
         self._refresh_collection()
+        cid = client_id or "default"
         try:
             results = self.collection.query(
                 query_texts=[query.strip()],
-                n_results=limit
+                n_results=limit,
+                where={"client_id": cid}
             )
             documents = results.get("documents")
             if documents and len(documents) > 0:
@@ -131,7 +134,7 @@ class VectorMemory:
             orchestrator_logger.exception("Error consultando la colección dev de ChromaDB: %s", e)
         return []
 
-    def query_facts_with_ids(self, query: str, limit: int = 5) -> list[dict]:
+    def query_facts_with_ids(self, query: str, limit: int = 5, client_id: str | None = None) -> list[dict]:
         """
         Recupera los N recuerdos más similares semánticamente,
         devolviendo una lista de diccionarios con {'id', 'text', 'session_id'}.
@@ -140,10 +143,12 @@ class VectorMemory:
             return []
         
         self._refresh_collection()
+        cid = client_id or "default"
         try:
             results = self.collection.query(
                 query_texts=[query.strip()],
-                n_results=limit
+                n_results=limit,
+                where={"client_id": cid}
             )
             documents = results.get("documents")
             ids = results.get("ids")
@@ -174,22 +179,24 @@ class VectorMemory:
             orchestrator_logger.exception("Error borrando de ChromaDB por ID: %s", e)
             return False
 
-    def delete_facts_by_session(self, session_id: str) -> bool:
+    def delete_facts_by_session(self, session_id: str, client_id: str | None = None) -> bool:
         """Borra todos los hechos asociados a una sesión."""
         self._refresh_collection()
+        cid = client_id or "default"
         try:
-            self.collection.delete(where={"session_id": session_id})
-            orchestrator_logger.info("Recuerdos semánticos eliminados para la sesión: %s", session_id)
+            self.collection.delete(where={"$and": [{"session_id": session_id}, {"client_id": cid}]})
+            orchestrator_logger.info("Recuerdos semánticos eliminados para la sesión: %s y cliente: %s", session_id, cid)
             return True
         except Exception as e:
             orchestrator_logger.exception("Error borrando de ChromaDB por sesión: %s", e)
             return False
 
-    def get_all_facts(self) -> list[dict]:
+    def get_all_facts(self, client_id: str | None = None) -> list[dict]:
         """Obtiene todos los hechos almacenados en la colección."""
         self._refresh_collection()
+        cid = client_id or "default"
         try:
-            results = self.collection.get()
+            results = self.collection.get(where={"client_id": cid})
             documents = results.get("documents", [])
             ids = results.get("ids", [])
             metadatas = results.get("metadatas", [])

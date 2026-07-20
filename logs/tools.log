@@ -553,3 +553,946 @@ sqlite3.OperationalError: no such table: settings
 2026-07-14 11:42:24,029 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
 2026-07-14 11:42:24,029 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
 2026-07-14 11:42:24,030 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-17 09:35:09,070 | WARNING | tools | [----------] Clasificación por LLM falló para ID 101, excedió timeout o fue cancelada: 
+2026-07-17 09:35:09,091 | WARNING | tools | [----------] Clasificación por LLM falló para ID 112, excedió timeout o fue cancelada: 
+2026-07-17 09:35:09,102 | WARNING | tools | [----------] Clasificación por LLM falló para ID 115, excedió timeout o fue cancelada: 
+2026-07-17 09:37:06,086 | WARNING | tools | [----------] Clasificación por LLM falló para ID 116, excedió timeout o fue cancelada: 
+2026-07-17 09:37:06,138 | WARNING | tools | [----------] Clasificación por LLM falló para ID 124, excedió timeout o fue cancelada: 
+2026-07-17 12:14:30,118 | INFO | tools | [----------] computer_use: delegando 'mouse.click' args={'x': 10, 'y': 20, 'button': 'left', 'clicks': 1, 'interval': 0.1} client_id=test-client-123
+2026-07-17 12:14:30,126 | INFO | tools | [----------] computer_use: delegando 'keyboard.type' args={'text': 'hola', 'interval': 0.03} client_id=test-client-456
+2026-07-17 12:54:45,275 | INFO | tools | [----------] computer_use: delegando 'mouse.click' args={'x': 10, 'y': 20, 'button': 'left', 'clicks': 1, 'interval': 0.1} client_id=test-client-123
+2026-07-17 12:54:45,284 | INFO | tools | [----------] computer_use: delegando 'keyboard.type' args={'text': 'hola', 'interval': 0.03} client_id=test-client-456
+2026-07-17 13:02:53,959 | INFO | tools | [----------] Cita creada con ID 144 y añadida a ChromaDB.
+2026-07-17 13:02:53,975 | INFO | tools | [----------] computer_use: delegando 'mouse.click' args={'x': 10, 'y': 20, 'button': 'left', 'clicks': 1, 'interval': 0.1} client_id=test-client-123
+2026-07-17 13:02:53,983 | INFO | tools | [----------] computer_use: delegando 'keyboard.type' args={'text': 'hola', 'interval': 0.03} client_id=test-client-456
+2026-07-17 13:03:13,858 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes
+2026-07-17 13:03:13,870 | INFO | tools | [----------] Factura guardada correctamente en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes/20260704_0730_Factura_2.txt
+2026-07-17 13:06:35,016 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /tmp/pytest-of-luisd/pytest-3/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes
+2026-07-17 13:06:35,017 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-3/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-17 13:06:35,022 | INFO | tools | [----------] Carpeta contenedora de facturas creada dinámicamente en: /tmp/pytest-of-luisd/pytest-3/test_mail_set_invoice_folder_a0/ultimas_facturas
+2026-07-17 13:06:35,022 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Amazones' asegurada en: /tmp/pytest-of-luisd/pytest-3/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones
+2026-07-17 13:06:35,024 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-3/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones/20260712_1100_Factura_456.txt
+2026-07-17 13:06:35,036 | INFO | tools | [----------] Carpeta de respaldo de facturas pagadas creada en: /tmp/pytest-of-luisd/pytest-3/test_check_and_process_payment0/gastos/Iberdrola_Clientes
+2026-07-17 13:06:35,036 | INFO | tools | [----------] Factura pagada trasladada: /tmp/pytest-of-luisd/pytest-3/test_check_and_process_payment0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt -> /tmp/pytest-of-luisd/pytest-3/test_check_and_process_payment0/gastos/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-17 13:06:38,286 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('hello')"]
+2026-07-17 13:06:38,313 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-07-17 13:06:38,316 | INFO | tools | [----------] Listando directorio: app
+2026-07-17 13:06:38,316 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-07-17 13:06:38,317 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-07-17 13:06:38,317 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-07-17 13:06:38,320 | WARNING | tools | [----------] ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('app-open-test')"]' en el SERVIDOR, no en el cliente.
+2026-07-17 13:06:55,438 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Alertas_fotocasa' asegurada en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Alertas_fotocasa
+2026-07-17 13:06:55,444 | INFO | tools | [----------] Factura guardada correctamente en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Alertas_fotocasa/20260717_0806_Factura_104.txt
+2026-07-17 13:08:52,059 | WARNING | tools | [----------] Clasificación por LLM falló para ID 118, excedió timeout o fue cancelada: 
+2026-07-17 13:09:36,452 | WARNING | tools | [----------] Clasificación por LLM falló para ID 121, excedió timeout o fue cancelada: 
+2026-07-17 13:19:32,500 | INFO | tools | [----------] Delegando open_application al agente local: notepad
+2026-07-17 13:19:32,598 | INFO | tools | [----------] Delegando open_url al agente local: https://google.com
+2026-07-17 13:19:32,685 | INFO | tools | [----------] Delegando close_application al agente local: notepad
+2026-07-17 13:19:32,819 | INFO | tools | [----------] Intentando crear archivo: /tmp/pytest-of-luisd/pytest-3/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-17 13:19:32,819 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-3/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-17 13:19:32,819 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-3/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-17 13:19:32,820 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-3/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-17 13:20:00,493 | INFO | tools | [----------] Delegando open_application al agente local: notepad
+2026-07-17 13:20:00,497 | INFO | tools | [----------] Delegando open_url al agente local: https://google.com
+2026-07-17 13:20:00,503 | INFO | tools | [----------] Delegando close_application al agente local: notepad
+2026-07-17 13:21:56,074 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes
+2026-07-17 13:21:56,082 | INFO | tools | [----------] Factura guardada correctamente en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes/20260704_0730_Factura_2.txt
+2026-07-17 13:22:01,563 | WARNING | tools | [----------] Error al buscar correos de la fecha más reciente: 'DummyConnection' object does not support the context manager protocol
+2026-07-17 13:42:54,232 | INFO | tools | [----------] Cita creada con ID 147 y añadida a ChromaDB.
+2026-07-17 13:42:54,243 | INFO | tools | [----------] computer_use: delegando 'mouse.click' args={'x': 10, 'y': 20, 'button': 'left', 'clicks': 1, 'interval': 0.1} client_id=test-client-123
+2026-07-17 13:42:54,255 | INFO | tools | [----------] computer_use: delegando 'keyboard.type' args={'text': 'hola', 'interval': 0.03} client_id=test-client-456
+2026-07-17 13:43:03,840 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes
+2026-07-17 13:43:03,847 | INFO | tools | [----------] Factura guardada correctamente en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes/20260704_0730_Factura_2.txt
+2026-07-17 13:45:12,430 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /tmp/pytest-of-luisd/pytest-4/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes
+2026-07-17 13:45:12,431 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-4/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-17 13:45:12,438 | INFO | tools | [----------] Carpeta contenedora de facturas creada dinámicamente en: /tmp/pytest-of-luisd/pytest-4/test_mail_set_invoice_folder_a0/ultimas_facturas
+2026-07-17 13:45:12,439 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Amazones' asegurada en: /tmp/pytest-of-luisd/pytest-4/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones
+2026-07-17 13:45:12,440 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-4/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones/20260712_1100_Factura_456.txt
+2026-07-17 13:45:12,450 | INFO | tools | [----------] Carpeta de respaldo de facturas pagadas creada en: /tmp/pytest-of-luisd/pytest-4/test_check_and_process_payment0/gastos/Iberdrola_Clientes
+2026-07-17 13:45:12,451 | INFO | tools | [----------] Factura pagada trasladada: /tmp/pytest-of-luisd/pytest-4/test_check_and_process_payment0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt -> /tmp/pytest-of-luisd/pytest-4/test_check_and_process_payment0/gastos/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-17 13:45:15,771 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('hello')"]
+2026-07-17 13:45:15,799 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-07-17 13:45:15,804 | INFO | tools | [----------] Listando directorio: app
+2026-07-17 13:45:15,805 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-07-17 13:45:15,805 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-07-17 13:45:15,806 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-07-17 13:45:15,811 | WARNING | tools | [----------] ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('app-open-test')"]' en el SERVIDOR, no en el cliente.
+2026-07-17 13:47:43,668 | INFO | tools | [----------] Delegando open_application al agente local: notepad
+2026-07-17 13:47:43,673 | INFO | tools | [----------] Delegando open_url al agente local: https://google.com
+2026-07-17 13:47:43,679 | INFO | tools | [----------] Delegando close_application al agente local: notepad
+2026-07-17 13:47:43,704 | INFO | tools | [----------] Intentando crear archivo: /tmp/pytest-of-luisd/pytest-4/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-17 13:47:43,704 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-4/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-17 13:47:43,704 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-4/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-17 13:47:43,705 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-4/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-17 14:36:00,820 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes
+2026-07-17 14:36:00,828 | INFO | tools | [----------] Factura guardada correctamente en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes/20260704_0730_Factura_2.txt
+2026-07-17 14:39:02,828 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Alertas_fotocasa' asegurada en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Alertas_fotocasa
+2026-07-17 14:39:02,839 | INFO | tools | [----------] Factura guardada correctamente en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Alertas_fotocasa/20260717_0806_Factura_19.txt
+2026-07-17 14:39:02,861 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes
+2026-07-17 14:39:02,869 | INFO | tools | [----------] Factura guardada correctamente en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes/20260704_0730_Factura_2.txt
+2026-07-17 14:40:59,986 | WARNING | tools | [----------] Clasificación por LLM falló para ID 33, excedió timeout o fue cancelada: 
+2026-07-17 14:53:18,264 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes
+2026-07-17 14:53:18,276 | INFO | tools | [----------] Factura guardada correctamente en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes/20260704_0730_Factura_2.txt
+2026-07-17 14:53:18,280 | WARNING | tools | [----------] Error al buscar correos de la fecha más reciente: 'DummyConnection' object does not support the context manager protocol
+2026-07-17 15:09:18,133 | INFO | tools | [----------] Cita creada con ID 150 y añadida a ChromaDB.
+2026-07-17 15:09:18,143 | INFO | tools | [----------] computer_use: delegando 'mouse.click' args={'x': 10, 'y': 20, 'button': 'left', 'clicks': 1, 'interval': 0.1} client_id=test-client-123
+2026-07-17 15:09:18,148 | INFO | tools | [----------] computer_use: delegando 'keyboard.type' args={'text': 'hola', 'interval': 0.03} client_id=test-client-456
+2026-07-17 15:10:41,931 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes
+2026-07-17 15:10:41,942 | INFO | tools | [----------] Factura guardada correctamente en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes/20260704_0730_Factura_2.txt
+2026-07-17 15:10:41,944 | WARNING | tools | [----------] Error al buscar correos de la fecha más reciente: 'DummyConnection' object does not support the context manager protocol
+2026-07-17 15:10:48,097 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /tmp/pytest-of-luisd/pytest-5/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes
+2026-07-17 15:10:48,097 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-5/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-17 15:10:48,106 | INFO | tools | [----------] Carpeta contenedora de facturas creada dinámicamente en: /tmp/pytest-of-luisd/pytest-5/test_mail_set_invoice_folder_a0/ultimas_facturas
+2026-07-17 15:10:48,107 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Amazones' asegurada en: /tmp/pytest-of-luisd/pytest-5/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones
+2026-07-17 15:10:48,108 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-5/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones/20260712_1100_Factura_456.txt
+2026-07-17 15:10:48,121 | INFO | tools | [----------] Carpeta de respaldo de facturas pagadas creada en: /tmp/pytest-of-luisd/pytest-5/test_check_and_process_payment0/gastos/Iberdrola_Clientes
+2026-07-17 15:10:48,121 | INFO | tools | [----------] Factura pagada trasladada: /tmp/pytest-of-luisd/pytest-5/test_check_and_process_payment0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt -> /tmp/pytest-of-luisd/pytest-5/test_check_and_process_payment0/gastos/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-17 15:10:51,346 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('hello')"]
+2026-07-17 15:10:51,373 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-07-17 15:10:51,377 | INFO | tools | [----------] Listando directorio: app
+2026-07-17 15:10:51,378 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-07-17 15:10:51,378 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-07-17 15:10:51,378 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-07-17 15:10:51,383 | WARNING | tools | [----------] ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '['/home/luisd/Alfonso/venv/bin/python3', '-c', "print('app-open-test')"]' en el SERVIDOR, no en el cliente.
+2026-07-17 15:11:22,438 | INFO | tools | [----------] Delegando open_application al agente local: notepad
+2026-07-17 15:11:22,443 | INFO | tools | [----------] Delegando open_url al agente local: https://google.com
+2026-07-17 15:11:22,449 | INFO | tools | [----------] Delegando close_application al agente local: notepad
+2026-07-17 15:11:22,473 | INFO | tools | [----------] Intentando crear archivo: /tmp/pytest-of-luisd/pytest-5/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-17 15:11:22,473 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-5/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-17 15:11:22,473 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-5/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-17 15:11:22,474 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-5/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-17 18:50:20,262 | INFO | tools | [----------] Cita creada con ID 153 y añadida a ChromaDB.
+2026-07-17 18:50:20,270 | INFO | tools | [----------] computer_use: delegando 'mouse.click' args={'x': 10, 'y': 20, 'button': 'left', 'clicks': 1, 'interval': 0.1} client_id=test-client-123
+2026-07-17 18:50:20,274 | INFO | tools | [----------] computer_use: delegando 'keyboard.type' args={'text': 'hola', 'interval': 0.03} client_id=test-client-456
+2026-07-17 18:54:16,865 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes
+2026-07-17 18:54:16,879 | INFO | tools | [----------] Factura guardada correctamente en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes/20260704_0730_Factura_2.txt
+2026-07-17 18:54:16,895 | WARNING | tools | [----------] Error al buscar correos de la fecha más reciente: 'DummyConnection' object does not support the context manager protocol
+2026-07-17 18:54:22,977 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /tmp/pytest-of-luisd/pytest-0/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes
+2026-07-17 18:54:22,980 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-0/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-17 18:54:22,988 | INFO | tools | [----------] Carpeta contenedora de facturas creada dinámicamente en: /tmp/pytest-of-luisd/pytest-0/test_mail_set_invoice_folder_a0/ultimas_facturas
+2026-07-17 18:54:22,988 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Amazones' asegurada en: /tmp/pytest-of-luisd/pytest-0/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones
+2026-07-17 18:54:22,989 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-0/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones/20260712_1100_Factura_456.txt
+2026-07-17 18:54:22,999 | INFO | tools | [----------] Carpeta de respaldo de facturas pagadas creada en: /tmp/pytest-of-luisd/pytest-0/test_check_and_process_payment0/gastos/Iberdrola_Clientes
+2026-07-17 18:54:23,001 | INFO | tools | [----------] Factura pagada trasladada: /tmp/pytest-of-luisd/pytest-0/test_check_and_process_payment0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt -> /tmp/pytest-of-luisd/pytest-0/test_check_and_process_payment0/gastos/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-17 18:54:26,857 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python', '-c', "print('hello')"]
+2026-07-17 18:54:26,900 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-07-17 18:54:26,903 | INFO | tools | [----------] Listando directorio: app
+2026-07-17 18:54:26,904 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-07-17 18:54:26,905 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-07-17 18:54:26,905 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-07-17 18:54:26,915 | WARNING | tools | [----------] ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '['/home/luisd/Alfonso/venv/bin/python', '-c', "print('app-open-test')"]' en el SERVIDOR, no en el cliente.
+2026-07-17 18:56:49,969 | INFO | tools | [----------] Delegando open_application al agente local: notepad
+2026-07-17 18:56:49,974 | INFO | tools | [----------] Delegando open_url al agente local: https://google.com
+2026-07-17 18:56:49,978 | INFO | tools | [----------] Delegando close_application al agente local: notepad
+2026-07-17 18:56:49,998 | INFO | tools | [----------] Intentando crear archivo: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-17 18:56:49,998 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-17 18:56:49,998 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-17 18:56:49,999 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-17 19:34:22,234 | INFO | tools | [----------] Cita creada con ID 156 y añadida a ChromaDB.
+2026-07-17 19:34:22,243 | INFO | tools | [----------] computer_use: delegando 'mouse.click' args={'x': 10, 'y': 20, 'button': 'left', 'clicks': 1, 'interval': 0.1} client_id=test-client-123
+2026-07-17 19:34:22,246 | INFO | tools | [----------] computer_use: delegando 'keyboard.type' args={'text': 'hola', 'interval': 0.03} client_id=test-client-456
+2026-07-17 19:37:25,277 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes
+2026-07-17 19:37:25,285 | INFO | tools | [----------] Factura guardada correctamente en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes/20260704_0730_Factura_2.txt
+2026-07-17 19:37:25,287 | WARNING | tools | [----------] Error al buscar correos de la fecha más reciente: 'DummyConnection' object does not support the context manager protocol
+2026-07-17 19:37:30,451 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /tmp/pytest-of-luisd/pytest-6/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes
+2026-07-17 19:37:30,451 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-6/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-17 19:37:30,460 | INFO | tools | [----------] Carpeta contenedora de facturas creada dinámicamente en: /tmp/pytest-of-luisd/pytest-6/test_mail_set_invoice_folder_a0/ultimas_facturas
+2026-07-17 19:37:30,461 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Amazones' asegurada en: /tmp/pytest-of-luisd/pytest-6/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones
+2026-07-17 19:37:30,461 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-6/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones/20260712_1100_Factura_456.txt
+2026-07-17 19:37:30,468 | INFO | tools | [----------] Carpeta de respaldo de facturas pagadas creada en: /tmp/pytest-of-luisd/pytest-6/test_check_and_process_payment0/gastos/Iberdrola_Clientes
+2026-07-17 19:37:30,469 | INFO | tools | [----------] Factura pagada trasladada: /tmp/pytest-of-luisd/pytest-6/test_check_and_process_payment0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt -> /tmp/pytest-of-luisd/pytest-6/test_check_and_process_payment0/gastos/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-17 19:37:32,667 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python', '-c', "print('hello')"]
+2026-07-17 19:37:32,688 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-07-17 19:37:32,691 | INFO | tools | [----------] Listando directorio: app
+2026-07-17 19:37:32,691 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-07-17 19:37:32,691 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-07-17 19:37:32,692 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-07-17 19:37:32,695 | WARNING | tools | [----------] ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '['/home/luisd/Alfonso/venv/bin/python', '-c', "print('app-open-test')"]' en el SERVIDOR, no en el cliente.
+2026-07-17 19:37:54,929 | INFO | tools | [----------] Delegando open_application al agente local: notepad
+2026-07-17 19:37:54,933 | INFO | tools | [----------] Delegando open_url al agente local: https://google.com
+2026-07-17 19:37:54,936 | INFO | tools | [----------] Delegando close_application al agente local: notepad
+2026-07-17 19:37:54,952 | INFO | tools | [----------] Intentando crear archivo: /tmp/pytest-of-luisd/pytest-6/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-17 19:37:54,952 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-6/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-17 19:37:54,952 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-6/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-17 19:37:54,952 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-6/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-17 19:38:29,680 | INFO | tools | [----------] Cita creada con ID 159 y añadida a ChromaDB.
+2026-07-17 19:38:29,688 | INFO | tools | [----------] computer_use: delegando 'mouse.click' args={'x': 10, 'y': 20, 'button': 'left', 'clicks': 1, 'interval': 0.1} client_id=test-client-123
+2026-07-17 19:38:29,692 | INFO | tools | [----------] computer_use: delegando 'keyboard.type' args={'text': 'hola', 'interval': 0.03} client_id=test-client-456
+2026-07-17 19:39:28,581 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes
+2026-07-17 19:39:28,586 | INFO | tools | [----------] Factura guardada correctamente en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes/20260704_0730_Factura_2.txt
+2026-07-17 19:39:28,589 | WARNING | tools | [----------] Error al buscar correos de la fecha más reciente: 'DummyConnection' object does not support the context manager protocol
+2026-07-17 19:39:33,429 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /tmp/pytest-of-luisd/pytest-7/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes
+2026-07-17 19:39:33,429 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-7/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-17 19:39:33,435 | INFO | tools | [----------] Carpeta contenedora de facturas creada dinámicamente en: /tmp/pytest-of-luisd/pytest-7/test_mail_set_invoice_folder_a0/ultimas_facturas
+2026-07-17 19:39:33,436 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Amazones' asegurada en: /tmp/pytest-of-luisd/pytest-7/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones
+2026-07-17 19:39:33,436 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-7/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones/20260712_1100_Factura_456.txt
+2026-07-17 19:39:33,443 | INFO | tools | [----------] Carpeta de respaldo de facturas pagadas creada en: /tmp/pytest-of-luisd/pytest-7/test_check_and_process_payment0/gastos/Iberdrola_Clientes
+2026-07-17 19:39:33,443 | INFO | tools | [----------] Factura pagada trasladada: /tmp/pytest-of-luisd/pytest-7/test_check_and_process_payment0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt -> /tmp/pytest-of-luisd/pytest-7/test_check_and_process_payment0/gastos/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-17 19:39:35,785 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python', '-c', "print('hello')"]
+2026-07-17 19:39:35,805 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-07-17 19:39:35,808 | INFO | tools | [----------] Listando directorio: app
+2026-07-17 19:39:35,809 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-07-17 19:39:35,809 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-07-17 19:39:35,809 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-07-17 19:39:35,811 | WARNING | tools | [----------] ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '['/home/luisd/Alfonso/venv/bin/python', '-c', "print('app-open-test')"]' en el SERVIDOR, no en el cliente.
+2026-07-17 19:40:04,878 | INFO | tools | [----------] Delegando open_application al agente local: notepad
+2026-07-17 19:40:04,882 | INFO | tools | [----------] Delegando open_url al agente local: https://google.com
+2026-07-17 19:40:04,888 | INFO | tools | [----------] Delegando close_application al agente local: notepad
+2026-07-17 19:40:04,903 | INFO | tools | [----------] Intentando crear archivo: /tmp/pytest-of-luisd/pytest-7/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-17 19:40:04,903 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-7/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-17 19:40:04,903 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-7/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-17 19:40:04,903 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-7/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-17 19:40:45,303 | INFO | tools | [----------] Cita creada con ID 162 y añadida a ChromaDB.
+2026-07-17 19:40:45,311 | INFO | tools | [----------] computer_use: delegando 'mouse.click' args={'x': 10, 'y': 20, 'button': 'left', 'clicks': 1, 'interval': 0.1} client_id=test-client-123
+2026-07-17 19:40:45,315 | INFO | tools | [----------] computer_use: delegando 'keyboard.type' args={'text': 'hola', 'interval': 0.03} client_id=test-client-456
+2026-07-17 19:41:46,311 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes
+2026-07-17 19:41:46,319 | INFO | tools | [----------] Factura guardada correctamente en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes/20260704_0730_Factura_2.txt
+2026-07-17 19:41:46,322 | WARNING | tools | [----------] Error al buscar correos de la fecha más reciente: 'DummyConnection' object does not support the context manager protocol
+2026-07-17 19:41:56,120 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /tmp/pytest-of-luisd/pytest-8/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes
+2026-07-17 19:41:56,121 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-8/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-17 19:41:56,125 | INFO | tools | [----------] Carpeta contenedora de facturas creada dinámicamente en: /tmp/pytest-of-luisd/pytest-8/test_mail_set_invoice_folder_a0/ultimas_facturas
+2026-07-17 19:41:56,125 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Amazones' asegurada en: /tmp/pytest-of-luisd/pytest-8/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones
+2026-07-17 19:41:56,125 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-8/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones/20260712_1100_Factura_456.txt
+2026-07-17 19:41:56,130 | INFO | tools | [----------] Carpeta de respaldo de facturas pagadas creada en: /tmp/pytest-of-luisd/pytest-8/test_check_and_process_payment0/gastos/Iberdrola_Clientes
+2026-07-17 19:41:56,130 | INFO | tools | [----------] Factura pagada trasladada: /tmp/pytest-of-luisd/pytest-8/test_check_and_process_payment0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt -> /tmp/pytest-of-luisd/pytest-8/test_check_and_process_payment0/gastos/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-17 19:41:58,249 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python', '-c', "print('hello')"]
+2026-07-17 19:41:58,266 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-07-17 19:41:58,268 | INFO | tools | [----------] Listando directorio: app
+2026-07-17 19:41:58,268 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-07-17 19:41:58,268 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-07-17 19:41:58,269 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-07-17 19:41:58,272 | WARNING | tools | [----------] ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '['/home/luisd/Alfonso/venv/bin/python', '-c', "print('app-open-test')"]' en el SERVIDOR, no en el cliente.
+2026-07-17 19:42:27,560 | INFO | tools | [----------] Delegando open_application al agente local: notepad
+2026-07-17 19:42:27,564 | INFO | tools | [----------] Delegando open_url al agente local: https://google.com
+2026-07-17 19:42:27,568 | INFO | tools | [----------] Delegando close_application al agente local: notepad
+2026-07-17 19:42:27,635 | INFO | tools | [----------] Intentando crear archivo: /tmp/pytest-of-luisd/pytest-8/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-17 19:42:27,635 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-8/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-17 19:42:27,636 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-8/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-17 19:42:27,636 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-8/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-17 20:50:43,632 | INFO | tools | [----------] Cita creada con ID 165 y añadida a ChromaDB.
+2026-07-17 20:50:43,640 | INFO | tools | [----------] computer_use: delegando 'mouse.click' args={'x': 10, 'y': 20, 'button': 'left', 'clicks': 1, 'interval': 0.1} client_id=test-client-123
+2026-07-17 20:50:43,644 | INFO | tools | [----------] computer_use: delegando 'keyboard.type' args={'text': 'hola', 'interval': 0.03} client_id=test-client-456
+2026-07-17 20:53:48,779 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes
+2026-07-17 20:53:48,792 | INFO | tools | [----------] Factura guardada correctamente en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes/20260704_0730_Factura_2.txt
+2026-07-17 20:53:48,795 | WARNING | tools | [----------] Error al buscar correos de la fecha más reciente: 'DummyConnection' object does not support the context manager protocol
+2026-07-17 20:53:52,128 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /tmp/pytest-of-luisd/pytest-0/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes
+2026-07-17 20:53:52,128 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-0/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-17 20:53:52,134 | INFO | tools | [----------] Carpeta contenedora de facturas creada dinámicamente en: /tmp/pytest-of-luisd/pytest-0/test_mail_set_invoice_folder_a0/ultimas_facturas
+2026-07-17 20:53:52,135 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Amazones' asegurada en: /tmp/pytest-of-luisd/pytest-0/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones
+2026-07-17 20:53:52,135 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-0/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones/20260712_1100_Factura_456.txt
+2026-07-17 20:53:52,142 | INFO | tools | [----------] Carpeta de respaldo de facturas pagadas creada en: /tmp/pytest-of-luisd/pytest-0/test_check_and_process_payment0/gastos/Iberdrola_Clientes
+2026-07-17 20:53:52,142 | INFO | tools | [----------] Factura pagada trasladada: /tmp/pytest-of-luisd/pytest-0/test_check_and_process_payment0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt -> /tmp/pytest-of-luisd/pytest-0/test_check_and_process_payment0/gastos/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-17 20:53:54,604 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python', '-c', "print('hello')"]
+2026-07-17 20:53:54,655 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-07-17 20:53:54,657 | INFO | tools | [----------] Listando directorio: app
+2026-07-17 20:53:54,658 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-07-17 20:53:54,658 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-07-17 20:53:54,658 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-07-17 20:53:54,663 | WARNING | tools | [----------] ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '['/home/luisd/Alfonso/venv/bin/python', '-c', "print('app-open-test')"]' en el SERVIDOR, no en el cliente.
+2026-07-17 20:54:24,622 | INFO | tools | [----------] Delegando open_application al agente local: notepad
+2026-07-17 20:54:24,625 | INFO | tools | [----------] Delegando open_url al agente local: https://google.com
+2026-07-17 20:54:24,629 | INFO | tools | [----------] Delegando close_application al agente local: notepad
+2026-07-17 20:54:24,642 | INFO | tools | [----------] Intentando crear archivo: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-17 20:54:24,642 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-17 20:54:24,643 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-17 20:54:24,643 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-18 10:39:58,337 | INFO | tools | [----------] Cita creada con ID 168 y añadida a ChromaDB.
+2026-07-18 10:39:58,344 | INFO | tools | [----------] computer_use: delegando 'mouse.click' args={'x': 10, 'y': 20, 'button': 'left', 'clicks': 1, 'interval': 0.1} client_id=test-client-123
+2026-07-18 10:39:58,349 | INFO | tools | [----------] computer_use: delegando 'keyboard.type' args={'text': 'hola', 'interval': 0.03} client_id=test-client-456
+2026-07-18 10:43:03,172 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes
+2026-07-18 10:43:03,182 | INFO | tools | [----------] Factura guardada correctamente en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes/20260704_0730_Factura_2.txt
+2026-07-18 10:43:03,186 | WARNING | tools | [----------] Error al buscar correos de la fecha más reciente: 'DummyConnection' object does not support the context manager protocol
+2026-07-18 10:43:07,630 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /tmp/pytest-of-luisd/pytest-0/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes
+2026-07-18 10:43:07,631 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-0/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-18 10:43:07,637 | INFO | tools | [----------] Carpeta contenedora de facturas creada dinámicamente en: /tmp/pytest-of-luisd/pytest-0/test_mail_set_invoice_folder_a0/ultimas_facturas
+2026-07-18 10:43:07,638 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Amazones' asegurada en: /tmp/pytest-of-luisd/pytest-0/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones
+2026-07-18 10:43:07,638 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-0/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones/20260712_1100_Factura_456.txt
+2026-07-18 10:43:07,650 | INFO | tools | [----------] Carpeta de respaldo de facturas pagadas creada en: /tmp/pytest-of-luisd/pytest-0/test_check_and_process_payment0/gastos/Iberdrola_Clientes
+2026-07-18 10:43:07,651 | INFO | tools | [----------] Factura pagada trasladada: /tmp/pytest-of-luisd/pytest-0/test_check_and_process_payment0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt -> /tmp/pytest-of-luisd/pytest-0/test_check_and_process_payment0/gastos/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-18 10:43:10,342 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python', '-c', "print('hello')"]
+2026-07-18 10:43:10,377 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-07-18 10:43:10,380 | INFO | tools | [----------] Listando directorio: app
+2026-07-18 10:43:10,380 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-07-18 10:43:10,380 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-07-18 10:43:10,381 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-07-18 10:43:10,385 | WARNING | tools | [----------] ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '['/home/luisd/Alfonso/venv/bin/python', '-c', "print('app-open-test')"]' en el SERVIDOR, no en el cliente.
+2026-07-18 10:43:27,067 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Alertas_fotocasa' asegurada en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Alertas_fotocasa
+2026-07-18 10:43:27,072 | INFO | tools | [----------] Factura guardada correctamente en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Alertas_fotocasa/20260718_0804_Factura_148.txt
+2026-07-18 10:48:01,199 | INFO | tools | [----------] Delegando open_application al agente local: notepad
+2026-07-18 10:48:01,205 | INFO | tools | [----------] Delegando open_url al agente local: https://google.com
+2026-07-18 10:48:01,213 | INFO | tools | [----------] Delegando close_application al agente local: notepad
+2026-07-18 10:48:01,244 | INFO | tools | [----------] Intentando crear archivo: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-18 10:48:01,244 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-18 10:48:01,244 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-18 10:48:01,245 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-18 11:16:46,445 | INFO | tools | [----------] Cita creada con ID 171 y añadida a ChromaDB.
+2026-07-18 11:16:46,456 | INFO | tools | [----------] computer_use: delegando 'mouse.click' args={'x': 10, 'y': 20, 'button': 'left', 'clicks': 1, 'interval': 0.1} client_id=test-client-123
+2026-07-18 11:16:46,461 | INFO | tools | [----------] computer_use: delegando 'keyboard.type' args={'text': 'hola', 'interval': 0.03} client_id=test-client-456
+2026-07-18 11:22:38,635 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes
+2026-07-18 11:22:38,655 | INFO | tools | [----------] Factura guardada correctamente en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes/20260704_0730_Factura_2.txt
+2026-07-18 11:22:38,669 | WARNING | tools | [----------] Error al buscar correos de la fecha más reciente: 'DummyConnection' object does not support the context manager protocol
+2026-07-18 11:22:42,208 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /tmp/pytest-of-luisd/pytest-0/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes
+2026-07-18 11:22:42,209 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-0/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-18 11:22:42,218 | INFO | tools | [----------] Carpeta contenedora de facturas creada dinámicamente en: /tmp/pytest-of-luisd/pytest-0/test_mail_set_invoice_folder_a0/ultimas_facturas
+2026-07-18 11:22:42,219 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Amazones' asegurada en: /tmp/pytest-of-luisd/pytest-0/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones
+2026-07-18 11:22:42,220 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-0/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones/20260712_1100_Factura_456.txt
+2026-07-18 11:22:42,230 | INFO | tools | [----------] Carpeta de respaldo de facturas pagadas creada en: /tmp/pytest-of-luisd/pytest-0/test_check_and_process_payment0/gastos/Iberdrola_Clientes
+2026-07-18 11:22:42,231 | INFO | tools | [----------] Factura pagada trasladada: /tmp/pytest-of-luisd/pytest-0/test_check_and_process_payment0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt -> /tmp/pytest-of-luisd/pytest-0/test_check_and_process_payment0/gastos/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-18 11:22:47,988 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python', '-c', "print('hello')"]
+2026-07-18 11:22:48,073 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-07-18 11:22:48,078 | INFO | tools | [----------] Listando directorio: app
+2026-07-18 11:22:48,082 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-07-18 11:22:48,082 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-07-18 11:22:48,085 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-07-18 11:22:48,103 | WARNING | tools | [----------] ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '['/home/luisd/Alfonso/venv/bin/python', '-c', "print('app-open-test')"]' en el SERVIDOR, no en el cliente.
+2026-07-18 11:23:23,111 | INFO | tools | [----------] Delegando open_application al agente local: notepad
+2026-07-18 11:23:23,779 | INFO | tools | [----------] Delegando open_url al agente local: https://google.com
+2026-07-18 11:23:23,783 | INFO | tools | [----------] Delegando close_application al agente local: notepad
+2026-07-18 11:23:23,814 | INFO | tools | [----------] Intentando crear archivo: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-18 11:23:23,814 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-18 11:23:23,814 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-18 11:23:23,815 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-18 12:10:16,371 | INFO | tools | [----------] Cita creada con ID 174 y añadida a ChromaDB.
+2026-07-18 12:10:16,381 | INFO | tools | [----------] computer_use: delegando 'mouse.click' args={'x': 10, 'y': 20, 'button': 'left', 'clicks': 1, 'interval': 0.1} client_id=test-client-123
+2026-07-18 12:10:16,385 | INFO | tools | [----------] computer_use: delegando 'keyboard.type' args={'text': 'hola', 'interval': 0.03} client_id=test-client-456
+2026-07-18 12:16:10,400 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes
+2026-07-18 12:16:10,418 | INFO | tools | [----------] Factura guardada correctamente en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes/20260704_0730_Factura_2.txt
+2026-07-18 12:16:10,423 | WARNING | tools | [----------] Error al buscar correos de la fecha más reciente: 'DummyConnection' object does not support the context manager protocol
+2026-07-18 12:16:12,854 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /tmp/pytest-of-luisd/pytest-0/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes
+2026-07-18 12:16:12,855 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-0/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-18 12:16:12,866 | INFO | tools | [----------] Carpeta contenedora de facturas creada dinámicamente en: /tmp/pytest-of-luisd/pytest-0/test_mail_set_invoice_folder_a0/ultimas_facturas
+2026-07-18 12:16:12,867 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Amazones' asegurada en: /tmp/pytest-of-luisd/pytest-0/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones
+2026-07-18 12:16:12,867 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-0/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones/20260712_1100_Factura_456.txt
+2026-07-18 12:16:12,880 | INFO | tools | [----------] Carpeta de respaldo de facturas pagadas creada en: /tmp/pytest-of-luisd/pytest-0/test_check_and_process_payment0/gastos/Iberdrola_Clientes
+2026-07-18 12:16:12,880 | INFO | tools | [----------] Factura pagada trasladada: /tmp/pytest-of-luisd/pytest-0/test_check_and_process_payment0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt -> /tmp/pytest-of-luisd/pytest-0/test_check_and_process_payment0/gastos/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-18 12:16:17,107 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python', '-c', "print('hello')"]
+2026-07-18 12:16:17,175 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-07-18 12:16:17,179 | INFO | tools | [----------] Listando directorio: app
+2026-07-18 12:16:17,181 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-07-18 12:16:17,181 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-07-18 12:16:17,182 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-07-18 12:16:17,190 | WARNING | tools | [----------] ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '['/home/luisd/Alfonso/venv/bin/python', '-c', "print('app-open-test')"]' en el SERVIDOR, no en el cliente.
+2026-07-18 12:16:36,092 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Alerta_de_empleo_ticjobes' asegurada en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Alerta_de_empleo_ticjobes
+2026-07-18 12:16:36,099 | INFO | tools | [----------] Factura guardada correctamente en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Alerta_de_empleo_ticjobes/20260718_1127_Factura_168.txt
+2026-07-18 12:20:34,654 | INFO | tools | [----------] Delegando open_application al agente local: notepad
+2026-07-18 12:20:34,664 | INFO | tools | [----------] Delegando open_url al agente local: https://google.com
+2026-07-18 12:20:34,669 | INFO | tools | [----------] Delegando close_application al agente local: notepad
+2026-07-18 12:20:34,704 | INFO | tools | [----------] Intentando crear archivo: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-18 12:20:34,704 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-18 12:20:34,705 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-18 12:20:34,705 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-18 12:25:55,985 | INFO | tools | [----------] Cita creada con ID 177 y añadida a ChromaDB.
+2026-07-18 12:25:55,994 | INFO | tools | [----------] computer_use: delegando 'mouse.click' args={'x': 10, 'y': 20, 'button': 'left', 'clicks': 1, 'interval': 0.1} client_id=test-client-123
+2026-07-18 12:25:55,998 | INFO | tools | [----------] computer_use: delegando 'keyboard.type' args={'text': 'hola', 'interval': 0.03} client_id=test-client-456
+2026-07-18 12:31:49,207 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes
+2026-07-18 12:31:49,220 | INFO | tools | [----------] Factura guardada correctamente en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes/20260704_0730_Factura_2.txt
+2026-07-18 12:31:49,232 | WARNING | tools | [----------] Error al buscar correos de la fecha más reciente: 'DummyConnection' object does not support the context manager protocol
+2026-07-18 12:31:51,773 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /tmp/pytest-of-luisd/pytest-0/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes
+2026-07-18 12:31:51,774 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-0/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-18 12:31:51,785 | INFO | tools | [----------] Carpeta contenedora de facturas creada dinámicamente en: /tmp/pytest-of-luisd/pytest-0/test_mail_set_invoice_folder_a0/ultimas_facturas
+2026-07-18 12:31:51,787 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Amazones' asegurada en: /tmp/pytest-of-luisd/pytest-0/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones
+2026-07-18 12:31:51,788 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-0/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones/20260712_1100_Factura_456.txt
+2026-07-18 12:31:51,800 | INFO | tools | [----------] Carpeta de respaldo de facturas pagadas creada en: /tmp/pytest-of-luisd/pytest-0/test_check_and_process_payment0/gastos/Iberdrola_Clientes
+2026-07-18 12:31:51,800 | INFO | tools | [----------] Factura pagada trasladada: /tmp/pytest-of-luisd/pytest-0/test_check_and_process_payment0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt -> /tmp/pytest-of-luisd/pytest-0/test_check_and_process_payment0/gastos/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-18 12:31:55,872 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python', '-c', "print('hello')"]
+2026-07-18 12:31:55,954 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-07-18 12:31:55,957 | INFO | tools | [----------] Listando directorio: app
+2026-07-18 12:31:55,958 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-07-18 12:31:55,958 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-07-18 12:31:55,960 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-07-18 12:31:55,965 | WARNING | tools | [----------] ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '['/home/luisd/Alfonso/venv/bin/python', '-c', "print('app-open-test')"]' en el SERVIDOR, no en el cliente.
+2026-07-18 12:32:30,320 | INFO | tools | [----------] Delegando open_application al agente local: notepad
+2026-07-18 12:32:30,325 | INFO | tools | [----------] Delegando open_url al agente local: https://google.com
+2026-07-18 12:32:30,329 | INFO | tools | [----------] Delegando close_application al agente local: notepad
+2026-07-18 12:32:30,353 | INFO | tools | [----------] Intentando crear archivo: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-18 12:32:30,354 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-18 12:32:30,354 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-18 12:32:30,354 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-18 13:39:21,678 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Alerta_de_empleo_ticjobes' asegurada en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Alerta_de_empleo_ticjobes
+2026-07-18 13:39:21,691 | INFO | tools | [----------] Factura guardada correctamente en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Alerta_de_empleo_ticjobes/20260718_1127_Factura_135.txt
+2026-07-18 13:39:21,707 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Alertas_fotocasa' asegurada en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Alertas_fotocasa
+2026-07-18 13:39:21,712 | INFO | tools | [----------] Factura guardada correctamente en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Alertas_fotocasa/20260718_0804_Factura_138.txt
+2026-07-18 13:41:16,755 | WARNING | tools | [----------] Clasificación por LLM falló para ID 146, excedió timeout o fue cancelada: 
+2026-07-18 17:12:23,227 | INFO | tools | [----------] Cita creada con ID 180 y añadida a ChromaDB.
+2026-07-18 17:12:23,248 | INFO | tools | [----------] computer_use: delegando 'mouse.click' args={'x': 10, 'y': 20, 'button': 'left', 'clicks': 1, 'interval': 0.1} client_id=test-client-123
+2026-07-18 17:12:23,263 | INFO | tools | [----------] computer_use: delegando 'keyboard.type' args={'text': 'hola', 'interval': 0.03} client_id=test-client-456
+2026-07-18 17:18:14,490 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes
+2026-07-18 17:18:14,500 | INFO | tools | [----------] Factura guardada correctamente en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes/20260704_0730_Factura_2.txt
+2026-07-18 17:18:14,504 | WARNING | tools | [----------] Error al buscar correos de la fecha más reciente: 'DummyConnection' object does not support the context manager protocol
+2026-07-18 17:18:17,299 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /tmp/pytest-of-luisd/pytest-0/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes
+2026-07-18 17:18:17,300 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-0/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-18 17:18:17,310 | INFO | tools | [----------] Carpeta contenedora de facturas creada dinámicamente en: /tmp/pytest-of-luisd/pytest-0/test_mail_set_invoice_folder_a0/ultimas_facturas
+2026-07-18 17:18:17,311 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Amazones' asegurada en: /tmp/pytest-of-luisd/pytest-0/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones
+2026-07-18 17:18:17,312 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-0/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones/20260712_1100_Factura_456.txt
+2026-07-18 17:18:17,332 | INFO | tools | [----------] Carpeta de respaldo de facturas pagadas creada en: /tmp/pytest-of-luisd/pytest-0/test_check_and_process_payment0/gastos/Iberdrola_Clientes
+2026-07-18 17:18:17,333 | INFO | tools | [----------] Factura pagada trasladada: /tmp/pytest-of-luisd/pytest-0/test_check_and_process_payment0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt -> /tmp/pytest-of-luisd/pytest-0/test_check_and_process_payment0/gastos/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-18 17:18:22,559 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python', '-c', "print('hello')"]
+2026-07-18 17:18:22,619 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-07-18 17:18:22,624 | INFO | tools | [----------] Listando directorio: app
+2026-07-18 17:18:22,626 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-07-18 17:18:22,626 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-07-18 17:18:22,627 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-07-18 17:18:22,636 | WARNING | tools | [----------] ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '['/home/luisd/Alfonso/venv/bin/python', '-c', "print('app-open-test')"]' en el SERVIDOR, no en el cliente.
+2026-07-18 17:23:21,044 | INFO | tools | [----------] Obteniendo fecha y hora del sistema
+2026-07-18 17:26:33,723 | INFO | tools | [----------] Delegando open_application al agente local: notepad
+2026-07-18 17:26:33,731 | INFO | tools | [----------] Delegando open_url al agente local: https://google.com
+2026-07-18 17:26:33,736 | INFO | tools | [----------] Delegando close_application al agente local: notepad
+2026-07-18 17:26:33,772 | INFO | tools | [----------] Intentando crear archivo: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-18 17:26:33,772 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-18 17:26:33,773 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-18 17:26:33,773 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-18 17:34:33,170 | INFO | tools | [----------] Cita creada con ID 183 y añadida a ChromaDB.
+2026-07-18 17:34:33,181 | INFO | tools | [----------] computer_use: delegando 'mouse.click' args={'x': 10, 'y': 20, 'button': 'left', 'clicks': 1, 'interval': 0.1} client_id=test-client-123
+2026-07-18 17:34:33,188 | INFO | tools | [----------] computer_use: delegando 'keyboard.type' args={'text': 'hola', 'interval': 0.03} client_id=test-client-456
+2026-07-18 17:40:24,256 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes
+2026-07-18 17:40:24,264 | INFO | tools | [----------] Factura guardada correctamente en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes/20260704_0730_Factura_2.txt
+2026-07-18 17:40:24,267 | WARNING | tools | [----------] Error al buscar correos de la fecha más reciente: 'DummyConnection' object does not support the context manager protocol
+2026-07-18 17:40:28,236 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /tmp/pytest-of-luisd/pytest-1/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes
+2026-07-18 17:40:28,237 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-1/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-18 17:40:28,246 | INFO | tools | [----------] Carpeta contenedora de facturas creada dinámicamente en: /tmp/pytest-of-luisd/pytest-1/test_mail_set_invoice_folder_a0/ultimas_facturas
+2026-07-18 17:40:28,247 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Amazones' asegurada en: /tmp/pytest-of-luisd/pytest-1/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones
+2026-07-18 17:40:28,248 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-1/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones/20260712_1100_Factura_456.txt
+2026-07-18 17:40:28,259 | INFO | tools | [----------] Carpeta de respaldo de facturas pagadas creada en: /tmp/pytest-of-luisd/pytest-1/test_check_and_process_payment0/gastos/Iberdrola_Clientes
+2026-07-18 17:40:28,260 | INFO | tools | [----------] Factura pagada trasladada: /tmp/pytest-of-luisd/pytest-1/test_check_and_process_payment0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt -> /tmp/pytest-of-luisd/pytest-1/test_check_and_process_payment0/gastos/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-18 17:40:32,060 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python', '-c', "print('hello')"]
+2026-07-18 17:40:32,091 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-07-18 17:40:32,096 | INFO | tools | [----------] Listando directorio: app
+2026-07-18 17:40:32,097 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-07-18 17:40:32,097 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-07-18 17:40:32,098 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-07-18 17:40:32,104 | WARNING | tools | [----------] ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '['/home/luisd/Alfonso/venv/bin/python', '-c', "print('app-open-test')"]' en el SERVIDOR, no en el cliente.
+2026-07-18 17:42:49,606 | INFO | tools | [----------] Delegando open_application al agente local: notepad
+2026-07-18 17:42:49,615 | INFO | tools | [----------] Delegando open_url al agente local: https://google.com
+2026-07-18 17:42:49,620 | INFO | tools | [----------] Delegando close_application al agente local: notepad
+2026-07-18 17:42:49,652 | INFO | tools | [----------] Intentando crear archivo: /tmp/pytest-of-luisd/pytest-1/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-18 17:42:49,653 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-1/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-18 17:42:49,653 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-1/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-18 17:42:49,653 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-1/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-18 17:50:58,376 | INFO | tools | [----------] Cita creada con ID 186 y añadida a ChromaDB.
+2026-07-18 17:50:58,387 | INFO | tools | [----------] computer_use: delegando 'mouse.click' args={'x': 10, 'y': 20, 'button': 'left', 'clicks': 1, 'interval': 0.1} client_id=test-client-123
+2026-07-18 17:50:58,395 | INFO | tools | [----------] computer_use: delegando 'keyboard.type' args={'text': 'hola', 'interval': 0.03} client_id=test-client-456
+2026-07-18 17:56:48,570 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes
+2026-07-18 17:56:48,577 | INFO | tools | [----------] Factura guardada correctamente en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes/20260704_0730_Factura_2.txt
+2026-07-18 17:56:48,580 | WARNING | tools | [----------] Error al buscar correos de la fecha más reciente: 'DummyConnection' object does not support the context manager protocol
+2026-07-18 17:56:52,889 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /tmp/pytest-of-luisd/pytest-2/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes
+2026-07-18 17:56:52,889 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-2/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-18 17:56:52,900 | INFO | tools | [----------] Carpeta contenedora de facturas creada dinámicamente en: /tmp/pytest-of-luisd/pytest-2/test_mail_set_invoice_folder_a0/ultimas_facturas
+2026-07-18 17:56:52,902 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Amazones' asegurada en: /tmp/pytest-of-luisd/pytest-2/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones
+2026-07-18 17:56:52,902 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-2/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones/20260712_1100_Factura_456.txt
+2026-07-18 17:56:52,918 | INFO | tools | [----------] Carpeta de respaldo de facturas pagadas creada en: /tmp/pytest-of-luisd/pytest-2/test_check_and_process_payment0/gastos/Iberdrola_Clientes
+2026-07-18 17:56:52,919 | INFO | tools | [----------] Factura pagada trasladada: /tmp/pytest-of-luisd/pytest-2/test_check_and_process_payment0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt -> /tmp/pytest-of-luisd/pytest-2/test_check_and_process_payment0/gastos/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-18 17:56:57,088 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python', '-c', "print('hello')"]
+2026-07-18 17:56:57,120 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-07-18 17:56:57,126 | INFO | tools | [----------] Listando directorio: app
+2026-07-18 17:56:57,127 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-07-18 17:56:57,127 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-07-18 17:56:57,127 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-07-18 17:56:57,133 | WARNING | tools | [----------] ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '['/home/luisd/Alfonso/venv/bin/python', '-c', "print('app-open-test')"]' en el SERVIDOR, no en el cliente.
+2026-07-18 17:57:37,317 | INFO | tools | [----------] Delegando open_application al agente local: notepad
+2026-07-18 17:57:37,445 | INFO | tools | [----------] Delegando open_url al agente local: https://google.com
+2026-07-18 17:57:37,459 | INFO | tools | [----------] Delegando close_application al agente local: notepad
+2026-07-18 17:57:37,487 | INFO | tools | [----------] Intentando crear archivo: /tmp/pytest-of-luisd/pytest-2/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-18 17:57:37,488 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-2/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-18 17:57:37,488 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-2/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-18 17:57:37,489 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-2/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-18 18:13:58,803 | INFO | tools | [----------] Cita creada con ID 189 y añadida a ChromaDB.
+2026-07-18 18:13:58,819 | INFO | tools | [----------] computer_use: delegando 'mouse.click' args={'x': 10, 'y': 20, 'button': 'left', 'clicks': 1, 'interval': 0.1} client_id=test-client-123
+2026-07-18 18:13:58,830 | INFO | tools | [----------] computer_use: delegando 'keyboard.type' args={'text': 'hola', 'interval': 0.03} client_id=test-client-456
+2026-07-18 18:19:50,343 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes
+2026-07-18 18:19:50,357 | INFO | tools | [----------] Factura guardada correctamente en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes/20260704_0730_Factura_2.txt
+2026-07-18 18:19:50,360 | WARNING | tools | [----------] Error al buscar correos de la fecha más reciente: 'DummyConnection' object does not support the context manager protocol
+2026-07-18 18:19:54,478 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /tmp/pytest-of-luisd/pytest-3/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes
+2026-07-18 18:19:54,478 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-3/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-18 18:19:54,485 | INFO | tools | [----------] Carpeta contenedora de facturas creada dinámicamente en: /tmp/pytest-of-luisd/pytest-3/test_mail_set_invoice_folder_a0/ultimas_facturas
+2026-07-18 18:19:54,485 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Amazones' asegurada en: /tmp/pytest-of-luisd/pytest-3/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones
+2026-07-18 18:19:54,486 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-3/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones/20260712_1100_Factura_456.txt
+2026-07-18 18:19:54,493 | INFO | tools | [----------] Carpeta de respaldo de facturas pagadas creada en: /tmp/pytest-of-luisd/pytest-3/test_check_and_process_payment0/gastos/Iberdrola_Clientes
+2026-07-18 18:19:54,493 | INFO | tools | [----------] Factura pagada trasladada: /tmp/pytest-of-luisd/pytest-3/test_check_and_process_payment0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt -> /tmp/pytest-of-luisd/pytest-3/test_check_and_process_payment0/gastos/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-18 18:19:57,156 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python', '-c', "print('hello')"]
+2026-07-18 18:19:57,181 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-07-18 18:19:57,184 | INFO | tools | [----------] Listando directorio: app
+2026-07-18 18:19:57,185 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-07-18 18:19:57,185 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-07-18 18:19:57,186 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-07-18 18:19:57,190 | WARNING | tools | [----------] ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '['/home/luisd/Alfonso/venv/bin/python', '-c', "print('app-open-test')"]' en el SERVIDOR, no en el cliente.
+2026-07-18 18:20:28,597 | INFO | tools | [----------] Delegando open_application al agente local: notepad
+2026-07-18 18:20:28,654 | INFO | tools | [----------] Delegando open_url al agente local: https://google.com
+2026-07-18 18:20:28,656 | INFO | tools | [----------] Delegando close_application al agente local: notepad
+2026-07-18 18:20:28,670 | INFO | tools | [----------] Intentando crear archivo: /tmp/pytest-of-luisd/pytest-3/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-18 18:20:28,670 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-3/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-18 18:20:28,670 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-3/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-18 18:20:28,671 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-3/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-18 19:44:57,594 | INFO | tools | [----------] Cita creada con ID 192 y añadida a ChromaDB.
+2026-07-18 19:44:57,608 | INFO | tools | [----------] computer_use: delegando 'mouse.click' args={'x': 10, 'y': 20, 'button': 'left', 'clicks': 1, 'interval': 0.1} client_id=test-client-123
+2026-07-18 19:44:57,619 | INFO | tools | [----------] computer_use: delegando 'keyboard.type' args={'text': 'hola', 'interval': 0.03} client_id=test-client-456
+2026-07-18 19:50:50,571 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes
+2026-07-18 19:50:50,580 | INFO | tools | [----------] Factura guardada correctamente en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes/20260704_0730_Factura_2.txt
+2026-07-18 19:50:50,582 | WARNING | tools | [----------] Error al buscar correos de la fecha más reciente: 'DummyConnection' object does not support the context manager protocol
+2026-07-18 19:50:55,411 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /tmp/pytest-of-luisd/pytest-4/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes
+2026-07-18 19:50:55,412 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-4/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-18 19:50:55,419 | INFO | tools | [----------] Carpeta contenedora de facturas creada dinámicamente en: /tmp/pytest-of-luisd/pytest-4/test_mail_set_invoice_folder_a0/ultimas_facturas
+2026-07-18 19:50:55,422 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Amazones' asegurada en: /tmp/pytest-of-luisd/pytest-4/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones
+2026-07-18 19:50:55,423 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-4/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones/20260712_1100_Factura_456.txt
+2026-07-18 19:50:55,432 | INFO | tools | [----------] Carpeta de respaldo de facturas pagadas creada en: /tmp/pytest-of-luisd/pytest-4/test_check_and_process_payment0/gastos/Iberdrola_Clientes
+2026-07-18 19:50:55,432 | INFO | tools | [----------] Factura pagada trasladada: /tmp/pytest-of-luisd/pytest-4/test_check_and_process_payment0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt -> /tmp/pytest-of-luisd/pytest-4/test_check_and_process_payment0/gastos/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-18 19:50:58,904 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python', '-c', "print('hello')"]
+2026-07-18 19:50:58,942 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-07-18 19:50:58,945 | INFO | tools | [----------] Listando directorio: app
+2026-07-18 19:50:58,946 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-07-18 19:50:58,946 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-07-18 19:50:58,947 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-07-18 19:50:58,952 | WARNING | tools | [----------] ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '['/home/luisd/Alfonso/venv/bin/python', '-c', "print('app-open-test')"]' en el SERVIDOR, no en el cliente.
+2026-07-18 19:51:33,052 | INFO | tools | [----------] Delegando open_application al agente local: notepad
+2026-07-18 19:51:33,161 | INFO | tools | [----------] Delegando open_url al agente local: https://google.com
+2026-07-18 19:51:33,167 | INFO | tools | [----------] Delegando close_application al agente local: notepad
+2026-07-18 19:51:33,196 | INFO | tools | [----------] Intentando crear archivo: /tmp/pytest-of-luisd/pytest-4/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-18 19:51:33,197 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-4/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-18 19:51:33,197 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-4/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-18 19:51:33,197 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-4/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-18 19:54:41,449 | INFO | tools | [----------] Cita creada con ID 195 y añadida a ChromaDB.
+2026-07-18 19:54:41,458 | INFO | tools | [----------] computer_use: delegando 'mouse.click' args={'x': 10, 'y': 20, 'button': 'left', 'clicks': 1, 'interval': 0.1} client_id=test-client-123
+2026-07-18 19:54:41,461 | INFO | tools | [----------] computer_use: delegando 'keyboard.type' args={'text': 'hola', 'interval': 0.03} client_id=test-client-456
+2026-07-18 20:00:38,713 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes
+2026-07-18 20:00:38,724 | INFO | tools | [----------] Factura guardada correctamente en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes/20260704_0730_Factura_2.txt
+2026-07-18 20:00:38,734 | WARNING | tools | [----------] Error al buscar correos de la fecha más reciente: 'DummyConnection' object does not support the context manager protocol
+2026-07-18 20:00:41,558 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /tmp/pytest-of-luisd/pytest-0/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes
+2026-07-18 20:00:41,558 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-0/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-18 20:00:41,565 | INFO | tools | [----------] Carpeta contenedora de facturas creada dinámicamente en: /tmp/pytest-of-luisd/pytest-0/test_mail_set_invoice_folder_a0/ultimas_facturas
+2026-07-18 20:00:41,566 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Amazones' asegurada en: /tmp/pytest-of-luisd/pytest-0/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones
+2026-07-18 20:00:41,567 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-0/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones/20260712_1100_Factura_456.txt
+2026-07-18 20:00:41,576 | INFO | tools | [----------] Carpeta de respaldo de facturas pagadas creada en: /tmp/pytest-of-luisd/pytest-0/test_check_and_process_payment0/gastos/Iberdrola_Clientes
+2026-07-18 20:00:41,577 | INFO | tools | [----------] Factura pagada trasladada: /tmp/pytest-of-luisd/pytest-0/test_check_and_process_payment0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt -> /tmp/pytest-of-luisd/pytest-0/test_check_and_process_payment0/gastos/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-18 20:00:46,236 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python', '-c', "print('hello')"]
+2026-07-18 20:00:46,267 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-07-18 20:00:46,271 | INFO | tools | [----------] Listando directorio: app
+2026-07-18 20:00:46,272 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-07-18 20:00:46,272 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-07-18 20:00:46,272 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-07-18 20:00:46,278 | WARNING | tools | [----------] ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '['/home/luisd/Alfonso/venv/bin/python', '-c', "print('app-open-test')"]' en el SERVIDOR, no en el cliente.
+2026-07-18 20:01:27,370 | INFO | tools | [----------] Delegando open_application al agente local: notepad
+2026-07-18 20:01:27,375 | INFO | tools | [----------] Delegando open_url al agente local: https://google.com
+2026-07-18 20:01:27,380 | INFO | tools | [----------] Delegando close_application al agente local: notepad
+2026-07-18 20:01:27,401 | INFO | tools | [----------] Intentando crear archivo: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-18 20:01:27,402 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-18 20:01:27,402 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-18 20:01:27,402 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-18 20:38:32,801 | INFO | tools | [----------] Obteniendo fecha y hora del sistema
+2026-07-18 20:38:44,406 | INFO | tools | [----------] Obteniendo fecha y hora del sistema
+2026-07-18 20:39:11,719 | INFO | tools | [----------] Obteniendo fecha y hora del sistema
+2026-07-18 20:39:20,265 | INFO | tools | [----------] Obteniendo fecha y hora del sistema
+2026-07-18 20:39:30,792 | INFO | tools | [----------] Obteniendo fecha y hora del sistema
+2026-07-18 20:40:08,790 | INFO | tools | [----------] Obteniendo fecha y hora del sistema
+2026-07-18 20:40:14,670 | INFO | tools | [----------] Obteniendo fecha y hora del sistema
+2026-07-18 21:08:29,282 | INFO | tools | [----------] Cita creada con ID 198 y añadida a ChromaDB.
+2026-07-18 21:08:29,296 | INFO | tools | [----------] computer_use: delegando 'mouse.click' args={'x': 10, 'y': 20, 'button': 'left', 'clicks': 1, 'interval': 0.1} client_id=test-client-123
+2026-07-18 21:08:29,303 | INFO | tools | [----------] computer_use: delegando 'keyboard.type' args={'text': 'hola', 'interval': 0.03} client_id=test-client-456
+2026-07-18 21:14:25,264 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes
+2026-07-18 21:14:25,280 | INFO | tools | [----------] Factura guardada correctamente en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes/20260704_0730_Factura_2.txt
+2026-07-18 21:14:25,282 | WARNING | tools | [----------] Error al buscar correos de la fecha más reciente: 'DummyConnection' object does not support the context manager protocol
+2026-07-18 21:14:28,872 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /tmp/pytest-of-luisd/pytest-0/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes
+2026-07-18 21:14:28,873 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-0/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-18 21:14:28,882 | INFO | tools | [----------] Carpeta contenedora de facturas creada dinámicamente en: /tmp/pytest-of-luisd/pytest-0/test_mail_set_invoice_folder_a0/ultimas_facturas
+2026-07-18 21:14:28,882 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Amazones' asegurada en: /tmp/pytest-of-luisd/pytest-0/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones
+2026-07-18 21:14:28,883 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-0/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones/20260712_1100_Factura_456.txt
+2026-07-18 21:14:28,894 | INFO | tools | [----------] Carpeta de respaldo de facturas pagadas creada en: /tmp/pytest-of-luisd/pytest-0/test_check_and_process_payment0/gastos/Iberdrola_Clientes
+2026-07-18 21:14:28,895 | INFO | tools | [----------] Factura pagada trasladada: /tmp/pytest-of-luisd/pytest-0/test_check_and_process_payment0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt -> /tmp/pytest-of-luisd/pytest-0/test_check_and_process_payment0/gastos/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-18 21:14:32,892 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python', '-c', "print('hello')"]
+2026-07-18 21:14:32,920 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-07-18 21:14:32,924 | INFO | tools | [----------] Listando directorio: app
+2026-07-18 21:14:32,925 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-07-18 21:14:32,925 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-07-18 21:14:32,926 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-07-18 21:14:32,930 | WARNING | tools | [----------] ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '['/home/luisd/Alfonso/venv/bin/python', '-c', "print('app-open-test')"]' en el SERVIDOR, no en el cliente.
+2026-07-18 21:15:11,872 | INFO | tools | [----------] Delegando open_application al agente local: notepad
+2026-07-18 21:15:11,877 | INFO | tools | [----------] Delegando open_url al agente local: https://google.com
+2026-07-18 21:15:11,883 | INFO | tools | [----------] Delegando close_application al agente local: notepad
+2026-07-18 21:15:11,908 | INFO | tools | [----------] Intentando crear archivo: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-18 21:15:11,908 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-18 21:15:11,909 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-18 21:15:11,909 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-18 22:29:56,944 | INFO | tools | [----------] Cita creada con ID 9 y añadida a ChromaDB.
+2026-07-19 10:11:07,400 | INFO | tools | [----------] Cita creada con ID 10 y añadida a ChromaDB.
+2026-07-19 10:49:58,650 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Alertas_fotocasa' asegurada en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Alertas_fotocasa
+2026-07-19 10:49:58,671 | INFO | tools | [----------] Factura guardada correctamente en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Alertas_fotocasa/20260719_0823_Factura_172.txt
+2026-07-19 10:50:08,138 | INFO | tools | [----------] Cita creada con ID 11 y añadida a ChromaDB.
+2026-07-19 10:55:35,350 | INFO | tools | [----------] Cita creada con ID 201 y añadida a ChromaDB.
+2026-07-19 10:55:35,364 | INFO | tools | [----------] computer_use: delegando 'mouse.click' args={'x': 10, 'y': 20, 'button': 'left', 'clicks': 1, 'interval': 0.1} client_id=test-client-123
+2026-07-19 10:55:35,369 | INFO | tools | [----------] computer_use: delegando 'keyboard.type' args={'text': 'hola', 'interval': 0.03} client_id=test-client-456
+2026-07-19 11:01:21,319 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes
+2026-07-19 11:01:21,329 | INFO | tools | [----------] Factura guardada correctamente en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes/20260704_0730_Factura_2.txt
+2026-07-19 11:01:21,332 | WARNING | tools | [----------] Error al buscar correos de la fecha más reciente: 'DummyConnection' object does not support the context manager protocol
+2026-07-19 11:01:25,023 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /tmp/pytest-of-luisd/pytest-0/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes
+2026-07-19 11:01:25,024 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-0/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-19 11:01:25,034 | INFO | tools | [----------] Carpeta contenedora de facturas creada dinámicamente en: /tmp/pytest-of-luisd/pytest-0/test_mail_set_invoice_folder_a0/ultimas_facturas
+2026-07-19 11:01:25,039 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Amazones' asegurada en: /tmp/pytest-of-luisd/pytest-0/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones
+2026-07-19 11:01:25,040 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-0/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones/20260712_1100_Factura_456.txt
+2026-07-19 11:01:25,056 | INFO | tools | [----------] Carpeta de respaldo de facturas pagadas creada en: /tmp/pytest-of-luisd/pytest-0/test_check_and_process_payment0/gastos/Iberdrola_Clientes
+2026-07-19 11:01:25,056 | INFO | tools | [----------] Factura pagada trasladada: /tmp/pytest-of-luisd/pytest-0/test_check_and_process_payment0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt -> /tmp/pytest-of-luisd/pytest-0/test_check_and_process_payment0/gastos/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-19 11:01:29,213 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python', '-c', "print('hello')"]
+2026-07-19 11:01:29,249 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-07-19 11:01:29,253 | INFO | tools | [----------] Listando directorio: app
+2026-07-19 11:01:29,254 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-07-19 11:01:29,255 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-07-19 11:01:29,255 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-07-19 11:01:29,262 | WARNING | tools | [----------] ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '['/home/luisd/Alfonso/venv/bin/python', '-c', "print('app-open-test')"]' en el SERVIDOR, no en el cliente.
+2026-07-19 11:01:49,863 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Alertas_fotocasa' asegurada en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Alertas_fotocasa
+2026-07-19 11:01:49,875 | INFO | tools | [----------] Factura guardada correctamente en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Alertas_fotocasa/20260719_0823_Factura_187.txt
+2026-07-19 11:03:50,149 | INFO | tools | [----------] Delegando open_application al agente local: notepad
+2026-07-19 11:03:50,155 | INFO | tools | [----------] Delegando open_url al agente local: https://google.com
+2026-07-19 11:03:50,167 | INFO | tools | [----------] Delegando close_application al agente local: notepad
+2026-07-19 11:03:50,198 | INFO | tools | [----------] Intentando crear archivo: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-19 11:03:50,198 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-19 11:03:50,199 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-19 11:03:50,200 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-19 11:25:20,667 | INFO | tools | [----------] Cita creada con ID 204 y añadida a ChromaDB.
+2026-07-19 11:25:20,682 | INFO | tools | [----------] computer_use: delegando 'mouse.click' args={'x': 10, 'y': 20, 'button': 'left', 'clicks': 1, 'interval': 0.1} client_id=test-client-123
+2026-07-19 11:25:20,690 | INFO | tools | [----------] computer_use: delegando 'keyboard.type' args={'text': 'hola', 'interval': 0.03} client_id=test-client-456
+2026-07-19 11:31:06,392 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes
+2026-07-19 11:31:06,405 | INFO | tools | [----------] Factura guardada correctamente en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes/20260704_0730_Factura_2.txt
+2026-07-19 11:31:06,408 | WARNING | tools | [----------] Error al buscar correos de la fecha más reciente: 'DummyConnection' object does not support the context manager protocol
+2026-07-19 11:31:11,984 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /tmp/pytest-of-luisd/pytest-1/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes
+2026-07-19 11:31:11,985 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-1/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-19 11:31:11,996 | INFO | tools | [----------] Carpeta contenedora de facturas creada dinámicamente en: /tmp/pytest-of-luisd/pytest-1/test_mail_set_invoice_folder_a0/ultimas_facturas
+2026-07-19 11:31:11,997 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Amazones' asegurada en: /tmp/pytest-of-luisd/pytest-1/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones
+2026-07-19 11:31:11,998 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-1/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones/20260712_1100_Factura_456.txt
+2026-07-19 11:31:12,012 | INFO | tools | [----------] Carpeta de respaldo de facturas pagadas creada en: /tmp/pytest-of-luisd/pytest-1/test_check_and_process_payment0/gastos/Iberdrola_Clientes
+2026-07-19 11:31:12,012 | INFO | tools | [----------] Factura pagada trasladada: /tmp/pytest-of-luisd/pytest-1/test_check_and_process_payment0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt -> /tmp/pytest-of-luisd/pytest-1/test_check_and_process_payment0/gastos/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-19 11:31:15,768 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python', '-c', "print('hello')"]
+2026-07-19 11:31:15,800 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-07-19 11:31:15,805 | INFO | tools | [----------] Listando directorio: app
+2026-07-19 11:31:15,806 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-07-19 11:31:15,806 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-07-19 11:31:15,808 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-07-19 11:31:15,813 | WARNING | tools | [----------] ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '['/home/luisd/Alfonso/venv/bin/python', '-c', "print('app-open-test')"]' en el SERVIDOR, no en el cliente.
+2026-07-19 11:35:27,099 | INFO | tools | [----------] Delegando open_application al agente local: notepad
+2026-07-19 11:35:27,104 | INFO | tools | [----------] Delegando open_url al agente local: https://google.com
+2026-07-19 11:35:27,109 | INFO | tools | [----------] Delegando close_application al agente local: notepad
+2026-07-19 11:35:27,132 | INFO | tools | [----------] Intentando crear archivo: /tmp/pytest-of-luisd/pytest-1/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-19 11:35:27,133 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-1/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-19 11:35:27,133 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-1/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-19 11:35:27,133 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-1/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-19 12:35:17,432 | INFO | tools | [----------] Cita creada con ID 207 y añadida a ChromaDB.
+2026-07-19 12:35:17,452 | INFO | tools | [----------] computer_use: delegando 'mouse.click' args={'x': 10, 'y': 20, 'button': 'left', 'clicks': 1, 'interval': 0.1} client_id=test-client-123
+2026-07-19 12:35:17,463 | INFO | tools | [----------] computer_use: delegando 'keyboard.type' args={'text': 'hola', 'interval': 0.03} client_id=test-client-456
+2026-07-19 12:41:04,425 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes
+2026-07-19 12:41:04,439 | INFO | tools | [----------] Factura guardada correctamente en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes/20260704_0730_Factura_2.txt
+2026-07-19 12:41:04,448 | WARNING | tools | [----------] Error al buscar correos de la fecha más reciente: 'DummyConnection' object does not support the context manager protocol
+2026-07-19 12:41:09,106 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /tmp/pytest-of-luisd/pytest-2/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes
+2026-07-19 12:41:09,107 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-2/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-19 12:41:09,119 | INFO | tools | [----------] Carpeta contenedora de facturas creada dinámicamente en: /tmp/pytest-of-luisd/pytest-2/test_mail_set_invoice_folder_a0/ultimas_facturas
+2026-07-19 12:41:09,121 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Amazones' asegurada en: /tmp/pytest-of-luisd/pytest-2/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones
+2026-07-19 12:41:09,122 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-2/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones/20260712_1100_Factura_456.txt
+2026-07-19 12:41:09,141 | INFO | tools | [----------] Carpeta de respaldo de facturas pagadas creada en: /tmp/pytest-of-luisd/pytest-2/test_check_and_process_payment0/gastos/Iberdrola_Clientes
+2026-07-19 12:41:09,142 | INFO | tools | [----------] Factura pagada trasladada: /tmp/pytest-of-luisd/pytest-2/test_check_and_process_payment0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt -> /tmp/pytest-of-luisd/pytest-2/test_check_and_process_payment0/gastos/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-19 12:41:14,499 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python', '-c', "print('hello')"]
+2026-07-19 12:41:14,572 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-07-19 12:41:14,577 | INFO | tools | [----------] Listando directorio: app
+2026-07-19 12:41:14,580 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-07-19 12:41:14,580 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-07-19 12:41:14,581 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-07-19 12:41:14,588 | WARNING | tools | [----------] ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '['/home/luisd/Alfonso/venv/bin/python', '-c', "print('app-open-test')"]' en el SERVIDOR, no en el cliente.
+2026-07-19 12:42:22,923 | INFO | tools | [----------] Delegando open_application al agente local: notepad
+2026-07-19 12:42:22,929 | INFO | tools | [----------] Delegando open_url al agente local: https://google.com
+2026-07-19 12:42:22,935 | INFO | tools | [----------] Delegando close_application al agente local: notepad
+2026-07-19 12:42:22,954 | INFO | tools | [----------] Intentando crear archivo: /tmp/pytest-of-luisd/pytest-2/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-19 12:42:22,954 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-2/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-19 12:42:22,954 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-2/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-19 12:42:22,954 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-2/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-19 12:45:10,184 | INFO | tools | [----------] Cita creada con ID 210 y añadida a ChromaDB.
+2026-07-19 12:45:10,196 | INFO | tools | [----------] computer_use: delegando 'mouse.click' args={'x': 10, 'y': 20, 'button': 'left', 'clicks': 1, 'interval': 0.1} client_id=test-client-123
+2026-07-19 12:45:10,203 | INFO | tools | [----------] computer_use: delegando 'keyboard.type' args={'text': 'hola', 'interval': 0.03} client_id=test-client-456
+2026-07-19 12:50:55,915 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes
+2026-07-19 12:50:55,926 | INFO | tools | [----------] Factura guardada correctamente en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes/20260704_0730_Factura_2.txt
+2026-07-19 12:50:55,930 | WARNING | tools | [----------] Error al buscar correos de la fecha más reciente: 'DummyConnection' object does not support the context manager protocol
+2026-07-19 12:50:59,527 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /tmp/pytest-of-luisd/pytest-3/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes
+2026-07-19 12:50:59,527 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-3/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-19 12:50:59,541 | INFO | tools | [----------] Carpeta contenedora de facturas creada dinámicamente en: /tmp/pytest-of-luisd/pytest-3/test_mail_set_invoice_folder_a0/ultimas_facturas
+2026-07-19 12:50:59,543 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Amazones' asegurada en: /tmp/pytest-of-luisd/pytest-3/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones
+2026-07-19 12:50:59,544 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-3/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones/20260712_1100_Factura_456.txt
+2026-07-19 12:50:59,560 | INFO | tools | [----------] Carpeta de respaldo de facturas pagadas creada en: /tmp/pytest-of-luisd/pytest-3/test_check_and_process_payment0/gastos/Iberdrola_Clientes
+2026-07-19 12:50:59,560 | INFO | tools | [----------] Factura pagada trasladada: /tmp/pytest-of-luisd/pytest-3/test_check_and_process_payment0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt -> /tmp/pytest-of-luisd/pytest-3/test_check_and_process_payment0/gastos/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-19 12:51:04,544 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python', '-c', "print('hello')"]
+2026-07-19 12:51:04,609 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-07-19 12:51:04,613 | INFO | tools | [----------] Listando directorio: app
+2026-07-19 12:51:04,614 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-07-19 12:51:04,615 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-07-19 12:51:04,617 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-07-19 12:51:04,625 | WARNING | tools | [----------] ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '['/home/luisd/Alfonso/venv/bin/python', '-c', "print('app-open-test')"]' en el SERVIDOR, no en el cliente.
+2026-07-19 12:51:41,193 | INFO | tools | [----------] Delegando open_application al agente local: notepad
+2026-07-19 12:51:41,198 | INFO | tools | [----------] Delegando open_url al agente local: https://google.com
+2026-07-19 12:51:41,202 | INFO | tools | [----------] Delegando close_application al agente local: notepad
+2026-07-19 12:51:41,221 | INFO | tools | [----------] Intentando crear archivo: /tmp/pytest-of-luisd/pytest-3/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-19 12:51:41,222 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-3/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-19 12:51:41,222 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-3/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-19 12:51:41,222 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-3/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-19 13:08:50,192 | WARNING | tools | [----------] Llamada a LLM para resumen matutino excedió el timeout (180s), falló o fue cancelada: . Usando el fallback estructurado.
+2026-07-19 13:33:34,652 | INFO | tools | [----------] Cita creada con ID 213 y añadida a ChromaDB.
+2026-07-19 13:33:34,661 | INFO | tools | [----------] computer_use: delegando 'mouse.click' args={'x': 10, 'y': 20, 'button': 'left', 'clicks': 1, 'interval': 0.1} client_id=test-client-123
+2026-07-19 13:33:34,666 | INFO | tools | [----------] computer_use: delegando 'keyboard.type' args={'text': 'hola', 'interval': 0.03} client_id=test-client-456
+2026-07-19 13:39:23,485 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes
+2026-07-19 13:39:23,493 | INFO | tools | [----------] Factura guardada correctamente en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes/20260704_0730_Factura_2.txt
+2026-07-19 13:39:23,496 | WARNING | tools | [----------] Error al buscar correos de la fecha más reciente: 'DummyConnection' object does not support the context manager protocol
+2026-07-19 13:39:27,816 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /tmp/pytest-of-luisd/pytest-4/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes
+2026-07-19 13:39:27,817 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-4/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-19 13:39:27,830 | INFO | tools | [----------] Carpeta contenedora de facturas creada dinámicamente en: /tmp/pytest-of-luisd/pytest-4/test_mail_set_invoice_folder_a0/ultimas_facturas
+2026-07-19 13:39:27,832 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Amazones' asegurada en: /tmp/pytest-of-luisd/pytest-4/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones
+2026-07-19 13:39:27,833 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-4/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones/20260712_1100_Factura_456.txt
+2026-07-19 13:39:27,852 | INFO | tools | [----------] Carpeta de respaldo de facturas pagadas creada en: /tmp/pytest-of-luisd/pytest-4/test_check_and_process_payment0/gastos/Iberdrola_Clientes
+2026-07-19 13:39:27,852 | INFO | tools | [----------] Factura pagada trasladada: /tmp/pytest-of-luisd/pytest-4/test_check_and_process_payment0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt -> /tmp/pytest-of-luisd/pytest-4/test_check_and_process_payment0/gastos/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-19 13:39:31,523 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python', '-c', "print('hello')"]
+2026-07-19 13:39:31,550 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-07-19 13:39:31,554 | INFO | tools | [----------] Listando directorio: app
+2026-07-19 13:39:31,555 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-07-19 13:39:31,555 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-07-19 13:39:31,556 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-07-19 13:39:31,560 | WARNING | tools | [----------] ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '['/home/luisd/Alfonso/venv/bin/python', '-c', "print('app-open-test')"]' en el SERVIDOR, no en el cliente.
+2026-07-19 13:40:06,848 | INFO | tools | [----------] Delegando open_application al agente local: notepad
+2026-07-19 13:40:06,852 | INFO | tools | [----------] Delegando open_url al agente local: https://google.com
+2026-07-19 13:40:06,857 | INFO | tools | [----------] Delegando close_application al agente local: notepad
+2026-07-19 13:40:06,885 | INFO | tools | [----------] Intentando crear archivo: /tmp/pytest-of-luisd/pytest-4/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-19 13:40:06,885 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-4/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-19 13:40:06,885 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-4/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-19 13:40:06,886 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-4/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-19 14:27:47,574 | INFO | tools | [----------] Cita creada con ID 216 y añadida a ChromaDB.
+2026-07-19 14:27:47,596 | INFO | tools | [----------] computer_use: delegando 'mouse.click' args={'x': 10, 'y': 20, 'button': 'left', 'clicks': 1, 'interval': 0.1} client_id=test-client-123
+2026-07-19 14:27:47,604 | INFO | tools | [----------] computer_use: delegando 'keyboard.type' args={'text': 'hola', 'interval': 0.03} client_id=test-client-456
+2026-07-19 14:33:36,404 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes
+2026-07-19 14:33:36,418 | INFO | tools | [----------] Factura guardada correctamente en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes/20260704_0730_Factura_2.txt
+2026-07-19 14:33:36,422 | WARNING | tools | [----------] Error al buscar correos de la fecha más reciente: 'DummyConnection' object does not support the context manager protocol
+2026-07-19 14:33:40,558 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /tmp/pytest-of-luisd/pytest-5/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes
+2026-07-19 14:33:40,559 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-5/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-19 14:33:40,569 | INFO | tools | [----------] Carpeta contenedora de facturas creada dinámicamente en: /tmp/pytest-of-luisd/pytest-5/test_mail_set_invoice_folder_a0/ultimas_facturas
+2026-07-19 14:33:40,570 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Amazones' asegurada en: /tmp/pytest-of-luisd/pytest-5/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones
+2026-07-19 14:33:40,571 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-5/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones/20260712_1100_Factura_456.txt
+2026-07-19 14:33:40,585 | INFO | tools | [----------] Carpeta de respaldo de facturas pagadas creada en: /tmp/pytest-of-luisd/pytest-5/test_check_and_process_payment0/gastos/Iberdrola_Clientes
+2026-07-19 14:33:40,586 | INFO | tools | [----------] Factura pagada trasladada: /tmp/pytest-of-luisd/pytest-5/test_check_and_process_payment0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt -> /tmp/pytest-of-luisd/pytest-5/test_check_and_process_payment0/gastos/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-19 14:33:44,680 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python', '-c', "print('hello')"]
+2026-07-19 14:33:44,719 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-07-19 14:33:44,727 | INFO | tools | [----------] Listando directorio: app
+2026-07-19 14:33:44,728 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-07-19 14:33:44,729 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-07-19 14:33:44,729 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-07-19 14:33:44,735 | WARNING | tools | [----------] ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '['/home/luisd/Alfonso/venv/bin/python', '-c', "print('app-open-test')"]' en el SERVIDOR, no en el cliente.
+2026-07-19 14:34:17,168 | INFO | tools | [----------] Delegando open_application al agente local: notepad
+2026-07-19 14:34:17,175 | INFO | tools | [----------] Delegando open_url al agente local: https://google.com
+2026-07-19 14:34:17,184 | INFO | tools | [----------] Delegando close_application al agente local: notepad
+2026-07-19 14:34:17,228 | INFO | tools | [----------] Intentando crear archivo: /tmp/pytest-of-luisd/pytest-5/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-19 14:34:17,229 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-5/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-19 14:34:17,229 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-5/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-19 14:34:17,231 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-5/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-19 15:27:13,884 | INFO | tools | [----------] Cita creada con ID 219 y añadida a ChromaDB.
+2026-07-19 15:27:13,894 | INFO | tools | [----------] computer_use: delegando 'mouse.click' args={'x': 10, 'y': 20, 'button': 'left', 'clicks': 1, 'interval': 0.1} client_id=test-client-123
+2026-07-19 15:27:13,899 | INFO | tools | [----------] computer_use: delegando 'keyboard.type' args={'text': 'hola', 'interval': 0.03} client_id=test-client-456
+2026-07-19 15:33:02,279 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes
+2026-07-19 15:33:02,288 | INFO | tools | [----------] Factura guardada correctamente en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes/20260704_0730_Factura_2.txt
+2026-07-19 15:33:02,296 | WARNING | tools | [----------] Error al buscar correos de la fecha más reciente: 'DummyConnection' object does not support the context manager protocol
+2026-07-19 15:33:05,797 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /tmp/pytest-of-luisd/pytest-6/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes
+2026-07-19 15:33:05,798 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-6/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-19 15:33:05,812 | INFO | tools | [----------] Carpeta contenedora de facturas creada dinámicamente en: /tmp/pytest-of-luisd/pytest-6/test_mail_set_invoice_folder_a0/ultimas_facturas
+2026-07-19 15:33:05,814 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Amazones' asegurada en: /tmp/pytest-of-luisd/pytest-6/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones
+2026-07-19 15:33:05,815 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-6/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones/20260712_1100_Factura_456.txt
+2026-07-19 15:33:05,830 | INFO | tools | [----------] Carpeta de respaldo de facturas pagadas creada en: /tmp/pytest-of-luisd/pytest-6/test_check_and_process_payment0/gastos/Iberdrola_Clientes
+2026-07-19 15:33:05,831 | INFO | tools | [----------] Factura pagada trasladada: /tmp/pytest-of-luisd/pytest-6/test_check_and_process_payment0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt -> /tmp/pytest-of-luisd/pytest-6/test_check_and_process_payment0/gastos/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-19 15:33:10,031 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python', '-c', "print('hello')"]
+2026-07-19 15:33:10,078 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-07-19 15:33:10,083 | INFO | tools | [----------] Listando directorio: app
+2026-07-19 15:33:10,084 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-07-19 15:33:10,085 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-07-19 15:33:10,085 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-07-19 15:33:10,092 | WARNING | tools | [----------] ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '['/home/luisd/Alfonso/venv/bin/python', '-c', "print('app-open-test')"]' en el SERVIDOR, no en el cliente.
+2026-07-19 15:35:46,924 | INFO | tools | [----------] Delegando open_application al agente local: notepad
+2026-07-19 15:35:46,934 | INFO | tools | [----------] Delegando open_url al agente local: https://google.com
+2026-07-19 15:35:46,944 | INFO | tools | [----------] Delegando close_application al agente local: notepad
+2026-07-19 15:35:46,979 | INFO | tools | [----------] Intentando crear archivo: /tmp/pytest-of-luisd/pytest-6/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-19 15:35:46,980 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-6/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-19 15:35:46,980 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-6/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-19 15:35:46,981 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-6/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-19 16:16:12,344 | INFO | tools | [----------] Cita creada con ID 222 y añadida a ChromaDB.
+2026-07-19 16:16:12,360 | INFO | tools | [----------] computer_use: delegando 'mouse.click' args={'x': 10, 'y': 20, 'button': 'left', 'clicks': 1, 'interval': 0.1} client_id=test-client-123
+2026-07-19 16:16:12,369 | INFO | tools | [----------] computer_use: delegando 'keyboard.type' args={'text': 'hola', 'interval': 0.03} client_id=test-client-456
+2026-07-19 16:22:02,860 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes
+2026-07-19 16:22:02,873 | INFO | tools | [----------] Factura guardada correctamente en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes/20260704_0730_Factura_2.txt
+2026-07-19 16:22:02,878 | WARNING | tools | [----------] Error al buscar correos de la fecha más reciente: 'DummyConnection' object does not support the context manager protocol
+2026-07-19 16:22:06,390 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /tmp/pytest-of-luisd/pytest-7/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes
+2026-07-19 16:22:06,391 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-7/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-19 16:22:06,405 | INFO | tools | [----------] Carpeta contenedora de facturas creada dinámicamente en: /tmp/pytest-of-luisd/pytest-7/test_mail_set_invoice_folder_a0/ultimas_facturas
+2026-07-19 16:22:06,407 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Amazones' asegurada en: /tmp/pytest-of-luisd/pytest-7/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones
+2026-07-19 16:22:06,408 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-7/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones/20260712_1100_Factura_456.txt
+2026-07-19 16:22:06,423 | INFO | tools | [----------] Carpeta de respaldo de facturas pagadas creada en: /tmp/pytest-of-luisd/pytest-7/test_check_and_process_payment0/gastos/Iberdrola_Clientes
+2026-07-19 16:22:06,423 | INFO | tools | [----------] Factura pagada trasladada: /tmp/pytest-of-luisd/pytest-7/test_check_and_process_payment0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt -> /tmp/pytest-of-luisd/pytest-7/test_check_and_process_payment0/gastos/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-19 16:22:09,681 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python', '-c', "print('hello')"]
+2026-07-19 16:22:09,723 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-07-19 16:22:09,727 | INFO | tools | [----------] Listando directorio: app
+2026-07-19 16:22:09,728 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-07-19 16:22:09,728 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-07-19 16:22:09,729 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-07-19 16:22:09,739 | WARNING | tools | [----------] ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '['/home/luisd/Alfonso/venv/bin/python', '-c', "print('app-open-test')"]' en el SERVIDOR, no en el cliente.
+2026-07-19 16:22:46,725 | INFO | tools | [----------] Delegando open_application al agente local: notepad
+2026-07-19 16:22:46,738 | INFO | tools | [----------] Delegando open_url al agente local: https://google.com
+2026-07-19 16:22:46,746 | INFO | tools | [----------] Delegando close_application al agente local: notepad
+2026-07-19 16:22:46,783 | INFO | tools | [----------] Intentando crear archivo: /tmp/pytest-of-luisd/pytest-7/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-19 16:22:46,783 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-7/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-19 16:22:46,784 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-7/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-19 16:22:46,784 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-7/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-19 16:43:02,284 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/luisd/Desktop/test_run.py
+2026-07-19 16:43:02,286 | INFO | tools | [----------] Ruta resuelta: /mnt/c/Users/luisd/Desktop/test_run.py
+2026-07-19 16:43:02,295 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/luisd/Desktop/papa
+2026-07-19 16:43:02,295 | INFO | tools | [----------] Ruta resuelta: /mnt/c/Users/luisd/Desktop/papa
+2026-07-19 16:43:02,302 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/luisd/Desktop/requirements.txt
+2026-07-19 16:43:02,302 | INFO | tools | [----------] Ruta resuelta: /mnt/c/Users/luisd/Desktop/requirements.txt
+2026-07-19 16:43:02,309 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/luisd/Desktop/main.py
+2026-07-19 16:43:02,309 | INFO | tools | [----------] Ruta resuelta: /mnt/c/Users/luisd/Desktop/main.py
+2026-07-19 16:43:02,315 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/luisd/Desktop/hello_world.py
+2026-07-19 16:43:02,315 | INFO | tools | [----------] Ruta resuelta: /mnt/c/Users/luisd/Desktop/hello_world.py
+2026-07-19 16:43:02,322 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/luisd/Desktop/styles.css
+2026-07-19 16:43:02,322 | INFO | tools | [----------] Ruta resuelta: /mnt/c/Users/luisd/Desktop/styles.css
+2026-07-19 16:43:02,330 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/luisd/Desktop/README.md
+2026-07-19 16:43:02,330 | INFO | tools | [----------] Ruta resuelta: /mnt/c/Users/luisd/Desktop/README.md
+2026-07-19 16:43:02,336 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/luisd/Desktop/landing_page.html
+2026-07-19 16:43:02,337 | INFO | tools | [----------] Ruta resuelta: /mnt/c/Users/luisd/Desktop/landing_page.html
+2026-07-19 16:43:02,344 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/luisd/Desktop/say_hello.py
+2026-07-19 16:43:02,344 | INFO | tools | [----------] Ruta resuelta: /mnt/c/Users/luisd/Desktop/say_hello.py
+2026-07-19 16:43:02,352 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/luisd/Desktop/sandbox
+2026-07-19 16:43:02,352 | INFO | tools | [----------] Ruta resuelta: /mnt/c/Users/luisd/Desktop/sandbox
+2026-07-19 16:43:02,359 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/luisd/Desktop/chat_human_test.txt
+2026-07-19 16:43:02,360 | INFO | tools | [----------] Ruta resuelta: /mnt/c/Users/luisd/Desktop/chat_human_test.txt
+2026-07-19 17:14:14,297 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/luisd/Desktop/test_run.py
+2026-07-19 17:14:14,298 | INFO | tools | [----------] Ruta resuelta: /mnt/c/Users/luisd/Desktop/test_run.py
+2026-07-19 17:14:14,306 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/luisd/Desktop/papa
+2026-07-19 17:14:14,306 | INFO | tools | [----------] Ruta resuelta: /mnt/c/Users/luisd/Desktop/papa
+2026-07-19 17:14:14,312 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/luisd/Desktop/requirements.txt
+2026-07-19 17:14:14,313 | INFO | tools | [----------] Ruta resuelta: /mnt/c/Users/luisd/Desktop/requirements.txt
+2026-07-19 17:14:14,320 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/luisd/Desktop/main.py
+2026-07-19 17:14:14,320 | INFO | tools | [----------] Ruta resuelta: /mnt/c/Users/luisd/Desktop/main.py
+2026-07-19 17:14:14,328 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/luisd/Desktop/hello_world.py
+2026-07-19 17:14:14,328 | INFO | tools | [----------] Ruta resuelta: /mnt/c/Users/luisd/Desktop/hello_world.py
+2026-07-19 17:14:14,335 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/luisd/Desktop/styles.css
+2026-07-19 17:14:14,335 | INFO | tools | [----------] Ruta resuelta: /mnt/c/Users/luisd/Desktop/styles.css
+2026-07-19 17:14:14,342 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/luisd/Desktop/README.md
+2026-07-19 17:14:14,342 | INFO | tools | [----------] Ruta resuelta: /mnt/c/Users/luisd/Desktop/README.md
+2026-07-19 17:14:14,349 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/luisd/Desktop/landing_page.html
+2026-07-19 17:14:14,349 | INFO | tools | [----------] Ruta resuelta: /mnt/c/Users/luisd/Desktop/landing_page.html
+2026-07-19 17:14:14,357 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/luisd/Desktop/say_hello.py
+2026-07-19 17:14:14,358 | INFO | tools | [----------] Ruta resuelta: /mnt/c/Users/luisd/Desktop/say_hello.py
+2026-07-19 17:14:14,365 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/luisd/Desktop/sandbox
+2026-07-19 17:14:14,365 | INFO | tools | [----------] Ruta resuelta: /mnt/c/Users/luisd/Desktop/sandbox
+2026-07-19 17:14:14,372 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/luisd/Desktop/chat_human_test.txt
+2026-07-19 17:14:14,373 | INFO | tools | [----------] Ruta resuelta: /mnt/c/Users/luisd/Desktop/chat_human_test.txt
+2026-07-19 17:23:06,910 | INFO | tools | [----------] Cita creada con ID 225 y añadida a ChromaDB.
+2026-07-19 17:23:06,929 | INFO | tools | [----------] computer_use: delegando 'mouse.click' args={'x': 10, 'y': 20, 'button': 'left', 'clicks': 1, 'interval': 0.1} client_id=test-client-123
+2026-07-19 17:23:06,937 | INFO | tools | [----------] computer_use: delegando 'keyboard.type' args={'text': 'hola', 'interval': 0.03} client_id=test-client-456
+2026-07-19 17:28:58,099 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes
+2026-07-19 17:28:58,113 | INFO | tools | [----------] Factura guardada correctamente en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes/20260704_0730_Factura_2.txt
+2026-07-19 17:28:58,127 | WARNING | tools | [----------] Error al buscar correos de la fecha más reciente: 'DummyConnection' object does not support the context manager protocol
+2026-07-19 17:29:02,683 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /tmp/pytest-of-luisd/pytest-8/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes
+2026-07-19 17:29:02,684 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-8/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-19 17:29:02,694 | INFO | tools | [----------] Carpeta contenedora de facturas creada dinámicamente en: /tmp/pytest-of-luisd/pytest-8/test_mail_set_invoice_folder_a0/ultimas_facturas
+2026-07-19 17:29:02,695 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Amazones' asegurada en: /tmp/pytest-of-luisd/pytest-8/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones
+2026-07-19 17:29:02,696 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-8/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones/20260712_1100_Factura_456.txt
+2026-07-19 17:29:02,712 | INFO | tools | [----------] Carpeta de respaldo de facturas pagadas creada en: /tmp/pytest-of-luisd/pytest-8/test_check_and_process_payment0/gastos/Iberdrola_Clientes
+2026-07-19 17:29:02,713 | INFO | tools | [----------] Factura pagada trasladada: /tmp/pytest-of-luisd/pytest-8/test_check_and_process_payment0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt -> /tmp/pytest-of-luisd/pytest-8/test_check_and_process_payment0/gastos/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-19 17:29:06,979 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python', '-c', "print('hello')"]
+2026-07-19 17:29:07,073 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-07-19 17:29:07,078 | INFO | tools | [----------] Listando directorio: app
+2026-07-19 17:29:07,079 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-07-19 17:29:07,079 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-07-19 17:29:07,081 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-07-19 17:29:07,087 | WARNING | tools | [----------] ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '['/home/luisd/Alfonso/venv/bin/python', '-c', "print('app-open-test')"]' en el SERVIDOR, no en el cliente.
+2026-07-19 17:29:33,253 | WARNING | tools | [----------] Clasificación por LLM falló para ID 207, excedió timeout o fue cancelada: 
+2026-07-19 17:29:33,310 | INFO | tools | [----------] Delegando open_application al agente local: notepad
+2026-07-19 17:29:33,317 | INFO | tools | [----------] Delegando open_url al agente local: https://google.com
+2026-07-19 17:29:33,323 | INFO | tools | [----------] Delegando close_application al agente local: notepad
+2026-07-19 17:29:33,367 | INFO | tools | [----------] Intentando crear archivo: /tmp/pytest-of-luisd/pytest-8/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-19 17:29:33,368 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-8/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-19 17:29:33,368 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-8/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-19 17:29:33,369 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-8/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-19 17:39:00,630 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/luisd/Desktop/proyecto_alfonso_marketing/test_run.py
+2026-07-19 17:39:00,639 | INFO | tools | [----------] Ruta resuelta: /mnt/c/Users/luisd/Desktop/proyecto_alfonso_marketing/test_run.py
+2026-07-19 17:39:00,653 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/luisd/Desktop/proyecto_alfonso_marketing/papa
+2026-07-19 17:39:00,653 | INFO | tools | [----------] Ruta resuelta: /mnt/c/Users/luisd/Desktop/proyecto_alfonso_marketing/papa
+2026-07-19 17:39:00,664 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/luisd/Desktop/proyecto_alfonso_marketing/requirements.txt
+2026-07-19 17:39:00,664 | INFO | tools | [----------] Ruta resuelta: /mnt/c/Users/luisd/Desktop/proyecto_alfonso_marketing/requirements.txt
+2026-07-19 17:39:00,673 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/luisd/Desktop/proyecto_alfonso_marketing/main.py
+2026-07-19 17:39:00,674 | INFO | tools | [----------] Ruta resuelta: /mnt/c/Users/luisd/Desktop/proyecto_alfonso_marketing/main.py
+2026-07-19 17:39:00,684 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/luisd/Desktop/proyecto_alfonso_marketing/hello_world.py
+2026-07-19 17:39:00,684 | INFO | tools | [----------] Ruta resuelta: /mnt/c/Users/luisd/Desktop/proyecto_alfonso_marketing/hello_world.py
+2026-07-19 17:39:00,695 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/luisd/Desktop/proyecto_alfonso_marketing/styles.css
+2026-07-19 17:39:00,695 | INFO | tools | [----------] Ruta resuelta: /mnt/c/Users/luisd/Desktop/proyecto_alfonso_marketing/styles.css
+2026-07-19 17:39:00,705 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/luisd/Desktop/proyecto_alfonso_marketing/README.md
+2026-07-19 17:39:00,705 | INFO | tools | [----------] Ruta resuelta: /mnt/c/Users/luisd/Desktop/proyecto_alfonso_marketing/README.md
+2026-07-19 17:39:00,716 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/luisd/Desktop/proyecto_alfonso_marketing/landing_page.html
+2026-07-19 17:39:00,716 | INFO | tools | [----------] Ruta resuelta: /mnt/c/Users/luisd/Desktop/proyecto_alfonso_marketing/landing_page.html
+2026-07-19 17:39:00,727 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/luisd/Desktop/proyecto_alfonso_marketing/say_hello.py
+2026-07-19 17:39:00,728 | INFO | tools | [----------] Ruta resuelta: /mnt/c/Users/luisd/Desktop/proyecto_alfonso_marketing/say_hello.py
+2026-07-19 17:39:00,738 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/luisd/Desktop/proyecto_alfonso_marketing/sandbox
+2026-07-19 17:39:00,738 | INFO | tools | [----------] Ruta resuelta: /mnt/c/Users/luisd/Desktop/proyecto_alfonso_marketing/sandbox
+2026-07-19 17:39:00,749 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/luisd/Desktop/proyecto_alfonso_marketing/chat_human_test.txt
+2026-07-19 17:39:00,749 | INFO | tools | [----------] Ruta resuelta: /mnt/c/Users/luisd/Desktop/proyecto_alfonso_marketing/chat_human_test.txt
+2026-07-19 17:46:45,502 | INFO | tools | [----------] Cita creada con ID 228 y añadida a ChromaDB.
+2026-07-19 17:46:45,517 | INFO | tools | [----------] computer_use: delegando 'mouse.click' args={'x': 10, 'y': 20, 'button': 'left', 'clicks': 1, 'interval': 0.1} client_id=test-client-123
+2026-07-19 17:46:45,524 | INFO | tools | [----------] computer_use: delegando 'keyboard.type' args={'text': 'hola', 'interval': 0.03} client_id=test-client-456
+2026-07-19 17:52:35,764 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes
+2026-07-19 17:52:35,777 | INFO | tools | [----------] Factura guardada correctamente en: /mnt/c/Users/luisd/Desktop/facturas pendientes/Iberdrola_Clientes/20260704_0730_Factura_2.txt
+2026-07-19 17:52:35,780 | WARNING | tools | [----------] Error al buscar correos de la fecha más reciente: 'DummyConnection' object does not support the context manager protocol
+2026-07-19 17:52:40,019 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Iberdrola_Clientes' asegurada en: /tmp/pytest-of-luisd/pytest-9/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes
+2026-07-19 17:52:40,019 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-9/test_save_invoice_to_desktop0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-19 17:52:40,029 | INFO | tools | [----------] Carpeta contenedora de facturas creada dinámicamente en: /tmp/pytest-of-luisd/pytest-9/test_mail_set_invoice_folder_a0/ultimas_facturas
+2026-07-19 17:52:40,031 | INFO | tools | [----------] Carpeta de facturas del proveedor 'Amazones' asegurada en: /tmp/pytest-of-luisd/pytest-9/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones
+2026-07-19 17:52:40,032 | INFO | tools | [----------] Factura guardada correctamente en: /tmp/pytest-of-luisd/pytest-9/test_mail_set_invoice_folder_a0/ultimas_facturas/Amazones/20260712_1100_Factura_456.txt
+2026-07-19 17:52:40,048 | INFO | tools | [----------] Carpeta de respaldo de facturas pagadas creada en: /tmp/pytest-of-luisd/pytest-9/test_check_and_process_payment0/gastos/Iberdrola_Clientes
+2026-07-19 17:52:40,048 | INFO | tools | [----------] Factura pagada trasladada: /tmp/pytest-of-luisd/pytest-9/test_check_and_process_payment0/facturas pendientes/Iberdrola_Clientes/20260712_1000_Factura_123.txt -> /tmp/pytest-of-luisd/pytest-9/test_check_and_process_payment0/gastos/Iberdrola_Clientes/20260712_1000_Factura_123.txt
+2026-07-19 17:52:44,016 | INFO | tools | [----------] Intentando ejecutar comando: ['/home/luisd/Alfonso/venv/bin/python', '-c', "print('hello')"]
+2026-07-19 17:52:44,061 | INFO | tools | [----------] Comando ejecutado con código 0
+2026-07-19 17:52:44,066 | INFO | tools | [----------] Listando directorio: app
+2026-07-19 17:52:44,067 | INFO | tools | [----------] Ruta relativa detectada, convirtiendo a absoluta en CWD: /home/luisd/Alfonso/app
+2026-07-19 17:52:44,067 | INFO | tools | [----------] Ruta resuelta: /home/luisd/Alfonso/app
+2026-07-19 17:52:44,068 | INFO | tools | [----------] Directorio listado correctamente: /home/luisd/Alfonso/app
+2026-07-19 17:52:44,072 | WARNING | tools | [----------] ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '['/home/luisd/Alfonso/venv/bin/python', '-c', "print('app-open-test')"]' en el SERVIDOR, no en el cliente.
+2026-07-19 17:53:10,826 | INFO | tools | [----------] Delegando open_application al agente local: notepad
+2026-07-19 17:53:10,828 | INFO | tools | [----------] Delegando open_url al agente local: https://google.com
+2026-07-19 17:53:10,831 | INFO | tools | [----------] Delegando close_application al agente local: notepad
+2026-07-19 17:53:10,849 | INFO | tools | [----------] Intentando crear archivo: /tmp/pytest-of-luisd/pytest-9/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-19 17:53:10,849 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-9/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-19 17:53:10,850 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-9/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-19 17:53:10,850 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-9/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-19 18:20:25,051 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/luisd/Desktop/proyecto_alfonso_marketing/test_run.py
+2026-07-19 18:20:25,061 | INFO | tools | [----------] Ruta resuelta: /mnt/c/Users/luisd/Desktop/proyecto_alfonso_marketing/test_run.py
+2026-07-19 18:20:25,077 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/luisd/Desktop/proyecto_alfonso_marketing/papa
+2026-07-19 18:20:25,077 | INFO | tools | [----------] Ruta resuelta: /mnt/c/Users/luisd/Desktop/proyecto_alfonso_marketing/papa
+2026-07-19 18:20:25,091 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/luisd/Desktop/proyecto_alfonso_marketing/requirements.txt
+2026-07-19 18:20:25,092 | INFO | tools | [----------] Ruta resuelta: /mnt/c/Users/luisd/Desktop/proyecto_alfonso_marketing/requirements.txt
+2026-07-19 18:20:25,105 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/luisd/Desktop/proyecto_alfonso_marketing/main.py
+2026-07-19 18:20:25,106 | INFO | tools | [----------] Ruta resuelta: /mnt/c/Users/luisd/Desktop/proyecto_alfonso_marketing/main.py
+2026-07-19 18:20:25,118 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/luisd/Desktop/proyecto_alfonso_marketing/hello_world.py
+2026-07-19 18:20:25,119 | INFO | tools | [----------] Ruta resuelta: /mnt/c/Users/luisd/Desktop/proyecto_alfonso_marketing/hello_world.py
+2026-07-19 18:20:25,130 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/luisd/Desktop/proyecto_alfonso_marketing/styles.css
+2026-07-19 18:20:25,130 | INFO | tools | [----------] Ruta resuelta: /mnt/c/Users/luisd/Desktop/proyecto_alfonso_marketing/styles.css
+2026-07-19 18:20:25,142 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/luisd/Desktop/proyecto_alfonso_marketing/README.md
+2026-07-19 18:20:25,142 | INFO | tools | [----------] Ruta resuelta: /mnt/c/Users/luisd/Desktop/proyecto_alfonso_marketing/README.md
+2026-07-19 18:20:25,153 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/luisd/Desktop/proyecto_alfonso_marketing/landing_page.html
+2026-07-19 18:20:25,154 | INFO | tools | [----------] Ruta resuelta: /mnt/c/Users/luisd/Desktop/proyecto_alfonso_marketing/landing_page.html
+2026-07-19 18:20:25,164 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/luisd/Desktop/proyecto_alfonso_marketing/say_hello.py
+2026-07-19 18:20:25,164 | INFO | tools | [----------] Ruta resuelta: /mnt/c/Users/luisd/Desktop/proyecto_alfonso_marketing/say_hello.py
+2026-07-19 18:20:25,178 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/luisd/Desktop/proyecto_alfonso_marketing/sandbox
+2026-07-19 18:20:25,178 | INFO | tools | [----------] Ruta resuelta: /mnt/c/Users/luisd/Desktop/proyecto_alfonso_marketing/sandbox
+2026-07-19 18:20:25,190 | INFO | tools | [----------] Ruta de Windows detectada. Corrigiendo a WSL: /mnt/c/Users/luisd/Desktop/proyecto_alfonso_marketing/chat_human_test.txt
+2026-07-19 18:20:25,190 | INFO | tools | [----------] Ruta resuelta: /mnt/c/Users/luisd/Desktop/proyecto_alfonso_marketing/chat_human_test.txt
+2026-07-20 14:20:08,810 | INFO | tools | [----------] Cita creada con ID 231 y añadida a ChromaDB.
+2026-07-20 14:20:08,819 | INFO | tools | [----------] computer_use: delegando 'mouse.click' args={'x': 10, 'y': 20, 'button': 'left', 'clicks': 1, 'interval': 0.1} client_id=test-client-123
+2026-07-20 14:20:08,822 | INFO | tools | [----------] computer_use: delegando 'keyboard.type' args={'text': 'hola', 'interval': 0.03} client_id=test-client-456
+2026-07-20 14:23:19,733 | INFO | tools | [----------] Intentando crear archivo: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-20 14:23:19,734 | INFO | tools | [----------] Ruta resuelta: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-20 14:23:19,734 | INFO | tools | [----------] Ruta absoluta final: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-20 14:23:19,734 | INFO | tools | [----------] Archivo creado exitosamente: /tmp/pytest-of-luisd/pytest-0/test_prepare_tool_args_end_to_0/salida.txt
+2026-07-20 14:25:20,144 | INFO | tools | [----------] Intentando reemplazar contenido en archivo: /tmp/tmp3_lpzdb2.py
+2026-07-20 14:25:20,146 | INFO | tools | [----------] Ruta resuelta: /tmp/tmp3_lpzdb2.py
+2026-07-20 14:25:20,147 | INFO | tools | [----------] Reemplazo de contenido exitoso en: /tmp/tmp3_lpzdb2.py
+2026-07-20 14:25:20,152 | INFO | tools | [----------] Intentando reemplazar contenido en archivo: /tmp/tmpd4rxp6iq.py
+2026-07-20 14:25:20,153 | INFO | tools | [----------] Ruta resuelta: /tmp/tmpd4rxp6iq.py
+2026-07-20 14:25:20,153 | INFO | tools | [----------] Reemplazo de contenido exitoso en: /tmp/tmpd4rxp6iq.py
+2026-07-20 14:25:29,493 | INFO | tools | [----------] Intentando reemplazar contenido en archivo: /tmp/tmpamu9io9i.py
+2026-07-20 14:25:29,494 | INFO | tools | [----------] Ruta resuelta: /tmp/tmpamu9io9i.py
+2026-07-20 14:25:29,494 | INFO | tools | [----------] Reemplazo de contenido exitoso en: /tmp/tmpamu9io9i.py
+2026-07-20 14:25:29,496 | INFO | tools | [----------] Intentando reemplazar contenido en archivo: /tmp/tmpi1gs6ce4.py
+2026-07-20 14:25:29,497 | INFO | tools | [----------] Ruta resuelta: /tmp/tmpi1gs6ce4.py
+2026-07-20 14:25:29,497 | INFO | tools | [----------] Reemplazo de contenido exitoso en: /tmp/tmpi1gs6ce4.py

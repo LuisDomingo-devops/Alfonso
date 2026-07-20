@@ -8,11 +8,11 @@ Gestiona la comunicación con el servidor Ollama local para generar texto, compl
 Siempre que el orquestador, router o agentes requieran capacidades cognitivas de inferencia del LLM.
 
 ¿CÓMO LO HACE?
-Formateando payloads HTTP compatibles con la API `/api/chat` de Ollama y llamándolos con app/core/http_client.py.
+Formateando payloads HTTP compatibles con la API `/api/chat` de Ollama y llamándolos con app/adapters/http_client.py.
 
 ¿CON QUÉ OTROS SCRIPTS ESTÁ RELACIONADO?
-- app/core/http_client.py (provee el cliente HTTP subyacente para las peticiones)
-- app/core/planner_orchestrator.py (usa este cliente para planificar y responder en el chat)
+- app/adapters/http_client.py (provee el cliente HTTP subyacente para las peticiones)
+- app/domain/planner_orchestrator.py (usa este cliente para planificar y responder en el chat)
 """
 
 import asyncio
@@ -72,19 +72,19 @@ def load_prompt(path: str) -> str:
         return "Eres Alfonso. Responde de forma útil y concisa."
 
 
-def get_system_prompt(mode: str) -> str:
+def get_system_prompt(mode: str, client_id: str | None = None) -> str:
     ''' Devuelve el prompt de sistema correspondiente al modo 
     especificado ("chat" o "tool"). '''
     if mode == "chat":
         template = load_prompt(settings.CHAT_PROMPT_PATH)
         try:
             from app.domain.prompt_generator import get_client_context_str
-            client_ctx = get_client_context_str()
+            client_ctx = get_client_context_str(client_id)
             template = template + "\n\n" + client_ctx
         except Exception:
             pass
     else:
-        template = generate_tool_prompt()
+        template = generate_tool_prompt(client_id)
     return template.replace("{current_date}", _get_current_date_str())
 # ---------------------------------------------------------------------
 # VALIDACIÓN TOOL
@@ -125,6 +125,12 @@ def extract_json_robust(raw: str) -> dict | None:
         return None
 
     raw = raw.strip()
+
+    # Log thinking block content if present (CoT)
+    think_match = re.search(r"<think>(.*?)</think>", raw, re.DOTALL | re.IGNORECASE)
+    if think_match:
+        thinking_text = think_match.group(1).strip()
+        llm_logger.info("DeepSeek-R1 Thought (CoT): %s", thinking_text)
 
     # 0. FIX CRÍTICO: JSON directo (ESTO TE FALTABA)
     try:
@@ -249,12 +255,13 @@ class OllamaClient:
         memory: str | None = None,
         options: dict | None = None,
         _retry: int = 0,
+        client_id: str | None = None,
     ) -> str:
 
         logger = attach_request_id(llm_logger, request_id)
         error = attach_request_id(error_logger, request_id)
 
-        system_prompt = get_system_prompt(mode)
+        system_prompt = get_system_prompt(mode, client_id=client_id)
 
         messages = [{"role": "system", "content": system_prompt}]
 
@@ -280,6 +287,15 @@ class OllamaClient:
             "options": options_payload,
         }
 
+        if mode == "tool":
+            try:
+                from app.adapters.tool_registry import get_tool_schemas
+                tool_schemas = get_tool_schemas()
+                if tool_schemas:
+                    payload["tools"] = tool_schemas
+            except Exception as e:
+                logger.warning("No se pudieron cargar los esquemas de herramientas para Ollama: %s", e)
+
         logger.info("MODEL=%s MODE=%s", settings.MODEL_NAME, mode)
 
         try:
@@ -292,10 +308,28 @@ class OllamaClient:
                 raise RuntimeError(response.text)
 
             data = response.json()
-            content = data["message"]["content"].strip()
+            
+            # Verificar si Ollama devolvió llamadas de herramientas nativas
+            tool_calls = data.get("message", {}).get("tool_calls", [])
+            if tool_calls:
+                first_call = tool_calls[0].get("function", {})
+                t_name = first_call.get("name")
+                t_args = first_call.get("arguments", {})
+                logger.info("Llamada de herramienta nativa detectada: %s con args: %s", t_name, t_args)
+                return json.dumps({"tool": t_name, "args": t_args})
+
+            content = data.get("message", {}).get("content", "").strip()
 
             if not content:
                 raise ValueError("Empty response")
+
+            # Extract and log think block if present (CoT in Chat)
+            think_match = re.search(r"<think>(.*?)</think>", content, re.DOTALL | re.IGNORECASE)
+            if think_match:
+                thinking_text = think_match.group(1).strip()
+                logger.info("DeepSeek-R1 Thought (CoT - Chat): %s", thinking_text)
+                # Strip think block from final user-facing text
+                content = _THINK_BLOCK.sub("", content).strip()
 
             return content
 

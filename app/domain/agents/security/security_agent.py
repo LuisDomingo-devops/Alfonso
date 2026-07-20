@@ -23,7 +23,7 @@ from app.adapters.llm_client import OllamaClient
 from app.utils.logger import build_logger, orchestrator_logger
 
 # Logger exclusivo de seguridad
-cyber_logger = build_logger("cybersecurity", "cybersecurity.log")
+cyber_logger = build_logger("cybersecurity", "cybersecurity.log", log_to_console=False)
 
 class CyberSecurityAgent:
     def __init__(self):
@@ -51,7 +51,7 @@ class CyberSecurityAgent:
             re.IGNORECASE
         )
         self.command_injection_re = re.compile(
-            r"[;&|`$]|\b(bash|sh|cmd|powershell|wget|curl|nc|netcat|ncat|eval|exec)\b",
+            r"(&&|\|\||;|\||`|\$\()|\b(bash|sh|cmd|powershell|wget|curl|nc|netcat|ncat|eval|exec)\b",
             re.IGNORECASE
         )
         self.xss_re = re.compile(

@@ -13,7 +13,8 @@ async def test_open_application_delegation():
         assert res["status"] == "ok"
         mock_bridge.send_command.assert_called_once_with(
             "open_app",
-            {"command": "notepad"}
+            {"command": "notepad"},
+            client_id=None
         )
 
 @pytest.mark.asyncio
@@ -27,7 +28,8 @@ async def test_open_url_delegation():
         assert res["status"] == "ok"
         mock_bridge.send_command.assert_called_once_with(
             "open_url",
-            {"url": "https://google.com"}
+            {"url": "https://google.com"},
+            client_id=None
         )
 
 @pytest.mark.asyncio
@@ -41,5 +43,6 @@ async def test_close_application_delegation():
         assert res["status"] == "ok"
         mock_bridge.send_command.assert_called_once_with(
             "close_app",
-            {"command": "notepad"}
+            {"command": "notepad"},
+            client_id=None
         )

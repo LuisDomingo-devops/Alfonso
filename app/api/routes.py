@@ -12,10 +12,10 @@ Define un router principal y routers especializados (browser, computer, calendar
 
 ¿CON QUÉ OTROS SCRIPTS ESTÁ RELACIONADO?
 - app/main.py: Registra el router raíz.
-- app/core/planner_orchestrator.py: Procesa las consultas en el endpoint /chat.
-- app/core/agents/dev/dev_agent.py: Se comunica con el sandbox de desarrollo.
-- app/core/agents/marcos/marcos_agent.py: Asiste indirectamente en la generación de borradores inteligentes de correo.
-- app/core/calendar_db.py y app/core/mail_db.py: Interactúan con las bases de datos de calendario y correo.
+- app/domain/planner_orchestrator.py: Procesa las consultas en el endpoint /chat.
+- app/domain/agents/dev/dev_agent.py: Se comunica con el sandbox de desarrollo.
+- app/domain/agents/marcos/marcos_agent.py: Asiste indirectamente en la generación de borradores inteligentes de correo.
+- app/adapters/calendar_db.py y app/adapters/mail_db.py: Interactúan con las bases de datos de calendario y correo.
 """
 
 from __future__ import annotations
@@ -304,15 +304,18 @@ async def chat_endpoint(req: ChatRequest, request: Request):
 
     session_id = request.headers.get("X-Session-ID") or req.session_id or request_id
 
+    client_id = None
     if req.client_info:
         from app.adapters.alfonso_bridge import bridge
         if bridge.client_info:
             bridge.client_info.update(req.client_info)
         else:
             bridge.client_info = req.client_info
+        client_id = req.client_info.get("client_id")
 
     logger.info("Solicitud /chat recibida")
     logger.info("SESSION_ID: %s", session_id)
+    logger.info("CLIENT_ID: %s", client_id)
     logger.info("USER MESSAGE: %s", req.message)
 
     with Timer() as t:
@@ -321,6 +324,7 @@ async def chat_endpoint(req: ChatRequest, request: Request):
             llm,
             request_id=request_id,
             session_id=session_id,
+            client_id=client_id,
         )
 
     status = result.get("type", "unknown")

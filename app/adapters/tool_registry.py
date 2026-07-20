@@ -11,11 +11,12 @@ Al inicializar la aplicación (descubrimiento) y al recuperar esquemas de herram
 Manteniendo un diccionario global de herramientas registradas mediante decoradores.
 
 ¿CON QUÉ OTROS SCRIPTS ESTÁ RELACIONADO?
-- app/core/planner_orchestrator.py (consulta el registro para obtener los esquemas y ejecutar herramientas)
+- app/domain/planner_orchestrator.py (consulta el registro para obtener los esquemas y ejecutar herramientas)
 - app/api/routes.py (expone GET `/tools` para listar las herramientas cargadas)
 """
 
 import importlib
+import inspect
 from pathlib import Path
 from typing import Any, Callable, Type
 
@@ -46,7 +47,7 @@ SERVER_TOOLS: dict[str, Callable[..., Any]] = {
 ARGS_SCHEMAS: dict[str, tuple[Type[ToolArgsModel], dict[str, str]]] = {}
 
 # Antes este diccionario era una copia independiente y mantenida a mano
-# de los mismos alias que también vivían en app/core/actions.py. Ahora
+# de los mismos alias que también vivían en app/domain/actions.py. Ahora
 # es exactamente ese dict — un solo lugar donde se declaran los alias
 # cortos que el LLM puede emitir en modo "tool" para acciones de cliente.
 CLIENT_TOOLS: dict[str, str] = CLIENT_ALIASES
@@ -346,3 +347,79 @@ def get_callable_tool_function(
     return safe_get_tool(
         name
     )
+
+
+def get_tool_schemas() -> list[dict]:
+    """
+    Devuelve los esquemas de todas las herramientas registradas (SERVER_TOOLS)
+    en formato JSON Schema compatible con la API de Ollama/OpenAI.
+    """
+    _ensure_plugins_loaded()
+    schemas = []
+    
+    for name, func in SERVER_TOOLS.items():
+        if name == "no_op":
+            continue
+            
+        doc = inspect.getdoc(func) or ""
+        doc_line = doc.split("\n")[0].strip() if doc else f"Ejecuta la herramienta {name}."
+        
+        schema_entry = ARGS_SCHEMAS.get(name)
+        parameters = {}
+        
+        if schema_entry:
+            model_cls, _ = schema_entry
+            try:
+                # Obtener el esquema de Pydantic y limpiarlo para que coincida con lo esperado por Ollama
+                parameters = model_cls.model_json_schema()
+                parameters.pop("title", None)
+                if "properties" in parameters:
+                    for prop in parameters["properties"].values():
+                        prop.pop("title", None)
+            except Exception:
+                parameters = {}
+                
+        if not parameters:
+            # Fallback dinámico usando la firma de la función de Python
+            properties = {}
+            required = []
+            try:
+                sig = inspect.signature(func)
+                for param_name, param in sig.parameters.items():
+                    if param_name in ("client_id", "request_id", "session_id"):
+                        continue
+                    if param.kind in (inspect.Parameter.VAR_POSITIONAL, inspect.Parameter.VAR_KEYWORD):
+                        continue
+                        
+                    param_type = "string"
+                    if param.annotation == int:
+                        param_type = "integer"
+                    elif param.annotation == float:
+                        param_type = "number"
+                    elif param.annotation == bool:
+                        param_type = "boolean"
+                        
+                    properties[param_name] = {
+                        "type": param_type,
+                        "description": f"Argumento {param_name}"
+                    }
+                    if param.default == inspect.Parameter.empty:
+                        required.append(param_name)
+            except Exception:
+                pass
+            parameters = {
+                "type": "object",
+                "properties": properties,
+                "required": required
+            }
+            
+        schemas.append({
+            "type": "function",
+            "function": {
+                "name": name,
+                "description": doc_line,
+                "parameters": parameters
+            }
+        })
+        
+    return schemas

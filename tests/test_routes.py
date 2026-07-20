@@ -26,7 +26,7 @@ def test_metrics_endpoint(client):
     assert "http_errors" in body
 
 def test_chat_endpoint_with_mocked_orchestrator(client, monkeypatch):
-    async def fake_run(message, llm, request_id=None, session_id=None):
+    async def fake_run(message, llm, request_id=None, session_id=None, client_id=None):
         return {"type": "chat", "response": "simulado"}
     monkeypatch.setattr(routes.orchestrator, "run", fake_run)
     response = client.post("/chat", json={"message": "hola", "session_id": "test_sess"})

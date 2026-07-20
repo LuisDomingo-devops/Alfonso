@@ -12,9 +12,9 @@ Crea una instancia de FastAPI, registra el router principal unificado, configura
 
 ¿CON QUÉ OTROS SCRIPTS ESTÁ RELACIONADO?
 - app/api/routes.py: Importa y registra el router principal consolidado.
-- app/core/planner_orchestrator.py: Inicializa el planificador orquestador global.
-- app/core/llm_client.py: Inicializa y precalienta el cliente LLM de Ollama.
-- app/core/alfonso_bridge.py: Arranca/detiene la comunicación en tiempo real con el cliente.
+- app/domain/planner_orchestrator.py: Inicializa el planificador orquestador global.
+- app/adapters/llm_client.py: Inicializa y precalienta el cliente LLM de Ollama.
+- app/adapters/alfonso_bridge.py: Arranca/detiene la comunicación en tiempo real con el cliente.
 """
 
 import time
@@ -124,15 +124,25 @@ async def lifespan(app: FastAPI):
 
     try:
         if not is_testing:
-            await llm.generate("ping")
-            app_logger.info("Modelo precalentado")
-            # Lanzar clasificación al levantar el servidor de forma asíncrona
-            from app.tools.server.mail_tools import mail_classify_emails
-            asyncio.create_task(mail_classify_emails())
+            # Precalentar el modelo en segundo plano para no bloquear el inicio del servidor
+            async def preheat_and_classify():
+                try:
+                    await llm.generate("ping")
+                    app_logger.info("Modelo precalentado en segundo plano")
+                except Exception:
+                    app_logger.warning("No se pudo precalentar el modelo (Ollama puede estar cargándolo de forma diferida)")
+                
+                try:
+                    from app.tools.server.mail_tools import mail_classify_emails
+                    await mail_classify_emails()
+                except Exception:
+                    app_logger.warning("Error en clasificación inicial de emails")
+
+            asyncio.create_task(preheat_and_classify())
         else:
             app_logger.info("Precalentamiento de modelo omitido en entorno de test")
     except Exception:
-        app_logger.exception("Error precalentando modelo")
+        app_logger.exception("Error al programar precalentamiento de modelo")
 
     app_logger.info("Alfonso listo")
 

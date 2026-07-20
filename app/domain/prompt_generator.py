@@ -11,7 +11,7 @@ Al arrancar la aplicación y antes de enviar payloads de chat o planificación a
 Cargando los archivos de texto planos de app/prompts/ y aplicando reemplazos dinámicos.
 
 ¿CON QUÉ OTROS SCRIPTS ESTÁ RELACIONADO?
-- app/core/llm_client.py (consume los prompts de sistema para pasarlos al LLM)
+- app/adapters/llm_client.py (consume los prompts de sistema para pasarlos al LLM)
 - app/main.py (precarga los prompts de chat y herramientas durante el lifespan)
 """
 
@@ -23,7 +23,7 @@ from pathlib import Path
 from app.adapters.tool_registry import list_tools, get_callable_tool_function
 
 
-def get_client_context_str() -> str:
+def get_client_context_str(client_id: str | None = None) -> str:
     """
     Obtiene la cadena formateada con el contexto dinámico del entorno cliente de Windows
     (RAM, resolución de pantalla, dispositivos de audio, y estructura de archivos del Escritorio).
@@ -31,7 +31,12 @@ def get_client_context_str() -> str:
     from app.adapters.alfonso_bridge import bridge as alfonso_bridge
 
     # Intentar obtener info del cliente conectado al bridge o fallback a last_client_info.json
-    client_info = alfonso_bridge.client_info
+    client_info = None
+    if client_id:
+        client_info = alfonso_bridge._client_info_dict.get(client_id)
+        
+    if not client_info:
+        client_info = alfonso_bridge.client_info
     
     if not client_info:
         try:
@@ -109,41 +114,32 @@ def get_client_context_str() -> str:
     return "\n".join(context_lines)
 
 
-def generate_tool_prompt() -> str:
+def generate_tool_prompt(client_id: str | None = None) -> str:
     """
     Genera el TOOL_PROMPT automáticamente desde el registry,
     además de inyectar contexto dinámico sobre el sistema operativo,
     el usuario y las rutas clave del entorno actual.
     """
-    context_str = get_client_context_str()
+    context_str = get_client_context_str(client_id)
 
     header = (
-        "OUTPUT: JSON only. No text. No markdown. No explanation.\n"
-        "You MUST output a valid JSON object matching the format below. Never output sentences or explanations.\n\n"
+        "OUTPUT: JSON ONLY. No markdown, no explanations.\n"
         f"{context_str}\n\n"
-        "CRITICAL PATH RESOLUTION RULES:\n"
-        "1. If the user mentions 'desktop' or 'escritorio', you MUST use the exact desktop path from the context lines above.\n"
-        "2. If the user mentions 'documents' or 'documentos', you MUST use the exact documents path from the context lines above.\n"
-        "3. Do NOT default to Linux paths like '/home/...' if the active operating system in the context is Windows and the user is requesting standard system actions.\n"
-        "4. Always normalize paths to forward slashes '/' when constructing JSON arguments.\n\n"
-        "MANDATORY FORMAT (always use exactly this structure):\n"
+        "RULES:\n"
+        "1. Use exact Desktop/Documents paths from the context above.\n"
+        "2. Normalize all paths to forward slashes '/'.\n\n"
+        "FORMAT:\n"
         '{"tool":"TOOL_NAME","args":{...}}\n\n'
         "EXAMPLES:\n"
-        'User: crea una carpeta en la ruta C:/Users/luisd/Desktop/PruebaManual\n'
-        'Output: {"tool":"create_directory","args":{"path":"C:/Users/luisd/Desktop/PruebaManual"}}\n\n'
-        'User: crea un archivo en la ruta C:/Users/luisd/Desktop/PruebaManual/prueba.txt que diga Hola Mundo\n'
-        'Output: {"tool":"create_file","args":{"path":"C:/Users/luisd/Desktop/PruebaManual/prueba.txt","content":"Hola Mundo"}}\n\n'
-        'User: dentro de la carpeta PruebaManual crea un archivo que se llame notas.txt\n'
-        'Output: {"tool":"create_file","args":{"path":"C:/Users/luisd/Desktop/PruebaManual/notas.txt","content":""}}\n\n'
-        'User: escribe en el archivo C:/Users/luisd/Desktop/PruebaManual/prueba.txt que funciona de maravilla\n'
-        'Output: {"tool":"append_file","args":{"path":"C:/Users/luisd/Desktop/PruebaManual/prueba.txt","content":"que funciona de maravilla"}}\n\n'
-        'User: lee el archivo C:/Users/luisd/Desktop/PruebaManual/prueba.txt\n'
-        'Output: {"tool":"read_file","args":{"path":"C:/Users/luisd/Desktop/PruebaManual/prueba.txt"}}\n\n'
-        'User: renombra el archivo C:/Users/luisd/Desktop/PruebaManual/prueba.txt a C:/Users/luisd/Desktop/PruebaManual/prueba_ok.txt\n'
-        'Output: {"tool":"rename_file","args":{"path":"C:/Users/luisd/Desktop/PruebaManual/prueba.txt","new_name":"prueba_ok.txt"}}\n\n'
-        'User: elimina la carpeta C:/Users/luisd/Desktop/PruebaManual\n'
-        'Output: {"tool":"delete_directory","args":{"path":"C:/Users/luisd/Desktop/PruebaManual"}}\n\n'
-        "TOOLS:\n"
+        'User: crea carpeta PruebaManual en Escritorio\n'
+        'Output: {"tool":"create_directory","args":{"path":"C:/Users/luisd/Desktop/PruebaManual"}}\n'
+        'User: crea archivo notas.txt con texto Hola\n'
+        'Output: {"tool":"create_file","args":{"path":"C:/Users/luisd/Desktop/PruebaManual/notas.txt","content":"Hola"}}\n'
+        'User: lee archivo notas.txt\n'
+        'Output: {"tool":"read_file","args":{"path":"C:/Users/luisd/Desktop/PruebaManual/notas.txt"}}\n'
+        'User: reemplaza Hola por Chao en notas.txt\n'
+        'Output: {"tool":"replace_file_content","args":{"path":"C:/Users/luisd/Desktop/PruebaManual/notas.txt","target":"Hola","replacement":"Chao"}}\n\n'
+        "AVAILABLE TOOLS:\n"
     )
 
     lines = []

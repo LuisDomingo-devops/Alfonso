@@ -13,6 +13,8 @@ def test_waf_heuristics(agent):
     # Peticiones normales válidas
     assert not agent.inspect_request("127.0.0.1", "/api/chat", "POST", {}, '{"message": "hola"}')
     assert not agent.inspect_request("127.0.0.1", "/dev/run", "POST", {}, "subprocess.run('echo hello')") # /dev está exento de cmd injection básico
+    assert not agent.inspect_request("127.0.0.1", "/calendar/events?start_date=2026-07-01&end_date=2026-07-31", "GET", {}, "")
+    assert not agent.inspect_request("127.0.0.1", "/api/chat", "POST", {}, '{"message": "I love R&B music & programming"}')
 
     # Path traversal
     assert agent.inspect_request("127.0.0.1", "/api/files/../../etc/passwd", "GET", {}, "")

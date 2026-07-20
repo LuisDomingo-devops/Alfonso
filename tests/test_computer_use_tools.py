@@ -15,11 +15,12 @@ async def test_mouse_click_delegation():
     mock_bridge.send_command.return_value = {"status": "success", "result": "click_ok"}
     
     with patch("app.tools.client.system_tools.alfonso_bridge", mock_bridge):
-        res = await mouse_click(x=10, y=20)
+        res = await mouse_click(x=10, y=20, client_id="test-client-123")
         assert res["status"] == "ok"
         mock_bridge.send_command.assert_called_once_with(
             "mouse.click",
-            {"x": 10, "y": 20, "button": "left", "clicks": 1, "interval": 0.1}
+            {"x": 10, "y": 20, "button": "left", "clicks": 1, "interval": 0.1},
+            client_id="test-client-123"
         )
 
 
@@ -30,9 +31,10 @@ async def test_keyboard_type_delegation():
     mock_bridge.send_command.return_value = {"status": "success", "result": "type_ok"}
     
     with patch("app.tools.client.system_tools.alfonso_bridge", mock_bridge):
-        res = await keyboard_type("hola")
+        res = await keyboard_type("hola", client_id="test-client-456")
         assert res["status"] == "ok"
         mock_bridge.send_command.assert_called_once_with(
             "keyboard.type",
-            {"text": "hola", "interval": 0.03}
+            {"text": "hola", "interval": 0.03},
+            client_id="test-client-456"
         )

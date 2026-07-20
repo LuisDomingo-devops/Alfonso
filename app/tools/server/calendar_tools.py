@@ -8,11 +8,11 @@ Expone las funciones CRUD de base de datos de calendario para que el LLM las inv
 Durante la ejecución del planificador para buscar, agendar o borrar eventos.
 
 ¿CÓMO LO HACE?
-Mediante llamadas directas a las funciones asíncronas y síncronas de app/core/calendar_db.py.
+Mediante llamadas directas a las funciones asíncronas y síncronas de app/adapters/calendar_db.py.
 
 ¿CON QUÉ OTROS SCRIPTS ESTÁ RELACIONADO?
-- app/core/tool_registry.py (registra estas herramientas)
-- app/core/calendar_db.py (contiene las operaciones SQLite CRUD reales)
+- app/adapters/tool_registry.py (registra estas herramientas)
+- app/adapters/calendar_db.py (contiene las operaciones SQLite CRUD reales)
 """
 
 from typing import Optional

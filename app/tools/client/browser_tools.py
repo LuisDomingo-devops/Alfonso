@@ -11,7 +11,7 @@ Cuando el orquestador ejecuta tareas de investigación en la web en nombre del u
 Inicializando una sesión interactiva en segundo plano con Playwright y exponiendo llamadas asíncronas.
 
 ¿CON QUÉ OTROS SCRIPTS ESTÁ RELACIONADO?
-- app/core/tool_registry.py (registra estas herramientas)
+- app/adapters/tool_registry.py (registra estas herramientas)
 - app/api/routes.py (expone endpoints directos de control de navegador)
 """
 
@@ -123,7 +123,7 @@ async def _close():
 # PRIMITIVAS (nivel bajo)
 # =========================================================
 
-async def browser_navigate(url: str, wait_until: str = "domcontentloaded"):
+async def browser_navigate(url: str, wait_until: str = "domcontentloaded", client_id: str | None = None):
     try:
         page = await _get_page()
         if isinstance(page, dict):
@@ -132,6 +132,8 @@ async def browser_navigate(url: str, wait_until: str = "domcontentloaded"):
         if not url.startswith(("http://", "https://")):
             url = "https://" + url
 
+        # En Playwright multi-cliente podríamos usar contextos separados, pero para los primeros pasos
+        # agregamos el parámetro en la firma para que sea compatible con el orquestador.
         response = await page.goto(url, wait_until=wait_until, timeout=30000)
 
         return _ok(
@@ -145,7 +147,7 @@ async def browser_navigate(url: str, wait_until: str = "domcontentloaded"):
         return _error("navigation_error", str(e), url=url)
 
 
-async def browser_click(selector: str):
+async def browser_click(selector: str, client_id: str | None = None):
     try:
         page = await _get_page()
         if isinstance(page, dict):
@@ -158,7 +160,7 @@ async def browser_click(selector: str):
         return _error("click_failed", str(e), selector=selector)
 
 
-async def browser_fill(selector: str, value: str):
+async def browser_fill(selector: str, value: str, client_id: str | None = None):
     try:
         page = await _get_page()
         if isinstance(page, dict):
@@ -171,7 +173,7 @@ async def browser_fill(selector: str, value: str):
         return _error("fill_failed", str(e), selector=selector)
 
 
-async def browser_screenshot(full_page: bool = False):
+async def browser_screenshot(full_page: bool = False, client_id: str | None = None):
     try:
         page = await _get_page()
         if isinstance(page, dict):
@@ -187,7 +189,7 @@ async def browser_screenshot(full_page: bool = False):
         return _error("screenshot_failed", str(e))
 
 
-async def browser_get_text(selector: str = "body"):
+async def browser_get_text(selector: str = "body", client_id: str | None = None):
     try:
         page = await _get_page()
         if isinstance(page, dict):
@@ -204,7 +206,7 @@ async def browser_get_text(selector: str = "body"):
 # INSPECCIÓN (CLAVE PARA AGENTE)
 # =========================================================
 
-async def browser_inspect():
+async def browser_inspect(client_id: str | None = None):
     """
     Devuelve estado estructurado de la página.
     Esto es lo que permite que Alfonso "entienda UI".
@@ -248,22 +250,22 @@ async def browser_inspect():
 # COMPUESTAS (nivel alto)
 # =========================================================
 
-async def browser_search(query: str, max_text_chars: int = 3000):
+async def browser_search(query: str, max_text_chars: int = 3000, client_id: str | None = None):
     try:
         if not query.strip():
             return _error("invalid_query", "Query vacía")
 
         url = "https://www.google.com/search?q=" + urllib.parse.quote_plus(query)
 
-        nav = await browser_navigate(url)
+        nav = await browser_navigate(url, client_id=client_id)
         if nav.get("status") != "ok":
             return nav
 
         # fallback robusto (Google cambia DOM)
         await asyncio.sleep(2)
 
-        text = await browser_get_text("body")
-        shot = await browser_screenshot()
+        text = await browser_get_text("body", client_id=client_id)
+        shot = await browser_screenshot(client_id=client_id)
 
         return _ok(
             query=query,
@@ -276,7 +278,7 @@ async def browser_search(query: str, max_text_chars: int = 3000):
         return _error("search_failed", str(e), query=query)
 
 
-async def browser_close():
+async def browser_close(client_id: str | None = None):
     """Cierra el navegador. Si hay un cliente conectado, delega el cierre cerrando los navegadores comunes (chrome, firefox, msedge)."""
     from app.adapters.alfonso_bridge import bridge as alfonso_bridge
     if alfonso_bridge.has_clients():
@@ -284,7 +286,7 @@ async def browser_close():
         tool_logger.info("Delegando browser_close al cliente")
         results = []
         for browser_name in ["chrome", "firefox", "msedge"]:
-            res = await close_application(browser_name)
+            res = await close_application(browser_name, client_id=client_id)
             results.append(res)
         return _ok(message="Comandos de cierre de navegador delegados al cliente", results=results)
 

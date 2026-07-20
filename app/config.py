@@ -12,9 +12,10 @@ Heredando de BaseSettings para realizar validación estricta de tipos y leer opc
 
 ¿CON QUÉ OTROS SCRIPTS ESTÁ RELACIONADO?
 - app/main.py (consume los settings para inicializar FastAPI y los servicios)
-- app/core/llm_client.py (utiliza la URL de Ollama y el nombre del modelo)
+- app/adapters/llm_client.py (utiliza la URL de Ollama y el nombre del modelo)
 """
 
+import json
 from pathlib import Path
 from typing import Any, Dict
 from pydantic import model_validator
@@ -27,6 +28,8 @@ class Settings(BaseSettings):
 
     ALFONSO_API_KEY: str = ""
     ALFONSO_BRIDGE_TOKEN: str = ""
+    ALFONSO_CLIENT_TOKENS: str = ""  # Formato JSON: {"client_id1": "token1", "client_id2": "token2"} o client1:token1,client2:token2
+    ALFONSO_CLIENT_ROLES: str = ""   # Formato JSON: {"client_id1": "admin", "client_id2": "guest"} o client1:admin,client2:guest
 
     CHAT_PROMPT_PATH: str = "app/prompts/chat_system.txt"
     AUTOEVOLUTION_PROMPT_PATH: str = "app/prompts/autoevolution_promt.md"
@@ -67,6 +70,34 @@ class Settings(BaseSettings):
                     cleaned[key] = value
             return cleaned
         return data
+
+    def get_client_token(self, client_id: str) -> str | None:
+        if not self.ALFONSO_CLIENT_TOKENS:
+            return None
+        try:
+            tokens = json.loads(self.ALFONSO_CLIENT_TOKENS)
+            return tokens.get(client_id)
+        except Exception:
+            for item in self.ALFONSO_CLIENT_TOKENS.split(","):
+                if ":" in item:
+                    k, v = item.split(":", 1)
+                    if k.strip() == client_id:
+                        return v.strip()
+            return None
+
+    def get_client_role(self, client_id: str) -> str:
+        if not self.ALFONSO_CLIENT_ROLES:
+            return "admin"
+        try:
+            roles = json.loads(self.ALFONSO_CLIENT_ROLES)
+            return roles.get(client_id, "guest")
+        except Exception:
+            for item in self.ALFONSO_CLIENT_ROLES.split(","):
+                if ":" in item:
+                    k, v = item.split(":", 1)
+                    if k.strip() == client_id:
+                        return v.strip()
+            return "guest"
 
     class Config:
         env_file = ".env"

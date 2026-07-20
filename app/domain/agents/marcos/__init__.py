@@ -11,6 +11,6 @@ Al importar marcos_agent desde app.domain.agents.marcos.
 Sirve como marcador de paquete e importa el agente.
 
 ¿CON QUÉ OTROS SCRIPTS ESTÁ RELACIONADO?
-- app/core/agents/marcos/marcos_agent.py: Archivo que contiene la lógica principal del agente marcos.
+- app/domain/agents/marcos/marcos_agent.py: Archivo que contiene la lógica principal del agente marcos.
 """
 from app.domain.agents.marcos.marcos_agent import marcos_agent

@@ -194,7 +194,7 @@ async def get_current_datetime() -> dict:
     }
 
 
-async def open_application(command: str | Sequence[str], args: Sequence[str] | None = None) -> dict:
+async def open_application(command: str | Sequence[str], args: Sequence[str] | None = None, client_id: str | None = None) -> dict:
     command_text = (
         command if isinstance(command, str)
         else " ".join(shlex.quote(str(part)) for part in (list(command) + list(args or [])))
@@ -202,7 +202,7 @@ async def open_application(command: str | Sequence[str], args: Sequence[str] | N
 
     if alfonso_bridge.has_clients():
         tool_logger.info("Delegando open_application al agente local: %s", command_text)
-        response = await alfonso_bridge.send_command(Action.OPEN_APP, {"command": command_text})
+        response = await alfonso_bridge.send_command(Action.OPEN_APP, {"command": command_text}, client_id=client_id)
         if response.get("status") == "success":
             return {
                 "status": "ok",
@@ -236,12 +236,12 @@ async def open_application(command: str | Sequence[str], args: Sequence[str] | N
     }
 
 
-async def close_application(command: str) -> dict:
+async def close_application(command: str, client_id: str | None = None) -> dict:
     target = command.strip()
 
     if alfonso_bridge.has_clients():
         tool_logger.info("Delegando close_application al agente local: %s", target)
-        response = await alfonso_bridge.send_command(Action.CLOSE_APP, {"command": target})
+        response = await alfonso_bridge.send_command(Action.CLOSE_APP, {"command": target}, client_id=client_id)
         if response.get("status") == "success":
             return {
                 "status": "ok",
@@ -274,7 +274,7 @@ async def close_application(command: str) -> dict:
     }
 
 
-async def open_url(url: str) -> dict:
+async def open_url(url: str, client_id: str | None = None) -> dict:
     url = url.strip()
     if not url:
         return {"status": "error", "message": "URL no especificada"}
@@ -284,7 +284,7 @@ async def open_url(url: str) -> dict:
 
     if alfonso_bridge.has_clients():
         tool_logger.info("Delegando open_url al agente local: %s", url)
-        response = await alfonso_bridge.send_command(Action.OPEN_URL, {"url": url})
+        response = await alfonso_bridge.send_command(Action.OPEN_URL, {"url": url}, client_id=client_id)
         if response.get("status") == "success":
             return {
                 "status": "ok",
@@ -305,7 +305,7 @@ async def open_url(url: str) -> dict:
         url,
     )
     from app.tools.client.browser_tools import browser_navigate
-    return await browser_navigate(url)
+    return await browser_navigate(url, client_id=client_id)
 
 
 # ---------------------------------------------------------------------------
@@ -395,7 +395,7 @@ async def _close_application_server_fallback(target: str):
 # Código Importado de computer_use_tools.py
 # ---------------------------------------------------------------------------
 
-async def _delegate_computer(action: str, params: dict) -> dict:
+async def _delegate_computer(action: str, params: dict, client_id: str | None = None) -> dict:
     """Envía la acción al agente local y normaliza la respuesta."""
     if not alfonso_bridge.has_clients():
         error_logger.warning(
@@ -412,8 +412,8 @@ async def _delegate_computer(action: str, params: dict) -> dict:
             ),
         }
 
-    tool_logger.info("computer_use: delegando '%s' args=%s", action, params)
-    response = await alfonso_bridge.send_command(action, params)
+    tool_logger.info("computer_use: delegando '%s' args=%s client_id=%s", action, params, client_id)
+    response = await alfonso_bridge.send_command(action, params, client_id=client_id)
 
     if response.get("status") == "success":
         result = response.get("result")
@@ -432,12 +432,13 @@ async def _delegate_computer(action: str, params: dict) -> dict:
 async def screenshot(
     region: Optional[tuple[int, int, int, int]] = None,
     save_path: Optional[str] = None,
+    client_id: str | None = None,
 ) -> dict:
-    return await _delegate_computer(Action.SCREEN_SCREENSHOT, {"region": region, "save_path": save_path})
+    return await _delegate_computer(Action.SCREEN_SCREENSHOT, {"region": region, "save_path": save_path}, client_id=client_id)
 
 
-async def mouse_move(x: int, y: int, duration: float = 0.25) -> dict:
-    return await _delegate_computer(Action.MOUSE_MOVE, {"x": x, "y": y, "duration": duration})
+async def mouse_move(x: int, y: int, duration: float = 0.25, client_id: str | None = None) -> dict:
+    return await _delegate_computer(Action.MOUSE_MOVE, {"x": x, "y": y, "duration": duration}, client_id=client_id)
 
 
 async def mouse_click(
@@ -446,10 +447,12 @@ async def mouse_click(
     button: str = "left",
     clicks: int = 1,
     interval: float = 0.1,
+    client_id: str | None = None,
 ) -> dict:
     return await _delegate_computer(
         Action.MOUSE_CLICK,
         {"x": x, "y": y, "button": button, "clicks": clicks, "interval": interval},
+        client_id=client_id,
     )
 
 
@@ -458,54 +461,59 @@ async def mouse_drag(
     x2: int, y2: int,
     duration: float = 0.5,
     button: str = "left",
+    client_id: str | None = None,
 ) -> dict:
     return await _delegate_computer(
         Action.MOUSE_DRAG,
         {"x1": x1, "y1": y1, "x2": x2, "y2": y2, "duration": duration, "button": button},
+        client_id=client_id,
     )
 
 
-async def keyboard_type(text: str, interval: float = 0.03) -> dict:
-    return await _delegate_computer(Action.KEYBOARD_TYPE, {"text": text, "interval": interval})
+async def keyboard_type(text: str, interval: float = 0.03, client_id: str | None = None) -> dict:
+    return await _delegate_computer(Action.KEYBOARD_TYPE, {"text": text, "interval": interval}, client_id=client_id)
 
 
-async def keyboard_hotkey(*args_keys: str, keys: list[str] | None = None) -> dict:
+async def keyboard_hotkey(*args_keys: str, keys: list[str] | None = None, client_id: str | None = None) -> dict:
     final_keys = list(args_keys) if args_keys else (keys or [])
-    return await _delegate_computer(Action.KEYBOARD_HOTKEY, {"keys": final_keys})
+    return await _delegate_computer(Action.KEYBOARD_HOTKEY, {"keys": final_keys}, client_id=client_id)
 
 
 async def ocr_screenshot(
     region: Optional[tuple[int, int, int, int]] = None,
     lang: str = "spa+eng",
+    client_id: str | None = None,
 ) -> dict:
-    return await _delegate_computer(Action.SCREEN_OCR_SCREENSHOT, {"region": region, "lang": lang})
+    return await _delegate_computer(Action.SCREEN_OCR_SCREENSHOT, {"region": region, "lang": lang}, client_id=client_id)
 
 
-async def ocr_image(path: str, lang: str = "spa+eng") -> dict:
-    return await _delegate_computer(Action.SCREEN_OCR_IMAGE, {"path": path, "lang": lang})
+async def ocr_image(path: str, lang: str = "spa+eng", client_id: str | None = None) -> dict:
+    return await _delegate_computer(Action.SCREEN_OCR_IMAGE, {"path": path, "lang": lang}, client_id=client_id)
 
 
 async def find_on_screen(
     template_path: str,
     threshold: float = 0.8,
     region: Optional[tuple[int, int, int, int]] = None,
+    client_id: str | None = None,
 ) -> dict:
     return await _delegate_computer(
         Action.SCREEN_FIND,
         {"template_path": template_path, "threshold": threshold, "region": region},
+        client_id=client_id,
     )
 
 
-async def window_list() -> dict:
-    return await _delegate_computer(Action.WINDOW_LIST, {})
+async def window_list(client_id: str | None = None) -> dict:
+    return await _delegate_computer(Action.WINDOW_LIST, {}, client_id=client_id)
 
 
-async def window_focus(title: str) -> dict:
-    return await _delegate_computer(Action.WINDOW_FOCUS, {"title": title})
+async def window_focus(title: str, client_id: str | None = None) -> dict:
+    return await _delegate_computer(Action.WINDOW_FOCUS, {"title": title}, client_id=client_id)
 
 
-async def window_close(title: str) -> dict:
-    return await _delegate_computer(Action.WINDOW_CLOSE, {"title": title})
+async def window_close(title: str, client_id: str | None = None) -> dict:
+    return await _delegate_computer(Action.WINDOW_CLOSE, {"title": title}, client_id=client_id)
 
 
 # ---------------------------------------------------------------------------

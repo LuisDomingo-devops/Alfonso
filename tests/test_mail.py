@@ -38,6 +38,9 @@ def setup_test_db():
     global _test_conn
     os.environ["TESTING"] = "true"
     
+    import app.tools.server.mail_tools as mail_tools
+    mail_tools.is_classifying = False
+    
     if _test_conn is None:
         _test_conn = sqlite3.connect(":memory:", check_same_thread=False)
         _test_conn.row_factory = sqlite3.Row
@@ -54,7 +57,8 @@ def setup_test_db():
     
     dummy = DummyConnection(_test_conn)
     
-    with patch("app.adapters.mail_db.get_connection", return_value=dummy):
+    with patch("app.adapters.mail_db.get_connection", return_value=dummy), \
+         patch("app.adapters.gmail_sync.sync_from_gmail", new_callable=AsyncMock, return_value=0):
         yield
 
 def test_mail_db_operations():

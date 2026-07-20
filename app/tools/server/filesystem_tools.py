@@ -11,7 +11,7 @@ Cuando el planificador requiere explorar archivos locales, crear scripts o modif
 Encapsulando llamadas estándar de Python como `os`, `shutil` y `pathlib`.
 
 ¿CON QUÉ OTROS SCRIPTS ESTÁ RELACIONADO?
-- app/core/tool_registry.py (registra estas herramientas)
+- app/adapters/tool_registry.py (registra estas herramientas)
 """
 
 from pathlib import Path
@@ -321,7 +321,12 @@ async def delete_directory(path: str):
     }
 
 async def move_file(old_path: str, new_path: str):
-    del_res = await _delegate(Action.MOVE_FILE, {"old_path": old_path, "new_path": new_path})
+    del_res = await _delegate(Action.MOVE_FILE, {
+        "old_path": old_path,
+        "new_path": new_path,
+        "src": old_path,
+        "dst": new_path
+    })
     if del_res is not None:
         return del_res
 
@@ -370,6 +375,43 @@ async def rename_file(path: str, new_name: str):
         "message": f"Archivo renombrado: {p} -> {new_p}"
     }
 
+async def replace_file_content(path: str, target: str, replacement: str):
+    """Reemplaza un bloque de texto exacto (target) por otro (replacement) en el archivo especificado."""
+    del_res = await _delegate(Action.REPLACE_FILE_CONTENT, {"path": path, "target": target, "replacement": replacement})
+    if del_res is not None:
+        return del_res
+
+    tool_logger.info(f"Intentando reemplazar contenido en archivo: {path}")
+    p = _resolve_path(path)
+
+    if not p.exists():
+        error_logger.warning(f"Archivo no encontrado para reemplazar: {p}")
+        return {"status": "error", "message": "Archivo no encontrado"}
+
+    try:
+        content = p.read_text(encoding="utf-8")
+        if target not in content:
+            error_logger.warning(f"Texto objetivo no encontrado en el archivo: {p}")
+            return {
+                "status": "error",
+                "message": f"Texto objetivo no encontrado en el archivo. Asegúrate de especificar las líneas exactas a reemplazar (incluyendo espacios e indentaciones)."
+            }
+        
+        new_content = content.replace(target, replacement, 1)
+        p.write_text(new_content, encoding="utf-8")
+    except PermissionError as e:
+        error_logger.error(f"Error de permisos al reemplazar en {p}: {e}")
+        return {"status": "error", "message": f"Permiso denegado al escribir en {p}"}
+    except Exception as e:
+        error_logger.error(f"Error inesperado al reemplazar en {p}: {e}")
+        return {"status": "error", "message": f"Error inesperado al reemplazar contenido: {e}"}
+
+    tool_logger.info(f"Reemplazo de contenido exitoso en: {p}")
+    return {
+        "status": "ok",
+        "message": f"Contenido reemplazado exitosamente en: {p}"
+    }
+
 TOOLS = {
     "create_file": create_file,
     "read_file": read_file,
@@ -380,6 +422,7 @@ TOOLS = {
     "delete_directory": delete_directory,
     "move_file": move_file,
     "rename_file": rename_file,
+    "replace_file_content": replace_file_content,
 }
 
 
@@ -433,10 +476,30 @@ class ListDirectoryArgs(ToolArgsModel):
     path: str = "."
 
 
+class ReplaceFileContentArgs(ToolArgsModel):
+    path: str
+    target: str
+    replacement: str
+
+
+_TARGET_ALIASES = {
+    "old_text": "target",
+    "buscar": "target",
+    "original": "target",
+}
+
+_REPLACEMENT_ALIASES = {
+    "new_text": "replacement",
+    "reemplazo": "replacement",
+    "nuevo": "replacement",
+}
+
+
 ARGS_SCHEMAS = {
     "create_file": (CreateFileArgs, {**_PATH_ALIASES, **_CONTENT_ALIASES}),
     "read_file": (ReadFileArgs, dict(_PATH_ALIASES)),
     "append_file": (AppendFileArgs, {**_PATH_ALIASES, **_CONTENT_ALIASES}),
     "delete_file": (DeleteFileArgs, dict(_PATH_ALIASES)),
     "list_directory": (ListDirectoryArgs, dict(_PATH_ALIASES)),
+    "replace_file_content": (ReplaceFileContentArgs, {**_PATH_ALIASES, **_TARGET_ALIASES, **_REPLACEMENT_ALIASES}),
 }

@@ -52,7 +52,7 @@ async def test_orchestrator_client_tool_flow(mock_llm, session_memory_fixture):
         mock_bridge = AsyncMock()
         mock_bridge.send_command.return_value = {"status": "success", "result": "click exitoso"}
         
-        with patch("app.domain.planner_orchestrator.bridge", mock_bridge):
+        with patch("app.adapters.alfonso_bridge.bridge", mock_bridge):
             orchestrator = PlannerOrchestrator()
             result = await orchestrator.run(
                 user_message="haz click en la pantalla",
@@ -65,8 +65,8 @@ async def test_orchestrator_client_tool_flow(mock_llm, session_memory_fixture):
             assert result["tool"] == "click"
             assert result["result"] == {"status": "success", "result": "click exitoso"}
             
-            # Verifica que llamamos al bridge con los argumentos mapeados
-            mock_bridge.send_command.assert_called_once_with("mouse.click", {"x": 100, "y": 200})
+            # Verifica que llamamos al bridge con los argumentos mapeados y client_id=None
+            mock_bridge.send_command.assert_called_once_with("mouse.click", {"x": 100, "y": 200}, client_id=None)
 
 
 @pytest.mark.asyncio

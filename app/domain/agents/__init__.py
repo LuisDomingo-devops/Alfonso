@@ -11,5 +11,5 @@ Al importar cualquier elemento de app.domain.agents.
 Sirve como marcador de paquete de Python.
 
 ¿CON QUÉ OTROS SCRIPTS ESTÁ RELACIONADO?
-- app/core/__init__.py: Parte de la estructura de core.
+- app/domain/__init__.py: Parte de la estructura de core.
 """

@@ -12,10 +12,10 @@ Analiza la intención de la consulta usando heurísticas para delegar a MarcosAg
 
 ¿CON QUÉ OTROS SCRIPTS ESTÁ RELACIONADO?
 - app/api/routes.py: Invoca este orquestador a través de /chat.
-- app/core/agents/dev/dev_agent.py: Delega consultas de desarrollo de software.
-- app/core/agents/marcos/marcos_agent.py: Delega consultas de legislación española.
-- app/core/intent_router.py: Determina la intención inicial del usuario.
-- app/core/tool_registry.py: Busca y proporciona las herramientas a ejecutar.
+- app/domain/agents/dev/dev_agent.py: Delega consultas de desarrollo de software.
+- app/domain/agents/marcos/marcos_agent.py: Delega consultas de legislación española.
+- app/domain/intent_router.py: Determina la intención inicial del usuario.
+- app/adapters/tool_registry.py: Busca y proporciona las herramientas a ejecutar.
 """
 
 from __future__ import annotations
@@ -133,7 +133,7 @@ def _extract_tool_and_args(data):
     return None, {}
 
 
-def _check_and_store_fact(user_message: str, session_id: str) -> bool:
+def _check_and_store_fact(user_message: str, session_id: str, client_id: str | None = None) -> bool:
     msg_lower = user_message.lower()
     patterns = [
         "recuerda que",
@@ -152,7 +152,7 @@ def _check_and_store_fact(user_message: str, session_id: str) -> bool:
             if msg_lower.startswith(p):
                 cleaned_fact = user_message[len(p):].strip()
                 break
-        vector_memory.add_fact(session_id, cleaned_fact)
+        vector_memory.add_fact(session_id, cleaned_fact, client_id=client_id)
         return True
     return False
 
@@ -222,7 +222,7 @@ def parse_calendar_operation_directly(msg: str) -> dict | None:
         if not any(x in msg_clean for x in ["correo", "mail", "email"]):
             today_str = datetime.now().strftime("%Y-%m-%d")
             return {"tool": "calendar_list_events", "args": {"start_date": today_str, "end_date": today_str}}
-    if re.search(r"\b(qu[eé] citas tengo|lista las citas|muestra la agenda|mi agenda)\b", msg_clean):
+    if re.search(r"\b(?:lista|listá|listar|mostrar|muestra|dime|ver|veo)\b.*\b(?:citas|eventos|reuniones|compromisos|calendario|agenda)\b", msg_clean):
         return {"tool": "calendar_list_events", "args": {}}
     if re.search(r"\b(cierra|cerrar|oculta|ocultar)\b.{0,20}\b(el calendario|calendario|citas|agenda)\b", msg_clean):
         return {"tool": "calendar_close_ui", "args": {}}
@@ -253,9 +253,53 @@ def parse_mail_operation_directly(msg: str) -> dict | None:
         return {"tool": "mail_close_ui", "args": {}}
 
     # 6. Listar correos (resto de casos de lectura general en texto)
-    if re.search(r"\b(lee|leer|lista(r)?|dame) (el |los )?(correo|mail|correos|emails)\b", msg_clean):
+    if re.search(r"\b(?:lee|leer|lista|listá|listar|dame|ver|mostrar|muestra)\b.*\b(?:correo|mail|correos|emails|mails)\b", msg_clean):
         return {"tool": "mail_list_emails", "args": {}}
         
+    return None
+
+
+def parse_system_operation_directly(msg: str) -> dict | None:
+    msg_clean = msg.lower().strip()
+    # Coincide con preguntas comunes sobre la hora y fecha
+    if re.search(r"\b(qu[eé]\s+hora\s+es|dime\s+la\s+hora|qu[eé]\s+hora\s+tienes|fecha\s+de\s+hoy|qu[eé]\s+d[ií]a\s+es\s+hoy|fecha\s+y\s+hora)\b", msg_clean):
+        return {"tool": "get_current_datetime", "args": {}}
+    if re.search(r"\b(captura\s+de\s+pantalla|toma\s+una\s+captura|pantallazo|hacer\s+captura|hace\s+captura)\b", msg_clean):
+        return {"tool": "screenshot", "args": {}}
+    if re.search(r"\b(ventanas\s+abiertas|lista\s+las\s+ventanas|mostrar\s+ventanas|ver\s+ventanas)\b", msg_clean):
+        return {"tool": "window_list", "args": {}}
+    return None
+
+
+def parse_memory_operation_directly(msg: str) -> dict | None:
+    msg_clean = msg.lower().strip()
+    m = re.search(r"\b(?:recuerda\s+que|graba\s+que|memoriza\s+que)\s+(.+)", msg, re.IGNORECASE)
+    if m:
+        fact = m.group(1).strip()
+        return {"tool": "save_user_preference", "args": {"fact": fact}}
+    
+    if re.search(r"\b(?:mi\s+perfil|mis\s+preferencias|qué\s+recuerdas\s+de\s+mí|que\s+recuerdas\s+de\s+mi|dame\s+mi\s+perfil)\b", msg_clean):
+        if not any(x in msg_clean for x in ["elimina", "borra", "quita", "modifica", "cambia"]):
+            return {"tool": "get_user_profile", "args": {}}
+    
+    m_forget = re.search(r"\b(?:olvida\s+que|borra\s+que|olvidar\s+que|borrar\s+que)\s+(.+)", msg, re.IGNORECASE)
+    if m_forget:
+        query = m_forget.group(1).strip()
+        return {"tool": "forget_user_fact", "args": {"query": query}}
+        
+    return None
+
+
+def parse_browser_operation_directly(msg: str) -> dict | None:
+    msg_clean = msg.lower().strip()
+    # Coincide de forma muy flexible y tolerante a erratas (ej. "pagna"):
+    # "abre la pagna elpais.com", "entra en google.es", "navega a marca.com"
+    m = re.search(r"\b(?:abre|abrir|navega|navegar|entra|entrar|ir\s+a)\b.*\b([a-zA-Z0-9.\-_/:]+\.[a-zA-Z]{2,6}(?:/[^\s]*)?)", msg_clean, re.IGNORECASE)
+    if m:
+        url = m.group(1).strip()
+        if not url.startswith(("http://", "https://")):
+            url = "https://" + url
+        return {"tool": "open_url", "args": {"url": url}}
     return None
 
 
@@ -602,25 +646,33 @@ def parse_calendar_create_directly(msg: str, history: list = None) -> dict | Non
     }
     months_names = {v: k for k, v in months_map.items()}
     
-    date_match = re.search(r"\bel\s+(\d{1,2})\s+de\s+(enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre)\b", msg_lower)
-    if date_match:
-        day = int(date_match.group(1))
-        month = months_map[date_match.group(2)]
+    # Intentar formato ISO YYYY-MM-DD primero
+    iso_date_match = re.search(r"\b(\d{4})-(\d{2})-(\d{2})\b", msg_lower)
+    if iso_date_match:
+        year = int(iso_date_match.group(1))
+        month = int(iso_date_match.group(2))
+        day = int(iso_date_match.group(3))
         date_matched = True
     else:
-        date_match = re.search(r"\b(?:el|del|de)\s+(?:d[ií]a\s+)?(\d{1,2})\b", msg_lower)
+        date_match = re.search(r"\bel\s+(\d{1,2})\s+de\s+(enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre)\b", msg_lower)
         if date_match:
             day = int(date_match.group(1))
+            month = months_map[date_match.group(2)]
             date_matched = True
-        elif "mañana" in msg_lower:
-            tomorrow = now + timedelta(days=1)
-            year = tomorrow.year
-            month = tomorrow.month
-            day = tomorrow.day
-            date_matched = True
-        elif "hoy" in msg_lower:
-            date_matched = True
-            
+        else:
+            date_match = re.search(r"\b(?:el|del|de)\s+(?:d[ií]a\s+)?(\d{1,2})\b", msg_lower)
+            if date_match:
+                day = int(date_match.group(1))
+                date_matched = True
+            elif "mañana" in msg_lower:
+                tomorrow = now + timedelta(days=1)
+                year = tomorrow.year
+                month = tomorrow.month
+                day = tomorrow.day
+                date_matched = True
+            elif "hoy" in msg_lower:
+                date_matched = True
+                
     if not date_matched:
         return None
         
@@ -769,7 +821,13 @@ def parse_file_operation_directly(msg: str, client_info: dict | None, history: l
         if is_likely_path(path):
             return {"tool": "delete_directory", "args": {"path": resolve_path(path)}}
 
-    # 5. CREATE DIRECTORY (crea una carpeta llamada <name> en el escritorio)
+    # 5. CREATE DIRECTORY (crea una carpeta en la ruta C:/... / crea una carpeta llamada X en el escritorio)
+    m_path = re.search(r"\b(?:crea|crear)\s+(?:una\s+carpeta\s+|un\s+directorio\s+)(?:en\s+la\s+ruta\s+|en\s+)?(\S+)", msg_clean, re.IGNORECASE)
+    if m_path:
+        path_candidate = m_path.group(1)
+        if is_likely_path(path_candidate):
+            return {"tool": "create_directory", "args": {"path": resolve_path(path_candidate)}}
+
     m = re.search(r"\bcrea\s+(?:una\s+carpeta\s+|un\s+directorio\s+)(?:de\s+mi\s+|en\s+mi\s+|en\s+el\s+)?(?:escritorio|desktop)?\s*(?:que\s+se\s+llame\s+|llamada\s+|llamado\s+)?([a-zA-Z0-9_\-\s]+)", msg_clean, re.IGNORECASE)
     if m:
         folder_name = m.group(1).strip()
@@ -821,7 +879,7 @@ def parse_file_operation_directly(msg: str, client_info: dict | None, history: l
         return {"tool": "append_file", "args": {"path": resolve_path(filename), "content": content}}
 
     # 8. CREATE FILE DETERMINISTA (crea el archivo X que diga Y / dentro de esta carpeta crea un archivo X que diga Y)
-    m = re.search(r"\b(?:crea|escribir|escribe)\s+(?:un\s+archivo\s+|el\s+archivo\s+)?(\S+)\s+(?:que\s+diga|con\s+contenido)\s+(.+)", msg_clean, re.IGNORECASE)
+    m = re.search(r"\b(?:crea|escribir|escribe)\s+(?:un\s+archivo\s+|el\s+archivo\s+)?(?:en\s+la\s+ruta\s+|en\s+)?(\S+)\s+(?:que\s+diga|con\s+contenido)\s+(.+)", msg_clean, re.IGNORECASE)
     if m:
         filename = m.group(1).strip()
         content = m.group(2).strip()
@@ -843,8 +901,24 @@ def parse_file_operation_directly(msg: str, client_info: dict | None, history: l
             else:
                 folder = home
                 
-        final_path = f"{folder}/{filename}" if folder else resolve_path(filename)
+        if is_likely_path(filename):
+            final_path = resolve_path(filename)
+        else:
+            final_path = f"{folder}/{filename}" if folder else resolve_path(filename)
         return {"tool": "create_file", "args": {"path": final_path, "content": content}}
+
+    # 9. MOVE FILE (mueve X a Y)
+    m = re.search(r"\b(?:mueve|mover|mueva|desplaza|desplazar)\s+(?:el\s+archivo\s+|la\s+carpeta\s+)?(\S+)\s+(?:a|hacia)\s+(\S+)", msg_clean, re.IGNORECASE)
+    if m:
+        src = m.group(1)
+        dst = m.group(2)
+        if is_likely_path(src) and is_likely_path(dst):
+            return {"tool": "move_file", "args": {
+                "old_path": resolve_path(src),
+                "new_path": resolve_path(dst),
+                "src": resolve_path(src),
+                "dst": resolve_path(dst)
+            }}
 
     return None
 class PlannerOrchestrator:
@@ -855,11 +929,12 @@ class PlannerOrchestrator:
     persistencia en la memoria corta de Fase 1 (SessionMemory).
     """
 
-    async def run(self, user_message, llm, request_id=None, session_id=None):
+    async def run(self, user_message, llm, request_id=None, session_id=None, client_id=None):
+        from app.adapters.alfonso_bridge import bridge
         logger = attach_request_id(orchestrator_logger, request_id)
         error = attach_request_id(error_logger, request_id)
 
-        logger.info("PlannerOrchestrator.run() — request_id=%s, session_id=%s", request_id, session_id)
+        logger.info("PlannerOrchestrator.run() — request_id=%s, session_id=%s, client_id=%s", request_id, session_id, client_id)
         user_message = _normalize_message(user_message)
 
         # Detección de correcciones del usuario (para el módulo BRAIN)
@@ -878,23 +953,23 @@ class PlannerOrchestrator:
                 error.warning("No se pudo escribir en user_corrections.log: %s", e)
 
         # Guardar hechos en la memoria vectorial si aplica (Fase 4)
-        _check_and_store_fact(user_message, session_id)
+        _check_and_store_fact(user_message, session_id, client_id=client_id)
 
         # Persistimos el turno del usuario en memoria corta ANTES de generar,
         # sea cual sea el intent. Así un mensaje "tool" también queda en el
         # historial que un futuro turno "chat" podrá recuperar como contexto.
         if session_id:
-            memory.add_message(session_id, "user", user_message)
+            memory.add_message(session_id, "user", user_message, client_id=client_id)
 
         # Consultar recuerdos semánticos relevantes (Fase 4)
         # 1. Buscar datos generales/personales relevantes al mensaje
-        general_facts = vector_memory.query_facts(user_message, limit=3)
+        general_facts = vector_memory.query_facts(user_message, limit=3, client_id=client_id)
         
         # 2. Buscar explícitamente directrices de estilo conversacional y preferencias de formato
         style_queries = ["estilo de respuesta", "preferencia de formato", "personalidad de Alfonso"]
         style_facts = []
         for q in style_queries:
-            results = vector_memory.query_facts(q, limit=2)
+            results = vector_memory.query_facts(q, limit=2, client_id=client_id)
             for fact in results:
                 if fact not in style_facts:
                     style_facts.append(fact)
@@ -918,7 +993,7 @@ class PlannerOrchestrator:
             memory_parts.append("")
             
         if session_id:
-            session_summary = memory.get_summary(session_id)
+            session_summary = memory.get_summary(session_id, client_id=client_id)
             if session_summary:
                 memory_parts.append("[Historial de la conversación reciente:]")
                 memory_parts.append(session_summary)
@@ -928,7 +1003,7 @@ class PlannerOrchestrator:
         # ------------------------------------------------------------
         # DETECCION DE TOOL DIRECTA (DETERMINISTA / BYPASS)
         # ------------------------------------------------------------
-        history_msgs = memory.get_history(session_id) if session_id else []
+        history_msgs = memory.get_history(session_id, client_id=client_id) if session_id else []
         
         # 0. Composite open calendar and mail bypass rule
         direct_tool = parse_composite_operations(user_message)
@@ -945,6 +1020,12 @@ class PlannerOrchestrator:
             direct_tool = parse_calendar_delete_directly(user_message)
         if not direct_tool:
             direct_tool = parse_mail_operation_directly(user_message)
+        if not direct_tool:
+            direct_tool = parse_system_operation_directly(user_message)
+        if not direct_tool:
+            direct_tool = parse_memory_operation_directly(user_message)
+        if not direct_tool:
+            direct_tool = parse_browser_operation_directly(user_message)
         
         is_bypass_tool = False
         if direct_tool:
@@ -952,7 +1033,7 @@ class PlannerOrchestrator:
                 response = direct_tool["response"]
                 logger.info("Filtro determinista: respuesta de chat directa: %s", response)
                 if session_id:
-                    memory.add_message(session_id, "assistant", response)
+                    memory.add_message(session_id, "assistant", response, client_id=client_id)
                 return {
                     "type": "chat",
                     "response": response,
@@ -969,7 +1050,8 @@ class PlannerOrchestrator:
         is_dev_query = any(kw in msg_lower for kw in [
             "crea una app", "crea un app", "crear app", "crear aplicación", "crear aplicacion",
             "crea un programa", "crea programa", "escribe codigo", "escribe código", "escribir codigo", "escribir código",
-            "genera código", "genera codigo", "generar codigo", "generar código", "sandbox", "compila", "compilar"
+            "escribe el código", "escribe el codigo", "escribir el código", "escribir el codigo", "código html", "codigo html",
+            "genera código", "genera codigo", "generar codigo", "generar código", "sandbox", "compila", "compilar", "desarrolla", "desarrollar"
         ]) or ("marcosdev" in msg_lower or "ingeniero de software" in msg_lower or "devagent" in msg_lower)
 
         is_security_query = any(kw in msg_lower for kw in [
@@ -983,7 +1065,7 @@ class PlannerOrchestrator:
             from app.domain.agents.marcos.marcos_agent import marcos_agent
             response = await marcos_agent.generate_response(user_message)
             if session_id:
-                memory.add_message(session_id, "assistant", response)
+                memory.add_message(session_id, "assistant", response, client_id=client_id)
             return {
                 "type": "chat",
                 "response": response,
@@ -993,8 +1075,38 @@ class PlannerOrchestrator:
             logger.info("Consulta de desarrollo. Delegando a DevAgent.")
             from app.domain.agents.dev.dev_agent import dev_agent
             response = await dev_agent.generate_response(user_message)
+            
+            # Copiar archivos del sandbox al escritorio si se pide explícitamente
+            if "escritorio" in msg_lower or "desktop" in msg_lower:
+                try:
+                    import os
+                    from pathlib import Path
+                    from app.tools.server.filesystem_tools import _resolve_path
+                    sandbox_path = Path("data/dev_sandbox")
+                    if sandbox_path.exists():
+                        # Detectar si hay solicitud de subcarpeta (ej: "dentro de una carpeta que se llame proyecto_alfonso_marketing")
+                        subfolder = None
+                        m_sub = re.search(r"\b(?:carpeta\s+que\s+se\s+llame|carpeta\s+llamada|subcarpeta\s+llamada|directorio\s+llamado|carpeta)\s+([a-zA-Z0-9_\-]+)", msg_lower)
+                        if m_sub:
+                            subfolder = m_sub.group(1).strip()
+                            
+                        for entry in os.scandir(sandbox_path):
+                            if entry.is_file():
+                                file_content = Path(entry.path).read_text(encoding="utf-8")
+                                if subfolder:
+                                    dest_path = f"C:/Users/luisd/Desktop/{subfolder}/{entry.name}"
+                                else:
+                                    dest_path = f"C:/Users/luisd/Desktop/{entry.name}"
+                                resolved_dest = _resolve_path(dest_path)
+                                # Asegurar que la subcarpeta destino exista
+                                resolved_dest.parent.mkdir(parents=True, exist_ok=True)
+                                logger.info(f"Copiando archivo del sandbox al escritorio: {entry.name} -> {resolved_dest}")
+                                resolved_dest.write_text(file_content, encoding="utf-8")
+                except Exception as e:
+                    logger.error(f"Error al copiar archivos del sandbox al escritorio: {e}")
+
             if session_id:
-                memory.add_message(session_id, "assistant", response)
+                memory.add_message(session_id, "assistant", response, client_id=client_id)
             return {
                 "type": "chat",
                 "response": response,
@@ -1005,7 +1117,7 @@ class PlannerOrchestrator:
             from app.domain.agents.security.security_agent import security_agent
             response = await security_agent.generate_response(user_message)
             if session_id:
-                memory.add_message(session_id, "assistant", response)
+                memory.add_message(session_id, "assistant", response, client_id=client_id)
             return {
                 "type": "chat",
                 "response": response,
@@ -1024,10 +1136,11 @@ class PlannerOrchestrator:
                 mode="chat",
                 request_id=request_id,
                 memory=memory_text,
+                client_id=client_id,
             )
 
             if session_id:
-                memory.add_message(session_id, "assistant", response)
+                memory.add_message(session_id, "assistant", response, client_id=client_id)
 
             return {
                 "type": "chat",
@@ -1068,141 +1181,291 @@ class PlannerOrchestrator:
                 "results": multi_results
             }
 
+        tool_name = None
+        args = {}
+        result = None
+        execution = "server"
+
         if is_bypass_tool and direct_tool:
             tool_name = direct_tool["tool"]
             args = direct_tool["args"]
             logger.info("Filtro determinista: detectada tool %s con args %s", tool_name, args)
-        else:
-            # ------------------------------------------------------------
-            # TOOL — parseo de la respuesta del LLM en modo tool
-            # ------------------------------------------------------------
-            raw = await llm.generate(
-                user_message,
-                mode="tool",
-                request_id=request_id,
-                memory=memory_text,
-            )
-            logger.info("Raw LLM output: %s", repr(raw))
-
-            data = extract_json_robust(raw)
-            logger.info("LLM tool response: %s", data)
-            if not data:
-                error.warning("LLM no devolvió JSON de tool válido")
-                return {
-                    "type": "error",
-                    "message": "JSON tool inválido",
-                    "raw": raw,
-                }
-
-            tool_name, args = _extract_tool_and_args(data)
-
-            if not tool_name:
-                return {
-                    "type": "error",
-                    "message": "Tool desconocida",
-                }
-
-        # ------------------------------------------------------------
-        # EJECUCIÓN — cliente (bridge) o servidor (tool_registry)
-        # ------------------------------------------------------------
-        if is_client_tool(tool_name):
-            logger.info("Ejecutando tool de cliente: %s", tool_name)
-            action = get_client_action(tool_name)
-            logger.info("Enviando al cliente %s", action)
-
-            result = await bridge.send_command(action, args)
-
-            if not isinstance(result, dict) or result.get("status") == "error":
-                error.warning(
-                    "Tool de cliente falló: %s -> %s",
-                    tool_name,
-                    result,
-                )
-                return {
-                    "type": "error",
-                    "execution": "client",
-                    "tool": tool_name,
-                    "message": (
-                        result.get("error", "Error desconocido ejecutando tool en el cliente")
-                        if isinstance(result, dict)
-                        else "Respuesta inválida del cliente"
-                    ),
-                    "result": result,
-                }
-
-            execution = "client"
-
-        else:
-            logger.info("Ejecutando tool de servidor: %s", tool_name)
-            tool = get_tool(tool_name, request_id)
-
-            if not tool:
-                return {
-                    "type": "error",
-                    "message": f"No existe {tool_name}",
-                }
-
-            # Validar/Adaptar argumentos usando el esquema de la Fase 1
-            validation_res = prepare_tool_args(tool_name, args, request_id)
-            if not validation_res.ok:
-                error.warning("Validación de argumentos falló para %s: %s", tool_name, validation_res.error)
-                return {
-                    "type": "error",
-                    "message": validation_res.error,
-                }
-            args = validation_res.args
-
-            # Inyectar session_id si la firma de la función lo requiere
-            try:
-                sig = inspect.signature(tool)
-                if "session_id" in sig.parameters:
-                    args["session_id"] = session_id or "global"
-            except Exception as e:
-                logger.warning("No se pudo inspeccionar la firma de la tool %s: %s", tool_name, e)
-
-            try:
+            
+            # Ejecutar bypass tool determinista de un solo disparo
+            if is_client_tool(tool_name):
+                logger.info("Ejecutando tool de cliente (bypass): %s", tool_name)
+                action = get_client_action(tool_name)
+                result = await bridge.send_command(action, args, client_id=client_id)
+                execution = "client"
+            else:
+                logger.info("Ejecutando tool de servidor (bypass): %s", tool_name)
+                tool = get_tool(tool_name, request_id)
+                if not tool:
+                    return {
+                        "type": "error",
+                        "message": f"No existe {tool_name}",
+                    }
+                # Validar/Adaptar argumentos
+                validation_res = prepare_tool_args(tool_name, args, request_id)
+                if not validation_res.ok:
+                    return {
+                        "type": "error",
+                        "message": validation_res.error,
+                    }
+                args = validation_res.args
+                # Inyectar session_id y client_id
+                try:
+                    sig = inspect.signature(tool)
+                    if "session_id" in sig.parameters:
+                        args["session_id"] = session_id or "global"
+                    if "client_id" in sig.parameters:
+                        args["client_id"] = client_id
+                except Exception:
+                    pass
+                
                 if asyncio.iscoroutinefunction(tool):
-                    result = await asyncio.wait_for(
-                        tool(**args),
-                        timeout=_TOOL_TIMEOUT,
-                    )
+                    result = await asyncio.wait_for(tool(**args), timeout=_TOOL_TIMEOUT)
                 else:
                     loop = asyncio.get_running_loop()
-                    result = await asyncio.wait_for(
-                        loop.run_in_executor(None, lambda: tool(**args)),
-                        timeout=_TOOL_TIMEOUT,
-                    )
+                    result = await asyncio.wait_for(loop.run_in_executor(None, lambda: tool(**args)), timeout=_TOOL_TIMEOUT)
+                execution = "server"
+        else:
+            # ------------------------------------------------------------
+            # TOOL — parseo de la respuesta del LLM en modo tool y ejecución con bucle de autocorrección
+            # ------------------------------------------------------------
+            max_attempts = 3
+            current_attempt = 0
+            
+            while current_attempt < max_attempts:
+                current_attempt += 1
+                logger.info("Ciclo de ejecución de tool: Intento %d de %d", current_attempt, max_attempts)
 
-            except Exception as e:
-                error.exception("Error ejecutando tool de servidor: %s", tool_name)
-                return {
-                    "type": "error",
-                    "execution": "server",
-                    "tool": tool_name,
-                    "message": str(e),
-                }
+                # Reconstruir memory_text con el historial de mensajes actualizado (que incluye los fallos previos)
+                if session_id:
+                    latest_history_parts = []
+                    if style_facts:
+                        latest_history_parts.append("[Directrices de estilo preferidas por el usuario:]")
+                        for fact in style_facts:
+                            latest_history_parts.append(f"- {fact}")
+                        latest_history_parts.append("")
+                    if filtered_general:
+                        latest_history_parts.append("[Recuerdos semánticos relevantes del usuario:]")
+                        for fact in filtered_general:
+                            latest_history_parts.append(f"- {fact}")
+                        latest_history_parts.append("")
+                    
+                    session_summary = memory.get_summary(session_id, client_id=client_id)
+                    if session_summary:
+                        latest_history_parts.append("[Historial de la conversación reciente:]")
+                        latest_history_parts.append(session_summary)
+                    
+                    memory_text = "\n".join(latest_history_parts) if latest_history_parts else None
 
-            if isinstance(result, dict) and result.get("status") == "error":
-                error.warning(
-                    "Tool de servidor falló: %s -> %s",
-                    tool_name,
-                    result,
+                raw = await llm.generate(
+                    user_message,
+                    mode="tool",
+                    request_id=request_id,
+                    memory=memory_text,
+                    client_id=client_id,
                 )
-                return {
-                    "type": "error",
-                    "execution": "server",
-                    "tool": tool_name,
-                    "message": result.get("message", "Error ejecutando tool"),
-                    "result": result,
-                }
+                logger.info("Raw LLM output (Intento %d): %s", current_attempt, repr(raw))
 
-            execution = "server"
+                data = extract_json_robust(raw)
+                logger.info("LLM tool response (Intento %d): %s", current_attempt, data)
+                if not data:
+                    error.warning("LLM no devolvió JSON de tool válido (Intento %d)", current_attempt)
+                    if current_attempt == max_attempts:
+                        return {
+                            "type": "error",
+                            "message": "JSON tool inválido",
+                            "raw": raw,
+                        }
+                    if session_id:
+                        memory.add_message(session_id, "system", f"Error: Tu respuesta anterior no contenía un JSON de herramienta válido. Por favor, genera únicamente el JSON de la herramienta.", client_id=client_id)
+                    continue
+
+                tool_name, args = _extract_tool_and_args(data)
+
+                if not tool_name:
+                    if current_attempt == max_attempts:
+                        return {
+                            "type": "error",
+                            "message": "Tool desconocida o no especificada",
+                        }
+                    if session_id:
+                        memory.add_message(session_id, "system", f"Error: No se pudo identificar el nombre de la herramienta a partir de tu JSON: {data}.", client_id=client_id)
+                    continue
+
+                # ------------------------------------------------------------
+                # EJECUCIÓN — cliente (bridge) o servidor (tool_registry)
+                # ------------------------------------------------------------
+                if is_client_tool(tool_name):
+                    logger.info("Ejecutando tool de cliente: %s", tool_name)
+                    action = get_client_action(tool_name)
+                    logger.info("Enviando al cliente %s", action)
+
+                    result = await bridge.send_command(action, args, client_id=client_id)
+
+                    if not isinstance(result, dict) or result.get("status") == "error":
+                        error.warning(
+                            "Tool de cliente falló (Intento %d): %s -> %s",
+                            current_attempt,
+                            tool_name,
+                            result,
+                        )
+                        if current_attempt == max_attempts:
+                            return {
+                                "type": "error",
+                                "execution": "client",
+                                "tool": tool_name,
+                                "message": (
+                                    result.get("error", "Error desconocido ejecutando tool en el cliente")
+                                    if isinstance(result, dict)
+                                    else "Respuesta inválida del cliente"
+                                ),
+                                "result": result,
+                            }
+                        if session_id:
+                            import json
+                            memory.add_message(session_id, "assistant", json.dumps({"tool": tool_name, "args": args}), client_id=client_id)
+                            memory.add_message(session_id, "system", f"Tool output: {json.dumps(result)}. Corrige los parámetros y vuelve a intentar.", client_id=client_id)
+                        continue
+
+                    execution = "client"
+
+                else:
+                    # Control de Acceso (RBAC) para roles restrictivos
+                    role = "admin"
+                    if client_id:
+                        client_meta = bridge._client_info_dict.get(client_id)
+                        if client_meta:
+                            role = client_meta.get("role", "guest")
+                        else:
+                            from app.config import settings
+                            role = settings.get_client_role(client_id)
+                    
+                    if role in ("guest", "limitado") and tool_name != "no_op":
+                        logger.warning("Acceso denegado: el cliente %s con rol %s intentó ejecutar %s", client_id, role, tool_name)
+                        return {
+                            "type": "error",
+                            "message": f"Acceso denegado: el rol '{role}' no tiene permisos para ejecutar la herramienta de servidor '{tool_name}'",
+                        }
+
+                    logger.info("Ejecutando tool de servidor: %s", tool_name)
+                    tool = get_tool(tool_name, request_id)
+
+                    if not tool:
+                        if current_attempt == max_attempts:
+                            return {
+                                "type": "error",
+                                "message": f"No existe {tool_name}",
+                            }
+                        if session_id:
+                            memory.add_message(session_id, "system", f"Error: La herramienta de servidor '{tool_name}' no está registrada en el sistema.", client_id=client_id)
+                        continue
+
+                    # Validar/Adaptar argumentos usando el esquema de la Fase 1
+                    validation_res = prepare_tool_args(tool_name, args, request_id)
+                    if not validation_res.ok:
+                        error.warning("Validación de argumentos falló para %s: %s", tool_name, validation_res.error)
+                        if current_attempt == max_attempts:
+                            return {
+                                "type": "error",
+                                "message": validation_res.error,
+                            }
+                        if session_id:
+                            memory.add_message(session_id, "system", f"Error de validación de argumentos para '{tool_name}': {validation_res.error}", client_id=client_id)
+                        continue
+                    args = validation_res.args
+
+                    # Inyectar session_id y client_id si la firma de la función lo requiere
+                    try:
+                        sig = inspect.signature(tool)
+                        if "session_id" in sig.parameters:
+                            args["session_id"] = session_id or "global"
+                        if "client_id" in sig.parameters:
+                            args["client_id"] = client_id
+                    except Exception as e:
+                        logger.warning("No se pudo inspeccionar la firma de la tool %s: %s", tool_name, e)
+
+                    try:
+                        if asyncio.iscoroutinefunction(tool):
+                            result = await asyncio.wait_for(
+                                tool(**args),
+                                timeout=_TOOL_TIMEOUT,
+                            )
+                        else:
+                            loop = asyncio.get_running_loop()
+                            result = await asyncio.wait_for(
+                                loop.run_in_executor(None, lambda: tool(**args)),
+                                timeout=_TOOL_TIMEOUT,
+                            )
+
+                    except Exception as e:
+                        error.exception("Error ejecutando tool de servidor: %s", tool_name)
+                        if current_attempt == max_attempts:
+                            return {
+                                "type": "error",
+                                "execution": "server",
+                                "tool": tool_name,
+                                "message": str(e),
+                            }
+                        if session_id:
+                            memory.add_message(session_id, "system", f"Error: La ejecución de la herramienta '{tool_name}' falló con una excepción: {str(e)}", client_id=client_id)
+                        continue
+
+                    # Validación de sintaxis local en archivos Python
+                    if tool_name in ("create_file", "append_file", "replace_file_content") and isinstance(result, dict) and result.get("status") == "ok":
+                        file_path = args.get("path")
+                        if file_path and str(file_path).endswith(".py"):
+                            try:
+                                import py_compile
+                                from app.tools.server.filesystem_tools import _resolve_path
+                                resolved_path = _resolve_path(str(file_path))
+                                if resolved_path.exists():
+                                    py_compile.compile(str(resolved_path), doraise=True)
+                                    logger.info("Validación sintáctica exitosa para: %s", file_path)
+                            except py_compile.PyCompileError as py_err:
+                                error_msg = f"Error de sintaxis de Python: {py_err.msg.strip()}"
+                                logger.warning("Validación sintáctica falló: %s", error_msg)
+                                result = {
+                                    "status": "error",
+                                    "message": f"El archivo se guardó pero tiene errores de sintaxis que debes corregir de inmediato: {error_msg}"
+                                }
+                            except Exception as e:
+                                logger.warning("No se pudo validar la sintaxis del archivo: %s", e)
+
+                    if isinstance(result, dict) and result.get("status") == "error":
+                        error.warning(
+                            "Tool de servidor falló (Intento %d): %s -> %s",
+                            current_attempt,
+                            tool_name,
+                            result,
+                        )
+                        if current_attempt == max_attempts:
+                            return {
+                                "type": "error",
+                                "execution": "server",
+                                "tool": tool_name,
+                                "message": result.get("message", "Error ejecutando tool"),
+                                "result": result,
+                            }
+                        if session_id:
+                            import json
+                            memory.add_message(session_id, "assistant", json.dumps({"tool": tool_name, "args": args}), client_id=client_id)
+                            memory.add_message(session_id, "system", f"Tool output: {json.dumps(result)}. Por favor, corrige los errores e inténtalo de nuevo.", client_id=client_id)
+                        continue
+
+                    execution = "server"
+                
+                # Ejecución exitosa de tool, salimos del ciclo
+                break
 
         # Registrar llamadas de herramientas y sus resultados en el historial de la sesión para el contexto de Alfonso
         if session_id:
             import json
-            memory.add_message(session_id, "assistant", json.dumps({"tool": tool_name, "args": args}))
-            memory.add_message(session_id, "system", f"Tool output: {json.dumps(result)}")
+            memory.add_message(session_id, "assistant", json.dumps({"tool": tool_name, "args": args}), client_id=client_id)
+            memory.add_message(session_id, "system", f"Tool output: {json.dumps(result)}", client_id=client_id)
 
         # ------------------------------------------------------------
         # RESPUESTA UNIFICADA
@@ -1210,7 +1473,7 @@ class PlannerOrchestrator:
         if tool_name in _DIRECT_CONFIRM:
             confirm_text = _DIRECT_CONFIRM[tool_name]
             if session_id:
-                memory.add_message(session_id, "assistant", confirm_text)
+                memory.add_message(session_id, "assistant", confirm_text, client_id=client_id)
             return {
                 "type": "chat",
                 "response": confirm_text,

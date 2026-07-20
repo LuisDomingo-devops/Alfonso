@@ -11,7 +11,7 @@ Se ejecuta de manera manual para sembrar o inicializar el conocimiento legal de 
 Procesando documentos planos txt e indexando los fragmentos en la colección legal de ChromaDB.
 
 ¿CON QUÉ OTROS SCRIPTS ESTÁ RELACIONADO?
-- app/core/vector_memory.py (almacena y expone la búsqueda sobre esta colección)
+- app/adapters/memory/vector_memory.py (almacena y expone la búsqueda sobre esta colección)
 """
 
 import sys

@@ -8,11 +8,11 @@ Expone herramientas para buscar u registrar información factual de largo plazo 
 Durante la ejecución de planes de Alfonso para recordar u almacenar hechos de forma semántica.
 
 ¿CÓMO LO HACE?
-Llamando a las funciones expuestas por `app/core/vector_memory.py`.
+Llamando a las funciones expuestas por `app/adapters/memory/vector_memory.py`.
 
 ¿CON QUÉ OTROS SCRIPTS ESTÁ RELACIONADO?
-- app/core/tool_registry.py (registra estas herramientas)
-- app/core/vector_memory.py (contiene el motor de búsqueda ChromaDB)
+- app/adapters/tool_registry.py (registra estas herramientas)
+- app/adapters/memory/vector_memory.py (contiene el motor de búsqueda ChromaDB)
 """
 
 from app.adapters.memory import vector_memory

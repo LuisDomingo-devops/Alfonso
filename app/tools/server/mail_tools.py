@@ -12,8 +12,8 @@ Interactúa con mail_db para el almacenamiento persistente, sincroniza eventos u
 
 ¿CON QUÉ OTROS SCRIPTS ESTÁ RELACIONADO?
 - app/api/routes.py: Expone endpoints que llaman a estas herramientas.
-- app/core/agents/marcos/marcos_agent.py: Delegación de borradores de correo de carácter legal.
-- app/core/mail_db.py y app/core/calendar_db.py: Acceso y mutación de bases de datos locales.
+- app/domain/agents/marcos/marcos_agent.py: Delegación de borradores de correo de carácter legal.
+- app/adapters/mail_db.py y app/adapters/calendar_db.py: Acceso y mutación de bases de datos locales.
 """
 
 import json

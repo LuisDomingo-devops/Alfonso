@@ -11,7 +11,7 @@ Se ejecuta de manera manual para sembrar o inicializar el conocimiento disponibl
 Analizando archivos y subiéndolos mediante el cliente persistente de ChromaDB.
 
 ¿CON QUÉ OTROS SCRIPTS ESTÁ RELACIONADO?
-- app/core/vector_memory.py (define el cliente y las colecciones donde se guardan los datos)
+- app/adapters/memory/vector_memory.py (define el cliente y las colecciones donde se guardan los datos)
 """
 
 from app.adapters.memory import vector_memory

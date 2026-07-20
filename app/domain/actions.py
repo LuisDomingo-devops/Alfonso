@@ -11,8 +11,8 @@ Durante la ejecución del planificador para verificar el estado del cliente, res
 Mediante funciones asíncronas de Python que interactúan con el puente WebSocket y el estado del sistema.
 
 ¿CON QUÉ OTROS SCRIPTS ESTÁ RELACIONADO?
-- app/core/planner_orchestrator.py (invoca estas acciones durante su pipeline)
-- app/core/alfonso_bridge.py (verifica el estado de las conexiones websocket activas)
+- app/domain/planner_orchestrator.py (invoca estas acciones durante su pipeline)
+- app/adapters/alfonso_bridge.py (verifica el estado de las conexiones websocket activas)
 """
 
 from __future__ import annotations
@@ -42,6 +42,7 @@ class Action:
     DELETE_DIRECTORY = "delete_directory"
     MOVE_FILE = "move_file"
     RENAME_FILE = "rename_file"
+    REPLACE_FILE_CONTENT = "replace_file_content"
 
     # --- Ratón -----------------------------------------------------
     MOUSE_MOVE = "mouse.move"
@@ -128,6 +129,7 @@ CLIENT_ALIASES: dict[str, str] = {
     "delete_directory": Action.DELETE_DIRECTORY,
     "move_file": Action.MOVE_FILE,
     "rename_file": Action.RENAME_FILE,
+    "replace_file_content": Action.REPLACE_FILE_CONTENT,
     "open_calendar": Action.CALENDAR_OPEN,
     "calendar_open": Action.CALENDAR_OPEN,
     "open_mail": Action.MAIL_OPEN,

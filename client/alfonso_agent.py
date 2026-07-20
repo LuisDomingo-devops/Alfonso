@@ -328,6 +328,10 @@ class AlfonsoAgent:
         if not url:
             return {"error": "url vacía"}
 
+        # Asegurar esquema para evitar que Windows explorer.exe abra "Documentos"
+        if not url.startswith(("http://", "https://")):
+            url = "https://" + url
+
         try:
             if IS_WINDOWS:
                 try:
@@ -771,8 +775,44 @@ class AlfonsoAgent:
                     except Exception:
                         pass
                     
+                    # Generar/cargar client_id persistente en logs/client_config.json
+                    import socket
+                    import uuid
+                    client_config_path = os.path.join(logs_dir, "client_config.json")
+                    client_id = None
+                    if os.path.exists(client_config_path):
+                        try:
+                            with open(client_config_path, "r", encoding="utf-8") as f:
+                                client_id = json.load(f).get("client_id")
+                        except Exception:
+                            pass
+                    if not client_id:
+                        client_id = str(uuid.uuid4())
+                        try:
+                            with open(client_config_path, "w", encoding="utf-8") as f:
+                                json.dump({"client_id": client_id}, f, indent=4)
+                        except Exception:
+                            pass
+
+                    # Obtener hostname e IP local de forma resiliente
+                    hostname = socket.gethostname()
+                    ip_local = "127.0.0.1"
+                    try:
+                        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+                        s.connect(("8.8.8.8", 80))
+                        ip_local = s.getsockname()[0]
+                        s.close()
+                    except Exception:
+                        try:
+                            ip_local = socket.gethostbyname(hostname)
+                        except Exception:
+                            pass
+
                     handshake = {
                         "type": "handshake",
+                        "client_id": client_id,
+                        "hostname": hostname,
+                        "ip_local": ip_local,
                         "system": platform.system(),
                         "release": platform.release(),
                         "username": uname_str,

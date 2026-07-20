@@ -11,10 +11,10 @@ Cuando el PlannerOrchestrator identifica una consulta de desarrollo de software 
 Utiliza OllamaClient para generar las respuestas técnicas de código basándose en el prompt del sistema precargado, y escribe/ejecuta comandos en un sandbox aislado mediante subprocess.
 
 ¿CON QUÉ OTROS SCRIPTS ESTÁ RELACIONADO?
-- app/core/planner_orchestrator.py: Delega consultas de desarrollo a este agente.
+- app/domain/planner_orchestrator.py: Delega consultas de desarrollo a este agente.
 - app/api/routes.py (antes routes_dev.py): Ofrece endpoints REST para interactuar con el sandbox de este agente.
-- app/core/vector_memory.py: Recupera pautas de diseño y plantillas de dev_knowledge.
-- app/core/llm_client.py: Invoca el cliente LLM para generar código y respuestas.
+- app/adapters/memory/vector_memory.py: Recupera pautas de diseño y plantillas de dev_knowledge.
+- app/adapters/llm_client.py: Invoca el cliente LLM para generar código y respuestas.
 """
 
 import os

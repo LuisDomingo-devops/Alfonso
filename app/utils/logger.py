@@ -58,7 +58,7 @@ def attach_request_id(logger: logging.Logger, request_id: str | None = None):
     return logging.LoggerAdapter(logger, {"request_id": request_id})
 
 
-def build_logger(name: str, filename: str):
+def build_logger(name: str, filename: str, log_to_console: bool = True):
     logger = logging.getLogger(name)
 
     if logger.handlers:
@@ -76,11 +76,12 @@ def build_logger(name: str, filename: str):
 
     file_handler.setFormatter(formatter)
 
-    console_handler = logging.StreamHandler()
-    console_handler.setFormatter(console_formatter)
-
     logger.addHandler(file_handler)
-    logger.addHandler(console_handler)
+
+    if log_to_console:
+        console_handler = logging.StreamHandler()
+        console_handler.setFormatter(console_formatter)
+        logger.addHandler(console_handler)
 
     return logger
 

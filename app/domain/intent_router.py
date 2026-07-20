@@ -11,9 +11,9 @@ Al inicio de cada llamada al endpoint de chat para determinar la ruta óptima de
 Mediante coincidencia semántica y palabras clave específicas con expresiones regulares rápidas.
 
 ¿CON QUÉ OTROS SCRIPTS ESTÁ RELACIONADO?
-- app/core/planner_orchestrator.py (invoca este router al inicio de su pipeline)
-- app/core/agents/dev/dev_agent.py (recibe delegaciones si el intent es desarrollo)
-- app/core/agents/marcos/marcos_agent.py (recibe delegaciones si el intent es legal)
+- app/domain/planner_orchestrator.py (invoca este router al inicio de su pipeline)
+- app/domain/agents/dev/dev_agent.py (recibe delegaciones si el intent es desarrollo)
+- app/domain/agents/marcos/marcos_agent.py (recibe delegaciones si el intent es legal)
 """
 
 from __future__ import annotations

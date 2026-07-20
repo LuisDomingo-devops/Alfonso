@@ -5,8 +5,8 @@ import os
 # Deshabilita el mock global del módulo app.adapters.memory que causaba problemas.
 # En su lugar, usaremos fixtures específicos o mocks más precisos.
 # Si app.adapters.memory tiene una instancia global 'memory', la parchearemos.
-# Forzamos a que cualquier instancia de SessionMemory use una DB en memoria durante los tests
-os.environ["ALFONSO_DB_PATH"] = ":memory:"
+# Forzamos a que cualquier instancia de SessionMemory use la base de datos de test local
+os.environ["ALFONSO_DB_PATH"] = "data/memory_test.db"
 
 
 @pytest.fixture

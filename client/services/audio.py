@@ -205,19 +205,28 @@ class AudioService:
             device, name, self._native_rate, TARGET_RATE,
         )
         self._tts_engine = None # Initialize pyttsx3 engine lazily
+        self._whisper_model = None
 
     def _init_tts_engine(self):
         """Initializes the pyttsx3 engine if not already initialized."""
         if self._tts_engine is None:
             try:
                 self._tts_engine = pyttsx3.init()
-                # Optional: Set properties like voice, rate, volume
-                # voices = self._tts_engine.getProperty('voices')
-                # self._tts_engine.setProperty('voice', voices[0].id)
-                # self._tts_engine.setProperty('rate', 150)
             except Exception as e:
                 logger.error(f"Error initializing pyttsx3 engine: {e}")
                 self._tts_engine = None
+
+    def _init_whisper_model(self):
+        """Inicializa el modelo de Whisper local si no está ya cargado."""
+        if self._whisper_model is None:
+            try:
+                from faster_whisper import WhisperModel
+                logger.info("Cargando modelo Whisper local en CPU (modo offline)...")
+                self._whisper_model = WhisperModel("tiny", device="cpu", compute_type="int8")
+                logger.info("Modelo Whisper cargado correctamente.")
+            except Exception as e:
+                logger.error(f"Error cargando Whisper local: {e}")
+                self._whisper_model = None
 
     # ------------------------------------------------------------------
     # Listado de dispositivos
@@ -326,16 +335,235 @@ class AudioService:
         except Exception as exc:
             logger.error("Error reproduciendo audio: %s", exc)
 
+    def _ensure_piper_assets(self) -> bool:
+        """
+        Asegura que el ejecutable de Piper y el modelo en español estén descargados.
+        Devuelve True si todo está listo.
+        """
+        import platform
+        import urllib.request
+        import zipfile
+        import tarfile
+        import shutil
+        from pathlib import Path
+        
+        sys_name = platform.system()
+        base_dir = Path(__file__).resolve().parents[1] / "resources" / "piper"
+        base_dir.mkdir(parents=True, exist_ok=True)
+        
+        # 1. Rutas locales de destino
+        model_path = base_dir / "es_ES-alvaro-medium.onnx"
+        model_json = base_dir / "es_ES-alvaro-medium.onnx.json"
+        
+        # Determinar nombre del binario según sistema operativo
+        binary_name = "piper.exe" if sys_name == "Windows" else "piper"
+        piper_bin = base_dir / binary_name
+        
+        # Si el binario y el modelo ya existen, todo listo!
+        if piper_bin.exists() and model_path.exists() and model_json.exists():
+            return True
+            
+        logger.info("Faltan recursos de Piper TTS local. Iniciando descarga automática...")
+        
+        try:
+            # Descargar modelo ONNX de Hugging Face
+            if not model_path.exists():
+                url_model = "https://huggingface.co/rhasspy/piper-voices/resolve/main/es/es_ES/alvaro/medium/es_ES-alvaro-medium.onnx"
+                logger.info(f"Descargando modelo de voz: {url_model} ...")
+                urllib.request.urlretrieve(url_model, str(model_path))
+                
+            if not model_json.exists():
+                url_json = "https://huggingface.co/rhasspy/piper-voices/resolve/main/es/es_ES/alvaro/medium/es_ES-alvaro-medium.onnx.json"
+                logger.info(f"Descargando config del modelo: {url_json} ...")
+                urllib.request.urlretrieve(url_json, str(model_json))
+                
+            # Descargar binario de Piper si no existe
+            if not piper_bin.exists():
+                if sys_name == "Windows":
+                    url_bin = "https://github.com/rhasspy/piper/releases/download/v1.2.0/piper_windows_amd64.zip"
+                    archive_path = base_dir / "piper.zip"
+                    logger.info(f"Descargando binario Piper para Windows: {url_bin} ...")
+                    urllib.request.urlretrieve(url_bin, str(archive_path))
+                    
+                    # Extraer zip
+                    logger.info("Extrayendo archivos...")
+                    with zipfile.ZipFile(archive_path, 'r') as zip_ref:
+                        zip_ref.extractall(str(base_dir))
+                        
+                    # Mover los archivos del subdirectorio 'piper/' creado al directorio base
+                    extracted_dir = base_dir / "piper"
+                    if extracted_dir.exists():
+                        for item in extracted_dir.iterdir():
+                            shutil.move(str(item), str(base_dir / item.name))
+                        shutil.rmtree(str(extracted_dir))
+                    
+                    if archive_path.exists():
+                        archive_path.unlink()
+                        
+                else:
+                    url_bin = "https://github.com/rhasspy/piper/releases/download/v1.2.0/piper_amd64.tar.gz"
+                    archive_path = base_dir / "piper.tar.gz"
+                    logger.info(f"Descargando binario Piper para Linux: {url_bin} ...")
+                    urllib.request.urlretrieve(url_bin, str(archive_path))
+                    
+                    # Extraer tar.gz
+                    logger.info("Extrayendo archivos...")
+                    with tarfile.open(archive_path, "r:gz") as tar_ref:
+                        tar_ref.extractall(str(base_dir))
+                        
+                    extracted_dir = base_dir / "piper"
+                    if extracted_dir.exists():
+                        for item in extracted_dir.iterdir():
+                            shutil.move(str(item), str(base_dir / item.name))
+                        shutil.rmtree(str(extracted_dir))
+                        
+                    if archive_path.exists():
+                        archive_path.unlink()
+            
+            # Dar permisos de ejecución en Linux/Mac
+            if sys_name != "Windows" and piper_bin.exists():
+                os.chmod(str(piper_bin), 0o755)
+                
+            logger.info("Recursos de Piper TTS local descargados e inicializados correctamente!")
+            return True
+            
+        except Exception as e:
+            logger.error(f"Error descargando o instalando Piper localmente: {e}")
+            return False
+
+    async def _synthesize_piper(self, text: str, output_path: str) -> bool:
+        """
+        Llama al binario de Piper local para sintetizar el texto y guardarlo como WAV.
+        """
+        import platform
+        import subprocess
+        from pathlib import Path
+        
+        sys_name = platform.system()
+        base_dir = Path(__file__).resolve().parents[1] / "resources" / "piper"
+        binary_name = "piper.exe" if sys_name == "Windows" else "piper"
+        piper_bin = base_dir / binary_name
+        model_path = base_dir / "es_ES-alvaro-medium.onnx"
+        
+        if not piper_bin.exists() or not model_path.exists():
+            return False
+            
+        try:
+            # Piper comando: piper --model es_ES-alvaro-medium.onnx --output_file output.wav
+            cmd = [
+                str(piper_bin),
+                "--model", str(model_path),
+                "--output_file", output_path
+            ]
+            
+            proc = await asyncio.create_subprocess_exec(
+                *cmd,
+                stdin=subprocess.PIPE,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE
+            )
+            
+            stdout, stderr = await proc.communicate(input=text.encode("utf-8"))
+            
+            if proc.returncode == 0:
+                return True
+            else:
+                logger.error(f"Piper finalizó con error code {proc.returncode}: {stderr.decode('utf-8')}")
+                return False
+        except Exception as e:
+            logger.error(f"Excepción llamando a Piper TTS: {e}")
+            return False
+
+def strip_code_blocks(text: str) -> str:
+    import re
+    # 1. Quitar bloques de código triple comilla ``` ... ```
+    clean_text = re.sub(r"```.*?```", "", text, flags=re.DOTALL)
+    # 2. Quitar indicadores de archivo [FILE:...] o [file:...]
+    clean_text = re.sub(r"\[FILE:.*?\]", "", clean_text, flags=re.IGNORECASE)
+    # 3. Quitar markdown de negritas, cursivas y títulos
+    clean_text = re.sub(r"\*\*([^*]+)\*\*", r"\1", clean_text)
+    clean_text = re.sub(r"\*([^*]+)\*", r"\1", clean_text)
+    clean_text = re.sub(r"__([^_]+)__", r"\1", clean_text)
+    clean_text = re.sub(r"_([^_]+)_", r"\1", clean_text)
+    clean_text = re.sub(r"#+\s+", "", clean_text)
+    # 4. Quitar guiones e inicios de lista al principio de las líneas
+    clean_text = re.sub(r"^\s*[-*+]\s+", "", clean_text, flags=re.MULTILINE)
+    # 5. Quitar saltos de línea repetidos y limpiar espacios
+    clean_text = re.sub(r"\n+", " ", clean_text)
+    clean_text = re.sub(r"\s+", " ", clean_text)
+    
+    clean_text = clean_text.strip()
+    if not clean_text:
+        return "He completado tu solicitud y guardado los archivos correspondientes."
+    return clean_text
+
+def detect_language(text: str) -> str:
+    import re
+    en_words = {"the", "and", "of", "to", "in", "is", "you", "that", "it", "he", "was", "for", "on", "are", "as", "with", "his", "they", "i", "at", "be", "this", "have", "from", "file", "error", "success", "warning", "code", "landing", "page"}
+    es_words = {"el", "la", "los", "las", "un", "una", "y", "de", "a", "en", "que", "es", "un", "para", "con", "por", "su", "sus", "al", "del", "como", "más", "pero", "o", "este", "esta", "archivo", "error", "código", "pantalla", "correo", "cita"}
+    
+    words = re.findall(r"\b[a-z]+\b", text.lower())
+    if not words:
+        return "es"
+        
+    en_count = sum(1 for w in words if w in en_words)
+    es_count = sum(1 for w in words if w in es_words)
+    
+    if en_count > es_count:
+        return "en"
+    return "es"
+
     async def text_to_speech_human(self, text: str) -> Optional[str]:
         """
-        Genera audio con voces neuronales humanas usando edge-tts.
+        Genera audio de forma local y offline prioritariamente usando Piper TTS (voz neuronal local).
         Devuelve la ruta al archivo temporal generado.
         """
+        text = strip_code_blocks(text)
+        lang = detect_language(text)
+        
+        # 1. Intentar usar Piper TTS (Voz Neuronal Offline de alta calidad) - Solo para Español
         try:
-            # Usamos una voz masculina española muy natural (Alvaro)
-            # Para femenina podrías usar "es-ES-ElviraNeural"
-            voice = "es-ES-AlvaroNeural"
-            
+            if lang == "es" and self._ensure_piper_assets():
+                temp_file = tempfile.NamedTemporaryFile(delete=False, suffix=".wav")
+                temp_path = temp_file.name
+                temp_file.close()
+                
+                success = await self._synthesize_piper(text, temp_path)
+                if success:
+                    logger.info(f"Audio offline generado exitosamente con Piper TTS en {temp_path}")
+                    return temp_path
+        except Exception as e:
+            logger.error(f"Error procesando Piper TTS: {e}")
+
+        # 2. Fallback a pyttsx3 (Voz nativa offline básica)
+        self._init_tts_engine()
+        if self._tts_engine is not None:
+            try:
+                temp_file = tempfile.NamedTemporaryFile(delete=False, suffix=".wav")
+                temp_path = temp_file.name
+                temp_file.close()
+                
+                # Configurar idioma en pyttsx3 si está disponible
+                voices = self._tts_engine.getProperty("voices")
+                for v in voices:
+                    if lang == "es" and "spanish" in v.name.lower():
+                        self._tts_engine.setProperty("voice", v.id)
+                        break
+                    elif lang == "en" and "english" in v.name.lower():
+                        self._tts_engine.setProperty("voice", v.id)
+                        break
+                
+                await asyncio.to_thread(self._tts_engine.save_to_file, text, temp_path)
+                await asyncio.to_thread(self._tts_engine.runAndWait)
+                
+                logger.info(f"Audio offline generado exitosamente con pyttsx3 en {temp_path}")
+                return temp_path
+            except Exception as e:
+                logger.error(f"Error generando TTS local con pyttsx3: {e}")
+        
+        # 3. Fallback a edge-tts si falla todo lo offline
+        try:
+            voice = "es-ES-AlvaroNeural" if lang == "es" else "en-US-GuyNeural"
             temp_file = tempfile.NamedTemporaryFile(delete=False, suffix=".mp3")
             temp_path = temp_file.name
             temp_file.close()
@@ -343,7 +571,7 @@ class AudioService:
             communicate = edge_tts.Communicate(text, voice)
             await communicate.save(temp_path)
             
-            logger.info(f"Audio humano generado exitosamente en {temp_path}")
+            logger.info(f"Audio online generado con edge-tts en {temp_path}")
             return temp_path
         except Exception as e:
             logger.error(f"Error generando voz humana (edge-tts): {e}")
@@ -443,14 +671,34 @@ class AudioService:
 
     def transcribe_local(self, wav_bytes: bytes) -> str:
         """
-        Realiza la transcripción de audio a texto localmente para evitar 404 en el servidor.
-        Requiere: pip install SpeechRecognition
+        Realiza la transcripción de audio a texto localmente de manera offline usando faster-whisper.
         """
+        self._init_whisper_model()
+        if self._whisper_model is not None:
+            try:
+                # Escribir bytes a un archivo temporal que Whisper pueda leer
+                with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as tmp:
+                    tmp.write(wav_bytes)
+                    tmp_path = tmp.name
+                
+                try:
+                    logger.info("Transcribiendo localmente con Whisper offline...")
+                    segments, info = self._whisper_model.transcribe(tmp_path, beam_size=5, language="es")
+                    text_parts = [segment.text for segment in segments]
+                    text = " ".join(text_parts).strip()
+                    return text
+                finally:
+                    if os.path.exists(tmp_path):
+                        os.remove(tmp_path)
+            except Exception as e:
+                logger.error(f"Error en transcripción local Whisper: {e}")
+                # Fallback al bloque siguiente en caso de error
+
+        logger.info("Intentando fallback a SpeechRecognition (Google API online)...")
         try:
             import speech_recognition as sr
             r = sr.Recognizer()
             
-            # Escribir bytes a un archivo temporal que sr pueda leer
             with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as tmp:
                 tmp.write(wav_bytes)
                 tmp_path = tmp.name
@@ -458,7 +706,6 @@ class AudioService:
             try:
                 with sr.AudioFile(tmp_path) as source:
                     audio = r.record(source)
-                # Usamos el motor de Google (gratis, requiere internet pero no modelos locales pesados)
                 text = r.recognize_google(audio, language="es-ES")
                 return text.strip()
             finally:
@@ -469,5 +716,5 @@ class AudioService:
             logger.error("Librería 'speech_recognition' no encontrada. Ejecuta: pip install SpeechRecognition")
             return ""
         except Exception as e:
-            logger.debug(f"STT local no detectó palabras: {e}")
+            logger.debug(f"El fallback de STT local no detectó palabras: {e}")
             return ""

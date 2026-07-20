@@ -5,3 +5,6 @@ PyQt6
 pygame
 pytest
 pytest-mock
+faster-whisper
+pyttsx3
+SpeechRecognition

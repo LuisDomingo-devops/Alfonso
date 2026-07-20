@@ -11,10 +11,10 @@ Cuando el PlannerOrchestrator identifica una consulta de carácter legal o cuand
 Realiza búsquedas semánticas en la base de datos ChromaDB mediante vector_memory.query_legal para recuperar artículos relevantes, inyecta este contexto legislativo en OllamaClient y genera la respuesta formal y precisa.
 
 ¿CON QUÉ OTROS SCRIPTS ESTÁ RELACIONADO?
-- app/core/planner_orchestrator.py: Delega consultas legales a este agente.
+- app/domain/planner_orchestrator.py: Delega consultas legales a este agente.
 - app/tools/mail_tools.py: Llama a este agente para generar borradores de correo inteligente si se detecta carácter legal.
-- app/core/vector_memory.py: Proporciona la funcionalidad de búsqueda semántica en la legislación.
-- app/core/llm_client.py: Invoca el cliente LLM para generar el dictamen o borrador legal.
+- app/adapters/memory/vector_memory.py: Proporciona la funcionalidad de búsqueda semántica en la legislación.
+- app/adapters/llm_client.py: Invoca el cliente LLM para generar el dictamen o borrador legal.
 """
 
 import os
