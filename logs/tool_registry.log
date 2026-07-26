@@ -3681,3 +3681,328 @@
 2026-07-25 11:07:33,760 | INFO | tool_registry | [----------] coerce_and_validate(create_file): recuperado tras heurística — campos desconocidos ignorados para 'create_file': ['output_path']; campo 'path' rellenado desde clave no reconocida 'output_path' (modo permisivo, heurística por similitud de nombre)
 2026-07-25 11:07:33,766 | INFO | tool_registry | [----------] coerce_and_validate(create_file): campos desconocidos ignorados para 'create_file': ['campo_inventado']
 2026-07-25 11:07:33,804 | WARNING | tool_registry | [----------] Tool servidor inexistente this_tool_does_not_exist
+2026-07-26 14:28:04,956 | INFO | tool_registry | [----------] Cargando plugin app.tools.client.browser_tools
+2026-07-26 14:28:04,957 | INFO | tool_registry | [----------] Registrando tool servidor: browser_navigate
+2026-07-26 14:28:04,957 | INFO | tool_registry | [----------] Registrando tool servidor: browser_click
+2026-07-26 14:28:04,958 | INFO | tool_registry | [----------] Registrando tool servidor: browser_fill
+2026-07-26 14:28:04,958 | INFO | tool_registry | [----------] Registrando tool servidor: browser_screenshot
+2026-07-26 14:28:04,958 | INFO | tool_registry | [----------] Registrando tool servidor: browser_get_text
+2026-07-26 14:28:04,958 | INFO | tool_registry | [----------] Registrando tool servidor: browser_inspect
+2026-07-26 14:28:04,958 | INFO | tool_registry | [----------] Registrando tool servidor: browser_search
+2026-07-26 14:28:04,958 | INFO | tool_registry | [----------] Registrando tool servidor: browser_close
+2026-07-26 14:28:04,958 | INFO | tool_registry | [----------] Cargando plugin app.tools.client.system_tools
+2026-07-26 14:28:04,958 | INFO | tool_registry | [----------] Registrando tool servidor: system_info
+2026-07-26 14:28:04,958 | INFO | tool_registry | [----------] Registrando tool servidor: open_application
+2026-07-26 14:28:04,958 | INFO | tool_registry | [----------] Registrando tool servidor: close_application
+2026-07-26 14:28:04,958 | INFO | tool_registry | [----------] Registrando tool servidor: get_current_datetime
+2026-07-26 14:28:04,958 | INFO | tool_registry | [----------] Registrando tool servidor: open_url
+2026-07-26 14:28:04,959 | INFO | tool_registry | [----------] Registrando tool servidor: screenshot
+2026-07-26 14:28:04,959 | INFO | tool_registry | [----------] Registrando tool servidor: mouse_move
+2026-07-26 14:28:04,959 | INFO | tool_registry | [----------] Registrando tool servidor: mouse_click
+2026-07-26 14:28:04,959 | INFO | tool_registry | [----------] Registrando tool servidor: mouse_drag
+2026-07-26 14:28:04,959 | INFO | tool_registry | [----------] Registrando tool servidor: keyboard_type
+2026-07-26 14:28:04,959 | INFO | tool_registry | [----------] Registrando tool servidor: keyboard_hotkey
+2026-07-26 14:28:04,959 | INFO | tool_registry | [----------] Registrando tool servidor: ocr_screenshot
+2026-07-26 14:28:04,959 | INFO | tool_registry | [----------] Registrando tool servidor: ocr_image
+2026-07-26 14:28:04,959 | INFO | tool_registry | [----------] Registrando tool servidor: find_on_screen
+2026-07-26 14:28:04,959 | INFO | tool_registry | [----------] Registrando tool servidor: window_list
+2026-07-26 14:28:04,959 | INFO | tool_registry | [----------] Registrando tool servidor: window_focus
+2026-07-26 14:28:04,959 | INFO | tool_registry | [----------] Registrando tool servidor: window_close
+2026-07-26 14:28:04,959 | INFO | tool_registry | [----------] Registrando tool servidor: run_command
+2026-07-26 14:28:04,961 | INFO | tool_registry | [----------] Cargando plugin app.tools.server.instagram_tools
+2026-07-26 14:28:04,961 | INFO | tool_registry | [----------] Registrando tool servidor: instagram_post_media
+2026-07-26 14:28:04,961 | INFO | tool_registry | [----------] Registrando tool servidor: instagram_get_engagement
+2026-07-26 14:28:04,962 | INFO | tool_registry | [----------] Cargando plugin app.tools.server.comfy_tools
+2026-07-26 14:28:04,962 | INFO | tool_registry | [----------] Registrando tool servidor: comfy_load_workflow
+2026-07-26 14:28:04,962 | INFO | tool_registry | [----------] Registrando tool servidor: comfy_generate_image
+2026-07-26 14:28:04,963 | INFO | tool_registry | [----------] Cargando plugin app.tools.server.mail_tools
+2026-07-26 14:28:04,963 | INFO | tool_registry | [----------] Registrando tool servidor: mail_receive_mock_emails
+2026-07-26 14:28:04,963 | INFO | tool_registry | [----------] Registrando tool servidor: mail_classify_emails
+2026-07-26 14:28:04,963 | INFO | tool_registry | [----------] Registrando tool servidor: mail_get_unread_summary
+2026-07-26 14:28:04,963 | INFO | tool_registry | [----------] Registrando tool servidor: mail_list_emails
+2026-07-26 14:28:04,963 | INFO | tool_registry | [----------] Registrando tool servidor: mail_get_email
+2026-07-26 14:28:04,963 | INFO | tool_registry | [----------] Registrando tool servidor: mail_open_ui
+2026-07-26 14:28:04,963 | INFO | tool_registry | [----------] Registrando tool servidor: mail_close_ui
+2026-07-26 14:28:04,963 | INFO | tool_registry | [----------] Registrando tool servidor: mail_send_email
+2026-07-26 14:28:04,963 | INFO | tool_registry | [----------] Registrando tool servidor: mail_delete_email
+2026-07-26 14:28:04,963 | INFO | tool_registry | [----------] Registrando tool servidor: mail_reply_email
+2026-07-26 14:28:04,963 | INFO | tool_registry | [----------] Registrando tool servidor: mail_forward_email
+2026-07-26 14:28:04,963 | INFO | tool_registry | [----------] Registrando tool servidor: mail_generate_draft
+2026-07-26 14:28:04,963 | INFO | tool_registry | [----------] Registrando tool servidor: mail_set_invoice_folder
+2026-07-26 14:28:04,964 | INFO | tool_registry | [----------] Cargando plugin app.tools.server.memory_tools
+2026-07-26 14:28:04,964 | INFO | tool_registry | [----------] Registrando tool servidor: save_user_preference
+2026-07-26 14:28:04,964 | INFO | tool_registry | [----------] Registrando tool servidor: forget_user_fact
+2026-07-26 14:28:04,964 | INFO | tool_registry | [----------] Registrando tool servidor: get_user_profile
+2026-07-26 14:28:04,965 | INFO | tool_registry | [----------] Cargando plugin app.tools.server.market_research_tools
+2026-07-26 14:28:04,965 | INFO | tool_registry | [----------] Registrando tool servidor: market_analyze_niche
+2026-07-26 14:28:04,966 | INFO | tool_registry | [----------] Registrando tool servidor: market_generate_proposal
+2026-07-26 14:28:04,966 | INFO | tool_registry | [----------] Cargando plugin app.tools.server.calendar_tools
+2026-07-26 14:28:04,966 | INFO | tool_registry | [----------] Registrando tool servidor: calendar_create_event
+2026-07-26 14:28:04,966 | INFO | tool_registry | [----------] Registrando tool servidor: calendar_list_events
+2026-07-26 14:28:04,966 | INFO | tool_registry | [----------] Registrando tool servidor: calendar_delete_event
+2026-07-26 14:28:04,966 | INFO | tool_registry | [----------] Registrando tool servidor: calendar_open_ui
+2026-07-26 14:28:04,966 | INFO | tool_registry | [----------] Registrando tool servidor: calendar_close_ui
+2026-07-26 14:28:04,966 | INFO | tool_registry | [----------] Registrando tool servidor: calendar_update_event
+2026-07-26 14:28:04,966 | INFO | tool_registry | [----------] Cargando plugin app.tools.server.filesystem_tools
+2026-07-26 14:28:04,966 | INFO | tool_registry | [----------] Registrando tool servidor: create_file
+2026-07-26 14:28:04,966 | INFO | tool_registry | [----------] Registrando tool servidor: read_file
+2026-07-26 14:28:04,966 | INFO | tool_registry | [----------] Registrando tool servidor: list_directory
+2026-07-26 14:28:04,966 | INFO | tool_registry | [----------] Registrando tool servidor: create_directory
+2026-07-26 14:28:04,966 | INFO | tool_registry | [----------] Registrando tool servidor: append_file
+2026-07-26 14:28:04,967 | INFO | tool_registry | [----------] Registrando tool servidor: delete_file
+2026-07-26 14:28:04,967 | INFO | tool_registry | [----------] Registrando tool servidor: delete_directory
+2026-07-26 14:28:04,967 | INFO | tool_registry | [----------] Registrando tool servidor: move_file
+2026-07-26 14:28:04,967 | INFO | tool_registry | [----------] Registrando tool servidor: rename_file
+2026-07-26 14:28:04,967 | INFO | tool_registry | [----------] Registrando tool servidor: replace_file_content
+2026-07-26 14:28:04,967 | INFO | tool_registry | [----------] Registrando esquema de args (Fase 1): create_file
+2026-07-26 14:28:04,967 | INFO | tool_registry | [----------] Registrando esquema de args (Fase 1): read_file
+2026-07-26 14:28:04,967 | INFO | tool_registry | [----------] Registrando esquema de args (Fase 1): append_file
+2026-07-26 14:28:04,967 | INFO | tool_registry | [----------] Registrando esquema de args (Fase 1): delete_file
+2026-07-26 14:28:04,967 | INFO | tool_registry | [----------] Registrando esquema de args (Fase 1): list_directory
+2026-07-26 14:28:04,967 | INFO | tool_registry | [----------] Registrando esquema de args (Fase 1): replace_file_content
+2026-07-26 14:28:15,776 | INFO | tool_registry | [----------] coerce_and_validate(create_file): recuperado tras heurística — campos desconocidos ignorados para 'create_file': ['output_path']; campo 'path' rellenado desde clave no reconocida 'output_path' (modo permisivo, heurística por similitud de nombre)
+2026-07-26 14:28:15,778 | INFO | tool_registry | [----------] coerce_and_validate(create_file): campos desconocidos ignorados para 'create_file': ['campo_inventado']
+2026-07-26 14:28:15,792 | WARNING | tool_registry | [----------] Tool servidor inexistente this_tool_does_not_exist
+2026-07-26 14:29:30,694 | INFO | tool_registry | [----------] Cargando plugin app.tools.client.browser_tools
+2026-07-26 14:29:30,695 | INFO | tool_registry | [----------] Registrando tool servidor: browser_navigate
+2026-07-26 14:29:30,695 | INFO | tool_registry | [----------] Registrando tool servidor: browser_click
+2026-07-26 14:29:30,695 | INFO | tool_registry | [----------] Registrando tool servidor: browser_fill
+2026-07-26 14:29:30,695 | INFO | tool_registry | [----------] Registrando tool servidor: browser_screenshot
+2026-07-26 14:29:30,695 | INFO | tool_registry | [----------] Registrando tool servidor: browser_get_text
+2026-07-26 14:29:30,695 | INFO | tool_registry | [----------] Registrando tool servidor: browser_inspect
+2026-07-26 14:29:30,696 | INFO | tool_registry | [----------] Registrando tool servidor: browser_search
+2026-07-26 14:29:30,696 | INFO | tool_registry | [----------] Registrando tool servidor: browser_close
+2026-07-26 14:29:30,720 | INFO | tool_registry | [----------] Cargando plugin app.tools.client.system_tools
+2026-07-26 14:29:30,720 | INFO | tool_registry | [----------] Registrando tool servidor: system_info
+2026-07-26 14:29:30,720 | INFO | tool_registry | [----------] Registrando tool servidor: open_application
+2026-07-26 14:29:30,720 | INFO | tool_registry | [----------] Registrando tool servidor: close_application
+2026-07-26 14:29:30,720 | INFO | tool_registry | [----------] Registrando tool servidor: get_current_datetime
+2026-07-26 14:29:30,720 | INFO | tool_registry | [----------] Registrando tool servidor: open_url
+2026-07-26 14:29:30,721 | INFO | tool_registry | [----------] Registrando tool servidor: screenshot
+2026-07-26 14:29:30,721 | INFO | tool_registry | [----------] Registrando tool servidor: mouse_move
+2026-07-26 14:29:30,721 | INFO | tool_registry | [----------] Registrando tool servidor: mouse_click
+2026-07-26 14:29:30,721 | INFO | tool_registry | [----------] Registrando tool servidor: mouse_drag
+2026-07-26 14:29:30,721 | INFO | tool_registry | [----------] Registrando tool servidor: keyboard_type
+2026-07-26 14:29:30,722 | INFO | tool_registry | [----------] Registrando tool servidor: keyboard_hotkey
+2026-07-26 14:29:30,722 | INFO | tool_registry | [----------] Registrando tool servidor: ocr_screenshot
+2026-07-26 14:29:30,722 | INFO | tool_registry | [----------] Registrando tool servidor: ocr_image
+2026-07-26 14:29:30,722 | INFO | tool_registry | [----------] Registrando tool servidor: find_on_screen
+2026-07-26 14:29:30,722 | INFO | tool_registry | [----------] Registrando tool servidor: window_list
+2026-07-26 14:29:30,722 | INFO | tool_registry | [----------] Registrando tool servidor: window_focus
+2026-07-26 14:29:30,723 | INFO | tool_registry | [----------] Registrando tool servidor: window_close
+2026-07-26 14:29:30,723 | INFO | tool_registry | [----------] Registrando tool servidor: run_command
+2026-07-26 14:29:30,726 | INFO | tool_registry | [----------] Cargando plugin app.tools.server.instagram_tools
+2026-07-26 14:29:30,726 | INFO | tool_registry | [----------] Registrando tool servidor: instagram_post_media
+2026-07-26 14:29:30,726 | INFO | tool_registry | [----------] Registrando tool servidor: instagram_get_engagement
+2026-07-26 14:29:30,728 | INFO | tool_registry | [----------] Cargando plugin app.tools.server.comfy_tools
+2026-07-26 14:29:30,728 | INFO | tool_registry | [----------] Registrando tool servidor: comfy_load_workflow
+2026-07-26 14:29:30,728 | INFO | tool_registry | [----------] Registrando tool servidor: comfy_generate_image
+2026-07-26 14:29:32,003 | INFO | tool_registry | [----------] Cargando plugin app.tools.server.mail_tools
+2026-07-26 14:29:32,003 | INFO | tool_registry | [----------] Registrando tool servidor: mail_receive_mock_emails
+2026-07-26 14:29:32,003 | INFO | tool_registry | [----------] Registrando tool servidor: mail_classify_emails
+2026-07-26 14:29:32,003 | INFO | tool_registry | [----------] Registrando tool servidor: mail_get_unread_summary
+2026-07-26 14:29:32,003 | INFO | tool_registry | [----------] Registrando tool servidor: mail_list_emails
+2026-07-26 14:29:32,004 | INFO | tool_registry | [----------] Registrando tool servidor: mail_get_email
+2026-07-26 14:29:32,004 | INFO | tool_registry | [----------] Registrando tool servidor: mail_open_ui
+2026-07-26 14:29:32,004 | INFO | tool_registry | [----------] Registrando tool servidor: mail_close_ui
+2026-07-26 14:29:32,004 | INFO | tool_registry | [----------] Registrando tool servidor: mail_send_email
+2026-07-26 14:29:32,004 | INFO | tool_registry | [----------] Registrando tool servidor: mail_delete_email
+2026-07-26 14:29:32,005 | INFO | tool_registry | [----------] Registrando tool servidor: mail_reply_email
+2026-07-26 14:29:32,005 | INFO | tool_registry | [----------] Registrando tool servidor: mail_forward_email
+2026-07-26 14:29:32,005 | INFO | tool_registry | [----------] Registrando tool servidor: mail_generate_draft
+2026-07-26 14:29:32,005 | INFO | tool_registry | [----------] Registrando tool servidor: mail_set_invoice_folder
+2026-07-26 14:29:32,007 | INFO | tool_registry | [----------] Cargando plugin app.tools.server.memory_tools
+2026-07-26 14:29:32,007 | INFO | tool_registry | [----------] Registrando tool servidor: save_user_preference
+2026-07-26 14:29:32,007 | INFO | tool_registry | [----------] Registrando tool servidor: forget_user_fact
+2026-07-26 14:29:32,007 | INFO | tool_registry | [----------] Registrando tool servidor: get_user_profile
+2026-07-26 14:29:32,009 | INFO | tool_registry | [----------] Cargando plugin app.tools.server.market_research_tools
+2026-07-26 14:29:32,009 | INFO | tool_registry | [----------] Registrando tool servidor: market_analyze_niche
+2026-07-26 14:29:32,009 | INFO | tool_registry | [----------] Registrando tool servidor: market_generate_proposal
+2026-07-26 14:29:32,011 | INFO | tool_registry | [----------] Cargando plugin app.tools.server.calendar_tools
+2026-07-26 14:29:32,011 | INFO | tool_registry | [----------] Registrando tool servidor: calendar_create_event
+2026-07-26 14:29:32,011 | INFO | tool_registry | [----------] Registrando tool servidor: calendar_list_events
+2026-07-26 14:29:32,011 | INFO | tool_registry | [----------] Registrando tool servidor: calendar_delete_event
+2026-07-26 14:29:32,011 | INFO | tool_registry | [----------] Registrando tool servidor: calendar_open_ui
+2026-07-26 14:29:32,012 | INFO | tool_registry | [----------] Registrando tool servidor: calendar_close_ui
+2026-07-26 14:29:32,012 | INFO | tool_registry | [----------] Registrando tool servidor: calendar_update_event
+2026-07-26 14:29:32,015 | INFO | tool_registry | [----------] Cargando plugin app.tools.server.filesystem_tools
+2026-07-26 14:29:32,016 | INFO | tool_registry | [----------] Registrando tool servidor: create_file
+2026-07-26 14:29:32,016 | INFO | tool_registry | [----------] Registrando tool servidor: read_file
+2026-07-26 14:29:32,016 | INFO | tool_registry | [----------] Registrando tool servidor: list_directory
+2026-07-26 14:29:32,016 | INFO | tool_registry | [----------] Registrando tool servidor: create_directory
+2026-07-26 14:29:32,016 | INFO | tool_registry | [----------] Registrando tool servidor: append_file
+2026-07-26 14:29:32,016 | INFO | tool_registry | [----------] Registrando tool servidor: delete_file
+2026-07-26 14:29:32,017 | INFO | tool_registry | [----------] Registrando tool servidor: delete_directory
+2026-07-26 14:29:32,017 | INFO | tool_registry | [----------] Registrando tool servidor: move_file
+2026-07-26 14:29:32,017 | INFO | tool_registry | [----------] Registrando tool servidor: rename_file
+2026-07-26 14:29:32,017 | INFO | tool_registry | [----------] Registrando tool servidor: replace_file_content
+2026-07-26 14:29:32,017 | INFO | tool_registry | [----------] Registrando esquema de args (Fase 1): create_file
+2026-07-26 14:29:32,018 | INFO | tool_registry | [----------] Registrando esquema de args (Fase 1): read_file
+2026-07-26 14:29:32,018 | INFO | tool_registry | [----------] Registrando esquema de args (Fase 1): append_file
+2026-07-26 14:29:32,018 | INFO | tool_registry | [----------] Registrando esquema de args (Fase 1): delete_file
+2026-07-26 14:29:32,018 | INFO | tool_registry | [----------] Registrando esquema de args (Fase 1): list_directory
+2026-07-26 14:29:32,018 | INFO | tool_registry | [----------] Registrando esquema de args (Fase 1): replace_file_content
+2026-07-26 16:21:49,492 | INFO | tool_registry | [----------] Cargando plugin app.tools.client.browser_tools
+2026-07-26 16:21:49,492 | INFO | tool_registry | [----------] Registrando tool servidor: browser_navigate
+2026-07-26 16:21:49,493 | INFO | tool_registry | [----------] Registrando tool servidor: browser_click
+2026-07-26 16:21:49,493 | INFO | tool_registry | [----------] Registrando tool servidor: browser_fill
+2026-07-26 16:21:49,493 | INFO | tool_registry | [----------] Registrando tool servidor: browser_screenshot
+2026-07-26 16:21:49,493 | INFO | tool_registry | [----------] Registrando tool servidor: browser_get_text
+2026-07-26 16:21:49,493 | INFO | tool_registry | [----------] Registrando tool servidor: browser_inspect
+2026-07-26 16:21:49,493 | INFO | tool_registry | [----------] Registrando tool servidor: browser_search
+2026-07-26 16:21:49,493 | INFO | tool_registry | [----------] Registrando tool servidor: browser_close
+2026-07-26 16:21:49,493 | INFO | tool_registry | [----------] Cargando plugin app.tools.client.system_tools
+2026-07-26 16:21:49,493 | INFO | tool_registry | [----------] Registrando tool servidor: system_info
+2026-07-26 16:21:49,494 | INFO | tool_registry | [----------] Registrando tool servidor: open_application
+2026-07-26 16:21:49,494 | INFO | tool_registry | [----------] Registrando tool servidor: close_application
+2026-07-26 16:21:49,494 | INFO | tool_registry | [----------] Registrando tool servidor: get_current_datetime
+2026-07-26 16:21:49,494 | INFO | tool_registry | [----------] Registrando tool servidor: open_url
+2026-07-26 16:21:49,494 | INFO | tool_registry | [----------] Registrando tool servidor: screenshot
+2026-07-26 16:21:49,494 | INFO | tool_registry | [----------] Registrando tool servidor: mouse_move
+2026-07-26 16:21:49,494 | INFO | tool_registry | [----------] Registrando tool servidor: mouse_click
+2026-07-26 16:21:49,494 | INFO | tool_registry | [----------] Registrando tool servidor: mouse_drag
+2026-07-26 16:21:49,494 | INFO | tool_registry | [----------] Registrando tool servidor: keyboard_type
+2026-07-26 16:21:49,494 | INFO | tool_registry | [----------] Registrando tool servidor: keyboard_hotkey
+2026-07-26 16:21:49,494 | INFO | tool_registry | [----------] Registrando tool servidor: ocr_screenshot
+2026-07-26 16:21:49,494 | INFO | tool_registry | [----------] Registrando tool servidor: ocr_image
+2026-07-26 16:21:49,494 | INFO | tool_registry | [----------] Registrando tool servidor: find_on_screen
+2026-07-26 16:21:49,494 | INFO | tool_registry | [----------] Registrando tool servidor: window_list
+2026-07-26 16:21:49,495 | INFO | tool_registry | [----------] Registrando tool servidor: window_focus
+2026-07-26 16:21:49,495 | INFO | tool_registry | [----------] Registrando tool servidor: window_close
+2026-07-26 16:21:49,495 | INFO | tool_registry | [----------] Registrando tool servidor: run_command
+2026-07-26 16:21:49,496 | INFO | tool_registry | [----------] Cargando plugin app.tools.server.instagram_tools
+2026-07-26 16:21:49,496 | INFO | tool_registry | [----------] Registrando tool servidor: instagram_post_media
+2026-07-26 16:21:49,496 | INFO | tool_registry | [----------] Registrando tool servidor: instagram_get_engagement
+2026-07-26 16:21:49,497 | INFO | tool_registry | [----------] Cargando plugin app.tools.server.comfy_tools
+2026-07-26 16:21:49,497 | INFO | tool_registry | [----------] Registrando tool servidor: comfy_load_workflow
+2026-07-26 16:21:49,497 | INFO | tool_registry | [----------] Registrando tool servidor: comfy_generate_image
+2026-07-26 16:21:49,497 | INFO | tool_registry | [----------] Cargando plugin app.tools.server.mail_tools
+2026-07-26 16:21:49,497 | INFO | tool_registry | [----------] Registrando tool servidor: mail_receive_mock_emails
+2026-07-26 16:21:49,497 | INFO | tool_registry | [----------] Registrando tool servidor: mail_classify_emails
+2026-07-26 16:21:49,497 | INFO | tool_registry | [----------] Registrando tool servidor: mail_get_unread_summary
+2026-07-26 16:21:49,498 | INFO | tool_registry | [----------] Registrando tool servidor: mail_list_emails
+2026-07-26 16:21:49,498 | INFO | tool_registry | [----------] Registrando tool servidor: mail_get_email
+2026-07-26 16:21:49,498 | INFO | tool_registry | [----------] Registrando tool servidor: mail_open_ui
+2026-07-26 16:21:49,498 | INFO | tool_registry | [----------] Registrando tool servidor: mail_close_ui
+2026-07-26 16:21:49,498 | INFO | tool_registry | [----------] Registrando tool servidor: mail_send_email
+2026-07-26 16:21:49,498 | INFO | tool_registry | [----------] Registrando tool servidor: mail_delete_email
+2026-07-26 16:21:49,498 | INFO | tool_registry | [----------] Registrando tool servidor: mail_reply_email
+2026-07-26 16:21:49,498 | INFO | tool_registry | [----------] Registrando tool servidor: mail_forward_email
+2026-07-26 16:21:49,498 | INFO | tool_registry | [----------] Registrando tool servidor: mail_generate_draft
+2026-07-26 16:21:49,498 | INFO | tool_registry | [----------] Registrando tool servidor: mail_set_invoice_folder
+2026-07-26 16:21:49,498 | INFO | tool_registry | [----------] Cargando plugin app.tools.server.memory_tools
+2026-07-26 16:21:49,498 | INFO | tool_registry | [----------] Registrando tool servidor: save_user_preference
+2026-07-26 16:21:49,498 | INFO | tool_registry | [----------] Registrando tool servidor: forget_user_fact
+2026-07-26 16:21:49,498 | INFO | tool_registry | [----------] Registrando tool servidor: get_user_profile
+2026-07-26 16:21:49,500 | INFO | tool_registry | [----------] Cargando plugin app.tools.server.market_research_tools
+2026-07-26 16:21:49,500 | INFO | tool_registry | [----------] Registrando tool servidor: market_analyze_niche
+2026-07-26 16:21:49,500 | INFO | tool_registry | [----------] Registrando tool servidor: market_generate_proposal
+2026-07-26 16:21:49,501 | INFO | tool_registry | [----------] Cargando plugin app.tools.server.calendar_tools
+2026-07-26 16:21:49,501 | INFO | tool_registry | [----------] Registrando tool servidor: calendar_create_event
+2026-07-26 16:21:49,501 | INFO | tool_registry | [----------] Registrando tool servidor: calendar_list_events
+2026-07-26 16:21:49,501 | INFO | tool_registry | [----------] Registrando tool servidor: calendar_delete_event
+2026-07-26 16:21:49,501 | INFO | tool_registry | [----------] Registrando tool servidor: calendar_open_ui
+2026-07-26 16:21:49,501 | INFO | tool_registry | [----------] Registrando tool servidor: calendar_close_ui
+2026-07-26 16:21:49,501 | INFO | tool_registry | [----------] Registrando tool servidor: calendar_update_event
+2026-07-26 16:21:49,501 | INFO | tool_registry | [----------] Cargando plugin app.tools.server.filesystem_tools
+2026-07-26 16:21:49,501 | INFO | tool_registry | [----------] Registrando tool servidor: create_file
+2026-07-26 16:21:49,502 | INFO | tool_registry | [----------] Registrando tool servidor: read_file
+2026-07-26 16:21:49,502 | INFO | tool_registry | [----------] Registrando tool servidor: list_directory
+2026-07-26 16:21:49,502 | INFO | tool_registry | [----------] Registrando tool servidor: create_directory
+2026-07-26 16:21:49,502 | INFO | tool_registry | [----------] Registrando tool servidor: append_file
+2026-07-26 16:21:49,502 | INFO | tool_registry | [----------] Registrando tool servidor: delete_file
+2026-07-26 16:21:49,502 | INFO | tool_registry | [----------] Registrando tool servidor: delete_directory
+2026-07-26 16:21:49,502 | INFO | tool_registry | [----------] Registrando tool servidor: move_file
+2026-07-26 16:21:49,502 | INFO | tool_registry | [----------] Registrando tool servidor: rename_file
+2026-07-26 16:21:49,503 | INFO | tool_registry | [----------] Registrando tool servidor: replace_file_content
+2026-07-26 16:21:49,503 | INFO | tool_registry | [----------] Registrando esquema de args (Fase 1): create_file
+2026-07-26 16:21:49,503 | INFO | tool_registry | [----------] Registrando esquema de args (Fase 1): read_file
+2026-07-26 16:21:49,503 | INFO | tool_registry | [----------] Registrando esquema de args (Fase 1): append_file
+2026-07-26 16:21:49,503 | INFO | tool_registry | [----------] Registrando esquema de args (Fase 1): delete_file
+2026-07-26 16:21:49,503 | INFO | tool_registry | [----------] Registrando esquema de args (Fase 1): list_directory
+2026-07-26 16:21:49,503 | INFO | tool_registry | [----------] Registrando esquema de args (Fase 1): replace_file_content
+2026-07-26 16:22:01,422 | INFO | tool_registry | [----------] coerce_and_validate(create_file): recuperado tras heurística — campos desconocidos ignorados para 'create_file': ['output_path']; campo 'path' rellenado desde clave no reconocida 'output_path' (modo permisivo, heurística por similitud de nombre)
+2026-07-26 16:22:01,423 | INFO | tool_registry | [----------] coerce_and_validate(create_file): campos desconocidos ignorados para 'create_file': ['campo_inventado']
+2026-07-26 16:22:01,439 | WARNING | tool_registry | [----------] Tool servidor inexistente this_tool_does_not_exist
+2026-07-26 16:45:46,311 | INFO | tool_registry | [----------] Cargando plugin app.tools.client.browser_tools
+2026-07-26 16:45:46,313 | INFO | tool_registry | [----------] Registrando tool servidor: browser_navigate
+2026-07-26 16:45:46,313 | INFO | tool_registry | [----------] Registrando tool servidor: browser_click
+2026-07-26 16:45:46,313 | INFO | tool_registry | [----------] Registrando tool servidor: browser_fill
+2026-07-26 16:45:46,313 | INFO | tool_registry | [----------] Registrando tool servidor: browser_screenshot
+2026-07-26 16:45:46,313 | INFO | tool_registry | [----------] Registrando tool servidor: browser_get_text
+2026-07-26 16:45:46,313 | INFO | tool_registry | [----------] Registrando tool servidor: browser_inspect
+2026-07-26 16:45:46,313 | INFO | tool_registry | [----------] Registrando tool servidor: browser_search
+2026-07-26 16:45:46,313 | INFO | tool_registry | [----------] Registrando tool servidor: browser_close
+2026-07-26 16:45:46,314 | INFO | tool_registry | [----------] Cargando plugin app.tools.client.system_tools
+2026-07-26 16:45:46,314 | INFO | tool_registry | [----------] Registrando tool servidor: system_info
+2026-07-26 16:45:46,314 | INFO | tool_registry | [----------] Registrando tool servidor: open_application
+2026-07-26 16:45:46,314 | INFO | tool_registry | [----------] Registrando tool servidor: close_application
+2026-07-26 16:45:46,314 | INFO | tool_registry | [----------] Registrando tool servidor: get_current_datetime
+2026-07-26 16:45:46,314 | INFO | tool_registry | [----------] Registrando tool servidor: open_url
+2026-07-26 16:45:46,314 | INFO | tool_registry | [----------] Registrando tool servidor: screenshot
+2026-07-26 16:45:46,314 | INFO | tool_registry | [----------] Registrando tool servidor: mouse_move
+2026-07-26 16:45:46,314 | INFO | tool_registry | [----------] Registrando tool servidor: mouse_click
+2026-07-26 16:45:46,314 | INFO | tool_registry | [----------] Registrando tool servidor: mouse_drag
+2026-07-26 16:45:46,314 | INFO | tool_registry | [----------] Registrando tool servidor: keyboard_type
+2026-07-26 16:45:46,315 | INFO | tool_registry | [----------] Registrando tool servidor: keyboard_hotkey
+2026-07-26 16:45:46,315 | INFO | tool_registry | [----------] Registrando tool servidor: ocr_screenshot
+2026-07-26 16:45:46,315 | INFO | tool_registry | [----------] Registrando tool servidor: ocr_image
+2026-07-26 16:45:46,315 | INFO | tool_registry | [----------] Registrando tool servidor: find_on_screen
+2026-07-26 16:45:46,315 | INFO | tool_registry | [----------] Registrando tool servidor: window_list
+2026-07-26 16:45:46,315 | INFO | tool_registry | [----------] Registrando tool servidor: window_focus
+2026-07-26 16:45:46,315 | INFO | tool_registry | [----------] Registrando tool servidor: window_close
+2026-07-26 16:45:46,315 | INFO | tool_registry | [----------] Registrando tool servidor: run_command
+2026-07-26 16:45:46,316 | INFO | tool_registry | [----------] Cargando plugin app.tools.server.instagram_tools
+2026-07-26 16:45:46,316 | INFO | tool_registry | [----------] Registrando tool servidor: instagram_post_media
+2026-07-26 16:45:46,316 | INFO | tool_registry | [----------] Registrando tool servidor: instagram_get_engagement
+2026-07-26 16:45:46,318 | INFO | tool_registry | [----------] Cargando plugin app.tools.server.comfy_tools
+2026-07-26 16:45:46,319 | INFO | tool_registry | [----------] Registrando tool servidor: comfy_load_workflow
+2026-07-26 16:45:46,319 | INFO | tool_registry | [----------] Registrando tool servidor: comfy_generate_image
+2026-07-26 16:45:46,319 | INFO | tool_registry | [----------] Cargando plugin app.tools.server.mail_tools
+2026-07-26 16:45:46,319 | INFO | tool_registry | [----------] Registrando tool servidor: mail_receive_mock_emails
+2026-07-26 16:45:46,320 | INFO | tool_registry | [----------] Registrando tool servidor: mail_classify_emails
+2026-07-26 16:45:46,320 | INFO | tool_registry | [----------] Registrando tool servidor: mail_get_unread_summary
+2026-07-26 16:45:46,320 | INFO | tool_registry | [----------] Registrando tool servidor: mail_list_emails
+2026-07-26 16:45:46,320 | INFO | tool_registry | [----------] Registrando tool servidor: mail_get_email
+2026-07-26 16:45:46,320 | INFO | tool_registry | [----------] Registrando tool servidor: mail_open_ui
+2026-07-26 16:45:46,320 | INFO | tool_registry | [----------] Registrando tool servidor: mail_close_ui
+2026-07-26 16:45:46,320 | INFO | tool_registry | [----------] Registrando tool servidor: mail_send_email
+2026-07-26 16:45:46,321 | INFO | tool_registry | [----------] Registrando tool servidor: mail_delete_email
+2026-07-26 16:45:46,321 | INFO | tool_registry | [----------] Registrando tool servidor: mail_reply_email
+2026-07-26 16:45:46,321 | INFO | tool_registry | [----------] Registrando tool servidor: mail_forward_email
+2026-07-26 16:45:46,321 | INFO | tool_registry | [----------] Registrando tool servidor: mail_generate_draft
+2026-07-26 16:45:46,321 | INFO | tool_registry | [----------] Registrando tool servidor: mail_set_invoice_folder
+2026-07-26 16:45:46,321 | INFO | tool_registry | [----------] Cargando plugin app.tools.server.memory_tools
+2026-07-26 16:45:46,322 | INFO | tool_registry | [----------] Registrando tool servidor: save_user_preference
+2026-07-26 16:45:46,322 | INFO | tool_registry | [----------] Registrando tool servidor: forget_user_fact
+2026-07-26 16:45:46,322 | INFO | tool_registry | [----------] Registrando tool servidor: get_user_profile
+2026-07-26 16:45:46,323 | INFO | tool_registry | [----------] Cargando plugin app.tools.server.market_research_tools
+2026-07-26 16:45:46,323 | INFO | tool_registry | [----------] Registrando tool servidor: market_analyze_niche
+2026-07-26 16:45:46,323 | INFO | tool_registry | [----------] Registrando tool servidor: market_generate_proposal
+2026-07-26 16:45:46,323 | INFO | tool_registry | [----------] Cargando plugin app.tools.server.calendar_tools
+2026-07-26 16:45:46,324 | INFO | tool_registry | [----------] Registrando tool servidor: calendar_create_event
+2026-07-26 16:45:46,324 | INFO | tool_registry | [----------] Registrando tool servidor: calendar_list_events
+2026-07-26 16:45:46,324 | INFO | tool_registry | [----------] Registrando tool servidor: calendar_delete_event
+2026-07-26 16:45:46,324 | INFO | tool_registry | [----------] Registrando tool servidor: calendar_open_ui
+2026-07-26 16:45:46,324 | INFO | tool_registry | [----------] Registrando tool servidor: calendar_close_ui
+2026-07-26 16:45:46,324 | INFO | tool_registry | [----------] Registrando tool servidor: calendar_update_event
+2026-07-26 16:45:46,324 | INFO | tool_registry | [----------] Cargando plugin app.tools.server.filesystem_tools
+2026-07-26 16:45:46,324 | INFO | tool_registry | [----------] Registrando tool servidor: create_file
+2026-07-26 16:45:46,324 | INFO | tool_registry | [----------] Registrando tool servidor: read_file
+2026-07-26 16:45:46,324 | INFO | tool_registry | [----------] Registrando tool servidor: list_directory
+2026-07-26 16:45:46,324 | INFO | tool_registry | [----------] Registrando tool servidor: create_directory
+2026-07-26 16:45:46,324 | INFO | tool_registry | [----------] Registrando tool servidor: append_file
+2026-07-26 16:45:46,324 | INFO | tool_registry | [----------] Registrando tool servidor: delete_file
+2026-07-26 16:45:46,324 | INFO | tool_registry | [----------] Registrando tool servidor: delete_directory
+2026-07-26 16:45:46,325 | INFO | tool_registry | [----------] Registrando tool servidor: move_file
+2026-07-26 16:45:46,325 | INFO | tool_registry | [----------] Registrando tool servidor: rename_file
+2026-07-26 16:45:46,325 | INFO | tool_registry | [----------] Registrando tool servidor: replace_file_content
+2026-07-26 16:45:46,325 | INFO | tool_registry | [----------] Registrando esquema de args (Fase 1): create_file
+2026-07-26 16:45:46,325 | INFO | tool_registry | [----------] Registrando esquema de args (Fase 1): read_file
+2026-07-26 16:45:46,325 | INFO | tool_registry | [----------] Registrando esquema de args (Fase 1): append_file
+2026-07-26 16:45:46,325 | INFO | tool_registry | [----------] Registrando esquema de args (Fase 1): delete_file
+2026-07-26 16:45:46,325 | INFO | tool_registry | [----------] Registrando esquema de args (Fase 1): list_directory
+2026-07-26 16:45:46,325 | INFO | tool_registry | [----------] Registrando esquema de args (Fase 1): replace_file_content
+2026-07-26 16:45:57,758 | INFO | tool_registry | [----------] coerce_and_validate(create_file): recuperado tras heurística — campos desconocidos ignorados para 'create_file': ['output_path']; campo 'path' rellenado desde clave no reconocida 'output_path' (modo permisivo, heurística por similitud de nombre)
+2026-07-26 16:45:57,760 | INFO | tool_registry | [----------] coerce_and_validate(create_file): campos desconocidos ignorados para 'create_file': ['campo_inventado']
+2026-07-26 16:45:57,778 | WARNING | tool_registry | [----------] Tool servidor inexistente this_tool_does_not_exist

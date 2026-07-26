@@ -1,0 +1,78 @@
+{
+    "model": "qwen2.5:1.5b",
+    "accuracy": 0.0,
+    "passed": 0,
+    "total": 10,
+    "results": [
+        {
+            "query": "Abre la calculadora en mi ordenador por favor",
+            "success": false,
+            "expected": "open_application({'command': 'calculadora'})",
+            "obtained": "no_op({'message': \"LLM_ERROR: ValueError('Empty response')\"})",
+            "error": "Discrepancia: Esperado open_application({'command': 'calculadora'}), Obtenido no_op({'message': \"LLM_ERROR: ValueError('Empty response')\"})"
+        },
+        {
+            "query": "Cierra el navegador chrome",
+            "success": false,
+            "expected": "close_application({'command': 'chrome'})",
+            "obtained": "no_op({'message': \"LLM_ERROR: ValueError('Empty response')\"})",
+            "error": "Discrepancia: Esperado close_application({'command': 'chrome'}), Obtenido no_op({'message': \"LLM_ERROR: ValueError('Empty response')\"})"
+        },
+        {
+            "query": "Por favor, entra a la página de google.com",
+            "success": false,
+            "expected": "open_url({'url': 'https://google.com'})",
+            "obtained": "No puedo ayudarte con eso.",
+            "error": "No se pudo extraer JSON estructurado. Respuesta cruda: 'No puedo ayudarte con eso.'"
+        },
+        {
+            "query": "Escribe un email para luis@example.com con asunto Reunión y dile Hola Luis",
+            "success": false,
+            "expected": "send_email({'recipient': 'luis@example.com', 'subject': 'Reunión', 'body': 'Hola Luis'})",
+            "obtained": "Sure, I can help you with that. Here's the email draft:\n\n---\n\nSubject: Reunión\n\nHi Luis,\n\nHope this ",
+            "error": "No se pudo extraer JSON estructurado. Respuesta cruda: 'Sure, I can help you with that. Here's the email draft:\n\n---\n\nSubject: Reunión\n\nHi Luis,\n\nHope this message finds you well.\n\nI wanted to confirm our meeting scheduled for next week at 3 PM. Please let me know if there are any changes needed.\n\nBest regards,\n[Your Name]\n\n---'"
+        },
+        {
+            "query": "Búscame los correos que contengan facturas pendientes",
+            "success": false,
+            "expected": "read_emails({'query': 'facturas pendientes'})",
+            "obtained": "Para buscar las facturas pendientes en tu correo, necesitaré la carpeta de facturas o la ruta absolu",
+            "error": "No se pudo extraer JSON estructurado. Respuesta cruda: 'Para buscar las facturas pendientes en tu correo, necesitaré la carpeta de facturas o la ruta absoluta donde se encuentran. ¿Podrías proporcionarme esa información?'"
+        },
+        {
+            "query": "Agrégame un evento mañana a las 10 de la mañana que se llame Reunión de Equipo",
+            "success": false,
+            "expected": "create_calendar_event({'title': 'Reunión de Equipo'})",
+            "obtained": "Para agregar un evento en tu agenda para el día siguiente a las 10:00, necesitaré algunos detalles a",
+            "error": "No se pudo extraer JSON estructurado. Respuesta cruda: 'Para agregar un evento en tu agenda para el día siguiente a las 10:00, necesitaré algunos detalles adicionales. ¿Podrías proporcionarme los siguientes datos:\n\n- Nombre del evento (Reunión de Equipo)\n- Descripción breve del evento\n- Lugar donde se realizará (si lo conozcas)\n- Participantes o invitados\n\nEstos datos te ayudarán a crear una cita precisa en tu agenda.'"
+        },
+        {
+            "query": "Elimina la cita del calendario con ID event_123",
+            "success": false,
+            "expected": "delete_calendar_event({'event_id': 'event_123'})",
+            "obtained": "Para eliminar la cita del calendario con el ID `event_123`, necesitaré los detalles de la cita. Por ",
+            "error": "No se pudo extraer JSON estructurado. Respuesta cruda: 'Para eliminar la cita del calendario con el ID `event_123`, necesitaré los detalles de la cita. Por favor, proporciona los siguientes datos:\n\n- El título de la cita.\n- La fecha y hora de inicio (en formato \"YYYY-MM-DD HH:MM\").\n- La fecha y hora de fin (opcional).\n- Los detalles adicionales como descripción o ubicación.\n\nUna vez que tenga estos datos, podré proceder con la eliminación.'"
+        },
+        {
+            "query": "Muestra el contenido de la carpeta de descargas",
+            "success": false,
+            "expected": "list_directory({'path': 'downloads'})",
+            "obtained": "To show the content of your downloads folder, I will need to access it. However, since I don't have ",
+            "error": "No se pudo extraer JSON estructurado. Respuesta cruda: 'To show the content of your downloads folder, I will need to access it. However, since I don't have direct access to your local files or folders, I can guide you on how to do this manually.\n\n1. Open your file explorer (Windows) or Finder (Mac).\n2. Navigate to the \"Downloads\" folder.\n3. You should see all the files and directories that were downloaded from websites or applications.\n\nIf you need further assistance with accessing specific files within these folders, feel free to ask!'"
+        },
+        {
+            "query": "Escribe hola en mi teclado",
+            "success": false,
+            "expected": "keyboard_type({'text': 'hola'})",
+            "obtained": "No puedo escribir por ti.",
+            "error": "No se pudo extraer JSON estructurado. Respuesta cruda: 'No puedo escribir por ti.'"
+        },
+        {
+            "query": "Presiona la tecla enter",
+            "success": false,
+            "expected": "keyboard_press({'key': 'enter'})",
+            "obtained": "No puedo presionar teclas ni acceder al escritorio. ¿Podrías proporcionarme más información sobre lo",
+            "error": "No se pudo extraer JSON estructurado. Respuesta cruda: 'No puedo presionar teclas ni acceder al escritorio. ¿Podrías proporcionarme más información sobre lo que quieres hacer? Por ejemplo, podrías decirme qué tipo de archivo o carpeta deseas crear, mover, renombrar, eliminar, etc., y estaría encantado de ayudarte con eso.'"
+        }
+    ]
+}

@@ -306,45 +306,8 @@ class PlannerOrchestrator:
         memory_text = "\n".join(memory_parts) if memory_parts else None
 
         # ------------------------------------------------------------
-        # DETECCION DE TOOL DIRECTA (DETERMINISTA / BYPASS)
+        # RUTA DIRECTA A AGENTES ESPECIALIZADOS
         # ------------------------------------------------------------
-        history_msgs = memory.get_history(session_id, client_id=client_id) if session_id else []
-        
-        # 0. Composite open calendar and mail bypass rule
-        direct_tool = parse_composite_operations(user_message)
-                
-        if not direct_tool:
-            direct_tool = parse_file_operation_directly(user_message, bridge.client_info, history_msgs)
-        if not direct_tool:
-            direct_tool = parse_calendar_operation_directly(user_message)
-        if not direct_tool:
-            direct_tool = parse_calendar_create_directly(user_message, history_msgs)
-        if not direct_tool:
-            direct_tool = parse_calendar_update_directly(user_message)
-        if not direct_tool:
-            direct_tool = parse_calendar_delete_directly(user_message)
-        if not direct_tool:
-            direct_tool = parse_mail_operation_directly(user_message)
-        if not direct_tool:
-            direct_tool = parse_system_operation_directly(user_message)
-        if not direct_tool:
-            direct_tool = parse_memory_operation_directly(user_message)
-        if not direct_tool:
-            direct_tool = parse_browser_operation_directly(user_message)
-        
-        is_bypass_tool = False
-        if direct_tool:
-            if not isinstance(direct_tool, list) and direct_tool.get("type") == "chat":
-                response = direct_tool["response"]
-                logger.info("Filtro determinista: respuesta de chat directa: %s", response)
-                if session_id:
-                    memory.add_message(session_id, "assistant", response, client_id=client_id)
-                return {
-                    "type": "chat",
-                    "response": response,
-                }
-            is_bypass_tool = True
-
         msg_lower = user_message.lower()
         is_marcos_query = "marcos" in msg_lower or any(kw in msg_lower for kw in [
             "codigo civil", "código civil", "codigo penal", "código penal",
@@ -381,7 +344,6 @@ class PlannerOrchestrator:
             from app.domain.agents.dev.dev_agent import dev_agent
             response = await dev_agent.generate_response(user_message)
             
-            # Copiar archivos del sandbox al escritorio si se pide explícitamente
             if "escritorio" in msg_lower or "desktop" in msg_lower:
                 try:
                     import os
@@ -391,7 +353,6 @@ class PlannerOrchestrator:
                     desktop_dir = get_client_desktop(client_id)
                     sandbox_path = Path("data/dev_sandbox")
                     if sandbox_path.exists():
-                        # Detectar si hay solicitud de subcarpeta (ej: "dentro de una carpeta que se llame proyecto_alfonso_marketing")
                         subfolder = None
                         m_sub = re.search(r"\b(?:carpeta\s+que\s+se\s+llame|carpeta\s+llamada|subcarpeta\s+llamada|directorio\s+llamado|carpeta)\s+([a-zA-Z0-9_\-]+)", msg_lower)
                         if m_sub:
@@ -405,7 +366,6 @@ class PlannerOrchestrator:
                                 else:
                                     dest_path = f"{desktop_dir}/{entry.name}"
                                 resolved_dest = _resolve_path(dest_path)
-                                # Asegurar que la subcarpeta destino exista
                                 resolved_dest.parent.mkdir(parents=True, exist_ok=True)
                                 logger.info(f"Copiando archivo del sandbox al escritorio: {entry.name} -> {resolved_dest}")
                                 resolved_dest.write_text(file_content, encoding="utf-8")
@@ -430,129 +390,42 @@ class PlannerOrchestrator:
                 "response": response,
             }
 
-        router = _router.detect_with_detail(user_message)
-
         # ------------------------------------------------------------
-        # CHAT
+        # INFERENCIA Y BUCLE NATIVO DE AGENTES (FUNCTION CALLING)
         # ------------------------------------------------------------
-        if not is_bypass_tool and router["intent"] == "chat" and not _force_tool(user_message):
-            logger.info("Intent detectado: chat (no se fuerza tool)")
+        raw = await llm.generate(
+            user_message,
+            mode="tool",
+            request_id=request_id,
+            memory=memory_text,
+            client_id=client_id,
+        )
+        logger.info("Raw LLM output: %s", repr(raw))
 
-            response = await llm.generate(
-                user_message,
-                mode="chat",
-                request_id=request_id,
-                memory=memory_text,
-                client_id=client_id,
-            )
-
+        data = extract_json_robust(raw)
+        
+        # Si no detectamos estructura de llamada a herramienta, es un chat directo (conversacional)
+        if not data or "tool" not in data:
+            logger.info("Respuesta clasificada como conversacional.")
             if session_id:
-                memory.add_message(session_id, "assistant", response, client_id=client_id)
-
+                memory.add_message(session_id, "assistant", raw, client_id=client_id)
             return {
                 "type": "chat",
-                "response": response,
+                "response": raw,
             }
 
-        # ------------------------------------------------------------
-        # EJECUCION DE BYPASS DETERMINISTA DETECTADO
-        # ------------------------------------------------------------
-        if is_bypass_tool and isinstance(direct_tool, list):
-            multi_results = []
-            for t_info in direct_tool:
-                t_name = t_info["tool"]
-                t_args = t_info["args"]
-                logger.info("Filtro determinista: ejecutando parte de multi-tool %s con args %s", t_name, t_args)
-                
-                if is_client_tool(t_name):
-                    action = get_client_action(t_name)
-                    res = await bridge.send_command(action, t_args)
-                    exec_mode = "client"
-                else:
-                    tool_func = get_tool(t_name, request_id)
-                    if tool_func:
-                        res = await tool_func(**t_args)
-                        exec_mode = "server"
-                    else:
-                        res = {"status": "error", "error": f"Tool {t_name} no encontrada"}
-                        exec_mode = "server"
-                
-                multi_results.append({
-                    "tool": t_name,
-                    "execution": exec_mode,
-                    "args": t_args,
-                    "result": res
-                })
-            return {
-                "type": "multi_tool",
-                "results": multi_results
-            }
-
-        tool_name = None
-        args = {}
+        # Si detectamos una llamada a herramienta, iniciamos bucle de ejecución
+        tool_name, args = _extract_tool_and_args(data)
+        max_attempts = 3
+        current_attempt = 1
         result = None
         execution = "server"
-
-        if is_bypass_tool and direct_tool:
-            if not isinstance(direct_tool, list) and direct_tool.get("type") == "chat":
-                # Este caso ya se maneja arriba en la línea 1086-1094, pero por seguridad
-                # si cayera aquí, lo retornamos limpiamente
-                return direct_tool
-                
-            tool_name = direct_tool.get("tool")
-            args = direct_tool.get("args") or {}
-            logger.info("Filtro determinista: detectada tool %s con args %s", tool_name, args)
+        
+        while current_attempt <= max_attempts:
+            logger.info("Ciclo de ejecución de tool: Intento %d de %d", current_attempt, max_attempts)
             
-            # Ejecutar bypass tool determinista de un solo disparo
-            if tool_name and is_client_tool(tool_name):
-                logger.info("Ejecutando tool de cliente (bypass): %s", tool_name)
-                action = get_client_action(tool_name)
-                result = await bridge.send_command(action, args, client_id=client_id)
-                execution = "client"
-            elif tool_name:
-                logger.info("Ejecutando tool de servidor (bypass): %s", tool_name)
-                tool = get_tool(tool_name, request_id)
-                if not tool:
-                    return {
-                        "type": "error",
-                        "message": f"No existe {tool_name}",
-                    }
-                # Validar/Adaptar argumentos
-                validation_res = prepare_tool_args(tool_name, args, request_id)
-                if not validation_res.ok:
-                    return {
-                        "type": "error",
-                        "message": validation_res.error,
-                    }
-                args = validation_res.args
-                # Inyectar session_id y client_id
-                try:
-                    sig = inspect.signature(tool)
-                    if "session_id" in sig.parameters:
-                        args["session_id"] = session_id or "global"
-                    if "client_id" in sig.parameters:
-                        args["client_id"] = client_id
-                except Exception:
-                    pass
-                
-                if asyncio.iscoroutinefunction(tool):
-                    result = await asyncio.wait_for(tool(**args), timeout=_TOOL_TIMEOUT)
-                else:
-                    loop = asyncio.get_running_loop()
-                    result = await asyncio.wait_for(loop.run_in_executor(None, lambda: tool(**args)), timeout=_TOOL_TIMEOUT)
-                execution = "server"
-        else:
-            # ------------------------------------------------------------
-            # TOOL — parseo de la respuesta del LLM en modo tool y ejecución con bucle de autocorrección
-            # ------------------------------------------------------------
-            max_attempts = 3
-            current_attempt = 0
-            
-            while current_attempt < max_attempts:
-                current_attempt += 1
-                logger.info("Ciclo de ejecución de tool: Intento %d de %d", current_attempt, max_attempts)
-
-                # Reconstruir memory_text con el historial de mensajes actualizado (que incluye los fallos previos)
+            if current_attempt > 1:
+                # Re-generar consulta inyectando las alertas de error de la iteración previa
                 if session_id:
                     latest_history_parts = []
                     if style_facts:
@@ -581,197 +454,173 @@ class PlannerOrchestrator:
                     client_id=client_id,
                 )
                 logger.info("Raw LLM output (Intento %d): %s", current_attempt, repr(raw))
-
                 data = extract_json_robust(raw)
-                logger.info("LLM tool response (Intento %d): %s", current_attempt, data)
-                if not data:
-                    error.warning("LLM no devolvió JSON de tool válido (Intento %d)", current_attempt)
+                if not data or "tool" not in data:
                     if current_attempt == max_attempts:
                         return {
                             "type": "error",
-                            "message": "JSON tool inválido",
+                            "message": "JSON de herramienta inválido tras reintentos",
                             "raw": raw,
                         }
-                    if session_id:
-                        memory.add_message(session_id, "system", f"Error: Tu respuesta anterior no contenía un JSON de herramienta válido. Por favor, genera únicamente el JSON de la herramienta.", client_id=client_id)
+                    current_attempt += 1
                     continue
-
                 tool_name, args = _extract_tool_and_args(data)
 
-                if not tool_name:
+            if not tool_name:
+                if current_attempt == max_attempts:
+                    return {
+                        "type": "error",
+                        "message": "Herramienta no especificada o desconocida",
+                    }
+                if session_id:
+                    memory.add_message(session_id, "system", f"Error: No se pudo identificar la herramienta del JSON: {data}.", client_id=client_id)
+                current_attempt += 1
+                continue
+
+            # ------------------------------------------------------------
+            # EJECUCIÓN — cliente (bridge) o servidor (tool_registry)
+            # ------------------------------------------------------------
+            if is_client_tool(tool_name):
+                logger.info("Ejecutando tool de cliente: %s", tool_name)
+                action = get_client_action(tool_name)
+                result = await bridge.send_command(action, args, client_id=client_id)
+                
+                if not isinstance(result, dict) or result.get("status") == "error":
+                    error.warning("Tool de cliente falló (Intento %d): %s -> %s", current_attempt, tool_name, result)
                     if current_attempt == max_attempts:
                         return {
                             "type": "error",
-                            "message": "Tool desconocida o no especificada",
+                            "execution": "client",
+                            "tool": tool_name,
+                            "message": result.get("error", "Error desconocido en el agente cliente") if isinstance(result, dict) else "Respuesta inválida del cliente",
+                            "result": result,
                         }
                     if session_id:
-                        memory.add_message(session_id, "system", f"Error: No se pudo identificar el nombre de la herramienta a partir de tu JSON: {data}.", client_id=client_id)
+                        import json
+                        memory.add_message(session_id, "assistant", json.dumps({"tool": tool_name, "args": args}), client_id=client_id)
+                        memory.add_message(session_id, "system", f"Tool output: {json.dumps(result)}. Corrige los parámetros y vuelve a intentar.", client_id=client_id)
+                    current_attempt += 1
                     continue
+                execution = "client"
+            else:
+                # Control de Acceso (RBAC) para roles restrictivos
+                role = "admin"
+                if client_id:
+                    client_meta = bridge._client_info_dict.get(client_id)
+                    if client_meta:
+                        role = client_meta.get("role", "guest")
+                    else:
+                        from app.config import settings
+                        role = settings.get_client_role(client_id)
+                
+                if role in ("guest", "limitado") and tool_name != "no_op":
+                    logger.warning("Acceso denegado: el cliente %s con rol %s intentó ejecutar %s", client_id, role, tool_name)
+                    return {
+                        "type": "error",
+                        "message": f"Acceso denegado: el rol '{role}' no tiene permisos para ejecutar la herramienta de servidor '{tool_name}'",
+                    }
 
-                # ------------------------------------------------------------
-                # EJECUCIÓN — cliente (bridge) o servidor (tool_registry)
-                # ------------------------------------------------------------
-                if is_client_tool(tool_name):
-                    logger.info("Ejecutando tool de cliente: %s", tool_name)
-                    action = get_client_action(tool_name)
-                    logger.info("Enviando al cliente %s", action)
+                logger.info("Ejecutando tool de servidor: %s", tool_name)
+                tool = get_tool(tool_name, request_id)
 
-                    result = await bridge.send_command(action, args, client_id=client_id)
-
-                    if not isinstance(result, dict) or result.get("status") == "error":
-                        error.warning(
-                            "Tool de cliente falló (Intento %d): %s -> %s",
-                            current_attempt,
-                            tool_name,
-                            result,
-                        )
-                        if current_attempt == max_attempts:
-                            return {
-                                "type": "error",
-                                "execution": "client",
-                                "tool": tool_name,
-                                "message": (
-                                    result.get("error", "Error desconocido ejecutando tool en el cliente")
-                                    if isinstance(result, dict)
-                                    else "Respuesta inválida del cliente"
-                                ),
-                                "result": result,
-                            }
-                        if session_id:
-                            import json
-                            memory.add_message(session_id, "assistant", json.dumps({"tool": tool_name, "args": args}), client_id=client_id)
-                            memory.add_message(session_id, "system", f"Tool output: {json.dumps(result)}. Corrige los parámetros y vuelve a intentar.", client_id=client_id)
-                        continue
-
-                    execution = "client"
-
-                else:
-                    # Control de Acceso (RBAC) para roles restrictivos
-                    role = "admin"
-                    if client_id:
-                        client_meta = bridge._client_info_dict.get(client_id)
-                        if client_meta:
-                            role = client_meta.get("role", "guest")
-                        else:
-                            from app.config import settings
-                            role = settings.get_client_role(client_id)
-                    
-                    if role in ("guest", "limitado") and tool_name != "no_op":
-                        logger.warning("Acceso denegado: el cliente %s con rol %s intentó ejecutar %s", client_id, role, tool_name)
+                if not tool:
+                    if current_attempt == max_attempts:
                         return {
                             "type": "error",
-                            "message": f"Acceso denegado: el rol '{role}' no tiene permisos para ejecutar la herramienta de servidor '{tool_name}'",
+                            "message": f"No existe {tool_name}",
                         }
+                    if session_id:
+                        memory.add_message(session_id, "system", f"Error: La herramienta de servidor '{tool_name}' no está registrada en el sistema.", client_id=client_id)
+                    current_attempt += 1
+                    continue
 
-                    logger.info("Ejecutando tool de servidor: %s", tool_name)
-                    tool = get_tool(tool_name, request_id)
+                # Validar/Adaptar argumentos usando los esquemas cargados
+                validation_res = prepare_tool_args(tool_name, args, request_id)
+                if not validation_res.ok:
+                    error.warning("Validación de argumentos falló para %s: %s", tool_name, validation_res.error)
+                    if current_attempt == max_attempts:
+                        return {
+                            "type": "error",
+                            "message": validation_res.error,
+                        }
+                    if session_id:
+                        memory.add_message(session_id, "system", f"Error de validación de argumentos para '{tool_name}': {validation_res.error}", client_id=client_id)
+                    current_attempt += 1
+                    continue
+                args = validation_res.args
 
-                    if not tool:
-                        if current_attempt == max_attempts:
-                            return {
-                                "type": "error",
-                                "message": f"No existe {tool_name}",
+                # Inyectar variables de sesión y cliente si la firma de la función lo permite
+                try:
+                    sig = inspect.signature(tool)
+                    if "session_id" in sig.parameters:
+                        args["session_id"] = session_id or "global"
+                    if "client_id" in sig.parameters:
+                        args["client_id"] = client_id
+                except Exception as e:
+                    logger.warning("No se pudo inspeccionar firma: %s", e)
+
+                try:
+                    if asyncio.iscoroutinefunction(tool):
+                        result = await asyncio.wait_for(tool(**args), timeout=_TOOL_TIMEOUT)
+                    else:
+                        loop = asyncio.get_running_loop()
+                        result = await asyncio.wait_for(loop.run_in_executor(None, lambda: tool(**args)), timeout=_TOOL_TIMEOUT)
+                except Exception as e:
+                    error.exception("Error ejecutando tool de servidor: %s", tool_name)
+                    if current_attempt == max_attempts:
+                        return {
+                            "type": "error",
+                            "execution": "server",
+                            "tool": tool_name,
+                            "message": str(e),
+                        }
+                    if session_id:
+                        memory.add_message(session_id, "system", f"Error: La herramienta '{tool_name}' falló con excepción: {str(e)}", client_id=client_id)
+                    current_attempt += 1
+                    continue
+
+                # Validación de sintaxis local en archivos Python guardados
+                if tool_name in ("create_file", "append_file", "replace_file_content") and isinstance(result, dict) and result.get("status") == "ok":
+                    file_path = args.get("path")
+                    if file_path and str(file_path).endswith(".py"):
+                        try:
+                            import py_compile
+                            from app.tools.server.filesystem_tools import _resolve_path
+                            resolved_path = _resolve_path(str(file_path))
+                            if resolved_path.exists():
+                                py_compile.compile(str(resolved_path), doraise=True)
+                                logger.info("Validación sintáctica exitosa para: %s", file_path)
+                        except py_compile.PyCompileError as py_err:
+                            error_msg = f"Error de sintaxis de Python: {py_err.msg.strip()}"
+                            logger.warning("Validación sintáctica falló: %s", error_msg)
+                            result = {
+                                "status": "error",
+                                "message": f"El archivo se guardó pero tiene errores de sintaxis: {error_msg}"
                             }
-                        if session_id:
-                            memory.add_message(session_id, "system", f"Error: La herramienta de servidor '{tool_name}' no está registrada en el sistema.", client_id=client_id)
-                        continue
+                        except Exception as e:
+                            logger.warning("No se pudo validar la sintaxis: %s", e)
 
-                    # Validar/Adaptar argumentos usando el esquema de la Fase 1
-                    validation_res = prepare_tool_args(tool_name, args, request_id)
-                    if not validation_res.ok:
-                        error.warning("Validación de argumentos falló para %s: %s", tool_name, validation_res.error)
-                        if current_attempt == max_attempts:
-                            return {
-                                "type": "error",
-                                "message": validation_res.error,
-                            }
-                        if session_id:
-                            memory.add_message(session_id, "system", f"Error de validación de argumentos para '{tool_name}': {validation_res.error}", client_id=client_id)
-                        continue
-                    args = validation_res.args
+                if isinstance(result, dict) and result.get("status") == "error":
+                    error.warning("Tool de servidor falló (Intento %d): %s -> %s", current_attempt, tool_name, result)
+                    if current_attempt == max_attempts:
+                        return {
+                            "type": "error",
+                            "execution": "server",
+                            "tool": tool_name,
+                            "message": result.get("message", "Error ejecutando tool"),
+                            "result": result,
+                        }
+                    if session_id:
+                        import json
+                        memory.add_message(session_id, "assistant", json.dumps({"tool": tool_name, "args": args}), client_id=client_id)
+                        memory.add_message(session_id, "system", f"Tool output: {json.dumps(result)}. Corrige los errores e inténtalo de nuevo.", client_id=client_id)
+                    current_attempt += 1
+                    continue
 
-                    # Inyectar session_id y client_id si la firma de la función lo requiere
-                    try:
-                        sig = inspect.signature(tool)
-                        if "session_id" in sig.parameters:
-                            args["session_id"] = session_id or "global"
-                        if "client_id" in sig.parameters:
-                            args["client_id"] = client_id
-                    except Exception as e:
-                        logger.warning("No se pudo inspeccionar la firma de la tool %s: %s", tool_name, e)
-
-                    try:
-                        if asyncio.iscoroutinefunction(tool):
-                            result = await asyncio.wait_for(
-                                tool(**args),
-                                timeout=_TOOL_TIMEOUT,
-                            )
-                        else:
-                            loop = asyncio.get_running_loop()
-                            result = await asyncio.wait_for(
-                                loop.run_in_executor(None, lambda: tool(**args)),
-                                timeout=_TOOL_TIMEOUT,
-                            )
-
-                    except Exception as e:
-                        error.exception("Error ejecutando tool de servidor: %s", tool_name)
-                        if current_attempt == max_attempts:
-                            return {
-                                "type": "error",
-                                "execution": "server",
-                                "tool": tool_name,
-                                "message": str(e),
-                            }
-                        if session_id:
-                            memory.add_message(session_id, "system", f"Error: La ejecución de la herramienta '{tool_name}' falló con una excepción: {str(e)}", client_id=client_id)
-                        continue
-
-                    # Validación de sintaxis local en archivos Python
-                    if tool_name in ("create_file", "append_file", "replace_file_content") and isinstance(result, dict) and result.get("status") == "ok":
-                        file_path = args.get("path")
-                        if file_path and str(file_path).endswith(".py"):
-                            try:
-                                import py_compile
-                                from app.tools.server.filesystem_tools import _resolve_path
-                                resolved_path = _resolve_path(str(file_path))
-                                if resolved_path.exists():
-                                    py_compile.compile(str(resolved_path), doraise=True)
-                                    logger.info("Validación sintáctica exitosa para: %s", file_path)
-                            except py_compile.PyCompileError as py_err:
-                                error_msg = f"Error de sintaxis de Python: {py_err.msg.strip()}"
-                                logger.warning("Validación sintáctica falló: %s", error_msg)
-                                result = {
-                                    "status": "error",
-                                    "message": f"El archivo se guardó pero tiene errores de sintaxis que debes corregir de inmediato: {error_msg}"
-                                }
-                            except Exception as e:
-                                logger.warning("No se pudo validar la sintaxis del archivo: %s", e)
-
-                    if isinstance(result, dict) and result.get("status") == "error":
-                        error.warning(
-                            "Tool de servidor falló (Intento %d): %s -> %s",
-                            current_attempt,
-                            tool_name,
-                            result,
-                        )
-                        if current_attempt == max_attempts:
-                            return {
-                                "type": "error",
-                                "execution": "server",
-                                "tool": tool_name,
-                                "message": result.get("message", "Error ejecutando tool"),
-                                "result": result,
-                            }
-                        if session_id:
-                            import json
-                            memory.add_message(session_id, "assistant", json.dumps({"tool": tool_name, "args": args}), client_id=client_id)
-                            memory.add_message(session_id, "system", f"Tool output: {json.dumps(result)}. Por favor, corrige los errores e inténtalo de nuevo.", client_id=client_id)
-                        continue
-
-                    execution = "server"
-                
-                # Ejecución exitosa de tool, salimos del ciclo
-                break
+                execution = "server"
+            
+            # Si llegó aquí sin continuar/fallar, salimos del ciclo de reintentos
+            break
 
         # Registrar llamadas de herramientas y sus resultados en el historial de la sesión para el contexto de Alfonso
         if session_id:

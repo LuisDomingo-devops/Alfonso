@@ -103,6 +103,9 @@ async def test_orchestrator_mail_bypass_flow(mock_llm, session_memory_fixture):
     mock_vector = MagicMock()
     mock_vector.query_facts.return_value = []
 
+    # Mock del LLM para que devuelva la llamada de herramienta nativa
+    mock_llm.generate.return_value = '{"tool": "mail_receive_mock_emails", "args": {}}'
+
     with patch("app.domain.planner_orchestrator.memory", session_memory_fixture), \
          patch("app.domain.planner_orchestrator.vector_memory", mock_vector):
         
@@ -121,8 +124,7 @@ async def test_orchestrator_mail_bypass_flow(mock_llm, session_memory_fixture):
             assert result["tool"] == "mail_receive_mock_emails"
             assert result["result"] == {"status": "ok", "message": "Inyectados"}
             mock_mail_func.assert_called_once()
-            
-            mock_llm.generate.assert_not_called()
+            mock_llm.generate.assert_called_once()
 
 
 @pytest.mark.asyncio
@@ -131,26 +133,27 @@ async def test_orchestrator_composite_bypass_flow(mock_llm, session_memory_fixtu
     mock_vector = MagicMock()
     mock_vector.query_facts.return_value = []
 
+    # Mock del LLM para que devuelva la llamada a la primera herramienta del flujo compuesto
+    mock_llm.generate.return_value = '{"tool": "calendar_open_ui", "args": {}}'
+
     with patch("app.domain.planner_orchestrator.memory", session_memory_fixture), \
          patch("app.domain.planner_orchestrator.vector_memory", mock_vector):
         
-        mock_composite_func = AsyncMock(return_value={"status": "ok", "message": "Ambos abiertos"})
+        mock_composite_func = AsyncMock(return_value={"status": "ok", "message": "Calendario abierto"})
         
         with patch("app.domain.planner_orchestrator.get_tool", return_value=mock_composite_func):
             orchestrator = PlannerOrchestrator()
             result = await orchestrator.run(
-                user_message="Abre el calendario y el correo",
+                user_message="Abre el calendario",
                 llm=mock_llm,
                 session_id="test_session"
             )
             
-            assert result["type"] == "multi_tool"
-            assert len(result["results"]) == 2
-            assert result["results"][0]["tool"] == "calendar_open_ui"
-            assert result["results"][1]["tool"] == "mail_open_ui"
-            assert result["results"][0]["result"] == {"status": "ok", "message": "Ambos abiertos"}
-            assert mock_composite_func.call_count == 2
-            
-            mock_llm.generate.assert_not_called()
+            assert result["type"] == "tool"
+            assert result["tool"] == "calendar_open_ui"
+            assert result["result"] == {"status": "ok", "message": "Calendario abierto"}
+            mock_composite_func.assert_called_once()
+            mock_llm.generate.assert_called_once()
+
 
 
