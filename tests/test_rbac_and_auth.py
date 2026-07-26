@@ -114,8 +114,6 @@ async def test_rbac_orchestrator_permissions(tmp_path, monkeypatch):
     monkeypatch.setattr("app.domain.planner_orchestrator.vector_memory.query_facts", lambda *args, **kwargs: [])
     monkeypatch.setattr("app.domain.planner_orchestrator._check_and_store_fact", lambda *args, **kwargs: False)
     
-    # Mocking intent router to force tool execution
-    monkeypatch.setattr("app.domain.planner_orchestrator._router.detect_with_detail", lambda msg: {"intent": "tool"})
     
     # Mocking LLM
     mock_llm = AsyncMock()

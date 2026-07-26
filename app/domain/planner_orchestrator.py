@@ -436,16 +436,16 @@ class PlannerOrchestrator:
     def __init__(
         self,
         llm: LLMPort | None = None,
-        memory_port: MemoryPort | None = None,
-        vector_memory_port: VectorMemoryPort | None = None,
-        bridge_port: BridgePort | None = None,
-        calendar_port: CalendarPort | None = None
+        memory: MemoryPort | None = None,
+        vector_memory: VectorMemoryPort | None = None,
+        bridge: BridgePort | None = None,
+        calendar: CalendarPort | None = None
     ):
         self._llm = llm
-        self._memory = memory_port
-        self._vector_memory = vector_memory_port
-        self._bridge = bridge_port
-        self._calendar = calendar_port
+        self._memory = memory
+        self._vector_memory = vector_memory
+        self._bridge = bridge
+        self._calendar = calendar
 
         self.context_service = ConversationContextService(self.memory, self.vector_memory)
         self.agent_router = SpecializedAgentRouter(self.memory)

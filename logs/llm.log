@@ -298,3 +298,7 @@
 2026-07-26 17:35:29,712 | INFO | llm | [----------] Llamada de herramienta nativa detectada: create_file con args: {'path': '/test/path.txt', 'content': 'test content'}
 2026-07-26 17:35:29,719 | INFO | llm | [----------] MODEL=qwen2.5:1.5b MODE=tool
 2026-07-26 17:35:29,730 | INFO | llm | [----------] DeepSeek-R1 Thought (CoT): Thinking... Let's use read_file tool.
+2026-07-26 17:36:13,317 | INFO | llm | [----------] MODEL=qwen2.5:1.5b MODE=tool
+2026-07-26 17:36:13,318 | INFO | llm | [----------] Llamada de herramienta nativa detectada: create_file con args: {'path': '/test/path.txt', 'content': 'test content'}
+2026-07-26 17:36:13,328 | INFO | llm | [----------] MODEL=qwen2.5:1.5b MODE=tool
+2026-07-26 17:36:13,342 | INFO | llm | [----------] DeepSeek-R1 Thought (CoT): Thinking... Let's use read_file tool.
