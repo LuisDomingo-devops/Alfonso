@@ -87,8 +87,15 @@ Por favor, asesora y responde a esta consulta de forma rigurosa basándote en lo
             {"role": "user", "content": prompt}
         ]
         
+        disclaimer = (
+            "\n\n---\n"
+            "⚖️ *AVISO LEGAL: Esta respuesta es generada automáticamente por un asistente de IA y se proporciona "
+            "únicamente con fines informativos y orientativos. No constituye asesoramiento jurídico profesional. "
+            "Para cualquier acción o decisión legal, consulte con un abogado colegiado en España.*"
+        )
+        
         try:
-            return await self.llm.generate(
+            raw_res = await self.llm.generate(
                 prompt,
                 mode="chat",
                 memory=self.system_prompt,
@@ -97,9 +104,10 @@ Por favor, asesora y responde a esta consulta de forma rigurosa basándote en lo
                     "temperature": 0.2, # Respuestas más precisas y formales
                 }
             )
+            return f"{raw_res}{disclaimer}"
         except Exception as e:
             orchestrator_logger.exception("Error en la ejecución del agente Marcos: %s", e)
-            return "Lo siento, ha ocurrido un error al procesar tu consulta legal."
+            return f"Lo siento, ha ocurrido un error al procesar tu consulta legal.{disclaimer}"
 
 # Instancia global única
 marcos_agent = MarcosAgent()

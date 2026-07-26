@@ -2181,3 +2181,51 @@ Estos dos proyectos son la base de mi trabajo actual. ¿Hay algo específico sob
 2026-07-26 17:36:23,622 | INFO | app | [----------] Detención del bridge omitida en entorno de test
 2026-07-26 17:36:23,622 | INFO | app | [----------] Playwright cerrado limpiamente
 2026-07-26 17:36:23,622 | INFO | app | [----------] Alfonso detenido
+2026-07-26 19:46:36,749 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-07-26 19:46:36,750 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-07-26 19:46:36,751 | INFO | app | [----------] Inicio del bridge y monitoreo de seguridad omitidos en entorno de test
+2026-07-26 19:46:36,765 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-07-26 19:46:36,765 | INFO | app | [----------] Precalentamiento de modelo omitido en entorno de test
+2026-07-26 19:46:36,765 | INFO | app | [----------] Alfonso listo
+2026-07-26 19:46:36,767 | INFO | app | [9e914e56-313f-4e29-9ffc-599dbad2caed] HTTP POST /dev/files
+2026-07-26 19:46:36,774 | INFO | app | [759b6fb5-52be-472b-84f2-0caf5a8718e4] HTTP GET /dev/files
+2026-07-26 19:46:36,776 | INFO | app | [de0c39e1-51a7-473e-87c1-86fed6acabb4] HTTP GET /dev/files/test_api.py
+2026-07-26 19:46:36,778 | INFO | app | [2c89a090-eec1-4fa3-a0a8-83b62e634883] HTTP POST /dev/execute
+2026-07-26 19:46:36,779 | INFO | app | [----------] Ejecutando en sandbox: python3 test_api.py
+2026-07-26 19:46:37,191 | INFO | app | [0c74ad4f-e53e-46e1-89dc-7e83c944b141] HTTP DELETE /dev/files/test_api.py
+2026-07-26 19:46:38,462 | INFO | app | [----------] Detención del bridge omitida en entorno de test
+2026-07-26 19:46:38,462 | INFO | app | [----------] Playwright cerrado limpiamente
+2026-07-26 19:46:38,463 | INFO | app | [----------] Alfonso detenido
+2026-07-26 19:46:38,547 | INFO | app | [7ba15007-abfe-4e06-a1d8-5627d51b1d6b] HTTP POST /mail/send
+2026-07-26 19:46:38,552 | INFO | app | [7413cde5-7387-4c5c-994a-4cca3acc2d7d] HTTP DELETE /mail/emails/1
+2026-07-26 19:46:38,556 | INFO | app | [c5393808-fea6-4d5d-962f-f0e700edce28] HTTP POST /mail/emails/1/reply
+2026-07-26 19:46:38,561 | INFO | app | [b425d34e-d1cd-46e0-8fd7-93d5248f5b95] HTTP POST /mail/emails/1/forward
+2026-07-26 19:46:38,567 | INFO | app | [1a12a73c-cc20-4ebb-a807-4e3b2507cc9a] HTTP GET /mail/emails/1/draft
+2026-07-26 19:46:47,519 | INFO | app | [----------] Logs en /home/luisd/Alfonso/logs
+2026-07-26 19:46:47,520 | INFO | app | [----------] Arrancando Alfonso — audio delegado al cliente local
+2026-07-26 19:46:47,520 | INFO | app | [----------] Inicio del bridge y monitoreo de seguridad omitidos en entorno de test
+2026-07-26 19:46:47,521 | INFO | app | [----------] Prompts de sistema precargados (chat + tool)
+2026-07-26 19:46:47,521 | INFO | app | [----------] Precalentamiento de modelo omitido en entorno de test
+2026-07-26 19:46:47,521 | INFO | app | [----------] Alfonso listo
+2026-07-26 19:46:47,523 | INFO | app | [9a40c6c9-b4ca-4872-865f-82dda259d7fd] HTTP GET /health
+2026-07-26 19:46:47,527 | INFO | app | [a6458056-9fcc-4740-9881-3fd015890946] HTTP GET /metrics
+2026-07-26 19:46:47,533 | INFO | app | [690529b7-d791-4ee3-8d9a-e3a68803802b] HTTP POST /chat
+2026-07-26 19:46:47,535 | INFO | app | [690529b7-d791-4ee3-8d9a-e3a68803802b] Solicitud /chat recibida
+2026-07-26 19:46:47,536 | INFO | app | [690529b7-d791-4ee3-8d9a-e3a68803802b] SESSION_ID: test_sess
+2026-07-26 19:46:47,536 | INFO | app | [690529b7-d791-4ee3-8d9a-e3a68803802b] CLIENT_ID: None
+2026-07-26 19:46:47,536 | INFO | app | [690529b7-d791-4ee3-8d9a-e3a68803802b] USER MESSAGE: hola
+2026-07-26 19:46:47,536 | INFO | app | [690529b7-d791-4ee3-8d9a-e3a68803802b] Solicitud /chat procesada con estado: chat
+2026-07-26 19:46:47,536 | INFO | app | [690529b7-d791-4ee3-8d9a-e3a68803802b] RESPUESTA ENVIADA AL USUARIO (CHAT): simulado
+2026-07-26 19:46:47,536 | INFO | app | [690529b7-d791-4ee3-8d9a-e3a68803802b] LATENCY: 0.00s
+2026-07-26 19:46:47,540 | INFO | app | [0a3ed516-8d2e-4fc0-9a45-4c35a3d750e8] HTTP POST /chat
+2026-07-26 19:46:47,545 | INFO | app | [62dcf664-2c1d-4e26-beed-cf45e827be43] HTTP GET /tools
+2026-07-26 19:46:47,551 | INFO | app | [b7d4e09a-d833-4d2d-ad31-e0a95a16a1fb] HTTP GET /memory
+2026-07-26 19:46:47,555 | INFO | app | [fc7fe52b-bf13-4534-833f-7d7c93835466] HTTP GET /memory/test_session
+2026-07-26 19:46:47,559 | INFO | app | [707f943d-a1c3-467c-9a5c-59f84915da4d] HTTP DELETE /memory/test_session
+2026-07-26 19:46:47,565 | INFO | app | [4fb61d9e-2171-4e22-a385-789d8783e51e] HTTP POST /mail/emails/seed
+2026-07-26 19:46:47,625 | INFO | app | [7bec1f0b-c67b-429f-a564-5e8303c1e26d] HTTP GET /mail/emails
+2026-07-26 19:46:47,655 | INFO | app | [792e1127-e22d-4bc4-bf2b-9c85565502b6] HTTP GET /mail/emails/294
+2026-07-26 19:46:47,663 | INFO | app | [13d77c3e-98e9-4f17-b19e-ee38155dedd5] HTTP POST /mail/emails/294/read
+2026-07-26 19:46:47,667 | INFO | app | [----------] Detención del bridge omitida en entorno de test
+2026-07-26 19:46:47,667 | INFO | app | [----------] Playwright cerrado limpiamente
+2026-07-26 19:46:47,667 | INFO | app | [----------] Alfonso detenido

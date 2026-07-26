@@ -56,14 +56,38 @@ class DevAgent:
         return str(file_path)
 
     def execute_command_in_sandbox(self, cmd: str) -> dict:
-        """Ejecuta un comando en el directorio del sandbox y retorna stdout, stderr y exit code."""
+        """Ejecuta un comando en el directorio del sandbox. Si Docker está disponible,
+        aísla la ejecución en un contenedor efímero con recursos y red restringida.
+        De lo contrario, recurre a subprocess.run en local."""
         try:
             import shlex
-            args = shlex.split(cmd)
+            import shutil
+            
+            has_docker = shutil.which("docker") is not None
+            abs_sandbox = self.sandbox_path.resolve()
+            
+            if has_docker:
+                # Docker seguro con límites: sin red (--network none), CPU y memoria limitadas.
+                docker_image = "python:3.12-slim" if cmd.startswith("python") else "alpine:latest"
+                docker_cmd = [
+                    "docker", "run", "--rm",
+                    "--network", "none",
+                    "-m", "128m",
+                    "--cpus", "0.5",
+                    "-v", f"{abs_sandbox}:/workspace",
+                    "-w", "/workspace",
+                    docker_image
+                ]
+                args = docker_cmd + shlex.split(cmd)
+                orchestrator_logger.info("DevAgent: Ejecutando en Docker aislado: %s", " ".join(args))
+            else:
+                args = shlex.split(cmd)
+                orchestrator_logger.warning("Docker no disponible. Ejecutando sin aislamiento en host: %s", cmd)
+
             res = subprocess.run(
                 args,
                 shell=False,
-                cwd=str(self.sandbox_path),
+                cwd=str(abs_sandbox) if not has_docker else None,
                 capture_output=True,
                 text=True,
                 timeout=15
@@ -83,7 +107,7 @@ class DevAgent:
             return {
                 "exit_code": -1,
                 "stdout": "",
-                "stderr": str(e)
+                "stderr": f"Error ejecutando comando: {str(e)}"
             }
 
     def _save_files_from_response(self, response_text: str) -> list[str]:

@@ -91,11 +91,12 @@ class JobAgent:
         app_logger.info(f"[JobAgent] Campos detectados: {len(fields)}")
 
         # 3. Consultar al LLM las respuestas adecuadas según el CV
+        from app.config import settings
         cv_text = self._read_cv()
-        prompt = f"""Eres Alfonso, el asistente de auto-postulación de empleo de Luis J. Domingo.
+        prompt = f"""Eres Alfonso, el asistente de auto-postulación de empleo de {settings.ALFONSO_USER_NAME}.
 Tienes la tarea de rellenar de forma precisa e inteligente el siguiente formulario de empleo utilizando los datos del currículum que se te proporciona.
 
-Currículum de Luis J. Domingo:
+Currículum de {settings.ALFONSO_USER_NAME}:
 \"\"\"
 {cv_text}
 \"\"\"
@@ -104,10 +105,10 @@ Campos del formulario detectados (lista JSON):
 {json.dumps(fields, indent=2, ensure_ascii=False)}
 
 Por favor, genera un objeto JSON válido donde las claves sean exactamente los "selector" de cada campo y los valores sean la respuesta que debe rellenarse.
-- Si el campo te pide Nombre, pon: "Luis J. Domingo"
-- Si pide Email, pon: "luisdomingogarcia79@gmail.com"
-- Si pide Teléfono, pon: "+34 638 471 780"
-- Si es una pregunta de desarrollo o test, responde de forma extremadamente profesional, redactando en primera persona como Luis y basándote fielmente en su experiencia en Python, Django y automatización descrita en su CV.
+- Si el campo te pide Nombre, pon: "{settings.ALFONSO_USER_NAME}"
+- Si pide Email, pon: "{settings.ALFONSO_USER_EMAIL}"
+- Si pide Teléfono, pon: "{settings.ALFONSO_USER_PHONE}"
+- Si es una pregunta de desarrollo o test, responde de forma extremadamente profesional, redactando en primera persona como {settings.ALFONSO_USER_NAME} y basándote fielmente en su experiencia descrita en su CV.
 
 Responde ESTRICTAMENTE con el formato JSON:
 {{

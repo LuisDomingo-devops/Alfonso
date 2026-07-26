@@ -23,6 +23,7 @@ from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
+    ENV: str = "development"
     OLLAMA_BASE_URL: str = "http://localhost:11434"
     MODEL_NAME: str = "qwen2.5:1.5b"
 
@@ -30,6 +31,10 @@ class Settings(BaseSettings):
     ALFONSO_BRIDGE_TOKEN: str = ""
     ALFONSO_CLIENT_TOKENS: str = ""  # Formato JSON: {"client_id1": "token1", "client_id2": "token2"} o client1:token1,client2:token2
     ALFONSO_CLIENT_ROLES: str = ""   # Formato JSON: {"client_id1": "admin", "client_id2": "guest"} o client1:admin,client2:guest
+
+    ALFONSO_USER_NAME: str = "Luis Domingo"
+    ALFONSO_USER_EMAIL: str = "luis@example.com"
+    ALFONSO_USER_PHONE: str = "+34 600 000 000"
 
     CHAT_PROMPT_PATH: str = "app/prompts/chat_system.txt"
 
@@ -105,3 +110,10 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
+
+if settings.ENV == "production":
+    if not settings.ALFONSO_API_KEY or not settings.ALFONSO_BRIDGE_TOKEN:
+        raise ValueError(
+            "CRITICAL SECURITY ERROR: ALFONSO_API_KEY and ALFONSO_BRIDGE_TOKEN "
+            "must not be empty in production environment!"
+        )
