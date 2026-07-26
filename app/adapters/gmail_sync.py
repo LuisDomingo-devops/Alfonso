@@ -1,10 +1,11 @@
 """
-gmail_sync.py — Módulo para sincronizar correos reales desde Gmail a través de IMAP.
+gmail_sync.py — Módulo para sincronizar correos reales desde Gmail a través de IMAP de forma asíncrona no bloqueante.
 """
 
 import os
 import imaplib
 import email
+import asyncio
 from email.header import decode_header
 from app.adapters.mail_db import create_email, get_connection
 
@@ -27,7 +28,7 @@ def clean_header(header_value) -> str:
     return "".join(parts)
 
 
-async def sync_from_gmail() -> int:
+def _sync_from_gmail_blocking() -> int:
     import socket
     socket.setdefaulttimeout(3.0)
     from dotenv import load_dotenv
@@ -140,3 +141,7 @@ async def sync_from_gmail() -> int:
     except Exception as e:
         print(f"[ERROR] Error al sincronizar con Gmail: {e}")
         return 0
+
+
+async def sync_from_gmail() -> int:
+    return await asyncio.to_thread(_sync_from_gmail_blocking)

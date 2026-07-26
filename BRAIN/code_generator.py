@@ -19,10 +19,11 @@ def _load_system_prompt() -> str:
         logging.error(f"Error cargando prompt desde {path}: {e}")
         return "Eres un experto en Python. Soluciona el problema indicado en el código fuente proporcionando un Git Diff limpio."
 
-async def generate_fix(issue: dict, codebase_context: dict) -> dict:
+async def generate_fix(issue: dict, codebase_context: dict, previous_error: str = None) -> dict:
     """
     issue: dict con severity, type, location, description, suggested_fix
     codebase_context: {filename: content} de los archivos relevantes
+    previous_error: error anterior al aplicar el patch o ejecutar los tests (opcional)
 
     Retorna un objeto 'EvolutionProposal' con el contenido técnico real generado por el LLM.
     """
@@ -37,11 +38,20 @@ async def generate_fix(issue: dict, codebase_context: dict) -> dict:
     original_code = codebase_context.get(location, "")
     
     if original_code:
+        error_context = ""
+        if previous_error:
+            error_context = (
+                f"ATENCIÓN: Tu propuesta anterior falló la validación o rompió la suite de tests.\n"
+                f"Mensaje de error/traza:\n{previous_error}\n"
+                f"Por favor, analiza el error y corrige la propuesta en este nuevo intento.\n\n"
+            )
+
         user_prompt = (
             f"El siguiente archivo tiene un problema o alucinación reportada:\n"
             f"Archivo: {location}\n"
             f"Descripción del problema: {description}\n"
             f"Solución sugerida: {suggested_fix}\n\n"
+            f"{error_context}"
             f"Código fuente original:\n"
             f"```python\n{original_code}\n```\n\n"
             f"Genera un Git Diff con la corrección propuesta. Devuelve ÚNICAMENTE el bloque de Git Diff. No agregues explicaciones adicionales de ningún tipo."

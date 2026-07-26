@@ -45,7 +45,9 @@ from app.config import settings
 llm = OllamaClient()
 planner_orchestrator = PlannerOrchestrator()
 _bg_security_task = None
+_bg_mail_task = None
 _ollama_process = None
+from app.domain.services.background_monitor import start_background_mail_monitor
 
 
 # ---------------------------------------------------------------------------
@@ -109,6 +111,8 @@ async def lifespan(app: FastAPI):
         await alfonso_bridge.start()
         # Iniciar monitoreo de seguridad en segundo plano
         _bg_security_task = asyncio.create_task(security_agent.start_background_monitoring())
+        # Iniciar monitoreo de correo en segundo plano
+        _bg_mail_task = asyncio.create_task(start_background_mail_monitor(bridge_port=alfonso_bridge))
     else:
         app_logger.info("Inicio del bridge y monitoreo de seguridad omitidos en entorno de test")
 
@@ -182,7 +186,16 @@ async def lifespan(app: FastAPI):
 # App
 # ---------------------------------------------------------------------------
 
+from fastapi.staticfiles import StaticFiles
+from pathlib import Path
+
 app = FastAPI(title="Alfonso Core — Fase 4", lifespan=lifespan)
+
+# Asegurar que el sandbox existe para evitar errores al montar
+sandbox_dir = Path("data/dev_sandbox")
+sandbox_dir.mkdir(parents=True, exist_ok=True)
+
+app.mount("/sandbox-view", StaticFiles(directory="data/dev_sandbox"), name="sandbox_view")
 
 
 @app.middleware("http")

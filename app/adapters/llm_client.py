@@ -74,7 +74,7 @@ def load_prompt(path: str) -> str:
 
 def get_system_prompt(mode: str, client_id: str | None = None) -> str:
     ''' Devuelve el prompt de sistema correspondiente al modo 
-    especificado ("chat" o "tool"). '''
+    especificado ("chat", "raw" o "tool"). '''
     if mode == "chat":
         template = load_prompt(settings.CHAT_PROMPT_PATH)
         try:
@@ -83,6 +83,8 @@ def get_system_prompt(mode: str, client_id: str | None = None) -> str:
             template = template + "\n\n" + client_ctx
         except Exception:
             pass
+    elif mode == "raw":
+        return "Eres un asistente de procesamiento de datos útil y preciso."
     else:
         template = generate_tool_prompt(client_id)
     return template.replace("{current_date}", _get_current_date_str())
@@ -245,7 +247,30 @@ def extract_json_robust(raw: str) -> dict | None:
 # CLIENTE
 # ---------------------------------------------------------------------
 
-class OllamaClient:
+from app.domain.ports.llm_port import LLMPort
+
+class OllamaClient(LLMPort):
+
+    async def chat(self, messages: list[dict[str, str]], **kwargs) -> str:
+        """Envia un listado completo de mensajes al modelo de lenguaje."""
+        payload = {
+            "model": settings.MODEL_NAME,
+            "messages": messages,
+            "stream": False,
+            "keep_alive": -1,
+        }
+        if "options" in kwargs:
+            payload["options"] = kwargs["options"]
+        
+        response = await client.post(
+            f"{settings.OLLAMA_BASE_URL}/api/chat",
+            json=payload,
+        )
+        if response.status_code != 200:
+            raise RuntimeError(response.text)
+        data = response.json()
+        return data.get("message", {}).get("content", "").strip()
+
 
     async def generate(
         self,

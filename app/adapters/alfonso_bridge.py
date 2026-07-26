@@ -20,6 +20,7 @@ import json
 import websockets
 import uuid
 import logging
+import secrets
 
 from app.domain.actions import ALLOWED_ACTIONS
 
@@ -27,7 +28,9 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("bridge")
 
 
-class AlfonsoBridge:
+from app.domain.ports.bridge_port import BridgePort
+
+class AlfonsoBridge(BridgePort):
     def __init__(self, host="0.0.0.0", port=8765):
         self.host = host
         self.port = port
@@ -124,12 +127,12 @@ class AlfonsoBridge:
             token = data.get("token")
             expected_token = settings.get_client_token(client_id)
             if expected_token is not None:
-                if not token or token != expected_token:
+                if not token or not secrets.compare_digest(token, expected_token):
                     logger.warning(f"Conexión rechazada: Token incorrecto o ausente para el cliente {client_id}")
                     await ws.close(code=4003, reason="Forbidden - Invalid Client Token")
                     return
             elif settings.ALFONSO_BRIDGE_TOKEN:
-                if not token or token != settings.ALFONSO_BRIDGE_TOKEN:
+                if not token or not secrets.compare_digest(token, settings.ALFONSO_BRIDGE_TOKEN):
                     logger.warning("Conexión rechazada: Token incorrecto o ausente")
                     await ws.close(code=4003, reason="Forbidden - Invalid Token")
                     return
@@ -171,11 +174,11 @@ class AlfonsoBridge:
                     from app.config import settings
                     expected_token = settings.get_client_token(client_id)
                     if expected_token is not None:
-                        if token != expected_token:
+                        if not secrets.compare_digest(token, expected_token):
                             logger.warning(f"Handshake subsiguiente rechazado: token inválido para el cliente {client_id}")
                             await ws.close(code=4003, reason="Forbidden - Invalid Client Token")
                             return
-                    elif settings.ALFONSO_BRIDGE_TOKEN and token != settings.ALFONSO_BRIDGE_TOKEN:
+                    elif settings.ALFONSO_BRIDGE_TOKEN and not secrets.compare_digest(token, settings.ALFONSO_BRIDGE_TOKEN):
                         logger.warning("Handshake subsiguiente rechazado: token global inválido")
                         await ws.close(code=4003, reason="Forbidden - Invalid Token")
                         return

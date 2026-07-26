@@ -23,7 +23,9 @@ from app.config import settings
 from app.utils.logger import orchestrator_logger
 
 
-class VectorMemory:
+from app.domain.ports.memory_port import VectorMemoryPort
+
+class VectorMemory(VectorMemoryPort):
     """
     Gestión de la memoria persistente semántica basada en ChromaDB.
     Utiliza el modelo de embeddings local por defecto (all-MiniLM-L6-v2 via ONNX)

@@ -1,0 +1,32 @@
+name: Deploy to AWS EC2
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to EC2 via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.AWS_EC2_HOST }}
+          username: ubuntu
+          key: ${{ secrets.AWS_SSH_KEY }}
+          port: 22
+          script: |
+            mkdir -p ~/alfonso
+            cd ~/alfonso
+            
+            # Clonar o actualizar el repositorio
+            if [ -d ".git" ]; then
+              git pull origin main
+            else
+              git clone https://github.com/${{ github.repository }}.git .
+            fi
+            
+            # Detener contenedores anteriores y levantar la nueva versión
+            docker compose down
+            docker compose up -d --build

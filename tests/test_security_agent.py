@@ -89,3 +89,23 @@ async def test_system_scan(agent, tmp_path):
         else:
             if env_file.exists():
                 env_file.unlink()
+
+def test_waf_normalization_and_bypasses(agent):
+    # 1. Doble URL encoding en Path Traversal
+    assert agent.inspect_request("127.0.0.4", "/api/files/%252E%252E%252F%252E%252E%252Fetc/passwd", "GET", {}, "")
+    assert agent.is_blocked("127.0.0.4")
+
+    # 2. Obfuscación con comentarios SQL
+    agent5 = CyberSecurityAgent()
+    assert agent5.inspect_request("127.0.0.5", "/api/data", "POST", {}, "1' UNI/**/ON SE/**/LECT null--")
+    assert agent5.is_blocked("127.0.0.5")
+
+    # 3. Unicode Homographs
+    agent6 = CyberSecurityAgent()
+    assert not agent6.inspect_request("127.0.0.6", "/api/chat", "POST", {}, "<ｓｃｒｉｐｔ>alert(1)</ｓｃｒｉｐｔ>")
+    assert any(a["type"] == "XSS_DETECTION" for a in agent6.alerts)
+
+    # 4. Inyección SQL ciega basada en tiempo (sleep)
+    agent7 = CyberSecurityAgent()
+    assert agent7.inspect_request("127.0.0.7", "/api/query", "POST", {}, "1'; sleep(5)--")
+    assert agent7.is_blocked("127.0.0.7")

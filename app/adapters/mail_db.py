@@ -46,11 +46,21 @@ def _init_mail_schema(conn: sqlite3.Connection) -> None:
             read_status INTEGER NOT NULL DEFAULT 0,       -- 0: No leído, 1: Leído
             summary     TEXT,
             processed_for_calendar INTEGER NOT NULL DEFAULT 0,
+            notified    INTEGER NOT NULL DEFAULT 0,
+            processed_for_job INTEGER NOT NULL DEFAULT 0,
             created_at  TEXT    NOT NULL DEFAULT (datetime('now'))
         )
     """)
     try:
         conn.execute("ALTER TABLE emails ADD COLUMN processed_for_calendar INTEGER NOT NULL DEFAULT 0")
+    except sqlite3.OperationalError:
+        pass
+    try:
+        conn.execute("ALTER TABLE emails ADD COLUMN notified INTEGER NOT NULL DEFAULT 0")
+    except sqlite3.OperationalError:
+        pass
+    try:
+        conn.execute("ALTER TABLE emails ADD COLUMN processed_for_job INTEGER NOT NULL DEFAULT 0")
     except sqlite3.OperationalError:
         pass
     conn.execute("""
@@ -133,6 +143,8 @@ def list_emails(
     if category is not None:
         query += " AND category = ?"
         params.append(category)
+    else:
+        query += " AND (category IS NULL OR (category != 'sent' AND category != 'draft'))"
     if importance is not None:
         query += " AND importance = ?"
         params.append(importance)
@@ -156,7 +168,7 @@ def update_email(email_id: int, **kwargs) -> bool:
     if not kwargs:
         return False
     
-    allowed_fields = {"category", "importance", "read_status", "summary", "processed_for_calendar"}
+    allowed_fields = {"category", "importance", "read_status", "summary", "processed_for_calendar", "processed_for_job"}
     set_clauses = []
     params = []
     

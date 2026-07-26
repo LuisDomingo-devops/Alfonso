@@ -119,6 +119,7 @@ class AlfonsoAgent:
             "window.list": self.window_list,
             "window.focus": self.window_focus,
             "window.close": self.window_close,
+            "system.notify": self.show_notification,
             
             # Calendar
             "calendar.open": self.calendar_open,
@@ -148,6 +149,9 @@ class AlfonsoAgent:
             "delete_directory": self.delete_directory,
             "move_file": self.move_file,
             "rename_file": self.rename_file,
+            
+            # Project Management
+            "switch_project_session": self.switch_project_session,
         }
 
         self.mapping = {
@@ -155,6 +159,7 @@ class AlfonsoAgent:
             "close_app": "system.close_app",
             "open_url": "system.open_url",
             "browser_close": "system.browser_close",
+            "notify": "system.notify",
             "type_text": "keyboard.type",
             "press_key": "keyboard.press",
             "move_mouse": "mouse.move",
@@ -272,6 +277,43 @@ class AlfonsoAgent:
         return resolved_path
 
     # ---------------- SYSTEM ----------------
+
+    def show_notification(self, params):
+        title = params.get("title", "Alfonso OS")
+        message = params.get("message", "")
+        if not message:
+            return {"error": "mensaje vacío"}
+
+        import subprocess
+        # Windows Toast Notification using PowerShell
+        if platform.system() == "Windows":
+            # Escapar comillas simples para evitar roturas en el script PowerShell
+            safe_title = title.replace("'", "''")
+            safe_message = message.replace("'", "''")
+            ps_script = f"""
+            [void][System.Reflection.Assembly]::LoadWithPartialName('System.Windows.Forms');
+            $notification = New-Object System.Windows.Forms.NotifyIcon;
+            $notification.Icon = [System.Drawing.SystemIcons]::Information;
+            $notification.BalloonTipIcon = 'Info';
+            $notification.BalloonTipTitle = '{safe_title}';
+            $notification.BalloonTipText = '{safe_message}';
+            $notification.Visible = $true;
+            $notification.ShowBalloonTip(5000);
+            """
+            try:
+                subprocess.run(["powershell", "-Command", ps_script], capture_output=True)
+                return {"status": "ok"}
+            except Exception as e:
+                logger.error(f"Error mostrando notificación de Windows: {e}")
+                return {"error": str(e)}
+        else:
+            # Fallback simple para Linux (notify-send)
+            try:
+                subprocess.run(["notify-send", title, message], capture_output=True)
+                return {"status": "ok"}
+            except Exception as e:
+                logger.error(f"Error mostrando notificación en Linux: {e}")
+                return {"error": str(e)}
 
     def open_app(self, params):
         # El servidor (system_tools.py) manda la clave "command";
@@ -625,6 +667,10 @@ class AlfonsoAgent:
         except Exception as e:
             logger.exception("Error al detener el control de gestos")
             return {"error": f"Fallo al detener gestos: {e}"}
+
+    def switch_project_session(self, params):
+        logger.info("switch_project_session recibido en el agente. Notificando cambio exitoso.")
+        return {"result": "ok", "message": "Sesión de proyecto cambiada exitosamente."}
     
     # ---------------- EXECUTION ----------------
 

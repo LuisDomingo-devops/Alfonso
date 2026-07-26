@@ -145,6 +145,19 @@ class AlfonsoAPI:
         except Exception as e:
             return {"status": "error", "message": str(e)}
 
+    def save_draft(self, recipient: str, subject: str, body: str) -> dict:
+        """Guarda un borrador de correo."""
+        try:
+            r = requests.post(
+                f"{self.base_url}/mail/drafts",
+                json={"recipient": recipient, "subject": subject, "body": body},
+                timeout=10
+            )
+            r.raise_for_status()
+            return r.json()
+        except Exception as e:
+            return {"status": "error", "message": str(e)}
+
     def delete_email(self, email_id: int) -> dict:
         """Elimina un correo electrónico."""
         try:
@@ -242,6 +255,24 @@ class AlfonsoAPI:
             return r.json()
         except Exception as e:
             return {"status": "error", "exit_code": -1, "stdout": "", "stderr": str(e)}
+
+    def get_conversations(self) -> dict:
+        """Obtiene la lista de conversaciones y proyectos persistentes de la base de datos."""
+        try:
+            r = requests.get(f"{self.base_url}/conversations", timeout=10)
+            r.raise_for_status()
+            return r.json()
+        except Exception as e:
+            return {"status": "error", "conversations": [], "count": 0, "message": str(e)}
+
+    def get_memory_detail(self, session_id: str) -> dict:
+        """Obtiene el historial completo de una conversación por su session_id."""
+        try:
+            r = requests.get(f"{self.base_url}/memory/{session_id}", timeout=10)
+            r.raise_for_status()
+            return r.json()
+        except Exception as e:
+            return {"status": "error", "messages": [], "metadata": None, "message": str(e)}
 
 
 

@@ -44,10 +44,10 @@ class CyberSecurityAgent:
         self.rate_limit_threshold = 100  # Peticiones máximas por minuto
         self.rate_limit_window = 60.0    # Ventana de 60 segundos
 
-        # Firmas WAF ultraligeras (Regex compiladas)
-        self.path_traversal_re = re.compile(r"\.\.[/\\]")
+        # Firmas WAF Robustecidas (Regex compiladas)
+        self.path_traversal_re = re.compile(r"\.\.[/\\]|%2e%2e", re.IGNORECASE)
         self.sql_injection_re = re.compile(
-            r"\b(union\s+all\s+select|union\s+select|select\s+.*\s+from|insert\s+into|delete\s+from|drop\s+table|or\s+\d+=\d+|['\"]or['\"])\b",
+            r"\b(union\s+all\s+select|union\s+select|select\s+.*\s+from|insert\s+into|delete\s+from|drop\s+table|or\s+\d+=\d+|['\"]or['\"]|sleep\s*\(|benchmark\s*\(|pg_sleep\s*\(|coalesce\s*\()\b",
             re.IGNORECASE
         )
         self.command_injection_re = re.compile(
@@ -55,9 +55,42 @@ class CyberSecurityAgent:
             re.IGNORECASE
         )
         self.xss_re = re.compile(
-            r"<script|javascript:|onerror=|onload=",
+            r"<script|javascript:|onerror\s*=|onload\s*=|onmouseover\s*=|onclick\s*=|onfocus\s*=|<iframe|<svg",
             re.IGNORECASE
         )
+
+    def _normalize_payload(self, payload: str) -> str:
+        """
+        Limpia, decodifica recursivamente y normaliza un payload antes de escanearlo.
+        Esto previene evasiones comunes basadas en doble encoding y obfuscación Unicode o de comentarios.
+        """
+        if not payload:
+            return ""
+
+        # 1. Eliminar Null Bytes que puedan truncar cadenas
+        payload = payload.replace("\x00", "")
+
+        # 2. Decodificación URL recursiva (hasta 3 iteraciones)
+        import urllib.parse
+        last_payload = ""
+        iterations = 0
+        while payload != last_payload and iterations < 3:
+            last_payload = payload
+            payload = urllib.parse.unquote(payload)
+            iterations += 1
+
+        # 3. Normalización Unicode (NFKD) para evitar homógrafos/suplantaciones
+        import unicodedata
+        payload = unicodedata.normalize("NFKD", payload)
+
+        # 4. Eliminar comentarios SQL (-- y /* ... */) para neutralizar obfuscaciones
+        payload = re.sub(r"/\*.*?\*/", "", payload, flags=re.DOTALL)
+        payload = re.sub(r"--.*", "", payload)
+        
+        # 5. Eliminar comentarios HTML <!-- ... -->
+        payload = re.sub(r"<!--.*?-->", "", payload, flags=re.DOTALL)
+
+        return payload
 
     def _load_prompt(self):
         try:
@@ -123,9 +156,10 @@ class CyberSecurityAgent:
             self.block_ip(ip, f"Excedido límite de peticiones ({len(self.request_history[ip])}/{self.rate_limit_threshold} en 60s)")
             return True
 
-        # 3. Inspeccionar inyecciones en la URL y Path y decodificar URL-encoded
-        import urllib.parse
-        payloads = [urllib.parse.unquote(path), body]
+        # 3. Normalizar e inspeccionar inyecciones en la URL, Path y Body
+        normalized_path = self._normalize_payload(path)
+        normalized_body = self._normalize_payload(body)
+        payloads = [normalized_path, normalized_body]
         
         for payload in payloads:
             if not payload:
@@ -142,7 +176,7 @@ class CyberSecurityAgent:
                 return True
 
             # Command Injection
-            # Para inyección de comandos, excluimos peticiones legítimas de desarrollo que vayan a /dev
+            # Para inyección de comandos, excluimos peticiones legítimas de desarrollo que vayan a /dev o contengan rutas de sandbox
             if "/dev" not in path and self.command_injection_re.search(payload):
                 self.block_ip(ip, f"Intento de inyección de comandos detectado en payload: {payload[:100]}")
                 return True

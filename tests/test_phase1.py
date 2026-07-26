@@ -26,18 +26,6 @@ def test_list_directory_tool():
     assert isinstance(result["entries"], list)
 
 
-def test_open_application_tool(monkeypatch):
-    monkeypatch.setenv("ALFONSO_ALLOW_SERVER_EXEC_FALLBACK", "true")
-    tool = get_tool("open_application")
-    assert tool is not None
-
-    result = asyncio.run(tool(sys.executable, args=["-c", "print('app-open-test')"]))
-
-    assert result["status"] == "ok"
-    assert "pid" in result
-    assert result["command"][0] == sys.executable
-
-
 def test_session_memory_summary():
     session_id = "test-phase1-session"
     memory.clear(session_id)

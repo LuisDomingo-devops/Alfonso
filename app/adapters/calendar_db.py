@@ -166,3 +166,15 @@ def delete_event(event_id: int) -> bool:
         cursor = conn.execute("DELETE FROM calendar_events WHERE id = ?", (event_id,))
         conn.commit()
         return cursor.rowcount > 0
+
+
+from typing import Any
+from app.domain.ports.calendar_port import CalendarPort
+
+class SQLiteCalendarAdapter(CalendarPort):
+    def list_events(self, date_str: str | None = None) -> list[dict[str, Any]]:
+        return list_events(date_str)
+
+    def delete_event(self, event_id: int) -> bool:
+        return delete_event(event_id)
+

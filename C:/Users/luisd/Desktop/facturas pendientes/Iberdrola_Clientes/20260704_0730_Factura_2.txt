@@ -1,0 +1,11 @@
+=== DETALLES DE LA FACTURA ===
+ID de Correo: 2
+Proveedor/Servicio: Iberdrola Clientes
+Remitente: Iberdrola Clientes <factura-no-reply@iberdrola.es>
+Destinatario: luisd@alfonso.dev
+Asunto: Su factura de luz del periodo Mayo-Junio ya está disponible (68.42 €)
+Fecha de Recepción: 2026-07-04 07:30
+==============================
+
+Contenido del Mensaje:
+Estimado cliente: Le informamos de que ya puede consultar su última factura de electricidad con número de referencia IBER-9812-401 por un importe total de 68.42 Euros. El cargo se realizará en su cuenta bancaria habitual el día 10 de julio de 2026. Si desea reclamar o ver los detalles del consumo, acceda a su Área de Cliente.

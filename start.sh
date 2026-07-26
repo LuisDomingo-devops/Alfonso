@@ -5,6 +5,8 @@ set -e
 
 echo "=== Iniciando Ollama en segundo plano ==="
 export OLLAMA_HOST=127.0.0.1:11434
+export OLLAMA_FLASH_ATTENTION=0
+export OLLAMA_NUM_PARALLEL=1
 ollama serve > ollama.log 2>&1 &
 
 # Esperar a que Ollama esté listo
@@ -17,10 +19,9 @@ for i in {1..30}; do
   sleep 1
 done
 
-# Descargar el modelo configurado (por defecto qwen2.5:3b)
+# Omitir descarga automatica de modelo para evitar delays en EC2
 MODEL=${MODEL_NAME:-"qwen2.5:3b"}
-echo "Descargando modelo $MODEL..."
-ollama pull $MODEL
+echo "Modelo configurado: $MODEL (ya descargado en el disco de la EC2)"
 
 echo "=== Iniciando servidor Alfonso en puerto local 8000 ==="
 # El servidor corre en local 8000; Caddy lo expondrá al exterior en el 7860

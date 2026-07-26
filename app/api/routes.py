@@ -21,10 +21,13 @@ Define un router principal y routers especializados (browser, computer, calendar
 from __future__ import annotations
 
 import os
+import sqlite3
 import uuid
 from pathlib import Path
 from typing import Any, List, Optional
+from app.adapters.memory.memory import DB_PATH
 
+import secrets
 from fastapi import APIRouter, HTTPException, Query, Request, Depends, status
 from fastapi.security.api_key import APIKeyHeader
 from pydantic import BaseModel, Field
@@ -45,7 +48,7 @@ api_key_header = APIKeyHeader(name=API_KEY_NAME, auto_error=False)
 
 async def verify_api_key(api_key: str = Depends(api_key_header)):
     if settings.ALFONSO_API_KEY:
-        if not api_key or api_key != settings.ALFONSO_API_KEY:
+        if not api_key or not secrets.compare_digest(api_key, settings.ALFONSO_API_KEY):
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
                 detail="Invalid API Key or API Key missing"
@@ -342,17 +345,60 @@ async def chat_endpoint(req: ChatRequest, request: Request):
     return {"request_id": request_id, "result": result}
 
 
+class MetadataPatch(BaseModel):
+    title: Optional[str] = None
+    discipline: Optional[str] = None
+    project_name: Optional[str] = None
+    is_persistent: Optional[bool] = None
+
+@router.get("/conversations", dependencies=[Depends(verify_api_key)])
+async def get_conversations():
+    from app.adapters.memory import memory
+    convs = memory.list_persistent_conversations()
+    return {"conversations": convs, "count": len(convs)}
+
+
+@router.patch("/conversations/{session_id}", dependencies=[Depends(verify_api_key)])
+async def patch_conversation(session_id: str, payload: MetadataPatch):
+    from app.adapters.memory import memory
+    existing = memory.get_metadata(session_id)
+    if not existing:
+        # Si no existe metadato aún, creamos uno base
+        title = payload.title or "Nueva conversación"
+        discipline = payload.discipline or "general"
+        project_name = payload.project_name or "default"
+        is_persistent = payload.is_persistent if payload.is_persistent is not None else True
+    else:
+        title = payload.title if payload.title is not None else existing["title"]
+        discipline = payload.discipline if payload.discipline is not None else existing["discipline"]
+        project_name = payload.project_name if payload.project_name is not None else existing["project_name"]
+        is_persistent = payload.is_persistent if payload.is_persistent is not None else existing["is_persistent"]
+
+    memory.upsert_metadata(session_id, title, discipline, project_name, is_persistent)
+    return {"status": "ok", "session_id": session_id}
+
+
 @router.get("/memory/{session_id}")
 async def get_memory(session_id: str):
     from app.adapters.memory import memory
     history = memory.get_history(session_id)
-    return {"session_id": session_id, "messages": history, "count": len(history)}
+    metadata = memory.get_metadata(session_id)
+    return {
+        "session_id": session_id,
+        "metadata": metadata,
+        "messages": history,
+        "count": len(history)
+    }
 
 
 @router.delete("/memory/{session_id}")
 async def clear_memory(session_id: str):
     from app.adapters.memory import memory
     memory.clear(session_id)
+    # También limpiar metadatos al borrar memoria
+    with sqlite3.connect(str(DB_PATH), check_same_thread=False) as conn:
+        conn.execute("DELETE FROM conversation_metadata WHERE session_id = ?", (session_id,))
+        conn.commit()
     return {"status": "ok", "session_id": session_id, "message": "Historial borrado"}
 
 
@@ -720,11 +766,9 @@ async def get_emails(
 ):
     """Obtiene la lista de correos con filtros opcionales."""
     try:
+        import asyncio
         from app.tools.server.mail_tools import sync_emails_to_calendar
-        try:
-            await sync_emails_to_calendar()
-        except Exception:
-            pass
+        asyncio.create_task(sync_emails_to_calendar())
 
         emails = mail_db.list_emails(
             category=category,
@@ -763,11 +807,9 @@ async def seed_emails():
     """Inyecta correos de prueba simulados en la base de datos."""
     try:
         inserted = mail_db.seed_mock_emails()
+        import asyncio
         from app.tools.server.mail_tools import sync_emails_to_calendar
-        try:
-            await sync_emails_to_calendar()
-        except Exception:
-            pass
+        asyncio.create_task(sync_emails_to_calendar())
         return {
             "status": "ok",
             "message": f"Inyección completada. Se han insertado {inserted} correos de prueba.",
@@ -785,6 +827,31 @@ async def send_new_email(req: SendEmailRequest):
     if res["status"] == "error":
         raise HTTPException(status_code=500, detail=res["message"])
     return res
+
+
+@router_mail.post("/drafts")
+async def save_draft(payload: dict):
+    """Guarda un borrador de correo."""
+    subject = payload.get("subject", "")
+    recipient = payload.get("recipient", "")
+    body = payload.get("body", "")
+    
+    from app.adapters.mail_db import create_email
+    from datetime import datetime
+    now_str = datetime.now().strftime("%Y-%m-%d %H:%M")
+    
+    email_id = create_email(
+        sender="luisd@alfonso.dev",
+        recipient=recipient,
+        subject=subject,
+        body=body,
+        received_at=now_str,
+        category="draft",
+        importance="Media",
+        read_status=1,
+        summary="Borrador guardado."
+    )
+    return {"status": "ok", "email_id": email_id}
 
 
 @router_mail.delete("/emails/{email_id}")

@@ -20,6 +20,7 @@ import json
 import asyncio
 from typing import Optional, Dict, Any, List
 from datetime import datetime
+from app.utils.paths import get_client_desktop, resolve_client_path
 from app.adapters.mail_db import (
     create_email,
     list_emails,
@@ -57,11 +58,8 @@ async def mail_receive_mock_emails() -> dict:
     try:
         inserted = seed_mock_emails()
         if inserted > 0:
-            # Sincronizar citas al calendario de forma proactiva e inmediata
-            try:
-                await sync_emails_to_calendar()
-            except Exception as e:
-                tool_logger.warning(f"Error sincronizando citas tras inyectar: {e}")
+            # Sincronizar citas al calendario de forma proactiva e inmediata en segundo plano
+            asyncio.create_task(sync_emails_to_calendar())
             return {
                 "status": "ok",
                 "message": f"Se han inyectado {inserted} correos simulados de prueba y se han sincronizado con el calendario.",
@@ -221,7 +219,7 @@ Responde ESTRICTAMENTE en formato JSON con la siguiente estructura (si no hay ci
         # Marcar email como procesado para no volverlo a evaluar
         update_email(email["id"], processed_for_calendar=1)
         
-INVOICE_DESKTOP_PATH = "/mnt/c/Users/luisd/Desktop/facturas pendientes"
+INVOICE_DESKTOP_PATH = get_client_desktop() + "/facturas pendientes"
 INVOICE_BACKUP_PATH = "/mnt/g/RESPALDO_ESCRITORIO/Personal/gastos"
 
 def save_invoice_to_desktop(email: dict):
@@ -345,7 +343,7 @@ def check_and_process_payments(email: dict):
             tool_logger.info(f"Carpeta de respaldo de facturas pagadas creada en: {provider_backup_dir}")
         except Exception as e:
             tool_logger.error(f"No se pudo acceder o crear la carpeta de respaldo en {provider_backup_dir}: {e}")
-            fallback_root = "/mnt/c/Users/luisd/Desktop/facturas pagadas"
+            fallback_root = get_client_desktop() + "/facturas pagadas"
             provider_backup_dir = os.path.join(fallback_root, clean_sender)
             try:
                 os.makedirs(provider_backup_dir, exist_ok=True)
@@ -482,15 +480,29 @@ async def mail_classify_emails() -> dict:
             async def classify_single_email(email: dict):
                 nonlocal classified_count
                 body_lower = email["body"].lower() + " " + email["subject"].lower()
-                prompt = f"""Analiza el siguiente correo electrónico y clasifícalo.
+                prompt = f"""Analiza con precisión el siguiente correo electrónico y clasifícalo de forma rigurosa.
+
 Remitente: {email['sender']}
 Asunto: {email['subject']}
-Cuerpo: {email['body'][:800]}
+Cuerpo: {email['body'][:1000]}
 
-Responde ESTRICTAMENTE en formato JSON válido con las siguientes claves y valores:
-- "category": debe ser exactamente una de estas: "comercial", "empleo", "legal", "administrativo", "personal", "otros".
-- "importance": debe ser exactamente una de estas: "Alta", "Media", "Baja".
-- "summary": un resumen muy breve en una sola frase corta y clara en español de lo que trata el correo.
+Reglas de clasificación para "category":
+- "legal": Asuntos jurídicos, notificaciones judiciales, citaciones, contratos legales, multas de tráfico, requerimientos gubernamentales oficiales.
+- "administrativo": Facturas, recibos bancarios, confirmaciones de compras/pedidos, albaranes, nóminas, extractos de cuentas, trámites de la seguridad social.
+- "empleo": Ofertas de trabajo, visitas a tu CV en portales de empleo (ej. InfoJobs), notificaciones de procesos de selección de personal, candidaturas.
+- "comercial": Publicidad, promociones de servicios, ofertas comerciales de productos, newsletters publicitarias, emails de ventas o marketing.
+- "personal": Correos interpersonales directos de familiares, amigos, conocidos o colegas que no sean comerciales, administrativos, legales o de empleo.
+- "otros": Cualquier correo que no encaje de forma clara en ninguna de las anteriores.
+
+Reglas para "importance":
+- "Alta": Asuntos críticos urgentes, plazos jurídicos o judiciales improrrogables, requerimientos inmediatos, facturas de importe elevado o vencidas.
+- "Media": Correos informativos importantes que requieren atención pero no de forma inmediata (confirmaciones de citas, notificaciones del trabajo).
+- "Baja": Publicidad comercial, newsletters generales, boletines de ofertas, SPAM o avisos automáticos prescindibles.
+
+Responde ESTRICTAMENTE en formato JSON válido con las siguientes claves:
+- "category": una de estas exactas: "comercial", "empleo", "legal", "administrativo", "personal", "otros".
+- "importance": una de estas exactas: "Alta", "Media", "Baja".
+- "summary": un resumen en español de una sola frase muy clara, concisa y sin rodeos que describa el asunto real del correo.
 """
                 parsed = None
                 async with sem:
@@ -537,11 +549,8 @@ Responde ESTRICTAMENTE en formato JSON válido con las siguientes claves y valor
             # Ejecutar todas las tareas en paralelo respetando el semáforo
             await asyncio.gather(*(classify_single_email(email) for email in to_classify))
 
-        # Sincronizar citas del correo al calendario
-        try:
-            await sync_emails_to_calendar()
-        except Exception as e:
-            tool_logger.warning(f"Error al sincronizar citas al calendario: {e}")
+        # Sincronizar citas del correo al calendario en segundo plano
+        asyncio.create_task(sync_emails_to_calendar())
 
         return {
             "status": "ok",
@@ -730,11 +739,8 @@ async def mail_list_emails(
             "summary": "Lo siento, en estos momentos estoy clasificando el correo. Si quieres puedo avisarte cuando termine."
         }
     try:
-        # Sincronizar citas del correo de forma proactiva al listar
-        try:
-            await sync_emails_to_calendar()
-        except Exception as e:
-            tool_logger.warning(f"Error al sincronizar citas en mail_list_emails: {e}")
+        # Sincronizar citas del correo de forma proactiva al listar en segundo plano
+        asyncio.create_task(sync_emails_to_calendar())
             
         emails = list_emails(category=category, importance=importance, read_status=read_status)
         return {
@@ -816,8 +822,6 @@ async def mail_close_ui() -> dict:
 def send_smtp_email_if_configured(recipient: str, subject: str, body: str) -> str:
     """Envía un correo real usando SMTP de Gmail si las credenciales existen."""
     import os
-    from dotenv import load_dotenv
-    load_dotenv()
     import smtplib
     from email.mime.text import MIMEText
     
@@ -874,7 +878,7 @@ async def mail_send_email(recipient: str, subject: str, body: str) -> dict:
             subject=subject,
             body=body,
             received_at=now_str,
-            category="personal",
+            category="sent",
             importance="Media",
             read_status=1,
             summary=f"Correo saliente enviado a {recipient}."
@@ -963,7 +967,7 @@ async def mail_reply_email(email_id: int, body: str, reply_all: bool = False) ->
             subject=subject,
             body=body,
             received_at=now_str,
-            category=orig_email.get("category", "otros"),
+            category="sent",
             importance=orig_email.get("importance", "Media"),
             read_status=1
         )
@@ -1025,7 +1029,7 @@ async def mail_forward_email(email_id: int, recipient: str, comment: Optional[st
             subject=subject,
             body=body,
             received_at=now_str,
-            category=orig_email.get("category", "otros"),
+            category="sent",
             importance=orig_email.get("importance", "Media"),
             read_status=1
         )
@@ -1119,7 +1123,7 @@ async def mail_set_invoice_folder(folder_name_or_path: str) -> dict:
     try:
         # Resolver ruta. Si no empieza con / o letra de unidad (C:\), asumimos Escritorio
         if not (folder_name_or_path.startswith("/") or ":" in folder_name_or_path):
-            resolved_path = os.path.join("/mnt/c/Users/luisd/Desktop", folder_name_or_path)
+            resolved_path = os.path.join(get_client_desktop(), folder_name_or_path)
         else:
             if ":" in folder_name_or_path:
                 drive, rest = folder_name_or_path.split(":", 1)

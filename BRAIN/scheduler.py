@@ -5,6 +5,7 @@ from log_reader import parse_log_file, summarize_for_llm
 from log_analyzer import analyze_logs
 from code_generator import generate_fix
 from BRAIN.patch_manager import save_proposal
+from BRAIN.sandbox import validate_patch
 from app.config import settings
 
 LOG_FILES = {
@@ -119,11 +120,39 @@ async def run_evolution_cycle(
     with tqdm(max_fixes, desc="[Brain] Generando soluciones", unit="fix") as pbar:
         for issue in pbar:
             pbar.set_postfix_str(f"Procesando: {issue['description'][:30]}...")
-            try:
-                proposal = await generate_fix(issue, codebase)
-                proposals.append(proposal)
-            except Exception as e:
-                pbar.write(f"[Brain] Error generando fix: {e}")
+            
+            error_feedback = None
+            max_retries = 3
+            validated_proposal = None
+            
+            for attempt in range(max_retries):
+                try:
+                    pbar.set_postfix_str(f"Intento {attempt+1}/{max_retries}: {issue['description'][:20]}...")
+                    proposal = await generate_fix(issue, codebase, previous_error=error_feedback)
+                    
+                    target_file = proposal["patch_data"]["target_file"]
+                    raw_diff = proposal["patch_data"]["raw_diff"]
+                    
+                    # Ejecutar validación en el sandbox
+                    validation = validate_patch(target_file, raw_diff)
+                    
+                    if validation["success"]:
+                        pbar.write(f"[Brain] ¡Parche validado con éxito para {target_file}!")
+                        proposal["metadata"]["tests_passed"] = True
+                        proposal["metadata"]["validation_attempts"] = attempt + 1
+                        validated_proposal = proposal
+                        break
+                    else:
+                        error_feedback = validation["error"]
+                        pbar.write(f"[Brain] Intento {attempt+1} falló validación para {target_file}. Error: {error_feedback[:100]}...")
+                except Exception as e:
+                    pbar.write(f"[Brain] Error en generación/validación (intento {attempt+1}): {e}")
+                    error_feedback = str(e)
+            
+            if validated_proposal:
+                proposals.append(validated_proposal)
+            else:
+                pbar.write(f"[Brain] No se pudo generar una solución válida para {issue.get('location', 'archivo desconocido')} después de {max_retries} intentos.")
     
     # 6. Guardar informes para revisión humana
     report_paths = []

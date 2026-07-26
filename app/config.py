@@ -32,7 +32,6 @@ class Settings(BaseSettings):
     ALFONSO_CLIENT_ROLES: str = ""   # Formato JSON: {"client_id1": "admin", "client_id2": "guest"} o client1:admin,client2:guest
 
     CHAT_PROMPT_PATH: str = "app/prompts/chat_system.txt"
-    AUTOEVOLUTION_PROMPT_PATH: str = "app/prompts/autoevolution_promt.md"
 
     # ── Parámetros de inferencia ──────────────────────────────────────
     LLM_NUM_CTX_TOOL: int = 1024

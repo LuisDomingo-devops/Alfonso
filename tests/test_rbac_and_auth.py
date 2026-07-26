@@ -172,3 +172,24 @@ def test_vector_memory_isolation(tmp_path, monkeypatch):
     
     assert len(facts_guest) == 1
     assert "Barcelona" in facts_guest[0]
+
+@pytest.mark.asyncio
+async def test_verify_api_key(monkeypatch):
+    from app.api.routes import verify_api_key
+    from app.config import settings
+    from fastapi import HTTPException
+    
+    # Caso 1: Sin API Key configurada
+    monkeypatch.setattr(settings, "ALFONSO_API_KEY", "")
+    res = await verify_api_key("cualquier_key")
+    assert res == "cualquier_key"
+    
+    # Caso 2: API Key configurada y válida
+    monkeypatch.setattr(settings, "ALFONSO_API_KEY", "secret_key_123")
+    res = await verify_api_key("secret_key_123")
+    assert res == "secret_key_123"
+    
+    # Caso 3: API Key configurada e inválida
+    with pytest.raises(HTTPException) as exc_info:
+        await verify_api_key("wrong_key")
+    assert exc_info.value.status_code == 401

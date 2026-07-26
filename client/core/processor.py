@@ -33,7 +33,17 @@ class ResponseProcessor:
             message = tool_result.get("message", "")
 
             # Aceptar "ok" (de tools de servidor) o "success" (de tools de cliente)
-            if status in ("ok", "success"):
+            if status in ("ok", "success") or tool_name == "switch_project_session":
+                if tool_name == "switch_project_session":
+                    # Intentar leer desde result o desde args
+                    p_data = result_data.get("args") or result_data.get("result", {})
+                    if not p_data or (isinstance(p_data, dict) and not p_data.get("session_id")):
+                        p_data = tool_result
+                    
+                    proj_name = p_data.get("project_name") or "Proyecto"
+                    title = p_data.get("title") or "Sin título"
+                    return f"Hecho, he cargado el proyecto **{proj_name}** (*{title}*) y cambiado el contexto de la conversación a este espacio."
+                
                 # Si no hay "message" pero hay "result"
                 if not message and "result" in tool_result:
                     inner_res = tool_result["result"]

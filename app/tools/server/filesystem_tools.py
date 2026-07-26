@@ -18,6 +18,7 @@ from pathlib import Path
 import os
 import re
 from app.utils.logger import tool_logger, error_logger
+from app.utils.paths import resolve_client_path, get_client_context
 from app.domain.actions import Action
 from app.adapters.alfonso_bridge import bridge as alfonso_bridge
 
@@ -62,82 +63,14 @@ async def _delegate(action: str, args: dict) -> dict | None:
 
 # Helper to get the current user's home directory path
 def get_current_user_home_path():
-
-    return Path.home()
+    ctx = get_client_context()
+    return Path(ctx["home"])
 
 def _resolve_path(raw_path: str) -> Path:
     """Unifies path resolution logic to handle Windows paths in WSL, macOS hallucinations, 
     and placeholder usernames (e.g., YOUR_USERNAME)."""
-    current_user_home = get_current_user_home_path()
-    current_user_name = current_user_home.name
-    processed_path = raw_path
-
-    # 1. Manejar rutas de Windows (ej: C:\...) en WSL (/mnt/c/...)
-    if len(processed_path) > 1 and processed_path[1] == ":":
-        drive = processed_path[0].lower()
-        remainder = processed_path[2:].replace("\\", "/")
-        processed_path = f"/mnt/{drive}{remainder}"
-        tool_logger.info(f"Ruta de Windows detectada. Corrigiendo a WSL: {processed_path}") #
-
-        # Manejo específico para rutas de usuario de Windows dentro de WSL
-        # Si la ruta es /mnt/c/Users/<some_windows_user>/...
-        windows_users_path_match = re.match(r"/mnt/c/Users/([^/]+)(.*)", processed_path, re.IGNORECASE)
-        if windows_users_path_match:
-            windows_user_in_path = windows_users_path_match.group(1)
-            rest_of_path = windows_users_path_match.group(2)
-            
-            # Si el usuario de Windows en la ruta no es el usuario actual de WSL,
-            # asumimos que debería ser la ruta equivalente del usuario actual de WSL en Windows.
-            if windows_user_in_path.lower() != current_user_name.lower():
-                processed_path = f"/mnt/c/Users/{current_user_name}{rest_of_path}"
-                tool_logger.info(f"Usuario de Windows en la ruta ('{windows_user_in_path}') no coincide con el usuario actual de WSL ('{current_user_name}'). Ajustando a: {processed_path}") #
-
-    # 2. Corregir rutas de macOS y placeholders comunes (YourUsername -> luisd)
-    mac_users_path_match = re.match(r"/Users/([^/]+)(.*)", processed_path)
-    if mac_users_path_match:
-        mac_user_in_path = mac_users_path_match.group(1)
-        rest_of_path = mac_users_path_match.group(2)
-        processed_path = f"/home/{current_user_name}{rest_of_path}" # Siempre convertir a /home/ para contexto WSL
-        if mac_user_in_path.lower() != current_user_name.lower():
-            tool_logger.info(f"Usuario de macOS en la ruta ('{mac_user_in_path}') no coincide con el usuario actual de WSL ('{current_user_name}'). Ajustando a: {processed_path}") #
-        else:
-            tool_logger.info(f"Ruta de macOS detectada. Corrigiendo a WSL: {processed_path}") #
-
-    # 2b. FIX: el LLM también alucina rutas Linux genéricas tipo /home/user/...
-    # o /home/luisd/... (usuario inexistente o distinto al actual). Antes este
-    # caso no se corregía (a diferencia de /Users/ y /mnt/c/Users/) y producía
-    # PermissionError al intentar crear /home/<usuario-inexistente>/...
-    # Ver logs/errors.log: "Permission denied: '/home/user'".
-    linux_users_path_match = re.match(r"/home/([^/]+)(.*)", processed_path)
-    if linux_users_path_match:
-        linux_user_in_path = linux_users_path_match.group(1)
-        rest_of_path = linux_users_path_match.group(2)
-        if linux_user_in_path.lower() != current_user_name.lower():
-            processed_path = f"/home/{current_user_name}{rest_of_path}"
-            tool_logger.info(f"Usuario en ruta /home/ ('{linux_user_in_path}') no coincide con el usuario actual de WSL ('{current_user_name}'). Ajustando a: {processed_path}") #
-
-    # 2c. Corrección de alucinación común: /usr/share/applications/ para archivos normales (no-desktop)
-    if "/usr/share/applications/" in processed_path and not processed_path.endswith(".desktop"):
-        filename = Path(processed_path).name
-        processed_path = f"~/Desktop/{filename}"
-        tool_logger.info(f"Alucinación de /usr/share/applications detectada para archivo no-desktop. Redirigiendo a: {processed_path}")
-
-    # Manejar placeholders comunes que el LLM suele inventar
-    for placeholder in ["YOUR_USERNAME", "YourUsername", "your_username", "username"]:
-        processed_path = processed_path.replace(placeholder, current_user_name)
-    p = Path(processed_path).expanduser()
-    
-    if not p.is_absolute():
-        parts = p.parts
-        if len(parts) > 1 and parts[0].lower() in ["users", "home"] and parts[1].lower() == current_user_name.lower():
-            p = current_user_home / Path(*parts[2:])
-            tool_logger.info(f"Ruta relativa detectada como estructura de home del usuario actual. Ajustando a: {p}") #
-        else:
-            p = Path.cwd() / p
-            tool_logger.info(f"Ruta relativa detectada, convirtiendo a absoluta en CWD: {p}") #
-    
-    tool_logger.info(f"Ruta resuelta: {p}")
-    return p
+    resolved_str = resolve_client_path(raw_path)
+    return Path(resolved_str)
 
 async def create_file(path: str, content: str):
     """Crea un archivo nuevo con el contenido especificado (ej. en el Escritorio/Desktop o ruta relativa)."""

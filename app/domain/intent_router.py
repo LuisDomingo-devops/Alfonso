@@ -133,6 +133,10 @@ _TOOL_RULES: list[_Rule] = [
     _r(r"\b(cambia|cambiar|modifica|modificar|actualiza|actualizar|mueve|mover)\b.{0,30}\b(cita|reunión|evento|compromiso|hora|fecha)\b", 3.0, "calendar_update"),
     _r(r"\b(qué tengo hoy|qué citas tengo|lista las citas|muestra la agenda|citas de hoy|qué citas tengo para|mi agenda)\b", 3.0, "calendar_list"),
 
+    # ── Proyectos y Conversaciones ──────────────────────────────────
+    _r(r"\b(proyectos\s+tenemos\s+abiertos|lista\s+de\s+proyectos|proyectos\s+activos|proyectos\s+guardados)\b", 3.0, "projects_list"),
+    _r(r"\b(abre|abrir|carga|cargar|selecciona|seleccionar|cambia\s+al|cambiar\s+al)\b.*\bproyecto\b", 3.5, "project_open"),
+
     # ── Paths y extensiones explícitas ───────────────────────────────
     _r(r"[\w\-]+\.(txt|py|json|csv|md|log|yaml|yml|toml|ini)\b", 1.2, "extension"),
     _r(r"[/\\][\w/\\.\-]+\.\w{1,6}", 1.0, "path"),

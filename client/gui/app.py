@@ -9,9 +9,9 @@ import datetime
 
 from PyQt6.QtWidgets import (QApplication, QMainWindow, QVBoxLayout, 
                              QWidget, QLabel, QFrame, QPushButton, QLineEdit, QHBoxLayout, QScrollArea, QProgressBar, QGridLayout, QTableWidget, QTableWidgetItem, QHeaderView, QMenu,
-                             QListWidget, QListWidgetItem, QTextEdit, QSplitter, QGroupBox, QDialog, QFormLayout, QMessageBox)
+                             QListWidget, QListWidgetItem, QTextEdit, QTextBrowser, QSplitter, QGroupBox, QDialog, QFormLayout, QMessageBox)
 from PyQt6.QtCore import QThread, pyqtSignal, Qt, QTimer, QPropertyAnimation, QEasingCurve, pyqtProperty, QEvent
-from PyQt6.QtGui import QScreen, QPainter, QColor, QBrush, QPen, QPainterPath, QFont, QKeyEvent, QPixmap
+from PyQt6.QtGui import QScreen, QPainter, QColor, QBrush, QPen, QPainterPath, QFont, QKeyEvent, QPixmap, QRadialGradient
 
 from core.api_client import AlfonsoAPI
 from core.processor import ResponseProcessor
@@ -33,6 +33,7 @@ class AssistantThread(QThread):
     sync_mail = pyqtSignal()
     open_editor = pyqtSignal()
     close_editor = pyqtSignal()
+    switch_session_requested = pyqtSignal(str, str, str) # session_id, project_name, title
 
 
     def __init__(self, config):
@@ -97,7 +98,12 @@ class AssistantThread(QThread):
         threshold = self.config.get('threshold')
         if threshold is None:
             effective_device = device if device is not None else self.audio.device
-            threshold = await asyncio.to_thread(self.audio.calibrate_threshold, effective_device)
+            if hasattr(self.audio, 'calibrate_threshold'):
+                threshold = await asyncio.to_thread(self.audio.calibrate_threshold, effective_device)
+            else:
+                # Fallback local seguro si la API de AudioService restaurada no lo expone
+                from core.config import SILENCE_THRESHOLD
+                threshold = SILENCE_THRESHOLD
             self.config['threshold'] = threshold 
 
         while self.running:
@@ -140,6 +146,17 @@ class AssistantThread(QThread):
                                 self.open_editor.emit()
                             elif tool_name == "dev_studio_close_ui":
                                 self.close_editor.emit()
+                            elif tool_name == "switch_project_session":
+                                # Cambiar la sesión activa de forma dinámica
+                                p_data = response_data.get("args") or response_data.get("result", {})
+                                if isinstance(p_data, dict):
+                                    if "result" in p_data and isinstance(p_data["result"], dict):
+                                        p_data = p_data["result"]
+                                    new_sid = p_data.get("session_id")
+                                    if new_sid:
+                                        proj_name = p_data.get("project_name") or "default"
+                                        title_name = p_data.get("title") or "Nueva conversación"
+                                        self.switch_session_requested.emit(new_sid, proj_name, title_name)
                         
                         if response_text and "[SISTEMA: Archivos guardados con éxito" in response_text:
                             self.open_editor.emit()
@@ -222,6 +239,14 @@ class AssistantThread(QThread):
                                 self.open_editor.emit()
                             elif tool_name == "dev_studio_close_ui":
                                 self.close_editor.emit()
+                            elif tool_name == "switch_project_session":
+                                # Cambiar la sesión activa de forma dinámica
+                                p_data = response_data.get("args") or response_data.get("result", {})
+                                new_sid = p_data.get("session_id")
+                                if new_sid:
+                                    proj_name = p_data.get("project_name") or "default"
+                                    title_name = p_data.get("title") or "Nueva conversación"
+                                    self.switch_session_requested.emit(new_sid, proj_name, title_name)
                         
                         if response_text and "[SISTEMA: Archivos guardados con éxito" in response_text:
                             self.open_editor.emit()
@@ -285,56 +310,40 @@ class AssistantThread(QThread):
         self.running = False
         if self.loop and self.loop.is_running():
             self.loop.call_soon_threadsafe(lambda: [task.cancel() for task in asyncio.all_tasks(self.loop)])
-        self.wait()
+        self.wait(200)
 
 
 class HUDPanel(QFrame):
-    """Contenedor visual estilo HUD con bordes iluminados y títulos retro (M.U.T.H.U.R.)."""
+    """Tarjeta contenedora estilo Glassmorphism Dark."""
     def __init__(self, title, parent=None):
         super().__init__(parent)
         self.title = title
         self.setObjectName("HUDPanel")
         self.setStyleSheet("""
             #HUDPanel {
-                background-color: rgba(6, 8, 12, 230);
-                border: 1px solid rgba(0, 240, 255, 30);
-                border-radius: 4px;
+                background-color: rgba(20, 25, 35, 0.85);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                border-radius: 10px;
             }
         """)
         self.main_layout = QVBoxLayout(self)
-        self.main_layout.setContentsMargins(15, 35, 15, 15)
+        self.main_layout.setContentsMargins(16, 34, 16, 16)
         
     def paintEvent(self, event):
         super().paintEvent(event)
         painter = QPainter(self)
         painter.setRenderHint(QPainter.RenderHint.Antialiasing)
         
-        # Paleta de colores
-        cyan = QColor(0, 240, 255, 120)
-        amber = QColor(255, 184, 0, 220)
+        # Punto de acento / Badge
+        painter.setBrush(QBrush(QColor(0, 229, 255, 220)))
+        painter.setPen(Qt.PenStyle.NoPen)
+        painter.drawEllipse(16, 17, 6, 6)
         
         # Título del panel
-        font = QFont("Consolas", 10, QFont.Weight.Bold)
+        font = QFont("Segoe UI", 9, QFont.Weight.Bold)
         painter.setFont(font)
-        painter.setPen(amber)
-        painter.drawText(15, 22, self.title.upper())
-        
-        # Esquinas estilo HUD
-        w, h = self.width(), self.height()
-        painter.setPen(QPen(cyan, 2))
-        length = 12
-        # Superior Izquierda
-        painter.drawLine(0, 0, length, 0)
-        painter.drawLine(0, 0, 0, length)
-        # Superior Derecha
-        painter.drawLine(w, 0, w - length, 0)
-        painter.drawLine(w, 0, w, length)
-        # Inferior Izquierda
-        painter.drawLine(0, h, length, h)
-        painter.drawLine(0, h, 0, h - length)
-        # Inferior Derecha
-        painter.drawLine(w, h, w - length, h)
-        painter.drawLine(w, h, w, h - length)
+        painter.setPen(QColor(226, 232, 240, 220))
+        painter.drawText(28, 23, self.title.upper())
 
 
 class AnimatedWaveWidget(QWidget):
@@ -471,6 +480,154 @@ class AnimatedWaveWidget(QWidget):
             self._timer.start(30)
         self.update()
 
+    def _draw_ethereal_core(self, painter, cx, cy, base_color):
+        import math
+        t = self._animation_phase
+        
+        # Rotación 3D general del sistema orbital
+        yaw = t * 0.4
+        pitch = 0.65  # Inclinación fija elegante para perspectiva 3D
+        roll = t * 0.15
+
+        r, g, b = base_color.red(), base_color.green(), base_color.blue()
+
+        # 1. Aura de Resplandor Radial de Fondo (Más pequeño)
+        glow_grad = QRadialGradient(cx, cy, 90)
+        glow_grad.setColorAt(0.0, QColor(r, g, b, 45))
+        glow_grad.setColorAt(0.6, QColor(r, g, b, 12))
+        glow_grad.setColorAt(1.0, QColor(0, 0, 0, 0))
+        painter.setBrush(QBrush(glow_grad))
+        painter.setPen(Qt.PenStyle.NoPen)
+        painter.drawEllipse(int(cx - 100), int(cy - 100), 200, 200)
+
+        painter.save()
+
+        # Matriz de rotación 3D para proyectar círculos orbitales y partículas
+        def project_3d_point(x, y, z):
+            # Rotación Yaw (Eje Y)
+            cos_y, sin_y = math.cos(yaw), math.sin(yaw)
+            x1 = x * cos_y + z * sin_y
+            z1 = -x * sin_y + z * cos_y
+            
+            # Rotación Pitch (Eje X)
+            cos_p, sin_p = math.cos(pitch), math.sin(pitch)
+            y2 = y * cos_p - z1 * sin_p
+            z2 = y * sin_p + z1 * cos_p
+            
+            # Proyección perspectiva
+            focal = 350.0
+            dist = 280.0 + z2
+            px = cx + (x1 * focal) / dist
+            py = cy + (y2 * focal) / dist
+            return px, py, z2
+
+        # 2. Dibujar Anillos Concentricos en 3D (Radios Reducidos para Compactar)
+        num_rings = 4
+        base_radii = [24, 42, 60, 78]
+        
+        for idx, base_r in enumerate(base_radii):
+            # Dinámica reactiva según el estado
+            pulse = 0.0
+            if self._state == "speaking":
+                pulse = abs(math.sin(t * 9.0 - idx)) * 8.0
+            elif self._state == "listening":
+                pulse = math.sin(t * 4.0 + idx) * 3.5
+            elif self._state == "thinking":
+                pulse = math.sin(t * 8.0) * 2.0
+            else: # idle
+                pulse = math.sin(t * 1.5 + idx) * 1.8
+                
+            ring_r = base_r + pulse
+            
+            # Generar puntos del anillo 3D
+            ring_pts = []
+            steps = 48
+            for step in range(steps):
+                angle = (2.0 * math.pi * step) / steps
+                # Cada anillo tiene una inclinación levemente cruzada para elegancia
+                rx = ring_r * math.cos(angle)
+                ry = ring_r * math.sin(angle)
+                rz = math.sin(angle * 2.0) * 8.0
+                
+                px, py, pz = project_3d_point(rx, ry, rz)
+                ring_pts.append((px, py, pz))
+            
+            # Dibujar trazado del anillo con modulación Z
+            for i in range(steps):
+                px1, py1, pz1 = ring_pts[i]
+                px2, py2, pz2 = ring_pts[(i + 1) % steps]
+                
+                avg_z = (pz1 + pz2) / 2.0
+                alpha = int(max(25, min(240, 140 + avg_z * 2.5)))
+                
+                pen = QPen(QColor(r, g, b, alpha), 1.1 if idx > 0 else 1.8)
+                if idx == 1:
+                    pen.setStyle(Qt.PenStyle.DashLine)
+                elif idx == 2:
+                    pen.setStyle(Qt.PenStyle.DotLine)
+                    
+                painter.setPen(pen)
+                painter.drawLine(int(px1), int(py1), int(px2), int(py2))
+
+        # 3. Nodos y Partículas Orbitantes en 3D (Constellation Field más compacto)
+        num_particles = 16
+        particle_pts = []
+        for i in range(num_particles):
+            # Órbitas cruzadas flotantes
+            angle = (2.0 * math.pi * i) / num_particles + (t * 0.2)
+            p_r = 52.0 + math.sin(t * 0.8 + i) * 7.0
+            
+            px = p_r * math.cos(angle)
+            py = p_r * math.sin(angle)
+            pz = math.cos(angle * 3.0) * 14.0
+            
+            px_p, py_p, pz_p = project_3d_point(px, py, pz)
+            particle_pts.append((px_p, py_p, pz_p))
+
+        # Dibujar líneas de constelación translúcidas
+        for i in range(num_particles):
+            px1, py1, pz1 = particle_pts[i]
+            px2, py2, pz2 = particle_pts[(i + 1) % num_particles]
+            
+            avg_z = (pz1 + pz2) / 2.0
+            alpha = int(max(10, min(100, 50 + avg_z * 1.5)))
+            
+            painter.setPen(QPen(QColor(r, g, b, alpha), 0.7))
+            painter.drawLine(int(px1), int(py1), int(px2), int(py2))
+
+        # Dibujar nodos de constelación brillantes
+        for px_p, py_p, pz_p in particle_pts:
+            alpha = int(max(40, min(255, 180 + pz_p * 3.0)))
+            size = int(max(2, min(5, 3.5 + pz_p * 0.06)))
+            
+            painter.setBrush(QBrush(QColor(r, g, b, alpha)))
+            painter.setPen(QPen(QColor(255, 255, 255, int(alpha * 0.8)), 0.7))
+            painter.drawEllipse(int(px_p - size/2), int(py_p - size/2), size, size)
+
+        # 4. Núcleo Emisor Central (Reactor Core Glow - Más compacto)
+        core_size = 12
+        if self._state == "speaking":
+            core_size += int(abs(math.sin(t * 12.0)) * 5)
+        
+        core_grad = QRadialGradient(cx, cy, core_size)
+        core_grad.setColorAt(0.0, QColor(255, 255, 255, 255))
+        core_grad.setColorAt(0.4, QColor(r, g, b, 230))
+        core_grad.setColorAt(1.0, QColor(r, g, b, 0))
+        painter.setBrush(QBrush(core_grad))
+        painter.setPen(Qt.PenStyle.NoPen)
+        painter.drawEllipse(int(cx - core_size), int(cy - core_size), core_size * 2, core_size * 2)
+
+        # Ondas concéntricas de sonido al hablar
+        if self._state == "speaking":
+            for wave_idx in range(3):
+                wave_r = 14 + ((t * 15 + wave_idx * 20) % 45)
+                wave_alpha = int(max(0, 150 - (wave_r * 2.8)))
+                painter.setBrush(Qt.BrushStyle.NoBrush)
+                painter.setPen(QPen(QColor(r, g, b, wave_alpha), 1.2))
+                painter.drawEllipse(int(cx - wave_r), int(cy - wave_r), int(wave_r * 2), int(wave_r * 2))
+
+        painter.restore()
+
     def paintEvent(self, event):
         painter = QPainter(self)
         painter.setRenderHint(QPainter.RenderHint.Antialiasing)
@@ -482,214 +639,31 @@ class AnimatedWaveWidget(QWidget):
         
         base_color = self._current_color
         
-        # Jitter / glitch sutil para estados de procesamiento / error
         jitter_x = 0
         jitter_y = 0
         if self._state in ["thinking", "error"]:
             jitter_x = random.randint(-4, 4)
             jitter_y = random.randint(-4, 4)
 
-        # Dibujar Cuadrícula de Fondo CRT
-        painter.setPen(QPen(QColor(base_color.red(), base_color.green(), base_color.blue(), 15), 1))
+        # 1. Dibujar Cuadrícula de Fondo CRT Estática
+        painter.setPen(QPen(QColor(base_color.red(), base_color.green(), base_color.blue(), 12), 1))
         grid_size = 20
         for x in range(0, width, grid_size):
             painter.drawLine(x, 0, x, height)
         for y in range(0, height, grid_size):
             painter.drawLine(0, y, width, y)
 
-        # Línea de barrido CRT
-        scan_y = int((self._animation_phase / (2 * np.pi)) * height)
-        painter.setPen(QPen(QColor(base_color.red(), base_color.green(), base_color.blue(), 75), 1.5))
-        painter.drawLine(0, scan_y, width, scan_y)
-
-        # --- DIBUJAR ROSTRO HOLOGRÁFICO PROCESADO ---
-        if self._processed_photo and not self._processed_photo.isNull():
-            # Dimensiones base del holograma centrado
-            h_w, h_h = 200, 240
-            rx = int(cx - h_w / 2 + jitter_x)
-            ry = int(cy - h_h / 2 + jitter_y)
-            
-            # 1. Animación Orgánica Humana: Respiración (Sutil escala senoidal continua en IDLE)
-            breath_scale_x = 1.0 + np.sin(self._animation_phase * 1.5) * 0.008
-            breath_scale_y = 1.0 + np.cos(self._animation_phase * 1.5) * 0.005
-            
-            # 2. Animación Activa de Mandíbula/Mouth Warp al hablar (speaking)
-            speak_warp = 0.0
-            if self._state == "speaking":
-                # Oscilación rápida simulando abrir/cerrar boca de manera natural
-                speak_warp = np.abs(np.sin(self._animation_phase * 8.5)) * 0.08
-                breath_scale_y += speak_warp
-            
-            final_w = int(h_w * breath_scale_x)
-            final_h = int(h_h * breath_scale_y)
-            rx = int(cx - final_w / 2 + jitter_x)
-            ry = int(cy - final_h / 2 + jitter_y)
-            
-            # Dibujar la foto base procesada con las transformaciones de respiración/hablar
-            # Para simular parpadeo de ojos real (Blinking) de forma holográfica
-            # El ciclo senoidal rápido simula que cierra los párpados de vez en cuando
-            is_blinking = False
-            # Parpadeo periódico cada ~4 segundos
-            cycle = int(self._animation_phase * 10) % 150
-            if cycle in [140, 141, 142, 143]: # Parpadeo rápido (120ms)
-                is_blinking = True
-
-            # Modo Glitch para Thinking / Error: Cortar la imagen en tiras horizontales desplazadas
-            if self._state in ["thinking", "error"] and random.random() < 0.35:
-                segment_h = final_h // 5
-                for i in range(5):
-                    seg_y = ry + i * segment_h
-                    seg_offset = random.choice([-8, -4, 4, 8]) if random.random() < 0.4 else 0
-                    painter.drawPixmap(
-                        rx + seg_offset, seg_y, final_w, segment_h,
-                        self._processed_photo,
-                        0, i * (240 // 5), 200, 240 // 5
-                    )
-            else:
-                # Dibujo del holograma base
-                painter.drawPixmap(rx, ry, final_w, final_h, self._processed_photo)
-                
-            # Sobredibujar efectos encima de la foto (Corte de ojos y boca en tiempo real)
-            # A. Parpadeo de ojos (Blinking): Pone una sombra oscura sobre el área ocular de la foto
-            if is_blinking:
-                painter.save()
-                # Ojos en el retrato (relativos al rectángulo dinámico rx, ry)
-                eye_y = ry + int(final_h * 0.35)
-                eye_h = int(final_h * 0.06)
-                eye_l_x = rx + int(final_w * 0.34)
-                eye_r_x = rx + int(final_w * 0.58)
-                eye_w = int(final_w * 0.12)
-                
-                # Relleno del color de la sombra (simula párpados cerrados fundiéndose)
-                painter.fillRect(eye_l_x, eye_y, eye_w, eye_h, QColor(0, 0, 0, 220))
-                painter.fillRect(eye_r_x, eye_y, eye_w, eye_h, QColor(0, 0, 0, 220))
-                painter.restore()
-                
-            # B. Vocalización de la boca (Mouth warp overlay):
-            # Dibuja una sombra dinámica en los labios que se contrae y expande al hablar
-            if self._state == "speaking" and speak_warp > 0.01:
-                painter.save()
-                # Posición de la boca aproximada en la imagen
-                mouth_y = ry + int(final_h * 0.62)
-                mouth_x = rx + int(final_w * 0.38)
-                mouth_w = int(final_w * 0.24)
-                mouth_h = int(final_h * 0.03 + speak_warp * 30) # Se estira al abrir
-                
-                # Hueco oscuro interno de la boca que se modula al hablar
-                painter.fillRect(mouth_x + 4, mouth_y + 1, mouth_w - 8, mouth_h, QColor(0, 0, 0, 160))
-                painter.restore()
-
-            # C. Ondas de telemetría y escaneo sobre el rostro para enfatizar el estado activo
-            if self._state == "listening":
-                # Ondas concéntricas sutiles sobre los ojos (posicionados en el holograma)
-                # Ojos aproximados: L=(cx-25), R=(cx+25), Y=(cy-15)
-                painter.setPen(QPen(QColor(0, 255, 102, 100), 1))
-                pulse = int((self._animation_phase * 12) % 30)
-                painter.drawEllipse(int(cx - 25 + jitter_x - pulse/2), int(cy - 15 + jitter_y - pulse/2), pulse, pulse)
-                painter.drawEllipse(int(cx + 25 + jitter_x - pulse/2), int(cy - 15 + jitter_y - pulse/2), pulse, pulse)
-                
-            elif self._state == "speaking":
-                # Brillo de transmisión (Overlay translúcido fluctuante)
-                painter.save()
-                painter.setCompositionMode(QPainter.CompositionMode.CompositionMode_Screen)
-                opacity = int(40 + np.abs(np.sin(self._animation_phase * 8.0)) * 60)
-                painter.setOpacity(opacity / 255.0)
-                painter.drawPixmap(rx, ry, final_w, final_h, self._processed_photo)
-                painter.restore()
-                
-            elif self._state == "error":
-                # Flashear tinte rojo sobre el error
-                painter.save()
-                painter.setCompositionMode(QPainter.CompositionMode.CompositionMode_Screen)
-                painter.fillRect(rx, ry, final_w, final_h, QColor(255, 0, 0, 45))
-                painter.restore()
-
-            # E. Efecto de Ruido Estático VCR / Tracking analógico
-            painter.save()
-            # Línea de tracking VCR distorsionada horizontal
-            track_y = ry + int(((self._animation_phase * 1.5) % 1.0) * final_h)
-            painter.setPen(QPen(QColor(255, 255, 255, 60), 3))
-            painter.drawLine(rx, track_y, rx + final_w, track_y)
-            # Puntos de ruido estático VHS saltando aleatoriamente en el holograma
-            painter.setPen(QPen(QColor(255, 255, 255, 120), 1.2))
-            for _ in range(12):
-                noise_x = random.randint(rx, rx + final_w)
-                noise_y = random.randint(ry, ry + final_h)
-                painter.drawPoint(noise_x, noise_y)
-            painter.restore()
-
-            # D. Marco / HUD de escaneo holográfico exterior
-            painter.setPen(QPen(QColor(base_color.red(), base_color.green(), base_color.blue(), 140), 1))
-            # Retículo exterior
-            pad = 8
-            painter.drawRect(rx - pad, ry - pad, h_w + pad*2, h_h + pad*2)
-            # Indicadores de telemetría (esquinas resaltadas)
-            painter.setPen(QPen(base_color, 2))
-            len_hud = 15
-            # Top-Left
-            painter.drawLine(rx - pad, ry - pad, rx - pad + len_hud, ry - pad)
-            painter.drawLine(rx - pad, ry - pad, rx - pad, ry - pad + len_hud)
-            # Top-Right
-            painter.drawLine(rx + h_w + pad, ry - pad, rx + h_w + pad - len_hud, ry - pad)
-            painter.drawLine(rx + h_w + pad, ry - pad, rx + h_w + pad, ry - pad + len_hud)
-            # Bot-Left
-            painter.drawLine(rx - pad, ry + h_h + pad, rx - pad + len_hud, ry + h_h + pad)
-            painter.drawLine(rx - pad, ry + h_h + pad, rx - pad, ry + h_h + pad - len_hud)
-            # Bot-Right
-            painter.drawLine(rx + h_w + pad, ry + h_h + pad, rx + h_w + pad - len_hud, ry + h_h + pad)
-            painter.drawLine(rx + h_w + pad, ry + h_h + pad, rx + h_w + pad, ry + h_h + pad - len_hud)
-
-class DataMatrixGrid(QWidget):
-    """Cuadrícula 8x8 con animación parpadeante."""
-    def __init__(self, parent=None):
-        super().__init__(parent)
-        self.setFixedSize(160, 160)
-        self.matrix = [[random.choice([0, 1]) for _ in range(8)] for _ in range(8)]
-        self.colors = [QColor(15, 20, 25), QColor(0, 240, 255), QColor(255, 184, 0)]
-        self.timer = QTimer(self)
-        self.timer.timeout.connect(self.update_matrix)
-        self.timer.start(250)
-
-    def update_matrix(self):
-        for i in range(8):
-            for j in range(8):
-                if random.random() < 0.25:
-                    self.matrix[i][j] = random.choice([0, 1, 2])
-        self.update()
-
-    def paintEvent(self, event):
-        painter = QPainter(self)
-        painter.setRenderHint(QPainter.RenderHint.Antialiasing)
-        
-        cell_w = self.width() / 8
-        cell_h = self.height() / 8
-        
-        for i in range(8):
-            for j in range(8):
-                val = self.matrix[i][j]
-                color = self.colors[val]
-                painter.setBrush(QBrush(color))
-                painter.setPen(QPen(QColor(0, 240, 255, 40), 1))
-                x = i * cell_w + 1
-                y = j * cell_h + 1
-                painter.drawRect(int(x), int(y), int(cell_w - 2), int(cell_h - 2))
+        # 2. Dibujar Núcleo Orbital Holográfico Etereo en 3D
+        self._draw_ethereal_core(painter, cx + jitter_x, cy + jitter_y, base_color)
 
 
 class CrtTerminalLabel(QLabel):
-    """Label de texto con líneas CRT decorativas de fósforo/ámbar."""
+    """Label de texto limpio para lecturas y logs sin parpadeo de barrido."""
     def __init__(self, text="", color_hex="#00FF66", parent=None):
         super().__init__(text, parent)
         self.color_hex = color_hex
         self.setTextInteractionFlags(Qt.TextInteractionFlag.TextSelectableByMouse)
         self.setFocusPolicy(Qt.FocusPolicy.ClickFocus)
-        
-    def paintEvent(self, event):
-        super().paintEvent(event)
-        painter = QPainter(self)
-        pen = QPen(QColor(0, 0, 0, 45), 1)
-        painter.setPen(pen)
-        for y in range(0, self.height(), 3):
-            painter.drawLine(0, y, self.width(), y)
 
     def keyPressEvent(self, event):
         if event.key() == Qt.Key.Key_C and event.modifiers() == Qt.KeyboardModifier.ControlModifier:
@@ -728,50 +702,69 @@ class CrtTerminalLabel(QLabel):
             QApplication.clipboard().setText(self.selectedText())
 
 
+class CrtTerminalTextBrowser(QTextBrowser):
+    """TextBrowser moderno para renderizar Markdown con diseño Glassmorphism Dark."""
+    def __init__(self, text="", color_hex="#00E5FF", parent=None):
+        super().__init__(parent)
+        self.color_hex = color_hex
+        self.setOpenExternalLinks(True)
+        self.setFrameShape(QFrame.Shape.NoFrame)
+        self.setReadOnly(True)
+        self.setLineWrapMode(QTextBrowser.LineWrapMode.WidgetWidth)
+        self.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAsNeeded)
+        self.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        self.setStyleSheet("background: transparent; border: none; font-family: 'Segoe UI', 'Inter', sans-serif; font-size: 13px; color: #E2E8F0; line-height: 1.5;")
+        self.setMarkdown(text)
+
+
 class AlfonsoHUDDashboard(QMainWindow):
-    """Dashboard consolidado MUTHUR SYSTEMS en pantalla completa."""
+    """Dashboard consolidado ALFONSO OS en pantalla completa."""
     def __init__(self, config):
         super().__init__()
         self.config = config
-        self.setWindowTitle("MUTHUR SYSTEMS ver 3.7.19")
+        self.setWindowTitle("ALFONSO OS ver 3.7.19")
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
         self.showFullScreen() 
         
         self.setStyleSheet("""
             QMainWindow {
-                background-color: #030406;
+                background-color: #0B0E14;
             }
             QLabel {
-                font-family: 'Consolas', 'Roboto Mono', monospace;
-                font-size: 11px;
-                color: #FFB800;
+                font-family: 'Segoe UI', 'Inter', sans-serif;
+                font-size: 12px;
+                color: #CBD5E1;
             }
             QPushButton {
-                background-color: rgba(255, 184, 0, 15);
-                color: #FFB800;
-                border: 1px solid rgba(255, 184, 0, 50);
-                border-radius: 3px;
-                padding: 5px 12px;
-                font-family: 'Consolas';
+                background-color: rgba(255, 255, 255, 0.05);
+                color: #CBD5E1;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 6px;
+                padding: 6px 14px;
+                font-family: 'Segoe UI', sans-serif;
                 font-size: 11px;
-                font-weight: bold;
+                font-weight: 600;
             }
             QPushButton:hover {
-                background-color: rgba(255, 184, 0, 40);
+                background-color: rgba(0, 229, 255, 0.15);
                 color: #FFFFFF;
+                border-color: rgba(0, 229, 255, 0.4);
             }
             QPushButton:pressed {
-                background-color: #FFB800;
-                color: #000000;
+                background-color: #00E5FF;
+                color: #0B0E14;
             }
-            QLineEdit {
-                background-color: rgba(10, 12, 16, 240);
-                color: #FFFFFF;
-                border: 1px solid rgba(0, 240, 255, 70);
-                border-radius: 4px;
-                padding: 8px;
-                font-family: 'Consolas';
+            QTextEdit, QLineEdit {
+                background-color: rgba(15, 20, 28, 0.9);
+                color: #F8FAFC;
+                border: 1px solid rgba(0, 229, 255, 0.25);
+                border-radius: 6px;
+                padding: 8px 12px;
+                font-family: 'Segoe UI', sans-serif;
                 font-size: 12px;
+            }
+            QTextEdit:focus, QLineEdit:focus {
+                border-color: #00E5FF;
             }
         """)
 
@@ -798,13 +791,15 @@ class AlfonsoHUDDashboard(QMainWindow):
                 self.logs_dir = wsl_logs
                 
         self.current_log_file = "app.log"
-
         self.text_mode_enabled = False
         self.chat_history = ""
         self.uptime_seconds = 67472 
         self.calendar_window = None
         self.mail_window = None
         self.editor_window = None
+        self.config_window = None
+        self.diagnostics_window = None
+        self.alerts_window = None
         
         self.ui_timer = QTimer(self)
         self.ui_timer.timeout.connect(self.update_telemetry)
@@ -826,7 +821,12 @@ class AlfonsoHUDDashboard(QMainWindow):
             agent_path = os.path.join(ui_dir, "alfonso_agent.py")
             
             python_exe = sys.executable
-            bridge_url = self.config.get('bridge_url', "ws://localhost:8765")
+            
+            from urllib.parse import urlparse
+            server_url = self.config.get('url', 'http://localhost:8000')
+            parsed = urlparse(server_url)
+            host = parsed.hostname or "localhost"
+            bridge_url = self.config.get('bridge_url', f"ws://{host}:8765")
             
             # Limpiar agentes duplicados de forma no bloqueante usando psutil
             try:
@@ -863,7 +863,7 @@ class AlfonsoHUDDashboard(QMainWindow):
     def setup_header(self):
         header_layout = QHBoxLayout()
         
-        logo_lbl = QLabel("MUTHUR SYSTEMS\nver 3.7.19")
+        logo_lbl = QLabel("ALFONSO OS\nver 3.7.19")
         logo_lbl.setStyleSheet("font-size: 14px; font-weight: bold; color: #FFB800; letter-spacing: 1px;")
         header_layout.addWidget(logo_lbl)
         
@@ -878,10 +878,30 @@ class AlfonsoHUDDashboard(QMainWindow):
         self.tab_editor = QPushButton("DEV STUDIO")
         self.tab_editor.clicked.connect(self.show_editor)
         self.tab_diagnostics = QPushButton("DIAGNOSTICS")
+        self.tab_diagnostics.clicked.connect(self.show_diagnostics)
         self.tab_logs = QPushButton("LOGS")
         self.tab_config = QPushButton("CONFIG")
+        self.tab_config.clicked.connect(self.show_config)
         
         header_layout.addWidget(self.tab_dashboard)
+        
+        # Botón Proyectos (POP-UP) con el mismo estilo retro sci-fi
+        self.btn_projects_popup = QPushButton("PROYECTOS")
+        self.btn_projects_popup.setStyleSheet("""
+            QPushButton {
+                background-color: rgba(0, 240, 255, 0.05);
+                color: #00F0FF;
+                border: 1px solid rgba(0, 240, 255, 0.3);
+                font-weight: bold;
+            }
+            QPushButton:hover {
+                background-color: rgba(0, 240, 255, 0.2);
+                border: 1px solid #00F0FF;
+            }
+        """)
+        self.btn_projects_popup.clicked.connect(self.show_projects_navigator)
+        header_layout.addWidget(self.btn_projects_popup)
+
         header_layout.addWidget(self.tab_modules)
         header_layout.addWidget(self.tab_mail)
         header_layout.addWidget(self.tab_editor)
@@ -902,65 +922,22 @@ class AlfonsoHUDDashboard(QMainWindow):
         body_layout = QHBoxLayout()
         body_layout.setSpacing(15)
 
-        # COLUMNA IZQUIERDA
+        # COLUMNA IZQUIERDA (SIDEBAR: AVATAR + LOGS REALES)
         left_layout = QVBoxLayout()
         left_layout.setSpacing(15)
 
-        self.panel_status = HUDPanel("SYSTEM STATUS")
-        status_vbox = QVBoxLayout()
-        self.lbl_sys_id = QLabel("SYS. ID: MUTHUR-OS.3.7.19")
-        self.lbl_core_temp = QLabel("CORE TEMP: 52.4 C")
-        self.lbl_memory = QLabel("MEMORY: 68%")
-        self.lbl_uptime = QLabel("UPTIME: 18:44:32")
-        self.lbl_power = QLabel("POWER: NOMINAL")
-        self.lbl_network = QLabel("NETWORK: SECURE")
-        self.lbl_sys_load = QLabel("SYS. LOAD: 42%")
-        self.lbl_operational = QLabel("\nALL SYSTEMS OPERATIONAL")
-        self.lbl_operational.setStyleSheet("color: #00FF66; font-weight: bold;")
+        # 1. Visualización de Rostro/Avatar
+        self.panel_core = HUDPanel("CORE VISUALIZATION")
+        self.animated_wave = AnimatedWaveWidget()
+        self.panel_core.main_layout.addWidget(self.animated_wave, alignment=Qt.AlignmentFlag.AlignCenter)
         
-        for lbl in [self.lbl_sys_id, self.lbl_core_temp, self.lbl_memory, self.lbl_uptime, 
-                    self.lbl_power, self.lbl_network, self.lbl_sys_load, self.lbl_operational]:
-            status_vbox.addWidget(lbl)
-        self.panel_status.main_layout.addLayout(status_vbox)
-        left_layout.addWidget(self.panel_status, 1)
+        self.state_lbl = QLabel("STANDBY")
+        self.state_lbl.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.state_lbl.setStyleSheet("font-size: 13px; font-weight: bold; color: #00E5FF; letter-spacing: 2px;")
+        self.panel_core.main_layout.addWidget(self.state_lbl)
+        left_layout.addWidget(self.panel_core, 2)
 
-        self.panel_proc = HUDPanel("ACTIVE PROCESSES")
-        self.proc_table = QTableWidget(7, 3)
-        self.proc_table.setHorizontalHeaderLabels(["PID", "PROC_NAME", "STATUS"])
-        self.proc_table.verticalHeader().setVisible(False)
-        self.proc_table.setStyleSheet("""
-            QTableWidget {
-                background-color: transparent;
-                border: none;
-                gridline-color: rgba(0, 240, 255, 30);
-                color: #00FF66;
-                font-family: 'Consolas';
-                font-size: 10px;
-            }
-            QHeaderView::section {
-                background-color: rgba(255, 184, 0, 20);
-                color: #FFB800;
-                border: 1px solid rgba(0, 240, 255, 30);
-                font-size: 9px;
-            }
-        """)
-        processes = [
-            ("2104", "CORE.DAEMON", "RUNNING"),
-            ("2156", "NET.SERVICE", "RUNNING"),
-            ("2258", "DB.WATCHER", "RUNNING"),
-            ("2312", "IO.HANDLER", "RUNNING"),
-            ("2458", "SECURITY.MOD", "RUNNING"),
-            ("2596", "DIAG.MONITOR", "RUNNING"),
-            ("2768", "LOG.WRITER", "RUNNING")
-        ]
-        for row, (pid, name, status) in enumerate(processes):
-            self.proc_table.setItem(row, 0, QTableWidgetItem(pid))
-            self.proc_table.setItem(row, 1, QTableWidgetItem(name))
-            self.proc_table.setItem(row, 2, QTableWidgetItem(status))
-        self.proc_table.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
-        self.panel_proc.main_layout.addWidget(self.proc_table)
-        left_layout.addWidget(self.panel_proc, 1)
-
+        # 2. Salida de Logs en tiempo real
         self.panel_logs = HUDPanel("LOG OUTPUT")
         log_ctrls = QHBoxLayout()
         self.btn_log_app = QPushButton("APP")
@@ -976,140 +953,112 @@ class AlfonsoHUDDashboard(QMainWindow):
 
         self.log_scroll = QScrollArea()
         self.log_scroll.setWidgetResizable(True)
-        self.log_scroll.viewport().setStyleSheet("background-color: #030406;")
-        self.log_display = CrtTerminalLabel("INITIALIZING LOG SYSTEM...", color_hex="#FFB800")
+        self.log_scroll.setFrameShape(QFrame.Shape.NoFrame)
+        self.log_scroll.setStyleSheet("""
+            QScrollArea {
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                border-radius: 6px;
+                background-color: rgba(15, 20, 28, 0.8);
+            }
+        """)
+        self.log_scroll.viewport().setStyleSheet("background-color: transparent;")
+        self.log_display = CrtTerminalLabel("INITIALIZING LOG SYSTEM...", color_hex="#10B981")
         self.log_display.setWordWrap(True)
-        self.log_display.setStyleSheet("font-family: 'Consolas'; font-size: 14px; color: #FFB800; background-color: #030406;")
+        self.log_display.setStyleSheet("font-family: 'Consolas', 'Fira Code', monospace; font-size: 11px; color: #10B981; background-color: transparent; padding: 8px;")
         self.log_scroll.setWidget(self.log_display)
         self.panel_logs.main_layout.addWidget(self.log_scroll)
+        left_layout.addWidget(self.panel_logs, 4)
 
         body_layout.addLayout(left_layout, 1)
 
-        # COLUMNA CENTRAL
-        center_layout = QVBoxLayout()
-        center_layout.setSpacing(15)
-
-        self.panel_core = HUDPanel("CORE VISUALIZATION")
-        self.animated_wave = AnimatedWaveWidget()
-        self.panel_core.main_layout.addWidget(self.animated_wave, alignment=Qt.AlignmentFlag.AlignCenter)
-        
-        self.state_lbl = QLabel("STANDBY")
-        self.state_lbl.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.state_lbl.setStyleSheet("font-size: 13px; font-weight: bold; color: #00F0FF; letter-spacing: 2px;")
-        self.panel_core.main_layout.addWidget(self.state_lbl)
-        center_layout.addWidget(self.panel_core, 2)
-
-        self.panel_chat = HUDPanel("CHAT CONSOLE / SIGNAL ANALYSIS")
-        
-        self.chat_scroll = QScrollArea()
-        self.chat_scroll.setWidgetResizable(True)
-        self.chat_scroll.viewport().setStyleSheet("background-color: #030406;")
-        self.chat_lbl = CrtTerminalLabel("MUTHUR v4.2 ONLINE\nEsperando wake word...", color_hex="#00FF66")
-        self.chat_lbl.setWordWrap(True)
-        self.chat_lbl.setStyleSheet("font-family: 'Consolas'; font-size: 11px; color: #00FF66; background-color: #030406; line-height: 1.4;")
-        self.chat_scroll.setWidget(self.chat_lbl)
-        self.panel_chat.main_layout.addWidget(self.chat_scroll)
-
-        chat_input_layout = QHBoxLayout()
-        self.btn_mode = QPushButton("VOZ")
-        self.btn_mode.clicked.connect(self.toggle_text_mode)
-        self.btn_mode.setStyleSheet("min-width: 60px;")
-        self.text_input = QLineEdit()
-        self.text_input.setPlaceholderText("INTRODUZCA ORDEN EN TERMINAL...")
-        self.text_input.returnPressed.connect(self.send_text_message)
-        
-        chat_input_layout.addWidget(self.btn_mode)
-        chat_input_layout.addWidget(self.text_input)
-        self.panel_chat.main_layout.addLayout(chat_input_layout)
-
-        center_layout.addWidget(self.panel_chat, 1)
-
-        body_layout.addLayout(center_layout, 1)
-
-        # COLUMNA DERECHA
+        # COLUMNA DERECHA (PANTALLA DE CHAT EXPANDIDA)
         right_layout = QVBoxLayout()
         right_layout.setSpacing(15)
 
-        self.panel_scan = HUDPanel("SYSTEM SCAN / MIC INPUT")
-        self.mic_name_lbl = QLabel("MIC: BUSCANDO DISPOSITIVO...")
-        self.mic_name_lbl.setStyleSheet("font-size: 9px; color: #00F0FF;")
+        self.panel_chat = HUDPanel("CONVERSATION CONSOLE")
+        
+        # Etiqueta de sesión activa persistente
+        self.lbl_active_session = QLabel("ACTIVO: NINGUNA SESIÓN CARGADA (Por favor abre un proyecto)")
+        self.lbl_active_session.setStyleSheet("""
+            font-family: 'Consolas', 'Fira Code', monospace;
+            font-size: 11px;
+            color: #FFB800;
+            background-color: rgba(255, 184, 0, 0.05);
+            border: 1px solid rgba(255, 184, 0, 0.2);
+            border-radius: 4px;
+            padding: 6px;
+            margin-bottom: 5px;
+        """)
+        self.panel_chat.main_layout.addWidget(self.lbl_active_session)
+        
+        self.chat_lbl = CrtTerminalTextBrowser("ALFONSO v4.2 ONLINE\n\n*Inicialización completada. Esperando comandos de voz o selección de proyecto...*", color_hex="#00E5FF")
+        self.panel_chat.main_layout.addWidget(self.chat_lbl, 1)
+
+        chat_input_layout = QHBoxLayout()
+        chat_input_layout.setSpacing(10)
+        
+        self.text_input = QTextEdit()
+        self.text_input.setPlaceholderText("Escribe un mensaje para Alfonso...")
+        self.text_input.setMaximumHeight(45)
+        
+        self.btn_send = QPushButton("ENVIAR")
+        self.btn_send.setStyleSheet("""
+            QPushButton {
+                background-color: rgba(0, 229, 255, 0.1);
+                color: #00E5FF;
+                border: 1px solid #00E5FF;
+                font-weight: bold;
+            }
+            QPushButton:hover {
+                background-color: #00E5FF;
+                color: #0B0E14;
+            }
+        """)
+        self.btn_send.clicked.connect(self.send_text_message)
+        
+        # VU meter discreto integrado en la barra de control del chat
+        self.mic_name_lbl = QLabel("MIC: BUSCANDO...")
+        self.mic_name_lbl.setStyleSheet("font-size: 10px; color: #00E5FF; font-weight: bold;")
         self.vu_meter = QProgressBar()
-        self.vu_meter.setRange(0, 32768)
-        self.vu_meter.setFixedHeight(8)
+        self.vu_meter.setRange(0, 100)
+        self.vu_meter.setValue(0)
         self.vu_meter.setTextVisible(False)
+        self.vu_meter.setFixedHeight(6)
+        self.vu_meter.setFixedWidth(80)
         self.vu_meter.setStyleSheet("""
             QProgressBar {
-                background-color: rgba(5, 8, 12, 230);
-                border: 1px solid rgba(0, 240, 255, 30);
-                border-radius: 4px;
+                border: 1px solid rgba(0, 229, 255, 0.3);
+                border-radius: 3px;
+                background-color: rgba(15, 20, 28, 0.8);
             }
             QProgressBar::chunk {
-                background-color: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #00FF66, stop:0.7 #FFB800, stop:1 #FF4B4B);
+                background-color: #00E5FF;
+                border-radius: 2px;
             }
         """)
-        self.panel_scan.main_layout.addWidget(self.mic_name_lbl)
-        self.panel_scan.main_layout.addWidget(self.vu_meter)
-        right_layout.addWidget(self.panel_scan, 1)
-
-        self.panel_matrix = HUDPanel("DATA MATRIX")
-        self.matrix_widget = DataMatrixGrid()
-        self.panel_matrix.main_layout.addWidget(self.matrix_widget, alignment=Qt.AlignmentFlag.AlignCenter)
-        right_layout.addWidget(self.panel_matrix, 2)
-
-        self.panel_modules = HUDPanel("MODULE OVERVIEW")
-        modules_layout = QGridLayout()
-        modules_layout.setSpacing(10)
         
-        mods = [
-            ("CORE", "ONLINE", "#00FF66"),
-            ("NETWORK", "ONLINE", "#00FF66"),
-            ("SECURITY", "ONLINE", "#00FF66"),
-            ("DATABASE", "ONLINE", "#00FF66"),
-            ("I/O SYSTEMS", "NOMINAL", "#FFB800")
-        ]
-        for idx, (name, status, color) in enumerate(mods):
-            name_lbl = QLabel(name)
-            name_lbl.setStyleSheet("font-weight: bold; color: #FFFFFF;")
-            status_lbl = QLabel(status)
-            status_lbl.setStyleSheet(f"color: {color}; font-weight: bold;")
-            status_lbl.setAlignment(Qt.AlignmentFlag.AlignRight)
-            modules_layout.addWidget(name_lbl, idx, 0)
-            modules_layout.addWidget(status_lbl, idx, 1)
-            
-        self.panel_modules.main_layout.addLayout(modules_layout)
-        right_layout.addWidget(self.panel_modules, 2)
+        # Botón para alternar teclado
+        self.btn_mode = QPushButton("VOZ")
+        self.btn_mode.setStyleSheet("background-color: rgba(0, 240, 255, 15); color: #00F0FF; border: 1px solid rgba(0, 240, 255, 0.3);")
+        self.btn_mode.clicked.connect(self.toggle_text_mode)
+        
+        # Botón limpiar chat
+        self.btn_clear = QPushButton("LIMPIAR")
+        self.btn_clear.setStyleSheet("background-color: rgba(255, 255, 255, 0.05); color: #CBD5E1; border: 1px solid rgba(255, 255, 255, 0.1);")
+        self.btn_clear.clicked.connect(self.clear_chat)
+        
+        chat_input_layout.addWidget(self.btn_mode)
+        chat_input_layout.addWidget(self.btn_clear)
+        chat_input_layout.addWidget(self.mic_name_lbl)
+        chat_input_layout.addWidget(self.vu_meter)
+        chat_input_layout.addWidget(self.text_input, 1)
+        chat_input_layout.addWidget(self.btn_send)
+        
+        self.panel_chat.main_layout.addLayout(chat_input_layout)
+        right_layout.addWidget(self.panel_chat, 1)
 
-        self.panel_health = HUDPanel("SYSTEM HEALTH")
-        health_layout = QHBoxLayout()
-        self.health_bar = QProgressBar()
-        self.health_bar.setRange(0, 100)
-        self.health_bar.setValue(98)
-        self.health_bar.setFixedHeight(12)
-        self.health_bar.setTextVisible(False)
-        self.health_bar.setStyleSheet("""
-            QProgressBar {
-                background-color: rgba(5, 8, 12, 230);
-                border: 1px solid rgba(0, 240, 255, 30);
-                border-radius: 6px;
-            }
-            QProgressBar::chunk {
-                background-color: #00F0FF;
-            }
-        """)
-        health_val_lbl = QLabel("98%")
-        health_val_lbl.setStyleSheet("font-weight: bold; color: #00F0FF; font-size: 12px;")
-        health_layout.addWidget(self.health_bar)
-        health_layout.addWidget(health_val_lbl)
-        self.panel_health.main_layout.addLayout(health_layout)
-        right_layout.addWidget(self.panel_health, 1)
-
-        body_layout.addLayout(right_layout, 1)
-
-        body_layout.setStretch(0, 1)
-        body_layout.setStretch(1, 1)
-        body_layout.setStretch(2, 1)
-        self.main_layout.addLayout(body_layout, 3)
-        self.main_layout.addWidget(self.panel_logs, 1)
+        body_layout.addLayout(right_layout, 3)
+        self.main_layout.addLayout(body_layout, 1)
 
     def setup_footer(self):
         footer_layout = QHBoxLayout()
@@ -1128,6 +1077,7 @@ class AlfonsoHUDDashboard(QMainWindow):
                 color: #000000;
             }
         """)
+        self.alert_btn.clicked.connect(self.show_alerts)
         footer_layout.addWidget(self.alert_btn)
         
         footer_layout.addStretch()
@@ -1170,20 +1120,20 @@ class AlfonsoHUDDashboard(QMainWindow):
             self.btn_mode.setText("TECLADO")
             self.btn_mode.setStyleSheet("background-color: rgba(0, 240, 255, 30); color: #00F0FF; border: 1px solid #00F0FF;")
             self.text_input.setFocus()
-        else:
-            self.btn_mode.setText("VOZ")
-            self.btn_mode.setStyleSheet("")
-            self.text_input.clear()
         self.thread.set_text_mode(self.text_mode_enabled)
 
     def send_text_message(self):
-        text = self.text_input.text().strip()
+        text = self.text_input.toPlainText().strip()
         if text:
             self.text_input.clear()
             # Si el usuario envía texto pero está en modo VOZ, cambiar automáticamente a modo teclado/texto
             if not self.text_mode_enabled:
                 self.toggle_text_mode()
             self.thread.send_text_message(text)
+
+    def clear_chat(self):
+        self.chat_history = ""
+        self.chat_lbl.setMarkdown("ALFONSO v4.2 ONLINE\n\n*Historial de conversación limpiado.*")
 
     def start_assistant(self):
         thread_config = self.config.copy()
@@ -1199,7 +1149,9 @@ class AlfonsoHUDDashboard(QMainWindow):
         self.thread.close_mail.connect(self.hide_mail)
         self.thread.sync_mail.connect(self.reload_mail_events)
         self.thread.open_editor.connect(self.show_editor)
+        self.thread.open_editor.connect(self.show_editor)
         self.thread.close_editor.connect(self.hide_editor)
+        self.thread.switch_session_requested.connect(self.handler_switch_session)
         self.thread.start()
 
     def hide_calendar(self):
@@ -1226,7 +1178,6 @@ class AlfonsoHUDDashboard(QMainWindow):
         self.mail_window.activateWindow()
         self.mail_window.load_emails()
 
-
     def show_calendar(self):
         if not self.calendar_window:
             self.calendar_window = CalendarWidget(self.thread.api)
@@ -1248,26 +1199,227 @@ class AlfonsoHUDDashboard(QMainWindow):
         self.editor_window.activateWindow()
         self.editor_window.load_file_list()
 
+    def hide_config(self):
+        if self.config_window:
+            self.config_window.close()
+
+    def show_config(self):
+        if not self.config_window:
+            self.config_window = ConfigWidget(self)
+        self.config_window.show()
+        self.config_window.raise_()
+        self.config_window.activateWindow()
+
+    def show_projects_navigator(self):
+        """Inicializa y abre el Pop-up flotante del listado de proyectos."""
+        self.projects_dialog = ProjectNavigatorDialog(self)
+        self.projects_dialog.show()
+        self.projects_dialog.raise_()
+        self.projects_dialog.activateWindow()
+        # Rellenar datos en la ventana emergente recién creada
+        self.reload_projects_list()
+
+    def handler_switch_session(self, session_id, project_name, title):
+        """Manejador ejecutado de forma segura en el hilo principal para aplicar el cambio de proyecto."""
+        self.thread.session_id = session_id
+        
+        # Guardar persistencia local de sesión
+        gui_dir = os.path.dirname(os.path.abspath(__file__))
+        config_path = os.path.join(os.path.dirname(gui_dir), "logs", "session_config.json")
+        try:
+            import json
+            with open(config_path, "w", encoding="utf-8") as f:
+                json.dump({"session_id": session_id}, f, indent=4)
+        except Exception:
+            pass
+            
+        # Actualizar cabecera de estado persistente del chat
+        self.lbl_active_session.setText(f"ACTIVO: {project_name.upper()} > {title.upper()}")
+        self.lbl_active_session.setStyleSheet("""
+            font-family: 'Consolas', 'Fira Code', monospace;
+            font-size: 11px;
+            color: #00FF66;
+            background-color: rgba(0, 255, 102, 0.05);
+            border: 1px solid rgba(0, 255, 102, 0.2);
+            border-radius: 4px;
+            padding: 6px;
+            margin-bottom: 5px;
+        """)
+        
+        # Abrir automáticamente el Pop-up flotante del navegador para mostrar las conversaciones del proyecto
+        if not hasattr(self, 'projects_dialog') or not self.projects_dialog or not self.projects_dialog.isVisible():
+            self.show_projects_navigator()
+        else:
+            self.reload_projects_list()
+
+    def hide_diagnostics(self):
+        if self.diagnostics_window:
+            self.diagnostics_window.close()
+
+    def show_diagnostics(self):
+        if not self.diagnostics_window:
+            self.diagnostics_window = DiagnosticsWidget(self)
+        self.diagnostics_window.show()
+        self.diagnostics_window.raise_()
+        self.diagnostics_window.activateWindow()
+        self.diagnostics_window.run_diagnostics()
+
+    def hide_alerts(self):
+        if self.alerts_window:
+            self.alerts_window.close()
+
+    def show_alerts(self):
+        if not self.alerts_window:
+            self.alerts_window = AlertsWidget(self)
+        self.alerts_window.show()
+        self.alerts_window.raise_()
+        self.alerts_window.activateWindow()
+        self.alerts_window.load_alerts()
 
     def update_vu_meter(self, level, device_name):
         self.mic_name_lbl.setText(f"MIC: {device_name.upper()}")
         self.vu_meter.setValue(level)
 
     def update_chat(self, sender, text):
-        import re
-        color = "#00FF66" if sender == "Alfonso" else "#FFB800"
-        
-        # Formatear markdown básico y saltos de línea para renderizado HTML en QLabel
-        html_text = text
-        html_text = html_text.replace("\n", "<br>")
-        html_text = re.sub(r"\*\*(.*?)\*\*", r"<b>\1</b>", html_text)
-        html_text = re.sub(r"\*(.*?)\*", r"<i>\1</i>", html_text)
-        html_text = re.sub(r"_(.*?)_", r"<i>\1</i>", html_text)
-        
-        new_entry = f"<p><b style='color:{color};'>[{sender.upper()}]</b><br>{html_text}</p>"
+        color = "#00E5FF" if sender == "Alfonso" else "#F59E0B"
+        new_entry = f"<span style='color:{color};'><b>[{sender.upper()}]</b></span>\n\n{text}\n\n"
         self.chat_history += new_entry
-        self.chat_lbl.setText(self.chat_history)
-        QTimer.singleShot(50, lambda: self.chat_scroll.verticalScrollBar().setValue(self.chat_scroll.verticalScrollBar().maximum()))
+        self.chat_lbl.setMarkdown(self.chat_history)
+        QTimer.singleShot(50, lambda: self.chat_lbl.verticalScrollBar().setValue(self.chat_lbl.verticalScrollBar().maximum()))
+        
+        # Sincronizar dinámicamente con el chat del diálogo flotante de proyectos si está abierto
+        if hasattr(self, 'projects_dialog') and self.projects_dialog and self.projects_dialog.isVisible():
+            cur_html = self.projects_dialog.chat_display.toHtml()
+            dialog_entry = f"<p><b style='color:{color};'>[{sender.upper()}]</b><br/>{text.replace('\n', '<br/>')}</p>"
+            self.projects_dialog.chat_display.setHtml(cur_html + dialog_entry)
+            QTimer.singleShot(50, lambda: self.projects_dialog.chat_display.verticalScrollBar().setValue(self.projects_dialog.chat_display.verticalScrollBar().maximum()))
+
+    def reload_projects_list(self):
+        """Consulta al backend la lista de conversaciones y actualiza el QListWidget en doble columna."""
+        if not hasattr(self, 'thread') or not self.thread or not self.thread.api:
+            return
+            
+        # Comprobar si el diálogo de navegación está instanciado
+        if not hasattr(self, 'projects_dialog') or not self.projects_dialog:
+            return
+        
+        try:
+            res = self.thread.api.get_conversations()
+            conversations = res.get("conversations", [])
+            
+            # Limpiar datos previos
+            self.projects_dialog.proj_list.clear()
+            self.projects_dialog.conv_list.clear()
+            self.projects_dialog.projects_data = {}
+            
+            # Agrupar conversaciones por proyecto
+            projects_grouped = {}
+            active_project = None
+            
+            for c in conversations:
+                proj = c.get("project_name") or "Otros / General"
+                if proj not in projects_grouped:
+                    projects_grouped[proj] = []
+                projects_grouped[proj].append(c)
+                
+                # Detectar qué proyecto contiene la conversación activa actual
+                if c.get("session_id") == self.thread.session_id:
+                    active_project = proj
+                    
+            # Guardar la caché estructurada en el diálogo flotante
+            self.projects_dialog.projects_data = projects_grouped
+            
+            # Rellenar listado de proyectos (Columna Izquierda)
+            selected_item = None
+            for project in sorted(projects_grouped.keys()):
+                proj_item = QListWidgetItem(f"📁 {project.upper()}")
+                self.projects_dialog.proj_list.addItem(proj_item)
+                
+                # Si es el proyecto activo actual, guardamos la referencia para seleccionarlo
+                if project == active_project:
+                    selected_item = proj_item
+            
+            # Seleccionar automáticamente el proyecto activo actual si existe
+            if selected_item:
+                self.projects_dialog.proj_list.setCurrentItem(selected_item)
+                self.projects_dialog.select_project(selected_item)
+            elif self.projects_dialog.proj_list.count() > 0:
+                # Fallback: seleccionar el primero por defecto
+                first_item = self.projects_dialog.proj_list.item(0)
+                self.projects_dialog.proj_list.setCurrentItem(first_item)
+                self.projects_dialog.select_project(first_item)
+                
+        except Exception as e:
+            print(f"[ERROR] No se pudo refrescar navegador de proyectos: {e}")
+
+    def load_project_session_from_ui(self, item):
+        """Carga la conversación seleccionada en la UI al hacer doble clic."""
+        session_id = item.data(Qt.ItemDataRole.UserRole)
+        title = item.data(Qt.ItemDataRole.UserRole + 1)
+        project = item.data(Qt.ItemDataRole.UserRole + 2)
+        
+        if not session_id:
+            return # Cabecera de carpeta de proyecto o item inválido
+            
+        # Cambiar el session_id del hilo activo de Alfonso
+        self.thread.session_id = session_id
+        
+        # Guardar persistencia en session_config.json
+        gui_dir = os.path.dirname(os.path.abspath(__file__))
+        config_path = os.path.join(os.path.dirname(gui_dir), "logs", "session_config.json")
+        try:
+            import json
+            with open(config_path, "w", encoding="utf-8") as f:
+                json.dump({"session_id": session_id}, f, indent=4)
+        except Exception:
+            pass
+            
+        # Consultar historial del backend y cargar en pantalla
+        try:
+            res = self.thread.api.get_memory_detail(session_id)
+            messages = res.get("messages", [])
+            
+            # Reconstruir historial formateado
+            self.chat_history = ""
+            for msg in messages:
+                sender = "Tú" if msg.get("role") == "user" else "Alfonso"
+                content = msg.get("content") or ""
+                color = "#00E5FF" if sender == "Alfonso" else "#F59E0B"
+                self.chat_history += f"<span style='color:{color};'><b>[{sender.upper()}]</b></span>\n\n{content}\n\n"
+                
+            if not self.chat_history:
+                self.chat_history = f"**HISTORIAL DE CONVERSACIÓN INICIADO**\n\n*Proyecto: {project} — Título: {title}*\n\n"
+                
+            self.chat_lbl.setMarkdown(self.chat_history)
+            
+            # Actualizar cabecera de estado persistente del chat
+            self.lbl_active_session.setText(f"ACTIVO: {project.upper()} > {title.upper()}")
+            self.lbl_active_session.setStyleSheet("""
+                font-family: 'Consolas', 'Fira Code', monospace;
+                font-size: 11px;
+                color: #00FF66;
+                background-color: rgba(0, 255, 102, 0.05);
+                border: 1px solid rgba(0, 255, 102, 0.2);
+                border-radius: 4px;
+                padding: 6px;
+                margin-bottom: 5px;
+            """)
+            
+            # Recargar selección de colores en el listado para reflejar la activa si el diálogo sigue abierto
+            if hasattr(self, 'projects_dialog') and self.projects_dialog and self.projects_dialog.isVisible():
+                for idx in range(self.projects_dialog.conv_list.count()):
+                    itm = self.projects_dialog.conv_list.item(idx)
+                    itm_sid = itm.data(Qt.ItemDataRole.UserRole)
+                    if itm_sid:
+                        if itm_sid == session_id:
+                            itm.setSelected(True)
+                            itm.setForeground(QColor("#00FF66"))
+                        else:
+                            itm.setSelected(False)
+                            itm.setForeground(QColor("#CBD5E1"))
+                        
+        except Exception as e:
+            self.update_chat("Sistema", f"Error al cargar historial: {e}")
 
     def update_visual_state(self, state):
         self.animated_wave.set_state(state)
@@ -1314,26 +1466,17 @@ class AlfonsoHUDDashboard(QMainWindow):
         date_str = now.strftime("%d.%m.%Y")
         self.clock_lbl.setText(f"USER: ADMINISTRATOR   {time_str}\n{date_str}")
 
-        self.uptime_seconds += 1
-        h = self.uptime_seconds // 3600
-        m = (self.uptime_seconds % 3600) // 60
-        s = self.uptime_seconds % 60
-        self.lbl_uptime.setText(f"UPTIME: {h:02d}:{m:02d}:{s:02d}")
-
-        temp = 52.4 + random.uniform(-0.5, 0.5)
-        load = max(10, min(95, int(42 + random.uniform(-5, 5))))
-        self.lbl_core_temp.setText(f"CORE TEMP: {temp:.1f} C")
-        self.lbl_sys_load.setText(f"SYS. LOAD: {load}%")
-
     def close_gui(self):
-        if self.thread:
-            self.thread.stop()
-        if hasattr(self, 'agent_process') and self.agent_process:
-            try:
-                self.agent_process.terminate()
-                self.agent_process.wait(timeout=2)
-            except Exception:
-                pass
+        try:
+            if hasattr(self, 'agent_process') and self.agent_process:
+                self.agent_process.kill()
+        except Exception:
+            pass
+        try:
+            if hasattr(self, 'thread') and self.thread:
+                self.thread.stop()
+        except Exception:
+            pass
         os._exit(0)
 
     def closeEvent(self, event):
@@ -1341,51 +1484,51 @@ class AlfonsoHUDDashboard(QMainWindow):
 
 
 class CalendarWidget(QWidget):
-    """Interfaz gráfica nativa para el Calendario de Alfonso (MUTHUR OS)."""
+    """Interfaz gráfica nativa para el Calendario de Alfonso (ALFONSO OS)."""
     def __init__(self, api_client):
         super().__init__()
         self.api = api_client
-        self.setWindowTitle("MUTHUR CALENDAR")
+        self.setWindowTitle("ALFONSO CALENDAR")
         self.setMinimumSize(850, 580)
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint | Qt.WindowType.Window)
         
         self.drag_position = None
 
-        # Estilo retro hacker MUTHUR OS
+        # Estilo Glassmorphism Dark ALFONSO CALENDAR
         self.setStyleSheet("""
             QWidget {
-                background-color: #030406;
-                color: #00F0FF;
-                font-family: 'Consolas', 'Roboto Mono', monospace;
+                background-color: #0B0E14;
+                color: #CBD5E1;
+                font-family: 'Segoe UI', 'Inter', sans-serif;
             }
             QLabel {
-                color: #00F0FF;
+                color: #E2E8F0;
             }
             QPushButton {
-                background-color: rgba(255, 184, 0, 15);
-                color: #FFB800;
-                border: 1px solid rgba(255, 184, 0, 50);
-                border-radius: 3px;
-                padding: 6px;
+                background-color: rgba(255, 255, 255, 0.05);
+                color: #CBD5E1;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 6px;
+                padding: 6px 12px;
                 font-size: 11px;
-                font-weight: bold;
-                font-family: 'Consolas';
+                font-weight: 600;
             }
             QPushButton:hover {
-                background-color: rgba(255, 184, 0, 40);
+                background-color: rgba(0, 229, 255, 0.15);
                 color: #FFFFFF;
-                border-color: #FFB800;
+                border-color: rgba(0, 229, 255, 0.4);
             }
             QPushButton:pressed {
-                background-color: #FFB800;
-                color: #000000;
+                background-color: #00E5FF;
+                color: #0B0E14;
             }
             QScrollArea {
-                border: 1px solid rgba(255, 184, 0, 30);
-                background-color: transparent;
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                border-radius: 8px;
+                background-color: rgba(20, 25, 35, 0.5);
             }
             QFrame#Separator {
-                border: 1px solid rgba(255, 184, 0, 30);
+                border: 1px solid rgba(255, 255, 255, 0.08);
             }
         """)
 
@@ -1419,13 +1562,14 @@ class CalendarWidget(QWidget):
         window_layout.setContentsMargins(0, 0, 0, 0)
         window_layout.setSpacing(0)
 
-        # Contenedor con borde completo MUTHUR OS
+        # Contenedor con borde completo ALFONSO OS
         container_frame = QFrame()
         container_frame.setObjectName("CalendarContainer")
         container_frame.setStyleSheet("""
             QFrame#CalendarContainer {
-                border: 2px solid #FFB800;
-                background-color: #030406;
+                border: 1px solid rgba(0, 229, 255, 0.3);
+                border-radius: 12px;
+                background-color: rgba(20, 25, 35, 0.95);
             }
         """)
         container_layout = QVBoxLayout(container_frame)
@@ -1434,7 +1578,7 @@ class CalendarWidget(QWidget):
 
         # ── CABECERA PERSONALIZADA (FRAMELESS HEADER) ──
         header_layout = QHBoxLayout()
-        header_title = QLabel("// MUTHUR SYSTEMS // CALENDAR MODULE ver 1.2.0")
+        header_title = QLabel("// ALFONSO OS // CALENDAR MODULE ver 1.2.0")
         header_title.setStyleSheet("font-size: 11px; font-weight: bold; color: #FFB800; letter-spacing: 1px;")
         
         btn_close_window = QPushButton("[X]")
@@ -1713,55 +1857,55 @@ class EmailComposeDialog(QDialog):
         self.setMinimumSize(500, 400)
         self.setWindowTitle("REDACATAR MENSAJE" if mode == "compose" else "RESPONDER MENSAJE" if mode == "reply" else "REENVIAR MENSAJE")
         
-        # Estilo retro cyberpunk MUTHUR MAIL
+        # Estilo Glassmorphism Dark EmailComposeDialog
         self.setStyleSheet("""
             QDialog {
-                background-color: #030406;
-                color: #00F0FF;
-                border: 2px solid #FFB800;
+                background-color: #0B0E14;
+                color: #CBD5E1;
+                border: 1px solid rgba(0, 229, 255, 0.3);
+                border-radius: 12px;
             }
             QLabel {
-                color: #FFB800;
-                font-family: 'Consolas', monospace;
+                color: #F59E0B;
+                font-family: 'Segoe UI', sans-serif;
                 font-weight: bold;
                 font-size: 11px;
             }
             QLineEdit, QTextEdit {
-                background-color: #07090C;
-                color: #FFFFFF;
-                border: 1px solid rgba(255, 184, 0, 50);
-                border-radius: 2px;
-                padding: 6px;
-                font-family: 'Consolas', monospace;
-                font-size: 11px;
+                background-color: rgba(15, 20, 28, 0.9);
+                color: #F8FAFC;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 6px;
+                padding: 8px;
+                font-family: 'Segoe UI', sans-serif;
+                font-size: 12px;
             }
             QLineEdit:focus, QTextEdit:focus {
-                border-color: #00F0FF;
+                border-color: #00E5FF;
             }
             QPushButton {
-                background-color: rgba(255, 184, 0, 15);
-                color: #FFB800;
-                border: 1px solid rgba(255, 184, 0, 50);
-                border-radius: 3px;
+                background-color: rgba(255, 255, 255, 0.05);
+                color: #CBD5E1;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 6px;
                 padding: 8px 16px;
-                font-family: 'Consolas';
-                font-weight: bold;
+                font-family: 'Segoe UI', sans-serif;
+                font-weight: 600;
                 font-size: 11px;
             }
             QPushButton:hover {
-                background-color: rgba(255, 184, 0, 40);
+                background-color: rgba(0, 229, 255, 0.15);
                 color: #FFFFFF;
-                border-color: #FFB800;
+                border-color: rgba(0, 229, 255, 0.4);
             }
             QPushButton#SendBtn {
-                background-color: rgba(0, 240, 255, 15);
-                color: #00F0FF;
-                border-color: rgba(0, 240, 255, 50);
+                background-color: rgba(0, 229, 255, 0.2);
+                color: #00E5FF;
+                border-color: #00E5FF;
             }
             QPushButton#SendBtn:hover {
-                background-color: rgba(0, 240, 255, 40);
-                border-color: #00F0FF;
-                color: #FFFFFF;
+                background-color: #00E5FF;
+                color: #0B0E14;
             }
         """)
         
@@ -1791,6 +1935,10 @@ class EmailComposeDialog(QDialog):
         btn_send.setObjectName("SendBtn")
         btn_send.clicked.connect(self.send_email)
         btn_layout.addWidget(btn_send)
+        
+        btn_save_draft = QPushButton("GUARDAR BORRADOR")
+        btn_save_draft.clicked.connect(self.save_draft_action)
+        btn_layout.addWidget(btn_save_draft)
         
         btn_cancel = QPushButton("CANCELAR")
         btn_cancel.clicked.connect(self.reject)
@@ -1852,13 +2000,29 @@ class EmailComposeDialog(QDialog):
         else:
             QMessageBox.warning(self, "Error al enviar", f"No se pudo enviar el correo: {res.get('message', 'Error desconocido')}")
 
+    def save_draft_action(self):
+        recipient = self.txt_recipient.text().strip()
+        subject = self.txt_subject.text().strip()
+        body = self.txt_body.toPlainText().strip()
+        
+        if not subject and not body:
+            QMessageBox.warning(self, "Error", "El borrador debe tener al menos un asunto o cuerpo.")
+            return
+            
+        res = self.api.save_draft(recipient, subject, body)
+        if res.get("status") == "ok":
+            QMessageBox.information(self, "Éxito", "Borrador guardado correctamente.")
+            self.accept()
+        else:
+            QMessageBox.warning(self, "Error", f"No se pudo guardar el borrador: {res.get('message', 'Error desconocido')}")
+
 
 class MailWidget(QWidget):
-    """Interfaz gráfica nativa para el cliente de Correo Electrónico (MUTHUR MAIL)."""
+    """Interfaz gráfica nativa para el cliente de Correo Electrónico (ALFONSO MAIL)."""
     def __init__(self, api_client):
         super().__init__()
         self.api = api_client
-        self.setWindowTitle("MUTHUR MAIL")
+        self.setWindowTitle("ALFONSO MAIL")
         self.setMinimumSize(950, 600)
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint | Qt.WindowType.Window)
         
@@ -1866,73 +2030,72 @@ class MailWidget(QWidget):
         self.current_category = None  # None significa todos
         self.emails_list = []
         
-        # Estilo retro hacker MUTHUR OS
+        # Estilo Glassmorphism Dark ALFONSO MAIL
         self.setStyleSheet("""
             QWidget {
-                background-color: #030406;
-                color: #00F0FF;
-                font-family: 'Consolas', 'Roboto Mono', monospace;
+                background-color: #0B0E14;
+                color: #CBD5E1;
+                font-family: 'Segoe UI', 'Inter', sans-serif;
             }
             QLabel {
-                color: #00F0FF;
+                color: #E2E8F0;
             }
             QPushButton {
-                background-color: rgba(255, 184, 0, 15);
-                color: #FFB800;
-                border: 1px solid rgba(255, 184, 0, 50);
-                border-radius: 3px;
-                padding: 6px;
+                background-color: rgba(255, 255, 255, 0.05);
+                color: #CBD5E1;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 6px;
+                padding: 6px 12px;
                 font-size: 11px;
-                font-weight: bold;
-                font-family: 'Consolas';
+                font-weight: 600;
             }
             QPushButton:hover {
-                background-color: rgba(255, 184, 0, 40);
+                background-color: rgba(0, 229, 255, 0.15);
                 color: #FFFFFF;
-                border-color: #FFB800;
-            }
-            QPushButton:pressed {
-                background-color: #FFB800;
-                color: #000000;
+                border-color: rgba(0, 229, 255, 0.4);
             }
             QPushButton#CategoryBtn {
-                background-color: rgba(0, 240, 255, 10);
-                color: #00F0FF;
-                border: 1px solid rgba(0, 240, 255, 30);
+                background-color: rgba(255, 255, 255, 0.03);
+                color: #94A3B8;
+                border: 1px solid rgba(255, 255, 255, 0.05);
+                border-radius: 6px;
                 text-align: left;
                 padding-left: 12px;
             }
             QPushButton#CategoryBtn:hover {
-                background-color: rgba(0, 240, 255, 30);
-                border-color: #00F0FF;
+                background-color: rgba(0, 229, 255, 0.1);
+                border-color: rgba(0, 229, 255, 0.3);
                 color: #FFFFFF;
             }
             QPushButton#CategoryBtn[active="true"] {
-                background-color: #00F0FF;
-                color: #000000;
-                border: 1px solid #00F0FF;
+                background-color: rgba(0, 229, 255, 0.2);
+                color: #00E5FF;
+                border: 1px solid #00E5FF;
                 font-weight: bold;
             }
             QListWidget {
-                border: 1px solid rgba(255, 184, 0, 30);
-                background-color: rgba(5, 7, 10, 200);
-                color: #FFFFFF;
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                border-radius: 8px;
+                background-color: rgba(20, 25, 35, 0.6);
+                color: #F8FAFC;
             }
             QListWidget::item {
-                border-bottom: 1px solid rgba(255, 184, 0, 15);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
                 padding: 10px;
+                border-radius: 4px;
             }
             QListWidget::item:selected {
-                background-color: rgba(255, 184, 0, 25);
+                background-color: rgba(0, 229, 255, 0.15);
                 color: #FFFFFF;
-                border: 1px solid #FFB800;
+                border: 1px solid #00E5FF;
             }
             QScrollArea {
-                border: 1px solid rgba(255, 184, 0, 30);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                border-radius: 8px;
                 background-color: transparent;
             }
             QFrame#Separator {
-                border: 1px solid rgba(255, 184, 0, 30);
+                border: 1px solid rgba(255, 255, 255, 0.08);
             }
         """)
 
@@ -1956,13 +2119,14 @@ class MailWidget(QWidget):
         window_layout.setContentsMargins(0, 0, 0, 0)
         window_layout.setSpacing(0)
 
-        # Contenedor con borde retro
+        # Contenedor con borde Glassmorphism
         container_frame = QFrame()
         container_frame.setObjectName("MailContainer")
         container_frame.setStyleSheet("""
             QFrame#MailContainer {
-                border: 2px solid #FFB800;
-                background-color: #030406;
+                border: 1px solid rgba(0, 229, 255, 0.3);
+                border-radius: 12px;
+                background-color: rgba(20, 25, 35, 0.95);
             }
         """)
         container_layout = QVBoxLayout(container_frame)
@@ -1974,7 +2138,7 @@ class MailWidget(QWidget):
         header_layout = QHBoxLayout(header_widget)
         header_layout.setContentsMargins(5, 5, 5, 5)
         
-        header_title = QLabel("// MUTHUR SYSTEMS // MAIL CLIENT MODULE ver 1.0.0")
+        header_title = QLabel("// ALFONSO OS // MAIL CLIENT MODULE ver 1.0.0")
         header_title.setStyleSheet("font-size: 13px; font-weight: bold; color: #FFB800; letter-spacing: 1px;")
         header_layout.addWidget(header_title)
         
@@ -2017,6 +2181,8 @@ class MailWidget(QWidget):
             ("📄 ADM.", "administrativo"),
             ("💼 EMPLEO", "empleo"),
             ("📢 COMERCIAL", "comercial"),
+            ("📤 ENVIADOS", "sent"),
+            ("📝 BORRADORES", "draft"),
             ("✉ OTROS", "otros")
         ]
         for label, val in categories:
@@ -2194,8 +2360,17 @@ class MailWidget(QWidget):
             # Badge de importancia
             imp_badge = "[!]" if importance == "Alta" else "[ ]"
             
+            date_str = email.get("received_at", "")
+            if date_str and len(date_str) > 16:
+                date_str = date_str[:16].replace("T", " ")
+            elif date_str:
+                date_str = date_str[:16]
+            
             # Estilo negrita si no está leído
-            item_text = f"{imp_badge} {sender}\n      {subj}"
+            if date_str:
+                item_text = f"{imp_badge} {sender}  ({date_str})\n      {subj}"
+            else:
+                item_text = f"{imp_badge} {sender}\n      {subj}"
             item = QListWidgetItem(item_text)
             item.setData(Qt.ItemDataRole.UserRole, email)
             
@@ -2323,6 +2498,1001 @@ class MailWidget(QWidget):
             else:
                 QMessageBox.warning(self, "Error", f"No se pudo eliminar el correo: {res.get('message', 'Error desconocido')}")
 
+
+
+class ConfigWidget(QWidget):
+    """Panel de Configuración nativo para Alfonso OS."""
+    def __init__(self, parent_dashboard):
+        super().__init__()
+        self.dashboard = parent_dashboard
+        self.setWindowTitle("ALFONSO CONFIGURATION")
+        self.setMinimumSize(450, 480)
+        self.setWindowFlags(Qt.WindowType.FramelessWindowHint | Qt.WindowType.Window)
+        self.drag_position = None
+
+        # Estilo Glassmorphism Dark
+        self.setStyleSheet("""
+            QWidget {
+                background-color: #0B0E14;
+                color: #CBD5E1;
+                font-family: 'Segoe UI', 'Inter', sans-serif;
+            }
+            QLabel {
+                color: #94A3B8;
+                font-weight: 600;
+                font-size: 12px;
+            }
+            QPushButton {
+                background-color: rgba(255, 255, 255, 0.05);
+                color: #CBD5E1;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 6px;
+                padding: 8px 16px;
+                font-size: 11px;
+                font-weight: bold;
+            }
+            QPushButton:hover {
+                background-color: rgba(0, 229, 255, 0.15);
+                color: #FFFFFF;
+                border-color: rgba(0, 229, 255, 0.4);
+            }
+            QPushButton#SaveBtn {
+                background-color: rgba(0, 229, 255, 0.15);
+                border: 1px solid #00E5FF;
+                color: #00E5FF;
+            }
+            QPushButton#SaveBtn:hover {
+                background-color: #00E5FF;
+                color: #0B0E14;
+            }
+            QLineEdit, QComboBox, QSpinBox, QDoubleSpinBox {
+                background-color: rgba(15, 20, 28, 0.9);
+                color: #F8FAFC;
+                border: 1px solid rgba(0, 229, 255, 0.25);
+                border-radius: 6px;
+                padding: 6px 10px;
+                font-size: 12px;
+            }
+            QLineEdit:focus, QComboBox:focus, QSpinBox:focus, QDoubleSpinBox:focus {
+                border-color: #00E5FF;
+            }
+            QFrame#ConfigContainer {
+                border: 1px solid rgba(0, 229, 255, 0.3);
+                border-radius: 12px;
+                background-color: rgba(20, 25, 35, 0.95);
+            }
+        """)
+
+        self.setup_ui()
+        self.load_values()
+
+    def mousePressEvent(self, event):
+        if event.button() == Qt.MouseButton.LeftButton:
+            self.drag_position = event.globalPosition().toPoint() - self.frameGeometry().topLeft()
+            event.accept()
+
+    def mouseMoveEvent(self, event):
+        if event.buttons() == Qt.MouseButton.LeftButton and self.drag_position is not None:
+            self.move(event.globalPosition().toPoint() - self.drag_position)
+            event.accept()
+
+    def mouseReleaseEvent(self, event):
+        self.drag_position = None
+
+    def setup_ui(self):
+        window_layout = QVBoxLayout(self)
+        window_layout.setContentsMargins(0, 0, 0, 0)
+        window_layout.setSpacing(0)
+
+        container_frame = QFrame()
+        container_frame.setObjectName("ConfigContainer")
+        container_layout = QVBoxLayout(container_frame)
+        container_layout.setContentsMargins(20, 20, 20, 20)
+        container_layout.setSpacing(18)
+
+        # ── CABECERA PERSONALIZADA ──
+        header_layout = QHBoxLayout()
+        header_title = QLabel("// ALFONSO OS // CONFIGURATION PANEL ver 1.0.0")
+        header_title.setStyleSheet("font-size: 11px; font-weight: bold; color: #FFB800; letter-spacing: 1px;")
+        
+        btn_close = QPushButton("[X]")
+        btn_close.setFixedWidth(40)
+        btn_close.setStyleSheet("""
+            QPushButton {
+                background-color: transparent;
+                border: none;
+                color: #FFB800;
+                font-size: 12px;
+                font-weight: bold;
+            }
+            QPushButton:hover {
+                color: #FF4B4B;
+            }
+        """)
+        btn_close.clicked.connect(self.close)
+        
+        header_layout.addWidget(header_title)
+        header_layout.addStretch()
+        header_layout.addWidget(btn_close)
+        container_layout.addLayout(header_layout)
+
+        # Separador
+        sep = QFrame()
+        sep.setFrameShape(QFrame.Shape.HLine)
+        sep.setStyleSheet("border: 1px solid rgba(255, 255, 255, 0.08);")
+        container_layout.addWidget(sep)
+
+        # ── FORMULARIO DE CONFIGURACIÓN ──
+        from PyQt6.QtWidgets import QComboBox, QSpinBox, QDoubleSpinBox
+        form_layout = QFormLayout()
+        form_layout.setVerticalSpacing(12)
+        form_layout.setHorizontalSpacing(20)
+
+        self.input_url = QLineEdit()
+        self.input_keyword = QLineEdit()
+        
+        self.combo_model = QComboBox()
+        self.combo_model.addItems(["tiny", "base", "small", "medium", "large"])
+        
+        self.spin_device = QSpinBox()
+        self.spin_device.setRange(0, 32)
+        
+        self.spin_threshold = QDoubleSpinBox()
+        self.spin_threshold.setRange(0.0, 1.0)
+        self.spin_threshold.setSingleStep(0.01)
+        self.spin_threshold.setValue(0.03)
+
+        form_layout.addRow(QLabel("URL Servidor:"), self.input_url)
+        form_layout.addRow(QLabel("Palabra Clave:"), self.input_keyword)
+        form_layout.addRow(QLabel("Modelo de Voz:"), self.combo_model)
+        form_layout.addRow(QLabel("ID Micrófono:"), self.spin_device)
+        form_layout.addRow(QLabel("Umbral Ruido:"), self.spin_threshold)
+
+        container_layout.addLayout(form_layout)
+
+        # Separador inferior
+        sep2 = QFrame()
+        sep2.setFrameShape(QFrame.Shape.HLine)
+        sep2.setStyleSheet("border: 1px solid rgba(255, 255, 255, 0.08);")
+        container_layout.addWidget(sep2)
+
+        # Botones de Acción
+        actions_layout = QHBoxLayout()
+        actions_layout.addStretch()
+        
+        self.btn_cancel = QPushButton("CANCELAR")
+        self.btn_cancel.clicked.connect(self.close)
+        
+        self.btn_save = QPushButton("APLICAR CAMBIOS")
+        self.btn_save.setObjectName("SaveBtn")
+        self.btn_save.clicked.connect(self.save_values)
+        
+        actions_layout.addWidget(self.btn_cancel)
+        actions_layout.addWidget(self.btn_save)
+        container_layout.addLayout(actions_layout)
+
+        window_layout.addWidget(container_frame)
+
+    def load_values(self):
+        c = self.dashboard.config
+        self.input_url.setText(c.get('url', "http://localhost:8000"))
+        self.input_keyword.setText(c.get('keyword', "alfonso"))
+        
+        model_val = c.get('model', "tiny")
+        idx = self.combo_model.findText(model_val)
+        if idx >= 0:
+            self.combo_model.setCurrentIndex(idx)
+            
+        self.spin_device.setValue(c.get('device', 8))
+        self.spin_threshold.setValue(c.get('threshold') if c.get('threshold') is not None else 0.03)
+
+    def save_values(self):
+        c = self.dashboard.config
+        c['url'] = self.input_url.text().strip()
+        c['keyword'] = self.input_keyword.text().strip()
+        c['model'] = self.combo_model.currentText()
+        c['device'] = self.spin_device.value()
+        c['threshold'] = self.spin_threshold.value()
+
+        # Mostrar aviso de éxito
+        QMessageBox.information(
+            self, 
+            "Configuración Guardada", 
+            "Los parámetros del sistema operativo Alfonso OS han sido actualizados con éxito."
+        )
+        self.close()
+
+
+class DiagnosticsWidget(QWidget):
+    """Panel de Diagnósticos y Telemetría nativo para Alfonso OS."""
+    def __init__(self, parent_dashboard):
+        super().__init__()
+        self.dashboard = parent_dashboard
+        self.setWindowTitle("ALFONSO DIAGNOSTICS")
+        self.setMinimumSize(600, 520)
+        self.setWindowFlags(Qt.WindowType.FramelessWindowHint | Qt.WindowType.Window)
+        self.drag_position = None
+
+        self.setStyleSheet("""
+            QWidget {
+                background-color: #0B0E14;
+                color: #CBD5E1;
+                font-family: 'Segoe UI', 'Inter', sans-serif;
+            }
+            QLabel {
+                color: #94A3B8;
+                font-weight: 600;
+                font-size: 12px;
+            }
+            QPushButton {
+                background-color: rgba(255, 255, 255, 0.05);
+                color: #CBD5E1;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 6px;
+                padding: 8px 16px;
+                font-size: 11px;
+                font-weight: bold;
+            }
+            QPushButton:hover {
+                background-color: rgba(0, 229, 255, 0.15);
+                color: #FFFFFF;
+                border-color: rgba(0, 229, 255, 0.4);
+            }
+            QTextBrowser {
+                background-color: rgba(15, 20, 28, 0.9);
+                color: #10B981;
+                font-family: 'Consolas', 'Fira Code', monospace;
+                font-size: 11px;
+                border: 1px solid rgba(0, 229, 255, 0.25);
+                border-radius: 6px;
+                padding: 10px;
+            }
+            QFrame#DiagContainer {
+                border: 1px solid rgba(0, 229, 255, 0.3);
+                border-radius: 12px;
+                background-color: rgba(20, 25, 35, 0.95);
+            }
+        """)
+
+        self.setup_ui()
+
+    def mousePressEvent(self, event):
+        if event.button() == Qt.MouseButton.LeftButton:
+            self.drag_position = event.globalPosition().toPoint() - self.frameGeometry().topLeft()
+            event.accept()
+
+    def mouseMoveEvent(self, event):
+        if event.buttons() == Qt.MouseButton.LeftButton and self.drag_position is not None:
+            self.move(event.globalPosition().toPoint() - self.drag_position)
+            event.accept()
+
+    def mouseReleaseEvent(self, event):
+        self.drag_position = None
+
+    def setup_ui(self):
+        window_layout = QVBoxLayout(self)
+        window_layout.setContentsMargins(0, 0, 0, 0)
+        window_layout.setSpacing(0)
+
+        container_frame = QFrame()
+        container_frame.setObjectName("DiagContainer")
+        container_layout = QVBoxLayout(container_frame)
+        container_layout.setContentsMargins(20, 20, 20, 20)
+        container_layout.setSpacing(15)
+
+        # Cabecera
+        header_layout = QHBoxLayout()
+        header_title = QLabel("// ALFONSO OS // DIAGNOSTICS & TELEMETRY ver 1.0.0")
+        header_title.setStyleSheet("font-size: 11px; font-weight: bold; color: #FFB800; letter-spacing: 1px;")
+        
+        btn_close = QPushButton("[X]")
+        btn_close.setFixedWidth(40)
+        btn_close.setStyleSheet("""
+            QPushButton {
+                background-color: transparent;
+                border: none;
+                color: #FFB800;
+                font-size: 12px;
+                font-weight: bold;
+            }
+            QPushButton:hover {
+                color: #FF4B4B;
+            }
+        """)
+        btn_close.clicked.connect(self.close)
+        
+        header_layout.addWidget(header_title)
+        header_layout.addStretch()
+        header_layout.addWidget(btn_close)
+        container_layout.addLayout(header_layout)
+
+        # Separador
+        sep = QFrame()
+        sep.setFrameShape(QFrame.Shape.HLine)
+        sep.setStyleSheet("border: 1px solid rgba(255, 255, 255, 0.08);")
+        container_layout.addWidget(sep)
+
+        # Estado rápido del sistema
+        self.status_layout = QGridLayout()
+        self.status_layout.setSpacing(10)
+        
+        self.lbl_net_status = QLabel("VERIFICANDO RED...")
+        self.lbl_net_status.setStyleSheet("color: #FFB800; font-weight: bold;")
+        self.lbl_agent_status = QLabel("VERIFICANDO AGENTE...")
+        self.lbl_agent_status.setStyleSheet("color: #FFB800; font-weight: bold;")
+        
+        self.status_layout.addWidget(QLabel("Conexión Backend:"), 0, 0)
+        self.status_layout.addWidget(self.lbl_net_status, 0, 1)
+        self.status_layout.addWidget(QLabel("Proceso Agente:"), 1, 0)
+        self.status_layout.addWidget(self.lbl_agent_status, 1, 1)
+        
+        container_layout.addLayout(self.status_layout)
+
+        # Dispositivos de Entrada de Audio detectados
+        container_layout.addWidget(QLabel("Dispositivos de Entrada de Audio Detectados (PyAudio):"))
+        self.txt_audio_devices = QTextBrowser()
+        container_layout.addWidget(self.txt_audio_devices)
+
+        # Botón de Recarga / Test manual
+        actions_layout = QHBoxLayout()
+        actions_layout.addStretch()
+        
+        self.btn_refresh = QPushButton("EJECUTAR TEST")
+        self.btn_refresh.clicked.connect(self.run_diagnostics)
+        
+        self.btn_close_panel = QPushButton("CERRAR")
+        self.btn_close_panel.clicked.connect(self.close)
+        
+        actions_layout.addWidget(self.btn_refresh)
+        actions_layout.addWidget(self.btn_close_panel)
+        container_layout.addLayout(actions_layout)
+
+        window_layout.addWidget(container_frame)
+
+    def run_diagnostics(self):
+        self.btn_refresh.setEnabled(False)
+        self.btn_refresh.setText("PROBANDO SISTEMAS...")
+        self.lbl_net_status.setText("EJECUTANDO TEST DE RED...")
+        self.lbl_net_status.setStyleSheet("color: #FFB800; font-weight: bold;")
+        self.lbl_agent_status.setText("COMPROBANDO PROCESOS...")
+        self.lbl_agent_status.setStyleSheet("color: #FFB800; font-weight: bold;")
+        self.txt_audio_devices.setText("REALIZANDO BARRIDO DE HARDWARE...")
+        
+        QTimer.singleShot(700, self._execute_tests)
+
+    def _execute_tests(self):
+        # 1. Test de Red no-bloqueante
+        url = self.dashboard.config.get('url', "http://localhost:8000")
+        try:
+            import urllib.request
+            import time
+            start_t = time.time()
+            req = urllib.request.Request(url, method="HEAD")
+            with urllib.request.urlopen(req, timeout=1.5) as resp:
+                elapsed = int((time.time() - start_t) * 1000)
+                self.lbl_net_status.setText(f"ONLINE ({elapsed} ms) - Código: {resp.status}")
+                self.lbl_net_status.setStyleSheet("color: #10B981; font-weight: bold;")
+        except Exception as e:
+            self.lbl_net_status.setText(f"OFFLINE - Error: Connection Failed")
+            self.lbl_net_status.setStyleSheet("color: #FF4B4B; font-weight: bold;")
+
+        # 2. Test del Agente secundario alfonso_agent
+        if self.dashboard.agent_process and self.dashboard.agent_process.poll() is None:
+            pid = self.dashboard.agent_process.pid
+            self.lbl_agent_status.setText(f"ACTIVO (PID: {pid})")
+            self.lbl_agent_status.setStyleSheet("color: #10B981; font-weight: bold;")
+        else:
+            self.lbl_agent_status.setText("INACTIVO / DETENIDO")
+            self.lbl_agent_status.setStyleSheet("color: #FF4B4B; font-weight: bold;")
+
+        # 3. Listar Dispositivos de Audio usando sounddevice (ya instalado en el entorno)
+        try:
+            import sounddevice as sd
+            devices = sd.query_devices()
+            device_lines = []
+            
+            for i, d in enumerate(devices):
+                if d.get("max_input_channels", 0) > 0:
+                    device_lines.append(f"ID {i}: {d.get('name')} (Canales Max Entrada: {d.get('max_input_channels')})")
+                    
+            if device_lines:
+                self.txt_audio_devices.setText("\n".join(device_lines))
+            else:
+                self.txt_audio_devices.setText("Ningún dispositivo de entrada de audio detectado por sounddevice.")
+        except Exception as e:
+            self.txt_audio_devices.setText(f"Error al inicializar sounddevice o escanear dispositivos:\n{str(e)}")
+
+        self.btn_refresh.setEnabled(True)
+        self.btn_refresh.setText("EJECUTAR TEST")
+
+
+class AlertsWidget(QWidget):
+    """Centro de Alertas y Notificaciones del Sistema Alfonso OS."""
+    def __init__(self, parent_dashboard):
+        super().__init__()
+        self.dashboard = parent_dashboard
+        self.setWindowTitle("ALFONSO ALERTS")
+        self.setMinimumSize(500, 400)
+        self.setWindowFlags(Qt.WindowType.FramelessWindowHint | Qt.WindowType.Window)
+        self.drag_position = None
+
+        self.setStyleSheet("""
+            QWidget {
+                background-color: #0B0E14;
+                color: #CBD5E1;
+                font-family: 'Segoe UI', 'Inter', sans-serif;
+            }
+            QLabel {
+                color: #94A3B8;
+                font-weight: 600;
+                font-size: 12px;
+            }
+            QPushButton {
+                background-color: rgba(255, 255, 255, 0.05);
+                color: #CBD5E1;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 6px;
+                padding: 8px 16px;
+                font-size: 11px;
+                font-weight: bold;
+            }
+            QPushButton:hover {
+                background-color: rgba(0, 229, 255, 0.15);
+                color: #FFFFFF;
+                border-color: rgba(0, 229, 255, 0.4);
+            }
+            QPushButton#ClearBtn {
+                background-color: rgba(255, 75, 75, 0.15);
+                border: 1px solid #FF4B4B;
+                color: #FF4B4B;
+            }
+            QPushButton#ClearBtn:hover {
+                background-color: #FF4B4B;
+                color: #0B0E14;
+            }
+            QListWidget {
+                background-color: rgba(15, 20, 28, 0.9);
+                border: 1px solid rgba(0, 229, 255, 0.25);
+                border-radius: 8px;
+                padding: 10px;
+                font-family: 'Segoe UI', sans-serif;
+                font-size: 12px;
+                color: #F8FAFC;
+            }
+            QFrame#AlertsContainer {
+                border: 1px solid rgba(255, 75, 75, 0.4);
+                border-radius: 12px;
+                background-color: rgba(20, 25, 35, 0.95);
+            }
+        """)
+
+        self.setup_ui()
+
+    def mousePressEvent(self, event):
+        if event.button() == Qt.MouseButton.LeftButton:
+            self.drag_position = event.globalPosition().toPoint() - self.frameGeometry().topLeft()
+            event.accept()
+
+    def mouseMoveEvent(self, event):
+        if event.buttons() == Qt.MouseButton.LeftButton and self.drag_position is not None:
+            self.move(event.globalPosition().toPoint() - self.drag_position)
+            event.accept()
+
+    def mouseReleaseEvent(self, event):
+        self.drag_position = None
+
+    def setup_ui(self):
+        window_layout = QVBoxLayout(self)
+        window_layout.setContentsMargins(0, 0, 0, 0)
+        window_layout.setSpacing(0)
+
+        container_frame = QFrame()
+        container_frame.setObjectName("AlertsContainer")
+        container_layout = QVBoxLayout(container_frame)
+        container_layout.setContentsMargins(20, 20, 20, 20)
+        container_layout.setSpacing(15)
+
+        # Cabecera
+        header_layout = QHBoxLayout()
+        header_title = QLabel("// ALFONSO OS // ALERTS & HEALTH CENTER ver 1.0.0")
+        header_title.setStyleSheet("font-size: 11px; font-weight: bold; color: #FF4B4B; letter-spacing: 1px;")
+        
+        btn_close = QPushButton("[X]")
+        btn_close.setFixedWidth(40)
+        btn_close.setStyleSheet("""
+            QPushButton {
+                background-color: transparent;
+                border: none;
+                color: #FF4B4B;
+                font-size: 12px;
+                font-weight: bold;
+            }
+            QPushButton:hover {
+                color: #FFFFFF;
+            }
+        """)
+        btn_close.clicked.connect(self.close)
+        
+        header_layout.addWidget(header_title)
+        header_layout.addStretch()
+        header_layout.addWidget(btn_close)
+        container_layout.addLayout(header_layout)
+
+        # Separador
+        sep = QFrame()
+        sep.setFrameShape(QFrame.Shape.HLine)
+        sep.setStyleSheet("border: 1px solid rgba(255, 75, 75, 0.2);")
+        container_layout.addWidget(sep)
+
+        # Lista de Alertas
+        self.list_widget = QListWidget()
+        container_layout.addWidget(self.list_widget)
+
+        # Botón de Despejar
+        actions_layout = QHBoxLayout()
+        actions_layout.addStretch()
+        
+        self.btn_clear = QPushButton("DESPEJAR ALERTAS")
+        self.btn_clear.setObjectName("ClearBtn")
+        self.btn_clear.clicked.connect(self.clear_all)
+        
+        self.btn_close_panel = QPushButton("CERRAR")
+        self.btn_close_panel.clicked.connect(self.close)
+        
+        actions_layout.addWidget(self.btn_clear)
+        actions_layout.addWidget(self.btn_close_panel)
+        container_layout.addLayout(actions_layout)
+
+        window_layout.addWidget(container_frame)
+
+    def load_alerts(self):
+        self.list_widget.clear()
+        
+        # Generar alertas en caliente según estado real
+        alerts = []
+        
+        # 1. Comprobar red
+        url = self.dashboard.config.get('url', "http://localhost:8000")
+        try:
+            import urllib.request
+            req = urllib.request.Request(url, method="HEAD")
+            with urllib.request.urlopen(req, timeout=1.0) as resp:
+                pass
+        except Exception:
+            alerts.append("⚠️ [RED] Conexión Backend Offline - No se pudo contactar con " + url)
+
+        # 2. Comprobar Micrófono
+        dev_id = self.dashboard.config.get('device', 8)
+        alerts.append(f"⚠️ [AUDIO] Entrada de audio ID [{dev_id}] en escucha activa.")
+        
+        # 3. Mensaje informativo de inicio
+        alerts.append("ℹ️ [SISTEMA] Alfonso OS core v3.7.19 cargado en espacio de usuario.")
+
+        for msg in alerts:
+            item = QListWidgetItem(msg)
+            if "⚠️" in msg:
+                item.setForeground(QColor("#FFB800"))
+            else:
+                item.setForeground(QColor("#00E5FF"))
+            self.list_widget.addItem(item)
+
+    def clear_all(self):
+        self.list_widget.clear()
+        self.dashboard.alert_btn.setText(" 0 ALERTS ")
+        self.dashboard.alert_btn.setStyleSheet("""
+            QPushButton {
+                background-color: rgba(255, 255, 255, 10);
+                color: #CBD5E1;
+                border: 2px solid rgba(255, 255, 255, 0.2);
+                font-weight: bold;
+                letter-spacing: 1px;
+            }
+            QPushButton:hover {
+                background-color: rgba(255, 255, 255, 20);
+                color: #FFFFFF;
+            }
+        """)
+        QMessageBox.information(self, "Alertas Limpias", "Todas las notificaciones de estado han sido despejadas.")
+        self.close()
+
+
+class ProjectNavigatorDialog(QDialog):
+    """Ventana flotante Pop-up del Proyecto Activo con Chat integrado y Canales temáticos."""
+    def __init__(self, parent_dashboard):
+        super().__init__(parent_dashboard)
+        self.dashboard = parent_dashboard
+        self.setWindowTitle("WORKSPACE NAVIGATOR")
+        self.setMinimumSize(960, 600)
+        self.setWindowFlags(Qt.WindowType.FramelessWindowHint | Qt.WindowType.Window)
+        self.drag_position = None
+        self.projects_data = {} # Caché estructurada
+        self.active_project_name = "default"
+        self.active_session_id = "default"
+        
+        self.setStyleSheet("""
+            QDialog {
+                background-color: #0B0E14;
+                color: #CBD5E1;
+                font-family: 'Segoe UI', 'Inter', sans-serif;
+            }
+            QFrame#DialogContainer {
+                border: 1px solid rgba(0, 240, 255, 0.35);
+                border-radius: 12px;
+                background-color: rgba(18, 23, 32, 0.98);
+            }
+            QLabel {
+                color: #CBD5E1;
+                font-family: 'Consolas', 'Fira Code', monospace;
+            }
+        """)
+        self.setup_ui()
+
+    def mousePressEvent(self, event):
+        if event.button() == Qt.MouseButton.LeftButton:
+            self.drag_position = event.globalPosition().toPoint() - self.frameGeometry().topLeft()
+            event.accept()
+
+    def mouseMoveEvent(self, event):
+        if event.buttons() == Qt.MouseButton.LeftButton and self.drag_position is not None:
+            self.move(event.globalPosition().toPoint() - self.drag_position)
+            event.accept()
+
+    def mouseReleaseEvent(self, event):
+        self.drag_position = None
+
+    def setup_ui(self):
+        window_layout = QVBoxLayout(self)
+        window_layout.setContentsMargins(0, 0, 0, 0)
+        
+        container_frame = QFrame()
+        container_frame.setObjectName("DialogContainer")
+        container_layout = QVBoxLayout(container_frame)
+        container_layout.setContentsMargins(20, 20, 20, 20)
+        container_layout.setSpacing(15)
+        
+        # Cabecera
+        header_layout = QHBoxLayout()
+        self.header_title = QLabel("// ALFONSO OS // ACTIVE WORKSPACE")
+        self.header_title.setStyleSheet("font-size: 11px; font-weight: bold; color: #00F0FF; letter-spacing: 1.5px;")
+        
+        btn_close = QPushButton("[X]")
+        btn_close.setFixedWidth(40)
+        btn_close.setStyleSheet("""
+            QPushButton {
+                background-color: transparent;
+                border: none;
+                color: #00F0FF;
+                font-size: 12px;
+                font-weight: bold;
+            }
+            QPushButton:hover {
+                color: #FFFFFF;
+            }
+        """)
+        btn_close.clicked.connect(self.close)
+        
+        header_layout.addWidget(self.header_title)
+        header_layout.addStretch()
+        header_layout.addWidget(btn_close)
+        container_layout.addLayout(header_layout)
+        
+        # Separador
+        sep = QFrame()
+        sep.setFrameShape(QFrame.Shape.HLine)
+        sep.setStyleSheet("border: 1px solid rgba(0, 240, 255, 0.15);")
+        container_layout.addWidget(sep)
+        
+        # CONTENIDO: DOBLE COLUMNA (IZQ: CANALES Y PROYECTOS, DER: CONSOLA DE CHAT)
+        content_layout = QHBoxLayout()
+        content_layout.setSpacing(20)
+        
+        # Columna Izquierda: Listado de canales temáticos del proyecto
+        left_layout = QVBoxLayout()
+        left_layout.setSpacing(10)
+        
+        # Selector de Proyecto (para poder conmutar de proyecto dentro del pop-up)
+        lbl_proj = QLabel("📁 ACTIVE PROJECTS")
+        lbl_proj.setStyleSheet("font-size: 9px; font-weight: bold; color: #FFB800; letter-spacing: 1px;")
+        left_layout.addWidget(lbl_proj)
+        
+        self.proj_list = QListWidget()
+        self.proj_list.setFixedHeight(120)
+        self.proj_list.setStyleSheet("""
+            QListWidget {
+                background-color: rgba(10, 15, 22, 0.8);
+                border: 1px solid rgba(0, 229, 255, 0.25);
+                border-radius: 6px;
+                color: #A5F3FC;
+                font-family: 'Consolas', 'Fira Code', monospace;
+                font-size: 10px;
+            }
+            QListWidget::item {
+                border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+                padding: 6px 8px;
+            }
+            QListWidget::item:selected {
+                background-color: rgba(0, 229, 255, 0.15);
+                border-left: 2px solid #00E5FF;
+                color: #00E5FF;
+            }
+        """)
+        self.proj_list.itemClicked.connect(self.select_project)
+        left_layout.addWidget(self.proj_list)
+        
+        lbl_conv = QLabel("💬 DISCIPLINE CHANNELS")
+        lbl_conv.setStyleSheet("font-size: 9px; font-weight: bold; color: #FFB800; letter-spacing: 1px;")
+        left_layout.addWidget(lbl_conv)
+        
+        self.conv_list = QListWidget()
+        self.conv_list.setStyleSheet("""
+            QListWidget {
+                background-color: rgba(10, 15, 22, 0.8);
+                border: 1px solid rgba(0, 229, 255, 0.25);
+                border-radius: 6px;
+                color: #CBD5E1;
+                font-family: 'Consolas', 'Fira Code', monospace;
+                font-size: 11px;
+            }
+            QListWidget::item {
+                border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+                padding: 8px 10px;
+                border-radius: 4px;
+            }
+            QListWidget::item:selected {
+                background-color: rgba(0, 255, 102, 0.12);
+                border-left: 3px solid #00FF66;
+                color: #00FF66;
+            }
+        """)
+        self.conv_list.itemClicked.connect(self.switch_channel_from_list)
+        left_layout.addWidget(self.conv_list)
+        content_layout.addLayout(left_layout, 2)
+        
+        # Columna Derecha: Consola de chat dedicada para interactuar con Alfonso en este canal/proyecto
+        right_layout = QVBoxLayout()
+        right_layout.setSpacing(10)
+        
+        self.lbl_channel_status = QLabel("CANAL: SELECCIONA UN TEMA")
+        self.lbl_channel_status.setStyleSheet("""
+            font-size: 10px;
+            font-weight: bold;
+            color: #00FF66;
+            font-family: 'Consolas', monospace;
+            background-color: rgba(0, 255, 102, 0.05);
+            border: 1px solid rgba(0, 255, 102, 0.15);
+            border-radius: 4px;
+            padding: 5px;
+        """)
+        right_layout.addWidget(self.lbl_channel_status)
+        
+        # Historial de chat dedicado en el pop-up
+        self.chat_display = QTextBrowser()
+        self.chat_display.setOpenExternalLinks(True)
+        self.chat_display.setStyleSheet("""
+            QTextBrowser {
+                background-color: rgba(10, 15, 22, 0.9);
+                border: 1px solid rgba(0, 240, 255, 0.2);
+                border-radius: 6px;
+                color: #CBD5E1;
+                font-family: 'Segoe UI', sans-serif;
+                font-size: 12px;
+                padding: 10px;
+            }
+        """)
+        right_layout.addWidget(self.chat_display, 1)
+        
+        # Entrada de texto dedicada
+        input_layout = QHBoxLayout()
+        input_layout.setSpacing(8)
+        
+        self.txt_input = QTextEdit()
+        self.txt_input.setFixedHeight(50)
+        self.txt_input.setPlaceholderText("Escribe un mensaje para Alfonso en este canal...")
+        self.txt_input.setStyleSheet("""
+            QTextEdit {
+                background-color: rgba(8, 12, 18, 0.9);
+                border: 1px solid rgba(0, 240, 255, 0.3);
+                border-radius: 4px;
+                color: #FFFFFF;
+                font-family: 'Segoe UI', sans-serif;
+                font-size: 12px;
+                padding: 5px;
+            }
+            QTextEdit:focus {
+                border-color: #00F0FF;
+            }
+        """)
+        self.txt_input.installEventFilter(self) # Para capturar Enter al enviar
+        input_layout.addWidget(self.txt_input, 1)
+        
+        btn_send = QPushButton("ENVIAR")
+        btn_send.setFixedSize(80, 50)
+        btn_send.setStyleSheet("""
+            QPushButton {
+                background-color: rgba(0, 240, 255, 0.1);
+                color: #00F0FF;
+                border: 1px solid rgba(0, 240, 255, 0.35);
+                font-weight: bold;
+                border-radius: 4px;
+                font-size: 11px;
+            }
+            QPushButton:hover {
+                background-color: rgba(0, 240, 255, 0.25);
+                border-color: #00F0FF;
+            }
+        """)
+        btn_send.clicked.connect(self.send_message_from_dialog)
+        input_layout.addWidget(btn_send)
+        
+        right_layout.addLayout(input_layout)
+        content_layout.addLayout(right_layout, 3)
+        
+        container_layout.addLayout(content_layout, 1)
+        
+        # Botones inferiores
+        bottom_layout = QHBoxLayout()
+        btn_refresh = QPushButton("REFRESCAR WORKSPACE")
+        btn_refresh.setStyleSheet("""
+            QPushButton {
+                background-color: rgba(0, 240, 255, 0.03);
+                color: #00F0FF;
+                border: 1px solid rgba(0, 240, 255, 0.2);
+                font-size: 10px;
+                font-weight: bold;
+                padding: 6px 14px;
+                border-radius: 4px;
+            }
+            QPushButton:hover {
+                background-color: rgba(0, 240, 255, 0.1);
+            }
+        """)
+        btn_refresh.clicked.connect(self.dashboard.reload_projects_list)
+        
+        btn_close_dlg = QPushButton("MINIMIZAR")
+        btn_close_dlg.setStyleSheet("""
+            QPushButton {
+                background-color: rgba(255, 255, 255, 0.03);
+                color: #94A3B8;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                font-size: 10px;
+                font-weight: bold;
+                padding: 6px 14px;
+                border-radius: 4px;
+            }
+            QPushButton:hover {
+                background-color: rgba(255, 255, 255, 0.08);
+                color: #FFFFFF;
+            }
+        """)
+        btn_close_dlg.clicked.connect(self.close)
+        
+        bottom_layout.addWidget(btn_refresh)
+        bottom_layout.addStretch()
+        bottom_layout.addWidget(btn_close_dlg)
+        container_layout.addLayout(bottom_layout)
+        
+        window_layout.addWidget(container_frame)
+
+    def eventFilter(self, obj, event):
+        """Captura la pulsación de la tecla enter para enviar mensajes."""
+        if obj is self.txt_input and event.type() == QEvent.Type.KeyPress:
+            if event.key() == Qt.Key.Key_Return and not (event.modifiers() & Qt.KeyboardModifier.ShiftModifier):
+                self.send_message_from_dialog()
+                return True
+        return super().eventFilter(obj, event)
+
+    def select_project(self, item):
+        """Muestra en la lista de abajo las conversaciones asociadas al proyecto seleccionado."""
+        display_name = item.text().replace("📁 ", "").strip().upper()
+        self.active_project_name = display_name
+        self.conv_list.clear()
+        
+        # Buscar el proyecto de forma insensible a mayúsculas y minúsculas en la caché
+        conversations = []
+        for key, val in self.projects_data.items():
+            if key.strip().upper() == display_name:
+                conversations = val
+                break
+                
+        selected_item = None
+        for c in conversations:
+            title = c.get("title") or "Sin título"
+            session_id = c.get("session_id")
+            discipline = c.get("discipline") or "general"
+            
+            display_text = f"[{discipline.upper()}] {title}"
+            list_item = QListWidgetItem(display_text)
+            
+            list_item.setData(Qt.ItemDataRole.UserRole, session_id)
+            list_item.setData(Qt.ItemDataRole.UserRole + 1, title)
+            list_item.setData(Qt.ItemDataRole.UserRole + 2, key)
+            
+            if session_id == self.dashboard.thread.session_id:
+                selected_item = list_item
+                
+            self.conv_list.addItem(list_item)
+            
+        if selected_item:
+            self.conv_list.setCurrentItem(selected_item)
+            self.switch_channel_from_list(selected_item)
+        elif self.conv_list.count() > 0:
+            first_itm = self.conv_list.item(0)
+            self.conv_list.setCurrentItem(first_itm)
+            self.switch_channel_from_list(first_itm)
+
+    def switch_channel_from_list(self, item):
+        """Conmuta la conversación activa en el hilo del asistente y refresca el historial del chat."""
+        session_id = item.data(Qt.ItemDataRole.UserRole)
+        title = item.data(Qt.ItemDataRole.UserRole + 1)
+        project = item.data(Qt.ItemDataRole.UserRole + 2)
+        
+        if not session_id:
+            return
+            
+        self.active_session_id = session_id
+        
+        # Cambiar el session_id del hilo activo de Alfonso en background
+        self.dashboard.thread.session_id = session_id
+        
+        # Sincronizar en sesión persistente
+        gui_dir = os.path.dirname(os.path.abspath(__file__))
+        config_path = os.path.join(os.path.dirname(gui_dir), "logs", "session_config.json")
+        try:
+            import json
+            with open(config_path, "w", encoding="utf-8") as f:
+                json.dump({"session_id": session_id}, f, indent=4)
+        except Exception:
+            pass
+            
+        # Actualizar banner de estado
+        self.lbl_channel_status.setText(f"ACTIVO: {project.upper()} > {title.upper()}")
+        self.header_title.setText(f"// ALFONSO OS // WORKSPACE: {project.upper()}")
+        self.dashboard.lbl_active_session.setText(f"ACTIVO: {project.upper()} > {title.upper()}")
+        
+        # Cargar historial en el panel de chat del Pop-up
+        self.load_dialog_chat_history(session_id, project, title)
+
+    def load_dialog_chat_history(self, session_id, project, title):
+        try:
+            res = self.dashboard.thread.api.get_memory_detail(session_id)
+            messages = res.get("messages", [])
+            
+            chat_html = ""
+            for msg in messages:
+                sender = "Tú" if msg.get("role") == "user" else "Alfonso"
+                content = msg.get("content") or ""
+                color = "#00E5FF" if sender == "Alfonso" else "#F59E0B"
+                chat_html += f"<p><b style='color:{color};'>[{sender.upper()}]</b><br/>{content.replace('\n', '<br/>')}</p>"
+                
+            if not chat_html:
+                chat_html = f"<p style='color:#64748B;'><i>No hay mensajes previos en este canal. Inicia el diálogo.</i></p>"
+                
+            self.chat_display.setHtml(chat_html)
+            QTimer.singleShot(50, lambda: self.chat_display.verticalScrollBar().setValue(self.chat_display.verticalScrollBar().maximum()))
+            
+        except Exception as e:
+            self.chat_display.setHtml(f"<p style='color:#EF4444;'>Error cargando historial: {e}</p>")
+
+    def send_message_from_dialog(self):
+        """Envía el mensaje desde el cuadro de texto del Pop-up y lo procesa."""
+        text = self.txt_input.toPlainText().strip()
+        if not text:
+            return
+            
+        self.txt_input.clear()
+        
+        # Si el asistente está en modo de audio normal, lo forzamos a texto para procesar rápido
+        if not self.dashboard.text_mode_enabled:
+            self.dashboard.toggle_text_mode()
+            
+        # Añadimos localmente a la ventana del pop-up el mensaje de "Tú"
+        cur_html = self.chat_display.toHtml()
+        user_msg_html = f"<p><b style='color:#F59E0B;'>[TÚ]</b><br/>{text.replace('\n', '<br/>')}</p>"
+        self.chat_display.setHtml(cur_html + user_msg_html)
+        QTimer.singleShot(50, lambda: self.chat_display.verticalScrollBar().setValue(self.chat_display.verticalScrollBar().maximum()))
+        
+        # Lanzar el envío de mensaje a Alfonso
+        self.dashboard.thread.send_text_message(text)
 
 
 def launch(config):

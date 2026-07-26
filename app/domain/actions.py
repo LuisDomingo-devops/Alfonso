@@ -30,6 +30,7 @@ class Action:
     CLOSE_APP = "close_app"
     OPEN_URL = "open_url"
     BROWSER_CLOSE = "browser_close"
+    NOTIFY = "system.notify"
 
     # --- Filesystem ----------------------------------------------------
     # Mismo motivo: convención bare ya en uso por el agente local.
@@ -80,6 +81,9 @@ class Action:
     # --- Dev Studio ------------------------------------------------
     DEV_STUDIO_OPEN = "dev_studio.open"
     DEV_STUDIO_CLOSE = "dev_studio.close"
+
+    # --- Gestión de Proyectos --------------------------------------
+    SWITCH_PROJECT_SESSION = "switch_project_session"
 
 
 # Whitelist generada a partir de la clase Action — nunca se mantiene a
@@ -140,4 +144,5 @@ CLIENT_ALIASES: dict[str, str] = {
     "dev_studio_open": Action.DEV_STUDIO_OPEN,
     "dev_studio_close_ui": Action.DEV_STUDIO_CLOSE,
     "dev_studio_close": Action.DEV_STUDIO_CLOSE,
+    "switch_project_session": "switch_project_session",
 }

@@ -217,15 +217,6 @@ async def open_application(command: str | Sequence[str], args: Sequence[str] | N
             "details": response,
         }
 
-    error_logger.warning(
-        "No hay agente local conectado (alfonso_bridge.has_clients()=False). "
-        "No se puede abrir '%s' en el equipo del usuario.",
-        command_text,
-    )
-
-    if os.getenv("ALFONSO_ALLOW_SERVER_EXEC_FALLBACK", "false").lower() == "true":
-        return await _open_application_server_fallback(command, args)
-
     return {
         "status": "error",
         "message": (
@@ -261,9 +252,6 @@ async def close_application(command: str, client_id: str | None = None) -> dict:
         "No se puede cerrar '%s' en el equipo del usuario.",
         target,
     )
-
-    if os.getenv("ALFONSO_ALLOW_SERVER_EXEC_FALLBACK", "false").lower() == "true":
-        return await _close_application_server_fallback(target)
 
     return {
         "status": "error",
@@ -306,89 +294,6 @@ async def open_url(url: str, client_id: str | None = None) -> dict:
     )
     from app.tools.client.browser_tools import browser_navigate
     return await browser_navigate(url, client_id=client_id)
-
-
-# ---------------------------------------------------------------------------
-# Fallbacks server-side
-# ---------------------------------------------------------------------------
-
-async def _open_application_server_fallback(command, args):
-    command_parts = _normalize_command(command)
-    if args:
-        command_parts = list(command_parts) + list(args)
-
-    tool_logger.warning(
-        "ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: abriendo '%s' en el SERVIDOR, no en el cliente.",
-        command_parts,
-    )
-
-    if not command_parts:
-        return {"status": "error", "message": "Aplicación no especificada"}
-    if not _is_safe(command_parts):
-        return {"status": "error", "message": "Aplicación no permitida por política de seguridad"}
-
-    binary = command_parts[0]
-    if shutil.which(binary) is None and not Path(binary).exists():
-        if shutil.which("xdg-open") and len(command_parts) == 1:
-            command_parts = ["xdg-open", binary]
-        else:
-            return {"status": "error", "message": f"Aplicación no encontrada en el servidor: {binary}"}
-
-    try:
-        process = subprocess.Popen(
-            command_parts,
-            stdout=subprocess.DEVNULL,
-            stderr=subprocess.DEVNULL,
-            stdin=subprocess.DEVNULL,
-            start_new_session=True,
-        )
-        return {
-            "status": "ok",
-            "pid": process.pid,
-            "command": command_parts,
-            "message": f"[SERVIDOR] Aplicación iniciada: {command_parts[0]}",
-            "delegate": "server_fallback",
-        }
-    except Exception as exc:
-        error_logger.exception("Error en fallback server-side de open_application")
-        return {"status": "error", "message": str(exc)}
-
-
-async def _close_application_server_fallback(target: str):
-    tool_logger.warning(
-        "ALFONSO_ALLOW_SERVER_EXEC_FALLBACK activo: cerrando '%s' en el SERVIDOR, no en el cliente.",
-        target,
-    )
-    _CLOSE_ALIASES = {
-        "chrome": ["chrome", "google-chrome", "chromium", "chromium-browser"],
-        "firefox": ["firefox", "firefox-esr"],
-        "vscode": ["code", "vscode"],
-        "terminal": ["gnome-terminal", "konsole", "xterm", "bash", "sh"],
-    }
-    targets = _CLOSE_ALIASES.get(target.lower(), [target.lower()])
-
-    closed: list[int] = []
-    for proc in psutil.process_iter(["pid", "name"]):
-        try:
-            proc_name = proc.info["name"].lower()
-            if any(t in proc_name for t in targets):
-                proc.terminate()
-                try:
-                    proc.wait(timeout=3)
-                except psutil.TimeoutExpired:
-                    proc.kill()
-                closed.append(proc.info["pid"])
-        except (psutil.NoSuchProcess, psutil.AccessDenied):
-            continue
-
-    if closed:
-        return {
-            "status": "ok",
-            "message": f"[SERVIDOR] Cerradas {len(closed)} instancias de {target}.",
-            "pids": closed,
-            "delegate": "server_fallback",
-        }
-    return {"status": "error", "message": f"No hay ninguna aplicación abierta llamada '{target}' en el servidor."}
 
 
 # ---------------------------------------------------------------------------

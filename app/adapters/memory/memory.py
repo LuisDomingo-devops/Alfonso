@@ -22,6 +22,7 @@ import sys
 from collections import deque
 from pathlib import Path
 from typing import Deque, Dict, List
+from app.domain.ports.memory_port import MemoryPort
 
 # 1. DETECCIÓN DE ENTORNO DE PRUEBAS
 # Si se detecta pytest, usamos una base de datos temporal diferente (memory_test.db)
@@ -49,6 +50,17 @@ def _init_db_schema(conn: sqlite3.Connection) -> None:
             role        TEXT    NOT NULL,
             content     TEXT    NOT NULL,
             created_at  TEXT    NOT NULL DEFAULT (datetime('now'))
+        )
+    """)
+    conn.execute("""
+        CREATE TABLE IF NOT EXISTS conversation_metadata (
+            session_id   TEXT PRIMARY KEY,
+            title        TEXT NOT NULL,
+            discipline   TEXT NOT NULL DEFAULT 'general',
+            project_name TEXT DEFAULT 'default',
+            is_persistent INTEGER DEFAULT 1,
+            created_at   TEXT NOT NULL DEFAULT (datetime('now')),
+            updated_at   TEXT NOT NULL DEFAULT (datetime('now'))
         )
     """)
     try:
@@ -81,7 +93,7 @@ def _get_connection() -> sqlite3.Connection:
     return conn
 
 
-class SessionMemory:
+class SessionMemory(MemoryPort):
     """
     Gestiona el historial de conversación por sesión.
 
@@ -184,6 +196,52 @@ class SessionMemory:
                 (cid,)
                 ).fetchall()
         return [r["session_id"] for r in rows]
+
+    def upsert_metadata(self, session_id: str, title: str, discipline: str = "general", project_name: str = "default", is_persistent: bool = True) -> None:
+        """Crea o actualiza los metadatos de una conversación."""
+        persistent_val = 1 if is_persistent else 0
+        with _get_connection() as conn:
+            conn.execute(
+                """
+                INSERT INTO conversation_metadata (session_id, title, discipline, project_name, is_persistent, updated_at)
+                VALUES (?, ?, ?, ?, ?, datetime('now'))
+                ON CONFLICT(session_id) DO UPDATE SET
+                    title = excluded.title,
+                    discipline = excluded.discipline,
+                    project_name = excluded.project_name,
+                    is_persistent = excluded.is_persistent,
+                    updated_at = datetime('now')
+                """,
+                (session_id, title, discipline, project_name, persistent_val)
+            )
+            conn.commit()
+
+    def get_metadata(self, session_id: str) -> dict | None:
+        """Recupera los metadatos de una conversación."""
+        with _get_connection() as conn:
+            row = conn.execute(
+                "SELECT session_id, title, discipline, project_name, is_persistent, created_at, updated_at FROM conversation_metadata WHERE session_id = ?",
+                (session_id,)
+            ).fetchone()
+        if row:
+            return {
+                "session_id": row["session_id"],
+                "title": row["title"],
+                "discipline": row["discipline"],
+                "project_name": row["project_name"],
+                "is_persistent": bool(row["is_persistent"]),
+                "created_at": row["created_at"],
+                "updated_at": row["updated_at"]
+            }
+        return None
+
+    def list_persistent_conversations(self) -> List[dict]:
+        """Devuelve todas las conversaciones marcadas como persistentes."""
+        with _get_connection() as conn:
+            rows = conn.execute(
+                "SELECT session_id, title, discipline, project_name, created_at, updated_at FROM conversation_metadata WHERE is_persistent = 1 ORDER BY updated_at DESC"
+            ).fetchall()
+        return [dict(r) for r in rows]
 
 
 # Instancia global compartida por toda la aplicación
